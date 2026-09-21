@@ -25,10 +25,13 @@ class FilmedRoom(Room):
                 img.save(os.path.join(self.outdir, f"f{self.i:05d}.png")); self.i += 1
 
 def film(seed, arm_name, outdir, fps):
-    room = FilmedRoom(seed, outdir, fps=fps); room.title = {"rules": "frozen rules", "jev": "RLCD judge (Jev) + governor"}.get(arm_name.split("_")[0], arm_name)
-    if arm_name != "rules" and not arm_name.startswith("oracle"): room.title = f"RLCD judge ({arm_name}) + governor"
+    title = None
+    if "@" in arm_name:   # laya@results/duck/head_r6#the corrected copy : an owned head from a named checkpoint, with a panel title
+        arm_name, rest = arm_name.split("@", 1); ckpt, _, title = rest.partition("#"); os.environ["DUCK_HEAD"] = ckpt
+    room = FilmedRoom(seed, outdir, fps=fps); room.title = title or {"rules": "frozen rules", "jev": "RLCD judge (Jev) + governor"}.get(arm_name.split("_")[0], arm_name)
+    if title is None and arm_name != "rules" and not arm_name.startswith("oracle"): room.title = f"RLCD judge ({arm_name}) + governor"
     arm = R.make_arm(arm_name); room.physics(int(1.0 / room.cdt)); pending = None
-    while room.t < 45.0 and not room.fell:
+    while room.t < float(os.environ.get("DUCK_FILM_S", "45")) and not room.fell:
         f = room.facts(); opts = room.options(); acc = room.acceptable()
         if pending: key, j = pending, {}; pending = None
         else:

@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 790" width="1400" height="790" role="img" aria-labelledby="maptitle"><rect width="1400" height="790" fill="#FFFFFF"/><style>
+text{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;fill:#141820}
+.t{font-weight:700;font-size:15px} .r{font-size:11.5px;fill:#5A6371} .c{font-family:Menlo,Consolas,monospace;font-size:10.5px;fill:#2A3140}
+.band{font-family:Menlo,Consolas,monospace;font-size:11px;letter-spacing:.08em;fill:#5A6371}
+.bx-s1{fill:#E3EBFB;stroke:#1F4FBF;stroke-width:1.6} .bx-s2{fill:#FBE9DC;stroke:#B4501E;stroke-width:1.6} .bx-code{fill:#E9ECF0;stroke:#4B535E;stroke-width:1.4}
+.bx-data{fill:#E1F3E8;stroke:#1E7B4A;stroke-width:1.6} .bx-open{fill:none;stroke:#8A929E;stroke-width:1.4;stroke-dasharray:6 5}
+.ar{stroke:#4B535E;stroke-width:1.6;fill:none} .ar-d{stroke:#B4501E;stroke-width:1.4;fill:none;stroke-dasharray:5 5} .ar-g{stroke:#1E7B4A;stroke-width:1.6;fill:none} .ar-o{stroke:#8A929E;stroke-width:1.3;fill:none;stroke-dasharray:4 5}
+.chip{fill:#F7F8FA;stroke:#D5DBE3;stroke-width:1}
+</style>
+      <title id="maptitle">Decision cycle with System Two roles above, data loop below, and unmeasured items dashed</title>
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#4B535E"/></marker>
+        <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#B4501E"/></marker>
+        <marker id="ahg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#1E7B4A"/></marker>
+        <marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8A929E"/></marker>
+      </defs>
+
+      <!-- band labels -->
+      <text class="band" x="20" y="28">SYSTEM TWO · OUTSIDE THE CYCLE · FRONTIER VLM OR AGENT (ASTRA, CODEX, CLAUDE)</text>
+      <text class="band" x="20" y="300">THE DECISION CYCLE · ONE DECISION EVERY 0.1 TO 1 S</text>
+      <text class="band" x="20" y="588">THE DATA LOOP · OWNED</text>
+
+      <!-- System Two boxes -->
+      <rect class="bx-s2" x="160" y="42" width="330" height="96" rx="5"/>
+      <text class="t" x="176" y="68">Constructs the reflex</text>
+      <text class="r" x="176" y="86">writes controllers, option enumerators, training pipelines</text>
+      <text class="c" x="176" y="106">dimentary · WetRobo · HARBOR · pen spin</text>
+      <text class="c" x="176" y="124">ours: the frozen rules, written by hand</text>
+
+      <rect class="bx-s2" x="530" y="42" width="330" height="96" rx="5"/>
+      <text class="t" x="546" y="68">Translates the world once</text>
+      <text class="r" x="546" y="86">function to appearance · which object is the held one</text>
+      <text class="c" x="546" y="106">Roboflow: Astra selects, SAM 3 segments</text>
+      <text class="c" x="546" y="124">Sucar · Agentic STAR · E85d: "black robotic claw"</text>
+
+      <rect class="bx-s2" x="900" y="42" width="330" height="96" rx="5"/>
+      <text class="t" x="916" y="68">Teaches the owned head</text>
+      <text class="r" x="916" y="86">labels and distributions for distillation</text>
+      <text class="c" x="916" y="106">Saito 4B at 22 ms · RFDT · Laya recipe</text>
+      <text class="c" x="916" y="124">ours: Jev as teacher, E77 to E81</text>
+
+      <!-- dashed arrows S2 -> cycle -->
+      <path class="ar-d" d="M325 138 L325 238 L1010 238 L1010 318" marker-end="url(#ah2)"/>
+      <path class="ar-d" d="M695 138 L695 318" marker-end="url(#ah2)"/>
+      <path class="ar-d" d="M1065 138 L1065 200 L1330 200 L1330 610" marker-end="url(#ah2)"/>
+      <text class="r" x="700" y="230">one-shot</text>
+      <text class="r" x="1240" y="194">labels</text>
+      <text class="r" x="330" y="230">writes</text>
+
+      <!-- Operator -->
+      <rect class="bx-code" x="960" y="176" width="240" height="66" rx="5"/>
+      <text class="t" x="976" y="200">Operator</text>
+      <text class="r" x="976" y="218">ask 4 s · confirm 1 s veto · oracle in our cell</text>
+      <text class="c" x="976" y="234">E88: equal violations, 2/3 of the time</text>
+      <path class="ar" d="M1080 242 L1080 318" marker-end="url(#ah)" marker-start="url(#ah)"/>
+
+      <!-- Cycle boxes -->
+      <rect class="bx-code" x="20" y="320" width="120" height="150" rx="5"/>
+      <text class="t" x="34" y="346">World</text>
+      <text class="r" x="34" y="364">cameras</text>
+      <text class="r" x="34" y="380">proprioception</text>
+      <text class="r" x="34" y="396">a hand that</text>
+      <text class="r" x="34" y="412">enters and reacts</text>
+
+      <path class="ar" d="M140 395 L166 395" marker-end="url(#ah)"/>
+      <rect class="bx-code" x="170" y="320" width="230" height="150" rx="5"/>
+      <text class="t" x="184" y="346">Perception to facts</text>
+      <text class="r" x="184" y="364">masks · geometry code · relation model</text>
+      <text class="c" x="184" y="386">E64 blind human 45 %</text>
+      <text class="c" x="184" y="402">E85 "gripper" 0 % · appearance 88 %</text>
+      <text class="c" x="184" y="418">E86 geometry .997 vs model .995</text>
+      <text class="c" x="184" y="434">E87 holding .58 · lead .79 withheld</text>
+      <text class="c" x="184" y="454">wall: object identity over time</text>
+
+      <path class="ar" d="M400 395 L426 395" marker-end="url(#ah)"/>
+      <rect class="bx-code" x="430" y="320" width="190" height="150" rx="5"/>
+      <text class="t" x="444" y="346">Facts as text</text>
+      <text class="r" x="444" y="364">categories, not numbers</text>
+      <text class="r" x="444" y="380">notes verbatim</text>
+      <text class="c" x="444" y="402">E70 numbers→categories +46.9</text>
+      <text class="c" x="444" y="418">E79 extraction + code binding</text>
+      <text class="c" x="444" y="434">D6 Laya zero-shot 28 %</text>
+
+      <path class="ar" d="M620 395 L646 395" marker-end="url(#ah)"/>
+      <rect class="bx-s1" x="650" y="320" width="270" height="198" rx="5"/>
+      <text class="t" x="664" y="346">System One judgment</text>
+      <text class="r" x="664" y="364">Jev, open rebuilds, or the owned head</text>
+      <text class="r" x="664" y="380">one calibrated choice among code's options</text>
+      <text class="c" x="664" y="402">E71 87.1 vs 82.5 lexical vs 79.2 rules</text>
+      <text class="c" x="664" y="418">E82 89.3 % at an 89.9 % ceiling, n 200</text>
+      <text class="c" x="664" y="434">D1 7B 37.5 · D4 open 27B 84.8 · Jev 81.5</text>
+      <text class="c" x="664" y="450">D4d in the loop: 27B −9 ungated, −1 gated</text>
+      <text class="c" x="664" y="466">D7/D8 own states: 27B +.14 · two Jevs ±.02</text>
+      <text class="c" x="664" y="482">Duck: R0 judge 75 vs 98 · R1 unseen 17/30 vs 1</text>
+      <text class="c" x="664" y="498">Duck R5/R6: judge 29/30 unwritten · copy 10 → 29</text>
+
+      <path class="ar" d="M920 395 L946 395" marker-end="url(#ah)"/>
+      <rect class="bx-code" x="950" y="320" width="260" height="198" rx="5"/>
+      <text class="t" x="964" y="346">Code governor</text>
+      <text class="r" x="964" y="364">safety · geometry · timing · when to ask</text>
+      <text class="c" x="964" y="386">E76 split question saves 6 of 6</text>
+      <text class="c" x="964" y="402">E83 unflagged: gate is the only lever</text>
+      <text class="c" x="964" y="418">E71 flagged: the program rule wins</text>
+      <text class="c" x="964" y="434">E88 confirm level, 27 % vetoed</text>
+      <text class="c" x="964" y="454">D4d the governor rescues the 27B: 75 → 87.5 %</text>
+      <text class="c" x="964" y="470">D4e: a gate gives the 27B +20 surprises</text>
+      <text class="c" x="964" y="486">E92 governor rule: precedence 7/7 saved, +2.5</text>
+
+      <path class="ar" d="M1210 395 L1236 395" marker-end="url(#ah)"/>
+      <rect class="bx-code" x="1240" y="320" width="140" height="150" rx="5"/>
+      <text class="t" x="1254" y="346">Executor</text>
+      <text class="r" x="1254" y="364">skills: place,</text>
+      <text class="r" x="1254" y="380">set down, regrasp,</text>
+      <text class="r" x="1254" y="396">hold, ask</text>
+      <text class="c" x="1254" y="424">E69: 0.1 s free,</text>
+      <text class="c" x="1254" y="440">0.3 s costs</text>
+
+      <!-- return arrow executor -> world -->
+      <path class="ar" d="M1310 470 L1310 520 L80 520 L80 474" marker-end="url(#ah)"/>
+      <text class="r" x="640" y="514">the world answers</text>
+
+      <!-- Data loop -->
+      <path class="ar-g" d="M785 470 L785 606" marker-end="url(#ahg)"/>
+      <text class="r" x="792" y="560">every decision is a record</text>
+      <rect class="bx-data" x="640" y="610" width="250" height="110" rx="5"/>
+      <text class="t" x="654" y="636">Typed record</text>
+      <text class="r" x="654" y="654">state · options · probabilities · outcome</text>
+      <text class="c" x="654" y="676">E89 annotator: 98.8 % consistent, 70 % right</text>
+      <text class="c" x="654" y="692">CosmicBrain: Jev labels teleop hours</text>
+
+      <path class="ar-g" d="M890 665 L916 665" marker-end="url(#ahg)"/>
+      <rect class="bx-data" x="920" y="610" width="220" height="126" rx="5"/>
+      <text class="t" x="934" y="636">Owned head training</text>
+      <text class="r" x="934" y="654">distil the teacher's judgments</text>
+      <text class="c" x="934" y="676">E77 byte: 85 % agree, 59 % loop</text>
+      <text class="c" x="934" y="692">E91c 2×: 88.3 = teacher · +rule 90.4 = 90.4</text>
+      <text class="c" x="934" y="708">E90 rlcd 79.6 · E91 plain CE 84.2 · 2× 88.3</text>
+
+      <path class="ar-g" d="M1140 665 L1166 665" marker-end="url(#ahg)"/>
+      <rect class="bx-data" x="1170" y="610" width="210" height="126" rx="5"/>
+      <text class="t" x="1184" y="636">Correction loop</text>
+      <text class="r" x="1184" y="654">teacher labels the visited states</text>
+      <text class="c" x="1184" y="676">byte: E80 +16.7 · E81 2x: no</text>
+      <text class="c" x="1184" y="692">Laya: 79.6 → 79.2 after a round</text>
+      <text class="c" x="1184" y="708">E91: heads' probabilities calibrated ±.06</text>
+
+      <path class="ar-g" d="M1275 610 L1275 560 L905 560 L905 475" marker-end="url(#ahg)" stroke-dasharray="6 5"/>
+      <text class="r" x="1120" y="554">replaces the judge</text>
+
+      <!-- Unmeasured -->
+      <rect class="bx-open" x="20" y="610" width="280" height="50" rx="5"/>
+      <text class="r" x="34" y="632">Unmeasured</text>
+      <text class="t" x="34" y="650" style="font-size:13px">a frontier VLM inside our loop</text>
+      <rect class="bx-open" x="320" y="610" width="290" height="50" rx="5"/>
+      <text class="r" x="334" y="632">Unmeasured · next seam probe</text>
+      <text class="t" x="334" y="650" style="font-size:13px">identity tracking on real footage</text>
+      <rect class="bx-open" x="20" y="675" width="280" height="50" rx="5"/>
+      <text class="r" x="34" y="697">Unmeasured · parked</text>
+      <text class="t" x="34" y="715" style="font-size:13px">one operator, many robots</text>
+      <rect class="bx-open" x="320" y="675" width="290" height="50" rx="5"/>
+      <text class="r" x="334" y="697">Unmeasured · her axis three</text>
+      <text class="t" x="334" y="715" style="font-size:13px">structure inside the representation</text>
+      <path class="ar-o" d="M300 635 L640 500" marker-end="url(#aho)"/>
+      <path class="ar-o" d="M465 610 L285 474" marker-end="url(#aho)"/>
+    </svg>

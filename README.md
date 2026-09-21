@@ -10,12 +10,41 @@ Anurag Akkiraju · September 2026 · MIT
 
 *The second body: Pollen's MicroDuck biped in a room with a person. Left, events handled on a bank of three situations no rule was written for; right, goal rate on the bank the rule program was written for. Every bar is a pre-registered run on fresh seeds.*
 
+## At a glance
+
+| instrument | the question | what we found |
+|---|---|---|
+| **The sorting cell** — MuJoCo, six parts, a person's hand, one unscripted event per episode, fifteen arms behind one executor | Is a calibrated number worth its cost above a policy, with a person in the loop? | Judge 87.1 % of held-out seeds against a rule program's 79.2; a one-second confirm window gives the same safety at two thirds of the operator time; where the surprise is unflagged, the confidence gate is the only lever |
+| **The owned head** — a 421M open encoder | Can the fleet own the judgment? | 88.3 % against the cloud judge's 87.9, 90 ms on-device; the recipe is plain soft distillation of the probability vectors |
+| **The duck bench** — Pollen's MicroDuck biped, a person in the room, a rule program frozen before the unseen bank | Does it transfer to a new body, and what does the correction loop teach? | Judge 29 of 30 situations no rule was written for, rules 1; the copy reaches 29 through the operator's vetoes alone; the label form decides whether it learns to read or forgets how to walk |
+| **Eidon's 13,451 real recordings** | Can it triage real teleop data before labels exist? | AUROC .78 zero-shot from motion facts, a hand rule .64, a fitted logistic .88; calibrated at the real prevalence; activity recognition at chance |
+
+## The picture
+
+![The decision cycle: world, perception to facts, System One judgment, code governor, executor; System Two roles outside the cycle above; the owned data loop below](figures/fig0-decision-cycle.svg)
+
+*A fleet runs on a cycle: cameras and state become facts, a System One judgment picks one action from options code wrote, a code governor owns safety and when to involve a person, an executor moves the body. Frontier models sit outside the cycle: they write the reflex, translate the world once, teach. Every decision is a typed record with a probability, so the fleet's decisions become training data for a head it owns. Each box carries what was measured against a dumb baseline.*
+
+## See it move
+
+![Seed 72: a person with crutches crosses and has right of way. Left, the owned copy before correction cuts across at 0.19 m. Right, after one round of the operator's vetoes it waits until they have passed.](figures/demo-duck-seed72-crutches-before-after.gif)
+
+*Left, the owned copy before correction cuts across the person with crutches at 0.19 m. Right, the same head after one correction round from the operator's vetoes waits until they have passed. Same seed, same body, no API call in either.*
+
+![Seed 70: an operator's note says follow the person. Left, before correction the copy walks to the goal. Right, after correction it follows and waits two steps behind.](figures/demo-duck-seed70-follow-before-after.gif)
+
+*Left, the note says "follow the person"; the uncorrected copy walks to the goal. Right, the corrected copy follows and waits two steps behind. Hide the note and it walks to the goal again: the round taught reading (E100).*
+
+![Seed 40 in the sorting cell: a hand enters the corridor while a heavy fragile part is carried. Left, the frozen rules pause and the part slips. Right, the owned head with the governor's set-down rule.](figures/demo-seed40-rules-vs-owned-head.gif)
+
+*The sorting cell, seed 40: a hand enters while a heavy fragile part is carried. Left, the frozen rules pause and the part slips. Right, the owned head with the governor's set-down rule, the one safety rule every judge failed until code took it (E92).*
+
 ## Start here (five minutes)
 
 1. **The ladder figure above**, then [docs/DUCK-BENCH.md](docs/DUCK-BENCH.md): what the bench holds fixed, what each version changed, and the ladder table with every number.
 2. [notebook/CLAIMS.md](notebook/CLAIMS.md): the claims ledger with boundaries, corrections appended and never rewritten. Read 4.54 (the owned head reaches its teacher), 4.58 (the correction lever), 4.61 (the copy reads like its teacher, no API).
 3. [docs/RECIPE.md](docs/RECIPE.md): what a team would do on Monday, with the schema and commands.
-4. The sorting cell in motion: [seed 40, rules vs the owned head with the governor's set-down rule](figures/demo-seed40-rules-vs-owned-head.gif); the duck: [a person approaches](figures/demo-duck-seed1-approach.gif).
+4. The clips under [See it move](#see-it-move): the owned copy before and after the operator's vetoes, and the sorting cell's set-down rule.
 5. [notebook/LAB-NOTEBOOK.md](notebook/LAB-NOTEBOOK.md): 11,000 lines of dated pre-registrations, results and scoring, if you want to check any of it.
 
 ## The core results
@@ -23,9 +52,15 @@ Anurag Akkiraju · September 2026 · MIT
 Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are seed-matched bootstraps. Evidence pointers name the experiment in the [lab notebook](notebook/LAB-NOTEBOOK.md) and the [claims ledger](notebook/CLAIMS.md).
 
 1. **A calibrated model's probability keeps its meaning on states its own actions created; a strong open model's does not.** On recorded decisions a dense open 27B matches Jev on choices (84.8 vs 81.5 % acceptable) and on calibration. Driving its own states, the 27B's top-1 probability runs .135 above its hit rate while two RLCD checkpoints stay within .02, and it loses 9 points ungated. A fixed handoff threshold only means one thing for the model whose number holds. — D4, D4d, D7, D8; [Figure 8](figures/fig8-reliability.png).
+
+   ![Reliability on the model's own states: two RLCD checkpoints track their hit rate, the open 27B runs above it](figures/fig8-reliability.png)
+
 2. **A one-second confirm window buys the same safety for two thirds of the operator time.** Replacing the 4-second ask with a proposal the operator may veto gives the same violations at 63–66 % of the operator time; 27 % of windows vetoed for the calibrated model, 38 % for the open one. — E88, D4d.
 3. **When the surprise is in the facts and nobody wrote a note, the confidence gate is the only lever.** Rules handle 12.5 % of unflagged surprises, the calibrated judge 50 %, gated 75 %; the gate recovers the open model's misses because its ranking survives even where its number drifts. — E83, D4e.
 4. **The fleet can own the judgment.** A 421M open encoder, distilled by plain soft cross-entropy from 6,489 of the teacher's typed decisions, drives held-out seeds at 88.3 % against the cloud teacher's 87.9 % (paired +0.4 [−0.8, +1.7]) with the teacher's exact event profile, at 90 ms on-device. Store the probability vector: a head trained on the chosen action alone becomes over-confident and blind in ranking. The RLCD training recipe is not needed to inherit the judgment; plain distillation beats it by 4.6 points — and the calibration comes with it: driving its own states the owned head reports over −.007 and ECE .054 against the teacher's +.014 / .083. — E90, E91, E91c, D7b; [Figure 9](figures/fig9-ladders.png), [Figure 8](figures/fig8-reliability.png).
+
+   ![The ladders: the owned heads against the teacher and the rules, with and without the governor's rule](figures/fig9-ladders.png)
+
 5. **Code owns safety.** The one event every judge failed — a hand entering while a heavy fragile part is carried — was a rule code already had the facts for. Set the part down before pausing: fires on exactly those episodes for every arm, broken parts to zero, +2.1 to +4.2 points; with it the owned head and the teacher both sit at 90.4 %. — E76, E92.
 6. **Reading is the value, and format decides whether a fact is seen.** Feeding the model categories instead of numbers is worth +47 points; extracting a note's conditions once and binding in code puts the judge at the perception-limited ceiling, 89.3 of a possible 89.9 % on 200 seeds, with zero broken parts. — E70, E79, E82.
 

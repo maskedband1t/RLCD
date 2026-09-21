@@ -11958,3 +11958,11 @@ correction source. (b) Correction round 2: masked targets from r6's own probabil
 - **P103.6** `laya-r7` falls ≤ 2 across its 70 ungated episodes. Prior 55 %.
 - **P103.7** the clause bites: `laya-r6` under R7 (E103a) has the same goal rate and events as under R6 (deterministic
   policy, only the labeller changed) and an acceptable-decision rate at least 5 points lower on the anticipated bank. Prior 70 %.
+
+**E103a scored (15:39 PDT).** Under the R7 labeller the baselines are unchanged (rules 95 % / 36 and 1/30; oracle 100 % / 38
+and 26/30 — **P103.5 held**) and the masked head's behaviour is identical to E101 to the episode (goal 28 → 28, events
+24 → 24 anticipated; 20 goal, 29/30 unseen) while its acceptable-decision rate on the anticipated bank falls from .946
+to .764 (−18 points) and stays .976 on the unseen one — **P103.7 held**: the clause bites exactly where the residue is.
+The clause creates 389 single-answer {walk_slow} states on the anticipated bank in which the head is right 7 % of the
+time at a stated .49 — the correction signal round 2 trains on (3,664 visited states, 508 outside the set; approach
+609, child 485, blocked 447, cross 422). `head_r7` training started 15:30 on 10,442 records.

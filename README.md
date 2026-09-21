@@ -1,10 +1,22 @@
 # Calibrated Decisions at the Human–Robot Boundary
 
-**RLCD use cases in robotics, measured.** A self-directed research programme (September 2026): 92 pre-registered experiments in two simulated instruments, asking where calibrated decision models — RLCD-trained "System One" models, of which TypeSafe's Jev is the first — create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns. Every prediction was dated before its run; failed predictions and 27 method errors stay in the record next to the results.
+Anurag Akkiraju · September 2026 · MIT
 
-![Seed 40: a hand enters the corridor while a heavy fragile part is carried. Left, the frozen rules pause and the part slips. Right, the owned head with the governor's set-down rule.](figures/demo-seed40-rules-vs-owned-head.gif)
+**RLCD use cases in robotics, measured.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in two simulated instruments and one real dataset, asking where calibrated decision models — RLCD-trained "System One" models, of which TypeSafe's Jev is the first — create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns. Every prediction was dated before its run; failed predictions and 32 method errors stay in the record next to the results.
 
-*The sorting cell: six parts, colour and inspection trays, a person's hand that enters the corridor, blocked trays, slipping parts, unknown objects, and one unscripted event per episode. Fifteen arms share one executor, perception stack and option enumerator.*
+**Three numbers.** A 421M head the fleet owns, distilled from 6,489 of the cloud judge's decisions, drives held-out seeds at 88.3 % against the judge's 87.9 %. On a second body, the judge handles 29 of 30 situations nobody wrote a rule for, where the rule program handles 1; its owned copy, corrected only by the operator's vetoes, reaches the same 29 with no API call. The correction round is a lever with a direction: the label form the operator's veto takes decides whether the copy learns to read or forgets how to walk.
+
+![The duck ladder: what each judge handled where no rule existed, and the goal rate where the rules were written](figures/fig10-duck-ladder.png)
+
+*The second body: Pollen's MicroDuck biped in a room with a person. Left, events handled on a bank of three situations no rule was written for; right, goal rate on the bank the rule program was written for. Every bar is a pre-registered run on fresh seeds.*
+
+## Start here (five minutes)
+
+1. **The ladder figure above**, then [docs/DUCK-BENCH.md](docs/DUCK-BENCH.md): what the bench holds fixed, what each version changed, and the ladder table with every number.
+2. [notebook/CLAIMS.md](notebook/CLAIMS.md): the claims ledger with boundaries, corrections appended and never rewritten. Read 4.54 (the owned head reaches its teacher), 4.58 (the correction lever), 4.61 (the copy reads like its teacher, no API).
+3. [docs/RECIPE.md](docs/RECIPE.md): what a team would do on Monday, with the schema and commands.
+4. The sorting cell in motion: [seed 40, rules vs the owned head with the governor's set-down rule](figures/demo-seed40-rules-vs-owned-head.gif); the duck: [a person approaches](figures/demo-duck-seed1-approach.gif).
+5. [notebook/LAB-NOTEBOOK.md](notebook/LAB-NOTEBOOK.md): 11,000 lines of dated pre-registrations, results and scoring, if you want to check any of it.
 
 ## The core results
 
@@ -17,7 +29,9 @@ Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are
 5. **Code owns safety.** The one event every judge failed — a hand entering while a heavy fragile part is carried — was a rule code already had the facts for. Set the part down before pausing: fires on exactly those episodes for every arm, broken parts to zero, +2.1 to +4.2 points; with it the owned head and the teacher both sit at 90.4 %. — E76, E92.
 6. **Reading is the value, and format decides whether a fact is seen.** Feeding the model categories instead of numbers is worth +47 points; extracting a note's conditions once and binding in code puts the judge at the perception-limited ceiling, 89.3 of a possible 89.9 % on 200 seeds, with zero broken parts. — E70, E79, E82.
 
-7. **A second body, honestly.** The same judge dropped onto Pollen's MicroDuck biped in a room with a person, with facts, options and governor written in one night, reaches the goal 75 % of the time against 98 % for a rule program written for the anticipated cases, and comes within touching distance of a standing person 19 times in 40 episodes against 3; the handoff threshold and the calibration level tuned in the cell did not carry over. One round of representation work (options annotated with code's predicted effect on the distance to the person) put the judge's confidence on its own states within .002 of its hit rate, and on a bank of events nobody wrote a rule for it handled 17 of 30 against the rules' 1 and an oracle's 19, reading a note about crutches in 9 of 10 episodes. An owned 421M head distilled from 4,027 of those decisions then matched the rule program on the anticipated bank (95 %) and beat its own teacher there, with no API call in the loop; on the notes it never saw it was blind (0/10 and 0/10) and confidently wrong (right 8 % of the time at a stated .70): distillation transfers behaviour, not reading. The confirm window bought back a third of that (16/30) at 15 operator seconds per episode, and every veto is a labelled state for the next round. One correction round on those states, labelled by code's acceptable sets, taught the copy both notes on fresh seeds (right of way 0 → 10/10, above an oracle's 8) and un-taught it to move (anticipated-bank goal 95 → 72 %, six falls from start–stop chattering): the label form is the lever. With the body's skills fixed (its shipped policy cannot turn in place, so three skills had done nothing) the corrected copy handled 22 of 30 unseen events against its uncorrected twin's 10, and hiding the notes dropped following from 10/10 to 0/10: the round taught reading, not caution alone. The teacher itself, on the fixed body and the same fresh seeds, handled 29 of the 30 unwritten situations, above the truth-knowing oracle's 26, and walked the anticipated bank worse than its own copy (82 % vs 95 %): reading is the judge's and generalises, steady walking is the copy's. A second correction round whose labels keep the copy's own preference order inside the operator's acceptable set gave the copy its teacher's reading, 29 of 30 with no API call, and left one residue: a person who walks up and stands still is a situation where waiting forever is acceptable at every decision, so no veto ever says "move on", and the corrected copy waits where its uncorrected self walked. The acceptable set has to encode progress before a correction round can teach it. — E93–E102; `docs/DUCK-BENCH.md`, `results/duck/LEADERBOARD.md`; [the ladder](figures/fig10-duck-ladder.png); `src/duck/`; [clip](figures/demo-duck-seed1-approach.gif).
+7. **A second body, honestly: the judge reads what no rule covers; the rule program walks better.** The same judge dropped onto Pollen's MicroDuck biped in a room with a person, with facts, options and governor written in one night, reached the goal 75 % of the time against 98 % for a rule program written for the anticipated cases, and came within touching distance of a standing person 19 times in 40 episodes against 3; the handoff threshold and the calibration level tuned in the cell did not carry over. One round of representation work — options annotated with code's predicted effect on the distance to the person — put the judge's confidence on its own states within .002 of its hit rate, and on a bank of situations nobody wrote a rule for it handled 17 of 30 against the rules' 1. With the body's skills fixed (its shipped walking policy cannot turn in place, so three skills had done nothing), the judge handled 29 of 30 on fresh seeds, above the truth-knowing oracle's 26, and walked the anticipated bank at 82 % against the rules' 95. — E93–E95, E99, E102; [docs/DUCK-BENCH.md](docs/DUCK-BENCH.md), [results/duck/LEADERBOARD.md](results/duck/LEADERBOARD.md).
+8. **The fleet's copy inherits the reading through the operator's vetoes alone, and the label form decides what it learns.** A 421M head distilled from 4,027 of the judge's duck decisions matched the rule program on the anticipated bank (95 %) with no API call and was blind to the notes it never saw (0/10, 0/10), confidently wrong at a stated .70. One correction round on its own visited states, labelled by code's acceptable sets as uniform targets, taught it both notes on fresh seeds (right of way 0 → 10/10) and un-taught it to move (goal 95 → 72 %, six falls from start–stop chattering). The same states with labels that keep the copy's own preference order inside the acceptable set: 29 of 30, equal to its teacher, no falls, single-answer states right 98 % at a stated .98. Hide the notes and following drops 10/10 → 0/10: the round taught reading, not caution. The residue is one situation — a person who walks up and stands still — where waiting forever is acceptable at every decision, so no veto ever says "move on"; the acceptable set has to encode progress before a correction round can teach it. — E96, E98, E100, E101, E103.
+9. **On real demonstrations the judge triages quality zero-shot; it does not recognise activities.** On 464 of Eidon AI's 13,451 household recordings, from eleven categorical facts computed off the body-worn IMU alone, the judge separates the dataset's own valid from flagged and invalid recordings at AUROC .78 against a hand rule's .64, with its stated probability within .03 of the true valid rate at the real prevalence, in 0.11 s per recording; a logistic regression fitted on the same facts with 232 labels reaches .88, so the judge's place is before the labels exist. Asked which chore the motion belongs to, it is at chance (20 %) while a centroid classifier is at 51 %. — E97; [src/field/](src/field/).
 
 **What it is not.** Not a perception system (real wrist-camera frames, E64, E85–E87: the wall is object identity over time). Not a planner-repair loop with a small planner (E67). Not a better dispatcher than a constant policy on real fleet data (E53). Not a critic of anything a program already decides (E65). Not the accuracy leader: its edge is a number a governor can spend.
 
@@ -58,7 +72,7 @@ Log state, options and the probability vector for every decision. Convert number
 
 - `notebook/LAB-NOTEBOOK.md` — every pre-registration with its date, then its results and scoring; failed predictions kept.
 - `notebook/CLAIMS.md` — the claims ledger, each with its boundary; corrections appended, never rewritten.
-- `paper/appendix-method-errors.md` — 27 errors we caught in our own work, with fixes and the rules adopted.
+- `paper/appendix-method-errors.md` — the method errors we caught in our own work (32 so far), with fixes and the rules adopted.
 - `results/` — every run's raw outputs; `figures/` — the figures; `paper/main.md` — the paper draft.
 - One command regenerates the headline tables from the committed results:
 ```bash
@@ -74,6 +88,10 @@ PYTHONPATH=src python -m sim.run_ablation --arms published_baseline heuristic cl
 ```bash
 PYTHONPATH=src python -m cell.run --arms rules lexical oracle --seeds 0-9 --out results/cell/demo.jsonl
 ```
+The duck bench, no key needed for the rule program, the oracle and the owned heads (`DUCK_REPR=R2` options, `DUCK_PROGRESS=1` for the progress-aware acceptable set, `DUCK_HEAD=<checkpoint>` for an owned head):
+```bash
+USE_TF=0 PYTHONPATH=src DUCK_REPR=R2 python src/duck/e93_run.py --arms rules oracle --seeds 0-9 --out results/duck/demo.jsonl
+```
 Calibrated arms read `TYPESAFE_API_KEY` from the environment (`jev-latest`; `CELL_JEV_MODEL=jev-preview` for the second checkpoint). Owned-head arms read `CELL_LAYA_CKPT`; see [models/README.md](models/README.md). The governor's set-down rule is `CELL_GOV_SETDOWN=1`.
 
 | directory | what |
@@ -84,11 +102,12 @@ Calibrated arms read `TYPESAFE_API_KEY` from the environment (`jev-latest`; `CEL
 | `src/perception/` | the perception seam probes (SAM 3, relation model, segmentation ground truth) |
 | `data/` | constructed suites, California DMV disengagement reports 2020–24, DROID instruction strings, the irreducible-judgment items |
 | `docs/` | use cases, the recipe, the duck bench definition |
+| `src/field/`, `results/field/`, `data/eidon/` | the Eidon probe: IMU facts, the two questions, the baselines, the answers (the 9 TB of video and 9.5 GB of IMU stay on Hugging Face; the metadata table and the computed facts are here) |
 | `src/duck/`, `results/duck/` | the duck bench: MicroDuck in a room with a person; every iteration on the leaderboard |
 | `models/` | checkpoints and how to reproduce them |
 
 ## Boundaries
 
-Everything positive here is measured in simulation we built, with ground truth we defined. The only real-data results (E53, E64) are negative. The RLCD claim rests on two checkpoints of one vendor's family. Forty held-out seeds per loop; single-answer calibration cells of 122–545 decisions. A frontier model in the judge's seat is unrun; the harness runs any model behind the identical interface.
+Everything positive about the decision loop is measured in simulation we built, with ground truth we defined. Real data appears three times: dispatch on fleet records (E53) and object identity on wrist-camera frames (E64) were negative; quality triage of real demonstrations (E97) was positive and activity recognition negative. The clone is about 200 MB because every decision record is included. The RLCD claim rests on two checkpoints of one vendor's family. Forty held-out seeds per loop; single-answer calibration cells of 122–545 decisions. A frontier model in the judge's seat is unrun; the harness runs any model behind the identical interface.
 
-MIT licence. Third-party: `third_party/jev-drone` (MIT), RelateAnything weights (fetched, not stored). the author Akkiraju, 2026.
+MIT licence. Third-party: `third_party/jev-drone` (MIT), RelateAnything weights (fetched, not stored). Anurag Akkiraju, 2026.

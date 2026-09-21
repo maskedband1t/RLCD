@@ -485,3 +485,12 @@ who walks up and stands still — is one where waiting forever is acceptable at 
 "move on"; the corrected copy waits 90 s where its uncorrected self walked or asked. Progress is a preference the
 acceptable set does not encode, so the correction round cannot teach it (E103 adds the clause). Boundary: one head,
 two rounds, one body.
+
+**4.62 · SUPPORTED with mechanism (E105, 2026-09-21).** On a body that carries on with its last command while the judge
+thinks, decision latency is paid in reading and safety, not in time: with 3 s of think time the same judge's
+unwritten-situation score falls 29 → 18 of 30 (following 10 → 4), near-contacts double and falls appear, while time
+to goal does not rise. With 1 s it decides every 1.5 s instead of every 0.5 s and its anticipated-bank results equal
+the rule program's (goal 95 %, child note 7/10 from 1/10) because it dithers less — fewer decisions were better
+decisions there. Cadence is therefore a governor knob: fast where the scene moves, slow where it does not. The field
+number that prompted this (a graph node that waits for its decision: 5.42 s with the 0.1 s judge, 8.79 s with a frontier
+VLM) is the same latency paid in time instead. Boundary: one judge, one body; cadence and staleness not yet separated (E106).

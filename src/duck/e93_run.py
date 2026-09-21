@@ -5,6 +5,7 @@ import os, sys, json, time, argparse, hashlib
 import numpy as np
 sys.path.insert(0, "src")
 from duck.e93_sim import Room, DECISION_S, MAX_T, EVENTS
+THINK_S = float(os.environ.get("DUCK_THINK_S", "0"))   # E105: injected decision latency in seconds (0 = the synchronous loop of every run before E105)
 ASK_S = 4.0; CONFIRM_S = 1.0
 
 class Rules:
@@ -113,7 +114,7 @@ def make_arm(arm):
 def episode(seed, arm_name, record=None, verbose=False):
     room = Room(seed); arm = make_arm(arm_name); st = dict(operator_s=0.0, n_asks=0, n_confirms=0, n_vetoes=0, decisions=0, log=[], acceptable=0, deferred=0, api_errors=0, consecutive_errors=0)
     room.physics(int(1.0 / room.cdt))  # one second to settle on the standing policy
-    goal = False; t_goal = None; pending = None
+    goal = False; t_goal = None; pending = None; prev_key = "stop"
     while room.t < MAX_T and not room.fell:
         f = room.facts(); opts = room.options(); acc = room.acceptable()
         if pending is not None: key, j = pending, {"source": "operator"}; pending = None
@@ -137,6 +138,10 @@ def episode(seed, arm_name, record=None, verbose=False):
         if record is not None and "probabilities" in j: record.append({"key": hashlib.sha1(json.dumps([f, sorted(opts)], sort_keys=True).encode()).hexdigest(), "state": f, "options": opts, "answer": j, "arm": arm.name, "seed": seed, "acceptable": sorted(acc), "event": room.event})
         if key == "ask_operator": st["n_asks"] += 1; st["operator_s"] += ASK_S; room.run_skill("ask_operator"); pending = Oracle().decide(room.facts(), room.options(), room)[0]; continue
         if key == "done": goal = room.goal_dist() < 0.25; t_goal = room.t; break
+        if THINK_S > 0:   # E105: a slow decider — the body carries on with its previous command while the judge thinks, then the (stale) decision executes
+            carry = prev_key if prev_key in ("walk_fast", "walk_slow", "stop") else "stop"
+            for _ in range(int(round(THINK_S / DECISION_S))): room.run_skill(carry)
+        prev_key = key
         room.run_skill(key)
         if room.goal_dist() < 0.25 and not goal: goal = True; t_goal = room.t
     viol = room.near_contact_events + int(room.fell) + room.child_zone_events + room.door_collisions + room.cut_offs + room.kicks

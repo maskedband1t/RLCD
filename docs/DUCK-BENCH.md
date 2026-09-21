@@ -71,6 +71,7 @@ positive). Every number is in `results/duck/LEADERBOARD.md` and the notebook's E
 | R5 (E102) | jev_confirm0.5 | 72 % | 26/40 | 28/30 | 16 % of windows vetoed; 7.5 s/ep unseen, 26 s anticipated |
 | R6 (E101) | **laya-r6**, correction round with masked targets | **70 %** (approach: goal 0/10 — waits 90 s; child 2/10) | 24/40 | **29/30** (10, 10, 9) = the teacher; no start–stop falls | −.181 unseen (single-answer .982 at .978), −.263 anticipated |
 | R6 (E101) | laya-r6_confirm0.5 | 70 % | 24/40 | 27/30 | 70 windows, 29 vetoes, 6 s/ep |
+| R5 (E105) | the teacher with 1 s / 3 s of injected think time (the body carries its last command meanwhile) | 95 % / 92 % (0 s: 82) | 30/40 / 24/40 | 23/30 / 18/30 (0 s: 29; follow 6 / 4) | near-contacts 14 / 20 (0 s: 10); falls 1 / 3 anticipated, 0 / 4 unseen |
 | R7 (E103) | acceptable set gains a progress clause; correction round 2 from both banks' visited states, masked targets | queued | | | |
 
 Read down the judge column: the API judge is beaten by the rules on the anticipated bank at every version and beats

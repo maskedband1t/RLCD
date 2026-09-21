@@ -11982,3 +11982,93 @@ options, same governor, R5 instrument, seeds 0–39 and 70–99. No API spend (d
 - **P104.5** the 27B's falls ≥ the judge's 1 across 70 episodes. Prior 50 %.
 If the 27B reads the notes as well as the judge, the honest headline for the duck is calibration and cost, not
 reading; the README will say which.
+
+## Field note · Graph-as-Policy with Jev at the decision nodes (2026-09-21, 16:25 PDT; link from the author: x.com/isthatdebbiej/status/2102112154875056387)
+
+**The post.** Deborah Jacob (@isthatdebbiej), 21 Sep 2026, quoting Ken Goldberg's essay *Goosebumps: a Paradigm Shift is
+Occurring in Robotics* (Agentic Robotics): "Spent the weekend playing with GaP. In YAM moving-cube sim, here's the median
+pickup time: 5.42 s with GaP + custom Rust executor + Jev; 8.79 s with native GaP + Astra. GaP gives you explicit
+decision nodes." A ten-second clip of the comparison.
+
+**GaP** (Chen … Fan, Goldberg; NVIDIA + Berkeley; arXiv 2607.05369, 6 Jul 2026; beta code 1 Jul; graph-robots/graph-as-policy):
+a robot policy is "a directed computation graph of modular perception, planning, and control nodes" drawn from MORSL
+(51 skills: perceiving, grasping with a planner, transporting, tracking, learned variants); a multi-agent LLM harness
+compiles a language task into the typed graph, postcondition checkpoints are validated against simulator ground truth
+at every subgraph exit, and the graph is rehearsed in an internal simulation to refine topology and parameters before
+deployment. LIBERO, Isaac, real Franka and UR. The docs describe routing and backward edges but say nothing about how a
+branch is decided at run time, and nothing about latency — Jacob's "explicit decision nodes" is where a judge goes.
+
+**Also found:** wudilyy999/jev-langgraph compiles Jev decisions into LangGraph nodes with confidence bands — auto at
+.95, provisional at .7, human review at .4, fallback below — and receipts that keep the full distribution apart from
+the provider's confidence. Business automation, not robots; the same gate-and-confirm plane as ours, built by someone
+else from the same primitive.
+
+**What it changes on our map.** (1) GaP is the field's instance of the *constructs the reflex* box: System Two writes
+the typed, verified graph and rehearses it; the graph's decision nodes are the seat we measure. (2) Jacob's number is
+the axis our loops have never charged for: **latency**. Every run in this programme is decision-synchronous — the sim
+waits for the judge — so a 0.1 s judge and a 3 s frontier model score the same. On her graph the fast judge nearly
+halved the task time. Whether that is the model's quality or its speed she cannot separate (Jev vs Astra differ in
+both); we can, with one model and an injected think time — E105. (3) Her executor is Rust and hers is a graph; the
+judge is the same API object we call. The convergence the map predicted (the interface is commodity; the seat is where
+the value is measured) now has a third independent builder.
+
+## E105 · the price of a slow decider on this body (pre-registration, 2026-09-21 16:25 PDT; launched right after)
+
+**Design.** The same judge (`jev-latest`, R2 options, R5 instrument) with an injected think time: while the judge
+"thinks" for T seconds the body carries on with its previous command (walk, slow, or stop; a stale wait becomes a stop),
+then the decision executes. `DUCK_THINK_S` ∈ {1, 3}; T = 0 is E102. Seeds 0–39 and 70–99. Isolates Jacob's latency
+axis from model quality. ≈ 7,000 calls.
+
+**Predictions.**
+- **P105.1** at 3 s the judge's near-contacts on the anticipated bank at least double (E102: 10 in 40 episodes). Prior 65 %.
+- **P105.2** at 3 s time-to-goal on the anticipated bank rises ≥ 25 % (E102: 38.8 s). Prior 60 %.
+- **P105.3** at 3 s unseen events handled fall by ≥ 4 (E102: 29/30); at 1 s by ≤ 2. Prior 55 %.
+- **P105.4** at 1 s the anticipated-bank goal rate stays within 10 points of E102's 82 %. Prior 60 %.
+- **P105.5** the crutches situation degrades most at 3 s: right of way ≤ 7/10 (E102: 10/10) — the person moves while the decision is stale. Prior 55 %.
+
+**E104 aborted at 16:29 PDT (noted 16:33).** The Featherless demo endpoint answers HTTP 429 "insufficient capacity … all
+endpoints at capacity" for the 27B; the harness's three-consecutive-errors rule (method error 30) stopped the arm after one
+episode (seed 70, its errors turned into asks). Not a spend or code failure: the free endpoint is full. A retry script
+polls it every ten minutes and runs E104 unchanged when it answers 200; the pre-registration stands as written. The one
+partial episode is quarantined (`e104.jsonl` will be overwritten by the rerun).
+
+**E105 partial, TypeSafe outage (noted 16:34 PDT).** The 3 s block finished (16:28). The 1 s block completed its 30 unseen
+episodes and 32 of 40 anticipated ones, then the API began answering HTTP 503 "no healthy upstream" (16:33; a direct
+call confirms the outage; not credits). The harness stopped the arm after three consecutive errors (method error 30).
+A poller reruns the eight missing anticipated seeds of the 1 s block when the API answers again; the 62 finished
+episodes stand. Both external judges are unavailable at the moment (Featherless at capacity, TypeSafe down); the local
+runs (E103) continue.
+
+## E105 results (3 s block ended 16:28, 1 s block 16:34 after the outage; written 16:37 PDT) · on a body that keeps moving, a slow decider does not pay in time — it pays in reading and safety, and a slower cadence even helps where the judge dithers
+
+`e105_think1.jsonl` (70 episodes; 62 before the 503 outage, 8 after), `e105_think3.jsonl` (70). Same judge, same seeds, same
+instrument as E102 (0 s). The body carries its previous command for T seconds, then the decision executes.
+
+| think time | bank | goal | t to goal | near | falls | child-zone | decisions/ep | events (per event) |
+|---|---|---|---|---|---|---|---|---|
+| 0 s (E102) | anticipated | 82 % | 38.8 | 10 | 0 | 13 | 62.7 | 23/40 (approach 10, blocked 10, child 1, cross 2) |
+| **1 s** | anticipated | **95 %** | 35.3 | 14 | 1 | **2** | 20.0 | **30/40** (10, 9, child **7**, cross 4) |
+| 3 s | anticipated | 92 % | 35.6 | **20** | **3** | 10 | 9.8 | 24/40 (10, 9, 3, 2) |
+| 0 s (E102) | unseen 70–99 | 63 % | 44.6 | 5 | 1 | – | 93.9 | **29/30** (follow 10, object 9, right of way 10) |
+| 1 s | unseen 70–99 | 60 % | 42.9 | 5 | 0 | – | 35.9 | 23/30 (**6**, 8, 9) |
+| 3 s | unseen 70–99 | 47 % | 49.0 | **8** | **4** | – | 16.4 | 18/30 (**4**, 6, 8) |
+
+**Scoring.** **P105.1 held** (near-contacts 10 → 20). **P105.2 failed** (time to goal fell, 38.8 → 35.6). **P105.3 failed
+as written** (3 s: −11 held; 1 s: −6, predicted ≤ 2). **P105.4 failed upward** (95 %, +13 on E102's 82). **P105.5 failed
+narrowly** (right of way 8/10; follow degraded most, 10 → 4). One of five: the predictions assumed latency only hurts.
+
+**Reading.**
+1. *Where a slow decider pays depends on the loop's design.* In Jacob's graph a node waits for its decision, so latency
+   is paid in task time (8.79 vs 5.42 s). In our loop the body carries on with its last command, so latency is paid in
+   what the last command did not know: at 3 s near-contacts double (10 → 20), falls appear (0 → 3, 1 → 4), and the
+   situations that need re-reading as the person moves collapse — follow 10 → 6 → 4 with every second, object 9 → 6,
+   right of way 10 → 8. The unwritten-situation score, 29 → 23 → 18, is the cost of the 0.1 s judge measured in reading.
+2. *The unplanned finding: cadence.* At 0.5 s the judge makes 63 decisions per anticipated episode and dithers between
+   wait and walk; each flip is a "moving" flag near the child (13 zone entries, child 1/10) and a lost stride. With 1 s
+   of think time it decides every 1.5 s, 20 times an episode, and its anticipated-bank results equal the rule program's:
+   goal 95 %, child 7/10, 30/40 events. Fewer decisions were better decisions on the bank the rules were written for.
+   Whether that is *fewer* (cadence) or *staler* (latency) is one experiment away: decide every 1.5 s on fresh facts
+   (E106 candidate, no staleness).
+3. *So the judge's speed buys reading, and its cadence should be a governor knob*, not a constant: fast where the
+   scene changes (a person walking), slow where it does not (a still person, a corridor). The governor has the facts to
+   set it. Claim 4.62.

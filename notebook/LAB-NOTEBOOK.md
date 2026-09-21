@@ -11966,3 +11966,19 @@ to .764 (−18 points) and stays .976 on the unseen one — **P103.7 held**: the
 The clause creates 389 single-answer {walk_slow} states on the anticipated bank in which the head is right 7 % of the
 time at a stated .49 — the correction signal round 2 trains on (3,664 visited states, 508 outside the set; approach
 609, child 485, blocked 447, cross 422). `head_r7` training started 15:30 on 10,442 records.
+
+## E104 · the open 27B on the fixed instrument, beside the RLCD judge (pre-registration, 2026-09-21 16:19 PDT; launched right after)
+
+**Why.** The ladder's open-model row (6/30, E95) is from the R2 instrument with the follow skill broken; the RLCD judge's
+29/30 is R5. The RLCD-specific claim on the duck needs the strongest open alternative on the same instrument and the
+same fresh seeds. Arm `sj`: the dense open 27B through Featherless's Simple Jev demo endpoint (the D4/D4d arm), same
+options, same governor, R5 instrument, seeds 0–39 and 70–99. No API spend (demo endpoint); ≈ 2 h of wall time.
+
+**Predictions.**
+- **P104.1** the 27B handles ≤ 24/30 unseen events on 70–99 (RLCD judge 29; R2 27B 6; R1 27B 10). Prior 60 %.
+- **P104.2** the 27B's anticipated-bank goal ≥ the judge's 82 % (R2: 90 % against the judge's 60–82). Prior 55 %.
+- **P104.3** own-state calibration on the unseen bank: the 27B's |over| exceeds the judge's .013 by ≥ .05 (D7's finding, on the second body). Prior 60 %.
+- **P104.4** the 27B follows ≥ 6/10 (it read the follow note 5/10 at R1 through the broken skill). Prior 55 %.
+- **P104.5** the 27B's falls ≥ the judge's 1 across 70 episodes. Prior 50 %.
+If the 27B reads the notes as well as the judge, the honest headline for the duck is calibration and cost, not
+reading; the README will say which.

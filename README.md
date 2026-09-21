@@ -4,11 +4,17 @@ Anurag Akkiraju · September 2026 · MIT
 
 **RLCD use cases in robotics, measured.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in two simulated instruments and one real dataset, asking where calibrated decision models — RLCD-trained "System One" models, of which TypeSafe's Jev is the first — create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns. Every prediction was dated before its run; failed predictions and 32 method errors stay in the record next to the results.
 
-**Three numbers.** A 421M head the fleet owns, distilled from 6,489 of the cloud judge's decisions, drives held-out seeds at 88.3 % against the judge's 87.9 %. On a second body, the judge handles 29 of 30 situations nobody wrote a rule for, where the rule program handles 1; its owned copy, corrected only by the operator's vetoes, reaches the same 29 with no API call. The correction round is a lever with a direction: the label form the operator's veto takes decides whether the copy learns to read or forgets how to walk.
+**Three numbers.** On a second body, the RLCD judge handles 29 of 30 situations nobody wrote a rule for, where the rule program handles 1. Driving its own states, its probability stays within .02 of its hit rate while a dense open 27B's runs .135 over, so a fixed handoff threshold means one thing for the judge and drifts for the open model. A 421M head the fleet owns, distilled from the judge's decisions, reaches the judge on both bodies (88.3 vs 87.9 % in the cell; 29 of 30 on the duck through the operator's vetoes alone).
+
+**Where it wins and where it does not.** The calibrated judge wins where no rule was written and where its number is spent by a governor (the confirm window, the gate). It does not win on accuracy where a rule program already exists (the duck's anticipated bank: rules 95 %, judge 82 %) and it ties a dense open 27B on recorded choices; its edge there is that its confidence still means something on the states it creates, at 0.1 s per decision.
 
 ![The duck ladder: what each judge handled where no rule existed, and the goal rate where the rules were written](figures/fig10-duck-ladder.png)
 
 *The second body: Pollen's MicroDuck biped in a room with a person. Left, events handled on a bank of three situations no rule was written for; right, goal rate on the bank the rule program was written for. Every bar is a pre-registered run on fresh seeds.*
+
+![Reliability on the model's own states: two RLCD checkpoints track their hit rate, the open 27B runs above it](figures/fig8-reliability.png)
+
+*The RLCD-specific result. Reliability on the states each model's own actions created: two RLCD checkpoints sit within .02 of their hit rate; a dense open 27B through the identical readout runs .135 over. Its ranking survives, so a gate recovers it; its number does not, so a fixed threshold means a different thing for it (D7, D8, D4d).*
 
 ## At a glance
 
@@ -16,7 +22,7 @@ Anurag Akkiraju · September 2026 · MIT
 |---|---|---|
 | **The sorting cell** — MuJoCo, six parts, a person's hand, one unscripted event per episode, fifteen arms behind one executor | Is a calibrated number worth its cost above a policy, with a person in the loop? | Judge 87.1 % of held-out seeds against a rule program's 79.2; a one-second confirm window gives the same safety at two thirds of the operator time; where the surprise is unflagged, the confidence gate is the only lever |
 | **The owned head** — a 421M open encoder | Can the fleet own the judgment? | 88.3 % against the cloud judge's 87.9, 90 ms on-device; the recipe is plain soft distillation of the probability vectors |
-| **The duck bench** — Pollen's MicroDuck biped, a person in the room, a rule program frozen before the unseen bank | Does it transfer to a new body, and what does the correction loop teach? | Judge 29 of 30 situations no rule was written for, rules 1; the copy reaches 29 through the operator's vetoes alone; the label form decides whether it learns to read or forgets how to walk |
+| **The duck bench** — Pollen's MicroDuck biped, a person in the room, a rule program frozen before the unseen bank | Does it transfer to a new body, and what does the correction loop teach? | Where no rule was written: judge 29 of 30, rules 1, an oracle 26. Where the rules were written: rules 95 % goal, judge 82. The owned copy reaches the judge's 29 through the operator's vetoes alone; the label form decides whether it learns to read or forgets how to walk |
 | **Eidon's 13,451 real recordings** | Can it triage real teleop data before labels exist? | AUROC .78 zero-shot from motion facts, a hand rule .64, a fitted logistic .88; calibrated at the real prevalence; activity recognition at chance |
 
 ## The picture
@@ -26,6 +32,14 @@ Anurag Akkiraju · September 2026 · MIT
 *A fleet runs on a cycle: cameras and state become facts, a System One judgment picks one action from options code wrote, a code governor owns safety and when to involve a person, an executor moves the body. Frontier models sit outside the cycle: they write the reflex, translate the world once, teach. Every decision is a typed record with a probability, so the fleet's decisions become training data for a head it owns. Each box carries what was measured against a dumb baseline.*
 
 ## See it move
+
+![Seed 72: a person with crutches crosses and has right of way. Left, the frozen rules stop only when already 0.31 m from them, after cutting across. Right, the RLCD judge waits at half a metre until they have passed.](figures/demo-duck-seed72-crutches-rules-vs-judge.gif)
+
+*The RLCD judge against the rule program, same seed, same body. A person with crutches crosses; an operator's note says they have right of way. Left, the frozen rules stop only when already 0.31 m from them, after cutting across. Right, the judge reads the note and waits at half a metre, stated confidence .93. Rules 0 of 10 on this situation, the judge 10 of 10 (E102).*
+
+![Seed 70: an operator's note says follow the person. Left, the frozen rules walk to the goal in nine seconds. Right, the RLCD judge follows the person and stays two steps behind.](figures/demo-duck-seed70-follow-rules-vs-judge.gif)
+
+*A note says "follow the person today; ignore the goal marker". Left, the rules walk to the goal in nine seconds. Right, the judge follows and stays two steps behind, stated confidence .74. No rule was ever written for a note; the judge handles 29 of the 30 such situations, the rules 1.*
 
 ![Seed 72: a person with crutches crosses and has right of way. Left, the owned copy before correction cuts across at 0.19 m. Right, after one round of the operator's vetoes it waits until they have passed.](figures/demo-duck-seed72-crutches-before-after.gif)
 
@@ -52,8 +66,6 @@ Anurag Akkiraju · September 2026 · MIT
 Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are seed-matched bootstraps. Evidence pointers name the experiment in the [lab notebook](notebook/LAB-NOTEBOOK.md) and the [claims ledger](notebook/CLAIMS.md).
 
 1. **A calibrated model's probability keeps its meaning on states its own actions created; a strong open model's does not.** On recorded decisions a dense open 27B matches Jev on choices (84.8 vs 81.5 % acceptable) and on calibration. Driving its own states, the 27B's top-1 probability runs .135 above its hit rate while two RLCD checkpoints stay within .02, and it loses 9 points ungated. A fixed handoff threshold only means one thing for the model whose number holds. — D4, D4d, D7, D8; [Figure 8](figures/fig8-reliability.png).
-
-   ![Reliability on the model's own states: two RLCD checkpoints track their hit rate, the open 27B runs above it](figures/fig8-reliability.png)
 
 2. **A one-second confirm window buys the same safety for two thirds of the operator time.** Replacing the 4-second ask with a proposal the operator may veto gives the same violations at 63–66 % of the operator time; 27 % of windows vetoed for the calibrated model, 38 % for the open one. — E88, D4d.
 3. **When the surprise is in the facts and nobody wrote a note, the confidence gate is the only lever.** Rules handle 12.5 % of unflagged surprises, the calibrated judge 50 %, gated 75 %; the gate recovers the open model's misses because its ranking survives even where its number drifts. — E83, D4e.

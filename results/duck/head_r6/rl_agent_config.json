@@ -1,0 +1,61 @@
+{
+ "encoder": "answerdotai/ModernBERT-large",
+ "head_layers": 2,
+ "max_len": 1024,
+ "head_max_len": 256,
+ "max_prefixes": 6,
+ "act_costs": {
+  "escalate": 0.5
+ },
+ "cost_wrong_act": 3.0,
+ "amp_dtype": "bf16",
+ "model_name": "rl-agent",
+ "temperature": [
+  1.0214812755584717,
+  1.2514300346374512,
+  1.983399510383606
+ ],
+ "temperature_by_options": {
+  "choice:3-5": 1.7601518630981445,
+  "choice:6-10": 1.0214812755584717,
+  "score:3-5": 1.2514300346374512,
+  "noul:2": 1.983399510383606,
+  "choice:11+": 0.10058280825614929,
+  "choice:2": 1.9063563346862793
+ },
+ "training": {
+  "source": "E90 owned head v2",
+  "recipe": "ce_soft",
+  "records": [
+   "results/duck/_duck_train_records.jsonl"
+  ],
+  "items": 6778,
+  "epochs": 3,
+  "steps": 573,
+  "history": [
+   {
+    "epoch": 1,
+    "val_ce": 0.6429260989606891,
+    "val_agreement": 0.9630723781388478,
+    "seconds": 1928
+   },
+   {
+    "epoch": 2,
+    "val_ce": 0.623786715964182,
+    "val_agreement": 0.9734121122599705,
+    "seconds": 3851
+   },
+   {
+    "epoch": 3,
+    "val_ce": 0.6186770765241648,
+    "val_agreement": 0.9748892171344166,
+    "seconds": 5768
+   }
+  ],
+  "temps_fitted": {
+   "choice:6-10": 1.0214812755584717
+  },
+  "val_ce": 0.6186770765241648,
+  "val_agreement": 0.9748892171344166
+ }
+}

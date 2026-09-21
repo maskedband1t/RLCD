@@ -69,7 +69,9 @@ positive). Every number is in `results/duck/LEADERBOARD.md` and the notebook's E
 | R5 (E100) | laya-r4 with the operator notes hidden (the note ablation) | – | – | 7/30 (follow **0**, object 2, right of way **5**): the following was the note, half the yielding was the note | notes hidden: single-answer states right 6 % at .65 |
 | R5 (E102) | **the teacher, jev**, same instrument, same seeds | 82 % (child note 1/10: 13 child-zone entries) | 23/40 | **29/30** (10, 9, 10) — above the oracle | +.013 unseen, −.246 anticipated; single-answer states 100 % at .87–.89 |
 | R5 (E102) | jev_confirm0.5 | 72 % | 26/40 | 28/30 | 16 % of windows vetoed; 7.5 s/ep unseen, 26 s anticipated |
-| R6 (E101) | correction round with masked targets (the head's own probabilities inside the acceptable set) | running | | fresh seeds 70–99 | |
+| R6 (E101) | **laya-r6**, correction round with masked targets | **70 %** (approach: goal 0/10 — waits 90 s; child 2/10) | 24/40 | **29/30** (10, 10, 9) = the teacher; no start–stop falls | −.181 unseen (single-answer .982 at .978), −.263 anticipated |
+| R6 (E101) | laya-r6_confirm0.5 | 70 % | 24/40 | 27/30 | 70 windows, 29 vetoes, 6 s/ep |
+| R7 (E103) | acceptable set gains a progress clause; correction round 2 from both banks' visited states, masked targets | queued | | | |
 
 Read down the judge column: the API judge is beaten by the rules on the anticipated bank at every version and beats
 them wherever no rule was written; the owned copy of it matches the rules on the anticipated bank and is blind on the

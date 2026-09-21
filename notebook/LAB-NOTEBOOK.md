@@ -11870,3 +11870,91 @@ events). **P102.8 failed** (16 % vetoes, 26 s on the anticipated bank; 10 %, 7.5
 **Where the ladder stands on fresh seeds under the fixed instrument.** Unseen events of 30: rules 1 · uncorrected copy
 10 · corrected copy 22 · oracle 26 · **teacher 29**. Anticipated goal: corrected copy 72 · teacher 82 · rules 95 ·
 uncorrected copy 95 · oracle 100. Nobody yet has both; E101 (masked-target copy) is the attempt. Claim 4.60.
+
+## E101 results (run ended 2026-09-21 14:52 PDT; written 14:56 PDT) · with masked targets the corrected copy reads like its teacher — 29 of 30 unwritten situations, no API call — and still walks the anticipated bank at 70 %: the residue is one event the acceptable set cannot see
+
+`results/duck/head_r6` (val agreement 97.5 %, CE .619; the masked targets are far easier to fit than the uniform ones, CE .751).
+Training set as E98 (4,027 teacher records + the same 2,751 visited unseen states), targets = the R3 head's probability
+vector masked to code's acceptable set and renormalised (mean top-1 .87). R5 instrument, R2 options; `e101.jsonl`,
+`e101_record.jsonl` (records now carry the tagged names).
+
+| arm (fresh seeds 70–99) | goal | viol/ep | near | falls | unseen events (follow, object, right of way) | operator s | own-state calibration (over; single-answer) |
+|---|---|---|---|---|---|---|---|
+| rules | 97 % | 1.67 | 11 | 0 | 1/30 | 0 | – |
+| oracle | 67 % | .20 | 2 | 0 | 26/30 | 0 | – |
+| teacher, jev (E102) | 63 % | .20 | 5 | 1 | 29/30 (10, 9, 10) | 0.7 | +.013; single-answer 1.00 at .89 |
+| uncorrected copy, r3 (E99) | 87 % | 1.77 | 18 | 4 | 10/30 (0, 10, 0) | 0.3 | +.117; single-answer .06 at .71 |
+| uniform-corrected copy, r4 (E99) | 43 % | .47 | 9 | 4 | 22/30 (10, 2, 10) | 5.5 | −.490; single-answer .985 at .965 |
+| **masked-corrected copy, r6** | 67 % | .33 | 9 | **0** | **29/30** (**10**, **10**, **9**) | 0 | −.181 (top-1 .80, hit .98); **single-answer n 281: .982 at .978 (−.004)** |
+| r6_confirm0.5 | 60 % | .37 | 9 | 1 | 27/30 | 6.2 (70 windows, 29 vetoes) | – |
+
+| arm (anticipated bank) | goal | viol/ep | near | child-zone | falls | events | own-state calibration |
+|---|---|---|---|---|---|---|---|
+| rules | 95 % | .12 | 4 | 0 | 1 | 36/40 | – |
+| teacher, jev (E102) | 82 % | .57 | 10 | 13 | 0 | 23/40 (child 1) | −.246 |
+| uncorrected copy, r3 | 95 % | .30 | 8 | 4 | 0 | 30/40 (child 6) | −.234 |
+| uniform-corrected copy, r4 | 72 % | .42 | 13 | 2 | 2 | 31/40 (child 9) | −.458 |
+| **masked-corrected copy, r6** | **70 %** | .65 | 12 | **12** | 2 | 24/40 (approach 10 with **goal 0/10**, blocked 10, child **2**, cross 2) | −.263; single-answer 1.00 at .97 |
+
+Choice shares on the anticipated bank: r3 walk_slow 82 / wait 6 / stop 5 %; r4 52 / 18 / 26; **r6 66 / 28 / 4** — the
+start–stop chattering is gone (walk_fast 0 %, stop 4 %), and so are the object falls; the two remaining falls are
+`cross` episodes where it walks slowly into the crossing person (as its teacher does).
+
+**Scoring.** **P101.1 failed** (70 < 90). **P101.2 held** (9/10). **P101.3 held** (10/10). **P101.4 failed** (−.181 /
+−.263 on all decisions; single-answer −.004 / −.028). **P101.5 held** (10/10). **P101.6 held** (29 ≥ 25). **P101.7 failed
+as written** (4 falls across the two arms' 140 episodes; the ungated arm alone: 2). Four of seven.
+
+**Reading.**
+1. *The label form was the object regression and the falls.* Masked targets keep the head's own preference order
+   inside the acceptable set: it walks slowly through the doorway with the object (10/10, r4 2/10), it follows and
+   then waits two steps behind (follow decisions 45 % follow, 54 % wait), it yields to the crutches (9/10), and it
+   no longer chatters. **On the thirty unwritten situations the owned copy now equals its teacher, 29 = 29, with no
+   API call in the loop** — the E91c parity of the cell, reached on the second body through the operator's veto
+   labels alone.
+2. *The residue is one event, and the acceptable set cannot see it.* `approach`: the person walks up and stands
+   0.55 m away, still. Code's acceptable set there is {walk_slow, wait, stop}; waiting forever is acceptable at every
+   decision, so no correction label ever says "move on", and the corrected heads — having learned from the crutches
+   and follow states that a close, still person means *wait* — wait for 90 s (goal 0/10, "handled" 10/10). The
+   uncorrected copy walked on (or asked, four times per episode) and reached the goal 10/10; the teacher walks
+   (10/10); the rules have a six-second stand-still timeout. **Progress is a preference the acceptable set does not
+   encode, so the correction round cannot teach it.** Second residue: the child note (2/10, twelve zone entries):
+   walking slowly toward a child inside 1.1 m *is* outside the acceptable set, but the child states were never in
+   the correction set (only unseen-bank states were labelled).
+3. *Calibration.* On single-answer states the masked head is right 98 % at a stated .98 on the unseen bank and 100 %
+   at .97 on the anticipated one — as calibrated as anything the bench has measured; on all decisions it is
+   "under-confident" by .18–.26 against a lenient set of several acceptable actions, which is the construct, not the
+   head (E102 reading 4).
+4. *The confirm window at τ = .5* is a sane arm again for this head: 70 windows, 29 vetoes, 6 s per episode on the
+   unseen bank (27/30).
+
+**Next (E103).** Two changes, both to the labeller, none to the model recipe: (i) a *progress clause* in the acceptable
+set — after six seconds of not moving with a still person no closer than 0.5 m, and no note or child that says
+otherwise, the acceptable set is {walk_slow} (and walk_fast beyond 1 m); (ii) a second correction round whose records
+come from *both* banks of the masked head's own visited states (E101 records, seeds 0–39 and 70–99), masked targets
+again. The question: can the operator's veto, once it can express "move on", give the copy both reading and walking?
+Claim 4.61.
+
+## E103 · Duck bench R7: the acceptable set learns to say "move on", and a second correction round from both banks (pre-registration, 2026-09-21 14:59 PDT; chain launched right after)
+
+**The labeller changes, not the model recipe.** R7 adds one clause to code's acceptable set (`DUCK_PROGRESS=1`): when the
+person is still, no closer than 0.5 m, the robot has not moved for six seconds, and no note or child says otherwise
+(crutches stopped or crossing, child within 1.4 m, a blocked door keep their priority), the acceptable set becomes
+{walk_slow} (with walk_fast beyond 1 m). Smoke test before launch: on the approach seed, after eight waits with the
+person still at 0.55 m, the set is {walk_slow}; the oracle's approach, right-of-way and follow episodes are unchanged.
+Facts and options are R2's; the rules never read the acceptable set and are unchanged by construction.
+
+**Chain.** (a) **E103a**: `rules`, `rules_ask`, `oracle` and the masked head `laya-r6` re-measured under R7 on seeds 0–39
+and 70–99, with records — the head's visited states on *both* banks, now labelled by the progress-aware set, are the
+correction source. (b) Correction round 2: masked targets from r6's own probabilities on those states
+(`correction.py --targets masked`), added to the 4,027 teacher records and round 1's 2,751 → `head_r7`. (c) **E103**:
+`laya-r7`, `laya-r7_confirm0.5` on 0–39 and 70–99 under R7.
+
+**Predictions.**
+- **P103.1** `laya-r7` anticipated-bank goal ≥ 90 % (r6: 70). Prior 55 %.
+- **P103.2** `laya-r7` approach goal ≥ 8/10 (r6: 0/10). Prior 60 %.
+- **P103.3** `laya-r7` child note ≥ 6/10 (r6: 2/10; the child states are now in the correction set). Prior 50 %.
+- **P103.4** `laya-r7` unseen events ≥ 26/30 (r6: 29 — the reading survives the second round). Prior 65 %.
+- **P103.5** oracle under R7: anticipated goal ≥ 95 %, unseen ≥ 26/30 (the clause does not hurt the truth-knower). Prior 75 %.
+- **P103.6** `laya-r7` falls ≤ 2 across its 70 ungated episodes. Prior 55 %.
+- **P103.7** the clause bites: `laya-r6` under R7 (E103a) has the same goal rate and events as under R6 (deterministic
+  policy, only the labeller changed) and an acceptable-decision rate at least 5 points lower on the anticipated bank. Prior 70 %.

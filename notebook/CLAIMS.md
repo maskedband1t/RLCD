@@ -475,3 +475,13 @@ copy's 95, walking into a child's metre in 13 episodes. Reading belongs to the j
 belongs to the distilled copy; one correction round bought the copy reading at the price of walking (4.58). On
 single-answer states the judge is right 100 % of the time at a stated .87–.89 on both banks; its copy before
 correction is right 6 % at .71. Boundary: one body, one judge checkpoint, thirty fresh episodes per bank.
+
+**4.61 · SUPPORTED with a named residue (E101, 2026-09-21).** A correction round whose targets are the owned head's own
+probability vector masked to code's acceptable set (the operator's veto, keeping the head's preference order) gives
+the copy its teacher's reading on the second body: 29 of 30 fresh unwritten situations, equal to the API judge (29),
+above the truth-knowing oracle (26), with no API call in the loop and no start–stop falls; on single-answer states it
+is right 98 % at a stated .98. Residue: the anticipated bank's goal rate stays at 70 % because one situation — a person
+who walks up and stands still — is one where waiting forever is acceptable at every decision, so no veto ever says
+"move on"; the corrected copy waits 90 s where its uncorrected self walked or asked. Progress is a preference the
+acceptable set does not encode, so the correction round cannot teach it (E103 adds the clause). Boundary: one head,
+two rounds, one body.

@@ -1,0 +1,1107 @@
+{
+ "datasets/DavidHatley/system-one-mini-data": {
+  "createdAt": "2026-09-16T17:02:50.000Z",
+  "downloads": 51,
+  "id": "DavidHatley/system-one-mini-data",
+  "kind": "datasets",
+  "lastModified": "2026-09-16T17:30:11.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "language:en",
+   "license:apache-2.0",
+   "size_categories:10K<n<100K",
+   "format:json",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us"
+  ]
+ },
+ "datasets/FaroukMoc2/jev-stage2-image-beans-pilot": {
+  "createdAt": "2026-09-18T05:07:06.000Z",
+  "downloads": 123,
+  "id": "FaroukMoc2/jev-stage2-image-beans-pilot",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T10:44:02.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:image-classification",
+   "task_categories:visual-question-answering",
+   "license:mit",
+   "size_categories:n<1K",
+   "format:parquet",
+   "modality:image",
+   "modality:text",
+   "library:datasets",
+   "library:dask",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us"
+  ]
+ },
+ "datasets/IamBusy/OpenJev-Vision-Research-v0.1": {
+  "createdAt": "2026-09-19T11:17:30.000Z",
+  "downloads": 0,
+  "id": "IamBusy/OpenJev-Vision-Research-v0.1",
+  "kind": "datasets",
+  "lastModified": "2026-09-19T11:23:26.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:image-classification",
+   "task_categories:visual-question-answering",
+   "language:en",
+   "license:other",
+   "size_categories:10K<n<100K",
+   "format:parquet",
+   "modality:image",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant"
+  ]
+ },
+ "datasets/Luni/laya-jev-benchmark": {
+  "createdAt": "2026-09-19T14:33:48.000Z",
+  "downloads": 0,
+  "id": "Luni/laya-jev-benchmark",
+  "kind": "datasets",
+  "lastModified": "2026-09-19T14:33:49.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "license:apache-2.0",
+   "region:us",
+   "benchmark",
+   "evaluation",
+   "calibration",
+   "typed-decisions",
+   "system-one",
+   "laya",
+   "jev"
+  ]
+ },
+ "datasets/Mikhail/mini-jev-runs": {
+  "createdAt": "2026-09-18T12:05:07.000Z",
+  "downloads": 31,
+  "id": "Mikhail/mini-jev-runs",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T12:05:12.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "language:en",
+   "license:mit",
+   "size_categories:10K<n<100K",
+   "format:json",
+   "modality:tabular",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us"
+  ]
+ },
+ "datasets/SargeDev/jev-distill-corpus": {
+  "createdAt": "2026-09-18T02:14:40.000Z",
+  "downloads": 50,
+  "id": "SargeDev/jev-distill-corpus",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T16:52:25.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "license:apache-2.0",
+   "size_categories:100K<n<1M",
+   "format:json",
+   "modality:tabular",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us",
+   "reranker",
+   "memory-gating"
+  ]
+ },
+ "datasets/anthonym21/eve-rlcd-runs": {
+  "createdAt": "2026-09-18T15:31:56.000Z",
+  "downloads": 11,
+  "id": "anthonym21/eve-rlcd-runs",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T19:15:00.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "region:us"
+  ]
+ },
+ "datasets/ctaxnagomi/DGUI_HYPERMEM-JEV": {
+  "createdAt": "2026-09-19T05:45:56.000Z",
+  "downloads": 21,
+  "id": "ctaxnagomi/DGUI_HYPERMEM-JEV",
+  "kind": "datasets",
+  "lastModified": "2026-09-19T06:00:23.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-generation",
+   "license:mit",
+   "size_categories:n<1K",
+   "format:json",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us",
+   "dgui-hypermem",
+   "jev"
+  ]
+ },
+ "datasets/ctaxnagomi/INSTRUCT_JEV": {
+  "createdAt": "2026-09-19T05:04:24.000Z",
+  "downloads": 12,
+  "id": "ctaxnagomi/INSTRUCT_JEV",
+  "kind": "datasets",
+  "lastModified": "2026-09-19T05:06:29.000Z",
+  "likes": 1,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-generation",
+   "task_categories:question-answering",
+   "task_categories:text-classification",
+   "language:en",
+   "license:mit",
+   "size_categories:n<1K",
+   "format:json",
+   "modality:tabular",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars"
+  ]
+ },
+ "datasets/dwidlee/systemone-lite-general": {
+  "createdAt": "2026-09-19T08:05:11.000Z",
+  "downloads": 0,
+  "id": "dwidlee/systemone-lite-general",
+  "kind": "datasets",
+  "lastModified": "2026-09-19T10:05:10.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "language:en",
+   "license:mit",
+   "size_categories:10K<n<100K",
+   "format:parquet",
+   "format:optimized-parquet",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us"
+  ]
+ },
+ "datasets/pngwn/open-jev-laya-bench": {
+  "createdAt": "2026-09-18T18:36:28.000Z",
+  "downloads": 90,
+  "id": "pngwn/open-jev-laya-bench",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T22:19:28.000Z",
+  "likes": 1,
+  "pipeline": null,
+  "tags": [
+   "region:us"
+  ]
+ },
+ "datasets/pngwn/system-one-decisions": {
+  "createdAt": "2026-09-16T13:58:47.000Z",
+  "downloads": 146,
+  "id": "pngwn/system-one-decisions",
+  "kind": "datasets",
+  "lastModified": "2026-09-16T14:07:53.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "task_categories:summarization",
+   "task_categories:question-answering",
+   "language:en",
+   "language:de",
+   "license:cc-by-nc-4.0",
+   "size_categories:10K<n<100K",
+   "format:parquet",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars"
+  ]
+ },
+ "datasets/pngwn/typed-decisions-v2-system-one": {
+  "createdAt": "2026-09-16T23:43:56.000Z",
+  "downloads": 67,
+  "id": "pngwn/typed-decisions-v2-system-one",
+  "kind": "datasets",
+  "lastModified": "2026-09-16T23:44:26.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "size_categories:10K<n<100K",
+   "format:parquet",
+   "format:optimized-parquet",
+   "modality:text",
+   "library:datasets",
+   "library:pandas",
+   "library:polars",
+   "library:mlcroissant",
+   "region:us"
+  ]
+ },
+ "datasets/reachjalil/jev-luna-pagerduty-trigger": {
+  "createdAt": "2026-09-17T19:07:35.000Z",
+  "downloads": 92,
+  "id": "reachjalil/jev-luna-pagerduty-trigger",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T18:56:03.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "language:en",
+   "license:mit",
+   "size_categories:1K<n<10K",
+   "region:us",
+   "pagerduty",
+   "alerting",
+   "jev",
+   "typesafe",
+   "gpt-5.6-luna",
+   "vercel-ai-gateway",
+   "on-call"
+  ]
+ },
+ "datasets/reachjalil/jev-tree-choice-cap": {
+  "createdAt": "2026-09-18T01:17:30.000Z",
+  "downloads": 40,
+  "id": "reachjalil/jev-tree-choice-cap",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T01:17:33.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "language:en",
+   "license:mit",
+   "size_categories:n<1K",
+   "region:us",
+   "jev",
+   "typesafe",
+   "taxonomy",
+   "classification",
+   "vercel-ai-gateway",
+   "incident-management"
+  ]
+ },
+ "datasets/reachjalil/jevlogs-log-triage-benchmark": {
+  "createdAt": "2026-09-17T06:34:17.000Z",
+  "downloads": 100,
+  "id": "reachjalil/jevlogs-log-triage-benchmark",
+  "kind": "datasets",
+  "lastModified": "2026-09-18T18:56:04.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "task_categories:text-classification",
+   "source_datasets:logfit-project/HDFS_v1",
+   "source_datasets:logfit-project/BGL",
+   "language:en",
+   "license:other",
+   "size_categories:1K<n<10K",
+   "region:us",
+   "opentelemetry",
+   "logs",
+   "log-triage",
+   "observability",
+   "jev"
+  ]
+ },
+ "datasets/roskosmos19/SystemOne": {
+  "createdAt": "2026-09-19T07:20:09.000Z",
+  "downloads": 0,
+  "id": "roskosmos19/SystemOne",
+  "kind": "datasets",
+  "lastModified": "2026-09-19T07:27:44.000Z",
+  "likes": 1,
+  "pipeline": null,
+  "tags": [
+   "region:us"
+  ]
+ },
+ "models/AlexWortega/openjev": {
+  "createdAt": "2026-09-16T18:25:10.000Z",
+  "downloads": 0,
+  "id": "AlexWortega/openjev",
+  "kind": "models",
+  "lastModified": "2026-09-19T08:47:06.000Z",
+  "likes": 181,
+  "pipeline": "text-classification",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "nli",
+   "cross-encoder",
+   "qwen3.5",
+   "reranker",
+   "text-classification",
+   "image-text-to-text",
+   "en",
+   "base_model:Qwen/Qwen3.5-4B",
+   "base_model:finetune:Qwen/Qwen3.5-4B",
+   "license:mit"
+  ]
+ },
+ "models/BlackwoodAI/blackwood-rlcd": {
+  "createdAt": "2026-09-18T11:12:36.000Z",
+  "downloads": 0,
+  "id": "BlackwoodAI/blackwood-rlcd",
+  "kind": "models",
+  "lastModified": "2026-09-18T21:49:56.000Z",
+  "likes": 2,
+  "pipeline": null,
+  "tags": [
+   "safetensors",
+   "region:us"
+  ]
+ },
+ "models/DavidHatley/system-one-mini": {
+  "createdAt": "2026-09-16T17:02:50.000Z",
+  "downloads": 71,
+  "id": "DavidHatley/system-one-mini",
+  "kind": "models",
+  "lastModified": "2026-09-16T17:30:11.000Z",
+  "likes": 0,
+  "pipeline": "feature-extraction",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "system_one",
+   "feature-extraction",
+   "multi-task-classification",
+   "synthetic-data",
+   "research",
+   "custom-code",
+   "custom_code",
+   "en",
+   "dataset:DavidHatley/system-one-mini-data",
+   "base_model:distilbert/distilbert-base-uncased"
+  ]
+ },
+ "models/Foodoo1/Qwen3-14B-RLCD-Decision-LoRA": {
+  "createdAt": "2026-09-18T04:09:23.000Z",
+  "downloads": 23,
+  "id": "Foodoo1/Qwen3-14B-RLCD-Decision-LoRA",
+  "kind": "models",
+  "lastModified": "2026-09-18T04:10:17.000Z",
+  "likes": 1,
+  "pipeline": "text-generation",
+  "tags": [
+   "peft",
+   "safetensors",
+   "lora",
+   "qlora",
+   "structured-generation",
+   "parallel-decoding",
+   "constrained-decoding",
+   "classification",
+   "fraud-detection",
+   "text-generation",
+   "conversational",
+   "en"
+  ]
+ },
+ "models/IamBusy/OpenJev-0.6B": {
+  "createdAt": "2026-09-19T10:27:13.000Z",
+  "downloads": 0,
+  "id": "IamBusy/OpenJev-0.6B",
+  "kind": "models",
+  "lastModified": "2026-09-19T10:50:24.000Z",
+  "likes": 0,
+  "pipeline": "text-classification",
+  "tags": [
+   "peft",
+   "safetensors",
+   "openjev",
+   "lora",
+   "custom-code",
+   "experimental",
+   "probabilistic-decisions",
+   "text-classification",
+   "en",
+   "zh",
+   "base_model:Qwen/Qwen3-0.6B",
+   "base_model:adapter:Qwen/Qwen3-0.6B"
+  ]
+ },
+ "models/IamBusy/OpenJev-Vision": {
+  "createdAt": "2026-09-19T11:27:22.000Z",
+  "downloads": 0,
+  "id": "IamBusy/OpenJev-Vision",
+  "kind": "models",
+  "lastModified": "2026-09-19T11:34:11.000Z",
+  "likes": 0,
+  "pipeline": "image-classification",
+  "tags": [
+   "openjev",
+   "image-classification",
+   "uncertainty",
+   "research",
+   "dataset:IamBusy/OpenJev-Vision-Research-v0.1",
+   "license:other",
+   "region:us"
+  ]
+ },
+ "models/Meanblock/JEV-CPU": {
+  "createdAt": "2026-09-19T11:00:19.000Z",
+  "downloads": 0,
+  "id": "Meanblock/JEV-CPU",
+  "kind": "models",
+  "lastModified": "2026-09-19T12:13:17.000Z",
+  "likes": 1,
+  "pipeline": "zero-shot-classification",
+  "tags": [
+   "transformers",
+   "semantic-if",
+   "decision",
+   "semif",
+   "cpu",
+   "zero-shot-classification",
+   "base_model:Qwen/Qwen3-0.6B",
+   "base_model:finetune:Qwen/Qwen3-0.6B",
+   "license:mit",
+   "endpoints_compatible",
+   "region:us"
+  ]
+ },
+ "models/SargeDev/jev-distill-corpus": {
+  "createdAt": "2026-09-18T02:11:37.000Z",
+  "downloads": 0,
+  "id": "SargeDev/jev-distill-corpus",
+  "kind": "models",
+  "lastModified": "2026-09-18T02:13:39.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "region:us"
+  ]
+ },
+ "models/SargeDev/jev-gate-student-b": {
+  "createdAt": "2026-09-18T16:52:35.000Z",
+  "downloads": 0,
+  "id": "SargeDev/jev-gate-student-b",
+  "kind": "models",
+  "lastModified": "2026-09-18T16:53:16.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "safetensors",
+   "reranker",
+   "memory-gating",
+   "distillation",
+   "lora",
+   "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+   "base_model:adapter:Qwen/Qwen2.5-0.5B-Instruct",
+   "license:apache-2.0",
+   "region:us"
+  ]
+ },
+ "models/anthonym21/qwen3-0.6b-rlcd-decision": {
+  "createdAt": "2026-09-19T06:15:20.000Z",
+  "downloads": 0,
+  "id": "anthonym21/qwen3-0.6b-rlcd-decision",
+  "kind": "models",
+  "lastModified": "2026-09-19T06:22:52.000Z",
+  "likes": 0,
+  "pipeline": "text-classification",
+  "tags": [
+   "safetensors",
+   "qwen3",
+   "calibration",
+   "rlcd",
+   "decision-model",
+   "classification",
+   "reinforcement-learning",
+   "text-classification",
+   "en",
+   "dataset:bitext/Bitext-customer-support-llm-chatbot-training-dataset",
+   "dataset:legacy-datasets/banking77",
+   "dataset:fancyzhx/ag_news"
+  ]
+ },
+ "models/botp/Qwen-2.5-1B-RLCD": {
+  "createdAt": "2026-09-18T13:55:02.000Z",
+  "downloads": 0,
+  "id": "botp/Qwen-2.5-1B-RLCD",
+  "kind": "models",
+  "lastModified": "2026-09-18T13:55:03.000Z",
+  "likes": 0,
+  "pipeline": "text-generation",
+  "tags": [
+   "mlx",
+   "structured-generation",
+   "parallel-decoding",
+   "constrained-decoding",
+   "apple-silicon",
+   "classification",
+   "json",
+   "text-generation",
+   "en",
+   "base_model:Qwen/Qwen2.5-1.5B-Instruct",
+   "base_model:finetune:Qwen/Qwen2.5-1.5B-Instruct",
+   "license:apache-2.0"
+  ]
+ },
+ "models/changh95/openjev-p300x2": {
+  "createdAt": "2026-09-19T10:40:16.000Z",
+  "downloads": 0,
+  "id": "changh95/openjev-p300x2",
+  "kind": "models",
+  "lastModified": "2026-09-19T10:44:10.000Z",
+  "likes": 1,
+  "pipeline": "text-classification",
+  "tags": [
+   "transformers",
+   "tenstorrent",
+   "blackhole",
+   "p300x2",
+   "vllm-plugin",
+   "nli",
+   "cross-encoder",
+   "reranker",
+   "qwen3.5",
+   "text-classification",
+   "en",
+   "base_model:AlexWortega/openjev"
+  ]
+ },
+ "models/com-kotobalabs/open-jev-deberta-v3-large": {
+  "createdAt": "2026-09-18T10:01:35.000Z",
+  "downloads": 115,
+  "id": "com-kotobalabs/open-jev-deberta-v3-large",
+  "kind": "models",
+  "lastModified": "2026-09-18T10:02:28.000Z",
+  "likes": 20,
+  "pipeline": "text-classification",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "deberta-v2",
+   "feature-extraction",
+   "typed-decisions",
+   "calibrated",
+   "decision-model",
+   "open-jev",
+   "deberta-v3",
+   "text-classification",
+   "en",
+   "dataset:mteb/banking77"
+  ]
+ },
+ "models/dwidlee/systemone-lite-0.5b": {
+  "createdAt": "2026-09-19T08:28:18.000Z",
+  "downloads": 0,
+  "id": "dwidlee/systemone-lite-0.5b",
+  "kind": "models",
+  "lastModified": "2026-09-19T10:13:30.000Z",
+  "likes": 0,
+  "pipeline": "text-generation",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "qwen2",
+   "text-generation",
+   "system-one",
+   "decision",
+   "qwen2.5",
+   "conversational",
+   "dataset:dwidlee/systemone-lite-general",
+   "base_model:Qwen/Qwen2.5-0.5B-Instruct",
+   "base_model:finetune:Qwen/Qwen2.5-0.5B-Instruct",
+   "license:apache-2.0"
+  ]
+ },
+ "models/epsilon3/Qwen-2.5-1B-RLCD-Fast": {
+  "createdAt": "2026-09-16T16:40:31.000Z",
+  "downloads": 0,
+  "id": "epsilon3/Qwen-2.5-1B-RLCD-Fast",
+  "kind": "models",
+  "lastModified": "2026-09-16T16:44:58.000Z",
+  "likes": 0,
+  "pipeline": "text-generation",
+  "tags": [
+   "transformers",
+   "tree-attention",
+   "apple-m4",
+   "mps",
+   "pytorch",
+   "structured-generation",
+   "parallel-decoding",
+   "constrained-decoding",
+   "apple-silicon",
+   "mlx",
+   "classification",
+   "json"
+  ]
+ },
+ "models/harshatheg/Qwen-2.5-1B-RLCD": {
+  "createdAt": "2026-09-16T01:35:33.000Z",
+  "downloads": 0,
+  "id": "harshatheg/Qwen-2.5-1B-RLCD",
+  "kind": "models",
+  "lastModified": "2026-09-16T06:23:02.000Z",
+  "likes": 416,
+  "pipeline": "text-generation",
+  "tags": [
+   "mlx",
+   "structured-generation",
+   "parallel-decoding",
+   "constrained-decoding",
+   "apple-silicon",
+   "classification",
+   "json",
+   "text-generation",
+   "en",
+   "base_model:Qwen/Qwen2.5-1.5B-Instruct",
+   "base_model:finetune:Qwen/Qwen2.5-1.5B-Instruct",
+   "license:apache-2.0"
+  ]
+ },
+ "models/heman10x/openJev-verdict-2.0": {
+  "createdAt": "2026-09-19T12:12:26.000Z",
+  "downloads": 0,
+  "id": "heman10x/openJev-verdict-2.0",
+  "kind": "models",
+  "lastModified": "2026-09-19T12:13:03.000Z",
+  "likes": 0,
+  "pipeline": "text-classification",
+  "tags": [
+   "transformers",
+   "GLiClass",
+   "decision-model",
+   "system-1",
+   "rlcd",
+   "modernbert",
+   "calibration",
+   "expected-calibration-error",
+   "brier-score",
+   "typesafe-jev",
+   "openjev",
+   "onnx"
+  ]
+ },
+ "models/heman10x/rlcd-modernbert-151m": {
+  "createdAt": "2026-09-17T16:25:31.000Z",
+  "downloads": 309,
+  "id": "heman10x/rlcd-modernbert-151m",
+  "kind": "models",
+  "lastModified": "2026-09-17T18:13:41.000Z",
+  "likes": 10,
+  "pipeline": "text-classification",
+  "tags": [
+   "transformers",
+   "onnx",
+   "safetensors",
+   "GLiClass",
+   "rlcd",
+   "typesafe-ai",
+   "jev",
+   "decision-engine",
+   "system-1",
+   "modernbert",
+   "gliclass",
+   "non-autoregressive"
+  ]
+ },
+ "models/kokuren/jp-sns-jev7-estimator": {
+  "createdAt": "2026-09-18T14:48:25.000Z",
+  "downloads": 0,
+  "id": "kokuren/jp-sns-jev7-estimator",
+  "kind": "models",
+  "lastModified": "2026-09-18T14:55:44.000Z",
+  "likes": 0,
+  "pipeline": "text-classification",
+  "tags": [
+   "onnxruntime",
+   "onnx",
+   "japanese",
+   "social-media",
+   "toxicity",
+   "offensiveness",
+   "multi-label",
+   "regression",
+   "int8",
+   "knowledge-distillation",
+   "jev",
+   "distilbert"
+  ]
+ },
+ "models/larkooo/gemma-e2b-rlcd": {
+  "createdAt": "2026-09-18T21:28:14.000Z",
+  "downloads": 41,
+  "id": "larkooo/gemma-e2b-rlcd",
+  "kind": "models",
+  "lastModified": "2026-09-18T22:05:45.000Z",
+  "likes": 0,
+  "pipeline": "any-to-any",
+  "tags": [
+   "mlx",
+   "safetensors",
+   "gemma4",
+   "mlx-vlm",
+   "rlcd",
+   "multimodal",
+   "classification",
+   "parallel-inference",
+   "image-text-to-text",
+   "audio",
+   "video",
+   "any-to-any"
+  ]
+ },
+ "models/mobarmg/jev-schema-scorer-deberta-v3-large": {
+  "createdAt": "2026-09-17T19:32:33.000Z",
+  "downloads": 158,
+  "id": "mobarmg/jev-schema-scorer-deberta-v3-large",
+  "kind": "models",
+  "lastModified": "2026-09-19T00:57:17.000Z",
+  "likes": 4,
+  "pipeline": "text-classification",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "deberta-v2",
+   "text-classification",
+   "deberta-v3",
+   "schema-conditioned",
+   "candidate-scoring",
+   "zero-shot-classification",
+   "structured-output",
+   "en",
+   "base_model:microsoft/deberta-v3-large",
+   "base_model:finetune:microsoft/deberta-v3-large"
+  ]
+ },
+ "models/monotykamary/LFM2.5-2.6B-RLCD": {
+  "createdAt": "2026-09-16T18:11:42.000Z",
+  "downloads": 352,
+  "id": "monotykamary/LFM2.5-2.6B-RLCD",
+  "kind": "models",
+  "lastModified": "2026-09-16T18:11:52.000Z",
+  "likes": 6,
+  "pipeline": "text-generation",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "lfm2",
+   "text-generation",
+   "liquid",
+   "lfm2.5",
+   "edge",
+   "parallel-constrained-decoding",
+   "structured-generation",
+   "classification",
+   "inference-only",
+   "modal"
+  ]
+ },
+ "models/notnotsamuel/LFM2.5-350M-RLCD": {
+  "createdAt": "2026-09-16T09:19:35.000Z",
+  "downloads": 204,
+  "id": "notnotsamuel/LFM2.5-350M-RLCD",
+  "kind": "models",
+  "lastModified": "2026-09-16T09:27:50.000Z",
+  "likes": 3,
+  "pipeline": "text-generation",
+  "tags": [
+   "transformers",
+   "safetensors",
+   "lfm2",
+   "text-generation",
+   "classification",
+   "inference-only",
+   "structured-generation",
+   "constrained-decoding",
+   "apple-silicon",
+   "pytorch",
+   "conversational",
+   "en"
+  ]
+ },
+ "models/pngwn/system-one-qwen3.5-4b-scorer": {
+  "createdAt": "2026-09-16T13:58:46.000Z",
+  "downloads": 324,
+  "id": "pngwn/system-one-qwen3.5-4b-scorer",
+  "kind": "models",
+  "lastModified": "2026-09-16T18:43:18.000Z",
+  "likes": 5,
+  "pipeline": null,
+  "tags": [
+   "peft",
+   "safetensors",
+   "sequence-classification",
+   "calibration",
+   "decision-making",
+   "lora",
+   "system-one",
+   "base_model:Qwen/Qwen3.5-4B-Base",
+   "base_model:adapter:Qwen/Qwen3.5-4B-Base",
+   "license:cc-by-nc-4.0",
+   "region:us"
+  ]
+ },
+ "models/pngwn/system-one-qwen3.5-4b-scorer-smoke": {
+  "createdAt": "2026-09-16T14:20:02.000Z",
+  "downloads": 38,
+  "id": "pngwn/system-one-qwen3.5-4b-scorer-smoke",
+  "kind": "models",
+  "lastModified": "2026-09-16T14:32:24.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "peft",
+   "safetensors",
+   "sequence-classification",
+   "calibration",
+   "decision-making",
+   "lora",
+   "base_model:Qwen/Qwen3.5-4B-Base",
+   "base_model:adapter:Qwen/Qwen3.5-4B-Base",
+   "license:cc-by-nc-4.0",
+   "region:us"
+  ]
+ },
+ "models/pngwn/system-one-qwen3.5-4b-scorer-v2-2ep": {
+  "createdAt": "2026-09-17T02:24:01.000Z",
+  "downloads": 0,
+  "id": "pngwn/system-one-qwen3.5-4b-scorer-v2-2ep",
+  "kind": "models",
+  "lastModified": "2026-09-17T02:24:01.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "region:us"
+  ]
+ },
+ "models/pngwn/system-one-qwen3.5-4b-scorer-v2b": {
+  "createdAt": "2026-09-17T08:06:59.000Z",
+  "downloads": 53,
+  "id": "pngwn/system-one-qwen3.5-4b-scorer-v2b",
+  "kind": "models",
+  "lastModified": "2026-09-17T12:08:23.000Z",
+  "likes": 4,
+  "pipeline": null,
+  "tags": [
+   "peft",
+   "safetensors",
+   "sequence-classification",
+   "calibration",
+   "decision-making",
+   "lora",
+   "base_model:Qwen/Qwen3.5-4B-Base",
+   "base_model:adapter:Qwen/Qwen3.5-4B-Base",
+   "license:cc-by-nc-4.0",
+   "region:us"
+  ]
+ },
+ "models/shreyansh26/Qwen-2.5-1B-RLCD": {
+  "createdAt": "2026-09-16T04:38:04.000Z",
+  "downloads": 0,
+  "id": "shreyansh26/Qwen-2.5-1B-RLCD",
+  "kind": "models",
+  "lastModified": "2026-09-16T09:49:09.000Z",
+  "likes": 4,
+  "pipeline": "text-generation",
+  "tags": [
+   "transformers",
+   "structured-generation",
+   "parallel-decoding",
+   "constrained-decoding",
+   "classification",
+   "json",
+   "text-generation",
+   "en",
+   "base_model:Qwen/Qwen2.5-1.5B-Instruct",
+   "base_model:finetune:Qwen/Qwen2.5-1.5B-Instruct",
+   "license:apache-2.0",
+   "endpoints_compatible"
+  ]
+ },
+ "spaces/Eloiselatourdepise/qwen-rlcd-demo": {
+  "createdAt": "2026-09-18T12:16:37.000Z",
+  "downloads": 0,
+  "id": "Eloiselatourdepise/qwen-rlcd-demo",
+  "kind": "spaces",
+  "lastModified": "2026-09-18T12:32:35.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "static",
+   "region:us"
+  ]
+ },
+ "spaces/IamBusy/OpenJev-Vision-Demo": {
+  "createdAt": "2026-09-19T14:47:20.000Z",
+  "downloads": 0,
+  "id": "IamBusy/OpenJev-Vision-Demo",
+  "kind": "spaces",
+  "lastModified": "2026-09-19T14:49:44.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "static",
+   "computer-vision",
+   "uncertainty",
+   "onnx",
+   "openjev",
+   "region:us"
+  ]
+ },
+ "spaces/IkerMoel/open-alternative-jev": {
+  "createdAt": "2026-09-18T19:59:11.000Z",
+  "downloads": 0,
+  "id": "IkerMoel/open-alternative-jev",
+  "kind": "spaces",
+  "lastModified": "2026-09-18T21:44:49.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "llm",
+   "classification",
+   "vllm",
+   "region:us"
+  ]
+ },
+ "spaces/jasonkneen/open-jev": {
+  "createdAt": "2026-09-18T11:51:46.000Z",
+  "downloads": 0,
+  "id": "jasonkneen/open-jev",
+  "kind": "spaces",
+  "lastModified": "2026-09-17T23:55:21.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "region:us"
+  ]
+ },
+ "spaces/mobarmg/jev-schema-scorer": {
+  "createdAt": "2026-09-17T20:06:35.000Z",
+  "downloads": 0,
+  "id": "mobarmg/jev-schema-scorer",
+  "kind": "spaces",
+  "lastModified": "2026-09-17T20:06:37.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "region:us"
+  ]
+ },
+ "spaces/multimodalart/jev-reproductions-tracker": {
+  "createdAt": "2026-09-17T20:05:16.000Z",
+  "downloads": 0,
+  "id": "multimodalart/jev-reproductions-tracker",
+  "kind": "spaces",
+  "lastModified": "2026-09-18T20:12:57.000Z",
+  "likes": 46,
+  "pipeline": null,
+  "tags": [
+   "static",
+   "region:us"
+  ]
+ },
+ "spaces/pngwn/open-jev": {
+  "createdAt": "2026-09-17T22:04:02.000Z",
+  "downloads": 0,
+  "id": "pngwn/open-jev",
+  "kind": "spaces",
+  "lastModified": "2026-09-17T23:55:21.000Z",
+  "likes": 21,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "region:us"
+  ]
+ },
+ "spaces/pngwn/system-one-demo": {
+  "createdAt": "2026-09-16T19:03:01.000Z",
+  "downloads": 0,
+  "id": "pngwn/system-one-demo",
+  "kind": "spaces",
+  "lastModified": "2026-09-16T19:48:13.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "region:us"
+  ]
+ },
+ "spaces/pngwn/system-one-qwen3-5-4b-scorer-trackio": {
+  "createdAt": "2026-09-16T14:21:41.000Z",
+  "downloads": 0,
+  "id": "pngwn/system-one-qwen3-5-4b-scorer-trackio",
+  "kind": "spaces",
+  "lastModified": "2026-09-16T14:21:43.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "trackio",
+   "region:us"
+  ]
+ },
+ "spaces/pngwn/system-one-v2-retrain-trackio": {
+  "createdAt": "2026-09-16T23:50:02.000Z",
+  "downloads": 0,
+  "id": "pngwn/system-one-v2-retrain-trackio",
+  "kind": "spaces",
+  "lastModified": "2026-09-16T23:50:04.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "trackio",
+   "region:us"
+  ]
+ },
+ "spaces/reachjalil/jevlogs-triage-explorer": {
+  "createdAt": "2026-09-17T06:34:18.000Z",
+  "downloads": 0,
+  "id": "reachjalil/jevlogs-triage-explorer",
+  "kind": "spaces",
+  "lastModified": "2026-09-17T08:29:18.000Z",
+  "likes": 0,
+  "pipeline": null,
+  "tags": [
+   "gradio",
+   "opentelemetry",
+   "logs",
+   "observability",
+   "jev",
+   "anomaly-detection",
+   "region:us"
+  ]
+ }
+}

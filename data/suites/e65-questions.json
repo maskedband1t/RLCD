@@ -1,0 +1,8059 @@
+[
+{
+"id": 0,
+"type": "skip_ahead",
+"task": "Place the hat on the side table",
+"x": "hat",
+"y": "side table",
+"k": 3,
+"steps_completed": [
+"locate the hat",
+"move the gripper above the hat",
+"grasp the hat"
+],
+"candidates": {
+"A": "move the hat over the side table",
+"B": "done",
+"C": "lift the hat",
+"D": "lower the hat and release it on the side table"
+},
+"truth": "C"
+},
+{
+"id": 1,
+"type": "skip_ahead",
+"task": "Put the snack packet in the left sink",
+"x": "snack packet",
+"y": "left sink",
+"k": 2,
+"steps_completed": [
+"locate the snack packet",
+"move the gripper above the snack packet"
+],
+"candidates": {
+"A": "grasp the snack packet",
+"B": "lift the snack packet",
+"C": "lower the snack packet and release it in the left sink",
+"D": "retract the gripper"
+},
+"truth": "A"
+},
+{
+"id": 2,
+"type": "skip_ahead",
+"task": "Put the block into the carrier bag",
+"x": "block",
+"y": "carrier bag",
+"k": 1,
+"steps_completed": [
+"locate the block"
+],
+"candidates": {
+"A": "move the block over the carrier bag",
+"B": "lift the block",
+"C": "move the gripper above the block",
+"D": "lower the block and release it in the carrier bag"
+},
+"truth": "C"
+},
+{
+"id": 3,
+"type": "skip_ahead",
+"task": "Put the remote to the left on the table",
+"x": "remote to the left",
+"y": "table",
+"k": 2,
+"steps_completed": [
+"locate the remote to the left",
+"move the gripper above the remote to the left"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "grasp the remote to the left",
+"C": "lower the remote to the left and release it on the table",
+"D": "move the remote to the left over the table"
+},
+"truth": "B"
+},
+{
+"id": 4,
+"type": "skip_ahead",
+"task": "Place one red piece inside the broken mug.",
+"x": "one red piece",
+"y": "broken mug",
+"k": 1,
+"steps_completed": [
+"locate the one red piece"
+],
+"candidates": {
+"A": "lower the one red piece and release it in the broken mug",
+"B": "lift the one red piece",
+"C": "move the gripper above the one red piece",
+"D": "grasp the one red piece"
+},
+"truth": "C"
+},
+{
+"id": 5,
+"type": "skip_ahead",
+"task": "Put the cap on the spice bottle",
+"x": "cap",
+"y": "spice bottle",
+"k": 3,
+"steps_completed": [
+"locate the cap",
+"move the gripper above the cap",
+"grasp the cap"
+],
+"candidates": {
+"A": "move the cap over the spice bottle",
+"B": "lower the cap and release it on the spice bottle",
+"C": "done",
+"D": "lift the cap"
+},
+"truth": "D"
+},
+{
+"id": 6,
+"type": "skip_ahead",
+"task": "Place the red bag of doritos in the left sink",
+"x": "red bag of doritos",
+"y": "left sink",
+"k": 1,
+"steps_completed": [
+"locate the red bag of doritos"
+],
+"candidates": {
+"A": "move the gripper above the red bag of doritos",
+"B": "grasp the red bag of doritos",
+"C": "retract the gripper",
+"D": "move the red bag of doritos over the left sink"
+},
+"truth": "A"
+},
+{
+"id": 7,
+"type": "skip_ahead",
+"task": "Put the ruler in the box",
+"x": "ruler",
+"y": "box",
+"k": 2,
+"steps_completed": [
+"locate the ruler",
+"move the gripper above the ruler"
+],
+"candidates": {
+"A": "grasp the ruler",
+"B": "retract the gripper",
+"C": "lift the ruler",
+"D": "lower the ruler and release it in the box"
+},
+"truth": "A"
+},
+{
+"id": 8,
+"type": "skip_ahead",
+"task": "Put the white hanger on the stovetop.",
+"x": "white hanger",
+"y": "stovetop",
+"k": 3,
+"steps_completed": [
+"locate the white hanger",
+"move the gripper above the white hanger",
+"grasp the white hanger"
+],
+"candidates": {
+"A": "done",
+"B": "lower the white hanger and release it on the stovetop",
+"C": "lift the white hanger",
+"D": "move the white hanger over the stovetop"
+},
+"truth": "C"
+},
+{
+"id": 9,
+"type": "skip_ahead",
+"task": "Put the white plates on the counter then unstack them.",
+"x": "white plates",
+"y": "counter then unstack them",
+"k": 1,
+"steps_completed": [
+"locate the white plates"
+],
+"candidates": {
+"A": "lift the white plates",
+"B": "move the gripper above the white plates",
+"C": "grasp the white plates",
+"D": "move the white plates over the counter then unstack them"
+},
+"truth": "B"
+},
+{
+"id": 10,
+"type": "skip_ahead",
+"task": "Put the white lid in the bowl",
+"x": "white lid",
+"y": "bowl",
+"k": 1,
+"steps_completed": [
+"locate the white lid"
+],
+"candidates": {
+"A": "grasp the white lid",
+"B": "move the gripper above the white lid",
+"C": "lower the white lid and release it in the bowl",
+"D": "lift the white lid"
+},
+"truth": "B"
+},
+{
+"id": 11,
+"type": "skip_ahead",
+"task": "Put the metal spoon into the take-away food container",
+"x": "metal spoon",
+"y": "take-away food container",
+"k": 2,
+"steps_completed": [
+"locate the metal spoon",
+"move the gripper above the metal spoon"
+],
+"candidates": {
+"A": "move the metal spoon over the take-away food container",
+"B": "retract the gripper",
+"C": "lower the metal spoon and release it in the take-away food container",
+"D": "grasp the metal spoon"
+},
+"truth": "D"
+},
+{
+"id": 12,
+"type": "skip_ahead",
+"task": "Place a paper towel in the mug",
+"x": "paper towel",
+"y": "mug",
+"k": 2,
+"steps_completed": [
+"locate the paper towel",
+"move the gripper above the paper towel"
+],
+"candidates": {
+"A": "lower the paper towel and release it in the mug",
+"B": "move the paper towel over the mug",
+"C": "grasp the paper towel",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 13,
+"type": "skip_ahead",
+"task": "Put the white book on the top shelf",
+"x": "white book",
+"y": "top shelf",
+"k": 1,
+"steps_completed": [
+"locate the white book"
+],
+"candidates": {
+"A": "move the white book over the top shelf",
+"B": "lift the white book",
+"C": "move the gripper above the white book",
+"D": "grasp the white book"
+},
+"truth": "C"
+},
+{
+"id": 14,
+"type": "skip_ahead",
+"task": "Put the small green bowl into the purple cup",
+"x": "small green bowl",
+"y": "purple cup",
+"k": 2,
+"steps_completed": [
+"locate the small green bowl",
+"move the gripper above the small green bowl"
+],
+"candidates": {
+"A": "grasp the small green bowl",
+"B": "done",
+"C": "lower the small green bowl and release it in the purple cup",
+"D": "retract the gripper"
+},
+"truth": "A"
+},
+{
+"id": 15,
+"type": "skip_ahead",
+"task": "Place the snickers bar inside the sink",
+"x": "snickers bar",
+"y": "sink",
+"k": 2,
+"steps_completed": [
+"locate the snickers bar",
+"move the gripper above the snickers bar"
+],
+"candidates": {
+"A": "lift the snickers bar",
+"B": "move the snickers bar over the sink",
+"C": "done",
+"D": "grasp the snickers bar"
+},
+"truth": "D"
+},
+{
+"id": 16,
+"type": "skip_ahead",
+"task": "Put one stirrer on the countertop.",
+"x": "one stirrer",
+"y": "countertop",
+"k": 2,
+"steps_completed": [
+"locate the one stirrer",
+"move the gripper above the one stirrer"
+],
+"candidates": {
+"A": "grasp the one stirrer",
+"B": "lift the one stirrer",
+"C": "retract the gripper",
+"D": "move the one stirrer over the countertop"
+},
+"truth": "A"
+},
+{
+"id": 17,
+"type": "skip_ahead",
+"task": "Put the cup in the drawer",
+"x": "cup",
+"y": "drawer",
+"k": 1,
+"steps_completed": [
+"locate the cup"
+],
+"candidates": {
+"A": "done",
+"B": "grasp the cup",
+"C": "lift the cup",
+"D": "move the gripper above the cup"
+},
+"truth": "D"
+},
+{
+"id": 18,
+"type": "skip_ahead",
+"task": "Put the white sachet on the plate",
+"x": "white sachet",
+"y": "plate",
+"k": 1,
+"steps_completed": [
+"locate the white sachet"
+],
+"candidates": {
+"A": "move the gripper above the white sachet",
+"B": "lower the white sachet and release it on the plate",
+"C": "retract the gripper",
+"D": "grasp the white sachet"
+},
+"truth": "A"
+},
+{
+"id": 19,
+"type": "skip_ahead",
+"task": "Put the object on the black spoon",
+"x": "object",
+"y": "black spoon",
+"k": 1,
+"steps_completed": [
+"locate the object"
+],
+"candidates": {
+"A": "done",
+"B": "lower the object and release it on the black spoon",
+"C": "move the gripper above the object",
+"D": "lift the object"
+},
+"truth": "C"
+},
+{
+"id": 20,
+"type": "skip_ahead",
+"task": "Put the chocolate bar on the paper plate",
+"x": "chocolate bar",
+"y": "paper plate",
+"k": 2,
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar"
+],
+"candidates": {
+"A": "lower the chocolate bar and release it on the paper plate",
+"B": "grasp the chocolate bar",
+"C": "lift the chocolate bar",
+"D": "retract the gripper"
+},
+"truth": "B"
+},
+{
+"id": 21,
+"type": "skip_ahead",
+"task": "Put the white cup onto the plate",
+"x": "white cup",
+"y": "plate",
+"k": 3,
+"steps_completed": [
+"locate the white cup",
+"move the gripper above the white cup",
+"grasp the white cup"
+],
+"candidates": {
+"A": "done",
+"B": "lift the white cup",
+"C": "retract the gripper",
+"D": "lower the white cup and release it on the plate"
+},
+"truth": "B"
+},
+{
+"id": 22,
+"type": "skip_ahead",
+"task": "Put the purple packet in the sink.",
+"x": "purple packet",
+"y": "sink",
+"k": 1,
+"steps_completed": [
+"locate the purple packet"
+],
+"candidates": {
+"A": "move the gripper above the purple packet",
+"B": "done",
+"C": "retract the gripper",
+"D": "grasp the purple packet"
+},
+"truth": "A"
+},
+{
+"id": 23,
+"type": "skip_ahead",
+"task": "Put the left cup into the right cup",
+"x": "left cup",
+"y": "right cup",
+"k": 1,
+"steps_completed": [
+"locate the left cup"
+],
+"candidates": {
+"A": "lift the left cup",
+"B": "move the left cup over the right cup",
+"C": "move the gripper above the left cup",
+"D": "grasp the left cup"
+},
+"truth": "C"
+},
+{
+"id": 24,
+"type": "skip_ahead",
+"task": "place the cup in the other cup",
+"x": "cup",
+"y": "other cup",
+"k": 2,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup"
+],
+"candidates": {
+"A": "done",
+"B": "lower the cup and release it in the other cup",
+"C": "grasp the cup",
+"D": "lift the cup"
+},
+"truth": "C"
+},
+{
+"id": 25,
+"type": "skip_ahead",
+"task": "Put the green packet inside the left sink",
+"x": "green packet",
+"y": "left sink",
+"k": 1,
+"steps_completed": [
+"locate the green packet"
+],
+"candidates": {
+"A": "move the gripper above the green packet",
+"B": "done",
+"C": "grasp the green packet",
+"D": "lift the green packet"
+},
+"truth": "A"
+},
+{
+"id": 26,
+"type": "skip_ahead",
+"task": "Put the green can inside the sink",
+"x": "green can",
+"y": "sink",
+"k": 1,
+"steps_completed": [
+"locate the green can"
+],
+"candidates": {
+"A": "done",
+"B": "lower the green can and release it in the sink",
+"C": "move the gripper above the green can",
+"D": "move the green can over the sink"
+},
+"truth": "C"
+},
+{
+"id": 27,
+"type": "skip_ahead",
+"task": "Put the plate on the surface",
+"x": "plate",
+"y": "surface",
+"k": 3,
+"steps_completed": [
+"locate the plate",
+"move the gripper above the plate",
+"grasp the plate"
+],
+"candidates": {
+"A": "lower the plate and release it on the surface",
+"B": "lift the plate",
+"C": "move the plate over the surface",
+"D": "retract the gripper"
+},
+"truth": "B"
+},
+{
+"id": 28,
+"type": "skip_ahead",
+"task": "Place the teacup on the saucer",
+"x": "teacup",
+"y": "saucer",
+"k": 1,
+"steps_completed": [
+"locate the teacup"
+],
+"candidates": {
+"A": "grasp the teacup",
+"B": "move the gripper above the teacup",
+"C": "lift the teacup",
+"D": "retract the gripper"
+},
+"truth": "B"
+},
+{
+"id": 29,
+"type": "skip_ahead",
+"task": "Put the paper cup inside the white mug",
+"x": "paper cup",
+"y": "white mug",
+"k": 1,
+"steps_completed": [
+"locate the paper cup"
+],
+"candidates": {
+"A": "lift the paper cup",
+"B": "move the gripper above the paper cup",
+"C": "done",
+"D": "retract the gripper"
+},
+"truth": "B"
+},
+{
+"id": 30,
+"type": "skip_ahead",
+"task": "Place the coffee pod inside the clear container.",
+"x": "coffee pod",
+"y": "clear container",
+"k": 3,
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod"
+],
+"candidates": {
+"A": "lift the coffee pod",
+"B": "retract the gripper",
+"C": "done",
+"D": "move the coffee pod over the clear container"
+},
+"truth": "A"
+},
+{
+"id": 31,
+"type": "skip_ahead",
+"task": "Put one plastic in the bin",
+"x": "one plastic",
+"y": "bin",
+"k": 2,
+"steps_completed": [
+"locate the one plastic",
+"move the gripper above the one plastic"
+],
+"candidates": {
+"A": "grasp the one plastic",
+"B": "lower the one plastic and release it in the bin",
+"C": "move the one plastic over the bin",
+"D": "lift the one plastic"
+},
+"truth": "A"
+},
+{
+"id": 32,
+"type": "skip_ahead",
+"task": "Put the white spoon in the yellow bowl.",
+"x": "white spoon",
+"y": "yellow bowl",
+"k": 3,
+"steps_completed": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "lower the white spoon and release it in the yellow bowl",
+"C": "done",
+"D": "lift the white spoon"
+},
+"truth": "D"
+},
+{
+"id": 33,
+"type": "skip_ahead",
+"task": "Put the spoon in the mug cup",
+"x": "spoon",
+"y": "mug cup",
+"k": 3,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon"
+],
+"candidates": {
+"A": "lift the spoon",
+"B": "move the spoon over the mug cup",
+"C": "done",
+"D": "retract the gripper"
+},
+"truth": "A"
+},
+{
+"id": 34,
+"type": "skip_ahead",
+"task": "Put the silver spoon inside the glass coffee jug",
+"x": "silver spoon",
+"y": "glass coffee jug",
+"k": 1,
+"steps_completed": [
+"locate the silver spoon"
+],
+"candidates": {
+"A": "move the gripper above the silver spoon",
+"B": "grasp the silver spoon",
+"C": "move the silver spoon over the glass coffee jug",
+"D": "lift the silver spoon"
+},
+"truth": "A"
+},
+{
+"id": 35,
+"type": "skip_ahead",
+"task": "Put the snack bar in the top cabinet",
+"x": "snack bar",
+"y": "top cabinet",
+"k": 3,
+"steps_completed": [
+"locate the snack bar",
+"move the gripper above the snack bar",
+"grasp the snack bar"
+],
+"candidates": {
+"A": "done",
+"B": "lift the snack bar",
+"C": "retract the gripper",
+"D": "lower the snack bar and release it in the top cabinet"
+},
+"truth": "B"
+},
+{
+"id": 36,
+"type": "skip_ahead",
+"task": "Put the lid on the microwave",
+"x": "lid",
+"y": "microwave",
+"k": 2,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid"
+],
+"candidates": {
+"A": "lift the lid",
+"B": "grasp the lid",
+"C": "lower the lid and release it on the microwave",
+"D": "done"
+},
+"truth": "B"
+},
+{
+"id": 37,
+"type": "skip_ahead",
+"task": "Put the blue bowl in the storage bin",
+"x": "blue bowl",
+"y": "storage bin",
+"k": 2,
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl"
+],
+"candidates": {
+"A": "lift the blue bowl",
+"B": "done",
+"C": "retract the gripper",
+"D": "grasp the blue bowl"
+},
+"truth": "D"
+},
+{
+"id": 38,
+"type": "skip_ahead",
+"task": "Put the snack bar in the bowl",
+"x": "snack bar",
+"y": "bowl",
+"k": 3,
+"steps_completed": [
+"locate the snack bar",
+"move the gripper above the snack bar",
+"grasp the snack bar"
+],
+"candidates": {
+"A": "lift the snack bar",
+"B": "retract the gripper",
+"C": "done",
+"D": "move the snack bar over the bowl"
+},
+"truth": "A"
+},
+{
+"id": 39,
+"type": "skip_ahead",
+"task": "Place the left sneaker on the topmost shelf.",
+"x": "left sneaker",
+"y": "topmost shelf",
+"k": 1,
+"steps_completed": [
+"locate the left sneaker"
+],
+"candidates": {
+"A": "move the gripper above the left sneaker",
+"B": "lower the left sneaker and release it on the topmost shelf",
+"C": "retract the gripper",
+"D": "lift the left sneaker"
+},
+"truth": "A"
+},
+{
+"id": 40,
+"type": "skip_ahead",
+"task": "Place the bin in the styrofoam pack",
+"x": "bin",
+"y": "styrofoam pack",
+"k": 1,
+"steps_completed": [
+"locate the bin"
+],
+"candidates": {
+"A": "move the bin over the styrofoam pack",
+"B": "done",
+"C": "move the gripper above the bin",
+"D": "lower the bin and release it in the styrofoam pack"
+},
+"truth": "C"
+},
+{
+"id": 41,
+"type": "skip_ahead",
+"task": "Put the square blocks in the lunch pack",
+"x": "square blocks",
+"y": "lunch pack",
+"k": 2,
+"steps_completed": [
+"locate the square blocks",
+"move the gripper above the square blocks"
+],
+"candidates": {
+"A": "lift the square blocks",
+"B": "retract the gripper",
+"C": "done",
+"D": "grasp the square blocks"
+},
+"truth": "D"
+},
+{
+"id": 42,
+"type": "skip_ahead",
+"task": "Put the left sneaker on the rack.",
+"x": "left sneaker",
+"y": "rack",
+"k": 1,
+"steps_completed": [
+"locate the left sneaker"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "lift the left sneaker",
+"C": "move the gripper above the left sneaker",
+"D": "grasp the left sneaker"
+},
+"truth": "C"
+},
+{
+"id": 43,
+"type": "skip_ahead",
+"task": "Put the tissue in the bin",
+"x": "tissue",
+"y": "bin",
+"k": 1,
+"steps_completed": [
+"locate the tissue"
+],
+"candidates": {
+"A": "grasp the tissue",
+"B": "move the gripper above the tissue",
+"C": "done",
+"D": "lift the tissue"
+},
+"truth": "B"
+},
+{
+"id": 44,
+"type": "skip_ahead",
+"task": "Put the plastic inside the rubbish can",
+"x": "plastic",
+"y": "rubbish can",
+"k": 3,
+"steps_completed": [
+"locate the plastic",
+"move the gripper above the plastic",
+"grasp the plastic"
+],
+"candidates": {
+"A": "move the plastic over the rubbish can",
+"B": "lift the plastic",
+"C": "lower the plastic and release it in the rubbish can",
+"D": "done"
+},
+"truth": "B"
+},
+{
+"id": 45,
+"type": "skip_ahead",
+"task": "Put the green packet inside the sink",
+"x": "green packet",
+"y": "sink",
+"k": 3,
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet"
+],
+"candidates": {
+"A": "move the green packet over the sink",
+"B": "lower the green packet and release it in the sink",
+"C": "lift the green packet",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 46,
+"type": "skip_ahead",
+"task": "Put the coffee cup onto the stand",
+"x": "coffee cup",
+"y": "stand",
+"k": 2,
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup"
+],
+"candidates": {
+"A": "lower the coffee cup and release it on the stand",
+"B": "grasp the coffee cup",
+"C": "move the coffee cup over the stand",
+"D": "lift the coffee cup"
+},
+"truth": "B"
+},
+{
+"id": 47,
+"type": "skip_ahead",
+"task": "Put the spoon in the cup",
+"x": "spoon",
+"y": "cup",
+"k": 3,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon"
+],
+"candidates": {
+"A": "lift the spoon",
+"B": "lower the spoon and release it in the cup",
+"C": "retract the gripper",
+"D": "move the spoon over the cup"
+},
+"truth": "A"
+},
+{
+"id": 48,
+"type": "skip_ahead",
+"task": "Put the blue packet in the sink on the left.",
+"x": "blue packet",
+"y": "sink on the left",
+"k": 2,
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet"
+],
+"candidates": {
+"A": "grasp the blue packet",
+"B": "lift the blue packet",
+"C": "retract the gripper",
+"D": "lower the blue packet and release it in the sink on the left"
+},
+"truth": "A"
+},
+{
+"id": 49,
+"type": "skip_ahead",
+"task": "Put the black object in the white jug.",
+"x": "black object",
+"y": "white jug",
+"k": 1,
+"steps_completed": [
+"locate the black object"
+],
+"candidates": {
+"A": "move the black object over the white jug",
+"B": "done",
+"C": "retract the gripper",
+"D": "move the gripper above the black object"
+},
+"truth": "D"
+},
+{
+"id": 50,
+"type": "skip_ahead",
+"task": "Put the packet from the counter in the upper cabinet.",
+"x": "packet from the counter",
+"y": "upper cabinet",
+"k": 3,
+"steps_completed": [
+"locate the packet from the counter",
+"move the gripper above the packet from the counter",
+"grasp the packet from the counter"
+],
+"candidates": {
+"A": "move the packet from the counter over the upper cabinet",
+"B": "lower the packet from the counter and release it in the upper cabinet",
+"C": "lift the packet from the counter",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 51,
+"type": "skip_ahead",
+"task": "Put the black sachet in the left sink",
+"x": "black sachet",
+"y": "left sink",
+"k": 2,
+"steps_completed": [
+"locate the black sachet",
+"move the gripper above the black sachet"
+],
+"candidates": {
+"A": "lift the black sachet",
+"B": "grasp the black sachet",
+"C": "retract the gripper",
+"D": "lower the black sachet and release it in the left sink"
+},
+"truth": "B"
+},
+{
+"id": 52,
+"type": "skip_ahead",
+"task": "Place three cotton balls into the small crate",
+"x": "three cotton balls",
+"y": "small crate",
+"k": 3,
+"steps_completed": [
+"locate the three cotton balls",
+"move the gripper above the three cotton balls",
+"grasp the three cotton balls"
+],
+"candidates": {
+"A": "lower the three cotton balls and release it in the small crate",
+"B": "done",
+"C": "lift the three cotton balls",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 53,
+"type": "skip_ahead",
+"task": "Put the soda can in the sink on the left",
+"x": "soda can",
+"y": "sink on the left",
+"k": 1,
+"steps_completed": [
+"locate the soda can"
+],
+"candidates": {
+"A": "done",
+"B": "move the soda can over the sink on the left",
+"C": "move the gripper above the soda can",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 54,
+"type": "skip_ahead",
+"task": "Put the right coffee pod in the cup",
+"x": "right coffee pod",
+"y": "cup",
+"k": 3,
+"steps_completed": [
+"locate the right coffee pod",
+"move the gripper above the right coffee pod",
+"grasp the right coffee pod"
+],
+"candidates": {
+"A": "lift the right coffee pod",
+"B": "retract the gripper",
+"C": "done",
+"D": "move the right coffee pod over the cup"
+},
+"truth": "A"
+},
+{
+"id": 55,
+"type": "skip_ahead",
+"task": "Put the black packet in the left sink",
+"x": "black packet",
+"y": "left sink",
+"k": 2,
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet"
+],
+"candidates": {
+"A": "grasp the black packet",
+"B": "lower the black packet and release it in the left sink",
+"C": "done",
+"D": "move the black packet over the left sink"
+},
+"truth": "A"
+},
+{
+"id": 56,
+"type": "skip_ahead",
+"task": "Put the cup in the sink",
+"x": "cup",
+"y": "sink",
+"k": 1,
+"steps_completed": [
+"locate the cup"
+],
+"candidates": {
+"A": "lift the cup",
+"B": "grasp the cup",
+"C": "move the gripper above the cup",
+"D": "done"
+},
+"truth": "C"
+},
+{
+"id": 57,
+"type": "skip_ahead",
+"task": "Place the block inside the white bag",
+"x": "block",
+"y": "white bag",
+"k": 1,
+"steps_completed": [
+"locate the block"
+],
+"candidates": {
+"A": "lower the block and release it in the white bag",
+"B": "move the block over the white bag",
+"C": "move the gripper above the block",
+"D": "done"
+},
+"truth": "C"
+},
+{
+"id": 58,
+"type": "skip_ahead",
+"task": "Put the remote on the right armrest",
+"x": "remote",
+"y": "right armrest",
+"k": 2,
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote"
+],
+"candidates": {
+"A": "lift the remote",
+"B": "grasp the remote",
+"C": "done",
+"D": "move the remote over the right armrest"
+},
+"truth": "B"
+},
+{
+"id": 59,
+"type": "skip_ahead",
+"task": "Put the fork inside the cup",
+"x": "fork",
+"y": "cup",
+"k": 3,
+"steps_completed": [
+"locate the fork",
+"move the gripper above the fork",
+"grasp the fork"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "lift the fork",
+"C": "done",
+"D": "lower the fork and release it in the cup"
+},
+"truth": "B"
+},
+{
+"id": 60,
+"type": "skip_ahead",
+"task": "Put the spoon into the white cup",
+"x": "spoon",
+"y": "white cup",
+"k": 2,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "grasp the spoon",
+"C": "lower the spoon and release it in the white cup",
+"D": "done"
+},
+"truth": "B"
+},
+{
+"id": 61,
+"type": "skip_ahead",
+"task": "Put one sachet in the sink on the left.",
+"x": "one sachet",
+"y": "sink on the left",
+"k": 3,
+"steps_completed": [
+"locate the one sachet",
+"move the gripper above the one sachet",
+"grasp the one sachet"
+],
+"candidates": {
+"A": "lift the one sachet",
+"B": "retract the gripper",
+"C": "move the one sachet over the sink on the left",
+"D": "done"
+},
+"truth": "A"
+},
+{
+"id": 62,
+"type": "skip_ahead",
+"task": "Put one white knife on the white plate.",
+"x": "one white knife",
+"y": "white plate",
+"k": 2,
+"steps_completed": [
+"locate the one white knife",
+"move the gripper above the one white knife"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "grasp the one white knife",
+"C": "lift the one white knife",
+"D": "lower the one white knife and release it on the white plate"
+},
+"truth": "B"
+},
+{
+"id": 63,
+"type": "skip_ahead",
+"task": "Put the orange packet into the sink",
+"x": "orange packet",
+"y": "sink",
+"k": 1,
+"steps_completed": [
+"locate the orange packet"
+],
+"candidates": {
+"A": "move the gripper above the orange packet",
+"B": "lift the orange packet",
+"C": "retract the gripper",
+"D": "move the orange packet over the sink"
+},
+"truth": "A"
+},
+{
+"id": 64,
+"type": "skip_ahead",
+"task": "Put the paper towel on the metal rail",
+"x": "paper towel",
+"y": "metal rail",
+"k": 3,
+"steps_completed": [
+"locate the paper towel",
+"move the gripper above the paper towel",
+"grasp the paper towel"
+],
+"candidates": {
+"A": "move the paper towel over the metal rail",
+"B": "lift the paper towel",
+"C": "retract the gripper",
+"D": "done"
+},
+"truth": "B"
+},
+{
+"id": 65,
+"type": "skip_ahead",
+"task": "Put the orange block on the stack",
+"x": "orange block",
+"y": "stack",
+"k": 2,
+"steps_completed": [
+"locate the orange block",
+"move the gripper above the orange block"
+],
+"candidates": {
+"A": "lift the orange block",
+"B": "grasp the orange block",
+"C": "retract the gripper",
+"D": "done"
+},
+"truth": "B"
+},
+{
+"id": 66,
+"type": "skip_ahead",
+"task": "Put the cup on the the counter",
+"x": "cup",
+"y": "the counter",
+"k": 1,
+"steps_completed": [
+"locate the cup"
+],
+"candidates": {
+"A": "move the gripper above the cup",
+"B": "lift the cup",
+"C": "lower the cup and release it on the the counter",
+"D": "grasp the cup"
+},
+"truth": "A"
+},
+{
+"id": 67,
+"type": "skip_ahead",
+"task": "Put the wooden spoon on the paper towel",
+"x": "wooden spoon",
+"y": "paper towel",
+"k": 2,
+"steps_completed": [
+"locate the wooden spoon",
+"move the gripper above the wooden spoon"
+],
+"candidates": {
+"A": "move the wooden spoon over the paper towel",
+"B": "lower the wooden spoon and release it on the paper towel",
+"C": "grasp the wooden spoon",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 68,
+"type": "skip_ahead",
+"task": "Put the right black pot in the oven grill",
+"x": "right black pot",
+"y": "oven grill",
+"k": 1,
+"steps_completed": [
+"locate the right black pot"
+],
+"candidates": {
+"A": "move the gripper above the right black pot",
+"B": "grasp the right black pot",
+"C": "move the right black pot over the oven grill",
+"D": "lower the right black pot and release it in the oven grill"
+},
+"truth": "A"
+},
+{
+"id": 69,
+"type": "skip_ahead",
+"task": "Place the purple bowl on its side.",
+"x": "purple bowl",
+"y": "its side",
+"k": 2,
+"steps_completed": [
+"locate the purple bowl",
+"move the gripper above the purple bowl"
+],
+"candidates": {
+"A": "lift the purple bowl",
+"B": "grasp the purple bowl",
+"C": "retract the gripper",
+"D": "lower the purple bowl and release it on the its side"
+},
+"truth": "B"
+},
+{
+"id": 70,
+"type": "skip_ahead",
+"task": "Put the tennis ball in the black mug.",
+"x": "tennis ball",
+"y": "black mug",
+"k": 3,
+"steps_completed": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball"
+],
+"candidates": {
+"A": "lower the tennis ball and release it in the black mug",
+"B": "lift the tennis ball",
+"C": "retract the gripper",
+"D": "move the tennis ball over the black mug"
+},
+"truth": "B"
+},
+{
+"id": 71,
+"type": "skip_ahead",
+"task": "Place the soda can in the shelf",
+"x": "soda can",
+"y": "shelf",
+"k": 1,
+"steps_completed": [
+"locate the soda can"
+],
+"candidates": {
+"A": "grasp the soda can",
+"B": "move the soda can over the shelf",
+"C": "move the gripper above the soda can",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 72,
+"type": "skip_ahead",
+"task": "Put the marker into the plastic cup",
+"x": "marker",
+"y": "plastic cup",
+"k": 1,
+"steps_completed": [
+"locate the marker"
+],
+"candidates": {
+"A": "grasp the marker",
+"B": "lower the marker and release it in the plastic cup",
+"C": "done",
+"D": "move the gripper above the marker"
+},
+"truth": "D"
+},
+{
+"id": 73,
+"type": "skip_ahead",
+"task": "Put the orange packet in the left bin",
+"x": "orange packet",
+"y": "left bin",
+"k": 2,
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet"
+],
+"candidates": {
+"A": "lower the orange packet and release it in the left bin",
+"B": "grasp the orange packet",
+"C": "retract the gripper",
+"D": "move the orange packet over the left bin"
+},
+"truth": "B"
+},
+{
+"id": 74,
+"type": "skip_ahead",
+"task": "Put the green lunch bar inside the sink on the left",
+"x": "green lunch bar",
+"y": "sink on the left",
+"k": 3,
+"steps_completed": [
+"locate the green lunch bar",
+"move the gripper above the green lunch bar",
+"grasp the green lunch bar"
+],
+"candidates": {
+"A": "lower the green lunch bar and release it in the sink on the left",
+"B": "done",
+"C": "retract the gripper",
+"D": "lift the green lunch bar"
+},
+"truth": "D"
+},
+{
+"id": 75,
+"type": "skip_ahead",
+"task": "Put the white sachet in the top left compartment",
+"x": "white sachet",
+"y": "top left compartment",
+"k": 1,
+"steps_completed": [
+"locate the white sachet"
+],
+"candidates": {
+"A": "grasp the white sachet",
+"B": "lower the white sachet and release it in the top left compartment",
+"C": "move the gripper above the white sachet",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 76,
+"type": "skip_ahead",
+"task": "Put the orange can in the sink on the left.",
+"x": "orange can",
+"y": "sink on the left",
+"k": 3,
+"steps_completed": [
+"locate the orange can",
+"move the gripper above the orange can",
+"grasp the orange can"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "move the orange can over the sink on the left",
+"C": "lift the orange can",
+"D": "done"
+},
+"truth": "C"
+},
+{
+"id": 77,
+"type": "skip_ahead",
+"task": "Put the lid on the blender.",
+"x": "lid",
+"y": "blender",
+"k": 2,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid"
+],
+"candidates": {
+"A": "done",
+"B": "lower the lid and release it on the blender",
+"C": "grasp the lid",
+"D": "retract the gripper"
+},
+"truth": "C"
+},
+{
+"id": 78,
+"type": "skip_ahead",
+"task": "Put the lid on the cup",
+"x": "lid",
+"y": "cup",
+"k": 3,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid"
+],
+"candidates": {
+"A": "move the lid over the cup",
+"B": "retract the gripper",
+"C": "lower the lid and release it on the cup",
+"D": "lift the lid"
+},
+"truth": "D"
+},
+{
+"id": 79,
+"type": "skip_ahead",
+"task": "Put the blue packet in the open upper cabinet.",
+"x": "blue packet",
+"y": "open upper cabinet",
+"k": 1,
+"steps_completed": [
+"locate the blue packet"
+],
+"candidates": {
+"A": "done",
+"B": "move the gripper above the blue packet",
+"C": "lower the blue packet and release it in the open upper cabinet",
+"D": "lift the blue packet"
+},
+"truth": "B"
+},
+{
+"id": 80,
+"type": "repeat",
+"task": "Put the hanger on the backrest of the chair",
+"x": "hanger",
+"y": "backrest of the chair",
+"k": 5,
+"steps_completed": [
+"locate the hanger",
+"move the gripper above the hanger",
+"grasp the hanger",
+"lift the hanger",
+"move the hanger over the backrest of the chair"
+],
+"candidates": {
+"A": "move the gripper above the hanger",
+"B": "grasp the hanger",
+"C": "lift the hanger",
+"D": "lower the hanger and release it on the backrest of the chair"
+},
+"truth": "D"
+},
+{
+"id": 81,
+"type": "repeat",
+"task": "Put the white sachet on the shelf with similar sachets",
+"x": "white sachet",
+"y": "shelf with similar sachets",
+"k": 5,
+"steps_completed": [
+"locate the white sachet",
+"move the gripper above the white sachet",
+"grasp the white sachet",
+"lift the white sachet",
+"move the white sachet over the shelf with similar sachets"
+],
+"candidates": {
+"A": "lower the white sachet and release it on the shelf with similar sachets",
+"B": "locate the white sachet",
+"C": "move the white sachet over the shelf with similar sachets",
+"D": "lift the white sachet"
+},
+"truth": "A"
+},
+{
+"id": 82,
+"type": "repeat",
+"task": "Place the right-side-up cup on the upside down cup",
+"x": "right-side-up cup",
+"y": "upside down cup",
+"k": 6,
+"steps_completed": [
+"locate the right-side-up cup",
+"move the gripper above the right-side-up cup",
+"grasp the right-side-up cup",
+"lift the right-side-up cup",
+"move the right-side-up cup over the upside down cup",
+"lower the right-side-up cup and release it on the upside down cup"
+],
+"candidates": {
+"A": "lift the right-side-up cup",
+"B": "grasp the right-side-up cup",
+"C": "lower the right-side-up cup and release it on the upside down cup",
+"D": "retract the gripper"
+},
+"truth": "D"
+},
+{
+"id": 83,
+"type": "repeat",
+"task": "Put the white bowl into the blue bowl",
+"x": "white bowl",
+"y": "blue bowl",
+"k": 3,
+"steps_completed": [
+"locate the white bowl",
+"move the gripper above the white bowl",
+"grasp the white bowl"
+],
+"candidates": {
+"A": "locate the white bowl",
+"B": "lift the white bowl",
+"C": "move the gripper above the white bowl",
+"D": "grasp the white bowl"
+},
+"truth": "B"
+},
+{
+"id": 84,
+"type": "repeat",
+"task": "Place the white lid on the cube-shaped wooden object",
+"x": "white lid",
+"y": "cube-shaped wooden object",
+"k": 3,
+"steps_completed": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid"
+],
+"candidates": {
+"A": "move the gripper above the white lid",
+"B": "locate the white lid",
+"C": "lift the white lid",
+"D": "grasp the white lid"
+},
+"truth": "C"
+},
+{
+"id": 85,
+"type": "repeat",
+"task": "Put the cloth on the stand",
+"x": "cloth",
+"y": "stand",
+"k": 5,
+"steps_completed": [
+"locate the cloth",
+"move the gripper above the cloth",
+"grasp the cloth",
+"lift the cloth",
+"move the cloth over the stand"
+],
+"candidates": {
+"A": "lower the cloth and release it on the stand",
+"B": "lift the cloth",
+"C": "locate the cloth",
+"D": "move the cloth over the stand"
+},
+"truth": "A"
+},
+{
+"id": 86,
+"type": "repeat",
+"task": "Put the stacked coffee cups in the yellow bowl.",
+"x": "stacked coffee cups",
+"y": "yellow bowl",
+"k": 5,
+"steps_completed": [
+"locate the stacked coffee cups",
+"move the gripper above the stacked coffee cups",
+"grasp the stacked coffee cups",
+"lift the stacked coffee cups",
+"move the stacked coffee cups over the yellow bowl"
+],
+"candidates": {
+"A": "lift the stacked coffee cups",
+"B": "move the gripper above the stacked coffee cups",
+"C": "lower the stacked coffee cups and release it in the yellow bowl",
+"D": "move the stacked coffee cups over the yellow bowl"
+},
+"truth": "C"
+},
+{
+"id": 87,
+"type": "repeat",
+"task": "Put the can into the cupboard",
+"x": "can",
+"y": "cupboard",
+"k": 5,
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can",
+"lift the can",
+"move the can over the cupboard"
+],
+"candidates": {
+"A": "move the gripper above the can",
+"B": "locate the can",
+"C": "lower the can and release it in the cupboard",
+"D": "lift the can"
+},
+"truth": "C"
+},
+{
+"id": 88,
+"type": "repeat",
+"task": "Put the right white plate in the white bowl",
+"x": "right white plate",
+"y": "white bowl",
+"k": 3,
+"steps_completed": [
+"locate the right white plate",
+"move the gripper above the right white plate",
+"grasp the right white plate"
+],
+"candidates": {
+"A": "move the gripper above the right white plate",
+"B": "lift the right white plate",
+"C": "locate the right white plate",
+"D": "grasp the right white plate"
+},
+"truth": "B"
+},
+{
+"id": 89,
+"type": "repeat",
+"task": "Put the green plush in the bowl",
+"x": "green plush",
+"y": "bowl",
+"k": 5,
+"steps_completed": [
+"locate the green plush",
+"move the gripper above the green plush",
+"grasp the green plush",
+"lift the green plush",
+"move the green plush over the bowl"
+],
+"candidates": {
+"A": "move the green plush over the bowl",
+"B": "lift the green plush",
+"C": "move the gripper above the green plush",
+"D": "lower the green plush and release it in the bowl"
+},
+"truth": "D"
+},
+{
+"id": 90,
+"type": "repeat",
+"task": "Put the orange sachet inside the white bowl",
+"x": "orange sachet",
+"y": "white bowl",
+"k": 5,
+"steps_completed": [
+"locate the orange sachet",
+"move the gripper above the orange sachet",
+"grasp the orange sachet",
+"lift the orange sachet",
+"move the orange sachet over the white bowl"
+],
+"candidates": {
+"A": "lift the orange sachet",
+"B": "lower the orange sachet and release it in the white bowl",
+"C": "locate the orange sachet",
+"D": "move the orange sachet over the white bowl"
+},
+"truth": "B"
+},
+{
+"id": 91,
+"type": "repeat",
+"task": "Put the black object in the bowl",
+"x": "black object",
+"y": "bowl",
+"k": 6,
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object",
+"lift the black object",
+"move the black object over the bowl",
+"lower the black object and release it in the bowl"
+],
+"candidates": {
+"A": "move the gripper above the black object",
+"B": "locate the black object",
+"C": "grasp the black object",
+"D": "retract the gripper"
+},
+"truth": "D"
+},
+{
+"id": 92,
+"type": "repeat",
+"task": "Put the green packet inside the open upper drawer.",
+"x": "green packet",
+"y": "open upper drawer",
+"k": 5,
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet",
+"lift the green packet",
+"move the green packet over the open upper drawer"
+],
+"candidates": {
+"A": "locate the green packet",
+"B": "move the green packet over the open upper drawer",
+"C": "lower the green packet and release it in the open upper drawer",
+"D": "move the gripper above the green packet"
+},
+"truth": "C"
+},
+{
+"id": 93,
+"type": "repeat",
+"task": "Put the metal lid on the salt cellar",
+"x": "metal lid",
+"y": "salt cellar",
+"k": 5,
+"steps_completed": [
+"locate the metal lid",
+"move the gripper above the metal lid",
+"grasp the metal lid",
+"lift the metal lid",
+"move the metal lid over the salt cellar"
+],
+"candidates": {
+"A": "locate the metal lid",
+"B": "lift the metal lid",
+"C": "lower the metal lid and release it on the salt cellar",
+"D": "grasp the metal lid"
+},
+"truth": "C"
+},
+{
+"id": 94,
+"type": "repeat",
+"task": "Put the blue cloth on the backrest of the chair",
+"x": "blue cloth",
+"y": "backrest of the chair",
+"k": 4,
+"steps_completed": [
+"locate the blue cloth",
+"move the gripper above the blue cloth",
+"grasp the blue cloth",
+"lift the blue cloth"
+],
+"candidates": {
+"A": "move the gripper above the blue cloth",
+"B": "move the blue cloth over the backrest of the chair",
+"C": "locate the blue cloth",
+"D": "grasp the blue cloth"
+},
+"truth": "B"
+},
+{
+"id": 95,
+"type": "repeat",
+"task": "Put the packet in the open cabinet.",
+"x": "packet",
+"y": "open cabinet",
+"k": 4,
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet",
+"lift the packet"
+],
+"candidates": {
+"A": "move the gripper above the packet",
+"B": "move the packet over the open cabinet",
+"C": "grasp the packet",
+"D": "lift the packet"
+},
+"truth": "B"
+},
+{
+"id": 96,
+"type": "repeat",
+"task": "Put some of the contents in the jar on the plate",
+"x": "some of the contents",
+"y": "jar on the plate",
+"k": 4,
+"steps_completed": [
+"locate the some of the contents",
+"move the gripper above the some of the contents",
+"grasp the some of the contents",
+"lift the some of the contents"
+],
+"candidates": {
+"A": "move the gripper above the some of the contents",
+"B": "grasp the some of the contents",
+"C": "move the some of the contents over the jar on the plate",
+"D": "locate the some of the contents"
+},
+"truth": "C"
+},
+{
+"id": 97,
+"type": "repeat",
+"task": "Put the black thing on the tea cup",
+"x": "black thing",
+"y": "tea cup",
+"k": 3,
+"steps_completed": [
+"locate the black thing",
+"move the gripper above the black thing",
+"grasp the black thing"
+],
+"candidates": {
+"A": "move the gripper above the black thing",
+"B": "locate the black thing",
+"C": "grasp the black thing",
+"D": "lift the black thing"
+},
+"truth": "D"
+},
+{
+"id": 98,
+"type": "repeat",
+"task": "Put the straw on the top second left rack",
+"x": "straw",
+"y": "top second left rack",
+"k": 4,
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw",
+"lift the straw"
+],
+"candidates": {
+"A": "move the straw over the top second left rack",
+"B": "lift the straw",
+"C": "locate the straw",
+"D": "move the gripper above the straw"
+},
+"truth": "A"
+},
+{
+"id": 99,
+"type": "repeat",
+"task": "Put the plush toy on the toy car",
+"x": "plush toy",
+"y": "toy car",
+"k": 4,
+"steps_completed": [
+"locate the plush toy",
+"move the gripper above the plush toy",
+"grasp the plush toy",
+"lift the plush toy"
+],
+"candidates": {
+"A": "move the gripper above the plush toy",
+"B": "lift the plush toy",
+"C": "move the plush toy over the toy car",
+"D": "locate the plush toy"
+},
+"truth": "C"
+},
+{
+"id": 100,
+"type": "repeat",
+"task": "Put the plastic fork in the bowl",
+"x": "plastic fork",
+"y": "bowl",
+"k": 6,
+"steps_completed": [
+"locate the plastic fork",
+"move the gripper above the plastic fork",
+"grasp the plastic fork",
+"lift the plastic fork",
+"move the plastic fork over the bowl",
+"lower the plastic fork and release it in the bowl"
+],
+"candidates": {
+"A": "grasp the plastic fork",
+"B": "retract the gripper",
+"C": "move the plastic fork over the bowl",
+"D": "locate the plastic fork"
+},
+"truth": "B"
+},
+{
+"id": 101,
+"type": "repeat",
+"task": "Put the blue block inside the blue bowl",
+"x": "blue block",
+"y": "blue bowl",
+"k": 6,
+"steps_completed": [
+"locate the blue block",
+"move the gripper above the blue block",
+"grasp the blue block",
+"lift the blue block",
+"move the blue block over the blue bowl",
+"lower the blue block and release it in the blue bowl"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "lower the blue block and release it in the blue bowl",
+"C": "move the gripper above the blue block",
+"D": "lift the blue block"
+},
+"truth": "A"
+},
+{
+"id": 102,
+"type": "repeat",
+"task": "Put the yellow sachet on the top rack",
+"x": "yellow sachet",
+"y": "top rack",
+"k": 6,
+"steps_completed": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet",
+"lift the yellow sachet",
+"move the yellow sachet over the top rack",
+"lower the yellow sachet and release it on the top rack"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "move the yellow sachet over the top rack",
+"C": "grasp the yellow sachet",
+"D": "locate the yellow sachet"
+},
+"truth": "A"
+},
+{
+"id": 103,
+"type": "repeat",
+"task": "Put the left cup in the right cup",
+"x": "left cup",
+"y": "right cup",
+"k": 3,
+"steps_completed": [
+"locate the left cup",
+"move the gripper above the left cup",
+"grasp the left cup"
+],
+"candidates": {
+"A": "locate the left cup",
+"B": "grasp the left cup",
+"C": "lift the left cup",
+"D": "move the gripper above the left cup"
+},
+"truth": "C"
+},
+{
+"id": 104,
+"type": "repeat",
+"task": "Put the tennis ball inside the cupboard drawer",
+"x": "tennis ball",
+"y": "cupboard drawer",
+"k": 6,
+"steps_completed": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball",
+"lift the tennis ball",
+"move the tennis ball over the cupboard drawer",
+"lower the tennis ball and release it in the cupboard drawer"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "move the tennis ball over the cupboard drawer",
+"C": "locate the tennis ball",
+"D": "lower the tennis ball and release it in the cupboard drawer"
+},
+"truth": "A"
+},
+{
+"id": 105,
+"type": "repeat",
+"task": "Put the green can in the sink to the left",
+"x": "green can",
+"y": "sink to the left",
+"k": 3,
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can"
+],
+"candidates": {
+"A": "locate the green can",
+"B": "move the gripper above the green can",
+"C": "grasp the green can",
+"D": "lift the green can"
+},
+"truth": "D"
+},
+{
+"id": 106,
+"type": "repeat",
+"task": "Put the orange item in the box",
+"x": "orange item",
+"y": "box",
+"k": 6,
+"steps_completed": [
+"locate the orange item",
+"move the gripper above the orange item",
+"grasp the orange item",
+"lift the orange item",
+"move the orange item over the box",
+"lower the orange item and release it in the box"
+],
+"candidates": {
+"A": "lower the orange item and release it in the box",
+"B": "retract the gripper",
+"C": "move the gripper above the orange item",
+"D": "grasp the orange item"
+},
+"truth": "B"
+},
+{
+"id": 107,
+"type": "repeat",
+"task": "Put the red bowl in the white oven.",
+"x": "red bowl",
+"y": "white oven",
+"k": 5,
+"steps_completed": [
+"locate the red bowl",
+"move the gripper above the red bowl",
+"grasp the red bowl",
+"lift the red bowl",
+"move the red bowl over the white oven"
+],
+"candidates": {
+"A": "move the gripper above the red bowl",
+"B": "move the red bowl over the white oven",
+"C": "lower the red bowl and release it in the white oven",
+"D": "locate the red bowl"
+},
+"truth": "C"
+},
+{
+"id": 108,
+"type": "repeat",
+"task": "Put the orange masking tape on the top counter",
+"x": "orange masking tape",
+"y": "top counter",
+"k": 6,
+"steps_completed": [
+"locate the orange masking tape",
+"move the gripper above the orange masking tape",
+"grasp the orange masking tape",
+"lift the orange masking tape",
+"move the orange masking tape over the top counter",
+"lower the orange masking tape and release it on the top counter"
+],
+"candidates": {
+"A": "move the orange masking tape over the top counter",
+"B": "retract the gripper",
+"C": "locate the orange masking tape",
+"D": "lower the orange masking tape and release it on the top counter"
+},
+"truth": "B"
+},
+{
+"id": 109,
+"type": "repeat",
+"task": "Place one paper towel in the cup",
+"x": "one paper towel",
+"y": "cup",
+"k": 5,
+"steps_completed": [
+"locate the one paper towel",
+"move the gripper above the one paper towel",
+"grasp the one paper towel",
+"lift the one paper towel",
+"move the one paper towel over the cup"
+],
+"candidates": {
+"A": "move the one paper towel over the cup",
+"B": "lift the one paper towel",
+"C": "grasp the one paper towel",
+"D": "lower the one paper towel and release it in the cup"
+},
+"truth": "D"
+},
+{
+"id": 110,
+"type": "repeat",
+"task": "Put the brown object in the bowl closest to you",
+"x": "brown object",
+"y": "bowl closest to you",
+"k": 3,
+"steps_completed": [
+"locate the brown object",
+"move the gripper above the brown object",
+"grasp the brown object"
+],
+"candidates": {
+"A": "grasp the brown object",
+"B": "lift the brown object",
+"C": "move the gripper above the brown object",
+"D": "locate the brown object"
+},
+"truth": "B"
+},
+{
+"id": 111,
+"type": "repeat",
+"task": "Put the green object on the counter to the left",
+"x": "green object",
+"y": "counter to the left",
+"k": 5,
+"steps_completed": [
+"locate the green object",
+"move the gripper above the green object",
+"grasp the green object",
+"lift the green object",
+"move the green object over the counter to the left"
+],
+"candidates": {
+"A": "move the gripper above the green object",
+"B": "locate the green object",
+"C": "lower the green object and release it on the counter to the left",
+"D": "move the green object over the counter to the left"
+},
+"truth": "C"
+},
+{
+"id": 112,
+"type": "repeat",
+"task": "Put the yellow sachet on the rack",
+"x": "yellow sachet",
+"y": "rack",
+"k": 6,
+"steps_completed": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet",
+"lift the yellow sachet",
+"move the yellow sachet over the rack",
+"lower the yellow sachet and release it on the rack"
+],
+"candidates": {
+"A": "move the yellow sachet over the rack",
+"B": "lower the yellow sachet and release it on the rack",
+"C": "lift the yellow sachet",
+"D": "retract the gripper"
+},
+"truth": "D"
+},
+{
+"id": 113,
+"type": "repeat",
+"task": "Put the blue tape on the jar",
+"x": "blue tape",
+"y": "jar",
+"k": 6,
+"steps_completed": [
+"locate the blue tape",
+"move the gripper above the blue tape",
+"grasp the blue tape",
+"lift the blue tape",
+"move the blue tape over the jar",
+"lower the blue tape and release it on the jar"
+],
+"candidates": {
+"A": "move the gripper above the blue tape",
+"B": "lower the blue tape and release it on the jar",
+"C": "retract the gripper",
+"D": "move the blue tape over the jar"
+},
+"truth": "C"
+},
+{
+"id": 114,
+"type": "repeat",
+"task": "Put the plastic fork into the coffee cup",
+"x": "plastic fork",
+"y": "coffee cup",
+"k": 4,
+"steps_completed": [
+"locate the plastic fork",
+"move the gripper above the plastic fork",
+"grasp the plastic fork",
+"lift the plastic fork"
+],
+"candidates": {
+"A": "move the plastic fork over the coffee cup",
+"B": "locate the plastic fork",
+"C": "move the gripper above the plastic fork",
+"D": "grasp the plastic fork"
+},
+"truth": "A"
+},
+{
+"id": 115,
+"type": "repeat",
+"task": "Place the cup on the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"k": 5,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup",
+"move the cup over the coffee maker"
+],
+"candidates": {
+"A": "lower the cup and release it on the coffee maker",
+"B": "lift the cup",
+"C": "move the gripper above the cup",
+"D": "locate the cup"
+},
+"truth": "A"
+},
+{
+"id": 116,
+"type": "repeat",
+"task": "Put the spoon inside the black cup",
+"x": "spoon",
+"y": "black cup",
+"k": 4,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon"
+],
+"candidates": {
+"A": "move the spoon over the black cup",
+"B": "grasp the spoon",
+"C": "move the gripper above the spoon",
+"D": "lift the spoon"
+},
+"truth": "A"
+},
+{
+"id": 117,
+"type": "repeat",
+"task": "Put the paper cup in an upright position",
+"x": "paper cup",
+"y": "an upright position",
+"k": 6,
+"steps_completed": [
+"locate the paper cup",
+"move the gripper above the paper cup",
+"grasp the paper cup",
+"lift the paper cup",
+"move the paper cup over the an upright position",
+"lower the paper cup and release it in the an upright position"
+],
+"candidates": {
+"A": "move the paper cup over the an upright position",
+"B": "retract the gripper",
+"C": "lift the paper cup",
+"D": "grasp the paper cup"
+},
+"truth": "B"
+},
+{
+"id": 118,
+"type": "repeat",
+"task": "Put the black packet inside the sink",
+"x": "black packet",
+"y": "sink",
+"k": 4,
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet",
+"lift the black packet"
+],
+"candidates": {
+"A": "grasp the black packet",
+"B": "move the black packet over the sink",
+"C": "locate the black packet",
+"D": "move the gripper above the black packet"
+},
+"truth": "B"
+},
+{
+"id": 119,
+"type": "repeat",
+"task": "Put the brush in the blue bowl",
+"x": "brush",
+"y": "blue bowl",
+"k": 5,
+"steps_completed": [
+"locate the brush",
+"move the gripper above the brush",
+"grasp the brush",
+"lift the brush",
+"move the brush over the blue bowl"
+],
+"candidates": {
+"A": "move the brush over the blue bowl",
+"B": "move the gripper above the brush",
+"C": "lift the brush",
+"D": "lower the brush and release it in the blue bowl"
+},
+"truth": "D"
+},
+{
+"id": 120,
+"type": "repeat",
+"task": "Put the chocolate bar inside the left sink",
+"x": "chocolate bar",
+"y": "left sink",
+"k": 3,
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar"
+],
+"candidates": {
+"A": "locate the chocolate bar",
+"B": "move the gripper above the chocolate bar",
+"C": "grasp the chocolate bar",
+"D": "lift the chocolate bar"
+},
+"truth": "D"
+},
+{
+"id": 121,
+"type": "repeat",
+"task": "Put the spoon in the open bottle",
+"x": "spoon",
+"y": "open bottle",
+"k": 5,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon",
+"move the spoon over the open bottle"
+],
+"candidates": {
+"A": "move the spoon over the open bottle",
+"B": "grasp the spoon",
+"C": "lower the spoon and release it in the open bottle",
+"D": "lift the spoon"
+},
+"truth": "C"
+},
+{
+"id": 122,
+"type": "repeat",
+"task": "Put the black object inside the box",
+"x": "black object",
+"y": "box",
+"k": 3,
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object"
+],
+"candidates": {
+"A": "lift the black object",
+"B": "move the gripper above the black object",
+"C": "locate the black object",
+"D": "grasp the black object"
+},
+"truth": "A"
+},
+{
+"id": 123,
+"type": "repeat",
+"task": "Put the tongs in the white mug",
+"x": "tongs",
+"y": "white mug",
+"k": 4,
+"steps_completed": [
+"locate the tongs",
+"move the gripper above the tongs",
+"grasp the tongs",
+"lift the tongs"
+],
+"candidates": {
+"A": "lift the tongs",
+"B": "move the gripper above the tongs",
+"C": "move the tongs over the white mug",
+"D": "grasp the tongs"
+},
+"truth": "C"
+},
+{
+"id": 124,
+"type": "repeat",
+"task": "Put the chocolate bar inside the black bowl",
+"x": "chocolate bar",
+"y": "black bowl",
+"k": 6,
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar",
+"lift the chocolate bar",
+"move the chocolate bar over the black bowl",
+"lower the chocolate bar and release it in the black bowl"
+],
+"candidates": {
+"A": "lift the chocolate bar",
+"B": "move the gripper above the chocolate bar",
+"C": "retract the gripper",
+"D": "locate the chocolate bar"
+},
+"truth": "C"
+},
+{
+"id": 125,
+"type": "repeat",
+"task": "Put the slippers on the cabinet",
+"x": "slippers",
+"y": "cabinet",
+"k": 5,
+"steps_completed": [
+"locate the slippers",
+"move the gripper above the slippers",
+"grasp the slippers",
+"lift the slippers",
+"move the slippers over the cabinet"
+],
+"candidates": {
+"A": "move the gripper above the slippers",
+"B": "lower the slippers and release it on the cabinet",
+"C": "lift the slippers",
+"D": "locate the slippers"
+},
+"truth": "B"
+},
+{
+"id": 126,
+"type": "repeat",
+"task": "Put the blue measuring spoon on the table",
+"x": "blue measuring spoon",
+"y": "table",
+"k": 5,
+"steps_completed": [
+"locate the blue measuring spoon",
+"move the gripper above the blue measuring spoon",
+"grasp the blue measuring spoon",
+"lift the blue measuring spoon",
+"move the blue measuring spoon over the table"
+],
+"candidates": {
+"A": "lower the blue measuring spoon and release it on the table",
+"B": "lift the blue measuring spoon",
+"C": "move the blue measuring spoon over the table",
+"D": "grasp the blue measuring spoon"
+},
+"truth": "A"
+},
+{
+"id": 127,
+"type": "repeat",
+"task": "Place the creamer cup into the coffee machine",
+"x": "creamer cup",
+"y": "coffee machine",
+"k": 4,
+"steps_completed": [
+"locate the creamer cup",
+"move the gripper above the creamer cup",
+"grasp the creamer cup",
+"lift the creamer cup"
+],
+"candidates": {
+"A": "grasp the creamer cup",
+"B": "move the creamer cup over the coffee machine",
+"C": "lift the creamer cup",
+"D": "move the gripper above the creamer cup"
+},
+"truth": "B"
+},
+{
+"id": 128,
+"type": "repeat",
+"task": "Put the cup in the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"k": 6,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup",
+"move the cup over the coffee maker",
+"lower the cup and release it in the coffee maker"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "locate the cup",
+"C": "lower the cup and release it in the coffee maker",
+"D": "lift the cup"
+},
+"truth": "A"
+},
+{
+"id": 129,
+"type": "repeat",
+"task": "Put the tennis ball on the table",
+"x": "tennis ball",
+"y": "table",
+"k": 3,
+"steps_completed": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball"
+],
+"candidates": {
+"A": "grasp the tennis ball",
+"B": "locate the tennis ball",
+"C": "move the gripper above the tennis ball",
+"D": "lift the tennis ball"
+},
+"truth": "D"
+},
+{
+"id": 130,
+"type": "repeat",
+"task": "Put the white object inside the bowl",
+"x": "white object",
+"y": "bowl",
+"k": 5,
+"steps_completed": [
+"locate the white object",
+"move the gripper above the white object",
+"grasp the white object",
+"lift the white object",
+"move the white object over the bowl"
+],
+"candidates": {
+"A": "locate the white object",
+"B": "grasp the white object",
+"C": "move the gripper above the white object",
+"D": "lower the white object and release it in the bowl"
+},
+"truth": "D"
+},
+{
+"id": 131,
+"type": "repeat",
+"task": "Put the white napkin on the silver pot.",
+"x": "white napkin",
+"y": "silver pot",
+"k": 4,
+"steps_completed": [
+"locate the white napkin",
+"move the gripper above the white napkin",
+"grasp the white napkin",
+"lift the white napkin"
+],
+"candidates": {
+"A": "locate the white napkin",
+"B": "move the white napkin over the silver pot",
+"C": "lift the white napkin",
+"D": "move the gripper above the white napkin"
+},
+"truth": "B"
+},
+{
+"id": 132,
+"type": "repeat",
+"task": "Put the packet inside the basin",
+"x": "packet",
+"y": "basin",
+"k": 6,
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet",
+"lift the packet",
+"move the packet over the basin",
+"lower the packet and release it in the basin"
+],
+"candidates": {
+"A": "move the packet over the basin",
+"B": "lower the packet and release it in the basin",
+"C": "grasp the packet",
+"D": "retract the gripper"
+},
+"truth": "D"
+},
+{
+"id": 133,
+"type": "repeat",
+"task": "Put the bottle into the yellow bowl",
+"x": "bottle",
+"y": "yellow bowl",
+"k": 4,
+"steps_completed": [
+"locate the bottle",
+"move the gripper above the bottle",
+"grasp the bottle",
+"lift the bottle"
+],
+"candidates": {
+"A": "move the gripper above the bottle",
+"B": "grasp the bottle",
+"C": "move the bottle over the yellow bowl",
+"D": "lift the bottle"
+},
+"truth": "C"
+},
+{
+"id": 134,
+"type": "repeat",
+"task": "Put the spoon inside the flask",
+"x": "spoon",
+"y": "flask",
+"k": 6,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon",
+"move the spoon over the flask",
+"lower the spoon and release it in the flask"
+],
+"candidates": {
+"A": "move the spoon over the flask",
+"B": "grasp the spoon",
+"C": "lower the spoon and release it in the flask",
+"D": "retract the gripper"
+},
+"truth": "D"
+},
+{
+"id": 135,
+"type": "repeat",
+"task": "Place the bag of chips in the left sink",
+"x": "bag of chips",
+"y": "left sink",
+"k": 6,
+"steps_completed": [
+"locate the bag of chips",
+"move the gripper above the bag of chips",
+"grasp the bag of chips",
+"lift the bag of chips",
+"move the bag of chips over the left sink",
+"lower the bag of chips and release it in the left sink"
+],
+"candidates": {
+"A": "grasp the bag of chips",
+"B": "lift the bag of chips",
+"C": "retract the gripper",
+"D": "move the gripper above the bag of chips"
+},
+"truth": "C"
+},
+{
+"id": 136,
+"type": "repeat",
+"task": "Put the spoon in the right cup",
+"x": "spoon",
+"y": "right cup",
+"k": 4,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon"
+],
+"candidates": {
+"A": "move the gripper above the spoon",
+"B": "move the spoon over the right cup",
+"C": "lift the spoon",
+"D": "grasp the spoon"
+},
+"truth": "B"
+},
+{
+"id": 137,
+"type": "repeat",
+"task": "Put the blue block in the two stacked coffee cups.",
+"x": "blue block",
+"y": "two stacked coffee cups",
+"k": 3,
+"steps_completed": [
+"locate the blue block",
+"move the gripper above the blue block",
+"grasp the blue block"
+],
+"candidates": {
+"A": "lift the blue block",
+"B": "locate the blue block",
+"C": "grasp the blue block",
+"D": "move the gripper above the blue block"
+},
+"truth": "A"
+},
+{
+"id": 138,
+"type": "repeat",
+"task": "Place the white lid on the tote",
+"x": "white lid",
+"y": "tote",
+"k": 5,
+"steps_completed": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid",
+"lift the white lid",
+"move the white lid over the tote"
+],
+"candidates": {
+"A": "lower the white lid and release it on the tote",
+"B": "lift the white lid",
+"C": "grasp the white lid",
+"D": "move the gripper above the white lid"
+},
+"truth": "A"
+},
+{
+"id": 139,
+"type": "repeat",
+"task": "Put the silver lid on the white plate",
+"x": "silver lid",
+"y": "white plate",
+"k": 3,
+"steps_completed": [
+"locate the silver lid",
+"move the gripper above the silver lid",
+"grasp the silver lid"
+],
+"candidates": {
+"A": "grasp the silver lid",
+"B": "move the gripper above the silver lid",
+"C": "lift the silver lid",
+"D": "locate the silver lid"
+},
+"truth": "C"
+},
+{
+"id": 140,
+"type": "repeat",
+"task": "Put the sprite can into the kitchen sink",
+"x": "sprite can",
+"y": "kitchen sink",
+"k": 4,
+"steps_completed": [
+"locate the sprite can",
+"move the gripper above the sprite can",
+"grasp the sprite can",
+"lift the sprite can"
+],
+"candidates": {
+"A": "lift the sprite can",
+"B": "grasp the sprite can",
+"C": "move the sprite can over the kitchen sink",
+"D": "move the gripper above the sprite can"
+},
+"truth": "C"
+},
+{
+"id": 141,
+"type": "repeat",
+"task": "Put one white packet on the countertop",
+"x": "one white packet",
+"y": "countertop",
+"k": 6,
+"steps_completed": [
+"locate the one white packet",
+"move the gripper above the one white packet",
+"grasp the one white packet",
+"lift the one white packet",
+"move the one white packet over the countertop",
+"lower the one white packet and release it on the countertop"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "lower the one white packet and release it on the countertop",
+"C": "move the one white packet over the countertop",
+"D": "lift the one white packet"
+},
+"truth": "A"
+},
+{
+"id": 142,
+"type": "repeat",
+"task": "Put the spoon onto the paper towel",
+"x": "spoon",
+"y": "paper towel",
+"k": 5,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon",
+"move the spoon over the paper towel"
+],
+"candidates": {
+"A": "move the gripper above the spoon",
+"B": "lift the spoon",
+"C": "move the spoon over the paper towel",
+"D": "lower the spoon and release it on the paper towel"
+},
+"truth": "D"
+},
+{
+"id": 143,
+"type": "repeat",
+"task": "Put the green packet in the top cabinet",
+"x": "green packet",
+"y": "top cabinet",
+"k": 5,
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet",
+"lift the green packet",
+"move the green packet over the top cabinet"
+],
+"candidates": {
+"A": "lift the green packet",
+"B": "move the green packet over the top cabinet",
+"C": "move the gripper above the green packet",
+"D": "lower the green packet and release it in the top cabinet"
+},
+"truth": "D"
+},
+{
+"id": 144,
+"type": "repeat",
+"task": "Put the packets into the wooden box",
+"x": "packets",
+"y": "wooden box",
+"k": 6,
+"steps_completed": [
+"locate the packets",
+"move the gripper above the packets",
+"grasp the packets",
+"lift the packets",
+"move the packets over the wooden box",
+"lower the packets and release it in the wooden box"
+],
+"candidates": {
+"A": "locate the packets",
+"B": "move the gripper above the packets",
+"C": "retract the gripper",
+"D": "grasp the packets"
+},
+"truth": "C"
+},
+{
+"id": 145,
+"type": "repeat",
+"task": "Put the marker in the cup",
+"x": "marker",
+"y": "cup",
+"k": 4,
+"steps_completed": [
+"locate the marker",
+"move the gripper above the marker",
+"grasp the marker",
+"lift the marker"
+],
+"candidates": {
+"A": "locate the marker",
+"B": "grasp the marker",
+"C": "lift the marker",
+"D": "move the marker over the cup"
+},
+"truth": "D"
+},
+{
+"id": 146,
+"type": "repeat",
+"task": "Put the teabag in the bin",
+"x": "teabag",
+"y": "bin",
+"k": 3,
+"steps_completed": [
+"locate the teabag",
+"move the gripper above the teabag",
+"grasp the teabag"
+],
+"candidates": {
+"A": "move the gripper above the teabag",
+"B": "locate the teabag",
+"C": "grasp the teabag",
+"D": "lift the teabag"
+},
+"truth": "D"
+},
+{
+"id": 147,
+"type": "repeat",
+"task": "Put the blue ladle inside the wooden box",
+"x": "blue ladle",
+"y": "wooden box",
+"k": 4,
+"steps_completed": [
+"locate the blue ladle",
+"move the gripper above the blue ladle",
+"grasp the blue ladle",
+"lift the blue ladle"
+],
+"candidates": {
+"A": "locate the blue ladle",
+"B": "move the gripper above the blue ladle",
+"C": "grasp the blue ladle",
+"D": "move the blue ladle over the wooden box"
+},
+"truth": "D"
+},
+{
+"id": 148,
+"type": "repeat",
+"task": "Put the green can in the sink.",
+"x": "green can",
+"y": "sink",
+"k": 4,
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can",
+"lift the green can"
+],
+"candidates": {
+"A": "lift the green can",
+"B": "move the gripper above the green can",
+"C": "move the green can over the sink",
+"D": "grasp the green can"
+},
+"truth": "C"
+},
+{
+"id": 149,
+"type": "repeat",
+"task": "Put the blue bowl on top of the box",
+"x": "blue bowl",
+"y": "top of the box",
+"k": 4,
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl",
+"lift the blue bowl"
+],
+"candidates": {
+"A": "move the gripper above the blue bowl",
+"B": "lift the blue bowl",
+"C": "locate the blue bowl",
+"D": "move the blue bowl over the top of the box"
+},
+"truth": "D"
+},
+{
+"id": 150,
+"type": "repeat",
+"task": "Put the silver lid on its container",
+"x": "silver lid",
+"y": "its container",
+"k": 5,
+"steps_completed": [
+"locate the silver lid",
+"move the gripper above the silver lid",
+"grasp the silver lid",
+"lift the silver lid",
+"move the silver lid over the its container"
+],
+"candidates": {
+"A": "move the silver lid over the its container",
+"B": "lower the silver lid and release it on the its container",
+"C": "lift the silver lid",
+"D": "grasp the silver lid"
+},
+"truth": "B"
+},
+{
+"id": 151,
+"type": "repeat",
+"task": "Put the sugar bowl on the paper towel",
+"x": "sugar bowl",
+"y": "paper towel",
+"k": 5,
+"steps_completed": [
+"locate the sugar bowl",
+"move the gripper above the sugar bowl",
+"grasp the sugar bowl",
+"lift the sugar bowl",
+"move the sugar bowl over the paper towel"
+],
+"candidates": {
+"A": "locate the sugar bowl",
+"B": "move the gripper above the sugar bowl",
+"C": "move the sugar bowl over the paper towel",
+"D": "lower the sugar bowl and release it on the paper towel"
+},
+"truth": "D"
+},
+{
+"id": 152,
+"type": "repeat",
+"task": "Place one coffee pod on the counter.",
+"x": "one coffee pod",
+"y": "counter",
+"k": 4,
+"steps_completed": [
+"locate the one coffee pod",
+"move the gripper above the one coffee pod",
+"grasp the one coffee pod",
+"lift the one coffee pod"
+],
+"candidates": {
+"A": "locate the one coffee pod",
+"B": "move the one coffee pod over the counter",
+"C": "move the gripper above the one coffee pod",
+"D": "lift the one coffee pod"
+},
+"truth": "B"
+},
+{
+"id": 153,
+"type": "repeat",
+"task": "Place one orange pack in the coffee cup.",
+"x": "one orange pack",
+"y": "coffee cup",
+"k": 3,
+"steps_completed": [
+"locate the one orange pack",
+"move the gripper above the one orange pack",
+"grasp the one orange pack"
+],
+"candidates": {
+"A": "move the gripper above the one orange pack",
+"B": "lift the one orange pack",
+"C": "grasp the one orange pack",
+"D": "locate the one orange pack"
+},
+"truth": "B"
+},
+{
+"id": 154,
+"type": "repeat",
+"task": "Put the orange can inside the clear lunch box",
+"x": "orange can",
+"y": "clear lunch box",
+"k": 6,
+"steps_completed": [
+"locate the orange can",
+"move the gripper above the orange can",
+"grasp the orange can",
+"lift the orange can",
+"move the orange can over the clear lunch box",
+"lower the orange can and release it in the clear lunch box"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "grasp the orange can",
+"C": "move the orange can over the clear lunch box",
+"D": "move the gripper above the orange can"
+},
+"truth": "A"
+},
+{
+"id": 155,
+"type": "repeat",
+"task": "Put the coat hanger on the counter",
+"x": "coat hanger",
+"y": "counter",
+"k": 3,
+"steps_completed": [
+"locate the coat hanger",
+"move the gripper above the coat hanger",
+"grasp the coat hanger"
+],
+"candidates": {
+"A": "move the gripper above the coat hanger",
+"B": "grasp the coat hanger",
+"C": "lift the coat hanger",
+"D": "locate the coat hanger"
+},
+"truth": "C"
+},
+{
+"id": 156,
+"type": "repeat",
+"task": "Place one shiny object in the pink bowl.",
+"x": "one shiny object",
+"y": "pink bowl",
+"k": 6,
+"steps_completed": [
+"locate the one shiny object",
+"move the gripper above the one shiny object",
+"grasp the one shiny object",
+"lift the one shiny object",
+"move the one shiny object over the pink bowl",
+"lower the one shiny object and release it in the pink bowl"
+],
+"candidates": {
+"A": "lower the one shiny object and release it in the pink bowl",
+"B": "lift the one shiny object",
+"C": "locate the one shiny object",
+"D": "retract the gripper"
+},
+"truth": "D"
+},
+{
+"id": 157,
+"type": "repeat",
+"task": "Put the spoon on the plate",
+"x": "spoon",
+"y": "plate",
+"k": 6,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon",
+"move the spoon over the plate",
+"lower the spoon and release it on the plate"
+],
+"candidates": {
+"A": "retract the gripper",
+"B": "lower the spoon and release it on the plate",
+"C": "move the gripper above the spoon",
+"D": "lift the spoon"
+},
+"truth": "A"
+},
+{
+"id": 158,
+"type": "repeat",
+"task": "Place the wrapper inside the trash can",
+"x": "wrapper",
+"y": "trash can",
+"k": 4,
+"steps_completed": [
+"locate the wrapper",
+"move the gripper above the wrapper",
+"grasp the wrapper",
+"lift the wrapper"
+],
+"candidates": {
+"A": "move the wrapper over the trash can",
+"B": "move the gripper above the wrapper",
+"C": "grasp the wrapper",
+"D": "lift the wrapper"
+},
+"truth": "A"
+},
+{
+"id": 159,
+"type": "repeat",
+"task": "Put the cup on the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"k": 4,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup"
+],
+"candidates": {
+"A": "locate the cup",
+"B": "lift the cup",
+"C": "move the gripper above the cup",
+"D": "move the cup over the coffee maker"
+},
+"truth": "D"
+},
+{
+"id": 160,
+"type": "wrong_object",
+"task": "Put the straw inside the coffee cup.",
+"x": "straw",
+"y": "coffee cup",
+"k": 3,
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw"
+],
+"candidates": {
+"A": "lift the straw",
+"B": "lift the one piece of cereal",
+"C": "lift the orange can",
+"D": "lift the blue bowl"
+},
+"truth": "A"
+},
+{
+"id": 161,
+"type": "wrong_object",
+"task": "Put the chopstick in the left cup",
+"x": "chopstick",
+"y": "left cup",
+"k": 2,
+"steps_completed": [
+"locate the chopstick",
+"move the gripper above the chopstick"
+],
+"candidates": {
+"A": "grasp the blue pillow",
+"B": "grasp the chopstick",
+"C": "grasp the one coffee pod",
+"D": "grasp the soap bottle"
+},
+"truth": "B"
+},
+{
+"id": 162,
+"type": "wrong_object",
+"task": "Put the white spoon on the coffee cup.",
+"x": "white spoon",
+"y": "coffee cup",
+"k": 3,
+"steps_completed": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon"
+],
+"candidates": {
+"A": "lift the white spoon",
+"B": "lift the yellow packet",
+"C": "lift the white wrapper",
+"D": "lift the spoon"
+},
+"truth": "A"
+},
+{
+"id": 163,
+"type": "wrong_object",
+"task": "Put the left shoe on the right shoe",
+"x": "left shoe",
+"y": "right shoe",
+"k": 2,
+"steps_completed": [
+"locate the left shoe",
+"move the gripper above the left shoe"
+],
+"candidates": {
+"A": "grasp the one sachet",
+"B": "grasp the remote controller",
+"C": "grasp the left shoe",
+"D": "grasp the drinking straw"
+},
+"truth": "C"
+},
+{
+"id": 164,
+"type": "wrong_object",
+"task": "Place the coffee capsule on the serviette",
+"x": "coffee capsule",
+"y": "serviette",
+"k": 5,
+"steps_completed": [
+"locate the coffee capsule",
+"move the gripper above the coffee capsule",
+"grasp the coffee capsule",
+"lift the coffee capsule",
+"move the coffee capsule over the serviette"
+],
+"candidates": {
+"A": "lower the tongs and release it on the serviette",
+"B": "lower the paper towel roll and release it on the serviette",
+"C": "lower the coffee capsule and release it on the serviette",
+"D": "lower the green cup and release it on the serviette"
+},
+"truth": "C"
+},
+{
+"id": 165,
+"type": "wrong_object",
+"task": "Put the cutlery in the cup",
+"x": "cutlery",
+"y": "cup",
+"k": 4,
+"steps_completed": [
+"locate the cutlery",
+"move the gripper above the cutlery",
+"grasp the cutlery",
+"lift the cutlery"
+],
+"candidates": {
+"A": "move the orange can over the cup",
+"B": "move the cutlery over the cup",
+"C": "move the cloth over the cup",
+"D": "move the green packet over the cup"
+},
+"truth": "B"
+},
+{
+"id": 166,
+"type": "wrong_object",
+"task": "Put the paper cup on the pile on the right",
+"x": "paper cup",
+"y": "pile on the right",
+"k": 1,
+"steps_completed": [
+"locate the paper cup"
+],
+"candidates": {
+"A": "move the gripper above the orange packet",
+"B": "move the gripper above the paper cup",
+"C": "move the gripper above the blue block",
+"D": "move the gripper above the plastic"
+},
+"truth": "B"
+},
+{
+"id": 167,
+"type": "wrong_object",
+"task": "Put the spoon in the plate to the right",
+"x": "spoon",
+"y": "plate to the right",
+"k": 1,
+"steps_completed": [
+"locate the spoon"
+],
+"candidates": {
+"A": "move the gripper above the spoon",
+"B": "move the gripper above the snack packet",
+"C": "move the gripper above the coffee pod",
+"D": "move the gripper above the plastic glasses"
+},
+"truth": "A"
+},
+{
+"id": 168,
+"type": "wrong_object",
+"task": "Put the knife in the cup furthest from you",
+"x": "knife",
+"y": "cup furthest from you",
+"k": 3,
+"steps_completed": [
+"locate the knife",
+"move the gripper above the knife",
+"grasp the knife"
+],
+"candidates": {
+"A": "lift the knife",
+"B": "lift the green soda can",
+"C": "lift the one coffee pod",
+"D": "lift the candy bar"
+},
+"truth": "A"
+},
+{
+"id": 169,
+"type": "wrong_object",
+"task": "Put the orange can in the open cabinet.",
+"x": "orange can",
+"y": "open cabinet",
+"k": 4,
+"steps_completed": [
+"locate the orange can",
+"move the gripper above the orange can",
+"grasp the orange can",
+"lift the orange can"
+],
+"candidates": {
+"A": "move the chopstick over the open cabinet",
+"B": "move the orange can over the open cabinet",
+"C": "move the measuring spoon over the open cabinet",
+"D": "move the yellow packet over the open cabinet"
+},
+"truth": "B"
+},
+{
+"id": 170,
+"type": "wrong_object",
+"task": "Put the purple pack inside the cabinet",
+"x": "purple pack",
+"y": "cabinet",
+"k": 2,
+"steps_completed": [
+"locate the purple pack",
+"move the gripper above the purple pack"
+],
+"candidates": {
+"A": "grasp the purple pack",
+"B": "grasp the block",
+"C": "grasp the spoon",
+"D": "grasp the purple snack"
+},
+"truth": "A"
+},
+{
+"id": 171,
+"type": "wrong_object",
+"task": "Put the grey remote control on the middle shelf.",
+"x": "grey remote control",
+"y": "middle shelf",
+"k": 5,
+"steps_completed": [
+"locate the grey remote control",
+"move the gripper above the grey remote control",
+"grasp the grey remote control",
+"lift the grey remote control",
+"move the grey remote control over the middle shelf"
+],
+"candidates": {
+"A": "lower the can of fanta and release it on the middle shelf",
+"B": "lower the blue cloth and release it on the middle shelf",
+"C": "lower the black snack pack and release it on the middle shelf",
+"D": "lower the grey remote control and release it on the middle shelf"
+},
+"truth": "D"
+},
+{
+"id": 172,
+"type": "wrong_object",
+"task": "Put the paper cup on the silver bin",
+"x": "paper cup",
+"y": "silver bin",
+"k": 2,
+"steps_completed": [
+"locate the paper cup",
+"move the gripper above the paper cup"
+],
+"candidates": {
+"A": "grasp the green plush",
+"B": "grasp the paper cup",
+"C": "grasp the lid",
+"D": "grasp the remote"
+},
+"truth": "B"
+},
+{
+"id": 173,
+"type": "wrong_object",
+"task": "Put the black packet on the table.",
+"x": "black packet",
+"y": "table",
+"k": 1,
+"steps_completed": [
+"locate the black packet"
+],
+"candidates": {
+"A": "move the gripper above the black packet",
+"B": "move the gripper above the silver lid",
+"C": "move the gripper above the orange can",
+"D": "move the gripper above the tennis ball"
+},
+"truth": "A"
+},
+{
+"id": 174,
+"type": "wrong_object",
+"task": "Put the orange block upright on the green block",
+"x": "orange block upright",
+"y": "green block",
+"k": 5,
+"steps_completed": [
+"locate the orange block upright",
+"move the gripper above the orange block upright",
+"grasp the orange block upright",
+"lift the orange block upright",
+"move the orange block upright over the green block"
+],
+"candidates": {
+"A": "lower the sprite can and release it on the green block",
+"B": "lower the wooden spoon and release it on the green block",
+"C": "lower the orange block upright and release it on the green block",
+"D": "lower the hanger and release it on the green block"
+},
+"truth": "C"
+},
+{
+"id": 175,
+"type": "wrong_object",
+"task": "Put the blue measuring cup in the box",
+"x": "blue measuring cup",
+"y": "box",
+"k": 4,
+"steps_completed": [
+"locate the blue measuring cup",
+"move the gripper above the blue measuring cup",
+"grasp the blue measuring cup",
+"lift the blue measuring cup"
+],
+"candidates": {
+"A": "move the black object over the box",
+"B": "move the brown sachet over the box",
+"C": "move the blue measuring cup over the box",
+"D": "move the coffee pod over the box"
+},
+"truth": "C"
+},
+{
+"id": 176,
+"type": "wrong_object",
+"task": "Put the straw on the counter onto the rack",
+"x": "straw",
+"y": "counter onto the rack",
+"k": 2,
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw"
+],
+"candidates": {
+"A": "grasp the teacup",
+"B": "grasp the stick",
+"C": "grasp the straw",
+"D": "grasp the bottle"
+},
+"truth": "C"
+},
+{
+"id": 177,
+"type": "wrong_object",
+"task": "Put the plastic on the rack",
+"x": "plastic",
+"y": "rack",
+"k": 3,
+"steps_completed": [
+"locate the plastic",
+"move the gripper above the plastic",
+"grasp the plastic"
+],
+"candidates": {
+"A": "lift the towel",
+"B": "lift the yellow sachet",
+"C": "lift the plastic",
+"D": "lift the orange block"
+},
+"truth": "C"
+},
+{
+"id": 178,
+"type": "wrong_object",
+"task": "Put one packet in the open upper cabinet.",
+"x": "one packet",
+"y": "open upper cabinet",
+"k": 4,
+"steps_completed": [
+"locate the one packet",
+"move the gripper above the one packet",
+"grasp the one packet",
+"lift the one packet"
+],
+"candidates": {
+"A": "move the spoon over the open upper cabinet",
+"B": "move the crayon box over the open upper cabinet",
+"C": "move the one packet over the open upper cabinet",
+"D": "move the plastic of forks over the open upper cabinet"
+},
+"truth": "C"
+},
+{
+"id": 179,
+"type": "wrong_object",
+"task": "Put the silver spoon in the white bowl.",
+"x": "silver spoon",
+"y": "white bowl",
+"k": 1,
+"steps_completed": [
+"locate the silver spoon"
+],
+"candidates": {
+"A": "move the gripper above the wrapper",
+"B": "move the gripper above the green packet",
+"C": "move the gripper above the silver spoon",
+"D": "move the gripper above the white bowl"
+},
+"truth": "C"
+},
+{
+"id": 180,
+"type": "wrong_object",
+"task": "Put the green item onto the rack",
+"x": "green item",
+"y": "rack",
+"k": 4,
+"steps_completed": [
+"locate the green item",
+"move the gripper above the green item",
+"grasp the green item",
+"lift the green item"
+],
+"candidates": {
+"A": "move the green sachet over the rack",
+"B": "move the black packet over the rack",
+"C": "move the book over the rack",
+"D": "move the green item over the rack"
+},
+"truth": "D"
+},
+{
+"id": 181,
+"type": "wrong_object",
+"task": "Put the cup in the box",
+"x": "cup",
+"y": "box",
+"k": 5,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup",
+"move the cup over the box"
+],
+"candidates": {
+"A": "lower the packet and release it in the box",
+"B": "lower the spoon and release it in the box",
+"C": "lower the cup and release it in the box",
+"D": "lower the coffee pod and release it in the box"
+},
+"truth": "C"
+},
+{
+"id": 182,
+"type": "wrong_object",
+"task": "Put the orange can inside the left sink",
+"x": "orange can",
+"y": "left sink",
+"k": 4,
+"steps_completed": [
+"locate the orange can",
+"move the gripper above the orange can",
+"grasp the orange can",
+"lift the orange can"
+],
+"candidates": {
+"A": "move the orange can over the left sink",
+"B": "move the white paper over the left sink",
+"C": "move the soda can over the left sink",
+"D": "move the white spoon over the left sink"
+},
+"truth": "A"
+},
+{
+"id": 183,
+"type": "wrong_object",
+"task": "Put the fork inside the bowl",
+"x": "fork",
+"y": "bowl",
+"k": 1,
+"steps_completed": [
+"locate the fork"
+],
+"candidates": {
+"A": "move the gripper above the wrapper",
+"B": "move the gripper above the fork",
+"C": "move the gripper above the orange ball",
+"D": "move the gripper above the blue bowl"
+},
+"truth": "B"
+},
+{
+"id": 184,
+"type": "wrong_object",
+"task": "Put one coffee cup in the open upper cabinet.",
+"x": "one coffee cup",
+"y": "open upper cabinet",
+"k": 3,
+"steps_completed": [
+"locate the one coffee cup",
+"move the gripper above the one coffee cup",
+"grasp the one coffee cup"
+],
+"candidates": {
+"A": "lift the bag of crisps",
+"B": "lift the one coffee cup",
+"C": "lift the small green bowl",
+"D": "lift the black packet"
+},
+"truth": "B"
+},
+{
+"id": 185,
+"type": "wrong_object",
+"task": "Put the white bowl in the bin",
+"x": "white bowl",
+"y": "bin",
+"k": 3,
+"steps_completed": [
+"locate the white bowl",
+"move the gripper above the white bowl",
+"grasp the white bowl"
+],
+"candidates": {
+"A": "lift the blue bowl",
+"B": "lift the brown can",
+"C": "lift the sprite can",
+"D": "lift the white bowl"
+},
+"truth": "D"
+},
+{
+"id": 186,
+"type": "wrong_object",
+"task": "Put the capsule on the counter top",
+"x": "capsule",
+"y": "counter top",
+"k": 1,
+"steps_completed": [
+"locate the capsule"
+],
+"candidates": {
+"A": "move the gripper above the one blue block",
+"B": "move the gripper above the orange item",
+"C": "move the gripper above the yellow crayon",
+"D": "move the gripper above the capsule"
+},
+"truth": "D"
+},
+{
+"id": 187,
+"type": "wrong_object",
+"task": "Put a lid on the cup on the left",
+"x": "lid",
+"y": "cup on the left",
+"k": 4,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid",
+"lift the lid"
+],
+"candidates": {
+"A": "move the packet over the cup on the left",
+"B": "move the lid over the cup on the left",
+"C": "move the house slippers over the cup on the left",
+"D": "move the snack bar over the cup on the left"
+},
+"truth": "B"
+},
+{
+"id": 188,
+"type": "wrong_object",
+"task": "Put the white paper bowl directly onto the counter",
+"x": "white paper bowl directly",
+"y": "counter",
+"k": 5,
+"steps_completed": [
+"locate the white paper bowl directly",
+"move the gripper above the white paper bowl directly",
+"grasp the white paper bowl directly",
+"lift the white paper bowl directly",
+"move the white paper bowl directly over the counter"
+],
+"candidates": {
+"A": "lower the paper cup and release it on the counter",
+"B": "lower the white paper bowl directly and release it on the counter",
+"C": "lower the black object and release it on the counter",
+"D": "lower the blue bowl and release it on the counter"
+},
+"truth": "B"
+},
+{
+"id": 189,
+"type": "wrong_object",
+"task": "Put the marker inside the clear cup",
+"x": "marker",
+"y": "clear cup",
+"k": 4,
+"steps_completed": [
+"locate the marker",
+"move the gripper above the marker",
+"grasp the marker",
+"lift the marker"
+],
+"candidates": {
+"A": "move the chocolate bar over the clear cup",
+"B": "move the marker over the clear cup",
+"C": "move the spoon over the clear cup",
+"D": "move the coffee cup over the clear cup"
+},
+"truth": "B"
+},
+{
+"id": 190,
+"type": "wrong_object",
+"task": "Put one white straw on the counter.",
+"x": "one white straw",
+"y": "counter",
+"k": 3,
+"steps_completed": [
+"locate the one white straw",
+"move the gripper above the one white straw",
+"grasp the one white straw"
+],
+"candidates": {
+"A": "lift the orange packet",
+"B": "lift the spoon",
+"C": "lift the one white straw",
+"D": "lift the blue packet"
+},
+"truth": "C"
+},
+{
+"id": 191,
+"type": "wrong_object",
+"task": "Put the remote inside the drawer",
+"x": "remote",
+"y": "drawer",
+"k": 3,
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote"
+],
+"candidates": {
+"A": "lift the pair of shoes",
+"B": "lift the white napkin",
+"C": "lift the black packet",
+"D": "lift the remote"
+},
+"truth": "D"
+},
+{
+"id": 192,
+"type": "wrong_object",
+"task": "Put the first right spoon on the first left spoon",
+"x": "first right spoon",
+"y": "first left spoon",
+"k": 3,
+"steps_completed": [
+"locate the first right spoon",
+"move the gripper above the first right spoon",
+"grasp the first right spoon"
+],
+"candidates": {
+"A": "lift the orange object",
+"B": "lift the pencil",
+"C": "lift the first right spoon",
+"D": "lift the white lid"
+},
+"truth": "C"
+},
+{
+"id": 193,
+"type": "wrong_object",
+"task": "Put the white plate into the cupboard",
+"x": "white plate",
+"y": "cupboard",
+"k": 5,
+"steps_completed": [
+"locate the white plate",
+"move the gripper above the white plate",
+"grasp the white plate",
+"lift the white plate",
+"move the white plate over the cupboard"
+],
+"candidates": {
+"A": "lower the brown packet and release it in the cupboard",
+"B": "lower the small green bowl and release it in the cupboard",
+"C": "lower the object and release it in the cupboard",
+"D": "lower the white plate and release it in the cupboard"
+},
+"truth": "D"
+},
+{
+"id": 194,
+"type": "wrong_object",
+"task": "Put the objects on the plate",
+"x": "objects",
+"y": "plate",
+"k": 2,
+"steps_completed": [
+"locate the objects",
+"move the gripper above the objects"
+],
+"candidates": {
+"A": "grasp the silver lid",
+"B": "grasp the snickers bar",
+"C": "grasp the objects",
+"D": "grasp the one stirrer"
+},
+"truth": "C"
+},
+{
+"id": 195,
+"type": "wrong_object",
+"task": "Put the glue into the cupboard",
+"x": "glue",
+"y": "cupboard",
+"k": 5,
+"steps_completed": [
+"locate the glue",
+"move the gripper above the glue",
+"grasp the glue",
+"lift the glue",
+"move the glue over the cupboard"
+],
+"candidates": {
+"A": "lower the coffee pod and release it in the cupboard",
+"B": "lower the brown basket and release it in the cupboard",
+"C": "lower the spoon and release it in the cupboard",
+"D": "lower the glue and release it in the cupboard"
+},
+"truth": "D"
+},
+{
+"id": 196,
+"type": "wrong_object",
+"task": "Place one coffee pod on the stand.",
+"x": "one coffee pod",
+"y": "stand",
+"k": 3,
+"steps_completed": [
+"locate the one coffee pod",
+"move the gripper above the one coffee pod",
+"grasp the one coffee pod"
+],
+"candidates": {
+"A": "lift the one coffee pod",
+"B": "lift the one packet",
+"C": "lift the bowl",
+"D": "lift the red can"
+},
+"truth": "A"
+},
+{
+"id": 197,
+"type": "wrong_object",
+"task": "Put the wooden spoon on the blue bowl",
+"x": "wooden spoon",
+"y": "blue bowl",
+"k": 1,
+"steps_completed": [
+"locate the wooden spoon"
+],
+"candidates": {
+"A": "move the gripper above the white hanger",
+"B": "move the gripper above the left cup",
+"C": "move the gripper above the wooden spoon",
+"D": "move the gripper above the white mug"
+},
+"truth": "C"
+},
+{
+"id": 198,
+"type": "wrong_object",
+"task": "Put the snickers bar in the sink on the left",
+"x": "snickers bar",
+"y": "sink on the left",
+"k": 3,
+"steps_completed": [
+"locate the snickers bar",
+"move the gripper above the snickers bar",
+"grasp the snickers bar"
+],
+"candidates": {
+"A": "lift the coffee cup",
+"B": "lift the broken pieces",
+"C": "lift the plastic bottle",
+"D": "lift the snickers bar"
+},
+"truth": "D"
+},
+{
+"id": 199,
+"type": "wrong_object",
+"task": "Put the green can inside the open upper cabinet.",
+"x": "green can",
+"y": "open upper cabinet",
+"k": 5,
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can",
+"lift the green can",
+"move the green can over the open upper cabinet"
+],
+"candidates": {
+"A": "lower the blue packet and release it in the open upper cabinet",
+"B": "lower the lid and release it in the open upper cabinet",
+"C": "lower the green packet and release it in the open upper cabinet",
+"D": "lower the green can and release it in the open upper cabinet"
+},
+"truth": "D"
+},
+{
+"id": 200,
+"type": "wrong_object",
+"task": "Put the orange packet in the black bowl",
+"x": "orange packet",
+"y": "black bowl",
+"k": 3,
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet"
+],
+"candidates": {
+"A": "lift the orange packet",
+"B": "lift the small white container",
+"C": "lift the red can",
+"D": "lift the soda can"
+},
+"truth": "A"
+},
+{
+"id": 201,
+"type": "wrong_object",
+"task": "Put the chocolate bar inside the cupboard",
+"x": "chocolate bar",
+"y": "cupboard",
+"k": 4,
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar",
+"lift the chocolate bar"
+],
+"candidates": {
+"A": "move the brown sachet over the cupboard",
+"B": "move the yellow vessel over the cupboard",
+"C": "move the chocolate bar over the cupboard",
+"D": "move the slippers over the cupboard"
+},
+"truth": "C"
+},
+{
+"id": 202,
+"type": "wrong_object",
+"task": "Put the paper towel roll on the metal holder",
+"x": "paper towel roll",
+"y": "metal holder",
+"k": 2,
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll"
+],
+"candidates": {
+"A": "grasp the white lid",
+"B": "grasp the stacked toy blocks",
+"C": "grasp the paper towel roll",
+"D": "grasp the sachet"
+},
+"truth": "C"
+},
+{
+"id": 203,
+"type": "wrong_object",
+"task": "Put the square block on the wooden mat",
+"x": "square block",
+"y": "wooden mat",
+"k": 1,
+"steps_completed": [
+"locate the square block"
+],
+"candidates": {
+"A": "move the gripper above the plastic fork",
+"B": "move the gripper above the black packet",
+"C": "move the gripper above the square block",
+"D": "move the gripper above the cola can"
+},
+"truth": "C"
+},
+{
+"id": 204,
+"type": "wrong_object",
+"task": "Put the lid in the bowl",
+"x": "lid",
+"y": "bowl",
+"k": 1,
+"steps_completed": [
+"locate the lid"
+],
+"candidates": {
+"A": "move the gripper above the silver lid",
+"B": "move the gripper above the candy bar",
+"C": "move the gripper above the lid",
+"D": "move the gripper above the blue measuring spoon"
+},
+"truth": "C"
+},
+{
+"id": 205,
+"type": "wrong_object",
+"task": "Put the can in the top cabinet",
+"x": "can",
+"y": "top cabinet",
+"k": 4,
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can",
+"lift the can"
+],
+"candidates": {
+"A": "move the white cup over the top cabinet",
+"B": "move the can over the top cabinet",
+"C": "move the yellow objects over the top cabinet",
+"D": "move the blue object over the top cabinet"
+},
+"truth": "B"
+},
+{
+"id": 206,
+"type": "wrong_object",
+"task": "Put the spoon inside the yellow bowl",
+"x": "spoon",
+"y": "yellow bowl",
+"k": 2,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon"
+],
+"candidates": {
+"A": "grasp the cup",
+"B": "grasp the yellow sachet",
+"C": "grasp the spoon",
+"D": "grasp the lid"
+},
+"truth": "C"
+},
+{
+"id": 207,
+"type": "wrong_object",
+"task": "Put the green ball in the cup",
+"x": "green ball",
+"y": "cup",
+"k": 2,
+"steps_completed": [
+"locate the green ball",
+"move the gripper above the green ball"
+],
+"candidates": {
+"A": "grasp the lays packet",
+"B": "grasp the straw",
+"C": "grasp the green ball",
+"D": "grasp the black object"
+},
+"truth": "C"
+},
+{
+"id": 208,
+"type": "wrong_object",
+"task": "Put one red sachet on the counter.",
+"x": "one red sachet",
+"y": "counter",
+"k": 5,
+"steps_completed": [
+"locate the one red sachet",
+"move the gripper above the one red sachet",
+"grasp the one red sachet",
+"lift the one red sachet",
+"move the one red sachet over the counter"
+],
+"candidates": {
+"A": "lower the plate and release it on the counter",
+"B": "lower the one red sachet and release it on the counter",
+"C": "lower the white bowl and release it on the counter",
+"D": "lower the orange packet and release it on the counter"
+},
+"truth": "B"
+},
+{
+"id": 209,
+"type": "wrong_object",
+"task": "Put the brown packet in the open cabinet.",
+"x": "brown packet",
+"y": "open cabinet",
+"k": 2,
+"steps_completed": [
+"locate the brown packet",
+"move the gripper above the brown packet"
+],
+"candidates": {
+"A": "grasp the white napkin",
+"B": "grasp the brown packet",
+"C": "grasp the coffee pod",
+"D": "grasp the white object"
+},
+"truth": "B"
+},
+{
+"id": 210,
+"type": "wrong_object",
+"task": "Place the green bottle on the microwave",
+"x": "green bottle",
+"y": "microwave",
+"k": 5,
+"steps_completed": [
+"locate the green bottle",
+"move the gripper above the green bottle",
+"grasp the green bottle",
+"lift the green bottle",
+"move the green bottle over the microwave"
+],
+"candidates": {
+"A": "lower the spoon and release it on the microwave",
+"B": "lower the cup and release it on the microwave",
+"C": "lower the bowl and release it on the microwave",
+"D": "lower the green bottle and release it on the microwave"
+},
+"truth": "D"
+},
+{
+"id": 211,
+"type": "wrong_object",
+"task": "Put the coffee cups on the windowsill.",
+"x": "coffee cups",
+"y": "windowsill",
+"k": 2,
+"steps_completed": [
+"locate the coffee cups",
+"move the gripper above the coffee cups"
+],
+"candidates": {
+"A": "grasp the coffee cups",
+"B": "grasp the orange packet",
+"C": "grasp the soap bottle",
+"D": "grasp the grey remote control"
+},
+"truth": "A"
+},
+{
+"id": 212,
+"type": "wrong_object",
+"task": "Put the silver serving spoon in the blue bowl",
+"x": "silver serving spoon",
+"y": "blue bowl",
+"k": 2,
+"steps_completed": [
+"locate the silver serving spoon",
+"move the gripper above the silver serving spoon"
+],
+"candidates": {
+"A": "grasp the green sachet",
+"B": "grasp the green packet",
+"C": "grasp the silver serving spoon",
+"D": "grasp the piece of tissue"
+},
+"truth": "C"
+},
+{
+"id": 213,
+"type": "wrong_object",
+"task": "Put the hat on the white table",
+"x": "hat",
+"y": "white table",
+"k": 1,
+"steps_completed": [
+"locate the hat"
+],
+"candidates": {
+"A": "move the gripper above the pack of doritos",
+"B": "move the gripper above the metal spoon",
+"C": "move the gripper above the white block",
+"D": "move the gripper above the hat"
+},
+"truth": "D"
+},
+{
+"id": 214,
+"type": "wrong_object",
+"task": "Put cereal grains on the paper towel",
+"x": "cereal grains",
+"y": "paper towel",
+"k": 4,
+"steps_completed": [
+"locate the cereal grains",
+"move the gripper above the cereal grains",
+"grasp the cereal grains",
+"lift the cereal grains"
+],
+"candidates": {
+"A": "move the cereal grains over the paper towel",
+"B": "move the two right cans over the paper towel",
+"C": "move the white item over the paper towel",
+"D": "move the black packet over the paper towel"
+},
+"truth": "A"
+},
+{
+"id": 215,
+"type": "wrong_object",
+"task": "Put the blue cloth on the backrest of the chair.",
+"x": "blue cloth",
+"y": "backrest of the chair",
+"k": 3,
+"steps_completed": [
+"locate the blue cloth",
+"move the gripper above the blue cloth",
+"grasp the blue cloth"
+],
+"candidates": {
+"A": "lift the can of fanta",
+"B": "lift the blue cloth",
+"C": "lift the lid",
+"D": "lift the coffee cup"
+},
+"truth": "B"
+},
+{
+"id": 216,
+"type": "wrong_object",
+"task": "Put the silver spoon in the mug.",
+"x": "silver spoon",
+"y": "mug",
+"k": 2,
+"steps_completed": [
+"locate the silver spoon",
+"move the gripper above the silver spoon"
+],
+"candidates": {
+"A": "grasp the cola can",
+"B": "grasp the packet",
+"C": "grasp the coffee cup",
+"D": "grasp the silver spoon"
+},
+"truth": "D"
+},
+{
+"id": 217,
+"type": "wrong_object",
+"task": "Put the green sachet on the wooden stand",
+"x": "green sachet",
+"y": "wooden stand",
+"k": 4,
+"steps_completed": [
+"locate the green sachet",
+"move the gripper above the green sachet",
+"grasp the green sachet",
+"lift the green sachet"
+],
+"candidates": {
+"A": "move the green sachet over the wooden stand",
+"B": "move the paper cups over the wooden stand",
+"C": "move the white item over the wooden stand",
+"D": "move the piece of paper over the wooden stand"
+},
+"truth": "A"
+},
+{
+"id": 218,
+"type": "wrong_object",
+"task": "Place the paper towel roll on its holder",
+"x": "paper towel roll",
+"y": "its holder",
+"k": 1,
+"steps_completed": [
+"locate the paper towel roll"
+],
+"candidates": {
+"A": "move the gripper above the paper towel roll",
+"B": "move the gripper above the small pink object",
+"C": "move the gripper above the green cup",
+"D": "move the gripper above the sugar bowl"
+},
+"truth": "A"
+},
+{
+"id": 219,
+"type": "wrong_object",
+"task": "Put a sauce packet in the bowl",
+"x": "sauce packet",
+"y": "bowl",
+"k": 5,
+"steps_completed": [
+"locate the sauce packet",
+"move the gripper above the sauce packet",
+"grasp the sauce packet",
+"lift the sauce packet",
+"move the sauce packet over the bowl"
+],
+"candidates": {
+"A": "lower the cup and release it in the bowl",
+"B": "lower the red can and release it in the bowl",
+"C": "lower the sauce packet and release it in the bowl",
+"D": "lower the yellow pillow and release it in the bowl"
+},
+"truth": "C"
+},
+{
+"id": 220,
+"type": "wrong_object",
+"task": "Put the mug cups on the shelf",
+"x": "mug cups",
+"y": "shelf",
+"k": 2,
+"steps_completed": [
+"locate the mug cups",
+"move the gripper above the mug cups"
+],
+"candidates": {
+"A": "grasp the mug cups",
+"B": "grasp the white object",
+"C": "grasp the chocolate bar",
+"D": "grasp the hanger"
+},
+"truth": "A"
+},
+{
+"id": 221,
+"type": "wrong_object",
+"task": "Put the cereal crumbs in the yellow bowl",
+"x": "cereal crumbs",
+"y": "yellow bowl",
+"k": 2,
+"steps_completed": [
+"locate the cereal crumbs",
+"move the gripper above the cereal crumbs"
+],
+"candidates": {
+"A": "grasp the cereal crumbs",
+"B": "grasp the bowl",
+"C": "grasp the doritos packet",
+"D": "grasp the blue snack packet"
+},
+"truth": "A"
+},
+{
+"id": 222,
+"type": "wrong_object",
+"task": "Put the paper cup inside the sink under the tap",
+"x": "paper cup",
+"y": "sink under the tap",
+"k": 4,
+"steps_completed": [
+"locate the paper cup",
+"move the gripper above the paper cup",
+"grasp the paper cup",
+"lift the paper cup"
+],
+"candidates": {
+"A": "move the cups over the sink under the tap",
+"B": "move the paper cup over the sink under the tap",
+"C": "move the pot over the sink under the tap",
+"D": "move the coca cola can over the sink under the tap"
+},
+"truth": "B"
+},
+{
+"id": 223,
+"type": "wrong_object",
+"task": "Put the can into the bin",
+"x": "can",
+"y": "bin",
+"k": 2,
+"steps_completed": [
+"locate the can",
+"move the gripper above the can"
+],
+"candidates": {
+"A": "grasp the blue cylinder",
+"B": "grasp the can",
+"C": "grasp the cereal crumbs",
+"D": "grasp the green packet"
+},
+"truth": "B"
+},
+{
+"id": 224,
+"type": "wrong_object",
+"task": "Put the green can inside the cabinet",
+"x": "green can",
+"y": "cabinet",
+"k": 5,
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can",
+"lift the green can",
+"move the green can over the cabinet"
+],
+"candidates": {
+"A": "lower the green can and release it in the cabinet",
+"B": "lower the bean and release it in the cabinet",
+"C": "lower the spoon and release it in the cabinet",
+"D": "lower the white lid and release it in the cabinet"
+},
+"truth": "A"
+},
+{
+"id": 225,
+"type": "wrong_object",
+"task": "Put the purple snack inside the upper cabinet.",
+"x": "purple snack",
+"y": "upper cabinet",
+"k": 4,
+"steps_completed": [
+"locate the purple snack",
+"move the gripper above the purple snack",
+"grasp the purple snack",
+"lift the purple snack"
+],
+"candidates": {
+"A": "move the straw over the upper cabinet",
+"B": "move the water bottle over the upper cabinet",
+"C": "move the black packet over the upper cabinet",
+"D": "move the purple snack over the upper cabinet"
+},
+"truth": "D"
+},
+{
+"id": 226,
+"type": "wrong_object",
+"task": "Put the black object inside the tea cup",
+"x": "black object",
+"y": "tea cup",
+"k": 3,
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object"
+],
+"candidates": {
+"A": "lift the cloth",
+"B": "lift the green bottle",
+"C": "lift the tennis ball",
+"D": "lift the black object"
+},
+"truth": "D"
+},
+{
+"id": 227,
+"type": "wrong_object",
+"task": "Put the coffee cup on the side plate",
+"x": "coffee cup",
+"y": "side plate",
+"k": 3,
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup",
+"grasp the coffee cup"
+],
+"candidates": {
+"A": "lift the object",
+"B": "lift the snack packet",
+"C": "lift the coffee cup",
+"D": "lift the blue block"
+},
+"truth": "C"
+},
+{
+"id": 228,
+"type": "wrong_object",
+"task": "Put the snack packet inside the open cupboard",
+"x": "snack packet",
+"y": "open cupboard",
+"k": 3,
+"steps_completed": [
+"locate the snack packet",
+"move the gripper above the snack packet",
+"grasp the snack packet"
+],
+"candidates": {
+"A": "lift the dice",
+"B": "lift the white cup",
+"C": "lift the blue bottle",
+"D": "lift the snack packet"
+},
+"truth": "D"
+},
+{
+"id": 229,
+"type": "wrong_object",
+"task": "Put the candy bar into the black bowl",
+"x": "candy bar",
+"y": "black bowl",
+"k": 1,
+"steps_completed": [
+"locate the candy bar"
+],
+"candidates": {
+"A": "move the gripper above the coat hanger",
+"B": "move the gripper above the candy bar",
+"C": "move the gripper above the blue sheet",
+"D": "move the gripper above the paper lids"
+},
+"truth": "B"
+},
+{
+"id": 230,
+"type": "wrong_object",
+"task": "Put the soda can in the open cabinet",
+"x": "soda can",
+"y": "open cabinet",
+"k": 4,
+"steps_completed": [
+"locate the soda can",
+"move the gripper above the soda can",
+"grasp the soda can",
+"lift the soda can"
+],
+"candidates": {
+"A": "move the purple snack over the open cabinet",
+"B": "move the soda can over the open cabinet",
+"C": "move the black object over the open cabinet",
+"D": "move the coca cola can over the open cabinet"
+},
+"truth": "B"
+},
+{
+"id": 231,
+"type": "wrong_object",
+"task": "Put the sachet on the white object",
+"x": "sachet",
+"y": "white object",
+"k": 5,
+"steps_completed": [
+"locate the sachet",
+"move the gripper above the sachet",
+"grasp the sachet",
+"lift the sachet",
+"move the sachet over the white object"
+],
+"candidates": {
+"A": "lower the blue masking tape and release it on the white object",
+"B": "lower the pencil and release it on the white object",
+"C": "lower the black packet and release it on the white object",
+"D": "lower the sachet and release it on the white object"
+},
+"truth": "D"
+},
+{
+"id": 232,
+"type": "wrong_object",
+"task": "Put the sugar bags in the cup",
+"x": "sugar bags",
+"y": "cup",
+"k": 5,
+"steps_completed": [
+"locate the sugar bags",
+"move the gripper above the sugar bags",
+"grasp the sugar bags",
+"lift the sugar bags",
+"move the sugar bags over the cup"
+],
+"candidates": {
+"A": "lower the some colored objects and release it in the cup",
+"B": "lower the sugar bags and release it in the cup",
+"C": "lower the remote and release it in the cup",
+"D": "lower the brown basket and release it in the cup"
+},
+"truth": "B"
+},
+{
+"id": 233,
+"type": "wrong_object",
+"task": "Put the paper cups on the coffee machine",
+"x": "paper cups",
+"y": "coffee machine",
+"k": 3,
+"steps_completed": [
+"locate the paper cups",
+"move the gripper above the paper cups",
+"grasp the paper cups"
+],
+"candidates": {
+"A": "lift the white paper bowl directly",
+"B": "lift the paper cups",
+"C": "lift the paper",
+"D": "lift the fork"
+},
+"truth": "B"
+},
+{
+"id": 234,
+"type": "wrong_object",
+"task": "Put the can inside the sink",
+"x": "can",
+"y": "sink",
+"k": 5,
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can",
+"lift the can",
+"move the can over the sink"
+],
+"candidates": {
+"A": "lower the box and release it in the sink",
+"B": "lower the dark blue pillow and release it in the sink",
+"C": "lower the can and release it in the sink",
+"D": "lower the house shoe and release it in the sink"
+},
+"truth": "C"
+},
+{
+"id": 235,
+"type": "wrong_object",
+"task": "Put the white book on the desktop.",
+"x": "white book",
+"y": "desktop",
+"k": 4,
+"steps_completed": [
+"locate the white book",
+"move the gripper above the white book",
+"grasp the white book",
+"lift the white book"
+],
+"candidates": {
+"A": "move the white spoon over the desktop",
+"B": "move the white book over the desktop",
+"C": "move the green packet over the desktop",
+"D": "move the white item over the desktop"
+},
+"truth": "B"
+},
+{
+"id": 236,
+"type": "wrong_object",
+"task": "Put the ball on the bottom stand",
+"x": "ball",
+"y": "bottom stand",
+"k": 4,
+"steps_completed": [
+"locate the ball",
+"move the gripper above the ball",
+"grasp the ball",
+"lift the ball"
+],
+"candidates": {
+"A": "move the cup on the right over the bottom stand",
+"B": "move the ball over the bottom stand",
+"C": "move the brown can over the bottom stand",
+"D": "move the blue bowl over the bottom stand"
+},
+"truth": "B"
+},
+{
+"id": 237,
+"type": "wrong_object",
+"task": "Put the blue ladle in the blue bowl",
+"x": "blue ladle",
+"y": "blue bowl",
+"k": 3,
+"steps_completed": [
+"locate the blue ladle",
+"move the gripper above the blue ladle",
+"grasp the blue ladle"
+],
+"candidates": {
+"A": "lift the blue ladle",
+"B": "lift the silver pot",
+"C": "lift the one white packet",
+"D": "lift the white bowl"
+},
+"truth": "A"
+},
+{
+"id": 238,
+"type": "wrong_object",
+"task": "Put the orange packet in the top cabinet",
+"x": "orange packet",
+"y": "top cabinet",
+"k": 5,
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet",
+"lift the orange packet",
+"move the orange packet over the top cabinet"
+],
+"candidates": {
+"A": "lower the coffee cup and release it in the top cabinet",
+"B": "lower the slipper and release it in the top cabinet",
+"C": "lower the red can and release it in the top cabinet",
+"D": "lower the orange packet and release it in the top cabinet"
+},
+"truth": "D"
+},
+{
+"id": 239,
+"type": "wrong_object",
+"task": "Put the cup in the bowl",
+"x": "cup",
+"y": "bowl",
+"k": 1,
+"steps_completed": [
+"locate the cup"
+],
+"candidates": {
+"A": "move the gripper above the cup",
+"B": "move the gripper above the packet",
+"C": "move the gripper above the lid",
+"D": "move the gripper above the jar"
+},
+"truth": "A"
+},
+{
+"id": 240,
+"type": "irrelevant",
+"task": "Put the coffee pod in the coffee maker",
+"x": "coffee pod",
+"y": "coffee maker",
+"k": 4,
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod",
+"lift the coffee pod"
+],
+"candidates": {
+"A": "grasp the orange packet",
+"B": "grasp the cloth",
+"C": "move the paper lids over the far right coffee cup",
+"D": "move the coffee pod over the coffee maker"
+},
+"truth": "D"
+},
+{
+"id": 241,
+"type": "irrelevant",
+"task": "Put the cup on top of the microwave",
+"x": "cup",
+"y": "top of the microwave",
+"k": 2,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup"
+],
+"candidates": {
+"A": "move the green soda can over the left counter",
+"B": "grasp the cup",
+"C": "move the silver ladle over the yellow bowl",
+"D": "move the gripper above the orange sauce"
+},
+"truth": "B"
+},
+{
+"id": 242,
+"type": "irrelevant",
+"task": "Put the shoe on the tower",
+"x": "shoe",
+"y": "tower",
+"k": 3,
+"steps_completed": [
+"locate the shoe",
+"move the gripper above the shoe",
+"grasp the shoe"
+],
+"candidates": {
+"A": "lower the green packet and release it in the black bowl",
+"B": "move the gripper above the paper towel",
+"C": "move the gripper above the white hanger",
+"D": "lift the shoe"
+},
+"truth": "D"
+},
+{
+"id": 243,
+"type": "irrelevant",
+"task": "Put the blue scoop inside the bowl",
+"x": "blue scoop",
+"y": "bowl",
+"k": 4,
+"steps_completed": [
+"locate the blue scoop",
+"move the gripper above the blue scoop",
+"grasp the blue scoop",
+"lift the blue scoop"
+],
+"candidates": {
+"A": "grasp the lid",
+"B": "move the green sachet over the box",
+"C": "move the gripper above the black packet",
+"D": "move the blue scoop over the bowl"
+},
+"truth": "D"
+},
+{
+"id": 244,
+"type": "irrelevant",
+"task": "Put the snack bar in the sink",
+"x": "snack bar",
+"y": "sink",
+"k": 5,
+"steps_completed": [
+"locate the snack bar",
+"move the gripper above the snack bar",
+"grasp the snack bar",
+"lift the snack bar",
+"move the snack bar over the sink"
+],
+"candidates": {
+"A": "move the gripper above the lid",
+"B": "grasp the green cube",
+"C": "grasp the black object",
+"D": "lower the snack bar and release it in the sink"
+},
+"truth": "D"
+},
+{
+"id": 245,
+"type": "irrelevant",
+"task": "Put the capsule in the coffee machine",
+"x": "capsule",
+"y": "coffee machine",
+"k": 2,
+"steps_completed": [
+"locate the capsule",
+"move the gripper above the capsule"
+],
+"candidates": {
+"A": "lower the can of fanta and release it in the left sink",
+"B": "lift the coffee pod",
+"C": "move the toy car over the cabinet",
+"D": "grasp the capsule"
+},
+"truth": "D"
+},
+{
+"id": 246,
+"type": "irrelevant",
+"task": "Put the red can on the counter to the left",
+"x": "red can",
+"y": "counter to the left",
+"k": 5,
+"steps_completed": [
+"locate the red can",
+"move the gripper above the red can",
+"grasp the red can",
+"lift the red can",
+"move the red can over the counter to the left"
+],
+"candidates": {
+"A": "grasp the sachet",
+"B": "grasp the contents from the countertop",
+"C": "lower the red can and release it on the counter to the left",
+"D": "lower the green can and release it in the sink"
+},
+"truth": "C"
+},
+{
+"id": 247,
+"type": "irrelevant",
+"task": "Put the spice shaker on the table",
+"x": "spice shaker",
+"y": "table",
+"k": 3,
+"steps_completed": [
+"locate the spice shaker",
+"move the gripper above the spice shaker",
+"grasp the spice shaker"
+],
+"candidates": {
+"A": "lift the white cup",
+"B": "move the gripper above the green soda can",
+"C": "move the silver spoon over the mug",
+"D": "lift the spice shaker"
+},
+"truth": "D"
+},
+{
+"id": 248,
+"type": "irrelevant",
+"task": "Put the grey lid on the jar in the bowl.",
+"x": "grey lid",
+"y": "jar in the bowl",
+"k": 1,
+"steps_completed": [
+"locate the grey lid"
+],
+"candidates": {
+"A": "grasp the wrapper",
+"B": "lower the plastic bottle and release it in the coffee cup",
+"C": "move the gripper above the grey lid",
+"D": "lift the green can"
+},
+"truth": "C"
+},
+{
+"id": 249,
+"type": "irrelevant",
+"task": "Put the paper cup on the microwave",
+"x": "paper cup",
+"y": "microwave",
+"k": 1,
+"steps_completed": [
+"locate the paper cup"
+],
+"candidates": {
+"A": "grasp the paper cups",
+"B": "lift the coffee pod",
+"C": "lower the coffee cup and release it on the right in the sink",
+"D": "move the gripper above the paper cup"
+},
+"truth": "D"
+},
+{
+"id": 250,
+"type": "irrelevant",
+"task": "Put the black bowl in the sink",
+"x": "black bowl",
+"y": "sink",
+"k": 2,
+"steps_completed": [
+"locate the black bowl",
+"move the gripper above the black bowl"
+],
+"candidates": {
+"A": "move the brown can over the white bin",
+"B": "move the red can over the left sink",
+"C": "lower the can and release it in the left sink",
+"D": "grasp the black bowl"
+},
+"truth": "D"
+},
+{
+"id": 251,
+"type": "irrelevant",
+"task": "Put the white plastic spoon in the white mug",
+"x": "white plastic spoon",
+"y": "white mug",
+"k": 4,
+"steps_completed": [
+"locate the white plastic spoon",
+"move the gripper above the white plastic spoon",
+"grasp the white plastic spoon",
+"lift the white plastic spoon"
+],
+"candidates": {
+"A": "move the biggest mug piece over the broken cup",
+"B": "move the drinking straw over the paper cup",
+"C": "move the spoon over the drawer",
+"D": "move the white plastic spoon over the white mug"
+},
+"truth": "D"
+},
+{
+"id": 252,
+"type": "irrelevant",
+"task": "Place the silver lid onto the bottle",
+"x": "silver lid",
+"y": "bottle",
+"k": 4,
+"steps_completed": [
+"locate the silver lid",
+"move the gripper above the silver lid",
+"grasp the silver lid",
+"lift the silver lid"
+],
+"candidates": {
+"A": "move the gripper above the red can",
+"B": "grasp the lid",
+"C": "move the silver lid over the bottle",
+"D": "lower the towel and release it on the top of the pot"
+},
+"truth": "C"
+},
+{
+"id": 253,
+"type": "irrelevant",
+"task": "Put the soda can into the sink",
+"x": "soda can",
+"y": "sink",
+"k": 4,
+"steps_completed": [
+"locate the soda can",
+"move the gripper above the soda can",
+"grasp the soda can",
+"lift the soda can"
+],
+"candidates": {
+"A": "move the soda can over the sink",
+"B": "lift the yellow sachet",
+"C": "lower the green can and release it in the open upper cabinet",
+"D": "move the gripper above the black packet"
+},
+"truth": "A"
+},
+{
+"id": 254,
+"type": "irrelevant",
+"task": "Put the piece of paper in the left bin",
+"x": "piece of paper",
+"y": "left bin",
+"k": 4,
+"steps_completed": [
+"locate the piece of paper",
+"move the gripper above the piece of paper",
+"grasp the piece of paper",
+"lift the piece of paper"
+],
+"candidates": {
+"A": "lift the house shoe",
+"B": "lower the orange sacket and release it in the tray",
+"C": "move the piece of paper over the left bin",
+"D": "lower the candy bar and release it in the cabinet"
+},
+"truth": "C"
+},
+{
+"id": 255,
+"type": "irrelevant",
+"task": "Place the Coca Cola can in the sink to the left",
+"x": "coca cola can",
+"y": "sink to the left",
+"k": 4,
+"steps_completed": [
+"locate the coca cola can",
+"move the gripper above the coca cola can",
+"grasp the coca cola can",
+"lift the coca cola can"
+],
+"candidates": {
+"A": "lower the brown sachet and release it in the bowl",
+"B": "grasp the ruler",
+"C": "lift the pencil",
+"D": "move the coca cola can over the sink to the left"
+},
+"truth": "D"
+},
+{
+"id": 256,
+"type": "irrelevant",
+"task": "Put the black vase in an upright position",
+"x": "black vase",
+"y": "an upright position",
+"k": 3,
+"steps_completed": [
+"locate the black vase",
+"move the gripper above the black vase",
+"grasp the black vase"
+],
+"candidates": {
+"A": "lower the paper cup and release it on the microwave",
+"B": "lower the silver lid and release it on the silver pot",
+"C": "lower the cup and release it in the other cup",
+"D": "lift the black vase"
+},
+"truth": "D"
+},
+{
+"id": 257,
+"type": "irrelevant",
+"task": "Put one blue block in the blue bowl.",
+"x": "one blue block",
+"y": "blue bowl",
+"k": 1,
+"steps_completed": [
+"locate the one blue block"
+],
+"candidates": {
+"A": "grasp the green sachet",
+"B": "lift the orange block horizontally",
+"C": "move the gripper above the one blue block",
+"D": "move the object over the basket"
+},
+"truth": "C"
+},
+{
+"id": 258,
+"type": "irrelevant",
+"task": "Put the plates inside the cabinet",
+"x": "plates",
+"y": "cabinet",
+"k": 4,
+"steps_completed": [
+"locate the plates",
+"move the gripper above the plates",
+"grasp the plates",
+"lift the plates"
+],
+"candidates": {
+"A": "lift the orange object",
+"B": "move the plates over the cabinet",
+"C": "grasp the paper",
+"D": "move the gripper above the light brown block"
+},
+"truth": "B"
+},
+{
+"id": 259,
+"type": "irrelevant",
+"task": "Put the red can in the left sink",
+"x": "red can",
+"y": "left sink",
+"k": 4,
+"steps_completed": [
+"locate the red can",
+"move the gripper above the red can",
+"grasp the red can",
+"lift the red can"
+],
+"candidates": {
+"A": "grasp the ruler",
+"B": "lift the pot",
+"C": "lower the green soda can and release it on the left counter",
+"D": "move the red can over the left sink"
+},
+"truth": "D"
+},
+{
+"id": 260,
+"type": "irrelevant",
+"task": "Put the black pot on the coffee pot",
+"x": "black pot",
+"y": "coffee pot",
+"k": 5,
+"steps_completed": [
+"locate the black pot",
+"move the gripper above the black pot",
+"grasp the black pot",
+"lift the black pot",
+"move the black pot over the coffee pot"
+],
+"candidates": {
+"A": "lower the piece of the mug and release it in the broken mug",
+"B": "lower the black pot and release it on the coffee pot",
+"C": "grasp the blue tape",
+"D": "move the green snack bar over the top cabinet"
+},
+"truth": "B"
+},
+{
+"id": 261,
+"type": "irrelevant",
+"task": "Put the green packet in the cabinet",
+"x": "green packet",
+"y": "cabinet",
+"k": 5,
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet",
+"lift the green packet",
+"move the green packet over the cabinet"
+],
+"candidates": {
+"A": "lift the shoe",
+"B": "lift the coffee pod",
+"C": "lower the green packet and release it in the cabinet",
+"D": "move the brown hanger over the topmost shelf"
+},
+"truth": "C"
+},
+{
+"id": 262,
+"type": "irrelevant",
+"task": "Put the cereals inside the blue bowl",
+"x": "cereals",
+"y": "blue bowl",
+"k": 2,
+"steps_completed": [
+"locate the cereals",
+"move the gripper above the cereals"
+],
+"candidates": {
+"A": "lower the brown paper bag and release it in the trash chute",
+"B": "grasp the cereals",
+"C": "grasp the container",
+"D": "lift the bottle"
+},
+"truth": "B"
+},
+{
+"id": 263,
+"type": "irrelevant",
+"task": "Put the white sachet on the top right rack",
+"x": "white sachet",
+"y": "top right rack",
+"k": 3,
+"steps_completed": [
+"locate the white sachet",
+"move the gripper above the white sachet",
+"grasp the white sachet"
+],
+"candidates": {
+"A": "grasp the blue object",
+"B": "lift the cup upside down",
+"C": "grasp the paper cup",
+"D": "lift the white sachet"
+},
+"truth": "D"
+},
+{
+"id": 264,
+"type": "irrelevant",
+"task": "Put the coffee cup in the wooden box.",
+"x": "coffee cup",
+"y": "wooden box",
+"k": 2,
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup"
+],
+"candidates": {
+"A": "grasp the cup",
+"B": "grasp the can",
+"C": "lift the blue tape",
+"D": "grasp the coffee cup"
+},
+"truth": "D"
+},
+{
+"id": 265,
+"type": "irrelevant",
+"task": "Put the lid on the bottle",
+"x": "lid",
+"y": "bottle",
+"k": 2,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid"
+],
+"candidates": {
+"A": "lower the some colored objects and release it in the measuring spoon",
+"B": "grasp the lid",
+"C": "move the red packet over the sink on the left",
+"D": "lift the spoon"
+},
+"truth": "B"
+},
+{
+"id": 266,
+"type": "irrelevant",
+"task": "Put the brown paper in the bowl",
+"x": "brown paper",
+"y": "bowl",
+"k": 1,
+"steps_completed": [
+"locate the brown paper"
+],
+"candidates": {
+"A": "grasp the green packet",
+"B": "grasp the one coffee pod",
+"C": "move the gripper above the brown paper",
+"D": "lower the wooden plaque and release it in the lunch pack"
+},
+"truth": "C"
+},
+{
+"id": 267,
+"type": "irrelevant",
+"task": "Put the remote on the couch",
+"x": "remote",
+"y": "couch",
+"k": 5,
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote",
+"lift the remote",
+"move the remote over the couch"
+],
+"candidates": {
+"A": "move the broken pieces over the broken mug",
+"B": "lift the white spoon",
+"C": "move the orange soda can over the open shelf",
+"D": "lower the remote and release it on the couch"
+},
+"truth": "D"
+},
+{
+"id": 268,
+"type": "irrelevant",
+"task": "Place the straw in the cup",
+"x": "straw",
+"y": "cup",
+"k": 3,
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw"
+],
+"candidates": {
+"A": "lift the straw",
+"B": "lower the remote and release it on the pillow upside down",
+"C": "lift the left shoe",
+"D": "lift the silver cup"
+},
+"truth": "A"
+},
+{
+"id": 269,
+"type": "irrelevant",
+"task": "Put the blue packet inside the left sink",
+"x": "blue packet",
+"y": "left sink",
+"k": 2,
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet"
+],
+"candidates": {
+"A": "move the gripper above the green packet",
+"B": "move the gripper above the masking tape",
+"C": "move the gripper above the coffee cup",
+"D": "grasp the blue packet"
+},
+"truth": "D"
+},
+{
+"id": 270,
+"type": "irrelevant",
+"task": "Put the packet in the sink.",
+"x": "packet",
+"y": "sink",
+"k": 5,
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet",
+"lift the packet",
+"move the packet over the sink"
+],
+"candidates": {
+"A": "move the gripper above the left sneaker",
+"B": "lower the straw and release it on the top second left rack",
+"C": "lower the packet and release it in the sink",
+"D": "move the gripper above the coffee pod"
+},
+"truth": "C"
+},
+{
+"id": 271,
+"type": "irrelevant",
+"task": "Put the blue cylinder in the blue bowl",
+"x": "blue cylinder",
+"y": "blue bowl",
+"k": 2,
+"steps_completed": [
+"locate the blue cylinder",
+"move the gripper above the blue cylinder"
+],
+"candidates": {
+"A": "grasp the tennis ball",
+"B": "grasp the blue cylinder",
+"C": "lower the white jug and release it in the an upright position",
+"D": "lower the spoon and release it on the paper towel"
+},
+"truth": "B"
+},
+{
+"id": 272,
+"type": "irrelevant",
+"task": "Put the paper roll on the microwave",
+"x": "paper roll",
+"y": "microwave",
+"k": 2,
+"steps_completed": [
+"locate the paper roll",
+"move the gripper above the paper roll"
+],
+"candidates": {
+"A": "grasp the paper roll",
+"B": "grasp the tongs",
+"C": "grasp the bag of chips",
+"D": "grasp the sprite can"
+},
+"truth": "A"
+},
+{
+"id": 273,
+"type": "irrelevant",
+"task": "Put the packet closest to you in the top cabinet",
+"x": "packet closest to you",
+"y": "top cabinet",
+"k": 2,
+"steps_completed": [
+"locate the packet closest to you",
+"move the gripper above the packet closest to you"
+],
+"candidates": {
+"A": "lower the right marker and release it in the left cup",
+"B": "grasp the spoon",
+"C": "grasp the packet closest to you",
+"D": "grasp the hanger"
+},
+"truth": "C"
+},
+{
+"id": 274,
+"type": "irrelevant",
+"task": "Put the white cup in the white box",
+"x": "white cup",
+"y": "white box",
+"k": 5,
+"steps_completed": [
+"locate the white cup",
+"move the gripper above the white cup",
+"grasp the white cup",
+"lift the white cup",
+"move the white cup over the white box"
+],
+"candidates": {
+"A": "grasp the green ball",
+"B": "lift the cup",
+"C": "lower the white cup and release it in the white box",
+"D": "move the sprite can over the cabinet above the sink"
+},
+"truth": "C"
+},
+{
+"id": 275,
+"type": "irrelevant",
+"task": "Place the tennis ball in the brown mug.",
+"x": "tennis ball",
+"y": "brown mug",
+"k": 5,
+"steps_completed": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball",
+"lift the tennis ball",
+"move the tennis ball over the brown mug"
+],
+"candidates": {
+"A": "grasp the one red piece",
+"B": "grasp the chocolate bar",
+"C": "grasp the silver spoons",
+"D": "lower the tennis ball and release it in the brown mug"
+},
+"truth": "D"
+},
+{
+"id": 276,
+"type": "irrelevant",
+"task": "Put the slipper on the shoes",
+"x": "slipper",
+"y": "shoes",
+"k": 2,
+"steps_completed": [
+"locate the slipper",
+"move the gripper above the slipper"
+],
+"candidates": {
+"A": "grasp the slipper",
+"B": "lower the left sneaker and release it on the rack",
+"C": "grasp the spoon",
+"D": "lower the measuring spoons and release it on the dishrack"
+},
+"truth": "A"
+},
+{
+"id": 277,
+"type": "irrelevant",
+"task": "Put the spoon inside the bowl",
+"x": "spoon",
+"y": "bowl",
+"k": 4,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon"
+],
+"candidates": {
+"A": "move the spoon over the bowl",
+"B": "grasp the white spoon",
+"C": "lift the ball",
+"D": "lift the yellow sachet"
+},
+"truth": "A"
+},
+{
+"id": 278,
+"type": "irrelevant",
+"task": "Put the blue masking tape in the wooden box",
+"x": "blue masking tape",
+"y": "wooden box",
+"k": 5,
+"steps_completed": [
+"locate the blue masking tape",
+"move the gripper above the blue masking tape",
+"grasp the blue masking tape",
+"lift the blue masking tape",
+"move the blue masking tape over the wooden box"
+],
+"candidates": {
+"A": "lift the can",
+"B": "lift the paper cup",
+"C": "move the bag of crisps over the sink",
+"D": "lower the blue masking tape and release it in the wooden box"
+},
+"truth": "D"
+},
+{
+"id": 279,
+"type": "irrelevant",
+"task": "Put some colored objects in the measuring spoon",
+"x": "some colored objects",
+"y": "measuring spoon",
+"k": 1,
+"steps_completed": [
+"locate the some colored objects"
+],
+"candidates": {
+"A": "move the gripper above the some colored objects",
+"B": "grasp the spoon",
+"C": "move the chopstick over the cup",
+"D": "move the gripper above the bag of chips"
+},
+"truth": "A"
+},
+{
+"id": 280,
+"type": "irrelevant",
+"task": "Put the red bowl in the microwave",
+"x": "red bowl",
+"y": "microwave",
+"k": 5,
+"steps_completed": [
+"locate the red bowl",
+"move the gripper above the red bowl",
+"grasp the red bowl",
+"lift the red bowl",
+"move the red bowl over the microwave"
+],
+"candidates": {
+"A": "move the blue cylinder over the blue bowl",
+"B": "lower the red bowl and release it in the microwave",
+"C": "grasp the green can",
+"D": "move the gripper above the purple snack"
+},
+"truth": "B"
+},
+{
+"id": 281,
+"type": "irrelevant",
+"task": "Put the tissue paper into the coffee cup",
+"x": "tissue paper",
+"y": "coffee cup",
+"k": 3,
+"steps_completed": [
+"locate the tissue paper",
+"move the gripper above the tissue paper",
+"grasp the tissue paper"
+],
+"candidates": {
+"A": "grasp the sneakers",
+"B": "lift the tissue paper",
+"C": "move the black tongs over the coffee cup",
+"D": "move the blue bottle over the rack"
+},
+"truth": "B"
+},
+{
+"id": 282,
+"type": "irrelevant",
+"task": "Put the black packet on the white plate",
+"x": "black packet",
+"y": "white plate",
+"k": 3,
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet"
+],
+"candidates": {
+"A": "lower the plastic glasses and release it in the drying rack",
+"B": "move the black object over the bowl",
+"C": "lift the black packet",
+"D": "grasp the green object"
+},
+"truth": "C"
+},
+{
+"id": 283,
+"type": "irrelevant",
+"task": "Put the pair of shoes on the top shelf",
+"x": "pair of shoes",
+"y": "top shelf",
+"k": 1,
+"steps_completed": [
+"locate the pair of shoes"
+],
+"candidates": {
+"A": "move the plastic of forks over the right cup",
+"B": "move the gripper above the red can",
+"C": "move the gripper above the pair of shoes",
+"D": "lower the plush toy and release it on the toy car"
+},
+"truth": "C"
+},
+{
+"id": 284,
+"type": "irrelevant",
+"task": "Put the crayon in the crayon box",
+"x": "crayon",
+"y": "crayon box",
+"k": 2,
+"steps_completed": [
+"locate the crayon",
+"move the gripper above the crayon"
+],
+"candidates": {
+"A": "move the gripper above the toy car",
+"B": "grasp the crayon",
+"C": "move the green cup over the green bowl",
+"D": "move the gripper above the red can"
+},
+"truth": "B"
+},
+{
+"id": 285,
+"type": "irrelevant",
+"task": "Put the straw on the bowl",
+"x": "straw",
+"y": "bowl",
+"k": 2,
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw"
+],
+"candidates": {
+"A": "grasp the straw",
+"B": "grasp the snickers bar",
+"C": "move the gripper above the one coffee pod",
+"D": "move the gripper above the packet"
+},
+"truth": "A"
+},
+{
+"id": 286,
+"type": "irrelevant",
+"task": "Put the soda can inside the open cabinet",
+"x": "soda can",
+"y": "open cabinet",
+"k": 5,
+"steps_completed": [
+"locate the soda can",
+"move the gripper above the soda can",
+"grasp the soda can",
+"lift the soda can",
+"move the soda can over the open cabinet"
+],
+"candidates": {
+"A": "lower the paper cup and release it in the wooden box",
+"B": "move the orange can over the cabinet",
+"C": "lift the masking tape",
+"D": "lower the soda can and release it in the open cabinet"
+},
+"truth": "D"
+},
+{
+"id": 287,
+"type": "irrelevant",
+"task": "Put the white plate in the wooden box",
+"x": "white plate",
+"y": "wooden box",
+"k": 2,
+"steps_completed": [
+"locate the white plate",
+"move the gripper above the white plate"
+],
+"candidates": {
+"A": "lower the mug cups and release it on the shelf",
+"B": "move the paper towel roll over the metal holder",
+"C": "grasp the white plate",
+"D": "move the gripper above the orange block"
+},
+"truth": "C"
+},
+{
+"id": 288,
+"type": "irrelevant",
+"task": "Put the yellow objects inside the wooden box",
+"x": "yellow objects",
+"y": "wooden box",
+"k": 2,
+"steps_completed": [
+"locate the yellow objects",
+"move the gripper above the yellow objects"
+],
+"candidates": {
+"A": "grasp the yellow objects",
+"B": "lower the metal lid and release it on the salt cellar",
+"C": "move the book over the shelf",
+"D": "lift the black packet"
+},
+"truth": "A"
+},
+{
+"id": 289,
+"type": "irrelevant",
+"task": "Put the pack of lays in the sink",
+"x": "pack of lays",
+"y": "sink",
+"k": 1,
+"steps_completed": [
+"locate the pack of lays"
+],
+"candidates": {
+"A": "move the gripper above the remote",
+"B": "move the orange objects over the plastic",
+"C": "lower the left plate and release it on the right plate",
+"D": "move the gripper above the pack of lays"
+},
+"truth": "D"
+},
+{
+"id": 290,
+"type": "irrelevant",
+"task": "Put the green packet inside the cabinet",
+"x": "green packet",
+"y": "cabinet",
+"k": 4,
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet",
+"lift the green packet"
+],
+"candidates": {
+"A": "move the green packet over the cabinet",
+"B": "lift the measuring spoons",
+"C": "move the gripper above the candy bar",
+"D": "grasp the silver pot"
+},
+"truth": "A"
+},
+{
+"id": 291,
+"type": "irrelevant",
+"task": "Put the cake knife directly onto the counter",
+"x": "cake knife directly",
+"y": "counter",
+"k": 2,
+"steps_completed": [
+"locate the cake knife directly",
+"move the gripper above the cake knife directly"
+],
+"candidates": {
+"A": "lower the black packet and release it in the sink",
+"B": "move the gripper above the paper",
+"C": "grasp the cake knife directly",
+"D": "lift the chip packet"
+},
+"truth": "C"
+},
+{
+"id": 292,
+"type": "irrelevant",
+"task": "Put the lid on the dishwasher",
+"x": "lid",
+"y": "dishwasher",
+"k": 3,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid"
+],
+"candidates": {
+"A": "move the silver cup over the top of the plate",
+"B": "lift the lid",
+"C": "move the gripper above the masking tape",
+"D": "move the green pack over the sink"
+},
+"truth": "B"
+},
+{
+"id": 293,
+"type": "irrelevant",
+"task": "Put the items on the tray in the drawer",
+"x": "items",
+"y": "tray in the drawer",
+"k": 3,
+"steps_completed": [
+"locate the items",
+"move the gripper above the items",
+"grasp the items"
+],
+"candidates": {
+"A": "grasp the can",
+"B": "lift the items",
+"C": "grasp the white paper",
+"D": "lower the left bowl and release it in the right bowl"
+},
+"truth": "B"
+},
+{
+"id": 294,
+"type": "irrelevant",
+"task": "Put the broken pieces in the broken mug.",
+"x": "broken pieces",
+"y": "broken mug",
+"k": 5,
+"steps_completed": [
+"locate the broken pieces",
+"move the gripper above the broken pieces",
+"grasp the broken pieces",
+"lift the broken pieces",
+"move the broken pieces over the broken mug"
+],
+"candidates": {
+"A": "lower the one coffee pod and release it on the counter",
+"B": "lift the brown hanger",
+"C": "grasp the coffee pod",
+"D": "lower the broken pieces and release it in the broken mug"
+},
+"truth": "D"
+},
+{
+"id": 295,
+"type": "irrelevant",
+"task": "Put the black remote on the black tray",
+"x": "black remote",
+"y": "black tray",
+"k": 4,
+"steps_completed": [
+"locate the black remote",
+"move the gripper above the black remote",
+"grasp the black remote",
+"lift the black remote"
+],
+"candidates": {
+"A": "move the gripper above the orange packet",
+"B": "move the black remote over the black tray",
+"C": "lower the coat hanger and release it on the top shelf",
+"D": "grasp the yellow vessel"
+},
+"truth": "B"
+},
+{
+"id": 296,
+"type": "irrelevant",
+"task": "Put the lids on the upright cup",
+"x": "lids",
+"y": "upright cup",
+"k": 3,
+"steps_completed": [
+"locate the lids",
+"move the gripper above the lids",
+"grasp the lids"
+],
+"candidates": {
+"A": "move the gripper above the white book",
+"B": "move the left cup over the right cup",
+"C": "lower the white plastic spoon and release it in the white mug",
+"D": "lift the lids"
+},
+"truth": "D"
+},
+{
+"id": 297,
+"type": "irrelevant",
+"task": "Put the brown packet in the sink.",
+"x": "brown packet",
+"y": "sink",
+"k": 4,
+"steps_completed": [
+"locate the brown packet",
+"move the gripper above the brown packet",
+"grasp the brown packet",
+"lift the brown packet"
+],
+"candidates": {
+"A": "lift the left shoe",
+"B": "lower the silver spoons and release it in the black mug",
+"C": "move the brown packet over the sink",
+"D": "lower the white sachet and release it on the top right rack"
+},
+"truth": "C"
+},
+{
+"id": 298,
+"type": "irrelevant",
+"task": "Put the orange ball inside the small wooden box",
+"x": "orange ball",
+"y": "small wooden box",
+"k": 1,
+"steps_completed": [
+"locate the orange ball"
+],
+"candidates": {
+"A": "move the left shoe over the right shoe",
+"B": "lower the snack bar and release it in the blue bowl",
+"C": "move the gripper above the orange ball",
+"D": "lower the dorito packet and release it in the sink"
+},
+"truth": "C"
+},
+{
+"id": 299,
+"type": "irrelevant",
+"task": "Put the brown packet in the sink on the left.",
+"x": "brown packet",
+"y": "sink on the left",
+"k": 2,
+"steps_completed": [
+"locate the brown packet",
+"move the gripper above the brown packet"
+],
+"candidates": {
+"A": "grasp the blue serving spoon",
+"B": "grasp the white spoon",
+"C": "grasp the brown packet",
+"D": "lower the white lid and release it on the clear container"
+},
+"truth": "C"
+},
+{
+"id": 300,
+"type": "irrelevant",
+"task": "Put the red packet in the sink on the left.",
+"x": "red packet",
+"y": "sink on the left",
+"k": 3,
+"steps_completed": [
+"locate the red packet",
+"move the gripper above the red packet",
+"grasp the red packet"
+],
+"candidates": {
+"A": "lift the black thing",
+"B": "move the paper towel roll over the counter",
+"C": "lift the red packet",
+"D": "lift the cup"
+},
+"truth": "C"
+},
+{
+"id": 301,
+"type": "irrelevant",
+"task": "Put the orange sauce in the white cup",
+"x": "orange sauce",
+"y": "white cup",
+"k": 2,
+"steps_completed": [
+"locate the orange sauce",
+"move the gripper above the orange sauce"
+],
+"candidates": {
+"A": "lift the spoon",
+"B": "grasp the orange sauce",
+"C": "move the plastic spoon over the paper cup",
+"D": "lift the black measuring cup"
+},
+"truth": "B"
+},
+{
+"id": 302,
+"type": "irrelevant",
+"task": "Put the yellow thing into the cup",
+"x": "yellow thing",
+"y": "cup",
+"k": 3,
+"steps_completed": [
+"locate the yellow thing",
+"move the gripper above the yellow thing",
+"grasp the yellow thing"
+],
+"candidates": {
+"A": "grasp the straw",
+"B": "lift the yellow thing",
+"C": "move the gripper above the green sachet",
+"D": "grasp the measuring cup upside down"
+},
+"truth": "B"
+},
+{
+"id": 303,
+"type": "irrelevant",
+"task": "Put the bowl in the sink",
+"x": "bowl",
+"y": "sink",
+"k": 4,
+"steps_completed": [
+"locate the bowl",
+"move the gripper above the bowl",
+"grasp the bowl",
+"lift the bowl"
+],
+"candidates": {
+"A": "move the bowl over the sink",
+"B": "lower the scoop and release it in the jar then close it",
+"C": "lift the cube",
+"D": "move the gripper above the black packet"
+},
+"truth": "A"
+},
+{
+"id": 304,
+"type": "irrelevant",
+"task": "Put the blue packet in the cabinet",
+"x": "blue packet",
+"y": "cabinet",
+"k": 5,
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet",
+"grasp the blue packet",
+"lift the blue packet",
+"move the blue packet over the cabinet"
+],
+"candidates": {
+"A": "lower the blue packet and release it in the cabinet",
+"B": "lower the black bowl and release it in the sink",
+"C": "grasp the green packet",
+"D": "move the gripper above the coffee cup lid"
+},
+"truth": "A"
+},
+{
+"id": 305,
+"type": "irrelevant",
+"task": "Put the coffee cup lid on the counter",
+"x": "coffee cup lid",
+"y": "counter",
+"k": 2,
+"steps_completed": [
+"locate the coffee cup lid",
+"move the gripper above the coffee cup lid"
+],
+"candidates": {
+"A": "lift the cube",
+"B": "grasp the coffee cup lid",
+"C": "lift the stacked coffee cups",
+"D": "lift the coffee cups"
+},
+"truth": "B"
+},
+{
+"id": 306,
+"type": "irrelevant",
+"task": "Put the bowl in the pack",
+"x": "bowl",
+"y": "pack",
+"k": 4,
+"steps_completed": [
+"locate the bowl",
+"move the gripper above the bowl",
+"grasp the bowl",
+"lift the bowl"
+],
+"candidates": {
+"A": "lift the soda can",
+"B": "move the bowl over the pack",
+"C": "move the green can over the left sink",
+"D": "lower the snack pack and release it in the sink"
+},
+"truth": "B"
+},
+{
+"id": 307,
+"type": "irrelevant",
+"task": "Put the pile of black spoons into the drying rack",
+"x": "pile of black spoons",
+"y": "drying rack",
+"k": 2,
+"steps_completed": [
+"locate the pile of black spoons",
+"move the gripper above the pile of black spoons"
+],
+"candidates": {
+"A": "move the orange packet over the upper cabinet",
+"B": "move the gripper above the paper cups",
+"C": "grasp the pile of black spoons",
+"D": "move the gripper above the packet closest to you"
+},
+"truth": "C"
+},
+{
+"id": 308,
+"type": "irrelevant",
+"task": "Put the straw into the cup",
+"x": "straw",
+"y": "cup",
+"k": 4,
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw",
+"lift the straw"
+],
+"candidates": {
+"A": "lower the blue cylinder and release it in the blue bowl",
+"B": "move the chocolate bar over the cabinet",
+"C": "move the straw over the cup",
+"D": "grasp the blue object"
+},
+"truth": "C"
+},
+{
+"id": 309,
+"type": "irrelevant",
+"task": "Place the stacked bowls in the cabinet then unstack them.",
+"x": "stacked bowls",
+"y": "cabinet then unstack them",
+"k": 2,
+"steps_completed": [
+"locate the stacked bowls",
+"move the gripper above the stacked bowls"
+],
+"candidates": {
+"A": "grasp the stacked bowls",
+"B": "move the gripper above the brown sachet",
+"C": "lift the hanger",
+"D": "move the gripper above the brown snack bar"
+},
+"truth": "A"
+},
+{
+"id": 310,
+"type": "irrelevant",
+"task": "Put the lid on the jar",
+"x": "lid",
+"y": "jar",
+"k": 5,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid",
+"lift the lid",
+"move the lid over the jar"
+],
+"candidates": {
+"A": "move the coffee cup over the right in the sink",
+"B": "grasp the pen",
+"C": "grasp the silver pan",
+"D": "lower the lid and release it on the jar"
+},
+"truth": "D"
+},
+{
+"id": 311,
+"type": "irrelevant",
+"task": "Put one coffee pod in the coffeemaker.",
+"x": "one coffee pod",
+"y": "coffeemaker",
+"k": 4,
+"steps_completed": [
+"locate the one coffee pod",
+"move the gripper above the one coffee pod",
+"grasp the one coffee pod",
+"lift the one coffee pod"
+],
+"candidates": {
+"A": "lift the snack packet",
+"B": "move the one coffee pod over the coffeemaker",
+"C": "grasp the paper towel roll",
+"D": "move the left cup over the sink"
+},
+"truth": "B"
+},
+{
+"id": 312,
+"type": "irrelevant",
+"task": "Put the cup on the table",
+"x": "cup",
+"y": "table",
+"k": 1,
+"steps_completed": [
+"locate the cup"
+],
+"candidates": {
+"A": "move the gripper above the cup",
+"B": "move the black remote over the side table",
+"C": "move the gripper above the spoon",
+"D": "lower the snickers bar and release it in the sink"
+},
+"truth": "A"
+},
+{
+"id": 313,
+"type": "irrelevant",
+"task": "Put a paper towel on the countertop",
+"x": "paper towel",
+"y": "countertop",
+"k": 2,
+"steps_completed": [
+"locate the paper towel",
+"move the gripper above the paper towel"
+],
+"candidates": {
+"A": "grasp the paper towel",
+"B": "move the gripper above the chopsticks",
+"C": "lift the white spoon",
+"D": "move the gripper above the green can"
+},
+"truth": "A"
+},
+{
+"id": 314,
+"type": "irrelevant",
+"task": "Put the blue bowl on the small crate",
+"x": "blue bowl",
+"y": "small crate",
+"k": 5,
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl",
+"lift the blue bowl",
+"move the blue bowl over the small crate"
+],
+"candidates": {
+"A": "lift the orange can",
+"B": "lower the creamer cup and release it in the coffee machine",
+"C": "grasp the hat",
+"D": "lower the blue bowl and release it on the small crate"
+},
+"truth": "D"
+},
+{
+"id": 315,
+"type": "irrelevant",
+"task": "Put the Cola can in the open cabinet",
+"x": "cola can",
+"y": "open cabinet",
+"k": 3,
+"steps_completed": [
+"locate the cola can",
+"move the gripper above the cola can",
+"grasp the cola can"
+],
+"candidates": {
+"A": "lift the grey lid",
+"B": "lift the cola can",
+"C": "grasp the orange can",
+"D": "lower the remote and release it in the cabinet"
+},
+"truth": "B"
+},
+{
+"id": 316,
+"type": "irrelevant",
+"task": "Put the coffee cup into the cupboard",
+"x": "coffee cup",
+"y": "cupboard",
+"k": 4,
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup",
+"grasp the coffee cup",
+"lift the coffee cup"
+],
+"candidates": {
+"A": "move the gripper above the green can",
+"B": "move the coffee cup over the cupboard",
+"C": "lift the one paper towel",
+"D": "move the gripper above the red sachet"
+},
+"truth": "B"
+},
+{
+"id": 317,
+"type": "irrelevant",
+"task": "Put the blue bowl in the yellow bowl",
+"x": "blue bowl",
+"y": "yellow bowl",
+"k": 5,
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl",
+"lift the blue bowl",
+"move the blue bowl over the yellow bowl"
+],
+"candidates": {
+"A": "lift the brown objects",
+"B": "lower the blue bowl and release it in the yellow bowl",
+"C": "lower the tennis ball and release it in the cupboard drawer",
+"D": "move the gripper above the black remote"
+},
+"truth": "B"
+},
+{
+"id": 318,
+"type": "irrelevant",
+"task": "Put the house shoes on the rack",
+"x": "house shoes",
+"y": "rack",
+"k": 2,
+"steps_completed": [
+"locate the house shoes",
+"move the gripper above the house shoes"
+],
+"candidates": {
+"A": "grasp the house shoes",
+"B": "grasp the cup",
+"C": "grasp the orange packet",
+"D": "move the gripper above the silver pot"
+},
+"truth": "A"
+},
+{
+"id": 319,
+"type": "irrelevant",
+"task": "Put the paper towel roll in an upright position",
+"x": "paper towel roll",
+"y": "an upright position",
+"k": 2,
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll"
+],
+"candidates": {
+"A": "lower the plate and release it on the surface",
+"B": "lower the red object directly and release it on the counter",
+"C": "move the gripper above the one yellow sachet",
+"D": "grasp the paper towel roll"
+},
+"truth": "D"
+},
+{
+"id": 320,
+"type": "post_failure",
+"task": "Put the lid on top of the pot",
+"x": "lid",
+"y": "top of the pot",
+"k": 3,
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid \u2014 FAILED: the gripper closed on nothing; the lid is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the lid and release it on the top of the pot",
+"B": "lift the lid",
+"C": "move the lid over the top of the pot",
+"D": "grasp the lid"
+},
+"truth": "D"
+},
+{
+"id": 321,
+"type": "post_failure",
+"task": "Put the green can in the sink on the left.",
+"x": "green can",
+"y": "sink on the left",
+"k": 3,
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can \u2014 FAILED: the gripper closed on nothing; the green can is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the green can",
+"B": "move the green can over the sink on the left",
+"C": "lower the green can and release it in the sink on the left",
+"D": "lift the green can"
+},
+"truth": "A"
+},
+{
+"id": 322,
+"type": "post_failure",
+"task": "Put a piece of the mug inside the broken mug",
+"x": "piece of the mug",
+"y": "broken mug",
+"k": 3,
+"steps_completed": [
+"locate the piece of the mug",
+"move the gripper above the piece of the mug",
+"grasp the piece of the mug \u2014 FAILED: the gripper closed on nothing; the piece of the mug is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the piece of the mug",
+"B": "move the piece of the mug over the broken mug",
+"C": "lower the piece of the mug and release it in the broken mug",
+"D": "lift the piece of the mug"
+},
+"truth": "A"
+},
+{
+"id": 323,
+"type": "post_failure",
+"task": "Put the white bowl in the blue bowl",
+"x": "white bowl",
+"y": "blue bowl",
+"k": 3,
+"steps_completed": [
+"locate the white bowl",
+"move the gripper above the white bowl",
+"grasp the white bowl \u2014 FAILED: the gripper closed on nothing; the white bowl is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the white bowl over the blue bowl",
+"B": "grasp the white bowl",
+"C": "lower the white bowl and release it in the blue bowl",
+"D": "lift the white bowl"
+},
+"truth": "B"
+},
+{
+"id": 324,
+"type": "post_failure",
+"task": "Put the orange packet in the sink",
+"x": "orange packet",
+"y": "sink",
+"k": 3,
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 FAILED: the gripper closed on nothing; the orange packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the orange packet",
+"B": "grasp the orange packet",
+"C": "move the orange packet over the sink",
+"D": "lower the orange packet and release it in the sink"
+},
+"truth": "B"
+},
+{
+"id": 325,
+"type": "post_failure",
+"task": "Put the crayons on the book on the countertop",
+"x": "crayons",
+"y": "book on the countertop",
+"k": 3,
+"steps_completed": [
+"locate the crayons",
+"move the gripper above the crayons",
+"grasp the crayons \u2014 FAILED: the gripper closed on nothing; the crayons is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the crayons",
+"B": "lower the crayons and release it on the book on the countertop",
+"C": "lift the crayons",
+"D": "move the crayons over the book on the countertop"
+},
+"truth": "A"
+},
+{
+"id": 326,
+"type": "post_failure",
+"task": "Put the spoon in the cup inside the bowl",
+"x": "spoon",
+"y": "cup inside the bowl",
+"k": 3,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 FAILED: the gripper closed on nothing; the spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the spoon",
+"B": "lift the spoon",
+"C": "move the spoon over the cup inside the bowl",
+"D": "lower the spoon and release it in the cup inside the bowl"
+},
+"truth": "A"
+},
+{
+"id": 327,
+"type": "post_failure",
+"task": "Put the black packet inside the sink.",
+"x": "black packet",
+"y": "sink",
+"k": 3,
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 FAILED: the gripper closed on nothing; the black packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the black packet",
+"B": "lower the black packet and release it in the sink",
+"C": "lift the black packet",
+"D": "move the black packet over the sink"
+},
+"truth": "A"
+},
+{
+"id": 328,
+"type": "post_failure",
+"task": "Put the cup in the top cabinet",
+"x": "cup",
+"y": "top cabinet",
+"k": 3,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 FAILED: the gripper closed on nothing; the cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the cup and release it in the top cabinet",
+"B": "move the cup over the top cabinet",
+"C": "grasp the cup",
+"D": "lift the cup"
+},
+"truth": "C"
+},
+{
+"id": 329,
+"type": "post_failure",
+"task": "Put the chip packet inside the bottom cabinet",
+"x": "chip packet",
+"y": "bottom cabinet",
+"k": 3,
+"steps_completed": [
+"locate the chip packet",
+"move the gripper above the chip packet",
+"grasp the chip packet \u2014 FAILED: the gripper closed on nothing; the chip packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the chip packet over the bottom cabinet",
+"B": "grasp the chip packet",
+"C": "lift the chip packet",
+"D": "lower the chip packet and release it in the bottom cabinet"
+},
+"truth": "B"
+},
+{
+"id": 330,
+"type": "post_failure",
+"task": "Put the blue block inside the cube-shaped wooden object",
+"x": "blue block",
+"y": "cube-shaped wooden object",
+"k": 3,
+"steps_completed": [
+"locate the blue block",
+"move the gripper above the blue block",
+"grasp the blue block \u2014 FAILED: the gripper closed on nothing; the blue block is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the blue block",
+"B": "lower the blue block and release it in the cube-shaped wooden object",
+"C": "lift the blue block",
+"D": "move the blue block over the cube-shaped wooden object"
+},
+"truth": "A"
+},
+{
+"id": 331,
+"type": "post_failure",
+"task": "Put the plastic spoon inside the paper cup",
+"x": "plastic spoon",
+"y": "paper cup",
+"k": 3,
+"steps_completed": [
+"locate the plastic spoon",
+"move the gripper above the plastic spoon",
+"grasp the plastic spoon \u2014 FAILED: the gripper closed on nothing; the plastic spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the plastic spoon and release it in the paper cup",
+"B": "move the plastic spoon over the paper cup",
+"C": "grasp the plastic spoon",
+"D": "lift the plastic spoon"
+},
+"truth": "C"
+},
+{
+"id": 332,
+"type": "post_failure",
+"task": "Put the packet in the left sink",
+"x": "packet",
+"y": "left sink",
+"k": 3,
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 FAILED: the gripper closed on nothing; the packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the packet",
+"B": "grasp the packet",
+"C": "move the packet over the left sink",
+"D": "lower the packet and release it in the left sink"
+},
+"truth": "B"
+},
+{
+"id": 333,
+"type": "post_failure",
+"task": "Put the pen in the desk shelf",
+"x": "pen",
+"y": "desk shelf",
+"k": 3,
+"steps_completed": [
+"locate the pen",
+"move the gripper above the pen",
+"grasp the pen \u2014 FAILED: the gripper closed on nothing; the pen is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the pen",
+"B": "move the pen over the desk shelf",
+"C": "lower the pen and release it in the desk shelf",
+"D": "lift the pen"
+},
+"truth": "A"
+},
+{
+"id": 334,
+"type": "post_failure",
+"task": "Put the small tissue in the rubbish can",
+"x": "small tissue",
+"y": "rubbish can",
+"k": 3,
+"steps_completed": [
+"locate the small tissue",
+"move the gripper above the small tissue",
+"grasp the small tissue \u2014 FAILED: the gripper closed on nothing; the small tissue is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the small tissue over the rubbish can",
+"B": "lower the small tissue and release it in the rubbish can",
+"C": "grasp the small tissue",
+"D": "lift the small tissue"
+},
+"truth": "C"
+},
+{
+"id": 335,
+"type": "post_failure",
+"task": "Put the black tongs in the upper cabinet.",
+"x": "black tongs",
+"y": "upper cabinet",
+"k": 3,
+"steps_completed": [
+"locate the black tongs",
+"move the gripper above the black tongs",
+"grasp the black tongs \u2014 FAILED: the gripper closed on nothing; the black tongs is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the black tongs",
+"B": "move the black tongs over the upper cabinet",
+"C": "lift the black tongs",
+"D": "lower the black tongs and release it in the upper cabinet"
+},
+"truth": "A"
+},
+{
+"id": 336,
+"type": "post_failure",
+"task": "Put the grey remote control on the grey towel.",
+"x": "grey remote control",
+"y": "grey towel",
+"k": 3,
+"steps_completed": [
+"locate the grey remote control",
+"move the gripper above the grey remote control",
+"grasp the grey remote control \u2014 FAILED: the gripper closed on nothing; the grey remote control is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the grey remote control",
+"B": "lower the grey remote control and release it on the grey towel",
+"C": "grasp the grey remote control",
+"D": "move the grey remote control over the grey towel"
+},
+"truth": "C"
+},
+{
+"id": 337,
+"type": "post_failure",
+"task": "Put the coffee pod in the coffeemaker",
+"x": "coffee pod",
+"y": "coffeemaker",
+"k": 3,
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 FAILED: the gripper closed on nothing; the coffee pod is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the coffee pod over the coffeemaker",
+"B": "lower the coffee pod and release it in the coffeemaker",
+"C": "grasp the coffee pod",
+"D": "lift the coffee pod"
+},
+"truth": "C"
+},
+{
+"id": 338,
+"type": "post_failure",
+"task": "Put the coffee cup on the right in the sink.",
+"x": "coffee cup",
+"y": "right in the sink",
+"k": 3,
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup",
+"grasp the coffee cup \u2014 FAILED: the gripper closed on nothing; the coffee cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the coffee cup and release it on the right in the sink",
+"B": "grasp the coffee cup",
+"C": "move the coffee cup over the right in the sink",
+"D": "lift the coffee cup"
+},
+"truth": "B"
+},
+{
+"id": 339,
+"type": "post_failure",
+"task": "Put the brown can inside the white bin",
+"x": "brown can",
+"y": "white bin",
+"k": 3,
+"steps_completed": [
+"locate the brown can",
+"move the gripper above the brown can",
+"grasp the brown can \u2014 FAILED: the gripper closed on nothing; the brown can is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the brown can",
+"B": "lift the brown can",
+"C": "move the brown can over the white bin",
+"D": "lower the brown can and release it in the white bin"
+},
+"truth": "A"
+},
+{
+"id": 340,
+"type": "post_failure",
+"task": "Put the black measuring cup in the brown hat.",
+"x": "black measuring cup",
+"y": "brown hat",
+"k": 3,
+"steps_completed": [
+"locate the black measuring cup",
+"move the gripper above the black measuring cup",
+"grasp the black measuring cup \u2014 FAILED: the gripper closed on nothing; the black measuring cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the black measuring cup over the brown hat",
+"B": "lower the black measuring cup and release it in the brown hat",
+"C": "grasp the black measuring cup",
+"D": "lift the black measuring cup"
+},
+"truth": "C"
+},
+{
+"id": 341,
+"type": "post_failure",
+"task": "Put the mug cup in the cup to the right",
+"x": "mug cup",
+"y": "cup to the right",
+"k": 3,
+"steps_completed": [
+"locate the mug cup",
+"move the gripper above the mug cup",
+"grasp the mug cup \u2014 FAILED: the gripper closed on nothing; the mug cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the mug cup and release it in the cup to the right",
+"B": "lift the mug cup",
+"C": "move the mug cup over the cup to the right",
+"D": "grasp the mug cup"
+},
+"truth": "D"
+},
+{
+"id": 342,
+"type": "post_failure",
+"task": "Put one piece of cereal in the blue bowl",
+"x": "one piece of cereal",
+"y": "blue bowl",
+"k": 3,
+"steps_completed": [
+"locate the one piece of cereal",
+"move the gripper above the one piece of cereal",
+"grasp the one piece of cereal \u2014 FAILED: the gripper closed on nothing; the one piece of cereal is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the one piece of cereal",
+"B": "grasp the one piece of cereal",
+"C": "lower the one piece of cereal and release it in the blue bowl",
+"D": "move the one piece of cereal over the blue bowl"
+},
+"truth": "B"
+},
+{
+"id": 343,
+"type": "post_failure",
+"task": "Put the remote in the black bowl",
+"x": "remote",
+"y": "black bowl",
+"k": 3,
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 FAILED: the gripper closed on nothing; the remote is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the remote",
+"B": "lower the remote and release it in the black bowl",
+"C": "move the remote over the black bowl",
+"D": "lift the remote"
+},
+"truth": "A"
+},
+{
+"id": 344,
+"type": "post_failure",
+"task": "Put the chocolate bar in the cabinet",
+"x": "chocolate bar",
+"y": "cabinet",
+"k": 3,
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 FAILED: the gripper closed on nothing; the chocolate bar is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the chocolate bar",
+"B": "move the chocolate bar over the cabinet",
+"C": "lift the chocolate bar",
+"D": "lower the chocolate bar and release it in the cabinet"
+},
+"truth": "A"
+},
+{
+"id": 345,
+"type": "post_failure",
+"task": "Put the orange object in the takeaway pack",
+"x": "orange object",
+"y": "takeaway pack",
+"k": 3,
+"steps_completed": [
+"locate the orange object",
+"move the gripper above the orange object",
+"grasp the orange object \u2014 FAILED: the gripper closed on nothing; the orange object is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the orange object",
+"B": "move the orange object over the takeaway pack",
+"C": "lower the orange object and release it in the takeaway pack",
+"D": "grasp the orange object"
+},
+"truth": "D"
+},
+{
+"id": 346,
+"type": "post_failure",
+"task": "Put the wooden block in the clear cup.",
+"x": "wooden block",
+"y": "clear cup",
+"k": 3,
+"steps_completed": [
+"locate the wooden block",
+"move the gripper above the wooden block",
+"grasp the wooden block \u2014 FAILED: the gripper closed on nothing; the wooden block is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the wooden block",
+"B": "lower the wooden block and release it in the clear cup",
+"C": "lift the wooden block",
+"D": "move the wooden block over the clear cup"
+},
+"truth": "A"
+},
+{
+"id": 347,
+"type": "post_failure",
+"task": "Put the hanger on the countertop",
+"x": "hanger",
+"y": "countertop",
+"k": 3,
+"steps_completed": [
+"locate the hanger",
+"move the gripper above the hanger",
+"grasp the hanger \u2014 FAILED: the gripper closed on nothing; the hanger is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the hanger",
+"B": "grasp the hanger",
+"C": "move the hanger over the countertop",
+"D": "lower the hanger and release it on the countertop"
+},
+"truth": "B"
+},
+{
+"id": 348,
+"type": "post_failure",
+"task": "Put one red sachet on the counter",
+"x": "one red sachet",
+"y": "counter",
+"k": 3,
+"steps_completed": [
+"locate the one red sachet",
+"move the gripper above the one red sachet",
+"grasp the one red sachet \u2014 FAILED: the gripper closed on nothing; the one red sachet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the one red sachet",
+"B": "lower the one red sachet and release it on the counter",
+"C": "lift the one red sachet",
+"D": "move the one red sachet over the counter"
+},
+"truth": "A"
+},
+{
+"id": 349,
+"type": "post_failure",
+"task": "Place the orange block horizontally on the green block",
+"x": "orange block horizontally",
+"y": "green block",
+"k": 3,
+"steps_completed": [
+"locate the orange block horizontally",
+"move the gripper above the orange block horizontally",
+"grasp the orange block horizontally \u2014 FAILED: the gripper closed on nothing; the orange block horizontally is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the orange block horizontally and release it on the green block",
+"B": "lift the orange block horizontally",
+"C": "move the orange block horizontally over the green block",
+"D": "grasp the orange block horizontally"
+},
+"truth": "D"
+},
+{
+"id": 350,
+"type": "post_failure",
+"task": "Put the brown sachet in the bowl",
+"x": "brown sachet",
+"y": "bowl",
+"k": 3,
+"steps_completed": [
+"locate the brown sachet",
+"move the gripper above the brown sachet",
+"grasp the brown sachet \u2014 FAILED: the gripper closed on nothing; the brown sachet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the brown sachet",
+"B": "lift the brown sachet",
+"C": "lower the brown sachet and release it in the bowl",
+"D": "move the brown sachet over the bowl"
+},
+"truth": "A"
+},
+{
+"id": 351,
+"type": "post_failure",
+"task": "Put the white item on the countertop in the basket",
+"x": "white item",
+"y": "countertop in the basket",
+"k": 3,
+"steps_completed": [
+"locate the white item",
+"move the gripper above the white item",
+"grasp the white item \u2014 FAILED: the gripper closed on nothing; the white item is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the white item",
+"B": "move the white item over the countertop in the basket",
+"C": "lower the white item and release it on the countertop in the basket",
+"D": "lift the white item"
+},
+"truth": "A"
+},
+{
+"id": 352,
+"type": "post_failure",
+"task": "Put the blue bowl on the white bowl",
+"x": "blue bowl",
+"y": "white bowl",
+"k": 3,
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl \u2014 FAILED: the gripper closed on nothing; the blue bowl is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the blue bowl",
+"B": "lift the blue bowl",
+"C": "move the blue bowl over the white bowl",
+"D": "lower the blue bowl and release it on the white bowl"
+},
+"truth": "A"
+},
+{
+"id": 353,
+"type": "post_failure",
+"task": "Put the wooden spoon in the pot",
+"x": "wooden spoon",
+"y": "pot",
+"k": 3,
+"steps_completed": [
+"locate the wooden spoon",
+"move the gripper above the wooden spoon",
+"grasp the wooden spoon \u2014 FAILED: the gripper closed on nothing; the wooden spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the wooden spoon",
+"B": "lift the wooden spoon",
+"C": "move the wooden spoon over the pot",
+"D": "lower the wooden spoon and release it in the pot"
+},
+"truth": "A"
+},
+{
+"id": 354,
+"type": "post_failure",
+"task": "Put one stirrer on the counter",
+"x": "one stirrer",
+"y": "counter",
+"k": 3,
+"steps_completed": [
+"locate the one stirrer",
+"move the gripper above the one stirrer",
+"grasp the one stirrer \u2014 FAILED: the gripper closed on nothing; the one stirrer is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the one stirrer and release it on the counter",
+"B": "grasp the one stirrer",
+"C": "lift the one stirrer",
+"D": "move the one stirrer over the counter"
+},
+"truth": "B"
+},
+{
+"id": 355,
+"type": "post_failure",
+"task": "Put the cup on the plate",
+"x": "cup",
+"y": "plate",
+"k": 3,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 FAILED: the gripper closed on nothing; the cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the cup and release it on the plate",
+"B": "lift the cup",
+"C": "grasp the cup",
+"D": "move the cup over the plate"
+},
+"truth": "C"
+},
+{
+"id": 356,
+"type": "post_failure",
+"task": "Put the spoon inside the drawer",
+"x": "spoon",
+"y": "drawer",
+"k": 3,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 FAILED: the gripper closed on nothing; the spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the spoon",
+"B": "move the spoon over the drawer",
+"C": "lift the spoon",
+"D": "lower the spoon and release it in the drawer"
+},
+"truth": "A"
+},
+{
+"id": 357,
+"type": "post_failure",
+"task": "Put the box of crayons on top of the dresser",
+"x": "box of crayons",
+"y": "top of the dresser",
+"k": 3,
+"steps_completed": [
+"locate the box of crayons",
+"move the gripper above the box of crayons",
+"grasp the box of crayons \u2014 FAILED: the gripper closed on nothing; the box of crayons is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the box of crayons",
+"B": "lower the box of crayons and release it on the top of the dresser",
+"C": "move the box of crayons over the top of the dresser",
+"D": "grasp the box of crayons"
+},
+"truth": "D"
+},
+{
+"id": 358,
+"type": "post_failure",
+"task": "Place the spoon in the coffee container",
+"x": "spoon",
+"y": "coffee container",
+"k": 3,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 FAILED: the gripper closed on nothing; the spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the spoon and release it in the coffee container",
+"B": "lift the spoon",
+"C": "grasp the spoon",
+"D": "move the spoon over the coffee container"
+},
+"truth": "C"
+},
+{
+"id": 359,
+"type": "post_failure",
+"task": "Put the small pink object into the white bowl",
+"x": "small pink object",
+"y": "white bowl",
+"k": 3,
+"steps_completed": [
+"locate the small pink object",
+"move the gripper above the small pink object",
+"grasp the small pink object \u2014 FAILED: the gripper closed on nothing; the small pink object is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the small pink object and release it in the white bowl",
+"B": "lift the small pink object",
+"C": "move the small pink object over the white bowl",
+"D": "grasp the small pink object"
+},
+"truth": "D"
+},
+{
+"id": 360,
+"type": "post_failure",
+"task": "Put the white plate in the blue bowl.",
+"x": "white plate",
+"y": "blue bowl",
+"k": 3,
+"steps_completed": [
+"locate the white plate",
+"move the gripper above the white plate",
+"grasp the white plate \u2014 FAILED: the gripper closed on nothing; the white plate is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the white plate over the blue bowl",
+"B": "lower the white plate and release it in the blue bowl",
+"C": "grasp the white plate",
+"D": "lift the white plate"
+},
+"truth": "C"
+},
+{
+"id": 361,
+"type": "post_failure",
+"task": "Place the remote on the yellow cushion",
+"x": "remote",
+"y": "yellow cushion",
+"k": 3,
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 FAILED: the gripper closed on nothing; the remote is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the remote",
+"B": "move the remote over the yellow cushion",
+"C": "lower the remote and release it on the yellow cushion",
+"D": "grasp the remote"
+},
+"truth": "D"
+},
+{
+"id": 362,
+"type": "post_failure",
+"task": "Put the blue Doritos pack in the left sink",
+"x": "blue doritos pack",
+"y": "left sink",
+"k": 3,
+"steps_completed": [
+"locate the blue doritos pack",
+"move the gripper above the blue doritos pack",
+"grasp the blue doritos pack \u2014 FAILED: the gripper closed on nothing; the blue doritos pack is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the blue doritos pack",
+"B": "move the blue doritos pack over the left sink",
+"C": "lower the blue doritos pack and release it in the left sink",
+"D": "grasp the blue doritos pack"
+},
+"truth": "D"
+},
+{
+"id": 363,
+"type": "post_failure",
+"task": "Put the black marker in the brown mug.",
+"x": "black marker",
+"y": "brown mug",
+"k": 3,
+"steps_completed": [
+"locate the black marker",
+"move the gripper above the black marker",
+"grasp the black marker \u2014 FAILED: the gripper closed on nothing; the black marker is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the black marker and release it in the brown mug",
+"B": "lift the black marker",
+"C": "move the black marker over the brown mug",
+"D": "grasp the black marker"
+},
+"truth": "D"
+},
+{
+"id": 364,
+"type": "post_failure",
+"task": "Put the orange packet in the bowl",
+"x": "orange packet",
+"y": "bowl",
+"k": 3,
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 FAILED: the gripper closed on nothing; the orange packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the orange packet over the bowl",
+"B": "lift the orange packet",
+"C": "grasp the orange packet",
+"D": "lower the orange packet and release it in the bowl"
+},
+"truth": "C"
+},
+{
+"id": 365,
+"type": "post_failure",
+"task": "Put the white object on the rack",
+"x": "white object",
+"y": "rack",
+"k": 3,
+"steps_completed": [
+"locate the white object",
+"move the gripper above the white object",
+"grasp the white object \u2014 FAILED: the gripper closed on nothing; the white object is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the white object",
+"B": "move the white object over the rack",
+"C": "lift the white object",
+"D": "lower the white object and release it on the rack"
+},
+"truth": "A"
+},
+{
+"id": 366,
+"type": "post_failure",
+"task": "Put the small plastic into the storage bin",
+"x": "small plastic",
+"y": "storage bin",
+"k": 3,
+"steps_completed": [
+"locate the small plastic",
+"move the gripper above the small plastic",
+"grasp the small plastic \u2014 FAILED: the gripper closed on nothing; the small plastic is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the small plastic over the storage bin",
+"B": "lift the small plastic",
+"C": "lower the small plastic and release it in the storage bin",
+"D": "grasp the small plastic"
+},
+"truth": "D"
+},
+{
+"id": 367,
+"type": "post_failure",
+"task": "Place the silver fork on the white plate.",
+"x": "silver fork",
+"y": "white plate",
+"k": 3,
+"steps_completed": [
+"locate the silver fork",
+"move the gripper above the silver fork",
+"grasp the silver fork \u2014 FAILED: the gripper closed on nothing; the silver fork is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the silver fork and release it on the white plate",
+"B": "move the silver fork over the white plate",
+"C": "grasp the silver fork",
+"D": "lift the silver fork"
+},
+"truth": "C"
+},
+{
+"id": 368,
+"type": "post_failure",
+"task": "Put the brown sachet in the middle shelf",
+"x": "brown sachet",
+"y": "middle shelf",
+"k": 3,
+"steps_completed": [
+"locate the brown sachet",
+"move the gripper above the brown sachet",
+"grasp the brown sachet \u2014 FAILED: the gripper closed on nothing; the brown sachet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the brown sachet",
+"B": "lift the brown sachet",
+"C": "move the brown sachet over the middle shelf",
+"D": "lower the brown sachet and release it in the middle shelf"
+},
+"truth": "A"
+},
+{
+"id": 369,
+"type": "post_failure",
+"task": "Put the grey remote control on the nightstand.",
+"x": "grey remote control",
+"y": "nightstand",
+"k": 3,
+"steps_completed": [
+"locate the grey remote control",
+"move the gripper above the grey remote control",
+"grasp the grey remote control \u2014 FAILED: the gripper closed on nothing; the grey remote control is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the grey remote control",
+"B": "lower the grey remote control and release it on the nightstand",
+"C": "lift the grey remote control",
+"D": "move the grey remote control over the nightstand"
+},
+"truth": "A"
+},
+{
+"id": 370,
+"type": "post_failure",
+"task": "Put the blue measuring spoon in the dark blue bowl",
+"x": "blue measuring spoon",
+"y": "dark blue bowl",
+"k": 3,
+"steps_completed": [
+"locate the blue measuring spoon",
+"move the gripper above the blue measuring spoon",
+"grasp the blue measuring spoon \u2014 FAILED: the gripper closed on nothing; the blue measuring spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the blue measuring spoon and release it in the dark blue bowl",
+"B": "lift the blue measuring spoon",
+"C": "move the blue measuring spoon over the dark blue bowl",
+"D": "grasp the blue measuring spoon"
+},
+"truth": "D"
+},
+{
+"id": 371,
+"type": "post_failure",
+"task": "Put the white object inside the coffee machine",
+"x": "white object",
+"y": "coffee machine",
+"k": 3,
+"steps_completed": [
+"locate the white object",
+"move the gripper above the white object",
+"grasp the white object \u2014 FAILED: the gripper closed on nothing; the white object is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the white object and release it in the coffee machine",
+"B": "grasp the white object",
+"C": "lift the white object",
+"D": "move the white object over the coffee machine"
+},
+"truth": "B"
+},
+{
+"id": 372,
+"type": "post_failure",
+"task": "Put the snickers bar inside the sink",
+"x": "snickers bar",
+"y": "sink",
+"k": 3,
+"steps_completed": [
+"locate the snickers bar",
+"move the gripper above the snickers bar",
+"grasp the snickers bar \u2014 FAILED: the gripper closed on nothing; the snickers bar is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the snickers bar and release it in the sink",
+"B": "lift the snickers bar",
+"C": "move the snickers bar over the sink",
+"D": "grasp the snickers bar"
+},
+"truth": "D"
+},
+{
+"id": 373,
+"type": "post_failure",
+"task": "Put the cup on the coffee machine",
+"x": "cup",
+"y": "coffee machine",
+"k": 3,
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 FAILED: the gripper closed on nothing; the cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the cup",
+"B": "move the cup over the coffee machine",
+"C": "lower the cup and release it on the coffee machine",
+"D": "lift the cup"
+},
+"truth": "A"
+},
+{
+"id": 374,
+"type": "post_failure",
+"task": "Put the green sachet in the top cabinet",
+"x": "green sachet",
+"y": "top cabinet",
+"k": 3,
+"steps_completed": [
+"locate the green sachet",
+"move the gripper above the green sachet",
+"grasp the green sachet \u2014 FAILED: the gripper closed on nothing; the green sachet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the green sachet over the top cabinet",
+"B": "grasp the green sachet",
+"C": "lower the green sachet and release it in the top cabinet",
+"D": "lift the green sachet"
+},
+"truth": "B"
+},
+{
+"id": 375,
+"type": "post_failure",
+"task": "Put the green marker in the clear cup.",
+"x": "green marker",
+"y": "clear cup",
+"k": 3,
+"steps_completed": [
+"locate the green marker",
+"move the gripper above the green marker",
+"grasp the green marker \u2014 FAILED: the gripper closed on nothing; the green marker is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the green marker",
+"B": "move the green marker over the clear cup",
+"C": "grasp the green marker",
+"D": "lower the green marker and release it in the clear cup"
+},
+"truth": "C"
+},
+{
+"id": 376,
+"type": "post_failure",
+"task": "Put the black snack pack in the top cabinet",
+"x": "black snack pack",
+"y": "top cabinet",
+"k": 3,
+"steps_completed": [
+"locate the black snack pack",
+"move the gripper above the black snack pack",
+"grasp the black snack pack \u2014 FAILED: the gripper closed on nothing; the black snack pack is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the black snack pack over the top cabinet",
+"B": "lower the black snack pack and release it in the top cabinet",
+"C": "lift the black snack pack",
+"D": "grasp the black snack pack"
+},
+"truth": "D"
+},
+{
+"id": 377,
+"type": "post_failure",
+"task": "Put the mug cup in the sink",
+"x": "mug cup",
+"y": "sink",
+"k": 3,
+"steps_completed": [
+"locate the mug cup",
+"move the gripper above the mug cup",
+"grasp the mug cup \u2014 FAILED: the gripper closed on nothing; the mug cup is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the mug cup and release it in the sink",
+"B": "grasp the mug cup",
+"C": "lift the mug cup",
+"D": "move the mug cup over the sink"
+},
+"truth": "B"
+},
+{
+"id": 378,
+"type": "post_failure",
+"task": "Put the paper towel roll on its holder",
+"x": "paper towel roll",
+"y": "its holder",
+"k": 3,
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll",
+"grasp the paper towel roll \u2014 FAILED: the gripper closed on nothing; the paper towel roll is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the paper towel roll",
+"B": "move the paper towel roll over the its holder",
+"C": "lower the paper towel roll and release it on the its holder",
+"D": "grasp the paper towel roll"
+},
+"truth": "D"
+},
+{
+"id": 379,
+"type": "post_failure",
+"task": "Put the left plate on the right plate",
+"x": "left plate",
+"y": "right plate",
+"k": 3,
+"steps_completed": [
+"locate the left plate",
+"move the gripper above the left plate",
+"grasp the left plate \u2014 FAILED: the gripper closed on nothing; the left plate is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the left plate and release it on the right plate",
+"B": "grasp the left plate",
+"C": "move the left plate over the right plate",
+"D": "lift the left plate"
+},
+"truth": "B"
+},
+{
+"id": 380,
+"type": "post_failure",
+"task": "Put the apple in the bowl.",
+"x": "apple",
+"y": "bowl",
+"k": 3,
+"steps_completed": [
+"locate the apple",
+"move the gripper above the apple",
+"grasp the apple \u2014 FAILED: the gripper closed on nothing; the apple is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the apple",
+"B": "grasp the apple",
+"C": "move the apple over the bowl",
+"D": "lower the apple and release it in the bowl"
+},
+"truth": "B"
+},
+{
+"id": 381,
+"type": "post_failure",
+"task": "Put the jar on the table",
+"x": "jar",
+"y": "table",
+"k": 3,
+"steps_completed": [
+"locate the jar",
+"move the gripper above the jar",
+"grasp the jar \u2014 FAILED: the gripper closed on nothing; the jar is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the jar and release it on the table",
+"B": "move the jar over the table",
+"C": "grasp the jar",
+"D": "lift the jar"
+},
+"truth": "C"
+},
+{
+"id": 382,
+"type": "post_failure",
+"task": "Put the wrapper in the bin",
+"x": "wrapper",
+"y": "bin",
+"k": 3,
+"steps_completed": [
+"locate the wrapper",
+"move the gripper above the wrapper",
+"grasp the wrapper \u2014 FAILED: the gripper closed on nothing; the wrapper is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the wrapper",
+"B": "move the wrapper over the bin",
+"C": "lower the wrapper and release it in the bin",
+"D": "grasp the wrapper"
+},
+"truth": "D"
+},
+{
+"id": 383,
+"type": "post_failure",
+"task": "Put the chocolate bar inside the sink",
+"x": "chocolate bar",
+"y": "sink",
+"k": 3,
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 FAILED: the gripper closed on nothing; the chocolate bar is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the chocolate bar",
+"B": "move the chocolate bar over the sink",
+"C": "lower the chocolate bar and release it in the sink",
+"D": "grasp the chocolate bar"
+},
+"truth": "D"
+},
+{
+"id": 384,
+"type": "post_failure",
+"task": "Place the orange object into the packet",
+"x": "orange object",
+"y": "packet",
+"k": 3,
+"steps_completed": [
+"locate the orange object",
+"move the gripper above the orange object",
+"grasp the orange object \u2014 FAILED: the gripper closed on nothing; the orange object is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the orange object over the packet",
+"B": "grasp the orange object",
+"C": "lift the orange object",
+"D": "lower the orange object and release it in the packet"
+},
+"truth": "B"
+},
+{
+"id": 385,
+"type": "post_failure",
+"task": "Put the coffee pod on the bin",
+"x": "coffee pod",
+"y": "bin",
+"k": 3,
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 FAILED: the gripper closed on nothing; the coffee pod is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the coffee pod and release it on the bin",
+"B": "move the coffee pod over the bin",
+"C": "lift the coffee pod",
+"D": "grasp the coffee pod"
+},
+"truth": "D"
+},
+{
+"id": 386,
+"type": "post_failure",
+"task": "Place the coffee pod inside the coffee maker",
+"x": "coffee pod",
+"y": "coffee maker",
+"k": 3,
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 FAILED: the gripper closed on nothing; the coffee pod is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the coffee pod and release it in the coffee maker",
+"B": "grasp the coffee pod",
+"C": "move the coffee pod over the coffee maker",
+"D": "lift the coffee pod"
+},
+"truth": "B"
+},
+{
+"id": 387,
+"type": "post_failure",
+"task": "Put one yellow sachet in the left cup",
+"x": "one yellow sachet",
+"y": "left cup",
+"k": 3,
+"steps_completed": [
+"locate the one yellow sachet",
+"move the gripper above the one yellow sachet",
+"grasp the one yellow sachet \u2014 FAILED: the gripper closed on nothing; the one yellow sachet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the one yellow sachet",
+"B": "move the one yellow sachet over the left cup",
+"C": "lower the one yellow sachet and release it in the left cup",
+"D": "lift the one yellow sachet"
+},
+"truth": "A"
+},
+{
+"id": 388,
+"type": "post_failure",
+"task": "Put one piece of paper in the left bin",
+"x": "one piece of paper",
+"y": "left bin",
+"k": 3,
+"steps_completed": [
+"locate the one piece of paper",
+"move the gripper above the one piece of paper",
+"grasp the one piece of paper \u2014 FAILED: the gripper closed on nothing; the one piece of paper is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the one piece of paper and release it in the left bin",
+"B": "move the one piece of paper over the left bin",
+"C": "grasp the one piece of paper",
+"D": "lift the one piece of paper"
+},
+"truth": "C"
+},
+{
+"id": 389,
+"type": "post_failure",
+"task": "Put the square block on the right in the box",
+"x": "square block",
+"y": "right in the box",
+"k": 3,
+"steps_completed": [
+"locate the square block",
+"move the gripper above the square block",
+"grasp the square block \u2014 FAILED: the gripper closed on nothing; the square block is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the square block over the right in the box",
+"B": "lower the square block and release it on the right in the box",
+"C": "grasp the square block",
+"D": "lift the square block"
+},
+"truth": "C"
+},
+{
+"id": 390,
+"type": "post_failure",
+"task": "Put the coffee pod on the counter in the coffeemaker.",
+"x": "coffee pod",
+"y": "counter in the coffeemaker",
+"k": 3,
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 FAILED: the gripper closed on nothing; the coffee pod is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the coffee pod",
+"B": "lift the coffee pod",
+"C": "lower the coffee pod and release it on the counter in the coffeemaker",
+"D": "move the coffee pod over the counter in the coffeemaker"
+},
+"truth": "A"
+},
+{
+"id": 391,
+"type": "post_failure",
+"task": "Put the stick inside the white mug",
+"x": "stick",
+"y": "white mug",
+"k": 3,
+"steps_completed": [
+"locate the stick",
+"move the gripper above the stick",
+"grasp the stick \u2014 FAILED: the gripper closed on nothing; the stick is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the stick over the white mug",
+"B": "grasp the stick",
+"C": "lift the stick",
+"D": "lower the stick and release it in the white mug"
+},
+"truth": "B"
+},
+{
+"id": 392,
+"type": "post_failure",
+"task": "Put the biggest mug piece in the broken cup",
+"x": "biggest mug piece",
+"y": "broken cup",
+"k": 3,
+"steps_completed": [
+"locate the biggest mug piece",
+"move the gripper above the biggest mug piece",
+"grasp the biggest mug piece \u2014 FAILED: the gripper closed on nothing; the biggest mug piece is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the biggest mug piece over the broken cup",
+"B": "lift the biggest mug piece",
+"C": "lower the biggest mug piece and release it in the broken cup",
+"D": "grasp the biggest mug piece"
+},
+"truth": "D"
+},
+{
+"id": 393,
+"type": "post_failure",
+"task": "Put the bowl on the counter",
+"x": "bowl",
+"y": "counter",
+"k": 3,
+"steps_completed": [
+"locate the bowl",
+"move the gripper above the bowl",
+"grasp the bowl \u2014 FAILED: the gripper closed on nothing; the bowl is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the bowl",
+"B": "lift the bowl",
+"C": "lower the bowl and release it on the counter",
+"D": "move the bowl over the counter"
+},
+"truth": "A"
+},
+{
+"id": 394,
+"type": "post_failure",
+"task": "Put the green sachet in the box",
+"x": "green sachet",
+"y": "box",
+"k": 3,
+"steps_completed": [
+"locate the green sachet",
+"move the gripper above the green sachet",
+"grasp the green sachet \u2014 FAILED: the gripper closed on nothing; the green sachet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the green sachet",
+"B": "lift the green sachet",
+"C": "lower the green sachet and release it in the box",
+"D": "move the green sachet over the box"
+},
+"truth": "A"
+},
+{
+"id": 395,
+"type": "post_failure",
+"task": "Put the black object in the white mug",
+"x": "black object",
+"y": "white mug",
+"k": 3,
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 FAILED: the gripper closed on nothing; the black object is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lift the black object",
+"B": "move the black object over the white mug",
+"C": "lower the black object and release it in the white mug",
+"D": "grasp the black object"
+},
+"truth": "D"
+},
+{
+"id": 396,
+"type": "post_failure",
+"task": "Put the spoon in the transparent bowl",
+"x": "spoon",
+"y": "transparent bowl",
+"k": 3,
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 FAILED: the gripper closed on nothing; the spoon is still in place directly below the gripper"
+],
+"candidates": {
+"A": "move the spoon over the transparent bowl",
+"B": "grasp the spoon",
+"C": "lower the spoon and release it in the transparent bowl",
+"D": "lift the spoon"
+},
+"truth": "B"
+},
+{
+"id": 397,
+"type": "post_failure",
+"task": "Put the green packet in the bowl",
+"x": "green packet",
+"y": "bowl",
+"k": 3,
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 FAILED: the gripper closed on nothing; the green packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "lower the green packet and release it in the bowl",
+"B": "move the green packet over the bowl",
+"C": "grasp the green packet",
+"D": "lift the green packet"
+},
+"truth": "C"
+},
+{
+"id": 398,
+"type": "post_failure",
+"task": "Put the orange bottle on the plate to the right",
+"x": "orange bottle",
+"y": "plate to the right",
+"k": 3,
+"steps_completed": [
+"locate the orange bottle",
+"move the gripper above the orange bottle",
+"grasp the orange bottle \u2014 FAILED: the gripper closed on nothing; the orange bottle is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the orange bottle",
+"B": "lift the orange bottle",
+"C": "move the orange bottle over the plate to the right",
+"D": "lower the orange bottle and release it on the plate to the right"
+},
+"truth": "A"
+},
+{
+"id": 399,
+"type": "post_failure",
+"task": "Put the packet in the black bowl.",
+"x": "packet",
+"y": "black bowl",
+"k": 3,
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 FAILED: the gripper closed on nothing; the packet is still in place directly below the gripper"
+],
+"candidates": {
+"A": "grasp the packet",
+"B": "move the packet over the black bowl",
+"C": "lower the packet and release it in the black bowl",
+"D": "lift the packet"
+},
+"truth": "A"
+}
+]

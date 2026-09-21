@@ -1,0 +1,37 @@
+{
+ "part_in_tray": {
+  "n": 14276,
+  "pos": 1322,
+  "pruned": 0,
+  "model": 0.9945794463687055,
+  "geometry": 0.9910066388760228,
+  "per_predicate": {
+   "inside": 0.9951839944764402,
+   "contained in": 0.9534687152047615
+  }
+ },
+ "part_on_lid": {
+  "n": 1473,
+  "pos": 20,
+  "pruned": 0,
+  "model": 0.9731933929800413,
+  "geometry": 0.9769442532690984,
+  "per_predicate": {
+   "on top of": 0.9737439779766002,
+   "on": 0.9797660013764625,
+   "resting on": 0.8829318651066759
+  }
+ },
+ "gripper_holding_part": {
+  "n": 3569,
+  "pos": 228,
+  "pruned": 0,
+  "model": 0.980380650818906,
+  "geometry": 0.9947830516128694,
+  "per_predicate": {
+   "holding": 0.9803727741982913,
+   "gripping": 0.9322439967023215,
+   "carrying": 0.9874643582917185
+  }
+ }
+}

@@ -1,0 +1,26 @@
+# RLCD use cases in robotics — the long form
+
+An RLCD model (reinforcement learning from calibrated decisions; TypeSafe's System One models, Jev first) answers a typed question — a choice among code-written options, a yes/no, a score — with a calibrated probability, in about 0.1 s, for about a hundredth of a cent. The design rule that held across every experiment here: **code owns arithmetic, geometry, order, waits, safety and when to ask; the model answers narrow literal questions; probabilities are used as probabilities.** Each row says what code owns, what the model decides, and what we measured.
+
+| use case | where in the loop | code owns | the model decides | measured | status |
+|---|---|---|---|---|---|
+| Judgment over the policy's options | the judge's seat, every 0.1–1 s | the option list, the executor, safety | which option, how sure | drone: 10 → 98 % clean crossings (E68); cell: 87.1 vs 79.2 % rules (E71); at the perception ceiling 89.3 of 89.9 % on 200 seeds (E82) | measured |
+| Handoff trigger | governor | τ, cooldown, what happens during handoff | how sure it is | contact −95 % at 18 % operator time; dominates a geometric proxy (E69) | measured |
+| Confirm window | governor ↔ operator | the 1 s window, the veto, what a veto does | which proposal | same violations at 63–66 % of the ask's operator time; 27 % vetoed (Jev) vs 38 % (open 27B) (E88, D4d) | measured |
+| Unflagged-surprise gate | governor | τ | confidence in its own choice | rules 12.5 %, judge 50 %, gated 75 %; the gate gives the open model +20 of its 21 gated handles (E83, D4e) | measured |
+| Notes → categories | facts layer | binding per part, precedence, arithmetic | closed-set extraction of a note's conditions, once | reaches the ceiling; zero broken parts in 200 episodes (E79, E82) | measured |
+| Vocabulary from uncertainty | offline, on logs | validation on held-out items | which proposed category resolves a split | 21 of 42 held-out disengagement reports resolved vs 1 of 42 by re-asking (E60–E63) | measured |
+| Owned on-device head | the judge's seat, on the robot | distillation, fallback, safety | the same choices as the teacher | 88.3 vs 87.9 % on held-out seeds, paired +0.4; 90 ms; plain soft CE beats the RLCD recipe by 4.6; label-only logs lose the ranking (E90–E91c) | measured |
+| Annotator of teleop hours | offline, on episodes | the label rule, the facts | boundaries; sub-action labels | boundaries 92 / 96 % recall / precision; labels 70 % vs a rule's 75 %; consistency 98 %; checkpoint-independent (E89, E89c) | measured |
+| Code-owned safety rules found by the loop | governor | the rule | nothing — the failure named it | set-down-before-pause: broken parts .17 → 0, +2.1 to +4.2 points, every judge (E92) | measured |
+| Dispatch by expected cost | fleet level | the cost arithmetic | failure probabilities per robot | ties a constant always-autonomous policy on real fleet data (E53) | negative |
+| Critic of planner steps | planning | the progress criterion | veto | one veto → reason → re-plan round: 54.7 → 54.0 % with a 7B planner (E67) | negative |
+| Perception seam | facts layer | region extraction | "is it holding the right object" | single frames cannot separate place from drop; identity over time is the wall (E64, E85–E87) | negative |
+| Shadow scoring of the teleop stream | offline, on sessions | everything; nothing acts | what it would have decided at every takeover | not run: the recipe is in `RECIPE.md`; cost ≈ 2 cents per 300-decision session | idea |
+| Every veto is a label | confirm window → data loop | the log | – | not run: the E88 confirm records carry the veto flag already | idea |
+| Conflict detector | facts layer | which facts can disagree | ask vs act | partly: the `marking_conflict` and `qa_sticker` types (D4e) | idea |
+| Trainability scorer | data loop | the ground truth of "clean" | episode score | AUROC .63–.70 on 20 episodes (E89, E89c) | weak signal |
+| Grasp-manner head | executor parameters | the placement skill | gentle or normal | asked in parallel with every choice; never the bottleneck | measured implicitly |
+| Criteria evolution from operator labels | prompt level | the loop | – | not run (jev-align pattern) | idea |
+| The person in the room | governor, on a second body (MicroDuck) | the walking policy, the distance bands, the door, the confirm window | walk, slow, stop, wait, turn away, ask | judge 75 % goal vs rules 98 %; 19 vs 3 near-contacts; confirm window .10 violations at 60 % of the gate's operator time; τ and calibration did not transfer (E93, E93b) | negative with mechanism |
+| Frontier model as translator | facts layer, once | the tracker per frame | naming the world | the layered recipe follows from E85 (a claw is boxed 88 % when named by appearance, 0 % as "gripper") | idea |

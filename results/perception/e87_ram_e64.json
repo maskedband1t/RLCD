@@ -1,0 +1,824 @@
+{
+ "t01_rel.jpg": {
+  "gripper": true,
+  "n_obj": 6,
+  "feat": {
+   "hold_max": 0.1479735064609718,
+   "heldby_max": 0.036344944247116956,
+   "below_max": 0.015826531092372195,
+   "touch_max": 0.08088156343329071,
+   "pairs_scored": 42
+  }
+ },
+ "t02_rel.jpg": {
+  "gripper": false,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t03_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.13071713007143704,
+   "heldby_max": 0.017180115007673177,
+   "below_max": 0.009879282531151083,
+   "touch_max": 0.03640444993973491,
+   "pairs_scored": 72
+  }
+ },
+ "t04_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.27006812209998265,
+   "heldby_max": 0.12006212792352641,
+   "below_max": 0.11169970165943853,
+   "touch_max": 0.10231264144697402,
+   "pairs_scored": 12
+  }
+ },
+ "t05_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.7880034075053527,
+   "heldby_max": 0.09512069632060269,
+   "below_max": 0.07326862588177556,
+   "touch_max": 0.021001863208437367,
+   "pairs_scored": 6
+  }
+ },
+ "t06_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.6058569285957439,
+   "heldby_max": 0.1356458082908669,
+   "below_max": 0.062316763084557705,
+   "touch_max": 0.20290191740023844,
+   "pairs_scored": 6
+  }
+ },
+ "t07_rel.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.19154282447328785,
+   "heldby_max": 0.0910736816031682,
+   "below_max": 0.07183164298401208,
+   "touch_max": 0.3024682314179708,
+   "pairs_scored": 2
+  }
+ },
+ "t08_rel.jpg": {
+  "gripper": false,
+  "n_obj": 1,
+  "feat": null
+ },
+ "t09_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.19516144244416722,
+   "heldby_max": 0.055201336076663256,
+   "below_max": 0.023784294670480745,
+   "touch_max": 0.16324475959669627,
+   "pairs_scored": 12
+  }
+ },
+ "t10_rel.jpg": {
+  "gripper": false,
+  "n_obj": 2,
+  "feat": null
+ },
+ "t11_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.11604059436475578,
+   "heldby_max": 0.05142549616437515,
+   "below_max": 0.03617386845449454,
+   "touch_max": 0.20768922225150935,
+   "pairs_scored": 12
+  }
+ },
+ "t12_rel.jpg": {
+  "gripper": false,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t13_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t14_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t15_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.33455259407325405,
+   "heldby_max": 0.1138073164599708,
+   "below_max": 0.1845225720201473,
+   "touch_max": 0.03869758228616437,
+   "pairs_scored": 6
+  }
+ },
+ "t16_rel.jpg": {
+  "gripper": false,
+  "n_obj": 1,
+  "feat": null
+ },
+ "t17_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t18_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.09601337824778562,
+   "heldby_max": 0.062199062109406004,
+   "below_max": 0.02141995134200799,
+   "touch_max": 0.04975168735220809,
+   "pairs_scored": 6
+  }
+ },
+ "t19_rel.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.14928998800247165,
+   "heldby_max": 0.08244640053255102,
+   "below_max": 0.08539707174115438,
+   "touch_max": 0.22766308920788375,
+   "pairs_scored": 2
+  }
+ },
+ "t20_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.05558452132932835,
+   "heldby_max": 0.018346133330659466,
+   "below_max": 0.01230459846706157,
+   "touch_max": 0.05746821903002084,
+   "pairs_scored": 72
+  }
+ },
+ "t21_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.22312436252167578,
+   "heldby_max": 0.11865827014869809,
+   "below_max": 0.28513909965034845,
+   "touch_max": 0.17479027606465244,
+   "pairs_scored": 12
+  }
+ },
+ "t22_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t23_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t24_rel.jpg": {
+  "gripper": false,
+  "n_obj": 3,
+  "feat": null
+ },
+ "t25_rel.jpg": {
+  "gripper": false,
+  "n_obj": 8,
+  "feat": null
+ },
+ "t26_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t27_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.6795875363784963,
+   "heldby_max": 0.08728877407993005,
+   "below_max": 0.04763181381297169,
+   "touch_max": 0.01985291628373842,
+   "pairs_scored": 6
+  }
+ },
+ "t28_rel.jpg": {
+  "gripper": true,
+  "n_obj": 4,
+  "feat": {
+   "hold_max": 0.4572852496142435,
+   "heldby_max": 0.13637686393806053,
+   "below_max": 0.3476824638993098,
+   "touch_max": 0.21413983030184597,
+   "pairs_scored": 20
+  }
+ },
+ "t29_rel.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.23036067433218496,
+   "heldby_max": 0.11908849190869567,
+   "below_max": 0.036704649567038415,
+   "touch_max": 0.03073405716927811,
+   "pairs_scored": 2
+  }
+ },
+ "t30_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.17788609886194204,
+   "heldby_max": 0.03457053651235661,
+   "below_max": 0.2576080983539217,
+   "touch_max": 0.18045304820643718,
+   "pairs_scored": 72
+  }
+ },
+ "t31_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.24881785235770681,
+   "heldby_max": 0.10313358409382607,
+   "below_max": 0.03654440895198972,
+   "touch_max": 0.048310383050784916,
+   "pairs_scored": 12
+  }
+ },
+ "t32_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.3043357627471798,
+   "heldby_max": 0.04864775829194339,
+   "below_max": 0.3677211936697841,
+   "touch_max": 0.15518588337980074,
+   "pairs_scored": 72
+  }
+ },
+ "t33_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t34_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.5397536597089854,
+   "heldby_max": 0.12157414452751057,
+   "below_max": 0.14382036594310613,
+   "touch_max": 0.21005142868513105,
+   "pairs_scored": 12
+  }
+ },
+ "t35_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.4587866551691953,
+   "heldby_max": 0.10278832011289,
+   "below_max": 0.08122645326088819,
+   "touch_max": 0.36795046075176513,
+   "pairs_scored": 12
+  }
+ },
+ "t36_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.30625372308798776,
+   "heldby_max": 0.061999403903162276,
+   "below_max": 0.0451446227996478,
+   "touch_max": 0.27718636748697856,
+   "pairs_scored": 72
+  }
+ },
+ "t37_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.056166863101402995,
+   "heldby_max": 0.08546372321501662,
+   "below_max": 0.024422512306821728,
+   "touch_max": 0.0030241928188097563,
+   "pairs_scored": 72
+  }
+ },
+ "t38_rel.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.08254477947610375,
+   "heldby_max": 0.04519128646864703,
+   "below_max": 0.45490161577897237,
+   "touch_max": 0.19179845612988716,
+   "pairs_scored": 2
+  }
+ },
+ "t39_rel.jpg": {
+  "gripper": false,
+  "n_obj": 2,
+  "feat": null
+ },
+ "t40_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t41_rel.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.11014663785889527,
+   "heldby_max": 0.01504683075850274,
+   "below_max": 0.008587394339546858,
+   "touch_max": 0.038620244029241,
+   "pairs_scored": 72
+  }
+ },
+ "t42_rel.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.6626156526839994,
+   "heldby_max": 0.150788897261864,
+   "below_max": 0.06208603464226457,
+   "touch_max": 0.03234273785093788,
+   "pairs_scored": 12
+  }
+ },
+ "t43_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.4516660277928996,
+   "heldby_max": 0.08119172086297934,
+   "below_max": 0.04675947312228758,
+   "touch_max": 0.25805636405815,
+   "pairs_scored": 6
+  }
+ },
+ "t44_rel.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.6387548522636979,
+   "heldby_max": 0.17291840083883353,
+   "below_max": 0.09536082741091184,
+   "touch_max": 0.3156623583930744,
+   "pairs_scored": 6
+  }
+ },
+ "t45_rel.jpg": {
+  "gripper": false,
+  "n_obj": 1,
+  "feat": null
+ },
+ "t46_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t47_rel.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t48_rel.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.5580504365073005,
+   "heldby_max": 0.16042931224687482,
+   "below_max": 0.07690684603939657,
+   "touch_max": 0.037560881628665686,
+   "pairs_scored": 2
+  }
+ },
+ "t01_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 7,
+  "feat": {
+   "hold_max": 0.3686198632772818,
+   "heldby_max": 0.06287687735508837,
+   "below_max": 0.030164784142745066,
+   "touch_max": 0.47450377571799196,
+   "pairs_scored": 56
+  }
+ },
+ "t02_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 5,
+  "feat": null
+ },
+ "t03_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.045072400988525343,
+   "heldby_max": 0.01173371899428308,
+   "below_max": 0.007527359663294607,
+   "touch_max": 0.07843151015566403,
+   "pairs_scored": 72
+  }
+ },
+ "t04_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.32821552236445106,
+   "heldby_max": 0.07163571265344662,
+   "below_max": 0.15325204385528768,
+   "touch_max": 0.1519307620922264,
+   "pairs_scored": 72
+  }
+ },
+ "t05_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.7657540875556691,
+   "heldby_max": 0.1089582251534405,
+   "below_max": 0.08334708328838472,
+   "touch_max": 0.02211894850344256,
+   "pairs_scored": 6
+  }
+ },
+ "t06_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.5356545726981539,
+   "heldby_max": 0.10819657341947761,
+   "below_max": 0.03990938179716415,
+   "touch_max": 0.07017635687926328,
+   "pairs_scored": 2
+  }
+ },
+ "t07_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t08_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t09_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.12313958937295785,
+   "heldby_max": 0.052979293930964455,
+   "below_max": 0.02734925448282087,
+   "touch_max": 0.05911488087648492,
+   "pairs_scored": 2
+  }
+ },
+ "t10_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.1511018363191316,
+   "heldby_max": 0.10169669850855391,
+   "below_max": 0.03838393623331052,
+   "touch_max": 0.10079736201551895,
+   "pairs_scored": 12
+  }
+ },
+ "t11_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.17393425104769158,
+   "heldby_max": 0.08320472943886925,
+   "below_max": 0.0164478169166355,
+   "touch_max": 0.13414889357654847,
+   "pairs_scored": 12
+  }
+ },
+ "t12_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t13_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.45903921847157014,
+   "heldby_max": 0.07585487250320731,
+   "below_max": 0.026250378691560817,
+   "touch_max": 0.021854167301065913,
+   "pairs_scored": 2
+  }
+ },
+ "t14_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 1,
+  "feat": null
+ },
+ "t15_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t16_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.4933174733984892,
+   "heldby_max": 0.13648226074463615,
+   "below_max": 0.06723652195671447,
+   "touch_max": 0.11314082677783853,
+   "pairs_scored": 12
+  }
+ },
+ "t17_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t18_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t19_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t20_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.09121135844879291,
+   "heldby_max": 0.036976266260811644,
+   "below_max": 0.013787171345363601,
+   "touch_max": 0.14912270178679915,
+   "pairs_scored": 12
+  }
+ },
+ "t21_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.060484618723877774,
+   "heldby_max": 0.09078105528160109,
+   "below_max": 0.026690256952699734,
+   "touch_max": 0.055076041870193534,
+   "pairs_scored": 12
+  }
+ },
+ "t22_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t23_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t24_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.06803837216721256,
+   "heldby_max": 0.12488551139246351,
+   "below_max": 0.04336502069051833,
+   "touch_max": 0.07557991829345304,
+   "pairs_scored": 2
+  }
+ },
+ "t25_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.12556912900153927,
+   "heldby_max": 0.010102115132519001,
+   "below_max": 0.008816532463895462,
+   "touch_max": 0.14477899530465407,
+   "pairs_scored": 72
+  }
+ },
+ "t26_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.3455784691341649,
+   "heldby_max": 0.11690034208678615,
+   "below_max": 0.06171085428397861,
+   "touch_max": 0.19724409113442706,
+   "pairs_scored": 12
+  }
+ },
+ "t27_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.6563514940405415,
+   "heldby_max": 0.08800636749652695,
+   "below_max": 0.03895202330150249,
+   "touch_max": 0.04327335368967745,
+   "pairs_scored": 12
+  }
+ },
+ "t28_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.41619848564824324,
+   "heldby_max": 0.14699522800959774,
+   "below_max": 0.17843684154029488,
+   "touch_max": 0.2995776175199451,
+   "pairs_scored": 12
+  }
+ },
+ "t29_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 3,
+  "feat": {
+   "hold_max": 0.28982483891663935,
+   "heldby_max": 0.10333291444093076,
+   "below_max": 0.07508808586448915,
+   "touch_max": 0.11789477301677634,
+   "pairs_scored": 12
+  }
+ },
+ "t30_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.4182761799264662,
+   "heldby_max": 0.05496378376435386,
+   "below_max": 0.31542033076132653,
+   "touch_max": 0.11294982472199781,
+   "pairs_scored": 72
+  }
+ },
+ "t31_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t32_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.1957273682534668,
+   "heldby_max": 0.08195062854083664,
+   "below_max": 0.4169006916922074,
+   "touch_max": 0.2462605667498165,
+   "pairs_scored": 72
+  }
+ },
+ "t33_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t34_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 7,
+  "feat": {
+   "hold_max": 0.1477277540439275,
+   "heldby_max": 0.07520678647669367,
+   "below_max": 0.06222134179073293,
+   "touch_max": 0.07697551562037873,
+   "pairs_scored": 56
+  }
+ },
+ "t35_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 2,
+  "feat": null
+ },
+ "t36_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.4210322311482586,
+   "heldby_max": 0.04757381187758625,
+   "below_max": 0.056531982197289075,
+   "touch_max": 0.20874332173051466,
+   "pairs_scored": 72
+  }
+ },
+ "t37_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 8,
+  "feat": null
+ },
+ "t38_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.10364032885875749,
+   "heldby_max": 0.0431499844914126,
+   "below_max": 0.47806278063606467,
+   "touch_max": 0.2041774258651537,
+   "pairs_scored": 2
+  }
+ },
+ "t39_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 1,
+  "feat": null
+ },
+ "t40_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 5,
+  "feat": {
+   "hold_max": 0.13590337331660085,
+   "heldby_max": 0.03707848554081703,
+   "below_max": 0.020812273681110365,
+   "touch_max": 0.15896692034265616,
+   "pairs_scored": 30
+  }
+ },
+ "t41_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 8,
+  "feat": {
+   "hold_max": 0.10009981482346487,
+   "heldby_max": 0.013893059753628138,
+   "below_max": 0.010407175754190577,
+   "touch_max": 0.07823879173450789,
+   "pairs_scored": 72
+  }
+ },
+ "t42_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 5,
+  "feat": {
+   "hold_max": 0.2517860377069705,
+   "heldby_max": 0.12385631336257005,
+   "below_max": 0.04918441145602969,
+   "touch_max": 0.08133112873352338,
+   "pairs_scored": 30
+  }
+ },
+ "t43_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t44_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 3,
+  "feat": null
+ },
+ "t45_p1s.jpg": {
+  "gripper": false,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t46_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 1,
+  "feat": {
+   "hold_max": 0.08352025238295176,
+   "heldby_max": 0.11866494055517603,
+   "below_max": 0.04057789939355153,
+   "touch_max": 0.09556568297023948,
+   "pairs_scored": 2
+  }
+ },
+ "t47_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 0,
+  "feat": null
+ },
+ "t48_p1s.jpg": {
+  "gripper": true,
+  "n_obj": 2,
+  "feat": {
+   "hold_max": 0.2027866656472497,
+   "heldby_max": 0.1007561118989211,
+   "below_max": 0.05999196910652602,
+   "touch_max": 0.11654277965176768,
+   "pairs_scored": 6
+  }
+ }
+}

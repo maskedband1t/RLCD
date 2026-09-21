@@ -1,0 +1,812 @@
+[
+ {
+  "i": 0,
+  "event": "follow_note",
+  "seed": 64,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person",
+   "stop",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.493,
+  "options": [
+   "turn_away",
+   "ask_operator",
+   "wait",
+   "walk_fast",
+   "stop",
+   "follow_person",
+   "walk_slow"
+  ]
+ },
+ {
+  "i": 1,
+  "event": "right_of_way",
+  "seed": 66,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.876,
+  "options": [
+   "ask_operator",
+   "wait",
+   "stop",
+   "turn_away",
+   "follow_person",
+   "walk_slow",
+   "walk_fast"
+  ]
+ },
+ {
+  "i": 2,
+  "event": "object_in_door",
+  "seed": 50,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "turn_away",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.74,
+  "options": [
+   "turn_away",
+   "wait",
+   "walk_fast",
+   "walk_slow",
+   "ask_operator",
+   "stop",
+   "follow_person"
+  ]
+ },
+ {
+  "i": 3,
+  "event": "blocked",
+  "seed": 7,
+  "bank": "anticipated",
+  "acceptable": [
+   "ask_operator",
+   "stop",
+   "turn_away",
+   "wait"
+  ],
+  "head_choice": "stop",
+  "head_conf": 0.409,
+  "options": [
+   "stop",
+   "follow_person",
+   "turn_away",
+   "ask_operator",
+   "wait",
+   "walk_slow",
+   "walk_fast"
+  ]
+ },
+ {
+  "i": 4,
+  "event": "cross",
+  "seed": 20,
+  "bank": "anticipated",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.583,
+  "options": [
+   "follow_person",
+   "walk_fast",
+   "turn_away",
+   "walk_slow",
+   "stop",
+   "wait",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 5,
+  "event": "object_in_door",
+  "seed": 56,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "stop",
+  "head_conf": 0.374,
+  "options": [
+   "walk_slow",
+   "wait",
+   "walk_fast",
+   "turn_away",
+   "stop",
+   "ask_operator",
+   "follow_person"
+  ]
+ },
+ {
+  "i": 6,
+  "event": "object_in_door",
+  "seed": 59,
+  "bank": "unseen",
+  "acceptable": [
+   "ask_operator",
+   "stop",
+   "wait",
+   "walk_slow"
+  ],
+  "head_choice": "walk_fast",
+  "head_conf": 0.486,
+  "options": [
+   "walk_fast",
+   "turn_away",
+   "walk_slow",
+   "follow_person",
+   "wait",
+   "stop",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 7,
+  "event": "right_of_way",
+  "seed": 42,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.804,
+  "options": [
+   "stop",
+   "turn_away",
+   "walk_fast",
+   "follow_person",
+   "walk_slow",
+   "ask_operator",
+   "wait"
+  ]
+ },
+ {
+  "i": 8,
+  "event": "follow_note",
+  "seed": 64,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.887,
+  "options": [
+   "stop",
+   "walk_slow",
+   "walk_fast",
+   "turn_away",
+   "follow_person",
+   "wait",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 9,
+  "event": "blocked",
+  "seed": 15,
+  "bank": "anticipated",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.727,
+  "options": [
+   "follow_person",
+   "turn_away",
+   "walk_slow",
+   "walk_fast",
+   "stop",
+   "wait",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 10,
+  "event": "follow_note",
+  "seed": 49,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person",
+   "stop",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.317,
+  "options": [
+   "ask_operator",
+   "walk_slow",
+   "turn_away",
+   "walk_fast",
+   "wait",
+   "follow_person",
+   "stop"
+  ]
+ },
+ {
+  "i": 11,
+  "event": "follow_note",
+  "seed": 64,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "turn_away",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.392,
+  "options": [
+   "walk_fast",
+   "ask_operator",
+   "walk_slow",
+   "wait",
+   "turn_away",
+   "stop",
+   "follow_person"
+  ]
+ },
+ {
+  "i": 12,
+  "event": "object_in_door",
+  "seed": 44,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.437,
+  "options": [
+   "walk_slow",
+   "ask_operator",
+   "follow_person",
+   "turn_away",
+   "wait",
+   "stop",
+   "walk_fast"
+  ]
+ },
+ {
+  "i": 13,
+  "event": "child_note",
+  "seed": 34,
+  "bank": "anticipated",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.847,
+  "options": [
+   "follow_person",
+   "ask_operator",
+   "walk_slow",
+   "walk_fast",
+   "stop",
+   "turn_away",
+   "wait"
+  ]
+ },
+ {
+  "i": 14,
+  "event": "approach",
+  "seed": 33,
+  "bank": "anticipated",
+  "acceptable": [
+   "stop",
+   "wait",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.792,
+  "options": [
+   "walk_slow",
+   "stop",
+   "walk_fast",
+   "follow_person",
+   "ask_operator",
+   "wait",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 15,
+  "event": "object_in_door",
+  "seed": 50,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.454,
+  "options": [
+   "wait",
+   "walk_fast",
+   "ask_operator",
+   "walk_slow",
+   "follow_person",
+   "turn_away",
+   "stop"
+  ]
+ },
+ {
+  "i": 16,
+  "event": "right_of_way",
+  "seed": 48,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.806,
+  "options": [
+   "walk_slow",
+   "stop",
+   "ask_operator",
+   "wait",
+   "turn_away",
+   "walk_fast",
+   "follow_person"
+  ]
+ },
+ {
+  "i": 17,
+  "event": "follow_note",
+  "seed": 52,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "turn_away",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.723,
+  "options": [
+   "turn_away",
+   "wait",
+   "walk_slow",
+   "walk_fast",
+   "follow_person",
+   "ask_operator",
+   "stop"
+  ]
+ },
+ {
+  "i": 18,
+  "event": "right_of_way",
+  "seed": 51,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "wait"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.822,
+  "options": [
+   "follow_person",
+   "stop",
+   "walk_slow",
+   "wait",
+   "walk_fast",
+   "ask_operator",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 19,
+  "event": "approach",
+  "seed": 29,
+  "bank": "anticipated",
+  "acceptable": [
+   "done"
+  ],
+  "head_choice": "done",
+  "head_conf": 0.651,
+  "options": [
+   "stop",
+   "walk_fast",
+   "wait",
+   "walk_slow",
+   "ask_operator",
+   "follow_person",
+   "done",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 20,
+  "event": "right_of_way",
+  "seed": 66,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.482,
+  "options": [
+   "stop",
+   "turn_away",
+   "walk_fast",
+   "follow_person",
+   "wait",
+   "ask_operator",
+   "walk_slow"
+  ]
+ },
+ {
+  "i": 21,
+  "event": "object_in_door",
+  "seed": 56,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.375,
+  "options": [
+   "turn_away",
+   "wait",
+   "walk_fast",
+   "follow_person",
+   "walk_slow",
+   "stop",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 22,
+  "event": "right_of_way",
+  "seed": 42,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "wait"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.794,
+  "options": [
+   "follow_person",
+   "walk_fast",
+   "stop",
+   "turn_away",
+   "walk_slow",
+   "wait",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 23,
+  "event": "right_of_way",
+  "seed": 42,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.84,
+  "options": [
+   "walk_fast",
+   "turn_away",
+   "stop",
+   "follow_person",
+   "walk_slow",
+   "wait",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 24,
+  "event": "follow_note",
+  "seed": 43,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.764,
+  "options": [
+   "walk_slow",
+   "wait",
+   "ask_operator",
+   "stop",
+   "follow_person",
+   "walk_fast",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 25,
+  "event": "object_in_door",
+  "seed": 47,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.71,
+  "options": [
+   "turn_away",
+   "follow_person",
+   "walk_slow",
+   "wait",
+   "ask_operator",
+   "stop",
+   "walk_fast"
+  ]
+ },
+ {
+  "i": 26,
+  "event": "right_of_way",
+  "seed": 42,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.387,
+  "options": [
+   "walk_fast",
+   "follow_person",
+   "turn_away",
+   "walk_slow",
+   "stop",
+   "ask_operator",
+   "wait"
+  ]
+ },
+ {
+  "i": 27,
+  "event": "right_of_way",
+  "seed": 60,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.871,
+  "options": [
+   "follow_person",
+   "wait",
+   "walk_slow",
+   "stop",
+   "walk_fast",
+   "ask_operator",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 28,
+  "event": "follow_note",
+  "seed": 43,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.773,
+  "options": [
+   "ask_operator",
+   "follow_person",
+   "stop",
+   "wait",
+   "walk_slow",
+   "turn_away",
+   "walk_fast"
+  ]
+ },
+ {
+  "i": 29,
+  "event": "follow_note",
+  "seed": 64,
+  "bank": "unseen",
+  "acceptable": [
+   "stop",
+   "turn_away",
+   "wait"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.436,
+  "options": [
+   "wait",
+   "walk_fast",
+   "ask_operator",
+   "walk_slow",
+   "follow_person",
+   "stop",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 30,
+  "event": "follow_note",
+  "seed": 64,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person",
+   "stop",
+   "wait"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.433,
+  "options": [
+   "stop",
+   "wait",
+   "turn_away",
+   "follow_person",
+   "walk_slow",
+   "walk_fast",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 31,
+  "event": "cross",
+  "seed": 0,
+  "bank": "anticipated",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.83,
+  "options": [
+   "walk_fast",
+   "turn_away",
+   "wait",
+   "stop",
+   "walk_slow",
+   "ask_operator",
+   "follow_person"
+  ]
+ },
+ {
+  "i": 32,
+  "event": "right_of_way",
+  "seed": 45,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "wait",
+  "head_conf": 0.476,
+  "options": [
+   "walk_slow",
+   "follow_person",
+   "ask_operator",
+   "wait",
+   "walk_fast",
+   "stop",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 33,
+  "event": "object_in_door",
+  "seed": 53,
+  "bank": "unseen",
+  "acceptable": [
+   "ask_operator",
+   "stop",
+   "wait",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.79,
+  "options": [
+   "ask_operator",
+   "walk_slow",
+   "stop",
+   "follow_person",
+   "walk_fast",
+   "wait",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 34,
+  "event": "follow_note",
+  "seed": 64,
+  "bank": "unseen",
+  "acceptable": [
+   "follow_person"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.394,
+  "options": [
+   "wait",
+   "stop",
+   "walk_fast",
+   "walk_slow",
+   "follow_person",
+   "ask_operator",
+   "turn_away"
+  ]
+ },
+ {
+  "i": 35,
+  "event": "object_in_door",
+  "seed": 68,
+  "bank": "unseen",
+  "acceptable": [
+   "ask_operator",
+   "stop",
+   "wait",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.789,
+  "options": [
+   "walk_slow",
+   "walk_fast",
+   "turn_away",
+   "follow_person",
+   "wait",
+   "stop",
+   "ask_operator"
+  ]
+ },
+ {
+  "i": 36,
+  "event": "object_in_door",
+  "seed": 50,
+  "bank": "unseen",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.719,
+  "options": [
+   "walk_fast",
+   "turn_away",
+   "follow_person",
+   "stop",
+   "walk_slow",
+   "ask_operator",
+   "wait"
+  ]
+ },
+ {
+  "i": 37,
+  "event": "child_note",
+  "seed": 30,
+  "bank": "anticipated",
+  "acceptable": [
+   "walk_fast",
+   "walk_slow"
+  ],
+  "head_choice": "walk_slow",
+  "head_conf": 0.885,
+  "options": [
+   "wait",
+   "follow_person",
+   "walk_slow",
+   "turn_away",
+   "walk_fast",
+   "stop",
+   "ask_operator"
+  ]
+ }
+]

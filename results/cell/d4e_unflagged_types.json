@@ -1,0 +1,200 @@
+{
+ "rules": {
+  "qa_sticker": [
+   2,
+   14
+  ],
+  "foreign_object": [
+   1,
+   13
+  ],
+  "marking_conflict": [
+   2,
+   13
+  ],
+  "all": [
+   5,
+   40
+  ]
+ },
+ "rules_ask": {
+  "qa_sticker": [
+   2,
+   14
+  ],
+  "foreign_object": [
+   1,
+   13
+  ],
+  "marking_conflict": [
+   2,
+   13
+  ],
+  "all": [
+   5,
+   40
+  ]
+ },
+ "jev": {
+  "qa_sticker": [
+   2,
+   14
+  ],
+  "foreign_object": [
+   10,
+   13
+  ],
+  "marking_conflict": [
+   8,
+   13
+  ],
+  "all": [
+   20,
+   40
+  ]
+ },
+ "jevp": {
+  "qa_sticker": [
+   2,
+   14
+  ],
+  "foreign_object": [
+   8,
+   13
+  ],
+  "marking_conflict": [
+   6,
+   13
+  ],
+  "all": [
+   16,
+   40
+  ]
+ },
+ "sj": {
+  "qa_sticker": [
+   2,
+   14
+  ],
+  "foreign_object": [
+   2,
+   13
+  ],
+  "marking_conflict": [
+   1,
+   13
+  ],
+  "all": [
+   5,
+   40
+  ]
+ },
+ "jev_gate0.7": {
+  "qa_sticker": [
+   6,
+   14
+  ],
+  "foreign_object": [
+   12,
+   13
+  ],
+  "marking_conflict": [
+   12,
+   13
+  ],
+  "all": [
+   30,
+   40
+  ]
+ },
+ "jevp_gate0.7": {
+  "qa_sticker": [
+   6,
+   14
+  ],
+  "foreign_object": [
+   12,
+   13
+  ],
+  "marking_conflict": [
+   12,
+   13
+  ],
+  "all": [
+   30,
+   40
+  ]
+ },
+ "sj_gate0.7": {
+  "qa_sticker": [
+   3,
+   14
+  ],
+  "foreign_object": [
+   13,
+   13
+  ],
+  "marking_conflict": [
+   10,
+   13
+  ],
+  "all": [
+   26,
+   40
+  ]
+ },
+ "jev_confirm0.7": {
+  "qa_sticker": [
+   5,
+   14
+  ],
+  "foreign_object": [
+   11,
+   13
+  ],
+  "marking_conflict": [
+   12,
+   13
+  ],
+  "all": [
+   28,
+   40
+  ]
+ },
+ "sj_confirm0.7": {
+  "qa_sticker": [
+   4,
+   14
+  ],
+  "foreign_object": [
+   12,
+   13
+  ],
+  "marking_conflict": [
+   9,
+   13
+  ],
+  "all": [
+   25,
+   40
+  ]
+ },
+ "oracle": {
+  "qa_sticker": [
+   14,
+   14
+  ],
+  "foreign_object": [
+   13,
+   13
+  ],
+  "marking_conflict": [
+   13,
+   13
+  ],
+  "all": [
+   40,
+   40
+  ]
+ }
+}

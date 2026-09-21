@@ -1,0 +1,162 @@
+{
+ "82": {
+  "strict": "ABCD",
+  "lenient": "ABCD"
+ },
+ "38": {
+  "strict": "A",
+  "lenient": "A"
+ },
+ "101": {
+  "strict": "",
+  "lenient": ""
+ },
+ "12": {
+  "strict": "A",
+  "lenient": "A"
+ },
+ "18": {
+  "strict": "AB",
+  "lenient": "AB"
+ },
+ "137": {
+  "strict": "BD",
+  "lenient": "ABCD"
+ },
+ "24": {
+  "strict": "AB",
+  "lenient": "AB"
+ },
+ "93": {
+  "strict": "ABC",
+  "lenient": "ABC"
+ },
+ "14": {
+  "strict": "AB",
+  "lenient": "AB"
+ },
+ "129": {
+  "strict": "",
+  "lenient": ""
+ },
+ "54": {
+  "strict": "ACD",
+  "lenient": "ABCD"
+ },
+ "9": {
+  "strict": "CD",
+  "lenient": "ABCD"
+ },
+ "22": {
+  "strict": "A",
+  "lenient": "A"
+ },
+ "111": {
+  "strict": "",
+  "lenient": "B"
+ },
+ "107": {
+  "strict": "C",
+  "lenient": "ABCDE"
+ },
+ "17": {
+  "strict": "ABCD",
+  "lenient": "ABCD"
+ },
+ "61": {
+  "strict": "A",
+  "lenient": "A"
+ },
+ "23": {
+  "strict": "AB",
+  "lenient": "AB"
+ },
+ "108": {
+  "strict": "A",
+  "lenient": "ABCDE"
+ },
+ "15": {
+  "strict": "",
+  "lenient": ""
+ },
+ "31": {
+  "strict": "ABCD",
+  "lenient": "ABCD"
+ },
+ "57": {
+  "strict": "ABCD",
+  "lenient": "ABCD"
+ },
+ "130": {
+  "strict": "",
+  "lenient": "E"
+ },
+ "73": {
+  "strict": "A",
+  "lenient": "A"
+ },
+ "74": {
+  "strict": "ABCDE",
+  "lenient": "ABCDE"
+ },
+ "50": {
+  "strict": "",
+  "lenient": ""
+ },
+ "6": {
+  "strict": "ABC",
+  "lenient": "ABC"
+ },
+ "28": {
+  "strict": "A",
+  "lenient": "A"
+ },
+ "5": {
+  "strict": "ABC",
+  "lenient": "ABC"
+ },
+ "71": {
+  "strict": "",
+  "lenient": ""
+ },
+ "109": {
+  "strict": "",
+  "lenient": "ABCE"
+ },
+ "134": {
+  "strict": "AE",
+  "lenient": "ABE"
+ },
+ "37": {
+  "strict": "AB",
+  "lenient": "AB"
+ },
+ "53": {
+  "strict": "AB",
+  "lenient": "AB"
+ },
+ "145": {
+  "strict": "AB",
+  "lenient": "ABCDE"
+ },
+ "69": {
+  "strict": "",
+  "lenient": "E"
+ },
+ "127": {
+  "strict": "CE",
+  "lenient": "CE"
+ },
+ "126": {
+  "strict": "C",
+  "lenient": "BC"
+ },
+ "39": {
+  "strict": "",
+  "lenient": ""
+ },
+ "120": {
+  "strict": "CD",
+  "lenient": "ABCDE"
+ }
+}

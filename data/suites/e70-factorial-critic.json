@@ -1,0 +1,6722 @@
+[
+{
+"id": "fail-0-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Place the red bag of doritos in the left sink",
+"x": "red bag of doritos",
+"y": "left sink",
+"steps_completed": [
+"locate the red bag of doritos",
+"move the gripper above the red bag of doritos",
+"grasp the red bag of doritos \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the red bag of doritos",
+"B": "lower the red bag of doritos and release it in the left sink",
+"C": "move the red bag of doritos over the left sink",
+"D": "open the gripper and grasp the red bag of doritos again"
+},
+"truth": "D"
+},
+{
+"id": "fail-0-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Place the red bag of doritos in the left sink",
+"x": "red bag of doritos",
+"y": "left sink",
+"steps_completed": [
+"locate the red bag of doritos",
+"move the gripper above the red bag of doritos",
+"grasp the red bag of doritos \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the red bag of doritos and release it in the left sink",
+"B": "open the gripper and grasp the red bag of doritos again",
+"C": "move the red bag of doritos over the left sink",
+"D": "lift the red bag of doritos"
+},
+"truth": "B"
+},
+{
+"id": "fail-1-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Place the snack in the cabinet",
+"x": "snack",
+"y": "cabinet",
+"steps_completed": [
+"locate the snack",
+"move the gripper above the snack",
+"grasp the snack \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the snack and release it in the cabinet",
+"B": "open the gripper and grasp the snack again",
+"C": "lift the snack",
+"D": "move the snack over the cabinet"
+},
+"truth": "B"
+},
+{
+"id": "fail-1-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Place the snack in the cabinet",
+"x": "snack",
+"y": "cabinet",
+"steps_completed": [
+"locate the snack",
+"move the gripper above the snack",
+"grasp the snack \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the snack",
+"B": "open the gripper and grasp the snack again",
+"C": "lower the snack and release it in the cabinet",
+"D": "move the snack over the cabinet"
+},
+"truth": "B"
+},
+{
+"id": "fail-2-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the jar in the box",
+"x": "jar",
+"y": "box",
+"steps_completed": [
+"locate the jar",
+"move the gripper above the jar",
+"grasp the jar \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the jar again",
+"B": "move the jar over the box",
+"C": "lower the jar and release it in the box",
+"D": "lift the jar"
+},
+"truth": "A"
+},
+{
+"id": "fail-2-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the jar in the box",
+"x": "jar",
+"y": "box",
+"steps_completed": [
+"locate the jar",
+"move the gripper above the jar",
+"grasp the jar \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the jar and release it in the box",
+"B": "move the jar over the box",
+"C": "open the gripper and grasp the jar again",
+"D": "lift the jar"
+},
+"truth": "C"
+},
+{
+"id": "fail-3-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the square block on the right in the box",
+"x": "square block",
+"y": "right in the box",
+"steps_completed": [
+"locate the square block",
+"move the gripper above the square block",
+"grasp the square block \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the square block again",
+"B": "move the square block over the right in the box",
+"C": "lower the square block and release it on the right in the box",
+"D": "lift the square block"
+},
+"truth": "A"
+},
+{
+"id": "fail-3-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the square block on the right in the box",
+"x": "square block",
+"y": "right in the box",
+"steps_completed": [
+"locate the square block",
+"move the gripper above the square block",
+"grasp the square block \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the square block again",
+"B": "move the square block over the right in the box",
+"C": "lower the square block and release it on the right in the box",
+"D": "lift the square block"
+},
+"truth": "A"
+},
+{
+"id": "fail-4-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put one cream on the table",
+"x": "one cream",
+"y": "table",
+"steps_completed": [
+"locate the one cream",
+"move the gripper above the one cream",
+"grasp the one cream \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the one cream again",
+"B": "move the one cream over the table",
+"C": "lift the one cream",
+"D": "lower the one cream and release it on the table"
+},
+"truth": "A"
+},
+{
+"id": "fail-4-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put one cream on the table",
+"x": "one cream",
+"y": "table",
+"steps_completed": [
+"locate the one cream",
+"move the gripper above the one cream",
+"grasp the one cream \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the one cream",
+"B": "lower the one cream and release it on the table",
+"C": "open the gripper and grasp the one cream again",
+"D": "move the one cream over the table"
+},
+"truth": "C"
+},
+{
+"id": "fail-5-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the green packet inside the black bowl",
+"x": "green packet",
+"y": "black bowl",
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the green packet and release it in the black bowl",
+"B": "open the gripper and grasp the green packet again",
+"C": "lift the green packet",
+"D": "move the green packet over the black bowl"
+},
+"truth": "B"
+},
+{
+"id": "fail-5-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the green packet inside the black bowl",
+"x": "green packet",
+"y": "black bowl",
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the green packet again",
+"B": "move the green packet over the black bowl",
+"C": "lift the green packet",
+"D": "lower the green packet and release it in the black bowl"
+},
+"truth": "A"
+},
+{
+"id": "fail-6-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the cup in the cupholder",
+"x": "cup",
+"y": "cupholder",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the cup again",
+"B": "lift the cup",
+"C": "lower the cup and release it in the cupholder",
+"D": "move the cup over the cupholder"
+},
+"truth": "A"
+},
+{
+"id": "fail-6-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the cup in the cupholder",
+"x": "cup",
+"y": "cupholder",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the cup and release it in the cupholder",
+"B": "open the gripper and grasp the cup again",
+"C": "lift the cup",
+"D": "move the cup over the cupholder"
+},
+"truth": "B"
+},
+{
+"id": "fail-7-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the cloth on the desk",
+"x": "cloth",
+"y": "desk",
+"steps_completed": [
+"locate the cloth",
+"move the gripper above the cloth",
+"grasp the cloth \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the cloth again",
+"B": "move the cloth over the desk",
+"C": "lift the cloth",
+"D": "lower the cloth and release it on the desk"
+},
+"truth": "A"
+},
+{
+"id": "fail-7-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the cloth on the desk",
+"x": "cloth",
+"y": "desk",
+"steps_completed": [
+"locate the cloth",
+"move the gripper above the cloth",
+"grasp the cloth \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the cloth over the desk",
+"B": "lower the cloth and release it on the desk",
+"C": "open the gripper and grasp the cloth again",
+"D": "lift the cloth"
+},
+"truth": "C"
+},
+{
+"id": "fail-8-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black object inside the cup",
+"x": "black object",
+"y": "cup",
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the black object and release it in the cup",
+"B": "lift the black object",
+"C": "open the gripper and grasp the black object again",
+"D": "move the black object over the cup"
+},
+"truth": "C"
+},
+{
+"id": "fail-8-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black object inside the cup",
+"x": "black object",
+"y": "cup",
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the black object again",
+"B": "lower the black object and release it in the cup",
+"C": "lift the black object",
+"D": "move the black object over the cup"
+},
+"truth": "A"
+},
+{
+"id": "fail-9-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Place the cup directly onto the counter",
+"x": "cup directly",
+"y": "counter",
+"steps_completed": [
+"locate the cup directly",
+"move the gripper above the cup directly",
+"grasp the cup directly \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the cup directly",
+"B": "open the gripper and grasp the cup directly again",
+"C": "move the cup directly over the counter",
+"D": "lower the cup directly and release it on the counter"
+},
+"truth": "B"
+},
+{
+"id": "fail-9-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Place the cup directly onto the counter",
+"x": "cup directly",
+"y": "counter",
+"steps_completed": [
+"locate the cup directly",
+"move the gripper above the cup directly",
+"grasp the cup directly \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the cup directly again",
+"B": "lower the cup directly and release it on the counter",
+"C": "lift the cup directly",
+"D": "move the cup directly over the counter"
+},
+"truth": "A"
+},
+{
+"id": "fail-10-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black tongs in the coffee cup.",
+"x": "black tongs",
+"y": "coffee cup",
+"steps_completed": [
+"locate the black tongs",
+"move the gripper above the black tongs",
+"grasp the black tongs \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the black tongs and release it in the coffee cup",
+"B": "lift the black tongs",
+"C": "open the gripper and grasp the black tongs again",
+"D": "move the black tongs over the coffee cup"
+},
+"truth": "C"
+},
+{
+"id": "fail-10-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black tongs in the coffee cup.",
+"x": "black tongs",
+"y": "coffee cup",
+"steps_completed": [
+"locate the black tongs",
+"move the gripper above the black tongs",
+"grasp the black tongs \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the black tongs over the coffee cup",
+"B": "lower the black tongs and release it in the coffee cup",
+"C": "open the gripper and grasp the black tongs again",
+"D": "lift the black tongs"
+},
+"truth": "C"
+},
+{
+"id": "fail-11-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the brown paper bag in the trash chute.",
+"x": "brown paper bag",
+"y": "trash chute",
+"steps_completed": [
+"locate the brown paper bag",
+"move the gripper above the brown paper bag",
+"grasp the brown paper bag \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the brown paper bag again",
+"B": "lift the brown paper bag",
+"C": "move the brown paper bag over the trash chute",
+"D": "lower the brown paper bag and release it in the trash chute"
+},
+"truth": "A"
+},
+{
+"id": "fail-11-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the brown paper bag in the trash chute.",
+"x": "brown paper bag",
+"y": "trash chute",
+"steps_completed": [
+"locate the brown paper bag",
+"move the gripper above the brown paper bag",
+"grasp the brown paper bag \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the brown paper bag and release it in the trash chute",
+"B": "move the brown paper bag over the trash chute",
+"C": "open the gripper and grasp the brown paper bag again",
+"D": "lift the brown paper bag"
+},
+"truth": "C"
+},
+{
+"id": "fail-12-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the brown object in the bowl closest to you",
+"x": "brown object",
+"y": "bowl closest to you",
+"steps_completed": [
+"locate the brown object",
+"move the gripper above the brown object",
+"grasp the brown object \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the brown object and release it in the bowl closest to you",
+"B": "open the gripper and grasp the brown object again",
+"C": "move the brown object over the bowl closest to you",
+"D": "lift the brown object"
+},
+"truth": "B"
+},
+{
+"id": "fail-12-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the brown object in the bowl closest to you",
+"x": "brown object",
+"y": "bowl closest to you",
+"steps_completed": [
+"locate the brown object",
+"move the gripper above the brown object",
+"grasp the brown object \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the brown object and release it in the bowl closest to you",
+"B": "lift the brown object",
+"C": "open the gripper and grasp the brown object again",
+"D": "move the brown object over the bowl closest to you"
+},
+"truth": "C"
+},
+{
+"id": "fail-13-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Place the right-side-up cup on the upside down cup",
+"x": "right-side-up cup",
+"y": "upside down cup",
+"steps_completed": [
+"locate the right-side-up cup",
+"move the gripper above the right-side-up cup",
+"grasp the right-side-up cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the right-side-up cup again",
+"B": "lift the right-side-up cup",
+"C": "lower the right-side-up cup and release it on the upside down cup",
+"D": "move the right-side-up cup over the upside down cup"
+},
+"truth": "A"
+},
+{
+"id": "fail-13-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Place the right-side-up cup on the upside down cup",
+"x": "right-side-up cup",
+"y": "upside down cup",
+"steps_completed": [
+"locate the right-side-up cup",
+"move the gripper above the right-side-up cup",
+"grasp the right-side-up cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the right-side-up cup",
+"B": "move the right-side-up cup over the upside down cup",
+"C": "lower the right-side-up cup and release it on the upside down cup",
+"D": "open the gripper and grasp the right-side-up cup again"
+},
+"truth": "D"
+},
+{
+"id": "fail-14-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the spoon in the right cup",
+"x": "spoon",
+"y": "right cup",
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the spoon",
+"B": "move the spoon over the right cup",
+"C": "lower the spoon and release it in the right cup",
+"D": "open the gripper and grasp the spoon again"
+},
+"truth": "D"
+},
+{
+"id": "fail-14-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the spoon in the right cup",
+"x": "spoon",
+"y": "right cup",
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the spoon",
+"B": "lower the spoon and release it in the right cup",
+"C": "open the gripper and grasp the spoon again",
+"D": "move the spoon over the right cup"
+},
+"truth": "C"
+},
+{
+"id": "fail-15-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the can inside the paper bag",
+"x": "can",
+"y": "paper bag",
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the can again",
+"B": "lift the can",
+"C": "lower the can and release it in the paper bag",
+"D": "move the can over the paper bag"
+},
+"truth": "A"
+},
+{
+"id": "fail-15-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the can inside the paper bag",
+"x": "can",
+"y": "paper bag",
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the can",
+"B": "lower the can and release it in the paper bag",
+"C": "open the gripper and grasp the can again",
+"D": "move the can over the paper bag"
+},
+"truth": "C"
+},
+{
+"id": "fail-16-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the capsule on the counter top",
+"x": "capsule",
+"y": "counter top",
+"steps_completed": [
+"locate the capsule",
+"move the gripper above the capsule",
+"grasp the capsule \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the capsule again",
+"B": "lower the capsule and release it on the counter top",
+"C": "move the capsule over the counter top",
+"D": "lift the capsule"
+},
+"truth": "A"
+},
+{
+"id": "fail-16-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the capsule on the counter top",
+"x": "capsule",
+"y": "counter top",
+"steps_completed": [
+"locate the capsule",
+"move the gripper above the capsule",
+"grasp the capsule \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the capsule",
+"B": "open the gripper and grasp the capsule again",
+"C": "move the capsule over the counter top",
+"D": "lower the capsule and release it on the counter top"
+},
+"truth": "B"
+},
+{
+"id": "fail-17-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the remote control on the backrest of the sofa.",
+"x": "remote control",
+"y": "backrest of the sofa",
+"steps_completed": [
+"locate the remote control",
+"move the gripper above the remote control",
+"grasp the remote control \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the remote control again",
+"B": "lower the remote control and release it on the backrest of the sofa",
+"C": "lift the remote control",
+"D": "move the remote control over the backrest of the sofa"
+},
+"truth": "A"
+},
+{
+"id": "fail-17-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the remote control on the backrest of the sofa.",
+"x": "remote control",
+"y": "backrest of the sofa",
+"steps_completed": [
+"locate the remote control",
+"move the gripper above the remote control",
+"grasp the remote control \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the remote control and release it on the backrest of the sofa",
+"B": "move the remote control over the backrest of the sofa",
+"C": "open the gripper and grasp the remote control again",
+"D": "lift the remote control"
+},
+"truth": "C"
+},
+{
+"id": "fail-18-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the red lid on the plastic jug",
+"x": "red lid",
+"y": "plastic jug",
+"steps_completed": [
+"locate the red lid",
+"move the gripper above the red lid",
+"grasp the red lid \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the red lid again",
+"B": "lower the red lid and release it on the plastic jug",
+"C": "move the red lid over the plastic jug",
+"D": "lift the red lid"
+},
+"truth": "A"
+},
+{
+"id": "fail-18-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the red lid on the plastic jug",
+"x": "red lid",
+"y": "plastic jug",
+"steps_completed": [
+"locate the red lid",
+"move the gripper above the red lid",
+"grasp the red lid \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the red lid again",
+"B": "lower the red lid and release it on the plastic jug",
+"C": "move the red lid over the plastic jug",
+"D": "lift the red lid"
+},
+"truth": "A"
+},
+{
+"id": "fail-19-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the fork in the dish rack",
+"x": "fork",
+"y": "dish rack",
+"steps_completed": [
+"locate the fork",
+"move the gripper above the fork",
+"grasp the fork \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the fork and release it in the dish rack",
+"B": "lift the fork",
+"C": "move the fork over the dish rack",
+"D": "open the gripper and grasp the fork again"
+},
+"truth": "D"
+},
+{
+"id": "fail-19-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the fork in the dish rack",
+"x": "fork",
+"y": "dish rack",
+"steps_completed": [
+"locate the fork",
+"move the gripper above the fork",
+"grasp the fork \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the fork and release it in the dish rack",
+"B": "open the gripper and grasp the fork again",
+"C": "move the fork over the dish rack",
+"D": "lift the fork"
+},
+"truth": "B"
+},
+{
+"id": "fail-20-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the plate on the surface",
+"x": "plate",
+"y": "surface",
+"steps_completed": [
+"locate the plate",
+"move the gripper above the plate",
+"grasp the plate \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the plate",
+"B": "lower the plate and release it on the surface",
+"C": "open the gripper and grasp the plate again",
+"D": "move the plate over the surface"
+},
+"truth": "C"
+},
+{
+"id": "fail-20-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the plate on the surface",
+"x": "plate",
+"y": "surface",
+"steps_completed": [
+"locate the plate",
+"move the gripper above the plate",
+"grasp the plate \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the plate again",
+"B": "lift the plate",
+"C": "move the plate over the surface",
+"D": "lower the plate and release it on the surface"
+},
+"truth": "A"
+},
+{
+"id": "fail-21-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the red can on the counter.",
+"x": "red can",
+"y": "counter",
+"steps_completed": [
+"locate the red can",
+"move the gripper above the red can",
+"grasp the red can \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the red can",
+"B": "open the gripper and grasp the red can again",
+"C": "move the red can over the counter",
+"D": "lower the red can and release it on the counter"
+},
+"truth": "B"
+},
+{
+"id": "fail-21-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the red can on the counter.",
+"x": "red can",
+"y": "counter",
+"steps_completed": [
+"locate the red can",
+"move the gripper above the red can",
+"grasp the red can \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the red can and release it on the counter",
+"B": "move the red can over the counter",
+"C": "open the gripper and grasp the red can again",
+"D": "lift the red can"
+},
+"truth": "C"
+},
+{
+"id": "fail-22-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the slippers on the cabinet",
+"x": "slippers",
+"y": "cabinet",
+"steps_completed": [
+"locate the slippers",
+"move the gripper above the slippers",
+"grasp the slippers \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the slippers and release it on the cabinet",
+"B": "open the gripper and grasp the slippers again",
+"C": "move the slippers over the cabinet",
+"D": "lift the slippers"
+},
+"truth": "B"
+},
+{
+"id": "fail-22-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the slippers on the cabinet",
+"x": "slippers",
+"y": "cabinet",
+"steps_completed": [
+"locate the slippers",
+"move the gripper above the slippers",
+"grasp the slippers \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the slippers and release it on the cabinet",
+"B": "move the slippers over the cabinet",
+"C": "open the gripper and grasp the slippers again",
+"D": "lift the slippers"
+},
+"truth": "C"
+},
+{
+"id": "fail-23-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the remote on top of the book",
+"x": "remote",
+"y": "top of the book",
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the remote again",
+"B": "lift the remote",
+"C": "move the remote over the top of the book",
+"D": "lower the remote and release it on the top of the book"
+},
+"truth": "A"
+},
+{
+"id": "fail-23-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the remote on top of the book",
+"x": "remote",
+"y": "top of the book",
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the remote and release it on the top of the book",
+"B": "lift the remote",
+"C": "move the remote over the top of the book",
+"D": "open the gripper and grasp the remote again"
+},
+"truth": "D"
+},
+{
+"id": "fail-24-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the silver fork on the plate.",
+"x": "silver fork",
+"y": "plate",
+"steps_completed": [
+"locate the silver fork",
+"move the gripper above the silver fork",
+"grasp the silver fork \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the silver fork again",
+"B": "lower the silver fork and release it on the plate",
+"C": "move the silver fork over the plate",
+"D": "lift the silver fork"
+},
+"truth": "A"
+},
+{
+"id": "fail-24-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the silver fork on the plate.",
+"x": "silver fork",
+"y": "plate",
+"steps_completed": [
+"locate the silver fork",
+"move the gripper above the silver fork",
+"grasp the silver fork \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the silver fork over the plate",
+"B": "lift the silver fork",
+"C": "lower the silver fork and release it on the plate",
+"D": "open the gripper and grasp the silver fork again"
+},
+"truth": "D"
+},
+{
+"id": "fail-25-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the green packet in the sink.",
+"x": "green packet",
+"y": "sink",
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the green packet",
+"B": "move the green packet over the sink",
+"C": "lower the green packet and release it in the sink",
+"D": "open the gripper and grasp the green packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-25-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the green packet in the sink.",
+"x": "green packet",
+"y": "sink",
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the green packet and release it in the sink",
+"B": "move the green packet over the sink",
+"C": "open the gripper and grasp the green packet again",
+"D": "lift the green packet"
+},
+"truth": "C"
+},
+{
+"id": "fail-26-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the silver spoon inside the glass coffee jug",
+"x": "silver spoon",
+"y": "glass coffee jug",
+"steps_completed": [
+"locate the silver spoon",
+"move the gripper above the silver spoon",
+"grasp the silver spoon \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the silver spoon over the glass coffee jug",
+"B": "open the gripper and grasp the silver spoon again",
+"C": "lower the silver spoon and release it in the glass coffee jug",
+"D": "lift the silver spoon"
+},
+"truth": "B"
+},
+{
+"id": "fail-26-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the silver spoon inside the glass coffee jug",
+"x": "silver spoon",
+"y": "glass coffee jug",
+"steps_completed": [
+"locate the silver spoon",
+"move the gripper above the silver spoon",
+"grasp the silver spoon \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the silver spoon and release it in the glass coffee jug",
+"B": "move the silver spoon over the glass coffee jug",
+"C": "lift the silver spoon",
+"D": "open the gripper and grasp the silver spoon again"
+},
+"truth": "D"
+},
+{
+"id": "fail-27-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the lid in the bowl",
+"x": "lid",
+"y": "bowl",
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the lid",
+"B": "move the lid over the bowl",
+"C": "lower the lid and release it in the bowl",
+"D": "open the gripper and grasp the lid again"
+},
+"truth": "D"
+},
+{
+"id": "fail-27-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the lid in the bowl",
+"x": "lid",
+"y": "bowl",
+"steps_completed": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the lid over the bowl",
+"B": "lower the lid and release it in the bowl",
+"C": "lift the lid",
+"D": "open the gripper and grasp the lid again"
+},
+"truth": "D"
+},
+{
+"id": "fail-28-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the blue packet in the top cabinet",
+"x": "blue packet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet",
+"grasp the blue packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the blue packet again",
+"B": "lower the blue packet and release it in the top cabinet",
+"C": "move the blue packet over the top cabinet",
+"D": "lift the blue packet"
+},
+"truth": "A"
+},
+{
+"id": "fail-28-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the blue packet in the top cabinet",
+"x": "blue packet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet",
+"grasp the blue packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the blue packet",
+"B": "move the blue packet over the top cabinet",
+"C": "open the gripper and grasp the blue packet again",
+"D": "lower the blue packet and release it in the top cabinet"
+},
+"truth": "C"
+},
+{
+"id": "fail-29-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Place the remote on the yellow cushion",
+"x": "remote",
+"y": "yellow cushion",
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the remote over the yellow cushion",
+"B": "lift the remote",
+"C": "lower the remote and release it on the yellow cushion",
+"D": "open the gripper and grasp the remote again"
+},
+"truth": "D"
+},
+{
+"id": "fail-29-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Place the remote on the yellow cushion",
+"x": "remote",
+"y": "yellow cushion",
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the remote",
+"B": "lower the remote and release it on the yellow cushion",
+"C": "move the remote over the yellow cushion",
+"D": "open the gripper and grasp the remote again"
+},
+"truth": "D"
+},
+{
+"id": "fail-30-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the blue packet in the left sink",
+"x": "blue packet",
+"y": "left sink",
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet",
+"grasp the blue packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the blue packet and release it in the left sink",
+"B": "move the blue packet over the left sink",
+"C": "open the gripper and grasp the blue packet again",
+"D": "lift the blue packet"
+},
+"truth": "C"
+},
+{
+"id": "fail-30-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the blue packet in the left sink",
+"x": "blue packet",
+"y": "left sink",
+"steps_completed": [
+"locate the blue packet",
+"move the gripper above the blue packet",
+"grasp the blue packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the blue packet over the left sink",
+"B": "lower the blue packet and release it in the left sink",
+"C": "lift the blue packet",
+"D": "open the gripper and grasp the blue packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-31-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the coffee pod in the cup",
+"x": "coffee pod",
+"y": "cup",
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the coffee pod",
+"B": "open the gripper and grasp the coffee pod again",
+"C": "lower the coffee pod and release it in the cup",
+"D": "move the coffee pod over the cup"
+},
+"truth": "B"
+},
+{
+"id": "fail-31-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the coffee pod in the cup",
+"x": "coffee pod",
+"y": "cup",
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the coffee pod",
+"B": "move the coffee pod over the cup",
+"C": "open the gripper and grasp the coffee pod again",
+"D": "lower the coffee pod and release it in the cup"
+},
+"truth": "C"
+},
+{
+"id": "fail-32-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black marker in the brown mug.",
+"x": "black marker",
+"y": "brown mug",
+"steps_completed": [
+"locate the black marker",
+"move the gripper above the black marker",
+"grasp the black marker \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the black marker again",
+"B": "lift the black marker",
+"C": "lower the black marker and release it in the brown mug",
+"D": "move the black marker over the brown mug"
+},
+"truth": "A"
+},
+{
+"id": "fail-32-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black marker in the brown mug.",
+"x": "black marker",
+"y": "brown mug",
+"steps_completed": [
+"locate the black marker",
+"move the gripper above the black marker",
+"grasp the black marker \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the black marker again",
+"B": "lift the black marker",
+"C": "lower the black marker and release it in the brown mug",
+"D": "move the black marker over the brown mug"
+},
+"truth": "A"
+},
+{
+"id": "fail-33-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the small packet inside the sink",
+"x": "small packet",
+"y": "sink",
+"steps_completed": [
+"locate the small packet",
+"move the gripper above the small packet",
+"grasp the small packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the small packet again",
+"B": "lower the small packet and release it in the sink",
+"C": "lift the small packet",
+"D": "move the small packet over the sink"
+},
+"truth": "A"
+},
+{
+"id": "fail-33-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the small packet inside the sink",
+"x": "small packet",
+"y": "sink",
+"steps_completed": [
+"locate the small packet",
+"move the gripper above the small packet",
+"grasp the small packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the small packet and release it in the sink",
+"B": "move the small packet over the sink",
+"C": "lift the small packet",
+"D": "open the gripper and grasp the small packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-34-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the white sachet on the top right rack",
+"x": "white sachet",
+"y": "top right rack",
+"steps_completed": [
+"locate the white sachet",
+"move the gripper above the white sachet",
+"grasp the white sachet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the white sachet and release it on the top right rack",
+"B": "lift the white sachet",
+"C": "open the gripper and grasp the white sachet again",
+"D": "move the white sachet over the top right rack"
+},
+"truth": "C"
+},
+{
+"id": "fail-34-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the white sachet on the top right rack",
+"x": "white sachet",
+"y": "top right rack",
+"steps_completed": [
+"locate the white sachet",
+"move the gripper above the white sachet",
+"grasp the white sachet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the white sachet",
+"B": "lower the white sachet and release it on the top right rack",
+"C": "open the gripper and grasp the white sachet again",
+"D": "move the white sachet over the top right rack"
+},
+"truth": "C"
+},
+{
+"id": "fail-35-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the can into the sink",
+"x": "can",
+"y": "sink",
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the can",
+"B": "move the can over the sink",
+"C": "lower the can and release it in the sink",
+"D": "open the gripper and grasp the can again"
+},
+"truth": "D"
+},
+{
+"id": "fail-35-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the can into the sink",
+"x": "can",
+"y": "sink",
+"steps_completed": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the can and release it in the sink",
+"B": "lift the can",
+"C": "move the can over the sink",
+"D": "open the gripper and grasp the can again"
+},
+"truth": "D"
+},
+{
+"id": "fail-36-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the teabag in the bin",
+"x": "teabag",
+"y": "bin",
+"steps_completed": [
+"locate the teabag",
+"move the gripper above the teabag",
+"grasp the teabag \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the teabag and release it in the bin",
+"B": "lift the teabag",
+"C": "move the teabag over the bin",
+"D": "open the gripper and grasp the teabag again"
+},
+"truth": "D"
+},
+{
+"id": "fail-36-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the teabag in the bin",
+"x": "teabag",
+"y": "bin",
+"steps_completed": [
+"locate the teabag",
+"move the gripper above the teabag",
+"grasp the teabag \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the teabag and release it in the bin",
+"B": "move the teabag over the bin",
+"C": "open the gripper and grasp the teabag again",
+"D": "lift the teabag"
+},
+"truth": "C"
+},
+{
+"id": "fail-37-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the blue bowl on the table.",
+"x": "blue bowl",
+"y": "table",
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the blue bowl",
+"B": "move the blue bowl over the table",
+"C": "lower the blue bowl and release it on the table",
+"D": "open the gripper and grasp the blue bowl again"
+},
+"truth": "D"
+},
+{
+"id": "fail-37-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the blue bowl on the table.",
+"x": "blue bowl",
+"y": "table",
+"steps_completed": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the blue bowl",
+"B": "open the gripper and grasp the blue bowl again",
+"C": "move the blue bowl over the table",
+"D": "lower the blue bowl and release it on the table"
+},
+"truth": "B"
+},
+{
+"id": "fail-38-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the spoon inside the mug",
+"x": "spoon",
+"y": "mug",
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the spoon",
+"B": "open the gripper and grasp the spoon again",
+"C": "lower the spoon and release it in the mug",
+"D": "move the spoon over the mug"
+},
+"truth": "B"
+},
+{
+"id": "fail-38-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the spoon inside the mug",
+"x": "spoon",
+"y": "mug",
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the spoon over the mug",
+"B": "open the gripper and grasp the spoon again",
+"C": "lift the spoon",
+"D": "lower the spoon and release it in the mug"
+},
+"truth": "B"
+},
+{
+"id": "fail-39-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the straw into the coffee cup",
+"x": "straw",
+"y": "coffee cup",
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the straw and release it in the coffee cup",
+"B": "open the gripper and grasp the straw again",
+"C": "lift the straw",
+"D": "move the straw over the coffee cup"
+},
+"truth": "B"
+},
+{
+"id": "fail-39-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the straw into the coffee cup",
+"x": "straw",
+"y": "coffee cup",
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the straw and release it in the coffee cup",
+"B": "lift the straw",
+"C": "move the straw over the coffee cup",
+"D": "open the gripper and grasp the straw again"
+},
+"truth": "D"
+},
+{
+"id": "fail-40-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the green packet inside the left sink",
+"x": "green packet",
+"y": "left sink",
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the green packet over the left sink",
+"B": "lower the green packet and release it in the left sink",
+"C": "open the gripper and grasp the green packet again",
+"D": "lift the green packet"
+},
+"truth": "C"
+},
+{
+"id": "fail-40-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the green packet inside the left sink",
+"x": "green packet",
+"y": "left sink",
+"steps_completed": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the green packet over the left sink",
+"B": "lower the green packet and release it in the left sink",
+"C": "lift the green packet",
+"D": "open the gripper and grasp the green packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-41-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the sachet on the white object",
+"x": "sachet",
+"y": "white object",
+"steps_completed": [
+"locate the sachet",
+"move the gripper above the sachet",
+"grasp the sachet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the sachet",
+"B": "open the gripper and grasp the sachet again",
+"C": "move the sachet over the white object",
+"D": "lower the sachet and release it on the white object"
+},
+"truth": "B"
+},
+{
+"id": "fail-41-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the sachet on the white object",
+"x": "sachet",
+"y": "white object",
+"steps_completed": [
+"locate the sachet",
+"move the gripper above the sachet",
+"grasp the sachet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the sachet over the white object",
+"B": "open the gripper and grasp the sachet again",
+"C": "lower the sachet and release it on the white object",
+"D": "lift the sachet"
+},
+"truth": "B"
+},
+{
+"id": "fail-42-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the two cream packs on the plate",
+"x": "two cream packs",
+"y": "plate",
+"steps_completed": [
+"locate the two cream packs",
+"move the gripper above the two cream packs",
+"grasp the two cream packs \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the two cream packs",
+"B": "open the gripper and grasp the two cream packs again",
+"C": "lower the two cream packs and release it on the plate",
+"D": "move the two cream packs over the plate"
+},
+"truth": "B"
+},
+{
+"id": "fail-42-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the two cream packs on the plate",
+"x": "two cream packs",
+"y": "plate",
+"steps_completed": [
+"locate the two cream packs",
+"move the gripper above the two cream packs",
+"grasp the two cream packs \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the two cream packs and release it on the plate",
+"B": "move the two cream packs over the plate",
+"C": "open the gripper and grasp the two cream packs again",
+"D": "lift the two cream packs"
+},
+"truth": "C"
+},
+{
+"id": "fail-43-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the broken pieces in the broken mug.",
+"x": "broken pieces",
+"y": "broken mug",
+"steps_completed": [
+"locate the broken pieces",
+"move the gripper above the broken pieces",
+"grasp the broken pieces \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the broken pieces and release it in the broken mug",
+"B": "move the broken pieces over the broken mug",
+"C": "open the gripper and grasp the broken pieces again",
+"D": "lift the broken pieces"
+},
+"truth": "C"
+},
+{
+"id": "fail-43-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the broken pieces in the broken mug.",
+"x": "broken pieces",
+"y": "broken mug",
+"steps_completed": [
+"locate the broken pieces",
+"move the gripper above the broken pieces",
+"grasp the broken pieces \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the broken pieces over the broken mug",
+"B": "lower the broken pieces and release it in the broken mug",
+"C": "lift the broken pieces",
+"D": "open the gripper and grasp the broken pieces again"
+},
+"truth": "D"
+},
+{
+"id": "fail-44-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the blue bottle on the rack",
+"x": "blue bottle",
+"y": "rack",
+"steps_completed": [
+"locate the blue bottle",
+"move the gripper above the blue bottle",
+"grasp the blue bottle \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the blue bottle",
+"B": "lower the blue bottle and release it on the rack",
+"C": "open the gripper and grasp the blue bottle again",
+"D": "move the blue bottle over the rack"
+},
+"truth": "C"
+},
+{
+"id": "fail-44-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the blue bottle on the rack",
+"x": "blue bottle",
+"y": "rack",
+"steps_completed": [
+"locate the blue bottle",
+"move the gripper above the blue bottle",
+"grasp the blue bottle \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the blue bottle over the rack",
+"B": "lower the blue bottle and release it on the rack",
+"C": "lift the blue bottle",
+"D": "open the gripper and grasp the blue bottle again"
+},
+"truth": "D"
+},
+{
+"id": "fail-45-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the white book on top of the cabinet.",
+"x": "white book",
+"y": "top of the cabinet",
+"steps_completed": [
+"locate the white book",
+"move the gripper above the white book",
+"grasp the white book \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the white book over the top of the cabinet",
+"B": "open the gripper and grasp the white book again",
+"C": "lift the white book",
+"D": "lower the white book and release it on the top of the cabinet"
+},
+"truth": "B"
+},
+{
+"id": "fail-45-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the white book on top of the cabinet.",
+"x": "white book",
+"y": "top of the cabinet",
+"steps_completed": [
+"locate the white book",
+"move the gripper above the white book",
+"grasp the white book \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the white book again",
+"B": "move the white book over the top of the cabinet",
+"C": "lower the white book and release it on the top of the cabinet",
+"D": "lift the white book"
+},
+"truth": "A"
+},
+{
+"id": "fail-46-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black pot on the white plate",
+"x": "black pot",
+"y": "white plate",
+"steps_completed": [
+"locate the black pot",
+"move the gripper above the black pot",
+"grasp the black pot \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the black pot and release it on the white plate",
+"B": "open the gripper and grasp the black pot again",
+"C": "lift the black pot",
+"D": "move the black pot over the white plate"
+},
+"truth": "B"
+},
+{
+"id": "fail-46-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black pot on the white plate",
+"x": "black pot",
+"y": "white plate",
+"steps_completed": [
+"locate the black pot",
+"move the gripper above the black pot",
+"grasp the black pot \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the black pot again",
+"B": "lower the black pot and release it on the white plate",
+"C": "move the black pot over the white plate",
+"D": "lift the black pot"
+},
+"truth": "A"
+},
+{
+"id": "fail-47-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black remote on the armrest",
+"x": "black remote",
+"y": "armrest",
+"steps_completed": [
+"locate the black remote",
+"move the gripper above the black remote",
+"grasp the black remote \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the black remote again",
+"B": "move the black remote over the armrest",
+"C": "lower the black remote and release it on the armrest",
+"D": "lift the black remote"
+},
+"truth": "A"
+},
+{
+"id": "fail-47-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black remote on the armrest",
+"x": "black remote",
+"y": "armrest",
+"steps_completed": [
+"locate the black remote",
+"move the gripper above the black remote",
+"grasp the black remote \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the black remote and release it on the armrest",
+"B": "lift the black remote",
+"C": "open the gripper and grasp the black remote again",
+"D": "move the black remote over the armrest"
+},
+"truth": "C"
+},
+{
+"id": "fail-48-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the white spoon on the coffee cup.",
+"x": "white spoon",
+"y": "coffee cup",
+"steps_completed": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the white spoon and release it on the coffee cup",
+"B": "lift the white spoon",
+"C": "move the white spoon over the coffee cup",
+"D": "open the gripper and grasp the white spoon again"
+},
+"truth": "D"
+},
+{
+"id": "fail-48-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the white spoon on the coffee cup.",
+"x": "white spoon",
+"y": "coffee cup",
+"steps_completed": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the white spoon",
+"B": "open the gripper and grasp the white spoon again",
+"C": "move the white spoon over the coffee cup",
+"D": "lower the white spoon and release it on the coffee cup"
+},
+"truth": "B"
+},
+{
+"id": "fail-49-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the orange item on the bin",
+"x": "orange item",
+"y": "bin",
+"steps_completed": [
+"locate the orange item",
+"move the gripper above the orange item",
+"grasp the orange item \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange item again",
+"B": "lift the orange item",
+"C": "lower the orange item and release it on the bin",
+"D": "move the orange item over the bin"
+},
+"truth": "A"
+},
+{
+"id": "fail-49-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the orange item on the bin",
+"x": "orange item",
+"y": "bin",
+"steps_completed": [
+"locate the orange item",
+"move the gripper above the orange item",
+"grasp the orange item \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the orange item and release it on the bin",
+"B": "open the gripper and grasp the orange item again",
+"C": "lift the orange item",
+"D": "move the orange item over the bin"
+},
+"truth": "B"
+},
+{
+"id": "fail-50-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black remote on the black chair",
+"x": "black remote",
+"y": "black chair",
+"steps_completed": [
+"locate the black remote",
+"move the gripper above the black remote",
+"grasp the black remote \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the black remote and release it on the black chair",
+"B": "move the black remote over the black chair",
+"C": "open the gripper and grasp the black remote again",
+"D": "lift the black remote"
+},
+"truth": "C"
+},
+{
+"id": "fail-50-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black remote on the black chair",
+"x": "black remote",
+"y": "black chair",
+"steps_completed": [
+"locate the black remote",
+"move the gripper above the black remote",
+"grasp the black remote \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the black remote over the black chair",
+"B": "lower the black remote and release it on the black chair",
+"C": "lift the black remote",
+"D": "open the gripper and grasp the black remote again"
+},
+"truth": "D"
+},
+{
+"id": "fail-51-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the cup on top of the table",
+"x": "cup",
+"y": "top of the table",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the cup over the top of the table",
+"B": "lower the cup and release it on the top of the table",
+"C": "lift the cup",
+"D": "open the gripper and grasp the cup again"
+},
+"truth": "D"
+},
+{
+"id": "fail-51-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the cup on top of the table",
+"x": "cup",
+"y": "top of the table",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the cup again",
+"B": "lower the cup and release it on the top of the table",
+"C": "move the cup over the top of the table",
+"D": "lift the cup"
+},
+"truth": "A"
+},
+{
+"id": "fail-52-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the orange packet in the black bowl.",
+"x": "orange packet",
+"y": "black bowl",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the orange packet and release it in the black bowl",
+"B": "move the orange packet over the black bowl",
+"C": "open the gripper and grasp the orange packet again",
+"D": "lift the orange packet"
+},
+"truth": "C"
+},
+{
+"id": "fail-52-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the orange packet in the black bowl.",
+"x": "orange packet",
+"y": "black bowl",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange packet again",
+"B": "move the orange packet over the black bowl",
+"C": "lower the orange packet and release it in the black bowl",
+"D": "lift the orange packet"
+},
+"truth": "A"
+},
+{
+"id": "fail-53-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the blue snack packet in the top cabinet",
+"x": "blue snack packet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the blue snack packet",
+"move the gripper above the blue snack packet",
+"grasp the blue snack packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the blue snack packet and release it in the top cabinet",
+"B": "lift the blue snack packet",
+"C": "move the blue snack packet over the top cabinet",
+"D": "open the gripper and grasp the blue snack packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-53-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the blue snack packet in the top cabinet",
+"x": "blue snack packet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the blue snack packet",
+"move the gripper above the blue snack packet",
+"grasp the blue snack packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the blue snack packet",
+"B": "move the blue snack packet over the top cabinet",
+"C": "lower the blue snack packet and release it in the top cabinet",
+"D": "open the gripper and grasp the blue snack packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-54-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the orange car in the black box.",
+"x": "orange car",
+"y": "black box",
+"steps_completed": [
+"locate the orange car",
+"move the gripper above the orange car",
+"grasp the orange car \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the orange car",
+"B": "move the orange car over the black box",
+"C": "open the gripper and grasp the orange car again",
+"D": "lower the orange car and release it in the black box"
+},
+"truth": "C"
+},
+{
+"id": "fail-54-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the orange car in the black box.",
+"x": "orange car",
+"y": "black box",
+"steps_completed": [
+"locate the orange car",
+"move the gripper above the orange car",
+"grasp the orange car \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the orange car over the black box",
+"B": "lower the orange car and release it in the black box",
+"C": "lift the orange car",
+"D": "open the gripper and grasp the orange car again"
+},
+"truth": "D"
+},
+{
+"id": "fail-55-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the pile of black spoons into the drying rack",
+"x": "pile of black spoons",
+"y": "drying rack",
+"steps_completed": [
+"locate the pile of black spoons",
+"move the gripper above the pile of black spoons",
+"grasp the pile of black spoons \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the pile of black spoons over the drying rack",
+"B": "lift the pile of black spoons",
+"C": "open the gripper and grasp the pile of black spoons again",
+"D": "lower the pile of black spoons and release it in the drying rack"
+},
+"truth": "C"
+},
+{
+"id": "fail-55-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the pile of black spoons into the drying rack",
+"x": "pile of black spoons",
+"y": "drying rack",
+"steps_completed": [
+"locate the pile of black spoons",
+"move the gripper above the pile of black spoons",
+"grasp the pile of black spoons \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the pile of black spoons over the drying rack",
+"B": "lower the pile of black spoons and release it in the drying rack",
+"C": "open the gripper and grasp the pile of black spoons again",
+"D": "lift the pile of black spoons"
+},
+"truth": "C"
+},
+{
+"id": "fail-56-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the black object inside the box",
+"x": "black object",
+"y": "box",
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the black object over the box",
+"B": "lift the black object",
+"C": "open the gripper and grasp the black object again",
+"D": "lower the black object and release it in the box"
+},
+"truth": "C"
+},
+{
+"id": "fail-56-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the black object inside the box",
+"x": "black object",
+"y": "box",
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the black object",
+"B": "move the black object over the box",
+"C": "lower the black object and release it in the box",
+"D": "open the gripper and grasp the black object again"
+},
+"truth": "D"
+},
+{
+"id": "fail-57-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the biggest mug piece in the broken cup",
+"x": "biggest mug piece",
+"y": "broken cup",
+"steps_completed": [
+"locate the biggest mug piece",
+"move the gripper above the biggest mug piece",
+"grasp the biggest mug piece \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the biggest mug piece and release it in the broken cup",
+"B": "move the biggest mug piece over the broken cup",
+"C": "open the gripper and grasp the biggest mug piece again",
+"D": "lift the biggest mug piece"
+},
+"truth": "C"
+},
+{
+"id": "fail-57-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the biggest mug piece in the broken cup",
+"x": "biggest mug piece",
+"y": "broken cup",
+"steps_completed": [
+"locate the biggest mug piece",
+"move the gripper above the biggest mug piece",
+"grasp the biggest mug piece \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the biggest mug piece again",
+"B": "lower the biggest mug piece and release it in the broken cup",
+"C": "lift the biggest mug piece",
+"D": "move the biggest mug piece over the broken cup"
+},
+"truth": "A"
+},
+{
+"id": "fail-58-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the orange sachet in the top cabinet",
+"x": "orange sachet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the orange sachet",
+"move the gripper above the orange sachet",
+"grasp the orange sachet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the orange sachet over the top cabinet",
+"B": "open the gripper and grasp the orange sachet again",
+"C": "lift the orange sachet",
+"D": "lower the orange sachet and release it in the top cabinet"
+},
+"truth": "B"
+},
+{
+"id": "fail-58-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the orange sachet in the top cabinet",
+"x": "orange sachet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the orange sachet",
+"move the gripper above the orange sachet",
+"grasp the orange sachet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange sachet again",
+"B": "move the orange sachet over the top cabinet",
+"C": "lower the orange sachet and release it in the top cabinet",
+"D": "lift the orange sachet"
+},
+"truth": "A"
+},
+{
+"id": "fail-59-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Place the silver lid onto the bottle",
+"x": "silver lid",
+"y": "bottle",
+"steps_completed": [
+"locate the silver lid",
+"move the gripper above the silver lid",
+"grasp the silver lid \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the silver lid",
+"B": "open the gripper and grasp the silver lid again",
+"C": "lower the silver lid and release it on the bottle",
+"D": "move the silver lid over the bottle"
+},
+"truth": "B"
+},
+{
+"id": "fail-59-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Place the silver lid onto the bottle",
+"x": "silver lid",
+"y": "bottle",
+"steps_completed": [
+"locate the silver lid",
+"move the gripper above the silver lid",
+"grasp the silver lid \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the silver lid again",
+"B": "lower the silver lid and release it on the bottle",
+"C": "lift the silver lid",
+"D": "move the silver lid over the bottle"
+},
+"truth": "A"
+},
+{
+"id": "fail-60-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the wrapper in the bin",
+"x": "wrapper",
+"y": "bin",
+"steps_completed": [
+"locate the wrapper",
+"move the gripper above the wrapper",
+"grasp the wrapper \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the wrapper again",
+"B": "lower the wrapper and release it in the bin",
+"C": "lift the wrapper",
+"D": "move the wrapper over the bin"
+},
+"truth": "A"
+},
+{
+"id": "fail-60-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the wrapper in the bin",
+"x": "wrapper",
+"y": "bin",
+"steps_completed": [
+"locate the wrapper",
+"move the gripper above the wrapper",
+"grasp the wrapper \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the wrapper and release it in the bin",
+"B": "open the gripper and grasp the wrapper again",
+"C": "lift the wrapper",
+"D": "move the wrapper over the bin"
+},
+"truth": "B"
+},
+{
+"id": "fail-61-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the paper towel roll on the silver holder.",
+"x": "paper towel roll",
+"y": "silver holder",
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll",
+"grasp the paper towel roll \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the paper towel roll and release it on the silver holder",
+"B": "open the gripper and grasp the paper towel roll again",
+"C": "lift the paper towel roll",
+"D": "move the paper towel roll over the silver holder"
+},
+"truth": "B"
+},
+{
+"id": "fail-61-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the paper towel roll on the silver holder.",
+"x": "paper towel roll",
+"y": "silver holder",
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll",
+"grasp the paper towel roll \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the paper towel roll again",
+"B": "move the paper towel roll over the silver holder",
+"C": "lift the paper towel roll",
+"D": "lower the paper towel roll and release it on the silver holder"
+},
+"truth": "A"
+},
+{
+"id": "fail-62-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the tennis ball into the microwave",
+"x": "tennis ball",
+"y": "microwave",
+"steps_completed": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the tennis ball",
+"B": "move the tennis ball over the microwave",
+"C": "open the gripper and grasp the tennis ball again",
+"D": "lower the tennis ball and release it in the microwave"
+},
+"truth": "C"
+},
+{
+"id": "fail-62-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the tennis ball into the microwave",
+"x": "tennis ball",
+"y": "microwave",
+"steps_completed": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the tennis ball and release it in the microwave",
+"B": "open the gripper and grasp the tennis ball again",
+"C": "move the tennis ball over the microwave",
+"D": "lift the tennis ball"
+},
+"truth": "B"
+},
+{
+"id": "fail-63-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put one cup on the countertop",
+"x": "one cup",
+"y": "countertop",
+"steps_completed": [
+"locate the one cup",
+"move the gripper above the one cup",
+"grasp the one cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the one cup again",
+"B": "lower the one cup and release it on the countertop",
+"C": "move the one cup over the countertop",
+"D": "lift the one cup"
+},
+"truth": "A"
+},
+{
+"id": "fail-63-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put one cup on the countertop",
+"x": "one cup",
+"y": "countertop",
+"steps_completed": [
+"locate the one cup",
+"move the gripper above the one cup",
+"grasp the one cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the one cup and release it on the countertop",
+"B": "move the one cup over the countertop",
+"C": "lift the one cup",
+"D": "open the gripper and grasp the one cup again"
+},
+"truth": "D"
+},
+{
+"id": "fail-64-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the orange packet in the left sink",
+"x": "orange packet",
+"y": "left sink",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the orange packet",
+"B": "lower the orange packet and release it in the left sink",
+"C": "move the orange packet over the left sink",
+"D": "open the gripper and grasp the orange packet again"
+},
+"truth": "D"
+},
+{
+"id": "fail-64-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the orange packet in the left sink",
+"x": "orange packet",
+"y": "left sink",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the orange packet",
+"B": "open the gripper and grasp the orange packet again",
+"C": "lower the orange packet and release it in the left sink",
+"D": "move the orange packet over the left sink"
+},
+"truth": "B"
+},
+{
+"id": "fail-65-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the scoop inside the jar then close it",
+"x": "scoop",
+"y": "jar then close it",
+"steps_completed": [
+"locate the scoop",
+"move the gripper above the scoop",
+"grasp the scoop \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the scoop over the jar then close it",
+"B": "lower the scoop and release it in the jar then close it",
+"C": "lift the scoop",
+"D": "open the gripper and grasp the scoop again"
+},
+"truth": "D"
+},
+{
+"id": "fail-65-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the scoop inside the jar then close it",
+"x": "scoop",
+"y": "jar then close it",
+"steps_completed": [
+"locate the scoop",
+"move the gripper above the scoop",
+"grasp the scoop \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the scoop",
+"B": "lower the scoop and release it in the jar then close it",
+"C": "move the scoop over the jar then close it",
+"D": "open the gripper and grasp the scoop again"
+},
+"truth": "D"
+},
+{
+"id": "fail-66-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put cereal grains on the paper towel",
+"x": "cereal grains",
+"y": "paper towel",
+"steps_completed": [
+"locate the cereal grains",
+"move the gripper above the cereal grains",
+"grasp the cereal grains \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the cereal grains",
+"B": "move the cereal grains over the paper towel",
+"C": "lower the cereal grains and release it on the paper towel",
+"D": "open the gripper and grasp the cereal grains again"
+},
+"truth": "D"
+},
+{
+"id": "fail-66-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put cereal grains on the paper towel",
+"x": "cereal grains",
+"y": "paper towel",
+"steps_completed": [
+"locate the cereal grains",
+"move the gripper above the cereal grains",
+"grasp the cereal grains \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the cereal grains",
+"B": "move the cereal grains over the paper towel",
+"C": "open the gripper and grasp the cereal grains again",
+"D": "lower the cereal grains and release it on the paper towel"
+},
+"truth": "C"
+},
+{
+"id": "fail-67-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the cup on the counter bottom first",
+"x": "cup",
+"y": "counter bottom first",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the cup over the counter bottom first",
+"B": "lift the cup",
+"C": "open the gripper and grasp the cup again",
+"D": "lower the cup and release it on the counter bottom first"
+},
+"truth": "C"
+},
+{
+"id": "fail-67-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the cup on the counter bottom first",
+"x": "cup",
+"y": "counter bottom first",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the cup over the counter bottom first",
+"B": "open the gripper and grasp the cup again",
+"C": "lift the cup",
+"D": "lower the cup and release it on the counter bottom first"
+},
+"truth": "B"
+},
+{
+"id": "fail-68-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the paper cup in the blue bowl",
+"x": "paper cup",
+"y": "blue bowl",
+"steps_completed": [
+"locate the paper cup",
+"move the gripper above the paper cup",
+"grasp the paper cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the paper cup and release it in the blue bowl",
+"B": "move the paper cup over the blue bowl",
+"C": "lift the paper cup",
+"D": "open the gripper and grasp the paper cup again"
+},
+"truth": "D"
+},
+{
+"id": "fail-68-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the paper cup in the blue bowl",
+"x": "paper cup",
+"y": "blue bowl",
+"steps_completed": [
+"locate the paper cup",
+"move the gripper above the paper cup",
+"grasp the paper cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the paper cup again",
+"B": "lower the paper cup and release it in the blue bowl",
+"C": "move the paper cup over the blue bowl",
+"D": "lift the paper cup"
+},
+"truth": "A"
+},
+{
+"id": "fail-69-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the cup on the espresso machine",
+"x": "cup",
+"y": "espresso machine",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the cup over the espresso machine",
+"B": "open the gripper and grasp the cup again",
+"C": "lower the cup and release it on the espresso machine",
+"D": "lift the cup"
+},
+"truth": "B"
+},
+{
+"id": "fail-69-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the cup on the espresso machine",
+"x": "cup",
+"y": "espresso machine",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the cup and release it on the espresso machine",
+"B": "lift the cup",
+"C": "move the cup over the espresso machine",
+"D": "open the gripper and grasp the cup again"
+},
+"truth": "D"
+},
+{
+"id": "fail-70-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the yellow sachet on the top rack",
+"x": "yellow sachet",
+"y": "top rack",
+"steps_completed": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the yellow sachet over the top rack",
+"B": "lower the yellow sachet and release it on the top rack",
+"C": "open the gripper and grasp the yellow sachet again",
+"D": "lift the yellow sachet"
+},
+"truth": "C"
+},
+{
+"id": "fail-70-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the yellow sachet on the top rack",
+"x": "yellow sachet",
+"y": "top rack",
+"steps_completed": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the yellow sachet",
+"B": "lower the yellow sachet and release it on the top rack",
+"C": "open the gripper and grasp the yellow sachet again",
+"D": "move the yellow sachet over the top rack"
+},
+"truth": "C"
+},
+{
+"id": "fail-71-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the clothing hanger on the job of the cupboard",
+"x": "clothing hanger",
+"y": "job of the cupboard",
+"steps_completed": [
+"locate the clothing hanger",
+"move the gripper above the clothing hanger",
+"grasp the clothing hanger \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the clothing hanger",
+"B": "open the gripper and grasp the clothing hanger again",
+"C": "move the clothing hanger over the job of the cupboard",
+"D": "lower the clothing hanger and release it on the job of the cupboard"
+},
+"truth": "B"
+},
+{
+"id": "fail-71-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the clothing hanger on the job of the cupboard",
+"x": "clothing hanger",
+"y": "job of the cupboard",
+"steps_completed": [
+"locate the clothing hanger",
+"move the gripper above the clothing hanger",
+"grasp the clothing hanger \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the clothing hanger over the job of the cupboard",
+"B": "lower the clothing hanger and release it on the job of the cupboard",
+"C": "lift the clothing hanger",
+"D": "open the gripper and grasp the clothing hanger again"
+},
+"truth": "D"
+},
+{
+"id": "fail-72-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the white hangers on the counter",
+"x": "white hangers",
+"y": "counter",
+"steps_completed": [
+"locate the white hangers",
+"move the gripper above the white hangers",
+"grasp the white hangers \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the white hangers and release it on the counter",
+"B": "lift the white hangers",
+"C": "open the gripper and grasp the white hangers again",
+"D": "move the white hangers over the counter"
+},
+"truth": "C"
+},
+{
+"id": "fail-72-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the white hangers on the counter",
+"x": "white hangers",
+"y": "counter",
+"steps_completed": [
+"locate the white hangers",
+"move the gripper above the white hangers",
+"grasp the white hangers \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lift the white hangers",
+"B": "open the gripper and grasp the white hangers again",
+"C": "lower the white hangers and release it on the counter",
+"D": "move the white hangers over the counter"
+},
+"truth": "B"
+},
+{
+"id": "fail-73-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the red can in the sink.",
+"x": "red can",
+"y": "sink",
+"steps_completed": [
+"locate the red can",
+"move the gripper above the red can",
+"grasp the red can \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the red can",
+"B": "lower the red can and release it in the sink",
+"C": "move the red can over the sink",
+"D": "open the gripper and grasp the red can again"
+},
+"truth": "D"
+},
+{
+"id": "fail-73-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the red can in the sink.",
+"x": "red can",
+"y": "sink",
+"steps_completed": [
+"locate the red can",
+"move the gripper above the red can",
+"grasp the red can \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the red can over the sink",
+"B": "lift the red can",
+"C": "open the gripper and grasp the red can again",
+"D": "lower the red can and release it in the sink"
+},
+"truth": "C"
+},
+{
+"id": "fail-74-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the purple snack in the sink.",
+"x": "purple snack",
+"y": "sink",
+"steps_completed": [
+"locate the purple snack",
+"move the gripper above the purple snack",
+"grasp the purple snack \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lower the purple snack and release it in the sink",
+"B": "open the gripper and grasp the purple snack again",
+"C": "move the purple snack over the sink",
+"D": "lift the purple snack"
+},
+"truth": "B"
+},
+{
+"id": "fail-74-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the purple snack in the sink.",
+"x": "purple snack",
+"y": "sink",
+"steps_completed": [
+"locate the purple snack",
+"move the gripper above the purple snack",
+"grasp the purple snack \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the purple snack and release it in the sink",
+"B": "move the purple snack over the sink",
+"C": "open the gripper and grasp the purple snack again",
+"D": "lift the purple snack"
+},
+"truth": "C"
+},
+{
+"id": "fail-75-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put one orange object in the plastic",
+"x": "one orange object",
+"y": "plastic",
+"steps_completed": [
+"locate the one orange object",
+"move the gripper above the one orange object",
+"grasp the one orange object \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "move the one orange object over the plastic",
+"B": "lower the one orange object and release it in the plastic",
+"C": "lift the one orange object",
+"D": "open the gripper and grasp the one orange object again"
+},
+"truth": "D"
+},
+{
+"id": "fail-75-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put one orange object in the plastic",
+"x": "one orange object",
+"y": "plastic",
+"steps_completed": [
+"locate the one orange object",
+"move the gripper above the one orange object",
+"grasp the one orange object \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "open the gripper and grasp the one orange object again",
+"B": "lift the one orange object",
+"C": "lower the one orange object and release it in the plastic",
+"D": "move the one orange object over the plastic"
+},
+"truth": "A"
+},
+{
+"id": "fail-76-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the wooden spoon on the paper towel",
+"x": "wooden spoon",
+"y": "paper towel",
+"steps_completed": [
+"locate the wooden spoon",
+"move the gripper above the wooden spoon",
+"grasp the wooden spoon \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the wooden spoon again",
+"B": "move the wooden spoon over the paper towel",
+"C": "lift the wooden spoon",
+"D": "lower the wooden spoon and release it on the paper towel"
+},
+"truth": "A"
+},
+{
+"id": "fail-76-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the wooden spoon on the paper towel",
+"x": "wooden spoon",
+"y": "paper towel",
+"steps_completed": [
+"locate the wooden spoon",
+"move the gripper above the wooden spoon",
+"grasp the wooden spoon \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the wooden spoon over the paper towel",
+"B": "lower the wooden spoon and release it on the paper towel",
+"C": "open the gripper and grasp the wooden spoon again",
+"D": "lift the wooden spoon"
+},
+"truth": "C"
+},
+{
+"id": "fail-77-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the orange jersey on the seat of the chair",
+"x": "orange jersey",
+"y": "seat of the chair",
+"steps_completed": [
+"locate the orange jersey",
+"move the gripper above the orange jersey",
+"grasp the orange jersey \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange jersey again",
+"B": "lower the orange jersey and release it on the seat of the chair",
+"C": "lift the orange jersey",
+"D": "move the orange jersey over the seat of the chair"
+},
+"truth": "A"
+},
+{
+"id": "fail-77-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the orange jersey on the seat of the chair",
+"x": "orange jersey",
+"y": "seat of the chair",
+"steps_completed": [
+"locate the orange jersey",
+"move the gripper above the orange jersey",
+"grasp the orange jersey \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the orange jersey over the seat of the chair",
+"B": "lift the orange jersey",
+"C": "open the gripper and grasp the orange jersey again",
+"D": "lower the orange jersey and release it on the seat of the chair"
+},
+"truth": "C"
+},
+{
+"id": "fail-78-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the green can in the open upper cabinet.",
+"x": "green can",
+"y": "open upper cabinet",
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the green can",
+"B": "move the green can over the open upper cabinet",
+"C": "lower the green can and release it in the open upper cabinet",
+"D": "open the gripper and grasp the green can again"
+},
+"truth": "D"
+},
+{
+"id": "fail-78-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the green can in the open upper cabinet.",
+"x": "green can",
+"y": "open upper cabinet",
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "move the green can over the open upper cabinet",
+"B": "open the gripper and grasp the green can again",
+"C": "lower the green can and release it in the open upper cabinet",
+"D": "lift the green can"
+},
+"truth": "B"
+},
+{
+"id": "fail-79-numeric",
+"setting": "critic",
+"kind": "failure",
+"fmt": "numeric",
+"task": "Put the paper towel roll on the metal holder",
+"x": "paper towel roll",
+"y": "metal holder",
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll",
+"grasp the paper towel roll \u2014 done; gripper force sensor reads 0.0 N"
+],
+"candidates": {
+"A": "lift the paper towel roll",
+"B": "open the gripper and grasp the paper towel roll again",
+"C": "move the paper towel roll over the metal holder",
+"D": "lower the paper towel roll and release it on the metal holder"
+},
+"truth": "B"
+},
+{
+"id": "fail-79-categorical",
+"setting": "critic",
+"kind": "failure",
+"fmt": "categorical",
+"task": "Put the paper towel roll on the metal holder",
+"x": "paper towel roll",
+"y": "metal holder",
+"steps_completed": [
+"locate the paper towel roll",
+"move the gripper above the paper towel roll",
+"grasp the paper towel roll \u2014 done; gripper reports: nothing held"
+],
+"candidates": {
+"A": "lower the paper towel roll and release it on the metal holder",
+"B": "lift the paper towel roll",
+"C": "move the paper towel roll over the metal holder",
+"D": "open the gripper and grasp the paper towel roll again"
+},
+"truth": "D"
+},
+{
+"id": "benign-80-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green sachet in the box",
+"x": "green sachet",
+"y": "box",
+"steps_completed": [
+"locate the green sachet",
+"move the gripper above the green sachet",
+"grasp the green sachet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the green sachet",
+"B": "move the gripper above the green sachet",
+"C": "lift the green sachet",
+"D": "open the gripper and grasp the green sachet again"
+},
+"truth": "C"
+},
+{
+"id": "benign-80-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green sachet in the box",
+"x": "green sachet",
+"y": "box",
+"steps_completed": [
+"locate the green sachet",
+"move the gripper above the green sachet",
+"grasp the green sachet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the green sachet again",
+"B": "locate the green sachet",
+"C": "lift the green sachet",
+"D": "move the gripper above the green sachet"
+},
+"truth": "C"
+},
+{
+"id": "benign-81-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the cup in the sink",
+"x": "cup",
+"y": "sink",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the cup",
+"B": "move the gripper above the cup",
+"C": "locate the cup",
+"D": "open the gripper and grasp the cup again"
+},
+"truth": "A"
+},
+{
+"id": "benign-81-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the cup in the sink",
+"x": "cup",
+"y": "sink",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the cup",
+"B": "open the gripper and grasp the cup again",
+"C": "move the gripper above the cup",
+"D": "lift the cup"
+},
+"truth": "D"
+},
+{
+"id": "benign-82-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the coffee cup onto the blue bowl",
+"x": "coffee cup",
+"y": "blue bowl",
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup",
+"grasp the coffee cup \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the coffee cup",
+"B": "move the gripper above the coffee cup",
+"C": "open the gripper and grasp the coffee cup again",
+"D": "locate the coffee cup"
+},
+"truth": "A"
+},
+{
+"id": "benign-82-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the coffee cup onto the blue bowl",
+"x": "coffee cup",
+"y": "blue bowl",
+"steps_completed": [
+"locate the coffee cup",
+"move the gripper above the coffee cup",
+"grasp the coffee cup \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the coffee cup",
+"B": "lift the coffee cup",
+"C": "open the gripper and grasp the coffee cup again",
+"D": "locate the coffee cup"
+},
+"truth": "B"
+},
+{
+"id": "benign-83-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the grey remote control on the middle shelf.",
+"x": "grey remote control",
+"y": "middle shelf",
+"steps_completed": [
+"locate the grey remote control",
+"move the gripper above the grey remote control",
+"grasp the grey remote control \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the grey remote control",
+"B": "open the gripper and grasp the grey remote control again",
+"C": "locate the grey remote control",
+"D": "move the gripper above the grey remote control"
+},
+"truth": "A"
+},
+{
+"id": "benign-83-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the grey remote control on the middle shelf.",
+"x": "grey remote control",
+"y": "middle shelf",
+"steps_completed": [
+"locate the grey remote control",
+"move the gripper above the grey remote control",
+"grasp the grey remote control \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the grey remote control again",
+"B": "locate the grey remote control",
+"C": "lift the grey remote control",
+"D": "move the gripper above the grey remote control"
+},
+"truth": "C"
+},
+{
+"id": "benign-84-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the orange packet in the sink on the left.",
+"x": "orange packet",
+"y": "sink on the left",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange packet again",
+"B": "move the gripper above the orange packet",
+"C": "locate the orange packet",
+"D": "lift the orange packet"
+},
+"truth": "D"
+},
+{
+"id": "benign-84-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the orange packet in the sink on the left.",
+"x": "orange packet",
+"y": "sink on the left",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the orange packet",
+"B": "open the gripper and grasp the orange packet again",
+"C": "lift the orange packet",
+"D": "locate the orange packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-85-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white object inside the yellow cup",
+"x": "white object",
+"y": "yellow cup",
+"steps_completed": [
+"locate the white object",
+"move the gripper above the white object",
+"grasp the white object \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the white object",
+"B": "move the gripper above the white object",
+"C": "open the gripper and grasp the white object again",
+"D": "lift the white object"
+},
+"truth": "D"
+},
+{
+"id": "benign-85-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white object inside the yellow cup",
+"x": "white object",
+"y": "yellow cup",
+"steps_completed": [
+"locate the white object",
+"move the gripper above the white object",
+"grasp the white object \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the white object",
+"B": "locate the white object",
+"C": "open the gripper and grasp the white object again",
+"D": "move the gripper above the white object"
+},
+"truth": "A"
+},
+{
+"id": "benign-86-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Place the coffee capsule on the serviette",
+"x": "coffee capsule",
+"y": "serviette",
+"steps_completed": [
+"locate the coffee capsule",
+"move the gripper above the coffee capsule",
+"grasp the coffee capsule \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the coffee capsule",
+"B": "lift the coffee capsule",
+"C": "open the gripper and grasp the coffee capsule again",
+"D": "locate the coffee capsule"
+},
+"truth": "B"
+},
+{
+"id": "benign-86-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Place the coffee capsule on the serviette",
+"x": "coffee capsule",
+"y": "serviette",
+"steps_completed": [
+"locate the coffee capsule",
+"move the gripper above the coffee capsule",
+"grasp the coffee capsule \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the coffee capsule",
+"B": "open the gripper and grasp the coffee capsule again",
+"C": "move the gripper above the coffee capsule",
+"D": "lift the coffee capsule"
+},
+"truth": "D"
+},
+{
+"id": "benign-87-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the cup on the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the cup again",
+"B": "locate the cup",
+"C": "lift the cup",
+"D": "move the gripper above the cup"
+},
+"truth": "C"
+},
+{
+"id": "benign-87-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the cup on the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"steps_completed": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the cup again",
+"B": "locate the cup",
+"C": "move the gripper above the cup",
+"D": "lift the cup"
+},
+"truth": "D"
+},
+{
+"id": "benign-88-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the red packet in the left sink",
+"x": "red packet",
+"y": "left sink",
+"steps_completed": [
+"locate the red packet",
+"move the gripper above the red packet",
+"grasp the red packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the red packet again",
+"B": "lift the red packet",
+"C": "locate the red packet",
+"D": "move the gripper above the red packet"
+},
+"truth": "B"
+},
+{
+"id": "benign-88-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the red packet in the left sink",
+"x": "red packet",
+"y": "left sink",
+"steps_completed": [
+"locate the red packet",
+"move the gripper above the red packet",
+"grasp the red packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the red packet",
+"B": "move the gripper above the red packet",
+"C": "open the gripper and grasp the red packet again",
+"D": "locate the red packet"
+},
+"truth": "A"
+},
+{
+"id": "benign-89-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Place the left sneaker on the topmost shelf.",
+"x": "left sneaker",
+"y": "topmost shelf",
+"steps_completed": [
+"locate the left sneaker",
+"move the gripper above the left sneaker",
+"grasp the left sneaker \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the left sneaker",
+"B": "lift the left sneaker",
+"C": "open the gripper and grasp the left sneaker again",
+"D": "locate the left sneaker"
+},
+"truth": "B"
+},
+{
+"id": "benign-89-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Place the left sneaker on the topmost shelf.",
+"x": "left sneaker",
+"y": "topmost shelf",
+"steps_completed": [
+"locate the left sneaker",
+"move the gripper above the left sneaker",
+"grasp the left sneaker \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the left sneaker",
+"B": "locate the left sneaker",
+"C": "lift the left sneaker",
+"D": "open the gripper and grasp the left sneaker again"
+},
+"truth": "C"
+},
+{
+"id": "benign-90-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the orange objects in the left cup",
+"x": "orange objects",
+"y": "left cup",
+"steps_completed": [
+"locate the orange objects",
+"move the gripper above the orange objects",
+"grasp the orange objects \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the orange objects",
+"B": "move the gripper above the orange objects",
+"C": "lift the orange objects",
+"D": "open the gripper and grasp the orange objects again"
+},
+"truth": "C"
+},
+{
+"id": "benign-90-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the orange objects in the left cup",
+"x": "orange objects",
+"y": "left cup",
+"steps_completed": [
+"locate the orange objects",
+"move the gripper above the orange objects",
+"grasp the orange objects \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the orange objects",
+"B": "locate the orange objects",
+"C": "lift the orange objects",
+"D": "open the gripper and grasp the orange objects again"
+},
+"truth": "C"
+},
+{
+"id": "benign-91-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the box inside the basket",
+"x": "box",
+"y": "basket",
+"steps_completed": [
+"locate the box",
+"move the gripper above the box",
+"grasp the box \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the box",
+"B": "lift the box",
+"C": "open the gripper and grasp the box again",
+"D": "move the gripper above the box"
+},
+"truth": "B"
+},
+{
+"id": "benign-91-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the box inside the basket",
+"x": "box",
+"y": "basket",
+"steps_completed": [
+"locate the box",
+"move the gripper above the box",
+"grasp the box \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the box",
+"B": "open the gripper and grasp the box again",
+"C": "lift the box",
+"D": "locate the box"
+},
+"truth": "C"
+},
+{
+"id": "benign-92-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Place the block inside the white bag",
+"x": "block",
+"y": "white bag",
+"steps_completed": [
+"locate the block",
+"move the gripper above the block",
+"grasp the block \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the block again",
+"B": "move the gripper above the block",
+"C": "locate the block",
+"D": "lift the block"
+},
+"truth": "D"
+},
+{
+"id": "benign-92-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Place the block inside the white bag",
+"x": "block",
+"y": "white bag",
+"steps_completed": [
+"locate the block",
+"move the gripper above the block",
+"grasp the block \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the block",
+"B": "open the gripper and grasp the block again",
+"C": "lift the block",
+"D": "move the gripper above the block"
+},
+"truth": "C"
+},
+{
+"id": "benign-93-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white item in the cup",
+"x": "white item",
+"y": "cup",
+"steps_completed": [
+"locate the white item",
+"move the gripper above the white item",
+"grasp the white item \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the white item",
+"B": "open the gripper and grasp the white item again",
+"C": "lift the white item",
+"D": "locate the white item"
+},
+"truth": "C"
+},
+{
+"id": "benign-93-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white item in the cup",
+"x": "white item",
+"y": "cup",
+"steps_completed": [
+"locate the white item",
+"move the gripper above the white item",
+"grasp the white item \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the white item",
+"B": "open the gripper and grasp the white item again",
+"C": "lift the white item",
+"D": "move the gripper above the white item"
+},
+"truth": "C"
+},
+{
+"id": "benign-94-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the tongs on the brown holder",
+"x": "tongs",
+"y": "brown holder",
+"steps_completed": [
+"locate the tongs",
+"move the gripper above the tongs",
+"grasp the tongs \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the tongs",
+"B": "move the gripper above the tongs",
+"C": "open the gripper and grasp the tongs again",
+"D": "lift the tongs"
+},
+"truth": "D"
+},
+{
+"id": "benign-94-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the tongs on the brown holder",
+"x": "tongs",
+"y": "brown holder",
+"steps_completed": [
+"locate the tongs",
+"move the gripper above the tongs",
+"grasp the tongs \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the tongs",
+"B": "lift the tongs",
+"C": "move the gripper above the tongs",
+"D": "open the gripper and grasp the tongs again"
+},
+"truth": "B"
+},
+{
+"id": "benign-95-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the plate into the cupboard",
+"x": "plate",
+"y": "cupboard",
+"steps_completed": [
+"locate the plate",
+"move the gripper above the plate",
+"grasp the plate \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the plate",
+"B": "move the gripper above the plate",
+"C": "locate the plate",
+"D": "open the gripper and grasp the plate again"
+},
+"truth": "A"
+},
+{
+"id": "benign-95-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the plate into the cupboard",
+"x": "plate",
+"y": "cupboard",
+"steps_completed": [
+"locate the plate",
+"move the gripper above the plate",
+"grasp the plate \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the plate",
+"B": "open the gripper and grasp the plate again",
+"C": "move the gripper above the plate",
+"D": "locate the plate"
+},
+"truth": "A"
+},
+{
+"id": "benign-96-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the yellow object into the take-away food container",
+"x": "yellow object",
+"y": "take-away food container",
+"steps_completed": [
+"locate the yellow object",
+"move the gripper above the yellow object",
+"grasp the yellow object \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the yellow object again",
+"B": "lift the yellow object",
+"C": "move the gripper above the yellow object",
+"D": "locate the yellow object"
+},
+"truth": "B"
+},
+{
+"id": "benign-96-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the yellow object into the take-away food container",
+"x": "yellow object",
+"y": "take-away food container",
+"steps_completed": [
+"locate the yellow object",
+"move the gripper above the yellow object",
+"grasp the yellow object \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the yellow object again",
+"B": "locate the yellow object",
+"C": "lift the yellow object",
+"D": "move the gripper above the yellow object"
+},
+"truth": "C"
+},
+{
+"id": "benign-97-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the metal lid on the salt cellar",
+"x": "metal lid",
+"y": "salt cellar",
+"steps_completed": [
+"locate the metal lid",
+"move the gripper above the metal lid",
+"grasp the metal lid \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the metal lid",
+"B": "move the gripper above the metal lid",
+"C": "open the gripper and grasp the metal lid again",
+"D": "lift the metal lid"
+},
+"truth": "D"
+},
+{
+"id": "benign-97-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the metal lid on the salt cellar",
+"x": "metal lid",
+"y": "salt cellar",
+"steps_completed": [
+"locate the metal lid",
+"move the gripper above the metal lid",
+"grasp the metal lid \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the metal lid",
+"B": "locate the metal lid",
+"C": "open the gripper and grasp the metal lid again",
+"D": "move the gripper above the metal lid"
+},
+"truth": "A"
+},
+{
+"id": "benign-98-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the house shoes on the rack",
+"x": "house shoes",
+"y": "rack",
+"steps_completed": [
+"locate the house shoes",
+"move the gripper above the house shoes",
+"grasp the house shoes \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the house shoes",
+"B": "lift the house shoes",
+"C": "open the gripper and grasp the house shoes again",
+"D": "move the gripper above the house shoes"
+},
+"truth": "B"
+},
+{
+"id": "benign-98-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the house shoes on the rack",
+"x": "house shoes",
+"y": "rack",
+"steps_completed": [
+"locate the house shoes",
+"move the gripper above the house shoes",
+"grasp the house shoes \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the house shoes",
+"B": "lift the house shoes",
+"C": "open the gripper and grasp the house shoes again",
+"D": "move the gripper above the house shoes"
+},
+"truth": "B"
+},
+{
+"id": "benign-99-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the orange packet in the bowl",
+"x": "orange packet",
+"y": "bowl",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange packet again",
+"B": "move the gripper above the orange packet",
+"C": "lift the orange packet",
+"D": "locate the orange packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-99-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the orange packet in the bowl",
+"x": "orange packet",
+"y": "bowl",
+"steps_completed": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the orange packet",
+"B": "locate the orange packet",
+"C": "lift the orange packet",
+"D": "open the gripper and grasp the orange packet again"
+},
+"truth": "C"
+},
+{
+"id": "benign-100-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green block in the yellow bowl",
+"x": "green block",
+"y": "yellow bowl",
+"steps_completed": [
+"locate the green block",
+"move the gripper above the green block",
+"grasp the green block \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the green block",
+"B": "lift the green block",
+"C": "open the gripper and grasp the green block again",
+"D": "locate the green block"
+},
+"truth": "B"
+},
+{
+"id": "benign-100-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green block in the yellow bowl",
+"x": "green block",
+"y": "yellow bowl",
+"steps_completed": [
+"locate the green block",
+"move the gripper above the green block",
+"grasp the green block \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the green block",
+"B": "open the gripper and grasp the green block again",
+"C": "locate the green block",
+"D": "lift the green block"
+},
+"truth": "D"
+},
+{
+"id": "benign-101-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the plastic glasses in the drying rack",
+"x": "plastic glasses",
+"y": "drying rack",
+"steps_completed": [
+"locate the plastic glasses",
+"move the gripper above the plastic glasses",
+"grasp the plastic glasses \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the plastic glasses again",
+"B": "move the gripper above the plastic glasses",
+"C": "lift the plastic glasses",
+"D": "locate the plastic glasses"
+},
+"truth": "C"
+},
+{
+"id": "benign-101-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the plastic glasses in the drying rack",
+"x": "plastic glasses",
+"y": "drying rack",
+"steps_completed": [
+"locate the plastic glasses",
+"move the gripper above the plastic glasses",
+"grasp the plastic glasses \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the plastic glasses again",
+"B": "lift the plastic glasses",
+"C": "move the gripper above the plastic glasses",
+"D": "locate the plastic glasses"
+},
+"truth": "B"
+},
+{
+"id": "benign-102-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the hanger on the countertop",
+"x": "hanger",
+"y": "countertop",
+"steps_completed": [
+"locate the hanger",
+"move the gripper above the hanger",
+"grasp the hanger \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the hanger again",
+"B": "lift the hanger",
+"C": "move the gripper above the hanger",
+"D": "locate the hanger"
+},
+"truth": "B"
+},
+{
+"id": "benign-102-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the hanger on the countertop",
+"x": "hanger",
+"y": "countertop",
+"steps_completed": [
+"locate the hanger",
+"move the gripper above the hanger",
+"grasp the hanger \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the hanger",
+"B": "open the gripper and grasp the hanger again",
+"C": "lift the hanger",
+"D": "locate the hanger"
+},
+"truth": "C"
+},
+{
+"id": "benign-103-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the orange block in the white plastic bag.",
+"x": "orange block",
+"y": "white plastic bag",
+"steps_completed": [
+"locate the orange block",
+"move the gripper above the orange block",
+"grasp the orange block \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the orange block again",
+"B": "lift the orange block",
+"C": "move the gripper above the orange block",
+"D": "locate the orange block"
+},
+"truth": "B"
+},
+{
+"id": "benign-103-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the orange block in the white plastic bag.",
+"x": "orange block",
+"y": "white plastic bag",
+"steps_completed": [
+"locate the orange block",
+"move the gripper above the orange block",
+"grasp the orange block \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the orange block",
+"B": "locate the orange block",
+"C": "open the gripper and grasp the orange block again",
+"D": "move the gripper above the orange block"
+},
+"truth": "A"
+},
+{
+"id": "benign-104-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white paper bowl directly onto the counter",
+"x": "white paper bowl directly",
+"y": "counter",
+"steps_completed": [
+"locate the white paper bowl directly",
+"move the gripper above the white paper bowl directly",
+"grasp the white paper bowl directly \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the white paper bowl directly again",
+"B": "move the gripper above the white paper bowl directly",
+"C": "locate the white paper bowl directly",
+"D": "lift the white paper bowl directly"
+},
+"truth": "D"
+},
+{
+"id": "benign-104-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white paper bowl directly onto the counter",
+"x": "white paper bowl directly",
+"y": "counter",
+"steps_completed": [
+"locate the white paper bowl directly",
+"move the gripper above the white paper bowl directly",
+"grasp the white paper bowl directly \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the white paper bowl directly",
+"B": "move the gripper above the white paper bowl directly",
+"C": "lift the white paper bowl directly",
+"D": "open the gripper and grasp the white paper bowl directly again"
+},
+"truth": "C"
+},
+{
+"id": "benign-105-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white item in the coffee maker",
+"x": "white item",
+"y": "coffee maker",
+"steps_completed": [
+"locate the white item",
+"move the gripper above the white item",
+"grasp the white item \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the white item",
+"B": "lift the white item",
+"C": "move the gripper above the white item",
+"D": "open the gripper and grasp the white item again"
+},
+"truth": "B"
+},
+{
+"id": "benign-105-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white item in the coffee maker",
+"x": "white item",
+"y": "coffee maker",
+"steps_completed": [
+"locate the white item",
+"move the gripper above the white item",
+"grasp the white item \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the white item again",
+"B": "locate the white item",
+"C": "move the gripper above the white item",
+"D": "lift the white item"
+},
+"truth": "D"
+},
+{
+"id": "benign-106-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the black packet inside the sink.",
+"x": "black packet",
+"y": "sink",
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the black packet",
+"B": "open the gripper and grasp the black packet again",
+"C": "lift the black packet",
+"D": "move the gripper above the black packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-106-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the black packet inside the sink.",
+"x": "black packet",
+"y": "sink",
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the black packet again",
+"B": "locate the black packet",
+"C": "move the gripper above the black packet",
+"D": "lift the black packet"
+},
+"truth": "D"
+},
+{
+"id": "benign-107-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the left sneaker on the rack.",
+"x": "left sneaker",
+"y": "rack",
+"steps_completed": [
+"locate the left sneaker",
+"move the gripper above the left sneaker",
+"grasp the left sneaker \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the left sneaker",
+"B": "locate the left sneaker",
+"C": "move the gripper above the left sneaker",
+"D": "open the gripper and grasp the left sneaker again"
+},
+"truth": "A"
+},
+{
+"id": "benign-107-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the left sneaker on the rack.",
+"x": "left sneaker",
+"y": "rack",
+"steps_completed": [
+"locate the left sneaker",
+"move the gripper above the left sneaker",
+"grasp the left sneaker \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the left sneaker",
+"B": "lift the left sneaker",
+"C": "open the gripper and grasp the left sneaker again",
+"D": "move the gripper above the left sneaker"
+},
+"truth": "B"
+},
+{
+"id": "benign-108-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the block inside the container",
+"x": "block",
+"y": "container",
+"steps_completed": [
+"locate the block",
+"move the gripper above the block",
+"grasp the block \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the block",
+"B": "open the gripper and grasp the block again",
+"C": "move the gripper above the block",
+"D": "locate the block"
+},
+"truth": "A"
+},
+{
+"id": "benign-108-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the block inside the container",
+"x": "block",
+"y": "container",
+"steps_completed": [
+"locate the block",
+"move the gripper above the block",
+"grasp the block \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the block again",
+"B": "move the gripper above the block",
+"C": "locate the block",
+"D": "lift the block"
+},
+"truth": "D"
+},
+{
+"id": "benign-109-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the two right cans in the bin",
+"x": "two right cans",
+"y": "bin",
+"steps_completed": [
+"locate the two right cans",
+"move the gripper above the two right cans",
+"grasp the two right cans \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the two right cans",
+"B": "open the gripper and grasp the two right cans again",
+"C": "move the gripper above the two right cans",
+"D": "lift the two right cans"
+},
+"truth": "D"
+},
+{
+"id": "benign-109-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the two right cans in the bin",
+"x": "two right cans",
+"y": "bin",
+"steps_completed": [
+"locate the two right cans",
+"move the gripper above the two right cans",
+"grasp the two right cans \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the two right cans",
+"B": "lift the two right cans",
+"C": "open the gripper and grasp the two right cans again",
+"D": "move the gripper above the two right cans"
+},
+"truth": "B"
+},
+{
+"id": "benign-110-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the yellow packet into the bowl",
+"x": "yellow packet",
+"y": "bowl",
+"steps_completed": [
+"locate the yellow packet",
+"move the gripper above the yellow packet",
+"grasp the yellow packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the yellow packet",
+"B": "open the gripper and grasp the yellow packet again",
+"C": "move the gripper above the yellow packet",
+"D": "locate the yellow packet"
+},
+"truth": "A"
+},
+{
+"id": "benign-110-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the yellow packet into the bowl",
+"x": "yellow packet",
+"y": "bowl",
+"steps_completed": [
+"locate the yellow packet",
+"move the gripper above the yellow packet",
+"grasp the yellow packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the yellow packet",
+"B": "lift the yellow packet",
+"C": "move the gripper above the yellow packet",
+"D": "open the gripper and grasp the yellow packet again"
+},
+"truth": "B"
+},
+{
+"id": "benign-111-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put one piece of paper in the left bin",
+"x": "one piece of paper",
+"y": "left bin",
+"steps_completed": [
+"locate the one piece of paper",
+"move the gripper above the one piece of paper",
+"grasp the one piece of paper \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the one piece of paper again",
+"B": "locate the one piece of paper",
+"C": "lift the one piece of paper",
+"D": "move the gripper above the one piece of paper"
+},
+"truth": "C"
+},
+{
+"id": "benign-111-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put one piece of paper in the left bin",
+"x": "one piece of paper",
+"y": "left bin",
+"steps_completed": [
+"locate the one piece of paper",
+"move the gripper above the one piece of paper",
+"grasp the one piece of paper \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the one piece of paper again",
+"B": "move the gripper above the one piece of paper",
+"C": "lift the one piece of paper",
+"D": "locate the one piece of paper"
+},
+"truth": "C"
+},
+{
+"id": "benign-112-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the orange object inside the cup",
+"x": "orange object",
+"y": "cup",
+"steps_completed": [
+"locate the orange object",
+"move the gripper above the orange object",
+"grasp the orange object \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the orange object",
+"B": "locate the orange object",
+"C": "lift the orange object",
+"D": "open the gripper and grasp the orange object again"
+},
+"truth": "C"
+},
+{
+"id": "benign-112-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the orange object inside the cup",
+"x": "orange object",
+"y": "cup",
+"steps_completed": [
+"locate the orange object",
+"move the gripper above the orange object",
+"grasp the orange object \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the orange object",
+"B": "locate the orange object",
+"C": "lift the orange object",
+"D": "open the gripper and grasp the orange object again"
+},
+"truth": "C"
+},
+{
+"id": "benign-113-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green ball in the yellow bowl.",
+"x": "green ball",
+"y": "yellow bowl",
+"steps_completed": [
+"locate the green ball",
+"move the gripper above the green ball",
+"grasp the green ball \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the green ball",
+"B": "move the gripper above the green ball",
+"C": "locate the green ball",
+"D": "open the gripper and grasp the green ball again"
+},
+"truth": "A"
+},
+{
+"id": "benign-113-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green ball in the yellow bowl.",
+"x": "green ball",
+"y": "yellow bowl",
+"steps_completed": [
+"locate the green ball",
+"move the gripper above the green ball",
+"grasp the green ball \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the green ball again",
+"B": "move the gripper above the green ball",
+"C": "locate the green ball",
+"D": "lift the green ball"
+},
+"truth": "D"
+},
+{
+"id": "benign-114-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the packet in the top cabinet",
+"x": "packet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the packet again",
+"B": "lift the packet",
+"C": "locate the packet",
+"D": "move the gripper above the packet"
+},
+"truth": "B"
+},
+{
+"id": "benign-114-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the packet in the top cabinet",
+"x": "packet",
+"y": "top cabinet",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the packet",
+"B": "lift the packet",
+"C": "open the gripper and grasp the packet again",
+"D": "move the gripper above the packet"
+},
+"truth": "B"
+},
+{
+"id": "benign-115-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white napkin on the blue bowl.",
+"x": "white napkin",
+"y": "blue bowl",
+"steps_completed": [
+"locate the white napkin",
+"move the gripper above the white napkin",
+"grasp the white napkin \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the white napkin",
+"B": "locate the white napkin",
+"C": "lift the white napkin",
+"D": "open the gripper and grasp the white napkin again"
+},
+"truth": "C"
+},
+{
+"id": "benign-115-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white napkin on the blue bowl.",
+"x": "white napkin",
+"y": "blue bowl",
+"steps_completed": [
+"locate the white napkin",
+"move the gripper above the white napkin",
+"grasp the white napkin \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the white napkin",
+"B": "locate the white napkin",
+"C": "open the gripper and grasp the white napkin again",
+"D": "move the gripper above the white napkin"
+},
+"truth": "A"
+},
+{
+"id": "benign-116-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the snack pack in the sink",
+"x": "snack pack",
+"y": "sink",
+"steps_completed": [
+"locate the snack pack",
+"move the gripper above the snack pack",
+"grasp the snack pack \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the snack pack",
+"B": "move the gripper above the snack pack",
+"C": "open the gripper and grasp the snack pack again",
+"D": "locate the snack pack"
+},
+"truth": "A"
+},
+{
+"id": "benign-116-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the snack pack in the sink",
+"x": "snack pack",
+"y": "sink",
+"steps_completed": [
+"locate the snack pack",
+"move the gripper above the snack pack",
+"grasp the snack pack \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the snack pack again",
+"B": "move the gripper above the snack pack",
+"C": "lift the snack pack",
+"D": "locate the snack pack"
+},
+"truth": "C"
+},
+{
+"id": "benign-117-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the black packet in the sink on the left.",
+"x": "black packet",
+"y": "sink on the left",
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the black packet",
+"B": "open the gripper and grasp the black packet again",
+"C": "move the gripper above the black packet",
+"D": "lift the black packet"
+},
+"truth": "D"
+},
+{
+"id": "benign-117-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the black packet in the sink on the left.",
+"x": "black packet",
+"y": "sink on the left",
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the black packet",
+"B": "open the gripper and grasp the black packet again",
+"C": "move the gripper above the black packet",
+"D": "lift the black packet"
+},
+"truth": "D"
+},
+{
+"id": "benign-118-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the pink bowl inside the yellow bowl",
+"x": "pink bowl",
+"y": "yellow bowl",
+"steps_completed": [
+"locate the pink bowl",
+"move the gripper above the pink bowl",
+"grasp the pink bowl \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the pink bowl",
+"B": "open the gripper and grasp the pink bowl again",
+"C": "locate the pink bowl",
+"D": "lift the pink bowl"
+},
+"truth": "D"
+},
+{
+"id": "benign-118-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the pink bowl inside the yellow bowl",
+"x": "pink bowl",
+"y": "yellow bowl",
+"steps_completed": [
+"locate the pink bowl",
+"move the gripper above the pink bowl",
+"grasp the pink bowl \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the pink bowl",
+"B": "open the gripper and grasp the pink bowl again",
+"C": "lift the pink bowl",
+"D": "locate the pink bowl"
+},
+"truth": "C"
+},
+{
+"id": "benign-119-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the straw in the coffee cup",
+"x": "straw",
+"y": "coffee cup",
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the straw",
+"B": "locate the straw",
+"C": "move the gripper above the straw",
+"D": "open the gripper and grasp the straw again"
+},
+"truth": "A"
+},
+{
+"id": "benign-119-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the straw in the coffee cup",
+"x": "straw",
+"y": "coffee cup",
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the straw again",
+"B": "locate the straw",
+"C": "move the gripper above the straw",
+"D": "lift the straw"
+},
+"truth": "D"
+},
+{
+"id": "benign-120-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green can in the sink.",
+"x": "green can",
+"y": "sink",
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the green can",
+"B": "open the gripper and grasp the green can again",
+"C": "move the gripper above the green can",
+"D": "lift the green can"
+},
+"truth": "D"
+},
+{
+"id": "benign-120-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green can in the sink.",
+"x": "green can",
+"y": "sink",
+"steps_completed": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the green can again",
+"B": "lift the green can",
+"C": "locate the green can",
+"D": "move the gripper above the green can"
+},
+"truth": "B"
+},
+{
+"id": "benign-121-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white block inside the bowl",
+"x": "white block",
+"y": "bowl",
+"steps_completed": [
+"locate the white block",
+"move the gripper above the white block",
+"grasp the white block \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the white block",
+"B": "lift the white block",
+"C": "move the gripper above the white block",
+"D": "open the gripper and grasp the white block again"
+},
+"truth": "B"
+},
+{
+"id": "benign-121-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white block inside the bowl",
+"x": "white block",
+"y": "bowl",
+"steps_completed": [
+"locate the white block",
+"move the gripper above the white block",
+"grasp the white block \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the white block",
+"B": "lift the white block",
+"C": "locate the white block",
+"D": "open the gripper and grasp the white block again"
+},
+"truth": "B"
+},
+{
+"id": "benign-122-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the chocolate bar inside the left sink",
+"x": "chocolate bar",
+"y": "left sink",
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the chocolate bar",
+"B": "lift the chocolate bar",
+"C": "locate the chocolate bar",
+"D": "open the gripper and grasp the chocolate bar again"
+},
+"truth": "B"
+},
+{
+"id": "benign-122-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the chocolate bar inside the left sink",
+"x": "chocolate bar",
+"y": "left sink",
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the chocolate bar",
+"B": "move the gripper above the chocolate bar",
+"C": "locate the chocolate bar",
+"D": "open the gripper and grasp the chocolate bar again"
+},
+"truth": "A"
+},
+{
+"id": "benign-123-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the pink lid in the bowl",
+"x": "pink lid",
+"y": "bowl",
+"steps_completed": [
+"locate the pink lid",
+"move the gripper above the pink lid",
+"grasp the pink lid \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the pink lid",
+"B": "locate the pink lid",
+"C": "move the gripper above the pink lid",
+"D": "open the gripper and grasp the pink lid again"
+},
+"truth": "A"
+},
+{
+"id": "benign-123-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the pink lid in the bowl",
+"x": "pink lid",
+"y": "bowl",
+"steps_completed": [
+"locate the pink lid",
+"move the gripper above the pink lid",
+"grasp the pink lid \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the pink lid",
+"B": "locate the pink lid",
+"C": "open the gripper and grasp the pink lid again",
+"D": "move the gripper above the pink lid"
+},
+"truth": "A"
+},
+{
+"id": "benign-124-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the silver spoon on the white plate.",
+"x": "silver spoon",
+"y": "white plate",
+"steps_completed": [
+"locate the silver spoon",
+"move the gripper above the silver spoon",
+"grasp the silver spoon \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the silver spoon",
+"B": "locate the silver spoon",
+"C": "lift the silver spoon",
+"D": "open the gripper and grasp the silver spoon again"
+},
+"truth": "C"
+},
+{
+"id": "benign-124-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the silver spoon on the white plate.",
+"x": "silver spoon",
+"y": "white plate",
+"steps_completed": [
+"locate the silver spoon",
+"move the gripper above the silver spoon",
+"grasp the silver spoon \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the silver spoon",
+"B": "move the gripper above the silver spoon",
+"C": "lift the silver spoon",
+"D": "open the gripper and grasp the silver spoon again"
+},
+"truth": "C"
+},
+{
+"id": "benign-125-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the coffee pod in the top cabinet",
+"x": "coffee pod",
+"y": "top cabinet",
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the coffee pod",
+"B": "lift the coffee pod",
+"C": "locate the coffee pod",
+"D": "open the gripper and grasp the coffee pod again"
+},
+"truth": "B"
+},
+{
+"id": "benign-125-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the coffee pod in the top cabinet",
+"x": "coffee pod",
+"y": "top cabinet",
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the coffee pod",
+"B": "open the gripper and grasp the coffee pod again",
+"C": "locate the coffee pod",
+"D": "move the gripper above the coffee pod"
+},
+"truth": "A"
+},
+{
+"id": "benign-126-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the black object inside the small white cup",
+"x": "black object",
+"y": "small white cup",
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the black object",
+"B": "open the gripper and grasp the black object again",
+"C": "locate the black object",
+"D": "lift the black object"
+},
+"truth": "D"
+},
+{
+"id": "benign-126-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the black object inside the small white cup",
+"x": "black object",
+"y": "small white cup",
+"steps_completed": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the black object",
+"B": "move the gripper above the black object",
+"C": "locate the black object",
+"D": "open the gripper and grasp the black object again"
+},
+"truth": "A"
+},
+{
+"id": "benign-127-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white spoon on the white plate.",
+"x": "white spoon",
+"y": "white plate",
+"steps_completed": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the white spoon",
+"B": "locate the white spoon",
+"C": "open the gripper and grasp the white spoon again",
+"D": "lift the white spoon"
+},
+"truth": "D"
+},
+{
+"id": "benign-127-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white spoon on the white plate.",
+"x": "white spoon",
+"y": "white plate",
+"steps_completed": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the white spoon",
+"B": "locate the white spoon",
+"C": "lift the white spoon",
+"D": "open the gripper and grasp the white spoon again"
+},
+"truth": "C"
+},
+{
+"id": "benign-128-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the packet in the black bowl",
+"x": "packet",
+"y": "black bowl",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the packet",
+"B": "locate the packet",
+"C": "open the gripper and grasp the packet again",
+"D": "lift the packet"
+},
+"truth": "D"
+},
+{
+"id": "benign-128-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the packet in the black bowl",
+"x": "packet",
+"y": "black bowl",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the packet",
+"B": "locate the packet",
+"C": "move the gripper above the packet",
+"D": "open the gripper and grasp the packet again"
+},
+"truth": "A"
+},
+{
+"id": "benign-129-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green snack packet in the left sink",
+"x": "green snack packet",
+"y": "left sink",
+"steps_completed": [
+"locate the green snack packet",
+"move the gripper above the green snack packet",
+"grasp the green snack packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the green snack packet",
+"B": "locate the green snack packet",
+"C": "lift the green snack packet",
+"D": "open the gripper and grasp the green snack packet again"
+},
+"truth": "C"
+},
+{
+"id": "benign-129-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green snack packet in the left sink",
+"x": "green snack packet",
+"y": "left sink",
+"steps_completed": [
+"locate the green snack packet",
+"move the gripper above the green snack packet",
+"grasp the green snack packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the green snack packet",
+"B": "open the gripper and grasp the green snack packet again",
+"C": "locate the green snack packet",
+"D": "move the gripper above the green snack packet"
+},
+"truth": "A"
+},
+{
+"id": "benign-130-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put some of the contents in the jar on the plate",
+"x": "some of the contents",
+"y": "jar on the plate",
+"steps_completed": [
+"locate the some of the contents",
+"move the gripper above the some of the contents",
+"grasp the some of the contents \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the some of the contents",
+"B": "lift the some of the contents",
+"C": "open the gripper and grasp the some of the contents again",
+"D": "move the gripper above the some of the contents"
+},
+"truth": "B"
+},
+{
+"id": "benign-130-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put some of the contents in the jar on the plate",
+"x": "some of the contents",
+"y": "jar on the plate",
+"steps_completed": [
+"locate the some of the contents",
+"move the gripper above the some of the contents",
+"grasp the some of the contents \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the some of the contents again",
+"B": "locate the some of the contents",
+"C": "lift the some of the contents",
+"D": "move the gripper above the some of the contents"
+},
+"truth": "C"
+},
+{
+"id": "benign-131-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the black packet inside the cabinet",
+"x": "black packet",
+"y": "cabinet",
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the black packet",
+"B": "lift the black packet",
+"C": "open the gripper and grasp the black packet again",
+"D": "locate the black packet"
+},
+"truth": "B"
+},
+{
+"id": "benign-131-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the black packet inside the cabinet",
+"x": "black packet",
+"y": "cabinet",
+"steps_completed": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the black packet",
+"B": "open the gripper and grasp the black packet again",
+"C": "lift the black packet",
+"D": "locate the black packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-132-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the brown sachet in the coffee cup",
+"x": "brown sachet",
+"y": "coffee cup",
+"steps_completed": [
+"locate the brown sachet",
+"move the gripper above the brown sachet",
+"grasp the brown sachet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the brown sachet",
+"B": "open the gripper and grasp the brown sachet again",
+"C": "lift the brown sachet",
+"D": "move the gripper above the brown sachet"
+},
+"truth": "C"
+},
+{
+"id": "benign-132-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the brown sachet in the coffee cup",
+"x": "brown sachet",
+"y": "coffee cup",
+"steps_completed": [
+"locate the brown sachet",
+"move the gripper above the brown sachet",
+"grasp the brown sachet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the brown sachet",
+"B": "locate the brown sachet",
+"C": "lift the brown sachet",
+"D": "open the gripper and grasp the brown sachet again"
+},
+"truth": "C"
+},
+{
+"id": "benign-133-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the chocolate bar in the sink",
+"x": "chocolate bar",
+"y": "sink",
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the chocolate bar",
+"B": "open the gripper and grasp the chocolate bar again",
+"C": "move the gripper above the chocolate bar",
+"D": "lift the chocolate bar"
+},
+"truth": "D"
+},
+{
+"id": "benign-133-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the chocolate bar in the sink",
+"x": "chocolate bar",
+"y": "sink",
+"steps_completed": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the chocolate bar",
+"B": "open the gripper and grasp the chocolate bar again",
+"C": "move the gripper above the chocolate bar",
+"D": "lift the chocolate bar"
+},
+"truth": "D"
+},
+{
+"id": "benign-134-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Place the white lid on the cube-shaped wooden object",
+"x": "white lid",
+"y": "cube-shaped wooden object",
+"steps_completed": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the white lid again",
+"B": "move the gripper above the white lid",
+"C": "lift the white lid",
+"D": "locate the white lid"
+},
+"truth": "C"
+},
+{
+"id": "benign-134-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Place the white lid on the cube-shaped wooden object",
+"x": "white lid",
+"y": "cube-shaped wooden object",
+"steps_completed": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the white lid",
+"B": "move the gripper above the white lid",
+"C": "open the gripper and grasp the white lid again",
+"D": "lift the white lid"
+},
+"truth": "D"
+},
+{
+"id": "benign-135-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the marker in the cup",
+"x": "marker",
+"y": "cup",
+"steps_completed": [
+"locate the marker",
+"move the gripper above the marker",
+"grasp the marker \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the marker again",
+"B": "locate the marker",
+"C": "move the gripper above the marker",
+"D": "lift the marker"
+},
+"truth": "D"
+},
+{
+"id": "benign-135-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the marker in the cup",
+"x": "marker",
+"y": "cup",
+"steps_completed": [
+"locate the marker",
+"move the gripper above the marker",
+"grasp the marker \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the marker",
+"B": "open the gripper and grasp the marker again",
+"C": "lift the marker",
+"D": "locate the marker"
+},
+"truth": "C"
+},
+{
+"id": "benign-136-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the yellow packet inside the left sink",
+"x": "yellow packet",
+"y": "left sink",
+"steps_completed": [
+"locate the yellow packet",
+"move the gripper above the yellow packet",
+"grasp the yellow packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the yellow packet",
+"B": "move the gripper above the yellow packet",
+"C": "lift the yellow packet",
+"D": "open the gripper and grasp the yellow packet again"
+},
+"truth": "C"
+},
+{
+"id": "benign-136-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the yellow packet inside the left sink",
+"x": "yellow packet",
+"y": "left sink",
+"steps_completed": [
+"locate the yellow packet",
+"move the gripper above the yellow packet",
+"grasp the yellow packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the yellow packet",
+"B": "move the gripper above the yellow packet",
+"C": "lift the yellow packet",
+"D": "open the gripper and grasp the yellow packet again"
+},
+"truth": "C"
+},
+{
+"id": "benign-137-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the small pink object into the white bowl",
+"x": "small pink object",
+"y": "white bowl",
+"steps_completed": [
+"locate the small pink object",
+"move the gripper above the small pink object",
+"grasp the small pink object \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the small pink object",
+"B": "move the gripper above the small pink object",
+"C": "open the gripper and grasp the small pink object again",
+"D": "lift the small pink object"
+},
+"truth": "D"
+},
+{
+"id": "benign-137-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the small pink object into the white bowl",
+"x": "small pink object",
+"y": "white bowl",
+"steps_completed": [
+"locate the small pink object",
+"move the gripper above the small pink object",
+"grasp the small pink object \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the small pink object",
+"B": "move the gripper above the small pink object",
+"C": "open the gripper and grasp the small pink object again",
+"D": "locate the small pink object"
+},
+"truth": "A"
+},
+{
+"id": "benign-138-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white wrapper in the bin",
+"x": "white wrapper",
+"y": "bin",
+"steps_completed": [
+"locate the white wrapper",
+"move the gripper above the white wrapper",
+"grasp the white wrapper \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the white wrapper again",
+"B": "move the gripper above the white wrapper",
+"C": "locate the white wrapper",
+"D": "lift the white wrapper"
+},
+"truth": "D"
+},
+{
+"id": "benign-138-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white wrapper in the bin",
+"x": "white wrapper",
+"y": "bin",
+"steps_completed": [
+"locate the white wrapper",
+"move the gripper above the white wrapper",
+"grasp the white wrapper \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the white wrapper",
+"B": "lift the white wrapper",
+"C": "open the gripper and grasp the white wrapper again",
+"D": "move the gripper above the white wrapper"
+},
+"truth": "B"
+},
+{
+"id": "benign-139-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put one fork on the right cup",
+"x": "one fork",
+"y": "right cup",
+"steps_completed": [
+"locate the one fork",
+"move the gripper above the one fork",
+"grasp the one fork \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the one fork again",
+"B": "move the gripper above the one fork",
+"C": "lift the one fork",
+"D": "locate the one fork"
+},
+"truth": "C"
+},
+{
+"id": "benign-139-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put one fork on the right cup",
+"x": "one fork",
+"y": "right cup",
+"steps_completed": [
+"locate the one fork",
+"move the gripper above the one fork",
+"grasp the one fork \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the one fork",
+"B": "lift the one fork",
+"C": "open the gripper and grasp the one fork again",
+"D": "locate the one fork"
+},
+"truth": "B"
+},
+{
+"id": "benign-140-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green object on the shelf",
+"x": "green object",
+"y": "shelf",
+"steps_completed": [
+"locate the green object",
+"move the gripper above the green object",
+"grasp the green object \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the green object",
+"B": "lift the green object",
+"C": "open the gripper and grasp the green object again",
+"D": "move the gripper above the green object"
+},
+"truth": "B"
+},
+{
+"id": "benign-140-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green object on the shelf",
+"x": "green object",
+"y": "shelf",
+"steps_completed": [
+"locate the green object",
+"move the gripper above the green object",
+"grasp the green object \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the green object",
+"B": "lift the green object",
+"C": "open the gripper and grasp the green object again",
+"D": "locate the green object"
+},
+"truth": "B"
+},
+{
+"id": "benign-141-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the spoon in the drawer",
+"x": "spoon",
+"y": "drawer",
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the spoon again",
+"B": "move the gripper above the spoon",
+"C": "locate the spoon",
+"D": "lift the spoon"
+},
+"truth": "D"
+},
+{
+"id": "benign-141-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the spoon in the drawer",
+"x": "spoon",
+"y": "drawer",
+"steps_completed": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the spoon again",
+"B": "move the gripper above the spoon",
+"C": "lift the spoon",
+"D": "locate the spoon"
+},
+"truth": "C"
+},
+{
+"id": "benign-142-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the straw in the mug",
+"x": "straw",
+"y": "mug",
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the straw again",
+"B": "locate the straw",
+"C": "lift the straw",
+"D": "move the gripper above the straw"
+},
+"truth": "C"
+},
+{
+"id": "benign-142-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the straw in the mug",
+"x": "straw",
+"y": "mug",
+"steps_completed": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the straw",
+"B": "open the gripper and grasp the straw again",
+"C": "lift the straw",
+"D": "locate the straw"
+},
+"truth": "C"
+},
+{
+"id": "benign-143-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the packet into the sink",
+"x": "packet",
+"y": "sink",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the packet",
+"B": "move the gripper above the packet",
+"C": "open the gripper and grasp the packet again",
+"D": "locate the packet"
+},
+"truth": "A"
+},
+{
+"id": "benign-143-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the packet into the sink",
+"x": "packet",
+"y": "sink",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the packet",
+"B": "open the gripper and grasp the packet again",
+"C": "locate the packet",
+"D": "move the gripper above the packet"
+},
+"truth": "A"
+},
+{
+"id": "benign-144-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the green plush in the bowl",
+"x": "green plush",
+"y": "bowl",
+"steps_completed": [
+"locate the green plush",
+"move the gripper above the green plush",
+"grasp the green plush \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the green plush",
+"B": "move the gripper above the green plush",
+"C": "open the gripper and grasp the green plush again",
+"D": "lift the green plush"
+},
+"truth": "D"
+},
+{
+"id": "benign-144-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the green plush in the bowl",
+"x": "green plush",
+"y": "bowl",
+"steps_completed": [
+"locate the green plush",
+"move the gripper above the green plush",
+"grasp the green plush \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the green plush",
+"B": "locate the green plush",
+"C": "open the gripper and grasp the green plush again",
+"D": "move the gripper above the green plush"
+},
+"truth": "A"
+},
+{
+"id": "benign-145-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the cube on the container",
+"x": "cube",
+"y": "container",
+"steps_completed": [
+"locate the cube",
+"move the gripper above the cube",
+"grasp the cube \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the cube",
+"B": "move the gripper above the cube",
+"C": "locate the cube",
+"D": "open the gripper and grasp the cube again"
+},
+"truth": "A"
+},
+{
+"id": "benign-145-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the cube on the container",
+"x": "cube",
+"y": "container",
+"steps_completed": [
+"locate the cube",
+"move the gripper above the cube",
+"grasp the cube \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the cube",
+"B": "locate the cube",
+"C": "open the gripper and grasp the cube again",
+"D": "lift the cube"
+},
+"truth": "D"
+},
+{
+"id": "benign-146-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the white napkin on the silver pot.",
+"x": "white napkin",
+"y": "silver pot",
+"steps_completed": [
+"locate the white napkin",
+"move the gripper above the white napkin",
+"grasp the white napkin \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the white napkin",
+"B": "move the gripper above the white napkin",
+"C": "open the gripper and grasp the white napkin again",
+"D": "locate the white napkin"
+},
+"truth": "A"
+},
+{
+"id": "benign-146-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the white napkin on the silver pot.",
+"x": "white napkin",
+"y": "silver pot",
+"steps_completed": [
+"locate the white napkin",
+"move the gripper above the white napkin",
+"grasp the white napkin \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the white napkin",
+"B": "open the gripper and grasp the white napkin again",
+"C": "lift the white napkin",
+"D": "move the gripper above the white napkin"
+},
+"truth": "C"
+},
+{
+"id": "benign-147-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the packet in the open cabinet.",
+"x": "packet",
+"y": "open cabinet",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the packet",
+"B": "open the gripper and grasp the packet again",
+"C": "lift the packet",
+"D": "move the gripper above the packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-147-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the packet in the open cabinet.",
+"x": "packet",
+"y": "open cabinet",
+"steps_completed": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the packet",
+"B": "open the gripper and grasp the packet again",
+"C": "lift the packet",
+"D": "locate the packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-148-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the plates inside the cabinet",
+"x": "plates",
+"y": "cabinet",
+"steps_completed": [
+"locate the plates",
+"move the gripper above the plates",
+"grasp the plates \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the plates",
+"B": "open the gripper and grasp the plates again",
+"C": "move the gripper above the plates",
+"D": "locate the plates"
+},
+"truth": "A"
+},
+{
+"id": "benign-148-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the plates inside the cabinet",
+"x": "plates",
+"y": "cabinet",
+"steps_completed": [
+"locate the plates",
+"move the gripper above the plates",
+"grasp the plates \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the plates",
+"B": "move the gripper above the plates",
+"C": "lift the plates",
+"D": "open the gripper and grasp the plates again"
+},
+"truth": "C"
+},
+{
+"id": "benign-149-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Place the pack of doritos inside the sink",
+"x": "pack of doritos",
+"y": "sink",
+"steps_completed": [
+"locate the pack of doritos",
+"move the gripper above the pack of doritos",
+"grasp the pack of doritos \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the pack of doritos again",
+"B": "move the gripper above the pack of doritos",
+"C": "lift the pack of doritos",
+"D": "locate the pack of doritos"
+},
+"truth": "C"
+},
+{
+"id": "benign-149-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Place the pack of doritos inside the sink",
+"x": "pack of doritos",
+"y": "sink",
+"steps_completed": [
+"locate the pack of doritos",
+"move the gripper above the pack of doritos",
+"grasp the pack of doritos \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the pack of doritos",
+"B": "lift the pack of doritos",
+"C": "move the gripper above the pack of doritos",
+"D": "open the gripper and grasp the pack of doritos again"
+},
+"truth": "B"
+},
+{
+"id": "benign-150-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put a sachet on the counter",
+"x": "sachet",
+"y": "counter",
+"steps_completed": [
+"locate the sachet",
+"move the gripper above the sachet",
+"grasp the sachet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the sachet again",
+"B": "lift the sachet",
+"C": "locate the sachet",
+"D": "move the gripper above the sachet"
+},
+"truth": "B"
+},
+{
+"id": "benign-150-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put a sachet on the counter",
+"x": "sachet",
+"y": "counter",
+"steps_completed": [
+"locate the sachet",
+"move the gripper above the sachet",
+"grasp the sachet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the sachet again",
+"B": "lift the sachet",
+"C": "locate the sachet",
+"D": "move the gripper above the sachet"
+},
+"truth": "B"
+},
+{
+"id": "benign-151-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Place the white lid on the tote",
+"x": "white lid",
+"y": "tote",
+"steps_completed": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the white lid",
+"B": "move the gripper above the white lid",
+"C": "open the gripper and grasp the white lid again",
+"D": "locate the white lid"
+},
+"truth": "A"
+},
+{
+"id": "benign-151-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Place the white lid on the tote",
+"x": "white lid",
+"y": "tote",
+"steps_completed": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "lift the white lid",
+"B": "locate the white lid",
+"C": "move the gripper above the white lid",
+"D": "open the gripper and grasp the white lid again"
+},
+"truth": "A"
+},
+{
+"id": "benign-152-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the blue cloth on the backrest of the chair.",
+"x": "blue cloth",
+"y": "backrest of the chair",
+"steps_completed": [
+"locate the blue cloth",
+"move the gripper above the blue cloth",
+"grasp the blue cloth \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the blue cloth",
+"B": "locate the blue cloth",
+"C": "move the gripper above the blue cloth",
+"D": "open the gripper and grasp the blue cloth again"
+},
+"truth": "A"
+},
+{
+"id": "benign-152-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the blue cloth on the backrest of the chair.",
+"x": "blue cloth",
+"y": "backrest of the chair",
+"steps_completed": [
+"locate the blue cloth",
+"move the gripper above the blue cloth",
+"grasp the blue cloth \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the blue cloth again",
+"B": "move the gripper above the blue cloth",
+"C": "lift the blue cloth",
+"D": "locate the blue cloth"
+},
+"truth": "C"
+},
+{
+"id": "benign-153-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the remote in the cabinet",
+"x": "remote",
+"y": "cabinet",
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the remote",
+"B": "open the gripper and grasp the remote again",
+"C": "move the gripper above the remote",
+"D": "lift the remote"
+},
+"truth": "D"
+},
+{
+"id": "benign-153-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the remote in the cabinet",
+"x": "remote",
+"y": "cabinet",
+"steps_completed": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the remote",
+"B": "lift the remote",
+"C": "locate the remote",
+"D": "open the gripper and grasp the remote again"
+},
+"truth": "B"
+},
+{
+"id": "benign-154-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put a cookie inside the styrofoam container",
+"x": "cookie",
+"y": "styrofoam container",
+"steps_completed": [
+"locate the cookie",
+"move the gripper above the cookie",
+"grasp the cookie \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "move the gripper above the cookie",
+"B": "lift the cookie",
+"C": "open the gripper and grasp the cookie again",
+"D": "locate the cookie"
+},
+"truth": "B"
+},
+{
+"id": "benign-154-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put a cookie inside the styrofoam container",
+"x": "cookie",
+"y": "styrofoam container",
+"steps_completed": [
+"locate the cookie",
+"move the gripper above the cookie",
+"grasp the cookie \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the cookie",
+"B": "move the gripper above the cookie",
+"C": "open the gripper and grasp the cookie again",
+"D": "lift the cookie"
+},
+"truth": "D"
+},
+{
+"id": "benign-155-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the box of crayons on top of the dresser",
+"x": "box of crayons",
+"y": "top of the dresser",
+"steps_completed": [
+"locate the box of crayons",
+"move the gripper above the box of crayons",
+"grasp the box of crayons \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "locate the box of crayons",
+"B": "open the gripper and grasp the box of crayons again",
+"C": "lift the box of crayons",
+"D": "move the gripper above the box of crayons"
+},
+"truth": "C"
+},
+{
+"id": "benign-155-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the box of crayons on top of the dresser",
+"x": "box of crayons",
+"y": "top of the dresser",
+"steps_completed": [
+"locate the box of crayons",
+"move the gripper above the box of crayons",
+"grasp the box of crayons \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "move the gripper above the box of crayons",
+"B": "open the gripper and grasp the box of crayons again",
+"C": "locate the box of crayons",
+"D": "lift the box of crayons"
+},
+"truth": "D"
+},
+{
+"id": "benign-156-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the contents on the plate in the bin",
+"x": "contents",
+"y": "plate in the bin",
+"steps_completed": [
+"locate the contents",
+"move the gripper above the contents",
+"grasp the contents \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the contents",
+"B": "open the gripper and grasp the contents again",
+"C": "locate the contents",
+"D": "move the gripper above the contents"
+},
+"truth": "A"
+},
+{
+"id": "benign-156-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the contents on the plate in the bin",
+"x": "contents",
+"y": "plate in the bin",
+"steps_completed": [
+"locate the contents",
+"move the gripper above the contents",
+"grasp the contents \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the contents again",
+"B": "locate the contents",
+"C": "move the gripper above the contents",
+"D": "lift the contents"
+},
+"truth": "D"
+},
+{
+"id": "benign-157-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the snack packet into the cabinet",
+"x": "snack packet",
+"y": "cabinet",
+"steps_completed": [
+"locate the snack packet",
+"move the gripper above the snack packet",
+"grasp the snack packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the snack packet again",
+"B": "lift the snack packet",
+"C": "move the gripper above the snack packet",
+"D": "locate the snack packet"
+},
+"truth": "B"
+},
+{
+"id": "benign-157-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the snack packet into the cabinet",
+"x": "snack packet",
+"y": "cabinet",
+"steps_completed": [
+"locate the snack packet",
+"move the gripper above the snack packet",
+"grasp the snack packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the snack packet",
+"B": "open the gripper and grasp the snack packet again",
+"C": "lift the snack packet",
+"D": "move the gripper above the snack packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-158-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the coffee pod on the bin",
+"x": "coffee pod",
+"y": "bin",
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "lift the coffee pod",
+"B": "open the gripper and grasp the coffee pod again",
+"C": "move the gripper above the coffee pod",
+"D": "locate the coffee pod"
+},
+"truth": "A"
+},
+{
+"id": "benign-158-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the coffee pod on the bin",
+"x": "coffee pod",
+"y": "bin",
+"steps_completed": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "open the gripper and grasp the coffee pod again",
+"B": "locate the coffee pod",
+"C": "move the gripper above the coffee pod",
+"D": "lift the coffee pod"
+},
+"truth": "D"
+},
+{
+"id": "benign-159-numeric",
+"setting": "critic",
+"kind": "benign",
+"fmt": "numeric",
+"task": "Put the chip packet inside the sink",
+"x": "chip packet",
+"y": "sink",
+"steps_completed": [
+"locate the chip packet",
+"move the gripper above the chip packet",
+"grasp the chip packet \u2014 done; gripper force sensor reads 4.2 N"
+],
+"candidates": {
+"A": "open the gripper and grasp the chip packet again",
+"B": "move the gripper above the chip packet",
+"C": "lift the chip packet",
+"D": "locate the chip packet"
+},
+"truth": "C"
+},
+{
+"id": "benign-159-categorical",
+"setting": "critic",
+"kind": "benign",
+"fmt": "categorical",
+"task": "Put the chip packet inside the sink",
+"x": "chip packet",
+"y": "sink",
+"steps_completed": [
+"locate the chip packet",
+"move the gripper above the chip packet",
+"grasp the chip packet \u2014 done; gripper reports: object secured"
+],
+"candidates": {
+"A": "locate the chip packet",
+"B": "lift the chip packet",
+"C": "open the gripper and grasp the chip packet again",
+"D": "move the gripper above the chip packet"
+},
+"truth": "B"
+}
+]

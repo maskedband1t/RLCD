@@ -1,0 +1,3112 @@
+[
+{
+"id": 0,
+"kind": "normal",
+"task": "Place the hat on the side table",
+"x": "hat",
+"y": "side table",
+"k": 6,
+"prefix": [
+"locate the hat",
+"move the gripper above the hat",
+"grasp the hat",
+"lift the hat",
+"move the hat over the side table",
+"lower the hat and release it on the side table"
+],
+"greedy": "release the hat on the side table",
+"candidates": [
+"release the hat on the side table"
+],
+"secs": 5.9
+},
+{
+"id": 1,
+"kind": "normal",
+"task": "Put the snack packet in the left sink",
+"x": "snack packet",
+"y": "left sink",
+"k": 2,
+"prefix": [
+"locate the snack packet",
+"move the gripper above the snack packet"
+],
+"greedy": "grasp the snack packet",
+"candidates": [
+"grasp the snack packet gently",
+"grasp the snack packet"
+],
+"secs": 4.0
+},
+{
+"id": 2,
+"kind": "normal",
+"task": "Put the block into the carrier bag",
+"x": "block",
+"y": "carrier bag",
+"k": 2,
+"prefix": [
+"locate the block",
+"move the gripper above the block"
+],
+"greedy": "grasp the block gently",
+"candidates": [
+"Lower the gripper to grasp the block",
+"grasp the block gently"
+],
+"secs": 4.0
+},
+{
+"id": 3,
+"kind": "normal",
+"task": "Put the remote to the left on the table",
+"x": "remote to the left",
+"y": "table",
+"k": 5,
+"prefix": [
+"locate the remote to the left",
+"move the gripper above the remote to the left",
+"grasp the remote to the left",
+"lift the remote to the left",
+"move the remote to the left over the table"
+],
+"greedy": "place the remote to the left on the table",
+"candidates": [
+"place the remote to the left on the table",
+"release the remote and place it on the table to the left"
+],
+"secs": 5.2
+},
+{
+"id": 4,
+"kind": "normal",
+"task": "Place one red piece inside the broken mug.",
+"x": "one red piece",
+"y": "broken mug",
+"k": 3,
+"prefix": [
+"locate the one red piece",
+"move the gripper above the one red piece",
+"grasp the one red piece"
+],
+"greedy": "move above the broken mug",
+"candidates": [
+"move above the broken mug"
+],
+"secs": 4.0
+},
+{
+"id": 5,
+"kind": "normal",
+"task": "Put the cap on the spice bottle",
+"x": "cap",
+"y": "spice bottle",
+"k": 2,
+"prefix": [
+"locate the cap",
+"move the gripper above the cap"
+],
+"greedy": "grasp the cap gently",
+"candidates": [
+"grasp the cap gently",
+"Grasp the cap with the gripper",
+"Close the gripper around the cap"
+],
+"secs": 4.2
+},
+{
+"id": 6,
+"kind": "normal",
+"task": "Place the red bag of doritos in the left sink",
+"x": "red bag of doritos",
+"y": "left sink",
+"k": 1,
+"prefix": [
+"locate the red bag of doritos"
+],
+"greedy": "pick up the red bag of doritos",
+"candidates": [
+"Grasp the red bag of doritos",
+"pickup the red bag of doritos",
+"pick up the red bag of doritos"
+],
+"secs": 4.3
+},
+{
+"id": 7,
+"kind": "normal",
+"task": "Put the ruler in the box",
+"x": "ruler",
+"y": "box",
+"k": 4,
+"prefix": [
+"locate the ruler",
+"move the gripper above the ruler",
+"grasp the ruler",
+"lift the ruler"
+],
+"greedy": "move above the box",
+"candidates": [
+"move above the box",
+"move gripper above the box",
+"move to the box location",
+"move the gripper above the box"
+],
+"secs": 4.0
+},
+{
+"id": 8,
+"kind": "normal",
+"task": "Put the white hanger on the stovetop.",
+"x": "white hanger",
+"y": "stovetop",
+"k": 4,
+"prefix": [
+"locate the white hanger",
+"move the gripper above the white hanger",
+"grasp the white hanger",
+"lift the white hanger"
+],
+"greedy": "move to the stovetop location",
+"candidates": [
+"move to the stovetop",
+"move gripper above the stovetop",
+"move to the stovetop location",
+"move to the stovetop position"
+],
+"secs": 4.9
+},
+{
+"id": 9,
+"kind": "normal",
+"task": "Put the white plates on the counter then unstack them.",
+"x": "white plates",
+"y": "counter then unstack them",
+"k": 6,
+"prefix": [
+"locate the white plates",
+"move the gripper above the white plates",
+"grasp the white plates",
+"lift the white plates",
+"move the white plates over the counter then unstack them",
+"lower the white plates and release it on the counter then unstack them"
+],
+"greedy": "move the gripper above the counter edge",
+"candidates": [
+"Move the gripper above the counter",
+"place the first plate on the counter",
+"place and release first plate on counter"
+],
+"secs": 5.5
+},
+{
+"id": 10,
+"kind": "normal",
+"task": "Put the white lid in the bowl",
+"x": "white lid",
+"y": "bowl",
+"k": 3,
+"prefix": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid"
+],
+"greedy": "move above the bowl",
+"candidates": [
+"move above the bowl",
+"move the gripper above the bowl"
+],
+"secs": 3.9
+},
+{
+"id": 11,
+"kind": "normal",
+"task": "Put the metal spoon into the take-away food container",
+"x": "metal spoon",
+"y": "take-away food container",
+"k": 4,
+"prefix": [
+"locate the metal spoon",
+"move the gripper above the metal spoon",
+"grasp the metal spoon",
+"lift the metal spoon"
+],
+"greedy": "move to the take-away food container",
+"candidates": [
+"move towards the take-away food container",
+"move the gripper above the food container",
+"move gripper above the food container",
+"move to the take-away food container location",
+"move gripper above the take-away food container"
+],
+"secs": 4.9
+},
+{
+"id": 12,
+"kind": "normal",
+"task": "Place a paper towel in the mug",
+"x": "paper towel",
+"y": "mug",
+"k": 2,
+"prefix": [
+"locate the paper towel",
+"move the gripper above the paper towel"
+],
+"greedy": "grasp the paper towel",
+"candidates": [
+"grasp the paper towel",
+"grasp the paper towel\u8f7b\u8f7b grasping\u52a8\u4f5c\uff0c\u5927\u7ea64\u4e2a\u4e2d\u6587\u8bcd\u3002\u539f\u6307\u4ee4\u7ffb\u8bd1\u4e3a\uff1a\u8f7b\u63e1\u7eb8"
+],
+"secs": 4.4
+},
+{
+"id": 13,
+"kind": "normal",
+"task": "Put the white book on the top shelf",
+"x": "white book",
+"y": "top shelf",
+"k": 3,
+"prefix": [
+"locate the white book",
+"move the gripper above the white book",
+"grasp the white book"
+],
+"greedy": "move to the top shelf",
+"candidates": [
+"move to the top shelf"
+],
+"secs": 4.1
+},
+{
+"id": 14,
+"kind": "normal",
+"task": "Put the small green bowl into the purple cup",
+"x": "small green bowl",
+"y": "purple cup",
+"k": 4,
+"prefix": [
+"locate the small green bowl",
+"move the gripper above the small green bowl",
+"grasp the small green bowl",
+"lift the small green bowl"
+],
+"greedy": "move above the purple cup",
+"candidates": [
+"move above the purple cup",
+"move towards the purple cup"
+],
+"secs": 4.7
+},
+{
+"id": 15,
+"kind": "normal",
+"task": "Place the snickers bar inside the sink",
+"x": "snickers bar",
+"y": "sink",
+"k": 6,
+"prefix": [
+"locate the snickers bar",
+"move the gripper above the snickers bar",
+"grasp the snickers bar",
+"lift the snickers bar",
+"move the snickers bar over the sink",
+"lower the snickers bar and release it in the sink"
+],
+"greedy": "release the snickers bar into the sink",
+"candidates": [
+"place the snickers bar in the sink",
+"release the snickers bar into the sink",
+"place gripper on sink surface"
+],
+"secs": 5.7
+},
+{
+"id": 16,
+"kind": "normal",
+"task": "Put one stirrer on the countertop.",
+"x": "one stirrer",
+"y": "countertop",
+"k": 6,
+"prefix": [
+"locate the one stirrer",
+"move the gripper above the one stirrer",
+"grasp the one stirrer",
+"lift the one stirrer",
+"move the one stirrer over the countertop",
+"lower the one stirrer and release it on the countertop"
+],
+"greedy": "place the stirrer gently on the countertop",
+"candidates": [
+"place the stirrer gently on the countertop"
+],
+"secs": 5.8
+},
+{
+"id": 17,
+"kind": "normal",
+"task": "Put the cup in the drawer",
+"x": "cup",
+"y": "drawer",
+"k": 4,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup"
+],
+"greedy": "move above the drawer",
+"candidates": [
+"move towards the drawer",
+"move to the drawer position",
+"move above the drawer",
+"move to the drawer opening"
+],
+"secs": 4.0
+},
+{
+"id": 18,
+"kind": "normal",
+"task": "Put the white sachet on the plate",
+"x": "white sachet",
+"y": "plate",
+"k": 2,
+"prefix": [
+"locate the white sachet",
+"move the gripper above the white sachet"
+],
+"greedy": "grasp the white sachet",
+"candidates": [
+"Grasp the white sachet",
+"grasp the white sachet gently"
+],
+"secs": 4.3
+},
+{
+"id": 19,
+"kind": "normal",
+"task": "Put the object on the black spoon",
+"x": "object",
+"y": "black spoon",
+"k": 4,
+"prefix": [
+"locate the object",
+"move the gripper above the object",
+"grasp the object",
+"lift the object"
+],
+"greedy": "move above the black spoon",
+"candidates": [
+"move above the black spoon"
+],
+"secs": 4.1
+},
+{
+"id": 20,
+"kind": "normal",
+"task": "Put the chocolate bar on the paper plate",
+"x": "chocolate bar",
+"y": "paper plate",
+"k": 6,
+"prefix": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar",
+"lift the chocolate bar",
+"move the chocolate bar over the paper plate",
+"lower the chocolate bar and release it on the paper plate"
+],
+"greedy": "release the chocolate bar onto the paper plate",
+"candidates": [
+"release the chocolate bar onto the paper plate",
+"release the chocolate bar on the paper plate",
+"move above the paper plate",
+"place the chocolate bar on the plate"
+],
+"secs": 5.6
+},
+{
+"id": 21,
+"kind": "normal",
+"task": "Put the white cup onto the plate",
+"x": "white cup",
+"y": "plate",
+"k": 2,
+"prefix": [
+"locate the white cup",
+"move the gripper above the white cup"
+],
+"greedy": "grasp the white cup",
+"candidates": [
+"grasp the white cup",
+"grasp the white cup gently"
+],
+"secs": 4.1
+},
+{
+"id": 22,
+"kind": "normal",
+"task": "Put the purple packet in the sink.",
+"x": "purple packet",
+"y": "sink",
+"k": 5,
+"prefix": [
+"locate the purple packet",
+"move the gripper above the purple packet",
+"grasp the purple packet",
+"lift the purple packet",
+"move the purple packet over the sink"
+],
+"greedy": "release the purple packet into the sink",
+"candidates": [
+"release the purple packet into the sink"
+],
+"secs": 4.9
+},
+{
+"id": 23,
+"kind": "normal",
+"task": "Put the left cup into the right cup",
+"x": "left cup",
+"y": "right cup",
+"k": 3,
+"prefix": [
+"locate the left cup",
+"move the gripper above the left cup",
+"grasp the left cup"
+],
+"greedy": "move above the right cup",
+"candidates": [
+"move above the right cup",
+"move to the right cup"
+],
+"secs": 4.1
+},
+{
+"id": 24,
+"kind": "normal",
+"task": "place the cup in the other cup",
+"x": "cup",
+"y": "other cup",
+"k": 2,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup"
+],
+"greedy": "grasp the cup gently",
+"candidates": [
+"grasp the cup gently",
+"Grasp the cup"
+],
+"secs": 4.0
+},
+{
+"id": 25,
+"kind": "normal",
+"task": "Put the green packet inside the left sink",
+"x": "green packet",
+"y": "left sink",
+"k": 2,
+"prefix": [
+"locate the green packet",
+"move the gripper above the green packet"
+],
+"greedy": "grasp the green packet",
+"candidates": [
+"Grasp the green packet",
+"grip the green packet"
+],
+"secs": 4.1
+},
+{
+"id": 26,
+"kind": "normal",
+"task": "Put the green can inside the sink",
+"x": "green can",
+"y": "sink",
+"k": 2,
+"prefix": [
+"locate the green can",
+"move the gripper above the green can"
+],
+"greedy": "grasp the green can",
+"candidates": [
+"grasp the green can"
+],
+"secs": 4.0
+},
+{
+"id": 27,
+"kind": "normal",
+"task": "Put the plate on the surface",
+"x": "plate",
+"y": "surface",
+"k": 4,
+"prefix": [
+"locate the plate",
+"move the gripper above the plate",
+"grasp the plate",
+"lift the plate"
+],
+"greedy": "move above the surface",
+"candidates": [
+"move above the surface",
+"move to the surface"
+],
+"secs": 3.9
+},
+{
+"id": 28,
+"kind": "normal",
+"task": "Place the teacup on the saucer",
+"x": "teacup",
+"y": "saucer",
+"k": 3,
+"prefix": [
+"locate the teacup",
+"move the gripper above the teacup",
+"grasp the teacup"
+],
+"greedy": "move above the saucer",
+"candidates": [
+"move above the saucer"
+],
+"secs": 4.0
+},
+{
+"id": 29,
+"kind": "normal",
+"task": "Put the paper cup inside the white mug",
+"x": "paper cup",
+"y": "white mug",
+"k": 4,
+"prefix": [
+"locate the paper cup",
+"move the gripper above the paper cup",
+"grasp the paper cup",
+"lift the paper cup"
+],
+"greedy": "move above the white mug",
+"candidates": [
+"move above the white mug"
+],
+"secs": 4.6
+},
+{
+"id": 30,
+"kind": "normal",
+"task": "Place the coffee pod inside the clear container.",
+"x": "coffee pod",
+"y": "clear container",
+"k": 4,
+"prefix": [
+"locate the coffee pod",
+"move the gripper above the coffee pod",
+"grasp the coffee pod",
+"lift the coffee pod"
+],
+"greedy": "move above the clear container",
+"candidates": [
+"move above the clear container",
+"move to the clear container location"
+],
+"secs": 4.6
+},
+{
+"id": 31,
+"kind": "normal",
+"task": "Put one plastic in the bin",
+"x": "one plastic",
+"y": "bin",
+"k": 4,
+"prefix": [
+"locate the one plastic",
+"move the gripper above the one plastic",
+"grasp the one plastic",
+"lift the one plastic"
+],
+"greedy": "move to the bin location",
+"candidates": [
+"move the gripper above the bin",
+"move above the bin",
+"move to the bin position",
+"move to the bin location"
+],
+"secs": 4.6
+},
+{
+"id": 32,
+"kind": "normal",
+"task": "Put the white spoon in the yellow bowl.",
+"x": "white spoon",
+"y": "yellow bowl",
+"k": 4,
+"prefix": [
+"locate the white spoon",
+"move the gripper above the white spoon",
+"grasp the white spoon",
+"lift the white spoon"
+],
+"greedy": "move above the yellow bowl",
+"candidates": [
+"move above the yellow bowl",
+"move to the yellow bowl"
+],
+"secs": 4.6
+},
+{
+"id": 33,
+"kind": "normal",
+"task": "Put the spoon in the mug cup",
+"x": "spoon",
+"y": "mug cup",
+"k": 6,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon",
+"move the spoon over the mug cup",
+"lower the spoon and release it in the mug cup"
+],
+"greedy": "release the spoon in the mug cup",
+"candidates": [
+"verify spoon is correctly placed in the mug cup",
+"check if the spoon is properly placed in the mug cup",
+"release the spoon in the mug cup",
+"place spoon in mug cup"
+],
+"secs": 4.9
+},
+{
+"id": 34,
+"kind": "normal",
+"task": "Put the silver spoon inside the glass coffee jug",
+"x": "silver spoon",
+"y": "glass coffee jug",
+"k": 2,
+"prefix": [
+"locate the silver spoon",
+"move the gripper above the silver spoon"
+],
+"greedy": "grasp the silver spoon",
+"candidates": [
+"Grasp the silver spoon",
+"grasp the silver spoon gently"
+],
+"secs": 4.1
+},
+{
+"id": 35,
+"kind": "normal",
+"task": "Put the snack bar in the top cabinet",
+"x": "snack bar",
+"y": "top cabinet",
+"k": 2,
+"prefix": [
+"locate the snack bar",
+"move the gripper above the snack bar"
+],
+"greedy": "grasp the snack bar gently",
+"candidates": [
+"grasp the snack bar gently",
+"Grasp the snack bar"
+],
+"secs": 4.1
+},
+{
+"id": 36,
+"kind": "normal",
+"task": "Put the lid on the microwave",
+"x": "lid",
+"y": "microwave",
+"k": 4,
+"prefix": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid",
+"lift the lid"
+],
+"greedy": "move above the microwave",
+"candidates": [
+"move above the microwave",
+"move to the microwave opening"
+],
+"secs": 3.9
+},
+{
+"id": 37,
+"kind": "normal",
+"task": "Put the blue bowl in the storage bin",
+"x": "blue bowl",
+"y": "storage bin",
+"k": 2,
+"prefix": [
+"locate the blue bowl",
+"move the gripper above the blue bowl"
+],
+"greedy": "grasp the blue bowl",
+"candidates": [
+"grasp the blue bowl",
+"grasp the blue bowl gently"
+],
+"secs": 4.0
+},
+{
+"id": 38,
+"kind": "normal",
+"task": "Put the snack bar in the bowl",
+"x": "snack bar",
+"y": "bowl",
+"k": 5,
+"prefix": [
+"locate the snack bar",
+"move the gripper above the snack bar",
+"grasp the snack bar",
+"lift the snack bar",
+"move the snack bar over the bowl"
+],
+"greedy": "release the snack bar into the bowl",
+"candidates": [
+"release the snack bar into the bowl"
+],
+"secs": 4.8
+},
+{
+"id": 39,
+"kind": "normal",
+"task": "Place the left sneaker on the topmost shelf.",
+"x": "left sneaker",
+"y": "topmost shelf",
+"k": 6,
+"prefix": [
+"locate the left sneaker",
+"move the gripper above the left sneaker",
+"grasp the left sneaker",
+"lift the left sneaker",
+"move the left sneaker over the topmost shelf",
+"lower the left sneaker and release it on the topmost shelf"
+],
+"greedy": "release the left sneaker on the topmost shelf",
+"candidates": [
+"release and lower the left sneaker onto the shelf",
+"release the left sneaker on the topmost shelf",
+"release the left sneaker onto the topmost shelf"
+],
+"secs": 5.8
+},
+{
+"id": 40,
+"kind": "normal",
+"task": "Place the bin in the styrofoam pack",
+"x": "bin",
+"y": "styrofoam pack",
+"k": 1,
+"prefix": [
+"locate the bin"
+],
+"greedy": "grasp the bin gently with the gripper",
+"candidates": [
+"Move to the bin",
+"Grasp the bin with the two-finger gripper",
+"grasp the bin gently",
+"Approach the bin gently",
+"pick up the bin"
+],
+"secs": 4.3
+},
+{
+"id": 41,
+"kind": "normal",
+"task": "Put the square blocks in the lunch pack",
+"x": "square blocks",
+"y": "lunch pack",
+"k": 4,
+"prefix": [
+"locate the square blocks",
+"move the gripper above the square blocks",
+"grasp the square blocks",
+"lift the square blocks"
+],
+"greedy": "move to the lunch pack location",
+"candidates": [
+"move to the lunch pack location",
+"move above the lunch pack"
+],
+"secs": 4.7
+},
+{
+"id": 42,
+"kind": "normal",
+"task": "Put the left sneaker on the rack.",
+"x": "left sneaker",
+"y": "rack",
+"k": 1,
+"prefix": [
+"locate the left sneaker"
+],
+"greedy": "grasp the left sneaker",
+"candidates": [
+"Grasp the left sneaker with the gripper",
+"grasp the left sneaker"
+],
+"secs": 4.3
+},
+{
+"id": 43,
+"kind": "normal",
+"task": "Put the tissue in the bin",
+"x": "tissue",
+"y": "bin",
+"k": 2,
+"prefix": [
+"locate the tissue",
+"move the gripper above the tissue"
+],
+"greedy": "grasp the tissue gently",
+"candidates": [
+"grasp the tissue gently"
+],
+"secs": 4.1
+},
+{
+"id": 44,
+"kind": "normal",
+"task": "Put the plastic inside the rubbish can",
+"x": "plastic",
+"y": "rubbish can",
+"k": 6,
+"prefix": [
+"locate the plastic",
+"move the gripper above the plastic",
+"grasp the plastic",
+"lift the plastic",
+"move the plastic over the rubbish can",
+"lower the plastic and release it in the rubbish can"
+],
+"greedy": "release the plastic into the can",
+"candidates": [
+"release the plastic into the can",
+"wait for the can to be placed",
+"align gripper with the rubbish can opening",
+"move directly above the rubbish can"
+],
+"secs": 4.8
+},
+{
+"id": 45,
+"kind": "normal",
+"task": "Put the green packet inside the sink",
+"x": "green packet",
+"y": "sink",
+"k": 1,
+"prefix": [
+"locate the green packet"
+],
+"greedy": "grasp the green packet",
+"candidates": [
+"grasp the green packet",
+"Grasp the green packet with the gripper",
+"pick up the green packet"
+],
+"secs": 4.1
+},
+{
+"id": 46,
+"kind": "normal",
+"task": "Put the coffee cup onto the stand",
+"x": "coffee cup",
+"y": "stand",
+"k": 2,
+"prefix": [
+"locate the coffee cup",
+"move the gripper above the coffee cup"
+],
+"greedy": "grasp the coffee cup",
+"candidates": [
+"grasp the coffee cup gently",
+"Grasp the coffee cup"
+],
+"secs": 4.1
+},
+{
+"id": 47,
+"kind": "normal",
+"task": "Put the spoon in the cup",
+"x": "spoon",
+"y": "cup",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon"
+],
+"greedy": "move above the cup",
+"candidates": [
+"move above the cup"
+],
+"secs": 3.8
+},
+{
+"id": 48,
+"kind": "normal",
+"task": "Put the blue packet in the sink on the left.",
+"x": "blue packet",
+"y": "sink on the left",
+"k": 1,
+"prefix": [
+"locate the blue packet"
+],
+"greedy": "grasp the blue packet",
+"candidates": [
+"Move to the blue packet",
+"grasp the blue packet",
+"pick up the blue packet"
+],
+"secs": 4.0
+},
+{
+"id": 49,
+"kind": "normal",
+"task": "Put the black object in the white jug.",
+"x": "black object",
+"y": "white jug",
+"k": 6,
+"prefix": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object",
+"lift the black object",
+"move the black object over the white jug",
+"lower the black object and release it in the white jug"
+],
+"greedy": "release the black object into the white jug",
+"candidates": [
+"release the black object into the white jug",
+"place the black object in the white jug"
+],
+"secs": 5.5
+},
+{
+"id": 50,
+"kind": "normal",
+"task": "Put the packet from the counter in the upper cabinet.",
+"x": "packet from the counter",
+"y": "upper cabinet",
+"k": 6,
+"prefix": [
+"locate the packet from the counter",
+"move the gripper above the packet from the counter",
+"grasp the packet from the counter",
+"lift the packet from the counter",
+"move the packet from the counter over the upper cabinet",
+"lower the packet from the counter and release it in the upper cabinet"
+],
+"greedy": "release and place packet in upper cabinet",
+"candidates": [
+"move packet to upper cabinet opening",
+"release the packet into the upper cabinet",
+"release the packet and place it in the upper cabinet",
+"place packet into upper cabinet opening",
+"release and place packet in upper cabinet"
+],
+"secs": 5.4
+},
+{
+"id": 51,
+"kind": "normal",
+"task": "Put the black sachet in the left sink",
+"x": "black sachet",
+"y": "left sink",
+"k": 6,
+"prefix": [
+"locate the black sachet",
+"move the gripper above the black sachet",
+"grasp the black sachet",
+"lift the black sachet",
+"move the black sachet over the left sink",
+"lower the black sachet and release it in the left sink"
+],
+"greedy": "release the black sachet into the left sink",
+"candidates": [
+"release and place the black sachet in the left sink",
+"release and open the gripper over the sink",
+"release and let sachet fall into the left sink",
+"release the black sachet in the left sink",
+"release the black sachet into the left sink"
+],
+"secs": 5.7
+},
+{
+"id": 52,
+"kind": "normal",
+"task": "Place three cotton balls into the small crate",
+"x": "three cotton balls",
+"y": "small crate",
+"k": 2,
+"prefix": [
+"locate the three cotton balls",
+"move the gripper above the three cotton balls"
+],
+"greedy": "Grasp the first cotton ball",
+"candidates": [
+"Grasp the first cotton ball",
+"grasp the closest cotton ball",
+"grasp the first cotton ball gently"
+],
+"secs": 4.2
+},
+{
+"id": 53,
+"kind": "normal",
+"task": "Put the soda can in the sink on the left",
+"x": "soda can",
+"y": "sink on the left",
+"k": 2,
+"prefix": [
+"locate the soda can",
+"move the gripper above the soda can"
+],
+"greedy": "grasp the soda can",
+"candidates": [
+"Grasp the soda can",
+"grasp the soda can gently"
+],
+"secs": 4.0
+},
+{
+"id": 54,
+"kind": "normal",
+"task": "Put the right coffee pod in the cup",
+"x": "right coffee pod",
+"y": "cup",
+"k": 5,
+"prefix": [
+"locate the right coffee pod",
+"move the gripper above the right coffee pod",
+"grasp the right coffee pod",
+"lift the right coffee pod",
+"move the right coffee pod over the cup"
+],
+"greedy": "release the coffee pod near the cup",
+"candidates": [
+"release the coffee pod above the cup",
+"release the coffee pod near the cup",
+"release the right coffee pod into the cup",
+"release the coffee pod near the cup-opening"
+],
+"secs": 4.9
+},
+{
+"id": 55,
+"kind": "normal",
+"task": "Put the black packet in the left sink",
+"x": "black packet",
+"y": "left sink",
+"k": 3,
+"prefix": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet"
+],
+"greedy": "move above the left sink",
+"candidates": [
+"move to the left sink",
+"move above the left sink"
+],
+"secs": 4.0
+},
+{
+"id": 56,
+"kind": "normal",
+"task": "Put the cup in the sink",
+"x": "cup",
+"y": "sink",
+"k": 5,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup",
+"move the cup over the sink"
+],
+"greedy": "release the cup into the sink",
+"candidates": [
+"release the cup into the sink"
+],
+"secs": 4.7
+},
+{
+"id": 57,
+"kind": "normal",
+"task": "Place the block inside the white bag",
+"x": "block",
+"y": "white bag",
+"k": 1,
+"prefix": [
+"locate the block"
+],
+"greedy": "grasp the block with the gripper",
+"candidates": [
+"grasp the block with the gripper",
+"pick up the block",
+"approach and grasp the block",
+"grasp the block gently with the gripper"
+],
+"secs": 4.2
+},
+{
+"id": 58,
+"kind": "normal",
+"task": "Put the remote on the right armrest",
+"x": "remote",
+"y": "right armrest",
+"k": 6,
+"prefix": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote",
+"lift the remote",
+"move the remote over the right armrest",
+"lower the remote and release it on the right armrest"
+],
+"greedy": "place remote gently on armrest",
+"candidates": [
+"place the remote gently on the armrest",
+"place remote on armrest gently",
+"place remote on armrest",
+"release the remote on the right armrest"
+],
+"secs": 4.8
+},
+{
+"id": 59,
+"kind": "normal",
+"task": "Put the fork inside the cup",
+"x": "fork",
+"y": "cup",
+"k": 5,
+"prefix": [
+"locate the fork",
+"move the gripper above the fork",
+"grasp the fork",
+"lift the fork",
+"move the fork over the cup"
+],
+"greedy": "release the fork inside the cup",
+"candidates": [
+"release the fork inside the cup",
+"release the fork into the cup"
+],
+"secs": 4.7
+},
+{
+"id": 60,
+"kind": "normal",
+"task": "Put the spoon into the white cup",
+"x": "spoon",
+"y": "white cup",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon"
+],
+"greedy": "move above the white cup",
+"candidates": [
+"move above the white cup"
+],
+"secs": 4.0
+},
+{
+"id": 61,
+"kind": "normal",
+"task": "Put one sachet in the sink on the left.",
+"x": "one sachet",
+"y": "sink on the left",
+"k": 3,
+"prefix": [
+"locate the one sachet",
+"move the gripper above the one sachet",
+"grasp the one sachet"
+],
+"greedy": "move to the sink on the left",
+"candidates": [
+"move to the sink on the left"
+],
+"secs": 4.8
+},
+{
+"id": 62,
+"kind": "normal",
+"task": "Put one white knife on the white plate.",
+"x": "one white knife",
+"y": "white plate",
+"k": 4,
+"prefix": [
+"locate the one white knife",
+"move the gripper above the one white knife",
+"grasp the one white knife",
+"lift the one white knife"
+],
+"greedy": "move to the white plate",
+"candidates": [
+"move to the white plate",
+"move above the white plate"
+],
+"secs": 4.6
+},
+{
+"id": 63,
+"kind": "normal",
+"task": "Put the orange packet into the sink",
+"x": "orange packet",
+"y": "sink",
+"k": 4,
+"prefix": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet",
+"lift the orange packet"
+],
+"greedy": "move to the sink",
+"candidates": [
+"move to the sink location",
+"move towards the sink",
+"move to the sink"
+],
+"secs": 4.4
+},
+{
+"id": 64,
+"kind": "normal",
+"task": "Put the paper towel on the metal rail",
+"x": "paper towel",
+"y": "metal rail",
+"k": 1,
+"prefix": [
+"locate the paper towel"
+],
+"greedy": "grasp the paper towel",
+"candidates": [
+"grasp the paper towel",
+"Pick up the paper towel",
+"grasp the paper towel safely"
+],
+"secs": 4.0
+},
+{
+"id": 65,
+"kind": "normal",
+"task": "Put the orange block on the stack",
+"x": "orange block",
+"y": "stack",
+"k": 6,
+"prefix": [
+"locate the orange block",
+"move the gripper above the orange block",
+"grasp the orange block",
+"lift the orange block",
+"move the orange block over the stack",
+"lower the orange block and release it on the stack"
+],
+"greedy": "release the orange block onto the stack",
+"candidates": [
+"release the orange block on the stack",
+"release and place orange block on stack",
+"release the orange block onto the stack"
+],
+"secs": 4.8
+},
+{
+"id": 66,
+"kind": "normal",
+"task": "Put the cup on the the counter",
+"x": "cup",
+"y": "the counter",
+"k": 6,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup",
+"move the cup over the the counter",
+"lower the cup and release it on the the counter"
+],
+"greedy": "release the cup on the counter",
+"candidates": [
+"release and open the gripper",
+"release and lower the cup onto the counter",
+"release and open the cup grip",
+"release the cup on the counter",
+"release and place the cup on the counter"
+],
+"secs": 4.8
+},
+{
+"id": 67,
+"kind": "normal",
+"task": "Put the wooden spoon on the paper towel",
+"x": "wooden spoon",
+"y": "paper towel",
+"k": 5,
+"prefix": [
+"locate the wooden spoon",
+"move the gripper above the wooden spoon",
+"grasp the wooden spoon",
+"lift the wooden spoon",
+"move the wooden spoon over the paper towel"
+],
+"greedy": "release the wooden spoon onto the paper towel",
+"candidates": [
+"release the wooden spoon onto the paper towel",
+"release the wooden spoon on the paper towel"
+],
+"secs": 4.9
+},
+{
+"id": 68,
+"kind": "normal",
+"task": "Put the right black pot in the oven grill",
+"x": "right black pot",
+"y": "oven grill",
+"k": 6,
+"prefix": [
+"locate the right black pot",
+"move the gripper above the right black pot",
+"grasp the right black pot",
+"lift the right black pot",
+"move the right black pot over the oven grill",
+"lower the right black pot and release it in the oven grill"
+],
+"greedy": "place the pot in the oven grill",
+"candidates": [
+"release the right black pot into the oven grill",
+"place the pot in the oven grill",
+"verify the pot is securely placed in the grill",
+"release the pot and open the oven grill",
+"position gripper above the oven grillmediately"
+],
+"secs": 5.5
+},
+{
+"id": 69,
+"kind": "normal",
+"task": "Place the purple bowl on its side.",
+"x": "purple bowl",
+"y": "its side",
+"k": 6,
+"prefix": [
+"locate the purple bowl",
+"move the gripper above the purple bowl",
+"grasp the purple bowl",
+"lift the purple bowl",
+"move the purple bowl over the its side",
+"lower the purple bowl and release it on the its side"
+],
+"greedy": "release the purple bowl and let it slide",
+"candidates": [
+"release and lower the purple bowl onto its side",
+"lower and release the purple bowl on its side",
+"release the purple bowl gently",
+"rotate the purple bowl onto its side",
+"release and lower the purple bowl to its side"
+],
+"secs": 5.5
+},
+{
+"id": 70,
+"kind": "normal",
+"task": "Put the tennis ball in the black mug.",
+"x": "tennis ball",
+"y": "black mug",
+"k": 5,
+"prefix": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball",
+"lift the tennis ball",
+"move the tennis ball over the black mug"
+],
+"greedy": "release the tennis ball into the black mug",
+"candidates": [
+"release the tennis ball into the black mug"
+],
+"secs": 5.0
+},
+{
+"id": 71,
+"kind": "normal",
+"task": "Place the soda can in the shelf",
+"x": "soda can",
+"y": "shelf",
+"k": 6,
+"prefix": [
+"locate the soda can",
+"move the gripper above the soda can",
+"grasp the soda can",
+"lift the soda can",
+"move the soda can over the shelf",
+"lower the soda can and release it in the shelf"
+],
+"greedy": "release the soda can into the shelf",
+"candidates": [
+"release the soda can into the shelf",
+"align gripper with the shelf edge"
+],
+"secs": 4.8
+},
+{
+"id": 72,
+"kind": "normal",
+"task": "Put the marker into the plastic cup",
+"x": "marker",
+"y": "plastic cup",
+"k": 4,
+"prefix": [
+"locate the marker",
+"move the gripper above the marker",
+"grasp the marker",
+"lift the marker"
+],
+"greedy": "move above the plastic cup",
+"candidates": [
+"move above the plastic cup"
+],
+"secs": 4.0
+},
+{
+"id": 73,
+"kind": "normal",
+"task": "Put the orange packet in the left bin",
+"x": "orange packet",
+"y": "left bin",
+"k": 5,
+"prefix": [
+"locate the orange packet",
+"move the gripper above the orange packet",
+"grasp the orange packet",
+"lift the orange packet",
+"move the orange packet over the left bin"
+],
+"greedy": "release the orange packet into the left bin",
+"candidates": [
+"release the orange packet into the left bin"
+],
+"secs": 4.9
+},
+{
+"id": 74,
+"kind": "normal",
+"task": "Put the green lunch bar inside the sink on the left",
+"x": "green lunch bar",
+"y": "sink on the left",
+"k": 4,
+"prefix": [
+"locate the green lunch bar",
+"move the gripper above the green lunch bar",
+"grasp the green lunch bar",
+"lift the green lunch bar"
+],
+"greedy": "move to the sink on the left",
+"candidates": [
+"move gripper towards the sink",
+"move gripper towards the sink on the left",
+"move towards the sink on the left",
+"move gripper above the sink",
+"move to the sink on the left"
+],
+"secs": 4.8
+},
+{
+"id": 75,
+"kind": "normal",
+"task": "Put the white sachet in the top left compartment",
+"x": "white sachet",
+"y": "top left compartment",
+"k": 4,
+"prefix": [
+"locate the white sachet",
+"move the gripper above the white sachet",
+"grasp the white sachet",
+"lift the white sachet"
+],
+"greedy": "move to the top left compartment",
+"candidates": [
+"move gripper above the top left compartment",
+"move to the top left compartment",
+"move gripper above top left compartment"
+],
+"secs": 4.7
+},
+{
+"id": 76,
+"kind": "normal",
+"task": "Put the orange can in the sink on the left.",
+"x": "orange can",
+"y": "sink on the left",
+"k": 3,
+"prefix": [
+"locate the orange can",
+"move the gripper above the orange can",
+"grasp the orange can"
+],
+"greedy": "move to the sink on the left",
+"candidates": [
+"move to the sink on the left"
+],
+"secs": 4.3
+},
+{
+"id": 77,
+"kind": "normal",
+"task": "Put the lid on the blender.",
+"x": "lid",
+"y": "blender",
+"k": 6,
+"prefix": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid",
+"lift the lid",
+"move the lid over the blender",
+"lower the lid and release it on the blender"
+],
+"greedy": "align gripper with blender opening",
+"candidates": [
+"lower and release lid onto blender",
+"align gripper with lid above blender opening",
+"align gripper with blender lid opening",
+"align gripper with blender opening",
+"lower and release the lid onto the blender"
+],
+"secs": 4.8
+},
+{
+"id": 78,
+"kind": "normal",
+"task": "Put the lid on the cup",
+"x": "lid",
+"y": "cup",
+"k": 4,
+"prefix": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid",
+"lift the lid"
+],
+"greedy": "move above the cup",
+"candidates": [
+"move above the cup",
+"move to the cup",
+"move above the cup-opening"
+],
+"secs": 3.9
+},
+{
+"id": 79,
+"kind": "normal",
+"task": "Put the blue packet in the open upper cabinet.",
+"x": "blue packet",
+"y": "open upper cabinet",
+"k": 2,
+"prefix": [
+"locate the blue packet",
+"move the gripper above the blue packet"
+],
+"greedy": "grasp the blue packet",
+"candidates": [
+"grasp the blue packet",
+"grasp the blue packet gently"
+],
+"secs": 4.0
+},
+{
+"id": 80,
+"kind": "normal",
+"task": "Put the hanger on the backrest of the chair",
+"x": "hanger",
+"y": "backrest of the chair",
+"k": 3,
+"prefix": [
+"locate the hanger",
+"move the gripper above the hanger",
+"grasp the hanger"
+],
+"greedy": "move above the chair backrest",
+"candidates": [
+"move to the backrest of the chair",
+"move above the backrest of the chair",
+"move the gripper above the chair backrest",
+"move above the chair backrest"
+],
+"secs": 4.3
+},
+{
+"id": 81,
+"kind": "normal",
+"task": "Put the white sachet on the shelf with similar sachets",
+"x": "white sachet",
+"y": "shelf with similar sachets",
+"k": 3,
+"prefix": [
+"locate the white sachet",
+"move the gripper above the white sachet",
+"grasp the white sachet"
+],
+"greedy": "move above the shelf",
+"candidates": [
+"move above the shelf"
+],
+"secs": 4.4
+},
+{
+"id": 82,
+"kind": "normal",
+"task": "Place the right-side-up cup on the upside down cup",
+"x": "right-side-up cup",
+"y": "upside down cup",
+"k": 1,
+"prefix": [
+"locate the right-side-up cup"
+],
+"greedy": "grasp the right-side-up cup gently",
+"candidates": [
+"pick up the right-side-up cup",
+"grasp the right-side-up cup",
+"grasp the right-side-up cup gently",
+"approach and grasp the right-side-up cup gently"
+],
+"secs": 4.4
+},
+{
+"id": 83,
+"kind": "normal",
+"task": "Put the white bowl into the blue bowl",
+"x": "white bowl",
+"y": "blue bowl",
+"k": 1,
+"prefix": [
+"locate the white bowl"
+],
+"greedy": "grasp the white bowl",
+"candidates": [
+"grasp the white bowl",
+"Grasp the white bowl with the gripper"
+],
+"secs": 4.1
+},
+{
+"id": 84,
+"kind": "normal",
+"task": "Place the white lid on the cube-shaped wooden object",
+"x": "white lid",
+"y": "cube-shaped wooden object",
+"k": 1,
+"prefix": [
+"locate the white lid"
+],
+"greedy": "Grasp the white lid with the gripper",
+"candidates": [
+"grasp the white lid gently",
+"pick up the white lid",
+"Grasp the white lid with the gripper"
+],
+"secs": 4.3
+},
+{
+"id": 85,
+"kind": "normal",
+"task": "Put the cloth on the stand",
+"x": "cloth",
+"y": "stand",
+"k": 2,
+"prefix": [
+"locate the cloth",
+"move the gripper above the cloth"
+],
+"greedy": "grasp the cloth gently",
+"candidates": [
+"grasp the cloth gently",
+"grasp the cloth carefully",
+"grasp the cloth"
+],
+"secs": 3.9
+},
+{
+"id": 86,
+"kind": "normal",
+"task": "Put the stacked coffee cups in the yellow bowl.",
+"x": "stacked coffee cups",
+"y": "yellow bowl",
+"k": 3,
+"prefix": [
+"locate the stacked coffee cups",
+"move the gripper above the stacked coffee cups",
+"grasp the stacked coffee cups"
+],
+"greedy": "lower the gripper to place the cups in the yellow bowl",
+"candidates": [
+"lower the gripper to place the cups in the yellow bowl",
+"lower gripper to place cups in bowl",
+"lower the gripper to place the cups gently in the yellow bowl",
+"lift the coffee cups towards the yellow bowl",
+"lift the coffee cups gently\u5411\u4e0a\u8f7b\u62ac\u5496\u5561\u676f"
+],
+"secs": 4.7
+},
+{
+"id": 87,
+"kind": "normal",
+"task": "Put the can into the cupboard",
+"x": "can",
+"y": "cupboard",
+"k": 1,
+"prefix": [
+"locate the can"
+],
+"greedy": "grasp the can with the gripper",
+"candidates": [
+"grasp the can with the gripper",
+"Pick up the can"
+],
+"secs": 4.1
+},
+{
+"id": 88,
+"kind": "normal",
+"task": "Put the right white plate in the white bowl",
+"x": "right white plate",
+"y": "white bowl",
+"k": 3,
+"prefix": [
+"locate the right white plate",
+"move the gripper above the right white plate",
+"grasp the right white plate"
+],
+"greedy": "move above the white bowl",
+"candidates": [
+"move above the white bowl"
+],
+"secs": 3.9
+},
+{
+"id": 89,
+"kind": "normal",
+"task": "Put the green plush in the bowl",
+"x": "green plush",
+"y": "bowl",
+"k": 6,
+"prefix": [
+"locate the green plush",
+"move the gripper above the green plush",
+"grasp the green plush",
+"lift the green plush",
+"move the green plush over the bowl",
+"lower the green plush and release it in the bowl"
+],
+"greedy": "release the green plush into the bowl",
+"candidates": [
+"release the green plush in the bowl"
+],
+"secs": 4.8
+},
+{
+"id": 90,
+"kind": "normal",
+"task": "Put the orange sachet inside the white bowl",
+"x": "orange sachet",
+"y": "white bowl",
+"k": 1,
+"prefix": [
+"locate the orange sachet"
+],
+"greedy": "grasp the orange sachet",
+"candidates": [
+"pick up the orange sachet",
+"Grasp the orange sachet"
+],
+"secs": 4.1
+},
+{
+"id": 91,
+"kind": "normal",
+"task": "Put the black object in the bowl",
+"x": "black object",
+"y": "bowl",
+"k": 2,
+"prefix": [
+"locate the black object",
+"move the gripper above the black object"
+],
+"greedy": "grasp the black object",
+"candidates": [
+"grasp the black object"
+],
+"secs": 4.0
+},
+{
+"id": 92,
+"kind": "normal",
+"task": "Put the green packet inside the open upper drawer.",
+"x": "green packet",
+"y": "open upper drawer",
+"k": 1,
+"prefix": [
+"locate the green packet"
+],
+"greedy": "grasp the green packet",
+"candidates": [
+"grasp the green packet",
+"pick up the green packet"
+],
+"secs": 4.0
+},
+{
+"id": 93,
+"kind": "normal",
+"task": "Put the metal lid on the salt cellar",
+"x": "metal lid",
+"y": "salt cellar",
+"k": 4,
+"prefix": [
+"locate the metal lid",
+"move the gripper above the metal lid",
+"grasp the metal lid",
+"lift the metal lid"
+],
+"greedy": "move above the salt cellar",
+"candidates": [
+"move above the salt cellar",
+"move to the salt cellar location",
+"move to the salt cellar"
+],
+"secs": 4.6
+},
+{
+"id": 94,
+"kind": "normal",
+"task": "Put the blue cloth on the backrest of the chair",
+"x": "blue cloth",
+"y": "backrest of the chair",
+"k": 6,
+"prefix": [
+"locate the blue cloth",
+"move the gripper above the blue cloth",
+"grasp the blue cloth",
+"lift the blue cloth",
+"move the blue cloth over the backrest of the chair",
+"lower the blue cloth and release it on the backrest of the chair"
+],
+"greedy": "place the cloth gently on the backrest",
+"candidates": [
+"place the cloth on the chair backrest",
+"place the cloth gently on the backrest",
+"place the cloth against the chair backrest",
+"position the gripper above the chair backrest"
+],
+"secs": 5.5
+},
+{
+"id": 95,
+"kind": "normal",
+"task": "Put the packet in the open cabinet.",
+"x": "packet",
+"y": "open cabinet",
+"k": 2,
+"prefix": [
+"locate the packet",
+"move the gripper above the packet"
+],
+"greedy": "grasp the packet gently",
+"candidates": [
+"grasp the packet gently"
+],
+"secs": 4.1
+},
+{
+"id": 96,
+"kind": "normal",
+"task": "Put some of the contents in the jar on the plate",
+"x": "some of the contents",
+"y": "jar on the plate",
+"k": 5,
+"prefix": [
+"locate the some of the contents",
+"move the gripper above the some of the contents",
+"grasp the some of the contents",
+"lift the some of the contents",
+"move the some of the contents over the jar on the plate"
+],
+"greedy": "release the some of the contents near the jar on the plate",
+"candidates": [
+"release the some of the contents near the jar on the plate"
+],
+"secs": 6.0
+},
+{
+"id": 97,
+"kind": "normal",
+"task": "Put the black thing on the tea cup",
+"x": "black thing",
+"y": "tea cup",
+"k": 4,
+"prefix": [
+"locate the black thing",
+"move the gripper above the black thing",
+"grasp the black thing",
+"lift the black thing"
+],
+"greedy": "move above the tea cup",
+"candidates": [
+"move above the tea cup"
+],
+"secs": 4.5
+},
+{
+"id": 98,
+"kind": "normal",
+"task": "Put the straw on the top second left rack",
+"x": "straw",
+"y": "top second left rack",
+"k": 5,
+"prefix": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw",
+"lift the straw",
+"move the straw over the top second left rack"
+],
+"greedy": "release the straw on the rack",
+"candidates": [
+"release the straw onto the top second left rack",
+"release the straw on the rack",
+"release the straw onto the rack"
+],
+"secs": 4.7
+},
+{
+"id": 99,
+"kind": "normal",
+"task": "Put the plush toy on the toy car",
+"x": "plush toy",
+"y": "toy car",
+"k": 2,
+"prefix": [
+"locate the plush toy",
+"move the gripper above the plush toy"
+],
+"greedy": "grasp the plush toy gently",
+"candidates": [
+"grasp the plush toy gently"
+],
+"secs": 4.2
+},
+{
+"id": 100,
+"kind": "failure",
+"task": "Put the plastic fork in the bowl",
+"x": "plastic fork",
+"y": "bowl",
+"k": 4,
+"prefix": [
+"locate the plastic fork",
+"move the gripper above the plastic fork",
+"grasp the plastic fork",
+"lift the plastic fork \u2014 done; gripper reports: nothing held; the plastic fork is no longer in the gripper"
+],
+"greedy": "Check the gripper and fork orientation",
+"candidates": [
+"Inspect the gripper and fork for entanglement",
+"Approach the bowl with the plastic fork",
+"Examine the gripper and fork for obstruction",
+"relocate gripper to find plastic fork again",
+"Check the gripper and plastic fork orientation"
+],
+"secs": 5.1
+},
+{
+"id": 101,
+"kind": "failure",
+"task": "Put the blue block inside the blue bowl",
+"x": "blue block",
+"y": "blue bowl",
+"k": 3,
+"prefix": [
+"locate the blue block",
+"move the gripper above the blue block",
+"grasp the blue block \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the blue bowl",
+"candidates": [
+"Approach the blue bowl",
+"Approach the blue bowl gently"
+],
+"secs": 4.7
+},
+{
+"id": 102,
+"kind": "failure",
+"task": "Put the yellow sachet on the top rack",
+"x": "yellow sachet",
+"y": "top rack",
+"k": 4,
+"prefix": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet",
+"lift the yellow sachet \u2014 done; gripper reports: nothing held; the yellow sachet is no longer in the gripper"
+],
+"greedy": "inspect the gripper for blockages",
+"candidates": [
+"Inspect and recalibrate the grippers grip settings",
+"inspect gripper for debris or damage",
+"inspect the gripper for an object grasp",
+"Inspect and clean the gripper",
+"Inspect the gripper for a possible jam"
+],
+"secs": 5.0
+},
+{
+"id": 103,
+"kind": "failure",
+"task": "Put the left cup in the right cup",
+"x": "left cup",
+"y": "right cup",
+"k": 3,
+"prefix": [
+"locate the left cup",
+"move the gripper above the left cup",
+"grasp the left cup \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the right cup",
+"candidates": [
+"Approach the right cup",
+"Approach the right cup carefully",
+"Move to the right cup"
+],
+"secs": 4.7
+},
+{
+"id": 104,
+"kind": "failure",
+"task": "Put the tennis ball inside the cupboard drawer",
+"x": "tennis ball",
+"y": "cupboard drawer",
+"k": 3,
+"prefix": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the cupboard drawer",
+"candidates": [
+"Approach the cupboard drawer",
+"Move closer to the tennis ball",
+"Inspect the gripper for jamming",
+"Approach the cupboard drawer carefully"
+],
+"secs": 4.7
+},
+{
+"id": 105,
+"kind": "failure",
+"task": "Put the green can in the sink to the left",
+"x": "green can",
+"y": "sink to the left",
+"k": 4,
+"prefix": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can",
+"lift the green can \u2014 done; gripper reports: nothing held; the green can is no longer in the gripper"
+],
+"greedy": "inspect the gripper for grip issues",
+"candidates": [
+"drop the green can in the sink to the left",
+"drop off the green can next to the sink",
+"check gripper for can and retry grasp if loose",
+"release the green can near the sink",
+"Check the gripper and green can position"
+],
+"secs": 5.0
+},
+{
+"id": 106,
+"kind": "failure",
+"task": "Put the orange item in the box",
+"x": "orange item",
+"y": "box",
+"k": 4,
+"prefix": [
+"locate the orange item",
+"move the gripper above the orange item",
+"grasp the orange item",
+"lift the orange item \u2014 done; gripper reports: nothing held; the orange item is no longer in the gripper"
+],
+"greedy": "Check gripper and retry grasp",
+"candidates": [
+"Inspect the gripper for grasp failure",
+"Check gripper and try grasping again",
+"Inspect the gripper and ensure it is closed",
+"Check the gripper for jamming",
+"Inspect the gripper for obstruction"
+],
+"secs": 5.1
+},
+{
+"id": 107,
+"kind": "failure",
+"task": "Put the red bowl in the white oven.",
+"x": "red bowl",
+"y": "white oven",
+"k": 4,
+"prefix": [
+"locate the red bowl",
+"move the gripper above the red bowl",
+"grasp the red bowl",
+"lift the red bowl \u2014 done; gripper reports: nothing held; the red bowl is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp failure",
+"candidates": [
+"Inspect the gripper and bowl for any obstacles",
+"Check grip and retry grasping the red bowl",
+"Inspect and recalibrate the gripper",
+"Check the gripper and bowl for entanglement",
+"Check the gripper and retry grasping the bowl"
+],
+"secs": 5.2
+},
+{
+"id": 108,
+"kind": "failure",
+"task": "Put the orange masking tape on the top counter",
+"x": "orange masking tape",
+"y": "top counter",
+"k": 4,
+"prefix": [
+"locate the orange masking tape",
+"move the gripper above the orange masking tape",
+"grasp the orange masking tape",
+"lift the orange masking tape \u2014 done; gripper reports: nothing held; the orange masking tape is no longer in the gripper"
+],
+"greedy": "inspect the gripper for tape",
+"candidates": [
+"locate and adjust grip on the orange masking tape",
+"inspect the gripper and tape for grasping issues",
+"inspect the gripper and tape for any obstacles",
+"inspect the gripper for tape",
+"inspect the gripper for tape remnants"
+],
+"secs": 5.1
+},
+{
+"id": 109,
+"kind": "failure",
+"task": "Place one paper towel in the cup",
+"x": "one paper towel",
+"y": "cup",
+"k": 4,
+"prefix": [
+"locate the one paper towel",
+"move the gripper above the one paper towel",
+"grasp the one paper towel",
+"lift the one paper towel \u2014 done; gripper reports: nothing held; the one paper towel is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a paper towel",
+"candidates": [
+"inspect the gripper for paper towel",
+"Inspect and clean the gripper",
+"Place the paper towel near the cup",
+"Check and clean the gripper",
+"Locate the cup"
+],
+"secs": 4.9
+},
+{
+"id": 110,
+"kind": "failure",
+"task": "Put the brown object in the bowl closest to you",
+"x": "brown object",
+"y": "bowl closest to you",
+"k": 3,
+"prefix": [
+"locate the brown object",
+"move the gripper above the brown object",
+"grasp the brown object \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the closest bowl",
+"candidates": [
+"Inspect the gripper for blockages",
+"Inspect the gripper for a grasp",
+"Approach the closest bowl",
+"Inspect the grippers grip settings",
+"Approach the nearest bowl"
+],
+"secs": 4.8
+},
+{
+"id": 111,
+"kind": "failure",
+"task": "Put the green object on the counter to the left",
+"x": "green object",
+"y": "counter to the left",
+"k": 3,
+"prefix": [
+"locate the green object",
+"move the gripper above the green object",
+"grasp the green object \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the counter to the left",
+"candidates": [
+"Approach the counter to the left",
+"Inspect the gripper for a grasp"
+],
+"secs": 4.9
+},
+{
+"id": 112,
+"kind": "failure",
+"task": "Put the yellow sachet on the rack",
+"x": "yellow sachet",
+"y": "rack",
+"k": 3,
+"prefix": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the rack carefully",
+"candidates": [
+"Inspect the grippers fingers for obstruction",
+"Approach the rack carefully",
+"Approach the rack cautiously",
+"Approach the rack slowly"
+],
+"secs": 4.7
+},
+{
+"id": 113,
+"kind": "failure",
+"task": "Put the blue tape on the jar",
+"x": "blue tape",
+"y": "jar",
+"k": 4,
+"prefix": [
+"locate the blue tape",
+"move the gripper above the blue tape",
+"grasp the blue tape",
+"lift the blue tape \u2014 done; gripper reports: nothing held; the blue tape is no longer in the gripper"
+],
+"greedy": "Inspect the gripper and blue tape",
+"candidates": [
+"inspect the gripper for tape",
+"Check the grip and try again",
+"inspect and adjust gripper grip settings",
+"Inspect and ensure tape is properly grasped",
+"Place gripper back above tape"
+],
+"secs": 4.8
+},
+{
+"id": 114,
+"kind": "failure",
+"task": "Put the plastic fork into the coffee cup",
+"x": "plastic fork",
+"y": "coffee cup",
+"k": 3,
+"prefix": [
+"locate the plastic fork",
+"move the gripper above the plastic fork",
+"grasp the plastic fork \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the coffee cup slowly",
+"candidates": [
+"Check grippers grasp settings and retry",
+"Approach the coffee cup carefully",
+"Approach the coffee cup slowly",
+"Inspect the grippers grip settings"
+],
+"secs": 4.9
+},
+{
+"id": 115,
+"kind": "failure",
+"task": "Place the cup on the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"k": 3,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the coffee maker",
+"candidates": [
+"lower the gripper to grasp the cup",
+"Approach the coffee maker",
+"Approach the coffee maker carefully",
+"Approach the coffee maker slowly"
+],
+"secs": 4.7
+},
+{
+"id": 116,
+"kind": "failure",
+"task": "Put the spoon inside the black cup",
+"x": "spoon",
+"y": "black cup",
+"k": 4,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon \u2014 done; gripper reports: nothing held; the spoon is no longer in the gripper"
+],
+"greedy": "Check the gripper and spoon for entanglement",
+"candidates": [
+"Verify gripper and try grasping again",
+"Inspect and recalibrate the gripper",
+"Check gripper and spoon for entanglement",
+"Inspect and clean gripper jaws",
+"inspect spoon for grip issue"
+],
+"secs": 5.0
+},
+{
+"id": 117,
+"kind": "failure",
+"task": "Put the paper cup in an upright position",
+"x": "paper cup",
+"y": "an upright position",
+"k": 3,
+"prefix": [
+"locate the paper cup",
+"move the gripper above the paper cup",
+"grasp the paper cup \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the paper cup slowly",
+"candidates": [
+"Lower the gripper to grasp the paper cup",
+"Approach the cup from a different angle",
+"Approach the paper cup from a different angle",
+"Approach the paper cup more closely",
+"Approach the paper cup gently"
+],
+"secs": 5.0
+},
+{
+"id": 118,
+"kind": "failure",
+"task": "Put the black packet inside the sink",
+"x": "black packet",
+"y": "sink",
+"k": 3,
+"prefix": [
+"locate the black packet",
+"move the gripper above the black packet",
+"grasp the black packet \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the sink slowly",
+"candidates": [
+"Approach the sink carefully",
+"Inspect the gripper for jams",
+"Inspect the grippers grip"
+],
+"secs": 4.7
+},
+{
+"id": 119,
+"kind": "failure",
+"task": "Put the brush in the blue bowl",
+"x": "brush",
+"y": "blue bowl",
+"k": 4,
+"prefix": [
+"locate the brush",
+"move the gripper above the brush",
+"grasp the brush",
+"lift the brush \u2014 done; gripper reports: nothing held; the brush is no longer in the gripper"
+],
+"greedy": "Check brush for adherence issues",
+"candidates": [
+"Inspect and recalibrate the gripper",
+"release the brush safely",
+"Inspect the gripper for a grasp error",
+"Check brush position and orientation before gripping",
+"Check brush for stuck residue or confirm grip"
+],
+"secs": 4.9
+},
+{
+"id": 120,
+"kind": "failure",
+"task": "Put the chocolate bar inside the left sink",
+"x": "chocolate bar",
+"y": "left sink",
+"k": 4,
+"prefix": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar",
+"lift the chocolate bar \u2014 done; gripper reports: nothing held; the chocolate bar is no longer in the gripper"
+],
+"greedy": "Check the gripper and chocolate bar for any issues",
+"candidates": [
+"inspect the gripper for blockages",
+"Check the grip and try again",
+"Verify gripper and try grasping again",
+"Inspect and reset the gripper",
+"Check gripper and chocolate bar alignment"
+],
+"secs": 5.0
+},
+{
+"id": 121,
+"kind": "failure",
+"task": "Put the spoon in the open bottle",
+"x": "spoon",
+"y": "open bottle",
+"k": 4,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon \u2014 done; gripper reports: nothing held; the spoon is no longer in the gripper"
+],
+"greedy": "Check gripper and spoon for entanglement",
+"candidates": [
+"Check gripper and spoon for jamming",
+"Inspect the gripper for a grasp error",
+"inspect spoon for grip issues",
+"Check sensor calibration and gripper strength",
+"Inspect and re-grip the spoon"
+],
+"secs": 5.0
+},
+{
+"id": 122,
+"kind": "failure",
+"task": "Put the black object inside the box",
+"x": "black object",
+"y": "box",
+"k": 4,
+"prefix": [
+"locate the black object",
+"move the gripper above the black object",
+"grasp the black object",
+"lift the black object \u2014 done; gripper reports: nothing held; the black object is no longer in the gripper"
+],
+"greedy": "Check gripper and retry grasping the black object",
+"candidates": [
+"Verify gripper and try gripping again",
+"inspect the gripper for jamming",
+"Inspect the gripper for blockages",
+"Check and recalibrate the gripper",
+"Check the gripper and try grasping again"
+],
+"secs": 5.0
+},
+{
+"id": 123,
+"kind": "failure",
+"task": "Put the tongs in the white mug",
+"x": "tongs",
+"y": "white mug",
+"k": 4,
+"prefix": [
+"locate the tongs",
+"move the gripper above the tongs",
+"grasp the tongs",
+"lift the tongs \u2014 done; gripper reports: nothing held; the tongs is no longer in the gripper"
+],
+"greedy": "inspect the gripper for a grasp error",
+"candidates": [
+"reset gripper position and orientation",
+"reposition the gripper above the white mug",
+"Inspect and adjust gripper grip settings",
+"Lower the gripper to check the tongs",
+"Verify gripper grip and try regrasping"
+],
+"secs": 5.2
+},
+{
+"id": 124,
+"kind": "failure",
+"task": "Put the chocolate bar inside the black bowl",
+"x": "chocolate bar",
+"y": "black bowl",
+"k": 4,
+"prefix": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar",
+"lift the chocolate bar \u2014 done; gripper reports: nothing held; the chocolate bar is no longer in the gripper"
+],
+"greedy": "Check the gripper and chocolate bar for any issues",
+"candidates": [
+"Check the gripper and try gripping again",
+"Check and clean gripper sensors",
+"Lower the gripper",
+"Check and reset gripper grip settings",
+"Check and close the gripper properly"
+],
+"secs": 4.9
+},
+{
+"id": 125,
+"kind": "failure",
+"task": "Put the slippers on the cabinet",
+"x": "slippers",
+"y": "cabinet",
+"k": 4,
+"prefix": [
+"locate the slippers",
+"move the gripper above the slippers",
+"grasp the slippers",
+"lift the slippers \u2014 done; gripper reports: nothing held; the slippers is no longer in the gripper"
+],
+"greedy": "inspect the gripper for grip issues",
+"candidates": [
+"Reset the gripper and try grasping the slippers again",
+"Check gripper and slippers position",
+"Inspect and reposition the gripper",
+"verify slippers are properly gripped and try again",
+"inspect and re-grip the slippers carefully"
+],
+"secs": 5.1
+},
+{
+"id": 126,
+"kind": "failure",
+"task": "Put the blue measuring spoon on the table",
+"x": "blue measuring spoon",
+"y": "table",
+"k": 3,
+"prefix": [
+"locate the blue measuring spoon",
+"move the gripper above the blue measuring spoon",
+"grasp the blue measuring spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the table with the blue measuring spoon",
+"candidates": [
+"Approach the table carefully",
+"Inspect the gripper for obstruction",
+"move closer to the blue measuring spoon",
+"move above the table",
+"Approach the table with the blue measuring spoon"
+],
+"secs": 4.8
+},
+{
+"id": 127,
+"kind": "failure",
+"task": "Place the creamer cup into the coffee machine",
+"x": "creamer cup",
+"y": "coffee machine",
+"k": 3,
+"prefix": [
+"locate the creamer cup",
+"move the gripper above the creamer cup",
+"grasp the creamer cup \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the coffee machine with the creamer cup",
+"candidates": [
+"Approach the coffee machine with the gripper",
+"Adjust the gripper position to re-grasp the creamer cup",
+"Approach the coffee machine carefully",
+"Lower the gripper to grasp the creamer cup",
+"Approach the coffee machine"
+],
+"secs": 5.1
+},
+{
+"id": 128,
+"kind": "failure",
+"task": "Put the cup in the coffee maker",
+"x": "cup",
+"y": "coffee maker",
+"k": 4,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup \u2014 done; gripper reports: nothing held; the cup is no longer in the gripper"
+],
+"greedy": "Check the gripper and cup for entanglement",
+"candidates": [
+"Inspect and correct grip position",
+"Inspect and clean gripper jaws",
+"Check the gripper for a grasp error",
+"Check the gripper and cup alignment",
+"Check the gripper and cup for any obstructions"
+],
+"secs": 5.0
+},
+{
+"id": 129,
+"kind": "failure",
+"task": "Put the tennis ball on the table",
+"x": "tennis ball",
+"y": "table",
+"k": 3,
+"prefix": [
+"locate the tennis ball",
+"move the gripper above the tennis ball",
+"grasp the tennis ball \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the table slowly",
+"candidates": [
+"Approach the table slowly",
+"lower the gripper to place the ball on the table",
+"Approach the table with the ball",
+"Approach the table cautiously",
+"Approach the table more closely"
+],
+"secs": 4.8
+},
+{
+"id": 130,
+"kind": "failure",
+"task": "Put the white object inside the bowl",
+"x": "white object",
+"y": "bowl",
+"k": 3,
+"prefix": [
+"locate the white object",
+"move the gripper above the white object",
+"grasp the white object \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the bowl slowly",
+"candidates": [
+"Approach the bowl to grasp the object",
+"Approach the bowl carefully",
+"Approach the bowl to grasp the white object",
+"Inspect the gripper for obstruction"
+],
+"secs": 4.9
+},
+{
+"id": 131,
+"kind": "failure",
+"task": "Put the white napkin on the silver pot.",
+"x": "white napkin",
+"y": "silver pot",
+"k": 4,
+"prefix": [
+"locate the white napkin",
+"move the gripper above the white napkin",
+"grasp the white napkin",
+"lift the white napkin \u2014 done; gripper reports: nothing held; the white napkin is no longer in the gripper"
+],
+"greedy": "Inspect and recalibrate the gripper",
+"candidates": [
+"Inspect the gripper for any napkin remnants",
+"Inspect the gripper and napkin for any obstructions",
+"Check the grip and retry grasping the napkin",
+"Check grip and try lifting again",
+"Check the napkins position and try grasping it again"
+],
+"secs": 5.2
+},
+{
+"id": 132,
+"kind": "failure",
+"task": "Put the packet inside the basin",
+"x": "packet",
+"y": "basin",
+"k": 4,
+"prefix": [
+"locate the packet",
+"move the gripper above the packet",
+"grasp the packet",
+"lift the packet \u2014 done; gripper reports: nothing held; the packet is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp error",
+"candidates": [
+"Place the basin in front of the gripper",
+"Inspect the gripper and packet for entanglement",
+"Inspect and clean gripper surfaces",
+"check the gripper and packet alignment",
+"inspect the gripper for blockages"
+],
+"secs": 5.1
+},
+{
+"id": 133,
+"kind": "failure",
+"task": "Put the bottle into the yellow bowl",
+"x": "bottle",
+"y": "yellow bowl",
+"k": 4,
+"prefix": [
+"locate the bottle",
+"move the gripper above the bottle",
+"grasp the bottle",
+"lift the bottle \u2014 done; gripper reports: nothing held; the bottle is no longer in the gripper"
+],
+"greedy": "Check the gripper and bottle for entanglement",
+"candidates": [
+"Inspect the gripper for a blockage",
+"return to the starting position",
+"Analyze and resolve grasp failure",
+"Inspect the gripper for jamming",
+"Inspect and fix gripper grip"
+],
+"secs": 4.9
+},
+{
+"id": 134,
+"kind": "failure",
+"task": "Put the spoon inside the flask",
+"x": "spoon",
+"y": "flask",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the flask with the spoon",
+"candidates": [
+"adjust grip position slightly downward",
+"inspect the gripper for a stable grasp",
+"Approach the flask with the spoon",
+"Approach the flask cautiously",
+"Adjust gripper position and try grasping again"
+],
+"secs": 4.3
+},
+{
+"id": 135,
+"kind": "failure",
+"task": "Place the bag of chips in the left sink",
+"x": "bag of chips",
+"y": "left sink",
+"k": 4,
+"prefix": [
+"locate the bag of chips",
+"move the gripper above the bag of chips",
+"grasp the bag of chips",
+"lift the bag of chips \u2014 done; gripper reports: nothing held; the bag of chips is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp failure",
+"candidates": [
+"return to the bag of chips",
+"inspect the gripper for blockages",
+"Inspect and recalibrate the gripper",
+"Inspect and clean the gripper",
+"Check gripper and try grasping again"
+],
+"secs": 4.9
+},
+{
+"id": 136,
+"kind": "failure",
+"task": "Put the spoon in the right cup",
+"x": "spoon",
+"y": "right cup",
+"k": 4,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon",
+"lift the spoon \u2014 done; gripper reports: nothing held; the spoon is no longer in the gripper"
+],
+"greedy": "Check gripper and spoon for entanglement",
+"candidates": [
+"Inspect the gripper for a grasp error",
+"Inspect the gripper to ensure it closed properly",
+"Check gripper grip and try again",
+"Inspect the gripper and spoon for entanglement",
+"Check gripper for failure and recalibrate"
+],
+"secs": 5.1
+},
+{
+"id": 137,
+"kind": "failure",
+"task": "Put the blue block in the two stacked coffee cups.",
+"x": "blue block",
+"y": "two stacked coffee cups",
+"k": 4,
+"prefix": [
+"locate the blue block",
+"move the gripper above the blue block",
+"grasp the blue block",
+"lift the blue block \u2014 done; gripper reports: nothing held; the blue block is no longer in the gripper"
+],
+"greedy": "Check the gripper and blue block for any issues",
+"candidates": [
+"Check the gripper and retry grasping the blue block",
+"Inspect the gripper and blue block placement",
+"Verify gripper and try grasping again",
+"Inspect the gripper and ensure it is closed properly",
+"Ensure gripper is closed and try grasping again"
+],
+"secs": 5.3
+},
+{
+"id": 138,
+"kind": "failure",
+"task": "Place the white lid on the tote",
+"x": "white lid",
+"y": "tote",
+"k": 4,
+"prefix": [
+"locate the white lid",
+"move the gripper above the white lid",
+"grasp the white lid",
+"lift the white lid \u2014 done; gripper reports: nothing held; the white lid is no longer in the gripper"
+],
+"greedy": "inspect the gripper for jams or misalignments",
+"candidates": [
+"Check and reset gripper grip settings",
+"relocate the gripper above the tote",
+"release the air grip if engaged",
+"Check the gripper for jams or errors",
+"release the air pressure on the gripper"
+],
+"secs": 5.0
+},
+{
+"id": 139,
+"kind": "failure",
+"task": "Put the silver lid on the white plate",
+"x": "silver lid",
+"y": "white plate",
+"k": 3,
+"prefix": [
+"locate the silver lid",
+"move the gripper above the silver lid",
+"grasp the silver lid \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the white plate",
+"candidates": [
+"Inspect the gripper for jamming",
+"Approach the white plate slowly",
+"Approach the white plate carefully",
+"Inspect the gripper for a secure grasp",
+"Approach the white plate"
+],
+"secs": 4.9
+},
+{
+"id": 140,
+"kind": "failure",
+"task": "Put the sprite can into the kitchen sink",
+"x": "sprite can",
+"y": "kitchen sink",
+"k": 3,
+"prefix": [
+"locate the sprite can",
+"move the gripper above the sprite can",
+"grasp the sprite can \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the kitchen sink",
+"candidates": [
+"Approach the kitchen sink",
+"lower the gripper to grasp the sprite can",
+"Approach the kitchen sink carefully"
+],
+"secs": 4.8
+},
+{
+"id": 141,
+"kind": "failure",
+"task": "Put one white packet on the countertop",
+"x": "one white packet",
+"y": "countertop",
+"k": 3,
+"prefix": [
+"locate the one white packet",
+"move the gripper above the one white packet",
+"grasp the one white packet \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the countertop slowly",
+"candidates": [
+"Inspect the gripper for a proper grasp",
+"inspect the gripper for blockages",
+"Position the gripper above the countertop",
+"Approach the countertop slowly",
+"lower the gripper to release the packet"
+],
+"secs": 5.0
+},
+{
+"id": 142,
+"kind": "failure",
+"task": "Put the spoon onto the paper towel",
+"x": "spoon",
+"y": "paper towel",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the paper towel carefully",
+"candidates": [
+"Inspect the grippers grip settings",
+"Approach the spoon slowly",
+"Approach the spoon again",
+"approach the paper towel with the gripper",
+"Approach the paper towel carefully"
+],
+"secs": 4.8
+},
+{
+"id": 143,
+"kind": "failure",
+"task": "Put the green packet in the top cabinet",
+"x": "green packet",
+"y": "top cabinet",
+"k": 3,
+"prefix": [
+"locate the green packet",
+"move the gripper above the green packet",
+"grasp the green packet \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the top cabinet",
+"candidates": [
+"Approach the top cabinet",
+"Inspect the grippers jaws for obstruction",
+"check packet and gripper alignment",
+"Check the grippers grip settings",
+"Lower the gripper to gently grab the green packet"
+],
+"secs": 4.9
+},
+{
+"id": 144,
+"kind": "failure",
+"task": "Put the packets into the wooden box",
+"x": "packets",
+"y": "wooden box",
+"k": 3,
+"prefix": [
+"locate the packets",
+"move the gripper above the packets",
+"grasp the packets \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the packets slowly",
+"candidates": [
+"Approach the packets again slowly",
+"Inspect the gripper forjam or misalignment",
+"Approach the packets slowly",
+"Approach the wooden box",
+"Approach the packets closer"
+],
+"secs": 4.7
+},
+{
+"id": 145,
+"kind": "failure",
+"task": "Put the marker in the cup",
+"x": "marker",
+"y": "cup",
+"k": 4,
+"prefix": [
+"locate the marker",
+"move the gripper above the marker",
+"grasp the marker",
+"lift the marker \u2014 done; gripper reports: nothing held; the marker is no longer in the gripper"
+],
+"greedy": "Check gripper and marker compatibility",
+"candidates": [
+"verify gripper and retry grasp if necessary",
+"check marker grip and retry grasp",
+"Check gripper and marker compatibility",
+"Inspect the gripper for a grasp failure",
+"Inspect the gripper for blockages"
+],
+"secs": 4.9
+},
+{
+"id": 146,
+"kind": "failure",
+"task": "Put the teabag in the bin",
+"x": "teabag",
+"y": "bin",
+"k": 3,
+"prefix": [
+"locate the teabag",
+"move the gripper above the teabag",
+"grasp the teabag \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the bin with the teabag",
+"candidates": [
+"Approach the bin with the teabag",
+"Inspect the grippers grasp on the teabag",
+"Inspect the gripper to ensure its closed"
+],
+"secs": 5.2
+},
+{
+"id": 147,
+"kind": "failure",
+"task": "Put the blue ladle inside the wooden box",
+"x": "blue ladle",
+"y": "wooden box",
+"k": 4,
+"prefix": [
+"locate the blue ladle",
+"move the gripper above the blue ladle",
+"grasp the blue ladle",
+"lift the blue ladle \u2014 done; gripper reports: nothing held; the blue ladle is no longer in the gripper"
+],
+"greedy": "Check gripper and ladle for grasping issues",
+"candidates": [
+"Inspect the gripper and blue ladle",
+"Lower the gripper to place the ladle back on the workbench",
+"Check gripper and try grasping again",
+"inspect and recalibrate gripper grip strength",
+"verify gripper and ladle are clear of obstruction"
+],
+"secs": 5.4
+},
+{
+"id": 148,
+"kind": "failure",
+"task": "Put the green can in the sink.",
+"x": "green can",
+"y": "sink",
+"k": 3,
+"prefix": [
+"locate the green can",
+"move the gripper above the green can",
+"grasp the green can \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the sink with the green can",
+"candidates": [
+"Approach the sink carefully",
+"Inspect the grippers jaws for obstructions",
+"Approach the sink with the green can",
+"approach the sink with the can",
+"Approach the sink"
+],
+"secs": 4.9
+},
+{
+"id": 149,
+"kind": "failure",
+"task": "Put the blue bowl on top of the box",
+"x": "blue bowl",
+"y": "top of the box",
+"k": 4,
+"prefix": [
+"locate the blue bowl",
+"move the gripper above the blue bowl",
+"grasp the blue bowl",
+"lift the blue bowl \u2014 done; gripper reports: nothing held; the blue bowl is no longer in the gripper"
+],
+"greedy": "Check the gripper and bowl for entanglement",
+"candidates": [
+"Check gripper and bowl alignment",
+"Check the gripper and blue bowl again",
+"Return to the bowl and grasp it again",
+"Check the gripper and bowl for any obstacles",
+"inspect the gripper for blockages"
+],
+"secs": 5.1
+}
+]

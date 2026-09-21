@@ -1,0 +1,1319 @@
+[
+{
+"id": 0,
+"kind": "failure",
+"task": "Put the Dorito packet in the sink",
+"x": "dorito packet",
+"y": "sink",
+"k": 4,
+"prefix": [
+"locate the dorito packet",
+"move the gripper above the dorito packet",
+"grasp the dorito packet",
+"lift the dorito packet \u2014 done; gripper reports: nothing held; the dorito packet is no longer in the gripper"
+],
+"greedy": "Inspect and adjust grip settings",
+"candidates": [
+"reset gripper and try again",
+"Inspect and adjust grip settings",
+"Inspect and adjust the gripper grip",
+"check gripper and dorito packet location again",
+"Check and adjust grip position"
+],
+"secs": 4.9
+},
+{
+"id": 1,
+"kind": "failure",
+"task": "Put the chopstick inside the coffee cup.",
+"x": "chopstick",
+"y": "coffee cup",
+"k": 3,
+"prefix": [
+"locate the chopstick",
+"move the gripper above the chopstick",
+"grasp the chopstick \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the coffee cup",
+"candidates": [
+"Inspect the gripper for proper closure",
+"Approach the coffee cup",
+"Adjust grip position and try again",
+"Align gripper with chopstick for pickup",
+"Inspect the chopstick for grasping points"
+],
+"secs": 4.9
+},
+{
+"id": 2,
+"kind": "failure",
+"task": "Put one white straw on the counter.",
+"x": "one white straw",
+"y": "counter",
+"k": 3,
+"prefix": [
+"locate the one white straw",
+"move the gripper above the one white straw",
+"grasp the one white straw \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Inspect the gripper for a grasp error",
+"candidates": [
+"inspect the gripper for jamming",
+"Move gripper closer to the white straw",
+"inspect the gripper for obstruction",
+"inspect the gripper for grip issues",
+"Examine the grippers grasp position"
+],
+"secs": 5.0
+},
+{
+"id": 3,
+"kind": "failure",
+"task": "Put a sauce packet onto the counter",
+"x": "sauce packet",
+"y": "counter",
+"k": 4,
+"prefix": [
+"locate the sauce packet",
+"move the gripper above the sauce packet",
+"grasp the sauce packet",
+"lift the sauce packet \u2014 done; gripper reports: nothing held; the sauce packet is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for blockages",
+"candidates": [
+"inspect the gripper for blockages",
+"Check the gripper and sauce packet for obstructions",
+"Check the gripper for any issues",
+"Inspect the gripper for jams",
+"check the gripper and sauce packet location"
+],
+"secs": 5.0
+},
+{
+"id": 4,
+"kind": "failure",
+"task": "Put the middle plate on the bin",
+"x": "middle plate",
+"y": "bin",
+"k": 4,
+"prefix": [
+"locate the middle plate",
+"move the gripper above the middle plate",
+"grasp the middle plate",
+"lift the middle plate \u2014 done; gripper reports: nothing held; the middle plate is no longer in the gripper"
+],
+"greedy": "Check the gripper and middle plate position",
+"candidates": [
+"Check the gripper and middle plate again",
+"Reset the gripper position",
+"drop the middle plate near the bin",
+"Check the gripper and plate alignment",
+"inspect the gripper for grip issues"
+],
+"secs": 4.9
+},
+{
+"id": 5,
+"kind": "failure",
+"task": "Put the contents from the countertop into the blue bowl",
+"x": "contents from the countertop",
+"y": "blue bowl",
+"k": 4,
+"prefix": [
+"locate the contents from the countertop",
+"move the gripper above the contents from the countertop",
+"grasp the contents from the countertop",
+"lift the contents from the countertop \u2014 done; gripper reports: nothing held; the contents from the countertop is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for blockages",
+"candidates": [
+"inspect the gripper for jams or obstacles",
+"Check gripper and retry grasp",
+"Recheck the gripper and try grasping again",
+"Inspect the gripper and reset",
+"Verify gripper and try grasping again"
+],
+"secs": 5.5
+},
+{
+"id": 6,
+"kind": "failure",
+"task": "Put the candy bar in the open cabinet",
+"x": "candy bar",
+"y": "open cabinet",
+"k": 3,
+"prefix": [
+"locate the candy bar",
+"move the gripper above the candy bar",
+"grasp the candy bar \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the open cabinet",
+"candidates": [
+"Approach the open cabinet",
+"Inspect the grippers grip position"
+],
+"secs": 4.7
+},
+{
+"id": 7,
+"kind": "failure",
+"task": "Put the blue snack packet in the left sink",
+"x": "blue snack packet",
+"y": "left sink",
+"k": 4,
+"prefix": [
+"locate the blue snack packet",
+"move the gripper above the blue snack packet",
+"grasp the blue snack packet",
+"lift the blue snack packet \u2014 done; gripper reports: nothing held; the blue snack packet is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for blockages",
+"candidates": [
+"Inspect and re-grasp the blue snack packet",
+"Check the gripper for packet retention",
+"Check the gripper and try grasping again",
+"Drop off the blue snack packet near the left sink",
+"inspect the gripper for a grasp error"
+],
+"secs": 5.1
+},
+{
+"id": 8,
+"kind": "failure",
+"task": "Put the spoon inside the yellow bowl",
+"x": "spoon",
+"y": "yellow bowl",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the yellow bowl",
+"candidates": [
+"Approach the yellow bowl",
+"Inspect the gripper for a good grasp",
+"Approach the yellow bowl gently",
+"Inspect the gripper for obstructions",
+"Move gripper to grasp spoon gently"
+],
+"secs": 4.9
+},
+{
+"id": 9,
+"kind": "failure",
+"task": "Put a cookie inside the styrofoam container",
+"x": "cookie",
+"y": "styrofoam container",
+"k": 3,
+"prefix": [
+"locate the cookie",
+"move the gripper above the cookie",
+"grasp the cookie \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the styrofoam container",
+"candidates": [
+"Lower the gripper to pick up the cookie",
+"Move gripper closer to the cookie",
+"Approach the Styrofoam container",
+"Move closer to the cookie",
+"lower gripper to grasp cookie"
+],
+"secs": 5.0
+},
+{
+"id": 10,
+"kind": "failure",
+"task": "Put the remote on the couch",
+"x": "remote",
+"y": "couch",
+"k": 3,
+"prefix": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the couch slowly",
+"candidates": [
+"Adjust grip and try grasping again",
+"Lower the gripper to grasp the remote",
+"Approach the couch gently",
+"Lower and grasp the remote",
+"Open the gripper and adjust its position"
+],
+"secs": 4.3
+},
+{
+"id": 11,
+"kind": "failure",
+"task": "Put the broken pieces in the broken mug.",
+"x": "broken pieces",
+"y": "broken mug",
+"k": 4,
+"prefix": [
+"locate the broken pieces",
+"move the gripper above the broken pieces",
+"grasp the broken pieces",
+"lift the broken pieces \u2014 done; gripper reports: nothing held; the broken pieces is no longer in the gripper"
+],
+"greedy": "Check the grippers grip settings",
+"candidates": [
+"Inspect and recalibrate the gripper",
+"check and adjust gripper grip settings",
+"Inspect and adjust grip settings",
+"Check the gripper for a gripper error",
+"Inspect and adjust the grippers grasp position"
+],
+"secs": 5.1
+},
+{
+"id": 12,
+"kind": "failure",
+"task": "Put the blue serving spoon in the yellow cereal bowl",
+"x": "blue serving spoon",
+"y": "yellow cereal bowl",
+"k": 3,
+"prefix": [
+"locate the blue serving spoon",
+"move the gripper above the blue serving spoon",
+"grasp the blue serving spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the yellow cereal bowl",
+"candidates": [
+"Approach the yellow cereal bowl",
+"inspect the gripper for blockages",
+"inspect the gripper for a good grip"
+],
+"secs": 5.0
+},
+{
+"id": 13,
+"kind": "failure",
+"task": "Put the remote controller on the hand towel",
+"x": "remote controller",
+"y": "hand towel",
+"k": 4,
+"prefix": [
+"locate the remote controller",
+"move the gripper above the remote controller",
+"grasp the remote controller",
+"lift the remote controller \u2014 done; gripper reports: nothing held; the remote controller is no longer in the gripper"
+],
+"greedy": "place the remote controller on the hand towel",
+"candidates": [
+"Place the remote controller on the hand towel",
+"search for the remote controller on the floor"
+],
+"secs": 5.2
+},
+{
+"id": 14,
+"kind": "failure",
+"task": "Put the white jug on the table",
+"x": "white jug",
+"y": "table",
+"k": 4,
+"prefix": [
+"locate the white jug",
+"move the gripper above the white jug",
+"grasp the white jug",
+"lift the white jug \u2014 done; gripper reports: nothing held; the white jug is no longer in the gripper"
+],
+"greedy": "inspect the gripper for jams or obstructions",
+"candidates": [
+"Check the gripper and jug alignment",
+"inspect the gripper for jams or obstructions",
+"Inspect the gripper for grasp failure",
+"inspect the gripper for grasping errors",
+"Check the gripper and white jug for grasping issues"
+],
+"secs": 5.3
+},
+{
+"id": 15,
+"kind": "failure",
+"task": "Put the masking tape on the microwave",
+"x": "masking tape",
+"y": "microwave",
+"k": 3,
+"prefix": [
+"locate the masking tape",
+"move the gripper above the masking tape",
+"grasp the masking tape \u2014 done; gripper reports: nothing held"
+],
+"greedy": "pick up the masking tape",
+"candidates": [
+"pick up the masking tape",
+"pick up the masking tape gently",
+"pickup the masking tape"
+],
+"secs": 4.7
+},
+{
+"id": 16,
+"kind": "failure",
+"task": "Put the blue object in the white mug",
+"x": "blue object",
+"y": "white mug",
+"k": 3,
+"prefix": [
+"locate the blue object",
+"move the gripper above the blue object",
+"grasp the blue object \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the white mug carefully",
+"candidates": [
+"Approach the white mug carefully",
+"Approach the white mug slowly",
+"Inspect the gripper for a grasping issue",
+"Approach the white mug",
+"Inspect the gripper for obstruction"
+],
+"secs": 5.0
+},
+{
+"id": 17,
+"kind": "failure",
+"task": "Put the coffee cup on the side plate",
+"x": "coffee cup",
+"y": "side plate",
+"k": 3,
+"prefix": [
+"locate the coffee cup",
+"move the gripper above the coffee cup",
+"grasp the coffee cup \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the side plate",
+"candidates": [
+"Approach the side plate",
+"lower the gripper to pick up the coffee cup"
+],
+"secs": 4.9
+},
+{
+"id": 18,
+"kind": "failure",
+"task": "Put the small packet inside the mug",
+"x": "small packet",
+"y": "mug",
+"k": 4,
+"prefix": [
+"locate the small packet",
+"move the gripper above the small packet",
+"grasp the small packet",
+"lift the small packet \u2014 done; gripper reports: nothing held; the small packet is no longer in the gripper"
+],
+"greedy": "Inspect and recalibrate the gripper",
+"candidates": [
+"Inspect and recalibrate gripper",
+"Inspect and adjust the grippers grip settings",
+"Verify the small packets location and grip again",
+"Check and recalibrate the gripper",
+"Verify gripper is closed and retry grasp"
+],
+"secs": 5.2
+},
+{
+"id": 19,
+"kind": "failure",
+"task": "Put the toy car in the cabinet",
+"x": "toy car",
+"y": "cabinet",
+"k": 4,
+"prefix": [
+"locate the toy car",
+"move the gripper above the toy car",
+"grasp the toy car",
+"lift the toy car \u2014 done; gripper reports: nothing held; the toy car is no longer in the gripper"
+],
+"greedy": "Check the gripper and toy car alignment",
+"candidates": [
+"Inspect the gripper and toy car for any obstructions",
+"check gripper and toy car alignment",
+"Inspect the gripper for the toy car",
+"Check the gripper for jamming",
+"Check gripper for failure and recalibrate"
+],
+"secs": 5.2
+},
+{
+"id": 20,
+"kind": "failure",
+"task": "Put the box inside the basket",
+"x": "box",
+"y": "basket",
+"k": 4,
+"prefix": [
+"locate the box",
+"move the gripper above the box",
+"grasp the box",
+"lift the box \u2014 done; gripper reports: nothing held; the box is no longer in the gripper"
+],
+"greedy": "Check the gripper and box for entanglement",
+"candidates": [
+"Check gripper status and regrasp if necessary",
+"Locate the basket",
+"Check and reset gripper for grasping",
+"inspect the gripper for jams or damages",
+"Check and recalibrate the gripper"
+],
+"secs": 5.1
+},
+{
+"id": 21,
+"kind": "failure",
+"task": "Place the straw in the cup",
+"x": "straw",
+"y": "cup",
+"k": 4,
+"prefix": [
+"locate the straw",
+"move the gripper above the straw",
+"grasp the straw",
+"lift the straw \u2014 done; gripper reports: nothing held; the straw is no longer in the gripper"
+],
+"greedy": "Check gripper for failure and recalibrate",
+"candidates": [
+"Check gripper and straw orientation",
+"Check gripper for straw and re-grasp if necessary",
+"Inspect and recalibrate the gripper",
+"Check gripper and retry grasp",
+"Inspect the gripper and straw for any obstruction"
+],
+"secs": 5.2
+},
+{
+"id": 22,
+"kind": "failure",
+"task": "Put the orange objects in the left cup",
+"x": "orange objects",
+"y": "left cup",
+"k": 3,
+"prefix": [
+"locate the orange objects",
+"move the gripper above the orange objects",
+"grasp the orange objects \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Inspect the gripper for obstructions",
+"candidates": [
+"Move closer to the orange objects",
+"Inspect the gripper and objects for entanglement",
+"Approach the left cup carefully",
+"Inspect and adjust gripper position",
+"Approach a different orange object"
+],
+"secs": 5.0
+},
+{
+"id": 23,
+"kind": "failure",
+"task": "Put the orange block on the table",
+"x": "orange block",
+"y": "table",
+"k": 3,
+"prefix": [
+"locate the orange block",
+"move the gripper above the orange block",
+"grasp the orange block \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the table slowly",
+"candidates": [
+"Approach the table with the orange block",
+"release the air pressure to open the gripper",
+"inspect the gripper for a grasp error",
+"Approach the table to place the orange block",
+"Inspect the gripper for block engagement"
+],
+"secs": 5.0
+},
+{
+"id": 24,
+"kind": "failure",
+"task": "Place the block onto the plate",
+"x": "block",
+"y": "plate",
+"k": 3,
+"prefix": [
+"locate the block",
+"move the gripper above the block",
+"grasp the block \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the plate slowly",
+"candidates": [
+"Approach the plate slowly"
+],
+"secs": 4.2
+},
+{
+"id": 25,
+"kind": "failure",
+"task": "Put the can inside the paper bag",
+"x": "can",
+"y": "paper bag",
+"k": 4,
+"prefix": [
+"locate the can",
+"move the gripper above the can",
+"grasp the can",
+"lift the can \u2014 done; gripper reports: nothing held; the can is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp error",
+"candidates": [
+"Approach the paper bag",
+"Release the can",
+"Check the gripper and can for entanglement",
+"Check gripper for can and re-grasp if necessary",
+"Inspect the gripper for jamming"
+],
+"secs": 5.0
+},
+{
+"id": 26,
+"kind": "failure",
+"task": "Put the brown sachet in the coffee cup",
+"x": "brown sachet",
+"y": "coffee cup",
+"k": 3,
+"prefix": [
+"locate the brown sachet",
+"move the gripper above the brown sachet",
+"grasp the brown sachet \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the coffee cup",
+"candidates": [
+"approach the coffee cup",
+"inspect the grippers fingers for obstruction",
+"Move to the coffee cup location"
+],
+"secs": 4.7
+},
+{
+"id": 27,
+"kind": "failure",
+"task": "Put the wooden plaque in the lunch pack",
+"x": "wooden plaque",
+"y": "lunch pack",
+"k": 3,
+"prefix": [
+"locate the wooden plaque",
+"move the gripper above the wooden plaque",
+"grasp the wooden plaque \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the lunch pack carefully",
+"candidates": [
+"Move closer to the wooden plaque",
+"Inspect the grippers grip position",
+"Inspect the gripper and plaque alignment",
+"Approach the lunch pack with the gripper",
+"Ensure gripper is properly calibrated"
+],
+"secs": 5.0
+},
+{
+"id": 28,
+"kind": "failure",
+"task": "Put the spoon inside the bowl",
+"x": "spoon",
+"y": "bowl",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the bowl to place the spoon",
+"candidates": [
+"Approach the bowl with the spoon",
+"Approach the bowl to align with the spoon",
+"Approach the bowl slowly",
+"Inspect the grippers grip settings",
+"Approach the bowl to place the spoon"
+],
+"secs": 4.4
+},
+{
+"id": 29,
+"kind": "failure",
+"task": "Put the jar on the table",
+"x": "jar",
+"y": "table",
+"k": 4,
+"prefix": [
+"locate the jar",
+"move the gripper above the jar",
+"grasp the jar",
+"lift the jar \u2014 done; gripper reports: nothing held; the jar is no longer in the gripper"
+],
+"greedy": "inspect the gripper for jams or misalignments",
+"candidates": [
+"Inspect the gripper for jamming",
+"Check gripper and retry grasping the jar",
+"Check gripper for grasping error",
+"Verify gripper and retry grasp",
+"verify jar position and gripper grip"
+],
+"secs": 5.1
+},
+{
+"id": 30,
+"kind": "failure",
+"task": "Put the orange object on the microwave",
+"x": "orange object",
+"y": "microwave",
+"k": 4,
+"prefix": [
+"locate the orange object",
+"move the gripper above the orange object",
+"grasp the orange object",
+"lift the orange object \u2014 done; gripper reports: nothing held; the orange object is no longer in the gripper"
+],
+"greedy": "Check gripper and retry grasping the orange object",
+"candidates": [
+"Check and recalibrate the gripper",
+"Check gripper and retry grasping the orange object",
+"Check gripper and orange object",
+"Check gripper for object loss and retry grasp",
+"Reposition the gripper above the microwave"
+],
+"secs": 5.2
+},
+{
+"id": 31,
+"kind": "failure",
+"task": "Put the cutlery in the cup",
+"x": "cutlery",
+"y": "cup",
+"k": 4,
+"prefix": [
+"locate the cutlery",
+"move the gripper above the cutlery",
+"grasp the cutlery",
+"lift the cutlery \u2014 done; gripper reports: nothing held; the cutlery is no longer in the gripper"
+],
+"greedy": "Check gripper and cutlery alignment",
+"candidates": [
+"Check gripper grip force and retry grasping",
+"Check gripper grip and recalibrate if necessary",
+"Check gripper for grasp issues",
+"Check gripper and cutlery alignment",
+"Reset the gripper and try grasping the cutlery again"
+],
+"secs": 5.2
+},
+{
+"id": 32,
+"kind": "failure",
+"task": "Put the house slippers on the cabinet.",
+"x": "house slippers",
+"y": "cabinet",
+"k": 3,
+"prefix": [
+"locate the house slippers",
+"move the gripper above the house slippers",
+"grasp the house slippers \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the cabinet with the gripper",
+"candidates": [
+"Move the gripper to grasp the house slippers",
+"Open the gripper and inspect the slippers",
+"Approach the cabinet gently",
+"lower the gripper to grasp the slippers",
+"Approach the cabinet"
+],
+"secs": 5.0
+},
+{
+"id": 33,
+"kind": "failure",
+"task": "Put the red block on the wooden block",
+"x": "red block",
+"y": "wooden block",
+"k": 3,
+"prefix": [
+"locate the red block",
+"move the gripper above the red block",
+"grasp the red block \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the wooden block",
+"candidates": [
+"inspect the gripper for block grasp failure",
+"Verify gripper grip settings",
+"Approach the wooden block",
+"Inspect and adjust gripper orientation"
+],
+"secs": 4.7
+},
+{
+"id": 34,
+"kind": "failure",
+"task": "Put the sponge on the hole in the sink",
+"x": "sponge",
+"y": "hole in the sink",
+"k": 3,
+"prefix": [
+"locate the sponge",
+"move the gripper above the sponge",
+"grasp the sponge \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the sink slowly",
+"candidates": [
+"Approach the sink carefully",
+"Approach the sink gently",
+"Approach the sink with the sponge",
+"Approach the sink without the sponge",
+"approach the sink cautiously"
+],
+"secs": 4.7
+},
+{
+"id": 35,
+"kind": "failure",
+"task": "Put the scoop inside the jar then close it",
+"x": "scoop",
+"y": "jar then close it",
+"k": 3,
+"prefix": [
+"locate the scoop",
+"move the gripper above the scoop",
+"grasp the scoop \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the scoop slowly",
+"candidates": [
+"Approach the scoop slowly",
+"Approach the scoop gently",
+"Adjust grip and try grasping the scoop again",
+"approach the jar cautiously"
+],
+"secs": 4.7
+},
+{
+"id": 36,
+"kind": "failure",
+"task": "Put the spoon in the glass container",
+"x": "spoon",
+"y": "glass container",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the glass container",
+"candidates": [
+"Inspect the spoons grip area",
+"Approach the glass container",
+"Align gripper with spoon"
+],
+"secs": 4.7
+},
+{
+"id": 37,
+"kind": "failure",
+"task": "Place the blue scoop in the bowl",
+"x": "blue scoop",
+"y": "bowl",
+"k": 3,
+"prefix": [
+"locate the blue scoop",
+"move the gripper above the blue scoop",
+"grasp the blue scoop \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the bowl slowly",
+"candidates": [
+"Approach the bowl cautiously",
+"Approach the bowl slowly",
+"Adjust gripper grip settings and try again",
+"Inspect the grippers grip settings",
+"Approach the bowl carefully"
+],
+"secs": 4.8
+},
+{
+"id": 38,
+"kind": "failure",
+"task": "Put the spoon in the cup inside the bowl",
+"x": "spoon",
+"y": "cup inside the bowl",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the cup inside the bowl",
+"candidates": [
+"Approach the cup inside the bowl",
+"Position the spoon above the cup",
+"Move above the cup",
+"Move gripper to grasp spoon gently",
+"Move to the cup inside the bowl"
+],
+"secs": 4.8
+},
+{
+"id": 39,
+"kind": "failure",
+"task": "Put the brown basket on the takeaway pack",
+"x": "brown basket",
+"y": "takeaway pack",
+"k": 4,
+"prefix": [
+"locate the brown basket",
+"move the gripper above the brown basket",
+"grasp the brown basket",
+"lift the brown basket \u2014 done; gripper reports: nothing held; the brown basket is no longer in the gripper"
+],
+"greedy": "Check the gripper and basket alignment",
+"candidates": [
+"Check the gripper and sensors for any failures",
+"inspect gripper for failure",
+"Inspect the gripper for a grasp failure",
+"Check and adjust grip on the brown basket",
+"Inspect the gripper and basket for any issues"
+],
+"secs": 5.0
+},
+{
+"id": 40,
+"kind": "failure",
+"task": "Put the cup on top of the counter",
+"x": "cup",
+"y": "top of the counter",
+"k": 4,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup \u2014 done; gripper reports: nothing held; the cup is no longer in the gripper"
+],
+"greedy": "Check the gripper and cup for any obstructions",
+"candidates": [
+"inspect the gripper for obstruction",
+"Check the gripper for failure",
+"inspect the gripper for obstructions",
+"check the gripper and cup alignment",
+"inspect the gripper for grip issues"
+],
+"secs": 4.9
+},
+{
+"id": 41,
+"kind": "failure",
+"task": "Put the cup on the paper towel holder",
+"x": "cup",
+"y": "paper towel holder",
+"k": 4,
+"prefix": [
+"locate the cup",
+"move the gripper above the cup",
+"grasp the cup",
+"lift the cup \u2014 done; gripper reports: nothing held; the cup is no longer in the gripper"
+],
+"greedy": "Check the gripper and cup alignment",
+"candidates": [
+"Check the gripper and cup for entanglement",
+"Verify cup release position",
+"relocate gripper to above paper towel holder",
+"Check cup for stability and re-grasp if necessary",
+"Inspect the gripper for a grasp error"
+],
+"secs": 5.1
+},
+{
+"id": 42,
+"kind": "failure",
+"task": "Put the blue cylinder in the blue bowl",
+"x": "blue cylinder",
+"y": "blue bowl",
+"k": 4,
+"prefix": [
+"locate the blue cylinder",
+"move the gripper above the blue cylinder",
+"grasp the blue cylinder",
+"lift the blue cylinder \u2014 done; gripper reports: nothing held; the blue cylinder is no longer in the gripper"
+],
+"greedy": "Check the gripper and retry grasping the blue cylinder",
+"candidates": [
+"inspect the gripper for grasp failure",
+"Inspect the gripper for a hold",
+"inspect the gripper for blockages",
+"Inspect the gripper and cylinder",
+"Check the gripper and blue cylinder again"
+],
+"secs": 5.0
+},
+{
+"id": 43,
+"kind": "failure",
+"task": "Put the pencil in the cup",
+"x": "pencil",
+"y": "cup",
+"k": 3,
+"prefix": [
+"locate the pencil",
+"move the gripper above the pencil",
+"grasp the pencil \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the cup slowly",
+"candidates": [
+"Approach the cup carefully",
+"Approach the cup slowly",
+"lower gripper to grasp pencil"
+],
+"secs": 4.1
+},
+{
+"id": 44,
+"kind": "failure",
+"task": "Put the spoon into the cup on the right",
+"x": "spoon",
+"y": "cup on the right",
+"k": 3,
+"prefix": [
+"locate the spoon",
+"move the gripper above the spoon",
+"grasp the spoon \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the cup on the right",
+"candidates": [
+"Inspect the grippers position and orientation",
+"Approach the cup on the right",
+"Move above the cup on the right"
+],
+"secs": 4.9
+},
+{
+"id": 45,
+"kind": "failure",
+"task": "Put the red bowl in the microwave",
+"x": "red bowl",
+"y": "microwave",
+"k": 3,
+"prefix": [
+"locate the red bowl",
+"move the gripper above the red bowl",
+"grasp the red bowl \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the microwave carefully",
+"candidates": [
+"Inspect the gripper for obstacles",
+"Approach the microwave carefully",
+"Approach the microwave safely",
+"Approach the microwave cautiously",
+"Approach the microwave"
+],
+"secs": 4.7
+},
+{
+"id": 46,
+"kind": "failure",
+"task": "Put the remote on the pillow upside down",
+"x": "remote",
+"y": "pillow upside down",
+"k": 3,
+"prefix": [
+"locate the remote",
+"move the gripper above the remote",
+"grasp the remote \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the pillow with the remote",
+"candidates": [
+"Approach the pillow with the remote",
+"Lower the gripper to grasp the remote",
+"move closer to the remote gently",
+"Lower the gripper to grip the remote"
+],
+"secs": 5.0
+},
+{
+"id": 47,
+"kind": "failure",
+"task": "Put the orange can inside the clear lunch box",
+"x": "orange can",
+"y": "clear lunch box",
+"k": 4,
+"prefix": [
+"locate the orange can",
+"move the gripper above the orange can",
+"grasp the orange can",
+"lift the orange can \u2014 done; gripper reports: nothing held; the orange can is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp error",
+"candidates": [
+"Check gripper and try grasping can again",
+"Inspect the gripper for obstruction",
+"Inspect the gripper to ensure its closed",
+"Inspect the gripper to ensure it is closed",
+"Inspect and recalibrate gripper"
+],
+"secs": 5.1
+},
+{
+"id": 48,
+"kind": "failure",
+"task": "Put the chocolate bar in the open cupboard",
+"x": "chocolate bar",
+"y": "open cupboard",
+"k": 3,
+"prefix": [
+"locate the chocolate bar",
+"move the gripper above the chocolate bar",
+"grasp the chocolate bar \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the open cupboard",
+"candidates": [
+"Approach the open cupboard",
+"inspect the chocolate bar for grip points"
+],
+"secs": 4.7
+},
+{
+"id": 49,
+"kind": "failure",
+"task": "Put the lid on the dishwasher",
+"x": "lid",
+"y": "dishwasher",
+"k": 4,
+"prefix": [
+"locate the lid",
+"move the gripper above the lid",
+"grasp the lid",
+"lift the lid \u2014 done; gripper reports: nothing held; the lid is no longer in the gripper"
+],
+"greedy": "Check the gripper and lid orientation",
+"candidates": [
+"Check the gripper and lid alignment",
+"Check the gripper and lid compatibility",
+"Place the lid back where it was",
+"Check the gripper and lid for entanglements",
+"Inspect the gripper for a secure hold"
+],
+"secs": 5.1
+},
+{
+"id": 50,
+"kind": "failure",
+"task": "Put the plastic of forks in the right cup",
+"x": "plastic of forks",
+"y": "right cup",
+"k": 4,
+"prefix": [
+"locate the plastic of forks",
+"move the gripper above the plastic of forks",
+"grasp the plastic of forks",
+"lift the plastic of forks \u2014 done; gripper reports: nothing held; the plastic of forks is no longer in the gripper"
+],
+"greedy": "Check gripper and try grasping again",
+"candidates": [
+"Check the gripper and try grasping again",
+"Inspect the gripper and verify its grasp",
+"Reset the gripper position",
+"inspect the gripper for any faults",
+"Inspect and adjust grip position"
+],
+"secs": 4.9
+},
+{
+"id": 51,
+"kind": "failure",
+"task": "Put the brown packet in the sink.",
+"x": "brown packet",
+"y": "sink",
+"k": 4,
+"prefix": [
+"locate the brown packet",
+"move the gripper above the brown packet",
+"grasp the brown packet",
+"lift the brown packet \u2014 done; gripper reports: nothing held; the brown packet is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp failure",
+"candidates": [
+"Inspect and reset the gripper",
+"Inspect the gripper to ensure it is properly closed",
+"Inspect the gripper for a loose grip",
+"Inspect the gripper for blockages",
+"place the packet on the counter"
+],
+"secs": 5.0
+},
+{
+"id": 52,
+"kind": "failure",
+"task": "Put the clear stirrer in the mug on the left.",
+"x": "clear stirrer",
+"y": "mug on the left",
+"k": 3,
+"prefix": [
+"locate the clear stirrer",
+"move the gripper above the clear stirrer",
+"grasp the clear stirrer \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Inspect the grippers grip position",
+"candidates": [
+"Approach the mug on the left",
+"Inspect and adjust gripper position",
+"Lower the gripper to place the stirrer",
+"Inspect the gripper for a gripping issue",
+"Inspect the gripper and clear stirrer"
+],
+"secs": 4.9
+},
+{
+"id": 53,
+"kind": "failure",
+"task": "Put the paper inside the mug",
+"x": "paper",
+"y": "mug",
+"k": 3,
+"prefix": [
+"locate the paper",
+"move the gripper above the paper",
+"grasp the paper \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the mug carefully",
+"candidates": [
+"Place the paper near the mug",
+"Place the gripper near the paper",
+"align gripper closer to paper before grasping",
+"Adjust grip position and try again",
+"Approach the mug carefully"
+],
+"secs": 4.2
+},
+{
+"id": 54,
+"kind": "failure",
+"task": "Place the sneaker on the left upright.",
+"x": "sneaker",
+"y": "left upright",
+"k": 3,
+"prefix": [
+"locate the sneaker",
+"move the gripper above the sneaker",
+"grasp the sneaker \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Inspect the gripper for a secure grip",
+"candidates": [
+"inspect the grippers jaws for obstruction",
+"Adjust grip position and try grasping again",
+"Approach the left upright carefully",
+"Inspect the gripper for blockages",
+"Approach the left upright slowly"
+],
+"secs": 4.9
+},
+{
+"id": 55,
+"kind": "failure",
+"task": "Put the hanger on the countertop",
+"x": "hanger",
+"y": "countertop",
+"k": 4,
+"prefix": [
+"locate the hanger",
+"move the gripper above the hanger",
+"grasp the hanger",
+"lift the hanger \u2014 done; gripper reports: nothing held; the hanger is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp failure",
+"candidates": [
+"inspect and recalibrate gripper grip settings",
+"Check the gripper and reattempt grasping the hanger",
+"Inspect the gripper for failure",
+"Inspect and regrasp the hanger",
+"check gripper for any obstruction"
+],
+"secs": 5.1
+},
+{
+"id": 56,
+"kind": "failure",
+"task": "Put the orange jersey on the seat of the chair",
+"x": "orange jersey",
+"y": "seat of the chair",
+"k": 4,
+"prefix": [
+"locate the orange jersey",
+"move the gripper above the orange jersey",
+"grasp the orange jersey",
+"lift the orange jersey \u2014 done; gripper reports: nothing held; the orange jersey is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for a grasp failure",
+"candidates": [
+"Inspect the gripper for jamming",
+"Inspect and adjust gripper position",
+"check the gripper and jersey for entanglement",
+"inspect and reposition the gripper above the orange jersey",
+"inspect the gripper and jersey for any obvious issues"
+],
+"secs": 5.2
+},
+{
+"id": 57,
+"kind": "failure",
+"task": "Put the black snack packet in the left sink",
+"x": "black snack packet",
+"y": "left sink",
+"k": 4,
+"prefix": [
+"locate the black snack packet",
+"move the gripper above the black snack packet",
+"grasp the black snack packet",
+"lift the black snack packet \u2014 done; gripper reports: nothing held; the black snack packet is no longer in the gripper"
+],
+"greedy": "Inspect the gripper for blockages",
+"candidates": [
+"Inspect the gripper and packet for entanglement",
+"Check the gripper for obstruction",
+"Check the gripper for a packet hold",
+"check the gripper and release mechanism",
+"Inspect the gripper and replace if necessary"
+],
+"secs": 5.0
+},
+{
+"id": 58,
+"kind": "failure",
+"task": "Put the white item on the countertop in the basket",
+"x": "white item",
+"y": "countertop in the basket",
+"k": 3,
+"prefix": [
+"locate the white item",
+"move the gripper above the white item",
+"grasp the white item \u2014 done; gripper reports: nothing held"
+],
+"greedy": "Approach the countertop with the basket",
+"candidates": [
+"Inspect the gripper for jamming",
+"Inspect the gripper for blockages",
+"adjust grip and try grasping again",
+"Inspect the gripper for a grip",
+"Approach the countertop with the basket"
+],
+"secs": 5.0
+},
+{
+"id": 59,
+"kind": "failure",
+"task": "Put the yellow sachet on the cupboard",
+"x": "yellow sachet",
+"y": "cupboard",
+"k": 4,
+"prefix": [
+"locate the yellow sachet",
+"move the gripper above the yellow sachet",
+"grasp the yellow sachet",
+"lift the yellow sachet \u2014 done; gripper reports: nothing held; the yellow sachet is no longer in the gripper"
+],
+"greedy": "inspect the gripper for blockages",
+"candidates": [
+"inspect the gripper for any faults",
+"Check the grip and try again",
+"inspect the gripper for any malfunctions",
+"Reset the gripper and try grasping the yellow sachet again",
+"inspect the gripper for blockages"
+],
+"secs": 5.1
+}
+]

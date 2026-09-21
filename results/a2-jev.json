@@ -1,0 +1,1052 @@
+[
+{
+"id": "intent-01",
+"category": "intent",
+"choice": "C",
+"probs": {
+"B": 0.32,
+"C": 0.63,
+"A": 0.02,
+"D": 0.03
+},
+"conf": 0.51,
+"ask": 0.77,
+"urgency": 1.95
+},
+{
+"id": "intent-02",
+"category": "intent",
+"choice": "D",
+"probs": {
+"B": 0.11,
+"D": 0.71,
+"C": 0.02,
+"A": 0.16
+},
+"conf": 0.62,
+"ask": 0.34,
+"urgency": 1.33
+},
+{
+"id": "intent-03",
+"category": "intent",
+"choice": "C",
+"probs": {
+"A": 0.02,
+"C": 0.79,
+"D": 0.04,
+"B": 0.15
+},
+"conf": 0.73,
+"ask": 0.74,
+"urgency": 1.99
+},
+{
+"id": "intent-04",
+"category": "intent",
+"choice": "C",
+"probs": {
+"C": 0.49,
+"D": 0.02,
+"B": 0.47,
+"A": 0.02
+},
+"conf": 0.32,
+"ask": 0.6,
+"urgency": 1.92
+},
+{
+"id": "intent-05",
+"category": "intent",
+"choice": "C",
+"probs": {
+"A": 0.05,
+"C": 0.88,
+"D": 0.04,
+"B": 0.03
+},
+"conf": 0.84,
+"ask": 0.63,
+"urgency": 1.24
+},
+{
+"id": "intent-06",
+"category": "intent",
+"choice": "B",
+"probs": {
+"A": 0.08,
+"B": 0.91,
+"C": 0.01,
+"D": 0.0
+},
+"conf": 0.88,
+"ask": 0.41,
+"urgency": 1.46
+},
+{
+"id": "intent-07",
+"category": "intent",
+"choice": "C",
+"probs": {
+"B": 0.33,
+"C": 0.52,
+"D": 0.0,
+"A": 0.15
+},
+"conf": 0.36,
+"ask": 0.62,
+"urgency": 0.97
+},
+{
+"id": "intent-08",
+"category": "intent",
+"choice": "C",
+"probs": {
+"C": 0.77,
+"D": 0.05,
+"B": 0.17,
+"A": 0.01
+},
+"conf": 0.7,
+"ask": 0.71,
+"urgency": 1.89
+},
+{
+"id": "intent-09",
+"category": "intent",
+"choice": "B",
+"probs": {
+"C": 0.0,
+"B": 0.99,
+"A": 0.01,
+"D": 0.0
+},
+"conf": 0.98,
+"ask": 0.74,
+"urgency": 1.95
+},
+{
+"id": "intent-10",
+"category": "intent",
+"choice": "B",
+"probs": {
+"A": 0.34,
+"B": 0.65,
+"C": 0.01,
+"D": 0.0
+},
+"conf": 0.54,
+"ask": 0.42,
+"urgency": 0.18
+},
+{
+"id": "intent-11",
+"category": "intent",
+"choice": "B",
+"probs": {
+"B": 0.75,
+"C": 0.01,
+"D": 0.02,
+"A": 0.22
+},
+"conf": 0.68,
+"ask": 0.78,
+"urgency": 1.9
+},
+{
+"id": "intent-12",
+"category": "intent",
+"choice": "C",
+"probs": {
+"B": 0.02,
+"C": 0.98,
+"D": 0.0,
+"A": 0.0
+},
+"conf": 0.97,
+"ask": 0.84,
+"urgency": 0.84
+},
+{
+"id": "intent-13",
+"category": "intent",
+"choice": "C",
+"probs": {
+"B": 0.01,
+"C": 0.61,
+"D": 0.37,
+"A": 0.01
+},
+"conf": 0.49,
+"ask": 0.69,
+"urgency": 1.99
+},
+{
+"id": "intent-14",
+"category": "intent",
+"choice": "B",
+"probs": {
+"B": 0.51,
+"C": 0.03,
+"D": 0.03,
+"A": 0.43
+},
+"conf": 0.35,
+"ask": 0.36,
+"urgency": 1.8
+},
+{
+"id": "intent-15",
+"category": "intent",
+"choice": "A",
+"probs": {
+"A": 0.85,
+"B": 0.01,
+"D": 0.02,
+"C": 0.12
+},
+"conf": 0.81,
+"ask": 0.7,
+"urgency": 1.3
+},
+{
+"id": "stale-01",
+"category": "staleness",
+"choice": "A",
+"probs": {
+"A": 0.6,
+"B": 0.31,
+"C": 0.06,
+"D": 0.03
+},
+"conf": 0.46,
+"ask": 0.39,
+"urgency": 0.27
+},
+{
+"id": "stale-02",
+"category": "staleness",
+"choice": "D",
+"probs": {
+"B": 0.14,
+"C": 0.23,
+"D": 0.63,
+"A": 0.0
+},
+"conf": 0.51,
+"ask": 0.87,
+"urgency": 1.86
+},
+{
+"id": "stale-03",
+"category": "staleness",
+"choice": "A",
+"probs": {
+"A": 0.55,
+"C": 0.0,
+"D": 0.0,
+"B": 0.45
+},
+"conf": 0.39,
+"ask": 0.7,
+"urgency": 1.19
+},
+{
+"id": "stale-04",
+"category": "staleness",
+"choice": "D",
+"probs": {
+"D": 0.63,
+"B": 0.04,
+"A": 0.01,
+"C": 0.32
+},
+"conf": 0.5,
+"ask": 0.83,
+"urgency": 1.37
+},
+{
+"id": "stale-05",
+"category": "staleness",
+"choice": "A",
+"probs": {
+"D": 0.0,
+"B": 0.01,
+"A": 0.94,
+"C": 0.05
+},
+"conf": 0.92,
+"ask": 0.48,
+"urgency": 0.77
+},
+{
+"id": "stale-06",
+"category": "staleness",
+"choice": "A",
+"probs": {
+"B": 0.02,
+"D": 0.33,
+"A": 0.62,
+"C": 0.03
+},
+"conf": 0.5,
+"ask": 0.78,
+"urgency": 1.45
+},
+{
+"id": "stale-07",
+"category": "staleness",
+"choice": "D",
+"probs": {
+"A": 0.01,
+"D": 0.56,
+"B": 0.39,
+"C": 0.04
+},
+"conf": 0.42,
+"ask": 0.78,
+"urgency": 1.26
+},
+{
+"id": "stale-08",
+"category": "staleness",
+"choice": "C",
+"probs": {
+"C": 0.61,
+"D": 0.14,
+"A": 0.11,
+"B": 0.14
+},
+"conf": 0.47,
+"ask": 0.66,
+"urgency": 0.95
+},
+{
+"id": "stale-09",
+"category": "staleness",
+"choice": "A",
+"probs": {
+"B": 0.21,
+"C": 0.0,
+"D": 0.0,
+"A": 0.79
+},
+"conf": 0.71,
+"ask": 0.27,
+"urgency": 0.32
+},
+{
+"id": "stale-10",
+"category": "staleness",
+"choice": "B",
+"probs": {
+"A": 0.2,
+"C": 0.13,
+"D": 0.06,
+"B": 0.61
+},
+"conf": 0.48,
+"ask": 0.55,
+"urgency": 0.76
+},
+{
+"id": "stale-11",
+"category": "staleness",
+"choice": "C",
+"probs": {
+"B": 0.04,
+"D": 0.02,
+"C": 0.86,
+"A": 0.08
+},
+"conf": 0.82,
+"ask": 0.82,
+"urgency": 1.32
+},
+{
+"id": "stale-12",
+"category": "staleness",
+"choice": "B",
+"probs": {
+"A": 0.2,
+"C": 0.1,
+"D": 0.28,
+"B": 0.42
+},
+"conf": 0.22,
+"ask": 0.62,
+"urgency": 0.79
+},
+{
+"id": "stale-13",
+"category": "staleness",
+"choice": "B",
+"probs": {
+"C": 0.07,
+"B": 0.91,
+"A": 0.0,
+"D": 0.02
+},
+"conf": 0.87,
+"ask": 0.94,
+"urgency": 1.71
+},
+{
+"id": "stale-14",
+"category": "staleness",
+"choice": "B",
+"probs": {
+"D": 0.0,
+"B": 0.58,
+"A": 0.05,
+"C": 0.37
+},
+"conf": 0.44,
+"ask": 0.76,
+"urgency": 1.48
+},
+{
+"id": "stale-15",
+"category": "staleness",
+"choice": "B",
+"probs": {
+"A": 0.32,
+"C": 0.03,
+"D": 0.01,
+"B": 0.64
+},
+"conf": 0.52,
+"ask": 0.72,
+"urgency": 1.63
+},
+{
+"id": "conf-01",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"C": 0.02,
+"B": 0.88,
+"A": 0.1,
+"D": 0.0
+},
+"conf": 0.83,
+"ask": 0.73,
+"urgency": 1.83
+},
+{
+"id": "conf-02",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"B": 0.43,
+"A": 0.32,
+"D": 0.01,
+"C": 0.24
+},
+"conf": 0.24,
+"ask": 0.67,
+"urgency": 1.88
+},
+{
+"id": "conf-03",
+"category": "conflict",
+"choice": "A",
+"probs": {
+"B": 0.01,
+"C": 0.28,
+"D": 0.04,
+"A": 0.67
+},
+"conf": 0.56,
+"ask": 0.37,
+"urgency": 1.54
+},
+{
+"id": "conf-04",
+"category": "conflict",
+"choice": "D",
+"probs": {
+"A": 0.05,
+"B": 0.13,
+"C": 0.26,
+"D": 0.56
+},
+"conf": 0.41,
+"ask": 0.57,
+"urgency": 1.44
+},
+{
+"id": "conf-05",
+"category": "conflict",
+"choice": "C",
+"probs": {
+"B": 0.02,
+"C": 0.74,
+"D": 0.01,
+"A": 0.23
+},
+"conf": 0.66,
+"ask": 0.15,
+"urgency": 1.42
+},
+{
+"id": "conf-06",
+"category": "conflict",
+"choice": "C",
+"probs": {
+"A": 0.11,
+"B": 0.17,
+"D": 0.01,
+"C": 0.71
+},
+"conf": 0.63,
+"ask": 0.68,
+"urgency": 1.38
+},
+{
+"id": "conf-07",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"B": 0.66,
+"C": 0.29,
+"A": 0.02,
+"D": 0.03
+},
+"conf": 0.56,
+"ask": 0.33,
+"urgency": 1.59
+},
+{
+"id": "conf-08",
+"category": "conflict",
+"choice": "C",
+"probs": {
+"A": 0.01,
+"B": 0.0,
+"C": 0.88,
+"D": 0.11
+},
+"conf": 0.85,
+"ask": 0.67,
+"urgency": 1.78
+},
+{
+"id": "conf-09",
+"category": "conflict",
+"choice": "D",
+"probs": {
+"A": 0.11,
+"B": 0.05,
+"C": 0.01,
+"D": 0.83
+},
+"conf": 0.77,
+"ask": 0.52,
+"urgency": 1.57
+},
+{
+"id": "conf-10",
+"category": "conflict",
+"choice": "A",
+"probs": {
+"B": 0.01,
+"C": 0.0,
+"D": 0.0,
+"A": 0.99
+},
+"conf": 0.98,
+"ask": 0.5,
+"urgency": 1.74
+},
+{
+"id": "conf-11",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"C": 0.0,
+"B": 0.63,
+"D": 0.37,
+"A": 0.0
+},
+"conf": 0.5,
+"ask": 0.26,
+"urgency": 1.37
+},
+{
+"id": "conf-12",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"B": 1.0,
+"A": 0.0,
+"D": 0.0,
+"C": 0.0
+},
+"conf": 1.0,
+"ask": 0.49,
+"urgency": 1.29
+},
+{
+"id": "conf-13",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"C": 0.04,
+"D": 0.34,
+"A": 0.03,
+"B": 0.59
+},
+"conf": 0.46,
+"ask": 0.78,
+"urgency": 1.61
+},
+{
+"id": "conf-14",
+"category": "conflict",
+"choice": "C",
+"probs": {
+"B": 0.04,
+"D": 0.26,
+"C": 0.58,
+"A": 0.12
+},
+"conf": 0.43,
+"ask": 0.81,
+"urgency": 1.34
+},
+{
+"id": "conf-15",
+"category": "conflict",
+"choice": "B",
+"probs": {
+"B": 0.75,
+"D": 0.01,
+"C": 0.0,
+"A": 0.24
+},
+"conf": 0.66,
+"ask": 0.35,
+"urgency": 1.86
+},
+{
+"id": "tone-01",
+"category": "tone",
+"choice": "C",
+"probs": {
+"C": 0.96,
+"B": 0.02,
+"A": 0.0,
+"D": 0.02
+},
+"conf": 0.95,
+"ask": 0.88,
+"urgency": 1.77
+},
+{
+"id": "tone-02",
+"category": "tone",
+"choice": "C",
+"probs": {
+"B": 0.15,
+"D": 0.17,
+"C": 0.68,
+"A": 0.0
+},
+"conf": 0.56,
+"ask": 0.78,
+"urgency": 1.82
+},
+{
+"id": "tone-03",
+"category": "tone",
+"choice": "A",
+"probs": {
+"B": 0.38,
+"A": 0.6,
+"D": 0.01,
+"C": 0.01
+},
+"conf": 0.47,
+"ask": 0.43,
+"urgency": 0.24
+},
+{
+"id": "tone-04",
+"category": "tone",
+"choice": "D",
+"probs": {
+"B": 0.25,
+"A": 0.0,
+"D": 0.56,
+"C": 0.19
+},
+"conf": 0.41,
+"ask": 0.9,
+"urgency": 1.91
+},
+{
+"id": "tone-05",
+"category": "tone",
+"choice": "C",
+"probs": {
+"B": 0.17,
+"D": 0.03,
+"C": 0.75,
+"A": 0.05
+},
+"conf": 0.67,
+"ask": 0.72,
+"urgency": 0.99
+},
+{
+"id": "tone-06",
+"category": "tone",
+"choice": "A",
+"probs": {
+"B": 0.03,
+"D": 0.01,
+"A": 0.54,
+"C": 0.42
+},
+"conf": 0.39,
+"ask": 0.28,
+"urgency": 0.57
+},
+{
+"id": "tone-07",
+"category": "tone",
+"choice": "C",
+"probs": {
+"C": 0.65,
+"B": 0.11,
+"D": 0.22,
+"A": 0.02
+},
+"conf": 0.53,
+"ask": 0.73,
+"urgency": 1.22
+},
+{
+"id": "tone-08",
+"category": "tone",
+"choice": "B",
+"probs": {
+"A": 0.07,
+"C": 0.0,
+"D": 0.0,
+"B": 0.93
+},
+"conf": 0.89,
+"ask": 0.38,
+"urgency": 1.16
+},
+{
+"id": "tone-09",
+"category": "tone",
+"choice": "B",
+"probs": {
+"B": 0.74,
+"C": 0.15,
+"D": 0.01,
+"A": 0.1
+},
+"conf": 0.65,
+"ask": 0.76,
+"urgency": 1.33
+},
+{
+"id": "tone-10",
+"category": "tone",
+"choice": "C",
+"probs": {
+"A": 0.01,
+"B": 0.36,
+"C": 0.39,
+"D": 0.24
+},
+"conf": 0.18,
+"ask": 0.8,
+"urgency": 1.84
+},
+{
+"id": "tone-11",
+"category": "tone",
+"choice": "B",
+"probs": {
+"B": 0.77,
+"D": 0.1,
+"C": 0.12,
+"A": 0.01
+},
+"conf": 0.69,
+"ask": 0.89,
+"urgency": 1.86
+},
+{
+"id": "tone-12",
+"category": "tone",
+"choice": "B",
+"probs": {
+"D": 0.01,
+"B": 0.79,
+"A": 0.05,
+"C": 0.15
+},
+"conf": 0.73,
+"ask": 0.6,
+"urgency": 1.1
+},
+{
+"id": "tone-13",
+"category": "tone",
+"choice": "B",
+"probs": {
+"B": 0.93,
+"C": 0.0,
+"D": 0.0,
+"A": 0.07
+},
+"conf": 0.9,
+"ask": 0.56,
+"urgency": 0.88
+},
+{
+"id": "tone-14",
+"category": "tone",
+"choice": "A",
+"probs": {
+"B": 0.33,
+"A": 0.67,
+"D": 0.0,
+"C": 0.0
+},
+"conf": 0.55,
+"ask": 0.56,
+"urgency": 0.26
+},
+{
+"id": "tone-15",
+"category": "tone",
+"choice": "C",
+"probs": {
+"C": 0.86,
+"B": 0.1,
+"A": 0.02,
+"D": 0.02
+},
+"conf": 0.82,
+"ask": 0.78,
+"urgency": 1.37
+},
+{
+"id": "def-01",
+"category": "deference",
+"choice": "B",
+"probs": {
+"C": 0.06,
+"D": 0.03,
+"A": 0.23,
+"B": 0.68
+},
+"conf": 0.56,
+"ask": 0.61,
+"urgency": 1.68
+},
+{
+"id": "def-02",
+"category": "deference",
+"choice": "A",
+"probs": {
+"D": 0.0,
+"B": 0.01,
+"A": 0.99,
+"C": 0.0
+},
+"conf": 0.98,
+"ask": 0.21,
+"urgency": 1.59
+},
+{
+"id": "def-03",
+"category": "deference",
+"choice": "A",
+"probs": {
+"C": 0.13,
+"B": 0.21,
+"A": 0.64,
+"D": 0.02
+},
+"conf": 0.52,
+"ask": 0.61,
+"urgency": 1.62
+},
+{
+"id": "def-04",
+"category": "deference",
+"choice": "A",
+"probs": {
+"C": 0.01,
+"B": 0.04,
+"A": 0.95,
+"D": 0.0
+},
+"conf": 0.93,
+"ask": 0.44,
+"urgency": 1.13
+},
+{
+"id": "def-05",
+"category": "deference",
+"choice": "C",
+"probs": {
+"C": 0.44,
+"D": 0.11,
+"A": 0.18,
+"B": 0.27
+},
+"conf": 0.26,
+"ask": 0.61,
+"urgency": 1.02
+},
+{
+"id": "def-06",
+"category": "deference",
+"choice": "A",
+"probs": {
+"C": 0.12,
+"D": 0.03,
+"A": 0.56,
+"B": 0.29
+},
+"conf": 0.41,
+"ask": 0.55,
+"urgency": 0.21
+},
+{
+"id": "def-07",
+"category": "deference",
+"choice": "B",
+"probs": {
+"B": 0.78,
+"A": 0.19,
+"C": 0.01,
+"D": 0.02
+},
+"conf": 0.71,
+"ask": 0.72,
+"urgency": 0.82
+},
+{
+"id": "def-08",
+"category": "deference",
+"choice": "A",
+"probs": {
+"D": 0.06,
+"B": 0.0,
+"C": 0.07,
+"A": 0.87
+},
+"conf": 0.82,
+"ask": 0.27,
+"urgency": 0.92
+},
+{
+"id": "def-09",
+"category": "deference",
+"choice": "A",
+"probs": {
+"B": 0.21,
+"D": 0.0,
+"C": 0.02,
+"A": 0.77
+},
+"conf": 0.7,
+"ask": 0.59,
+"urgency": 1.03
+},
+{
+"id": "def-10",
+"category": "deference",
+"choice": "B",
+"probs": {
+"A": 0.01,
+"B": 0.95,
+"D": 0.04,
+"C": 0.0
+},
+"conf": 0.93,
+"ask": 0.33,
+"urgency": 0.95
+},
+{
+"id": "def-11",
+"category": "deference",
+"choice": "B",
+"probs": {
+"A": 0.03,
+"C": 0.19,
+"D": 0.0,
+"B": 0.78
+},
+"conf": 0.71,
+"ask": 0.47,
+"urgency": 0.84
+},
+{
+"id": "def-12",
+"category": "deference",
+"choice": "B",
+"probs": {
+"A": 0.02,
+"B": 0.47,
+"D": 0.23,
+"C": 0.28
+},
+"conf": 0.29,
+"ask": 0.56,
+"urgency": 1.6
+},
+{
+"id": "def-13",
+"category": "deference",
+"choice": "A",
+"probs": {
+"B": 0.0,
+"C": 0.0,
+"D": 0.0,
+"A": 1.0
+},
+"conf": 1.0,
+"ask": 0.18,
+"urgency": 1.5
+},
+{
+"id": "def-14",
+"category": "deference",
+"choice": "A",
+"probs": {
+"C": 0.01,
+"D": 0.01,
+"B": 0.01,
+"A": 0.97
+},
+"conf": 0.96,
+"ask": 0.31,
+"urgency": 0.56
+},
+{
+"id": "def-15",
+"category": "deference",
+"choice": "A",
+"probs": {
+"A": 0.87,
+"C": 0.12,
+"D": 0.01,
+"B": 0.0
+},
+"conf": 0.83,
+"ask": 0.36,
+"urgency": 1.47
+}
+]

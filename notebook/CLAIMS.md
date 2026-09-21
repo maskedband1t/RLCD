@@ -1,0 +1,459 @@
+# Claims audit — working backwards from the page
+
+Every sentence the finished page will assert, and whether we can currently
+back it. Written before the page, because drafting the artifact is the fastest
+way to discover which experiments are missing.
+
+Status key: **HAVE** evidence in hand · **RUNNING** · **GAP** nothing yet ·
+**CUT** decided against
+
+---
+
+## Part 1 — (withheld from the public snapshot: company-specific context)
+
+## Part 2 — what looking at the data found
+
+| # | claim | status | evidence |
+|---|---|---|---|
+| 2.1 | Filtering DROID on "has a task label" deletes every failure | HAVE | 99.9% vs 20.0% success, n=95,658 |
+| 2.2 | One action dimension carries fake 430x spikes (rotation wrap) | HAVE | 43/2,955 transitions, 13.5x inflation of mean |dx| |
+| 2.3 | DROID is broad not deep; scene density must be built | HAVE | 564 scenes; final slice 910 eps / 4.58 h / one camera |
+| 2.4 | Camera extrinsics are a bad proxy for "same scene" | HAVE | merged two kitchens; `building` column is ground truth |
+| 2.5 | A stopwatch scores 80.7% on the full set — but only +11.3 over the class prior, and 58.3% on a balanced set | HAVE | n=910 unbalanced (69.3% majority baseline); n=60 balanced. **Never quote the 80.7% beside a balanced-set number** (method error 6). |
+| 2.6 | Neither a 7B vision model nor a stopwatch can judge these episodes on balanced data (55.0% vs 58.3%, chance 50%) | HAVE |
+| 2.7 | Nine action-stream features + logistic regression judge success at 0.772 AUC, n=800 held out | HAVE | E23; survives truncation (E23b): -1s costs 0.005, end-features removed still 0.705 |
+| 2.8 | A zero-shot calibrated judge reaches 0.676 AUC with no labels at all, vs 0.772 for a model fitted on 1,200 | HAVE |
+| 2.9 | Episode length does not predict success across scenes (r=+0.028, n=6,846) | HAVE |
+| 2.10 | Task progress is estimable without vision; a proprioceptive judge adds +0.057 r over an elapsed-time clock | HAVE | E30 + replication on 300 fresh episodes, clustered bootstrap, CI [+0.037,+0.080] |
+| 2.11 | An elapsed-time clock reaches r=0.72-0.77 on progress estimation — a baseline the visual-progress literature does not report | HAVE |
+| 2.13 | A cheap proprioceptive trigger catches 24% of failures at a 10% alarm budget (4x random) but is NOT a high-recall gate | HAVE | E36 v2, fixed wall-clock probes; kills the cascade cost argument, supports an advisory signal |
+| 4.6 | With a cost model, decide by expected cost from P(success) — hand-set confidence gates cost 3x more on the same answers ($44.33 vs $14.37 per 100) | HAVE | E53; the one place calibration did a job an uncalibrated score could not |
+| 4.8 | The dispatch shell reads rules precisely in both directions (fires at 0.96 when met, 0.13–0.18 when time/distance/staleness says not met; 8/8) | HAVE | E54 scenario suite, answers correct by construction |
+| 4.9 | The same hazard moves P(success) 0.79 → 0.11 when stated as a rule instead of a condition — encode hazards as rules | HAVE | E54 tier 5 A/B, single variable |
+| 4.11 | The model evaluates rule conditions on time, distance, dates, staleness and contradiction correctly, but blurs at an exact numeric boundary (0.57 at 10.0 vs "over 10"), does not convert units (22 lbs fires a kg rule at 0.85), and lets a rule about another robot depress P(success) by 18 points | HAVE | E54–E55, 25 constructed scenarios |
+| 4.12 | Division of labour: code evaluates thresholds, units, entity scope, validity; the model judges. Irrelevant state is not neutral to a calibrated estimate | HAVE | E55 R-3/R-7 case |
+| 4.10 | A rule annotated as withdrawn still fires (0.52); revocations must be filtered in code, never parsed by the model | HAVE | E54 tier 5 |
+| 4.7 | The dispatch shell responds to rules, conditions and notes (rule conflict 0.13→0.96, action flips) but is NOT validated — DROID has 3 sites, 2 operators, no heterogeneous state | **GAP** | E53; needs fleet data. Say so wherever it appears. |
+| 2.16 | Label disagreement across filers is ~0 where the cause is obviously external (other road user, weather, protocol) and 0.25–0.49 sd in every category where the system might have self-detected | HAVE | E52 audit, 1,245 texts, 36 groups, $0.02. **The "1% self-detected perception" line in E42 is withdrawn** — it averaged incompatible definitions. |
+| 2.17 | A fixed-taxonomy zero-shot categoriser applied to every record is a label auditor — the use none of the fifteen predictive framings tested | HAVE | E52; requires fixed option space + zero-shot + near-zero cost together |
+| 2.14 | The CA DMV "initiated by" label is a company convention: identical perception failures are 0% AV-initiated at Apple/Toyota/Waymo and 100% at Aurora | HAVE | E51 diagnostic, 5 years, 66 manufacturers |
+| 2.15 | Bag-of-words recovers to 0.791 cross-manufacturer when trained on 39 companies; E42's below-chance result was a few-company artefact | HAVE | E51 round 1 — **corrects the transfer claim in E42; the categorisation findings there stand** |
+| 2.12 | An open 7B vision model reaches r=0.28 on progress estimation — worse than the clock — while proprioception reaches 0.80 at 1/258th the cost | HAVE | E31b, native 320x180, 12 frames, non-degenerate output. Claim is about a 4-bit 7B model, NOT about vision generally. | E30; the criticism has a number behind it | E28 scoring pass; the stopwatch heuristic fails to generalise, not just to discriminate | E23 arms 3-4; the honest framing is "before you have labels", not "better" | 50.0% at 128x72/6fr (degenerate); 55.0% at 320x180/12fr, 95% CI 42-68%, n=384 needed to separate from chance; stopwatch 80.7% |
+
+## Part 3 — what the model work found
+
+| # | claim | status | evidence |
+|---|---|---|---|
+| 3.1 | The encoder erases small objects; error is 3x worse on them | HAVE | E1/E4, corrected metric |
+| 3.2 | Where you spend latent numbers beats how many you have | HAVE | fine vs wide at equal budget, 28% |
+| 3.3 | Knowing the arm's movement is worth 2.3 pts at 1/15 s and 10.4 pts at 1/5 s | HAVE | E3 + E18b/E18d, video-only control at both steps. The original 2.3 stands for its own setting; as a general claim it was wrong. |
+| 3.9 | 3.3x the parameters buys 10% at 3 s, less than changing the time step | HAVE | E16, 0.2476 -> 0.2225, both on the fixed harness |
+| 3.10 | The model is never told the action that produces the frame it predicts | HAVE | training pairs action i with context frame i; the target's action is withheld |
+| 3.11 | Where the arm goes is 82-91% inferable from what it just did; the gripper is not (R² 0.24) | HAVE | E19, n=60,000 held-out windows, unweighted mean R² 0.716 |
+| 3.12 | The gripper is 71.7% of action variance and moves in 4.1% of frames | HAVE | E19, measured on the windows training uses |
+| 3.13 | Aligning the action to the frame it produces is worth 5% at 3 s, for free | HAVE | E18, 0.2476 -> 0.2353, same model/data/steps |
+| 3.14 | Six levers measured; none closes the gap, best is 17% against 3.6x | HAVE | time step 17%, size 10%, alignment 5%, sampling ~0, resolution ~0, self-forcing negative |
+| 3.15 | Gripper frames are harder for the model AND for the dumb baseline, in the same proportion | HAVE | E21, 1.34x vs baseline's 1.36x; explains 42.8% vs 41.6% |
+| 3.16 | 7x the data at fixed compute is 11.9% WORSE; data needs compute with it | HAVE | E17, scored on real pixels, identical baseline both arms |
+| 3.4 | ~~Conditioning earns its keep at direction change~~ — **REVERSED at a longer step** | HAVE | at 1/15 s: 8.3% smooth → 12.7% sharp. At 1/5 s: 31.7% smooth → 24.4% sharp. Both measured; the general claim I made from the first is not supported. |
+| 3.17 | The value of action conditioning rises with prediction horizon (0.7 pts at 1/15 s, 10.4 at 1/5 s) and its shape inverts | HAVE | E22, controlled: same encoder, same data, only the step differs. Buckets 8.4/11.3/12.7 at 1/15 s vs 31.7/28.5/24.4 at 1/5 s. |
+| 3.5 | One-step accuracy hides rollout failure (flat vs 21x) | HAVE | E5 curves |
+| 3.6 | The model's own blur is the distribution shift | HAVE | E5 interpretation + the frame strip |
+| 3.7 | Step Forcing / stride recover N% of that | RUNNING | E6 |
+| 3.8 | The headline metric and the useful metric disagree | RUNNING | E6 prediction 3 — the best claim on the page if it holds |
+
+## Part 4 — the demo itself
+
+| # | claim | status | evidence |
+|---|---|---|---|
+| 4.1 | Runs in a browser at drivable speed | HAVE | E7, 20.4 fps WebGPU |
+| 4.2 | Real and dreamed side by side, same actions | HAVE | E7 page renders both |
+| 4.3 | You can drive it yourself | **HAVE** | `web/drive.html`, keys + touch pad, tested at 375px |
+| 4.4 | A confidence signal rises before the picture degrades | **GAP** | M3 not started |
+| 4.5 | Validated against 279 real failures never trained on | **GAP** | M3 |
+| 4.6 | Works on a phone | **PARTIAL** | layout + controls verified at 375x812; real iOS Safari (WebGPU support, Float16Array) still untested on hardware |
+
+## Part 5 — the calibration record
+
+| # | claim | status |
+|---|---|---|
+| 5.1 | Predictions logged before results, never edited | HAVE — notebook, 6 right / 2 wrong / 2 partial |
+| 5.2 | Method errors logged rather than fixed quietly | HAVE — two logged (extrinsics proxy, bent metric) |
+| 5.3 | Every result shown next to its dumb baseline | HAVE — throughout |
+
+---
+
+## What the audit changes
+
+**Six gaps. Three matter.**
+
+1. **4.4 + 4.5 — the confidence signal.** The largest hole, and the thing that
+   makes the demo more than a pretty rollout. This is M3 and it has not
+   started. It is also the piece closest to the RL framing (a confidence head
+   is a value-function-shaped object), so it carries weight beyond the demo.
+2. **3.4 — where the action earns its keep.** Asserted twice in conversation
+   and never measured. Cheap: bucket E3's validation error by how much the
+   arm's direction changed. Should be done before it is said on a page.
+3. **4.3 — driving it.** The difference between a video and a demo. Needs the
+   action normalisation shipped to the page and an input loop.
+
+**Two to soften rather than fix.** 1.4 and 1.7 are arguments and inferences,
+not evidence, and should read that way on the page.
+
+**One to cut.** 4.6 — do not claim phone support without testing on a phone.
+Either test it or say "desktop browser".
+
+## Revised order of work
+
+1. finish E6 (running)
+2. **3.4 bucketed action analysis** — cheap, closes a claim we have already
+   been making out loud
+3. **M3 confidence signal** — biggest gap, and the one with the most leverage
+4. **4.3 driving loop** — turns video into demo
+5. M2.5 VLM judge — still an insurance policy, but now clearly below the above
+6. M5 page + work log
+
+
+---
+
+## Draft written 2026-09-15 — `web/log.html`
+
+Drafting the page early, as intended, to find out which claims cannot yet be
+written honestly. Three things the draft forced:
+
+1. **Neutral naming changed the framing for the better.** The page cannot name
+   the company, so the selection chain had to be written about the *class* of
+   problem — teleoperated fleets becoming autonomous — rather than about one
+   firm. That reads as a work sample rather than a pitch, and it is reusable.
+   The specificity moves to the email, which was the decision anyway.
+2. **Claim 1.7 ("the work is unowned") did not survive contact.** It is an
+   inference off a job board and there is no way to write it without sounding
+   like a stranger explaining someone's org chart to them. Cut entirely rather
+   than softened.
+3. **The "what is honestly not done" section is load-bearing**, not a
+   disclaimer. Four bullets: holds for about a second rather than three,
+   confidence signal designed but unvalidated, one scene only, 128x72. A page
+   that claimed otherwise would be caught in about ninety seconds by anyone
+   who has built one of these.
+
+Still blocked on results: the confidence section (M3) and any claim that the
+rollout holds long enough to be worth driving (M2).
+
+
+---
+
+## Status after the overnight run (2026-09-15)
+
+**Three experiments, three negative results, and they converge.**
+
+- E11 flow head: does not fix the blur, and the metric I used to judge it was
+  rigged against sampling — caught and logged.
+- E12 integration steps: inconclusive, noise larger than the effect at n=8.
+- E13 VLM judge: exactly chance, leak-checked, and 2.5x the pixels did not
+  move it.
+
+**What the page can now claim that it could not yesterday:** that dropping in
+a vision-language model as an automatic success detector does not work at this
+fidelity, measured against two baselines with a leak check. That is claim 2.6
+and it is a *finding*, not a gap.
+
+**What is still blocked:** M2 (the rollout), and therefore M3 (confidence),
+which turned out to depend on it — a structural mistake in the original plan,
+since a model whose errors are systematic rather than stochastic has no
+uncertainty to read off.
+
+**The honest shape of the artifact right now:** four measured findings, five
+logged method errors, a calibration record that is roughly even, and a demo
+that runs but does not yet wow. The work log is strong. The hero shot is not
+there.
+
+**4.13 — The dispatch shell's failures were in the code-evaluable layer, not in the model's judgment.**
+A preprocessing pass that normalises units, filters rule validity and entity scope, evaluates numeric thresholds in code, and promotes hazard phrasings/conditions to explicit rules took the same 25 scenarios from 17/25 to 24/25 with the model, questions and scenarios unchanged (7 fixed, 0 broken). The remaining failure is a judgment call where the model's answer is defensible. **Caveat:** patterns were written after seeing the failures — mechanism is established, coverage is not (E56). Status: SUPPORTED (mechanism) / GAP (coverage: needs held-out scenarios and fleet phrasings).
+
+**4.14 — Jev in an extraction role replaces pattern-matching on fleet text with no loss and no regressions.**
+One `choice` question per rule / note / condition, sent in parallel, with all regex text-reads off, matched the regex arm exactly (31/34 stable) and read held-out rewordings the regexes could not (lifted → does-not-apply 1.00; unit R-7 → 1.00; recalibrated-and-verified → resolved 1.00; dock rule in force → applies 0.98). Because the model cannot generate, a second categorical question ("which part?") stands in for summarisation and yields one-line rules; that restored the margins the quoted-note rules had lost (buried hazard P .37 → .09). Known misses: recurrence ("seized up twice, freed both times") read as resolved 0.86; run-to-run noise in P(success) ±0.08 on identical inputs (E58, E58b). Status: SUPPORTED on 34 constructed scenarios, one phrasing per category / GAP for paraphrase sets and fleet text.
+
+**4.15 — On resolved-fault notes, pattern-matching is worse than no preprocessing; Jev extraction is not.**
+Five wordings × 2 repeats: raw 10/10, regex pass-one 6/10, Jev pass-one 10/10. A pattern that matches a component word ("bearing", "gripper") in a note about a *repaired* component promotes a false rule and the calibrated judge obeys it. Across seven categories × 5 wordings × 2 repeats the arms score raw 50, regex 53, Jev 63 of 70; Jev wins or ties every category; pass/fail flips on repeat in 4 of 210 trials (E59). Status: SUPPORTED on constructed paraphrase sets / GAP for fleet-written text.
+
+**4.16 — A category the question did not offer looked like a model failure; offering it fixed the read with no collateral.**
+"Seized up twice, freed by hand both times" read as resolved (0.89) until `intermittent_or_recurring` was added as a choice. On six fresh recurring wordings × 2 repeats: judge alone 2/12, Jev extraction 12/12 (recurring ≥ .95 on every wording); on ten control wordings that mention past recurrence but say root-caused-and-fixed: 0/10 promoted, resolved 1.00 on every one (E60). Generalisation: most E55–E59 "model failures" were vocabulary the questions lacked; with a non-generative model the vocabulary is the engineering. Status: SUPPORTED on 16 fresh wordings / GAP for fleet-written notes.
+
+**4.17 — On real operator text, the model's split verdicts point at missing vocabulary, and offering it resolves half of them with a 2% noise floor.**
+1,233 unique DMV disengagement descriptions through a 9-way cause question: 6.8% split (no option > .5), 1.9% unclear-top, 57% decisive above .9; split rate is a property of the writer (formulaic 0%, narrative 16–21%). Three categories proposed from half the splits (anticipatory takeover, expectation mismatch, ODD exit) resolved 21/42 of the held-out half (re-asking the original question: 1/42), with 173/200 non-split controls unchanged and 24 of the 27 changes being absorption into the new categories (E62–E63). The residue names the next round (mechanism-vs-cause; system-initiated fallback). Status: SUPPORTED on one round / GAP for a second round and for robot-fleet notes rather than AV reports.
+
+**4.18 — The place-vs-drop blind spot is not visible in the wrist camera; decoded-vision-to-Jev was killed at the decoder, before Jev.**
+Blind hand-check on 48 release/+1 s wrist frames (24 place / 24 drop): 45% accuracy, 1 of 24 drops caught — a failed release mostly looks like a successful one (object resting on a surface); the difference is where it was supposed to go, i.e. the task spec, i.e. the label. Qwen2.5-VL-7B (4-bit) at 320×180 was degenerate on the same frames (gripper "closed" on 92% of frames where it is open by construction). E46's "identical in motion statistics and obvious in pixels" is withdrawn for this camera (method error 12). A fair test needs exterior views and can only score spec-free distinctions (E64). Status: NEGATIVE / GAP for exterior cameras.
+
+**4.19 — As a critic over a language planner's candidate next steps, Jev beats the planner's own logits on accuracy, calibration, and ambiguity reporting.**
+1,200 four-way questions over real DROID "put X in/on Y" instructions, one distractor type per question. Jev: 96.8 % on the base tier (skip-ahead 84, repeat/wrong-object/irrelevant/post-failure 100), ECE .020, AUROC .970, confidence .63 on its errors vs .97 when right; gating at ≥ .95 gives 82 % coverage at 100 %. Qwen2.5-7B-Instruct on the same content: 85.8 % (skip-ahead 40), ECE .120, AUROC .814, .92 confident when wrong; confirmed by a free-answer readout (84.8 %). When two candidates are both acceptable both models place all mass on the pair; the 7B then commits at .93, Jev reports .71. Lexical overlap: 100 % on word-level distractors, 4 % / 0 % on the state-level ones. Jev's own wall: it does not infer state from raw numbers ("force reads 0.0 N" → 16 %); the same fact stated categorically → 100 % (E65–E65d). **Caveats:** candidates and plan templates are constructed by me, not generated by a planner; the baseline is a 7B on-board-class planner, not a frontier model; every remaining Jev error inspected was a defensible alternative ordering. Status: **ARTIFACT-RISK (council 2026-09-16)** — a 12-line canonical-plan tracker scores 100 % on this suite; temperature scaling closes most of the ECE gap and inverts the ambiguity result; five-query vs one-pass interface asymmetry. Survives: AUROC ranking gap. Pending the baseline suite in research-plan v2.
+
+**4.20 — Over candidates a real planner generates, Jev is a strong critic on ordinary prefixes and a weak one after failure reports unless the criteria name progress.**
+150 next-step questions on real DROID tasks with Qwen2.5-7B as planner. Ordinary prefixes: veto on the planner's proposal AUROC .970, Jev picks an acceptable step 97.5 % of the time one exists; the planner's samples fail together (an acceptable alternative exists in 1 % of cases where the greedy is wrong), so the critic can veto but not rescue. After a categorical failure report, original criteria: veto AUROC .685, Jev lets diagnostic non-actions ("inspect the gripper to confirm grasp") through; a progress criterion raises veto AUROC to .78 on 60 fresh prefixes (E66b) and, applied to the main set, to .984 with 62 % acceptable picks and 94 % when one exists (E66c); overall veto AUROC .983, 97 % pick-when-exists, 2 % false vetoes. Judge: rules validated by blind hand-check at 92 % after correcting a leniency that had accepted diagnostics containing an action word (method error 14). Status: **ARTIFACT-RISK (council 2026-09-16)** — the .984 is in-sample under criteria revised after seeing model output (method error 16); out-of-sample .778. Pending independent judge.
+
+**4.21 — One critic round (veto → categorical reason → re-plan) adds nothing with a 7B planner: the critic is a precise filter, not yet a loop.**
+Corrected judge: 54.7 % → 54.0 % acceptable executed steps over 150 prefixes; 2 false vetoes among 82 acceptable proposals; reasons correct (35 × "ignores the reported failure", 18 × "repeats a completed step"). The planner converted the reason into an acceptable step 0/20 times on ordinary prefixes and 1/37 after failures — it answers "you ignored the failure" with "inspect the gripper". Pre-registered falsifier (gain < 8) fired; an earlier +10 was a judge artefact and is retracted (E67). Status: NEGATIVE as a loop with this planner / GAP for a planner that can use feedback.
+
+**4.22 — With the controller held fixed, most of the published "structurally incapable baseline" gain is two named categories; the judgment's residual value sits at the stations a rule cannot express.**
+Drone course in MuJoCo, randomised by seed (40 seeds), one shared guidance loop, pluggable manoeuvre source, physical outcomes. Clean barrier crossing: published baseline 10 % [4,23] → heuristic with sustained commitment 62 % [47,76] → + climb rule 80 % [65,90] → Jev 98 % [87,100]; stations (median) 1 → 3 → 4 → 6. Paired by seed, Jev − climb rule: +17 points clean crossing [+5,+33], +1.25 stations [+0.68,+1.85], contact +0.34 s [−4.30,+4.53]. The arms separate at the sliding gate (60 % vs 80 %) and beyond it (28 % vs 78 % at the second beam). Jev's failure mode is pinning against the gate (5/40 episodes > 10 s contact). The pre-registered "climb rule matches Jev within 10 points" failed in the model's favour. Replication of the published pair as released: 12 % cross, 5 % clean on the fixed course (the published "never" is 88 %). Latency 0.116 s median, 88 calls/episode (E68). Option ablation: Jev with climb removed clears the beam cleanly on 38 % [24,53] — 25 points *below* the heuristic [−45,−3] — because its criteria brake at a fully blocked beam while the heuristic's committed slide rounds the beam's end; Jev − Jev-minus-climb = +60 clean [+45,+75], +2.85 stations. The value is the category named and timed. Caveats: one sim, one course family, sim-supplied perception. Status: SUPPORTED (closed loop, controlled) / GAP for other embodiments.
+
+**4.23 — The same fact as a raw number is nearly invisible to the judge; as a code-evaluated category it is read perfectly — and a program owns the number anyway.**
+Paired factorial, 160 base items × 2 formats (critic setting) and 15 threshold/unit items (dispatch setting). Jev: numeric failure items 6.2 % vs categorical 100 %, gain +46.9 points [+39.4,+54.4]; benign items 100 % in both formats (the number is ignored, not misread); dispatch numeric 66.7 % vs categorical 100 %, +33 [+13,+60]. Program arm 100 % in every cell (E70). The 7B letter readout gains only +5.6 [+2.5,+9.4]: 0 % numeric, 11 % categorical — it never retries in either format. The categorical fact is necessary for a judge to act on it, not sufficient; the pre-registered falsifier (any model < +15) fired. Status: SUPPORTED for Jev / NOT SHARED by a 7B / 72B pending.
+
+**4.24 — In the closed loop, 200 ms of judgment latency is free and 300 ms costs; recorded-judgment replay reproduces the live arm and makes the latency curve reproducible without an API key.**
+Recorded fingerprint→judgment cache replayed at synthetic latency, 40 seeds per point: replay at 0.10 s matches live Jev (84 vs 86 % completion; paired stations −0.15 [−0.72,+0.40]); at 0.30 s −0.47 stations [−0.93,−0.05] and contact 3.6 → 4.1 s; at 0.50 s −0.85 [−1.50,−0.25], contact 6.5 s, crashes 7/40 (E68). Fingerprint hit rate 65 %; misses fall back to hold-course and are not decisive. Status: SUPPORTED (one course family).
+
+**4.25 — Gating handoff on the judge's calibrated risk head removes 95 % of contact for 18 % operator time and dominates a geometric-proxy gate on operator time, contact and completion at once.**
+Drone course, controller held fixed, oracle operator during a 3 s handoff window. Jev gated at risk ≥ 1.6, 20 seeds paired with ungated: contact 3.92 → 0.21 s (−3.72 [−8.29,−0.04]), completion 86 → 95 %, stations +0.55 [−0.20,+1.25], 3.9 handoffs/episode, 95 % fired by the risk head, 83 % within 4 m of an obstacle; zero heavy-contact episodes (ungated: 5/40 pinned at the gate). The geometric-proxy gate on the heuristic arms fires 5–8×/episode for 15–22 operator-seconds at every threshold with contact mostly *rising*; Jev's point Pareto-dominates all of them (E69). Predictions: contact −50 % → −95 % hit; operator time 5–15 % → 18 % miss; P-H2 evaluated as Pareto dominance by a fallback declared before the numbers existed. Caveats: n=20 per threshold; an imperfect oracle operator, frozen, that pins itself at the turnstiles when handed off too eagerly (τ=1.2). Status: SUPPORTED (one course family, one operator model).
+
+### 4.26 · SUPPORTED (E71, 2026-09-18) — In a fleet-shaped sorting cell with situational exceptions, a calibrated judgment head over code-enumerated options reads unanticipated operator notes that a frozen rule policy and a lexical parser do not.
+Parts correct 87.1 % [82.2, 90.7] vs lexical 82.5 % vs rules 79.2 %; paired jev − lexical +4.6 [+1.7, +7.5]; unanticipated bank 76 % vs 39 % vs 21 %; operator time 7.7 % of the episode, same as rules. 40 seeds, 240 parts per arm, rules frozen at 0fc9493. Not the predicted ≥ 92 %.
+
+### 4.27 · NEGATIVE (E71) — Confidence-gated handoff does not dominate a program's flag-based abstention rule in the cell.
+At matched operator time (~33 % of the episode) the gate leaves .55 violations per episode vs .40 for "ask whenever a note exists"; AUROC(confidence → not wrong) .618. Mechanism: probability mass spread over substitutable options (which part next) and surprises that arrive flagged. Contrasts with E69 (drone), where the proxy had no flag and the gate dominated.
+
+### 4.28 · NEGATIVE (E71) — Abstention is not free when the hazard is faster than the handoff.
+Precedence case (hand appears while a fragile heavy part is carried): Jev pauses (the literal instruction) at confidence .53–.68; gating converts the split into a 4 s ask, during which the part slips and breaks. 0/6 for every Jev arm; oracle 6/6 by setting the part down first.
+
+### 4.29 · SUPPORTED (E73 → E76, 2026-09-18) — For a time-critical conflict between a literal instruction and a physical consequence, stating the consequence in the option text does not change the model's choice (0/6), but a parallel literal question combined in code does (6/6 parts saved).
+Pause chosen at .41–.68 either way; `safe_to_freeze` Noul .25–.32 on all six; code sets the part down before pausing. Six seeds, one event type; the remedy is the vendor's documented one, tested here in a closed loop.
+
+### 4.30 · PARTIAL (E75, 2026-09-18) — Letting code choose the part and asking the model only for the destination halves the operator cost of confidence-gated handoff at unchanged accuracy, but calibration rises only from .62 to .66.
+jev3 86.7 % vs jev 87.1 % (paired −0.4 [−2.1, +1.2]); gate τ=.7 at 8.9 operator-seconds vs 17.0 for the E71 gate at a similar violation level; residual wrong decisions are confident misreadings of notes, which confidence does not flag. Below the interpolated program line for budgets under ~12 s; meets it at the flag rule's own point.
+
+### 4.31 · SUPPORTED (E78b, 2026-09-18) — The assembled judgment stack (code picks the part; per-part note-binding and destination heads combined in code; safe-to-freeze check) reaches the perception-limited ceiling of the sorting cell at the rules' operator time.
+Parts correct 90.0 % [85.6, 93.2] against a facts-only ceiling of ≈ 91.2 % (21 of 240 parts have uncorrected perception errors); paired +3.3 [+1.2, +5.8] over the single-Choice Jev arm, +7.5 over rules + parser; violations .60 per episode (Jev .78, rules 1.25); zero broken parts; 3.5 operator-seconds (rules_ask 20.4 for 93.3 %, which exceeds the ceiling only by buying the operator's ground truth). 40 seeds; the recall condition remains the binding head's weak type (AUROC .53 in E78's first run).
+
+### 4.32 · SUPPORTED (E79b, 2026-09-18) — Extracting a note's conditions into closed-set heads once per episode and binding parts in code brings the sorting cell to its perception-limited ceiling with zero judgment errors.
+Parts correct 91.2 % [87.0, 94.2] vs ceiling ≈ 91.2 %; 19 of 21 remaining misses are perception false alarms or missed damage, 2 are physics; bank 35/38 (recall 7/7, cosmetic 7/7, ambiguous 6/6 by code-detected ambiguity → ask); zero broken parts; +4.2 [+1.7, +7.1] over the single-Choice Jev arm; operator time 7.9 % of the episode (rules_ask 32.8 % for 93.3 %, the two extra points being the operator's ground truth about damage). 40 seeds; **replicated at n = 200 (E82, seeds 80–279): 89.3 % [87.5, 91.0] vs ceiling 89.9 %, paired +5.3 [+3.6, +7.0] over the single-Choice arm, zero broken parts in 200 episodes, judgment misses 0.92 % of parts.** The extraction question's wording mattered: 0/6 → 6/6 on the ambiguous type after stating the exact condition.
+
+### 4.33 · NEGATIVE with mechanism (E77, 2026-09-18) — A 527k-parameter student distilled from 3.8k recorded Jev decisions agrees with the teacher on 85 % of held-out records and reaches 74 % parts-correct on seen seeds but 59 % on held-out seeds (teacher 88 %), because it collapses onto `pause` in states without a hand (615 of 887 held-out decisions) and drifts.
+Record-level agreement does not predict closed-loop competence; the failure is covariate shift, the DAgger problem. Latency 8–10 ms per decision. E80 (teacher labels the student's states) and E81 (twice the teacher data) pre-registered to separate the distributional from the data-quantity explanation.
+
+### 4.34 · SUPPORTED (E80, 2026-09-19) — One DAgger round, the teacher labelling the 834 states the student actually visited, lifts the owned head from 59.2 % to 75.8 % [70.0, 80.8] on held-out seeds (paired +16.7 [+6.7, +27.5]) and removes the pause collapse (615 → 10 spurious pauses); the remaining −12.1 [−18.8, −6.2] against the teacher is reading (relabel 0/7, cosmetic 2/6) and over-asking (16 % of decisions deferred), not drift.
+
+### 4.35 · SUPPORTED (E80 vs E81, 2026-09-19) — For the owned head, teacher labels on the student's own visited states beat twice the teacher's own data: 75.8 % vs 63.7 % on held-out seeds (paired −12.1 [−21.7, −3.8] for the data-doubled student), and only the labelled-states round removes the pause collapse (615 → 10 vs 615 → 541 spurious pauses).
+The distributional explanation of the E77 failure is confirmed against the data-quantity explanation; the correction loop is the sovereignty mechanism.
+
+### 4.36 · SUPPORTED (D1-cell, 2026-09-19) — On 400 recorded sorting-cell decisions, a plain 7B behind the same typed interface chooses acceptably 37.5 % of the time against Jev's 81.5 %, never pauses for a person's hand (0/24), and places 87 % of its answers on two letter positions regardless of content.
+Decision-level, seeded subsample declared before the run. The interface transfers to a small open model; the judgment does not.
+
+### 4.37 · SUPPORTED (E83, 2026-09-19) — When the surprise arrives in the facts with no note, the program's "ask when flagged" rule is identical to the frozen rules (65.0 %, paired +0.0), the single-Choice judgment head gains +19.2 [+10.8, +28.7] over them, and the confidence gate is the only lever that reduces violations further (.93 → .68) — at 20 operator-seconds per episode. The extraction design, which reads notes only, falls to the rules' level (65.0 %). The E71 finding against the gate was a property of flagged surprises, not of the gate.
+
+### 4.38 · NEGATIVE with mechanism (E84, 2026-09-19) — A generic "does anything in the facts call for departing from the default?" head added to the extraction design fires on 25 % of decisions, mostly as wait or ask, costs 3.3 points [1.2, 5.4] on the notes bank and handles the unflagged bank no better than the single-Choice head (45 % vs 50 %); the QA-sticker case is not recovered even when asked narrowly, and asks not bound to a part lose their resolution.
+
+**4.39 (E86, 2026-09-19).** On the sorting cell with ground-truth regions from the segmentation renderer, an
+open 53 M-parameter relation model (RelateAnything, ONNX, CPU 0.41 s/frame) reads "part inside tray" at AUROC
+.995 (14,276 pairs, 30 episodes); on pairs where box containment is uninformative (.548) it reaches .898, and
+it separates in-tray from held-above (.904 vs .643 for a two-feature geometric rule) and from on-lid (.986 vs
+.584), while geometry separates neighbouring trays better (.985 vs .896). "Holding" ranks .980 overall but
+.666 where boxes overlap; its calibrated scores stay below .5. Rendered scene; regions exact; real footage owed.
+
+**4.40 · NEGATIVE with mechanism (E87, 2026-09-19).** On the 96 real wrist frames with regions from a weak detector
+(SAM 3 LiteText "robot arm" box + "small object" boxes), the relation model's "holding" score does not separate
+the release frame (object in the jaws) from the frame one second later (jaws open): AUROC .565, 20 paired tiles.
+Mechanism: "holding" is not read for a gripper (E86 showed the same on rendered frames), and 39 of 96 frames
+lack both boxes. A place-vs-drop lead (.745 [.54, .91], 28 of 48 tiles, evaluability-biased toward drops that
+stayed in view) is recorded as a lead only. E64's conclusion stands.
+
+**4.41 · SUPPORTED with a boundary (D5, 2026-09-19).** On 400 recorded sorting-cell decisions, reversing the option
+order changes Jev's argmax in 16.0 % of cases against 5.5 % for a same-order repeat (difference +10.5 points
+[+6.8, +14.2]); the recorded top option's probability moves .116 vs .030. The flips sit where the model's own
+confidence is low: 50 % below .5, 11.6 % in [.5, .7), 1.7 % in [.7, .9), 0 % at ≥ .9. Order sensitivity exists
+and is confined to the region the confidence gate already routes to a person; above .7 it is absent.
+
+**4.42 · SUPPORTED with a boundary (E88, 2026-09-19).** A confirm level (below the confidence threshold the robot
+announces its action and gives the operator one second to veto; a veto costs a full ask) matches the ask gate's
+violations on both banks (−.03 [−.15, +.10] per episode, unflagged, τ = .7) at 63–66 % of its operator time
+(−7.4 s [−9.0, −5.8] per episode), across thresholds .6–.8, with unanticipated-correct .70 vs .75. With a 25 %
+veto-miss rate violations rise +.10 [+.03, +.20]. The saved time is bounded by the model's error rate below
+the threshold (27 % of proposals vetoed). It does not save the time-critical precedence case (0/6, as the ask).
+*Addendum (D5b):* averaging probabilities over four random option orders does not recover acceptable choices below
+confidence .7 (+0.0 points [−3.0, +3.0] in [.5, .7); −6.5 [−16.3, +3.3] below .5); the order-fragile decisions
+are uncertain, not mis-ordered, and belong to the gate.
+
+**4.43 · LEAD, not a claim (E85e, 2026-09-19).** With the official SAM 3 and the gripper named by appearance ("black
+robotic claw": box in 88 % of 96 real wrist frames; every "gripper" phrasing 0 %), the geometric feature
+"top small-object box below the claw box" separates place from drop one second after release at AUROC .790
+[.646, .916], 73 % leave-one-out, on 48 tiles — at a post hoc gripper threshold (.3; pre-registered .5 gives .599).
+Overlay inspection shows the measured box is the manipulated object in 3 of 8 frames; the mechanism is
+unverified. Object identity (tracking from the release frame) is the prerequisite for any seam claim on real frames.
+
+**4.44 · NEGATIVE with mechanism (D6, 2026-09-19).** An open RL-trained typed-decision encoder (Laya, 421 M,
+Apache 2.0) run zero-shot behind our interface on the 400 recorded sorting-cell decisions chooses acceptably
+28.0 % of the time (compact rendering) / 27.8 % (raw JSON) / 31.5 % (multilingual, 1,024 window), against the
+plain 7B's 37.5 % and Jev's 81.5 %; its confidence is uninformative (AUROC .48). The interface transfers, the
+judgment does not, and the rendering does not matter because the state is not being read. D6 is the zero-shot
+baseline for the owned-head-v2 fine-tune.
+
+**4.45 · NEGATIVE with mechanism (E89/E89b, 2026-09-19).** As a sub-action annotator over proprioception-only facts
+on 1,624 ground-truthed half-second windows, Jev reproduces the field's consistency figures (98.8 % on repeat and
+reversed-order re-asks) while labelling 57.8 % of windows correctly against a rule's 66.2 % from the same facts;
+adding a heading fact lifts both (70.3 % vs 75.5 %). Boundaries are sharp (91 % recall, 96 % precision) and the
+confidence separates (85 % accuracy above .7, 28 % below). Consistency is not accuracy; the label is a function of
+the facts, and code writes the facts.
+
+
+**4.46 · SUPPORTED, falsifying our own prediction (D4, 2026-09-19).** On the 400 recorded sorting-cell decisions, a
+dense open 27B (Qwen3.8) read through a Jev-shaped label-logit interface chooses acceptably 84.8 % of the time
+against Jev's 81.5 % (+3.2 points, [-0.5, +7.0]); its confidence ranks correctness at .654
+against Jev's .81, and 32 % of its answers change when the options are reversed (20 % even above confidence .7)
+against Jev's 16 % (1.7 % above .7). The interface is commodity and the argmax is matched; calibration, order
+stability, latency and cost are where the calibrated-decision model differs. The 7B-vs-27B gap is confounded
+with the readout method.
+*Addendum (D4c):* small models through the same readout sit at chance (RWKV-small 26.8 %, RWKV-std 22.0 %, with
+83–92 % of answers flipping under reordering), so the 27B's 84.8 % is capability, not the readout.
+
+**4.47 · SUPPORTED (D4d, 2026-09-19).** The open 27B that matched Jev's argmax on recorded decisions (D4) loses 9.2
+points [4.6, 14.2] to Jev when it drives the sorting cell itself (75.0 vs 84.2 % parts correct, 40 unflagged-bank
+seeds), re-decides twice as often, asks on its own 20× less, and handles the unflagged surprise 12 % of the
+time against Jev's 50 %. Under a confidence gate the gap closes to −1.3 [−4.2, +1.7]; under the confirm level
+the 27B vetoes 38 % of its proposals against Jev's 27 % and sits at .85 violations for 9.3 operator-seconds where
+Jev's confirm sits at .65 for 12.3 and the 27B's gate at .75 for 12.3. Agreement on records is not closed-loop
+competence, at 27 B parameters as at 527 k.
+
+**4.48 · SUPPORTED with a boundary (E90, 2026-09-19).** A 421 M pretrained typed-decision encoder (Laya) fine-tuned
+with its own RLCD recipe on 3,827 of Jev's recorded sorting-cell decisions drives 40 unseen seeds at 79.6 %
+[74.0, 84.2] parts correct (teacher 87.9; byte student trained on the same data 59.2; zero-shot 27.5), at 0.09 s
+per decision locally; one correction round on 437 of its own visited states halves its spurious pausing and
+leaves parts-correct unchanged (79.2 %, −0.4 [−3.3, +3.3]). The residual is the notes it does not read
+(precedence 0/7, relabel 5/7), not distribution drift; validation agreement 93.8 % beside a flat loop is the
+third measurement here that agreement on records is not closed-loop competence.
+
+*Correction (D7, 2026-09-20) to 4.46:* the clause "its confidence ranks correctness at .654 against Jev's .81"
+compared the 27B's figure on the D4 decisions with a subset figure that was never Jev's on those decisions
+(method error 23). On the same decisions Jev ranks at .658 (strict) and .816 on the 126 single-answer decisions,
+against the 27B's .676 and .876; ECE .070 against .028. On records the 27B is at least as calibrated as Jev. The
+order-stability, latency and cost clauses stand; the calibration clause moves to 4.49.
+
+*Addendum (E90b, 2026-09-20) to 4.48:* twice the teacher data (6,489 records) gives 83.3 % [78.1, 87.5] in the
+loop, +3.7 [−3.3, +11.7] paired over the 1× head; recall 7/7, reroute 6/6, ambiguous 6/7, cosmetic 4/6, relabel
+4/7, precedence 0/7. The reading residual does not move with data volume at this scale.
+
+**4.49 · SUPPORTED (D7, 2026-09-20).** Calibration on records is not calibration in the loop, and the failure has a
+direction. On the single-answer decisions each model steered into, Jev's stated confidence stays within .03–.07 of
+its accuracy (ECE .08–.10; 545 and 123 decisions on two banks); the open 27B that was calibrated on Jev's recorded
+states (ECE .028) becomes over-confident by .135 on its own (ECE .153; accuracy 88 → 72 %; 387 decisions); the owned
+Laya head is under-confident by .18 on both (ECE .20–.22). The 27B's ranking stays excellent in its own states
+(AUROC .90): below .7 it is right 19 % of the time, above .7 90 % — which is why a .7 gate recovers it (D4d, D4e).
+Over-confidence is paid in violations, under-confidence in operator time; a fixed threshold means one thing only
+for the model whose number holds under the shift. Boundary: 122–545 decisions per cell; the in-loop scorer treats
+a foreign-object tray as blocked (declared); top-2 margin and entropy never beat top-1 confidence as a veto
+predictor (free attack closed).
+
+**4.50 · SUPPORTED, descriptive (D4e, 2026-09-20).** The unflagged surprises split by type. Ungated, Jev handles
+foreign_object 10/13 and marking_conflict 8/13 where the 27B handles 2/13 and 1/13; both, and the rules, handle
+qa_sticker (a precedence between two attributes) 2/14. Every surprise the ungated 27B handles, Jev handles (5/5);
+Jev handles 15 the 27B misses. A .7 gate adds +11 foreign_object and +9 marking_conflict to the 27B and +1
+qa_sticker; the oracle 40/40. Precedence between two cues is the reading residual in facts as in notes (E90b 0/7).
+
+**4.51 · NEGATIVE with mechanism (E91, 2026-09-20).** The RLCD training recipe is not what the owned head needs.
+On the same 421M encoder, records, seed and schedule, plain soft cross-entropy on the teacher's probability vector
+agrees more with the teacher (91.7 vs 87.9 %) and drives held-out seeds 4.6 points better [+1.7, +8.3] than the
+noisy-logit policy-gradient recipe (84.2 vs 79.6 %), with 40 % fewer pauses and more surprises handled (70 vs 62 %).
+With soft targets the proper-scoring optimum coincides with the cross-entropy optimum; the sampled noise is
+variance. Boundary: one encoder, 4,252 records, 3 epochs; the recipe may matter at other scales or with hard labels.
+
+**4.52 · SUPPORTED (E91, 2026-09-20).** Store the distribution, not the label. A head trained on the teacher's
+argmax as a one-hot label is calibrated in level (single-answer ECE .09, over-confidence +.02, after validation
+temperatures of 1.3–1.6) and uninformative in ranking (AUROC .58 against .73–.79 for soft-target heads; two thirds
+of its decisions above .9; wrong with median confidence .93), and drives worst (77.9 %, 8.65 pauses per episode).
+The ranking a governor spends travels in the probability vector; a label log discards it. Addendum to 4.48: the
+best owned head is now 84.2 % on held-out seeds, 3.7 points under the cloud teacher, at 90 ms on-device; every head
+still reads the precedence note 0/7. A temperature fitted on validation or on new-seed teacher states halves the
+heads' under-confidence (−.18 → −.09 to −.13) without moving the ranking (E91b, E91b2).
+
+**4.53 · SUPPORTED with a boundary (D8, 2026-09-20).** The closed-loop calibration property is not a property of one
+checkpoint. A second RLCD model from the same API (`jev-preview`), behind the identical request, matches
+`jev-latest` on recorded decisions (82.2 vs 81.5 %, paired +0.6 [−0.8, +2.2]; 95 % agreement), is calibrated on
+single-answer records (over-confidence −.06, ECE .10), and in its own states stays at **−.06** (ECE .08; 214
+decisions) where the open 27B drifts to +.135; gated at .7 it handles the identical 30 of 40 surprises and lands
+at 89.6 vs 88.8 %. Ungated it is slightly worse (82.5 vs 84.2 %, −1.7 [−3.3, −0.4]; 40 vs 50 % surprises; 21 vs
+16 % order flips). Boundary: the two checkpoints are siblings from one vendor's family; this is evidence for the
+family's training regime, not for every RLCD-trained model. Addendum to 4.49: two RLCD checkpoints on one side of
+the shift, one open model on the other.
+
+*Correction (method error 25, 2026-09-20) to 4.50:* the last sentence linked `qa_sticker` to the notes-bank
+`precedence` event. They differ: `precedence` is a hand-while-carrying-a-heavy-fragile-part conflict whose remedy
+(E76, 4.29) is a code-combined split question the E77 teacher lacks, inherited as 0/7 by every distilled head;
+`qa_sticker` is a precedence between two visual cues. The 4.50 finding about the three surprise types stands.
+
+*Addendum (E89c, 2026-09-20) to 4.45:* a second RLCD checkpoint (`jev-preview`) reproduces the annotator result to
+within 0.2 points (70.5 vs 70.3 % window accuracy; boundaries 92.4 / 96.3; consistency 98.2 %) with the identical
+confusions; the rule stays ahead at 75.5 %. The result is a property of the facts, not the checkpoint.
+
+**4.54 · SUPPORTED (E91c, 2026-09-20).** The owned head reaches the cloud teacher. A 421M pretrained typed-decision
+encoder distilled by plain soft cross-entropy from 6,489 of the teacher's typed records (4,252 + 1,800 on new seeds +
+437 correction labels) drives 40 held-out seeds at **88.3 % [83.7, 91.8]** against the teacher's 87.9 %, paired **+0.4
+[−0.8, +1.7]**, with the teacher's decisions per episode (10.4), pauses (1.27 vs 1.20), surprises handled (72 %) and
+per-event profile exactly, at 90 ms on-device with no API call. Two independent levers added: soft distillation over
+the RLCD recipe (+4.6 at 1×) and twice the records (+3.7 for the recipe head). Boundary: one head family, one cell,
+40 seeds; the head inherits the teacher's one failure (precedence 0/7 — a governor rule, E92) and stays under-confident
+by .09 on single-answer decisions after a validation refit; a temperature changes nothing in an ungated arm.
+
+*Correction (method error 27, 2026-09-20) to 4.49, 4.52 and 4.54:* the owned head's "under-confidence by .18 / .09"
+measured Laya's normalised-entropy score, not a probability. On the top-1 probability the soft-target heads are
+calibrated within ±.06 on single-answer held-out decisions (the 2× head within .015, ECE .05, the teacher .04),
+and the label-only head is over-confident (+.067, ECE .084) with the worst ranking (AUROC .56). The in-loop
+finding of 4.49 (open 27B +.135; RLCD checkpoints within .02) is unchanged and is now stated on one quantity.
+The 4.54 boundary "stays under-confident by .09" is withdrawn; the head's probabilities match its hit rate.
+
+**4.55 · SUPPORTED (E92, 2026-09-20).** The one event every judge failed was a code-owned safety rule, and the rule
+composes with every judge. A hand entering the corridor while a heavy fragile part is carried defeated the teacher
+and every distilled head (0/7: they pause, the part slips). The governor rule "set the part down before pausing when
+the held part is heavy and fragile and a hand is present" — written from facts the eye already emits — fires in
+exactly those seven episodes for every arm, saves the part in all seven, adds +2.5 [+0.8, +4.6] to the teacher
+(87.9 → 90.4 %), +4.2 [+0.8, +9.2] to the 1× plain-distilled head and +2.1 [+0.4, +3.8] to the 2× head, cuts
+violations by a fifth, takes broken parts from .17 per episode to zero, and moves no other event. With the rule the
+2× owned head equals the teacher with the rule, 90.4 = 90.4 (paired +0.0 [−1.3, +1.3]), on-device at 90 ms. The
+event still scores 5/7 for every arm because the saved part is then sent to the wrong tray in the same two seeds — a
+destination judgment, the next residual. Boundary: one rule for one event type; the rule was written after the
+event was identified, which is the correction loop at the code level.
+
+**4.56 · SUPPORTED (D7b, 2026-09-20).** Calibration transfers through plain distillation, not only accuracy. The
+shipped owned head — 421M open encoder, plain soft cross-entropy on the teacher's probability vectors, no RLCD
+reward and no temperature refit — is calibrated on the states its own actions created: over −.007, ECE .054 on 127
+single-answer held-out decisions, against the cloud teacher's +.014 / .083 on the same bank and the open 27B's
++.135 / .153. Four of four pre-registered predictions held (pre-registered 23:14 PDT, before scoring). Boundary:
+n = 127 in one instrument with one teacher; no interval computed on the ECE; the states shift but the world does
+not, so this is not evidence about domain shift, which stays an open limit.
+
+**4.56 · NEGATIVE with mechanism (E93, E93b, 2026-09-21).** A calibrated judge does not transfer to a new embodiment
+by changing the facts. On a second body (Pollen's MicroDuck biped in a room with a person; the shipped walking policy
+as the executor; facts, options and governor written in one night), the same API judge reaches the goal 75 % of the
+time against 98 % for a rule program written for the anticipated cases, and comes within touching distance of a
+standing person 19 times in 40 episodes against 3, by dithering between waiting and walking slowly toward a paused
+person with no detour skill. Two quantities tuned in the cell did not carry over: the handoff threshold (τ = .7 sat at
+the 38th percentile of confidence on the duck and paralysed the gated arms) and the calibration level (under-confident
+by .13 against ±.03 in the cell). Two did: the confirm window's economics (violations .10 vs the gate's .35 at 60 % of
+its operator time, τ set from the domain) and asking at a blocked door (10/10; no rule arm asked). The oracle reaches
+100 % and handles 39/40 events, so the instrument is fair after method error 28. Boundary: one night of representation
+work on the duck against twenty experiments' worth in the cell; that gap is the mechanism, and the recorded 1,873
+decisions are the material to close it.
+
+**4.57 · SUPPORTED with a boundary (E96, 2026-09-21).** On the second body the owned head reaches the rule program on
+the bank it was distilled from and beats its teacher there — 95 % goal on the anticipated bank against the rules' 95
+and the API judge's 60–75, with an ask at the blocked door in every episode and half the teacher's near-contacts — at
+90 ms and no API call, from 4,027 recorded decisions. On the unseen bank it handles the event whose facts it had seen
+(object in the doorway, 10/10) and none of the two events that require reading a note it never saw (0/10, 0/10, where
+the teacher read them 5/10 and 9/10), and on those states it is confidently wrong (hit rate 8 % at a stated .70).
+Distillation transfers behaviour, not reading. The confirm window recovers a third of the unseen events (16/30) at
+15.5 operator seconds per episode, and its 73 vetoes are the correction data for the next round. Boundary: one head,
+one body, thirty unseen episodes; the head's own-state probability is under by .23 on the anticipated bank.
+
+**4.58 · SUPPORTED with mechanism (E98, 2026-09-21).** One correction round on the owned head's own visited states,
+labelled by code's acceptable sets as uniform soft targets, teaches the copy the two notes it was blind to — right of
+way 0 → 10/10 on fresh seeds (oracle 8/10), follow 0 → the instrument's ceiling (3/10 = oracle) — and un-teaches
+decisiveness: the anticipated bank's goal rate falls 95 → 72 % (approach 10 → 1/10: it stands in front of a stopped
+person for 90 s), the object event 10 → 2/10, six falls from start–stop chattering, top-1 probability .50 against a
+hit rate of .96. The label form is the mechanism: a uniform target over an acceptable set that almost always contains
+stop and wait teaches that stopping is as good as moving. Boundary: one head, one round, one body; whether the
+right-of-way gain is reading or passivity is E100's question; the masked-target form is E101's remedy under test.
+
+**4.58 addendum · attribution (E100, 2026-09-21).** The gain is reading, not passivity. With the operator notes hidden
+from the same head on the same seeds, following drops 10/10 → 0/10 (`follow_person` 80 % → 0 % of decisions) and right
+of way 10/10 → 5/10 with cut-offs in five episodes; the object event, which has no note, is unchanged (2/10 = 2/10).
+Half of the right-of-way gain is general caution the round installed (5/10 without the note against 0/10 for the rules
+and for the uncorrected head); the other half and all of the following are the note. So a correction round labelled
+only by acceptable sets teaches the owned copy to read what its teacher read — at the price of decisiveness (4.58),
+which the label form is expected to fix (E101).

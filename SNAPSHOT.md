@@ -1,0 +1,1 @@
+Public snapshot exported 2026-09-21 by tools/export_public.py from a private working repository. Planning notes and audience-specific material are not included; large checkpoints and frame dumps are excluded.

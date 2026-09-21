@@ -1,0 +1,17 @@
+{
+ "e65": {
+  "skip_ahead": 100,
+  "repeat": 100,
+  "wrong_object": 99,
+  "irrelevant": 99,
+  "post_failure": 100,
+  "all": 99.5
+ },
+ "e65b": {
+  "subtle_failure": 100,
+  "benign_note": 100,
+  "recovered_then_continue": 100,
+  "drawer_precondition": 0,
+  "all": 75.0
+ }
+}

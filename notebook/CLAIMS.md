@@ -457,3 +457,21 @@ Half of the right-of-way gain is general caution the round installed (5/10 witho
 and for the uncorrected head); the other half and all of the following are the note. So a correction round labelled
 only by acceptable sets teaches the owned copy to read what its teacher read — at the price of decisiveness (4.58),
 which the label form is expected to fix (E101).
+
+**4.59 · SUPPORTED with a boundary (E97, 2026-09-21).** On real teleop-style demonstrations (Eidon's release, 13,451
+household recordings), the calibrated judge triages recording quality zero-shot from eleven categorical facts computed
+off the body-worn IMU alone: AUROC .78 against the dataset's own valid/flagged/invalid label, beside a hand rule at
+.64 and the base rate at .50, in 0.11 s per call; at the dataset's real prevalence its stated probability is within
+-0.027 of the truth. Boundary, twice: a logistic regression fitted on the same facts with 232 labels reaches .88
+(facts beat model wherever code can fit, E89), so the judge's place is before the labels exist and in choosing which
+recordings to label; and asked to name the chore from the same facts it is at chance (20 % vs 51 % for a centroid
+classifier): the judge reads notes and options, it does not recognise activities from motion statistics.
+
+**4.60 · SUPPORTED (E102, 2026-09-21).** On the second body with its skills fixed, the RLCD judge handles 29 of 30
+fresh episodes of three situations no rule was written for (follow a note, yield to crutches, an object in the
+doorway), above the truth-knowing oracle's 26 and above its own copy corrected on those very events (22); the rules
+handle 1. On the anticipated bank the same judge reaches the goal 82 % against the rules' 95 and its uncorrected
+copy's 95, walking into a child's metre in 13 episodes. Reading belongs to the judge and generalises; steady walking
+belongs to the distilled copy; one correction round bought the copy reading at the price of walking (4.58). On
+single-answer states the judge is right 100 % of the time at a stated .87–.89 on both banks; its copy before
+correction is right 6 % at .71. Boundary: one body, one judge checkpoint, thirty fresh episodes per bank.

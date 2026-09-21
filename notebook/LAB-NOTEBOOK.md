@@ -11725,3 +11725,148 @@ caution the correction round installed), and with it the head yields every time.
 copy to read: not the teacher's probabilities, not an API, just its own visited states labelled with the operator's
 veto. What it did not teach is *how to read without becoming passive*, and that is the label form (E101, training
 now). Claim 4.58 gains its attribution.
+
+## E102 · the teacher on the fixed instrument (pre-registration, 2026-09-21 13:25 PDT; launched right after — the account has credits again, verified with one call at 13:25)
+
+**Design.** The API judge (`jev-latest`) as the duck's judgment, R2 options, R5 instrument, seeds 0–39 (anticipated) and
+70–99 (unseen; fresh for the teacher too — its R1 records cover 0–69). Arms `jev`, `jev_confirm0.5`. These are the
+rows the ladder lacks: the same-instrument teacher beside its uncorrected copy (E99 `laya-r3`) and its corrected copy
+(E99 `laya-r4`). Runs concurrently with E101's training (API-bound; the sim is light). About 8,000 calls.
+
+**Predictions.**
+- **P102.1** teacher handles ≥ 18/30 unseen events on 70–99 (R1: 17/30 with the follow skill broken). Prior 60 %.
+- **P102.2** teacher follows ≥ 6/10 (R1 read the follow note in 5/10 through a skill that mostly failed). Prior 55 %.
+- **P102.3** teacher right of way ≥ 7/10 (R1: 9/10). Prior 70 %.
+- **P102.4** teacher anticipated-bank goal between 55 and 80 % (R1: 60; its uncorrected copy sits at 95, its corrected copy at 72). Prior 60 %.
+- **P102.5** own-state calibration: anticipated within ±.05 (R1 +.002), unseen within ±.15 (R1 −.132). Prior 60 %.
+- **P102.6** teacher falls ≤ 2 across 70 episodes (no start–stop chattering: R1 fell once in 70). Prior 65 %.
+- **P102.7** teacher's unseen events ≤ the corrected copy's 22/30 — the copy was corrected on visited states of these
+  very events, the teacher never saw them. Prior 55 %.
+- **P102.8** `jev_confirm0.5` vetoes ≤ 15 % of its windows at ≤ 20 operator seconds per episode (τ = .5 was set from
+  the R0 judge's confidence quantiles, i.e. for this model). Prior 50 %.
+
+## E97 · "Is this hour trainable?" — the judge as a data-quality annotator on Eidon's real demonstrations (pre-registration, 2026-09-21 13:32 PDT; launched right after)
+
+**Material.** Eidon AI's release (CC-BY-4.0): `recordings/metadata.parquet` (13,451 recordings; `qc_status` valid 11,841 /
+flagged 1,138 / invalid 472; `task_type` nine chores) and IMU shard 0 (`imu-0000.parquet`, recordings 1–2,700, 52 M rows,
+24 Hz quaternions from a seven-point harness: hands, forearms, shoulders, chest). The QC label is the dataset's own
+(video-derived: invalid recordings have hand-presence .07, flagged .68, valid .86), so the probe asks whether the
+*motion stream alone* carries the quality signal, and whether the judge reads it.
+
+**Facts (`src/field/e97_features.py`, `e97_eidon.py`).** Per recording, from the IMU only: duration band, sensors present,
+signal gaps, sample rate, each hand's motion band (mean angular speed), hand use (left/right/both), hands' motion
+relative to the torso, time with both hands still, torso motion, shoulder motion; for the trainability question the
+contributor's logged task is added. Bands were set from the feature quantiles without looking at any label.
+
+**Questions (TypeSafe Choice, `jev-latest`).** (1) *usable / not_usable* as a training demonstration for a manipulation
+policy — scored against `qc_status` valid vs not, on a balanced set: all 232 non-valid recordings of shard 0 (182
+flagged, 50 invalid) and 232 random valid ones. (2) *Which task?* among the nine chores, facts without the task label —
+scored against `task_type` on a stratified set of 280 (60 each of laundry, dishes, cleaning, cooking; all 20 bed, all
+20 watering). 744 calls, ≈ /bin/zsh.15.
+
+**Baselines.** Base rate (always usable: 50 % on the balanced set; majority class 21 % on the task set); an a-priori
+rule written before any label was read (usable iff all seven sensors, ≥ 30 s, both-hands-still fraction < .5, gaps
+< 10 %; its condition count 0–4 is its score); a logistic regression on the same numeric facts, two-fold, and a
+nearest-centroid classifier for the task — the "facts beat model" ceilings of E89.
+
+**Predictions.**
+- **P97.1** judge accuracy ≥ 60 % on the balanced trainability set (base rate 50). Prior 60 %.
+- **P97.2** judge AUROC ≥ the a-priori rule's AUROC. Prior 50 %.
+- **P97.3** the fitted logistic beats the judge's AUROC by ≥ .05 (the E89 lesson: on facts code can fit, the fit wins). Prior 60 %.
+- **P97.4** judge task accuracy ≥ 45 % (chance 17, majority 21). Prior 45 %.
+- **P97.5** judge ECE ≤ .10 on the usable probability against the QC label. Prior 40 %.
+- **P97.6** the judge catches ≥ 70 % of invalid recordings and ≤ 60 % of flagged ones (flagged is the softer label). Prior 60 %.
+- **P97.7** median latency ≤ 2 s per call; total spend ≤ $1. Prior 80 %.
+
+## E97 results (run ended 2026-09-21 13:33 PDT; written 13:36 PDT) · the judge triages real demonstrations for quality from motion facts alone, zero-shot, better than a rule and well under a fitted model; it cannot tell the chores apart
+
+`results/field/e97_answers.jsonl` (744 answers, 525,355 tokens in total, median latency 0.11 s per call). Scored by
+`src/field/e97_eidon.py score`.
+
+**Trainability, balanced set (n 464: 232 valid, 182 flagged, 50 invalid; base rate 50 %).**
+
+| judge of "usable for training" | accuracy | AUROC | catches invalid | catches flagged | says usable |
+|---|---|---|---|---|---|
+| base rate (always usable) | 50.0 % | .500 | 0 | 0 | 100 % |
+| a-priori rule (all sensors, ≥ 30 s, still < .5, gaps < 10 %) | 63.8 % | .638 | 44 % | 27 % | 83 % |
+| **Jev, zero-shot on the categorical facts** | **65.1 %** | **.780** | 64 % | 26 % | 81 % |
+| logistic on the same 14 numbers, two-fold | 83.8 % | .876 | 94 % | 76 % | 54 % |
+
+Mean stated probability of "usable" by label: valid .913, flagged .698, invalid .322. On the balanced set that is ECE
+.292 (mean p .765 against a valid rate of .50); **reweighted to shard 0's real prevalence (91.4 % valid) the same
+answers give mean p 0.887 against a valid rate of 0.914 — over -0.027, ECE 0.078.** The balanced set is
+the experimenter's construction; the judge answered as if in the wild, and in the wild its number is nearly right.
+
+**Task identity (n 280, six chores, chance 16.7 %, majority 21.4 %).** Judge **20.0 %** at a stated .39 (over +.19): it
+calls half of everything "cleaning" and invents "knitting" for cooking; nearest-centroid on the same facts, two-fold:
+**50.7 %**. The chore *is* in the motion stream; the judge cannot read it without labels.
+
+**Scoring.** **P97.1 held** (65 ≥ 60). **P97.2 held** (.780 ≥ .638). **P97.3 held** (.876 − .780 = .096 ≥ .05).
+**P97.4 failed** (20 %). **P97.5 failed as written** (.292 on the balanced set; 0.078 at the real prevalence — the
+prediction named the balanced set). **P97.6 failed as written** (invalid 64 % < 70; flagged 26 % ≤ 60 held).
+**P97.7 held** (0.11 s; a few cents). Four of seven.
+
+**Reading.** (1) *The annotator use case has its first real-data number.* Zero-shot, from eleven categorical facts
+computed off a body-worn IMU, with no label ever shown to it, the judge separates the dataset's own valid from
+flagged/invalid recordings at AUROC .78, against .64 for a sensible hand rule — and it reads the right things: the
+recordings it rejects are short (39 s vs 103), stiller (7 % vs 1 %), missing sensors (6.8 vs 7.0) and slow-handed
+(1.0 vs 1.5 rad/s). (2) *E89's lesson holds on real data:* with 232 labels a logistic fit on the same facts reaches
+.876 and catches 94 % of the invalid recordings; the judge is what you have on day one, before the labels exist, and
+what a fleet uses to decide *which* recordings to spend a human label on. (3) *Its probability means the prevalence it
+believes in*, not the one the experimenter built; on the natural prevalence it is calibrated within a few points,
+which is the number that matters for a data pipeline that keeps everything above a threshold. (4) *Recognition is
+not judgment:* asked which chore the motion belongs to, the judge is at chance while a centroid classifier is at 51 %;
+the reading skill it showed on notes and options does not extend to naming an activity from motion statistics — a
+task for a trained classifier, whose output would then be one more fact for the judge. Claim 4.59.
+
+## E102 results (run ended 2026-09-21 13:48 PDT; written 13:51 PDT) · on the fixed body the teacher reads all three unwritten situations, 29 of 30, above the oracle and its corrected copy, and walks the anticipated bank worse than the rules and worse than its own distilled copy
+
+`e102.jsonl`, `e102_record.jsonl` (5,282 teacher decisions). `jev-latest`, R2 options, R5 instrument, seeds 0–39 and 70–99.
+
+| arm (R5 instrument, fresh seeds 70–99) | goal | viol/ep | near | falls | unseen events (follow, object, right of way) | operator s | own-state calibration (over; single-answer) |
+|---|---|---|---|---|---|---|---|
+| rules | 97 % | 1.67 | 11 | 0 | 1/30 | 0 | – |
+| oracle (code, knows the truth) | 67 % | .20 | 2 | 0 | 26/30 (10, 8, 8) | 0 | – |
+| **teacher, jev** | 63 % | .20 | 5 | 1 | **29/30** (**10**, **9**, **10**); follow_person 100 % of its follow decisions | 0.7 | **+.013**, ECE .098; single-answer n 274: 1.00 at .89 |
+| teacher, jev_confirm0.5 | 60 % | .13 | 4 | 0 | 28/30 (10, 10, 8) | 7.5 (161 windows, 16 vetoes) | – |
+| corrected copy, laya-r4 (E99) | 43 % | .47 | 9 | 4 | 22/30 (10, 2, 10) | 5.5 | −.490 |
+| uncorrected copy, laya-r3 (E99) | 87 % | 1.77 | 18 | 4 | 10/30 (0, 10, 0) | 0.3 | +.117; single-answer 6 % at .71 |
+
+| arm (anticipated bank, seeds 0–39) | goal | viol/ep | near | child-zone entries | falls | events | operator s | own-state calibration |
+|---|---|---|---|---|---|---|---|---|
+| rules | 95 % | .12 | 4 | 0 | 1 | 36/40 | 0 | – |
+| **teacher, jev** | **82 %** | .57 | 10 | **13** | 0 | **23/40** (approach 10, blocked 10 with an ask in each, child **1**, cross 2) | 3.9 | **−.246** (top-1 .64, hit .88); single-answer n 33: 1.00 at .87 |
+| teacher, jev_confirm0.5 | 72 % | .20 | 6 | 2 | 0 | 26/40 | 26.1 (528 windows, 85 vetoes) | – |
+| uncorrected copy, laya-r3 | 95 % | .30 | 8 | 4 | 0 | 30/40 (child 6) | 6.0 | −.234 |
+| corrected copy, laya-r4 | 72 % | .42 | 13 | 2 | 2 | 31/40 (child 9) | 1.6 | −.458 |
+
+**Scoring.** **P102.1 held** (29 ≥ 18). **P102.2 held** (10/10). **P102.3 held** (10/10). **P102.4 failed** (82 %, above the
+55–80 band). **P102.5 failed as written** (unseen +.013 within ±.15 held; anticipated −.246 not within ±.05).
+**P102.6 held** (1 fall). **P102.7 failed** (29 > 22: the teacher beats the copy that was corrected on these very
+events). **P102.8 failed** (16 % vetoes, 26 s on the anticipated bank; 10 %, 7.5 s on the unseen one). Four of eight.
+
+**Reading.**
+1. *Reading is the teacher's, and it generalises where the correction did not.* On thirty fresh episodes of three
+   situations no rule was written for, the teacher handles 29 — the oracle, which follows code's acceptable sets,
+   handles 26, because the oracle's own set lets it walk into the crutches person too early (right of way 8/10) while
+   the teacher waits (34 % of its right-of-way decisions). The corrected copy, trained on 2,751 labelled states of
+   exactly these events, handles 22; its correction fixed two events and broke the third. The teacher never saw the
+   events and misses one episode.
+2. *Walking is the copy's.* On the bank the rules were written for, the teacher reaches the goal 82 % against the
+   rules' 95 and its own uncorrected copy's 95; it walks into the child's metre 13 times (child note 1/10 against the
+   copy's 6 and the corrected copy's 9) and cuts across the crossing person (cross 2/10, 8 near-contacts). Distillation
+   averaged the teacher's dithering into a steadier walker (E96); the copy inherited the behaviour and lost the reading.
+3. *The confirm window is a different arm at every confidence scale.* τ = .5 was set from the R0 teacher's quantiles;
+   on the unseen bank it opens 161 windows and the operator vetoes 16 of them at 7.5 s per episode (28/30 handled) —
+   the economics E88 measured; on the anticipated bank the same τ costs 26 s per episode for 85 vetoes and takes the
+   goal rate from 82 to 72, because the teacher dithers there and every dither is a window.
+4. *Calibration against code's acceptable set is a construct.* The teacher's top-1 probability sits at .64–.80 in
+   every version; its acceptability rate moved from .70 (R1 options) to .88 (R2 options, anticipated) to .78
+   (unseen), so the "over" statistic swings from +.002 to −.246 to +.013 without the model changing. On the
+   single-answer states, where the construct is unambiguous, the teacher is right 100 % of the time at a stated
+   .87–.89 on both banks — under-confident by about .12 and never wrong — while its uncorrected copy is right 6 % of
+   the time at .71 on the unseen ones. That is the cleanest calibration statement the bench makes.
+
+**Where the ladder stands on fresh seeds under the fixed instrument.** Unseen events of 30: rules 1 · uncorrected copy
+10 · corrected copy 22 · oracle 26 · **teacher 29**. Anticipated goal: corrected copy 72 · teacher 82 · rules 95 ·
+uncorrected copy 95 · oracle 100. Nobody yet has both; E101 (masked-target copy) is the attempt. Claim 4.60.

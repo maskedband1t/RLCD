@@ -67,6 +67,8 @@ positive). Every number is in `results/duck/LEADERBOARD.md` and the notebook's E
 | R5 (E99) | laya-r3, uncorrected | 95 % | 30/40 | 10/30 (0, 10, 0); four falls walking into the crutches person | +.117 (single-answer: right 6 % at .71) |
 | R5 (E99) | laya-r4, one correction round | 72 % | 31/40 | **22/30** (10, 2, 10) | −.490 (top-1 .49 at a hit rate of .98); six falls from start–stop chattering |
 | R5 (E100) | laya-r4 with the operator notes hidden (the note ablation) | – | – | 7/30 (follow **0**, object 2, right of way **5**): the following was the note, half the yielding was the note | notes hidden: single-answer states right 6 % at .65 |
+| R5 (E102) | **the teacher, jev**, same instrument, same seeds | 82 % (child note 1/10: 13 child-zone entries) | 23/40 | **29/30** (10, 9, 10) — above the oracle | +.013 unseen, −.246 anticipated; single-answer states 100 % at .87–.89 |
+| R5 (E102) | jev_confirm0.5 | 72 % | 26/40 | 28/30 | 16 % of windows vetoed; 7.5 s/ep unseen, 26 s anticipated |
 | R6 (E101) | correction round with masked targets (the head's own probabilities inside the acceptable set) | running | | fresh seeds 70–99 | |
 
 Read down the judge column: the API judge is beaten by the rules on the anticipated bank at every version and beats

@@ -12072,3 +12072,73 @@ narrowly** (right of way 8/10; follow degraded most, 10 → 4). One of five: the
 3. *So the judge's speed buys reading, and its cadence should be a governor knob*, not a constant: fast where the
    scene changes (a person walking), slow where it does not (a still person, a corridor). The governor has the facts to
    set it. Claim 4.62.
+
+## Field note · Inverted Lambda's Physical Agents SDK for Real2Sim (2026-09-21, 16:57 PDT; link from the author: x.com/InvLambda/status/2101945172124999962)
+
+**The post** (product update, 21 Sep, 43 s video; the syndicated text is cut mid-sentence): "Our SDK captures data from the
+robot's own cameras, sensors and LiDAR, and turns its deployment environment into an ultrarealistic simulation. Users can
+do the same with a phone or tablet. Robot owners and individual contributors …" No public documentation, paper or repo
+found for the SDK itself; the nearest published method is *Agentic Real2Sim* (arXiv 2607.19190, Jul 2026): linked
+vision-language agents turn a recording of a robot–object interaction into a runnable physical twin (segmentation and
+depth → geometry and poses; a physical-prior agent attaches identity, material, mass hints).
+
+**What it changes on our map.** This is the *translates the world once* box, productised: the deployment site becomes a
+simulation from the robot's own sensors or a phone scan. For our two halves that is not a competitor but the missing
+front end: (1) the duck bench's Room is written by hand — a site twin would generate the anticipated bank from the
+actual floor plan and the unseen bank from what the site actually contains; (2) the correction round (E98–E103) and the
+own-state calibration measurements (D7, E102) could be run in the site twin before the first real episode, which is
+where a fleet would want them; (3) the annotated options of R1 ("code's estimate: this would leave you about 0.4 m from
+the person") are exactly the kind of prediction a twin supplies. No probe tonight: the SDK is not public, and the
+phone-scan claim is a video. Pinned; the frontier row "a twin of the deployment site as the bench's world" is open.
+
+## E103 results (run ended 2026-09-21 18:56 PDT; written 20:39 PDT) · with an acceptable set that can say "move on", two correction rounds give the owned copy both halves: the rule program's walking (95 % = 95 %) and its teacher's reading (28 of 30 against 29), no API call in the loop
+
+`results/duck/head_r7` (val agreement 98.3 %, CE .573); training set: 4,027 teacher records + round 1 (2,751 masked, unseen
+states) + round 2 (3,664 masked, both banks, labelled by the progress-aware set). R7 instrument = R5 + the progress clause;
+R2 options. `e103.jsonl` (140 episodes), `e103_record.jsonl`.
+
+| arm (anticipated bank) | goal | viol/ep | near | falls | child-zone | events (approach, blocked, child, cross) | operator s | own-state calibration (over; single-answer) |
+|---|---|---|---|---|---|---|---|---|
+| rules | 95 % | .12 | 4 | 1 | 0 | 36/40 (10, 10, 10, 6) | 0 | – |
+| teacher, jev (E102) | 82 % | .57 | 10 | 0 | 13 | 23/40 (10, 10, 1, 2) | 3.9 | −.246 |
+| copy r3, uncorrected (E99) | 95 % | .30 | 8 | 0 | 4 | 30/40 (10, 10, 6, 4) | 6.0 | −.234 |
+| copy r6, masked round 1 (E101) | 70 % | .65 | 12 | 2 | 12 | 24/40 (10, 10, 2, 2) | 1.6 | −.263 |
+| **copy r7, masked rounds 1+2, progress-aware set** | **95 %** | .38 | 13 | 2 | **0** | **32/40** (10, 10, **10**, 2) | 1.0 | −.202; single-answer n 65: .908 at .952 (+.044) |
+| copy r7_confirm0.5 | 98 % | .30 | 11 | 1 | 0 | 32/40 | 6.2 (178 windows, 14 vetoes) | – |
+
+| arm (unseen bank, fresh seeds 70–99) | goal | viol/ep | near | falls | events (follow, object, right of way) | own-state calibration |
+|---|---|---|---|---|---|---|
+| rules | 97 % | 1.67 | 11 | 0 | 1/30 | – |
+| oracle (E103a, R7) | 67 % | .20 | 2 | 0 | 26/30 | – |
+| teacher, jev (E102) | 63 % | .20 | 5 | 1 | 29/30 (10, 9, 10) | +.013; single-answer 1.00 at .89 |
+| copy r3 | 87 % | 1.77 | 18 | 4 | 10/30 (0, 10, 0) | +.117; single-answer .06 at .71 |
+| copy r6 | 67 % | .33 | 9 | 0 | 29/30 (10, 10, 9) | −.181; single-answer .982 at .978 |
+| **copy r7** | 63 % | .33 | 9 | **0** | **28/30** (10, 9, 9) | −.181; single-answer n 278: **1.000 at .998** |
+| copy r7_confirm0.5 | 57 % | .33 | 9 | 0 | 26/30 | 45 windows, 0 vetoes |
+
+Choice shares on the anticipated bank: r3 walk_slow 82 / wait 6 / stop 5 %; r6 66 / 28 / 4; **r7 81 / 10 / 6** — the
+decisiveness of the uncorrected copy is back, with the reading kept.
+
+**Scoring.** **P103.1 held** (95 ≥ 90). **P103.2 held** (approach goal 10/10). **P103.3 held** (child 10/10). **P103.4
+held** (28 ≥ 26). **P103.5 held** (E103a). **P103.6 held** (2 falls). **P103.7 held** (E103a). **Seven of seven.**
+
+**Reading.**
+1. *The residue was the labeller's, and one clause closed it.* Nothing changed in the model recipe between r6 and r7:
+   the same masked targets, one more round, and an acceptable set that after six seconds of standing before a still
+   person says {walk_slow}. The copy that waited 90 s in front of a stopped person (r6, approach goal 0/10) now walks
+   on (10/10); the child note it walked through (2/10) it now handles 10/10 with zero zone entries, because the
+   anticipated bank's states were in the second round.
+2. *Both halves at once.* On the bank the rules were written for the copy equals the rules (95 = 95) and beats its
+   teacher (82); on the bank nobody wrote rules for it is one episode short of its teacher (28 vs 29), above the oracle
+   (26), and the rules have 1. It does this with no API call in the loop, at 90 ms a decision, and on its single-answer
+   states it is right 100 % of the time at a stated .998 (unseen) and 91 % at .95 (anticipated).
+3. *What is left is the cross event*: a person walking across the robot's path; 2/10 for the copy, its teacher and r6
+   alike, with two falls from walking slowly into the crossing person; the rules, which stop whenever anyone is close,
+   handle 6/10. The copy's teacher never learned to stop for a crossing adult either — it is the one anticipated
+   situation where the hand rule's caution beats the judge's reading, and the governor should own it (as E92's set-down
+   rule did in the cell).
+4. *The confirm window at τ = .5* is a sane arm for this head: on the anticipated bank 178 windows, 14 vetoes, 6 s per
+   episode, goal 98 %; on the unseen bank 45 windows and no vetoes.
+
+**The ladder, closed for this body.** Unseen events of 30: rules 1 · copy r3 10 · oracle 26 · copy r7 28 · teacher 29.
+Anticipated goal: teacher 82 · copy r7 95 · rules 95 · oracle 100. Claim 4.63.

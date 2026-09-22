@@ -72,13 +72,17 @@ positive). Every number is in `results/duck/LEADERBOARD.md` and the notebook's E
 | R6 (E101) | **laya-r6**, correction round with masked targets | **70 %** (approach: goal 0/10 — waits 90 s; child 2/10) | 24/40 | **29/30** (10, 10, 9) = the teacher; no start–stop falls | −.181 unseen (single-answer .982 at .978), −.263 anticipated |
 | R6 (E101) | laya-r6_confirm0.5 | 70 % | 24/40 | 27/30 | 70 windows, 29 vetoes, 6 s/ep |
 | R5 (E105) | the teacher with 1 s / 3 s of injected think time (the body carries its last command meanwhile) | 95 % / 92 % (0 s: 82) | 30/40 / 24/40 | 23/30 / 18/30 (0 s: 29; follow 6 / 4) | near-contacts 14 / 20 (0 s: 10); falls 1 / 3 anticipated, 0 / 4 unseen |
-| R7 (E103) | acceptable set gains a progress clause; correction round 2 from both banks' visited states, masked targets | queued | | | |
+| R7 (E103) | **laya-r7**: progress-aware acceptable set, correction rounds 1+2 (masked, both banks) | **95 %** (approach 10/10, child 10/10; cross 2/10 with two falls) | 32/40 | **28/30** (10, 9, 9) | −.202 anticipated (single-answer .908 at .952), −.181 unseen (single-answer 1.000 at .998) |
+| R7 (E103) | laya-r7_confirm0.5 | 98 % | 32/40 | 26/30 | 178 windows, 14 vetoes, 6 s/ep anticipated; 45 windows, 0 vetoes unseen |
 
 Read down the judge column: the API judge is beaten by the rules on the anticipated bank at every version and beats
 them wherever no rule was written; the owned copy of it matches the rules on the anticipated bank and is blind on the
 unseen one; one correction round labelled by acceptable sets teaches it the notes and un-teaches it to move (the label
 form is the lever: uniform targets say stopping is as good as walking). R5 fixes the body's skills that did nothing
-(turn-in-place is a no-op on the shipped policy); R6 tests the label form.
+(turn-in-place is a no-op on the shipped policy); R6 tests the label form. R7 gives the acceptable set a progress clause and a
+second round from both banks: the copy walks like the rules (95 = 95) and reads like its teacher (28 vs 29), with no
+API call in the loop. The cross event (a person walking across the path) is the residue for every judge; the rules'
+caution handles it 6/10 and the governor should own it.
 
 ## How to run an iteration
 

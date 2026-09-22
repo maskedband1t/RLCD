@@ -494,3 +494,12 @@ the rule program's (goal 95 %, child note 7/10 from 1/10) because it dithers les
 decisions there. Cadence is therefore a governor knob: fast where the scene moves, slow where it does not. The field
 number that prompted this (a graph node that waits for its decision: 5.42 s with the 0.1 s judge, 8.79 s with a frontier
 VLM) is the same latency paid in time instead. Boundary: one judge, one body; cadence and staleness not yet separated (E106).
+
+**4.63 · SUPPORTED (E103, 2026-09-21).** On the second body, two correction rounds from the operator's vetoes alone — the
+owned head's own probability vectors masked to code's acceptable set, with the set able to say "move on" after six
+seconds before a still person — give the fleet's copy both halves at once: the rule program's walking on the anticipated
+bank (goal 95 % = 95 %, child note 10/10, approach 10/10) and its teacher's reading on the unwritten bank (28 of 30
+against the judge's 29, the oracle's 26, the rules' 1), with no API call in the loop and single-answer states right
+100 % at a stated .998. Seven of seven predictions. The residue is one anticipated situation, a person crossing the
+robot's path (2/10 for copy and teacher alike, 6/10 for the rules), which belongs to the governor. Boundary: one body,
+one judge family, thirty fresh episodes per bank; the cross event unsolved.

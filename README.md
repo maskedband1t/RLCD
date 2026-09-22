@@ -3,7 +3,9 @@
 Anurag Akkiraju · September 2026 · MIT
 
 **The gap.** A robot fleet with people supervising it runs on hand-written rules, and rules only cover the situations someone thought of in advance. New situations arrive every day, and a person covers them until an engineer writes the rule.
+
 **The bet.** A small calibrated decision model in the seat between the robot's policy and the person: shown the situation in plain words and a list of options code wrote, it picks one and says how sure it is, with a probability that means what it says.
+
 **Measured.** Four simulated setups and one real dataset, 122 pre-registered experiments, every one against the rule program an engineer would write first and against an oracle that knows the truth. The misses are in the record.
 
 ![A human-sized humanoid carries a cup to Maya, who is on a call. Left, the rules hand it to her anyway. Middle, the rules rewritten with hindsight wait. Right, the calibrated judge waits until she looks up.](figures/demo-g1-seed42-phone-rules-vs-judge.gif)

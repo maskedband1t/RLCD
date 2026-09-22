@@ -12647,3 +12647,55 @@ holds on 40–69 (28). Three of five pre-registered; the two misses were repaire
 4. *What this cannot show.* The same person wrote the banks and the fixes, so the nine minutes are a lower bound on a
    stranger's time and the 30/30 an upper bound on a stranger's program. A bank designed by someone else, scored by the
    frozen rules, the judge and the copy before its author sees it, is the open test (README, what-to-test-next).
+
+## E115 · the judge as a rule-drafting instrument (pre-registration, 2026-09-22 00:35 PDT; mining and runs launched right after)
+
+**Why.** the author: "how can we test how the judge adapts to unfamiliar situations, how quickly, and how we can use that to write
+better rules". E114 measured the programmer's time-to-rule once the bank is seen. E115 asks whether the judge's own recorded
+decisions on a new situation can be compiled into a rule a programmer can read and ship, and whether the operator's vetoes
+make that rule better. If so, the loop is: the judge covers the situation on day one; its decisions become a draft clause;
+the programmer reviews a tree, not a log.
+
+**Design.** `src/duck/e115_mine.py` fits a decision tree (depth ≤ 6, leaves ≥ 15 decisions) on the judge's recorded
+decisions, features = the same categorical facts the rule programs read (robot, nearest person, the asker, any child, note
+keywords, options on offer), label = the chosen action (hand-overs canonised to asker/other). Two variants per body: **all**
+decisions, and **clean** = only decisions inside code's acceptable set (the operator would not have vetoed them). The arm
+`rules_mined[_clean]` puts the tree in front of the frozen rules: it decides where its leaf is ≥ 60 % pure and the action is
+on offer; otherwise the frozen program decides. Duck: mined from the judge's E102 records (seeds 70–99, R5), tested on seeds
+40–69 (same three situations, seeds never mined) and 0–39; the judge itself is run on 40–69 as the reference (`e115`).
+Humanoid: mined from the judge's E110 records (seeds 40–69, R2), tested on fresh seeds 70–99 and on 0–39; frozen rules,
+hindsight rules and the judge run on 70–99 as references (`e115g1`). The trees are printed to `results/duck/mined_*.txt`.
+
+**Predictions.**
+- **P115.1** duck `rules_mined` (all) handles ≥ 25/30 on 40–69 (frozen 1; hindsight v2 28). Prior 55 %.
+- **P115.2** humanoid `rules_mined` (all) inherits the judge's blind spot on 70–99: phone ≥ 8/10, scissors ≥ 8/10, reaching child ≤ 3/10. Prior 60 %.
+- **P115.3** the clean variant beats the all variant on the humanoid's reaching child (≥ 7/10): the vetoed decisions drop out and the frozen program, which handles it, takes over. Prior 55 %.
+- **P115.4** both mined variants stay within 3 events of the frozen rules on the anticipated banks (duck 36/40, humanoid 39/40). Prior 60 %.
+- **P115.5** the judge on the duck's 40–69 (R5) handles ≥ 27/30, so the mined rule is measured against its own teacher on the same seeds. Prior 70 %.
+- **P115.6** (measurement) each tree has ≤ 16 leaves and reads as rules; the notebook prints them.
+**Interpretation, fixed in advance.** If P115.1–2 hold, the judge's decisions are a usable first draft of the rule for a
+new situation, blind spots included; if P115.3 holds, the operator's vetoes are what turn the draft into a better rule than
+the judge, which is the data loop in rule form. If the mined rule falls well short of the judge, the judge is using something
+the categorical facts do not carry (the note's wording, the option text), and the rule-drafting path needs the note itself.
+
+### E115 interim, duck (00:37 PDT 2026-09-22; the humanoid and the judge references still running)
+
+The judge's 2,812 recorded decisions on seeds 70–99 compile into a 12-leaf tree (agreement with the judge's own choices .988);
+the operator-clean subset (2,206 decisions inside the acceptable set) into an 11-leaf tree (.994). The top split of both is
+the follow note ("note:follow → follow_person", 1,790 decisions); a standing robot with a person on crutches → wait (167);
+at the goal → done. On seeds 40–69, never mined:
+
+| arm (unseen 40–69) | events | follow | object in door | right of way | anticipated 0–39 |
+|---|---|---|---|---|---|
+| frozen rules | 1/30 | 0 | 1 | 0 | 36/40 |
+| rules + drafted clauses, all decisions | 20/30 | 10 | 10 | **0** | 27/40 (blocked 6, child 6, cross 5; 5 child-zone entries, 5 door collisions) |
+| rules + drafted clauses, operator-clean | **30/30** | 10 | 10 | 10 | 27/40 (the same) |
+| hindsight programmer v2 (E114) | 28/30 | 10 | 8 | 10 | 36/40 |
+
+Two things before the rest arrives. (1) The vetoes matter: the tree from all decisions learned the judge's walking-past of the
+crutches person as well as its waiting (right of way 0/10); the tree from the un-vetoed decisions does not (10/10), above the
+judge's own 29 and the programmer's 28 on these seeds. (2) The draft is unscoped: mined only on the unseen bank, it fires
+with pure leaves on anticipated states too and overrides the frozen program where the program was right (blocked door,
+child note), 9 events lost. A programmer reviewing the tree would gate its clauses on the situation's trigger (the note, the
+crutches), as the tree's own top splits suggest; that scoped variant is the next pre-registration (E115b), not a fix applied
+to these numbers. P115.4 fails on the duck as stated.

@@ -52,6 +52,15 @@ Where the rules were written they win (39 vs 33–36). Where they were not, the 
 the oracle's 27/30 at 20–24 operator seconds per episode. Unsolved for the judge alone: the reaching child (0/10, it steps
 around into her). Not yet run on this body: the owned copy; the world changing on its own; items with physics.
 
+## See it move
+
+![Seed 42, Maya on a call: frozen rules, rules rewritten with hindsight, the RLCD judge](../figures/demo-g1-seed42-phone-rules-vs-judge.gif)
+
+![Seed 44, a child asks for the scissors: frozen rules, rules rewritten with hindsight, the RLCD judge](../figures/demo-g1-seed44-scissors-rules-vs-judge.gif)
+
+Filmed by `src/humanoid/demo_gif.py`, which injects a filmed room into the harness's own episode loop, so the clip is the run.
+The label bar shows the decision, the judge's stated confidence, the requester's distance and attention, and what the robot holds.
+
 ## How to run
 
 ```bash

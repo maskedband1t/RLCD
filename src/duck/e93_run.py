@@ -51,6 +51,23 @@ class RulesHindsight(Rules):
         if getattr(self, "slow_after", 0) > 0 and f["robot"]["doorway"] == "passed" and d not in ("touching_distance", "close"): self.slow_after -= 1; return "walk_slow", {}   # clause 3b (v2, after reading the trace): the object is still underfoot for 5 cm after the doorway reads "passed"
         return super().decide(f, opts, room)
 
+class RulesMined(Rules):
+    """E115: the frozen rules with the judge's drafted clauses in front: a decision tree compiled from the judge's recorded decisions on
+    the unseen bank (src/duck/e115_mine.py). The tree decides where its leaf is at least 60 % pure and its action is on offer; otherwise
+    the frozen program decides. `rules_mined_clean` was compiled from the decisions the operator would not have vetoed."""
+    name = "rules_mined"
+    def __init__(self, path):
+        import joblib; from duck.e115_mine import mined_choice; super().__init__(); self.m = joblib.load(path); self.mined_choice = mined_choice
+    def decide(self, f, opts, room):
+        if f["robot"]["status"] == "fallen_over": return "ask_operator", {}
+        if "done" in opts: return "done", {}
+        m = self.mined_choice(self.m, f, opts)
+        if m is not None: return m[0], {"confidence": m[1], "source": "mined"}
+        return super().decide(f, opts, room)
+
+def mined_path(arm):
+    body = "g1" if BODY == "g1" else "duck"; return os.environ.get("DUCK_MINED_DIR", "results/duck") + f"/mined_{body}_{'clean' if arm.endswith('_clean') else 'all'}.pkl"
+
 class Oracle:
     name = "oracle"
     def decide(self, f, opts, room):
@@ -115,6 +132,8 @@ class DuckLaya:
         return choice, j
 
 def make_arm(arm):
+    if BODY == "g1" and arm in ("rules_mined", "rules_mined_clean"):
+        from humanoid.fetch_arms import FetchRulesMined; a = FetchRulesMined(mined_path(arm)); a.name = arm; return a
     if BODY == "g1" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):
         from humanoid.fetch_arms import FetchRules, FetchRulesAsk, FetchRulesHindsight, FetchOracle; return {"rules": FetchRules, "rules_ask": FetchRulesAsk, "rules_hindsight": FetchRulesHindsight, "oracle": FetchOracle}[arm]()
     if arm == "laya": return DuckLaya()
@@ -126,6 +145,8 @@ def make_arm(arm):
     if arm == "rules": return Rules()
     if arm == "rules_ask": return RulesAsk()
     if arm == "rules_hindsight": return RulesHindsight()
+    if arm in ("rules_mined", "rules_mined_clean"):
+        a = RulesMined(mined_path(arm)); a.name = arm; return a
     if arm == "oracle": return Oracle()
     if arm == "jev": return DuckJev()
     if arm.startswith("jev_gate"): return DuckJev(tau=float(arm[len("jev_gate"):]))

@@ -2,7 +2,20 @@
 
 Anurag Akkiraju · September 2026 · MIT
 
-**RLCD use cases in robotics, measured.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in three simulated instruments and one real dataset, asking where calibrated decision models — RLCD-trained "System One" models, of which TypeSafe's Jev is the first — create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns. Every prediction was dated before its run; failed predictions and 39 method errors stay in the record next to the results.
+**In one minute.** Robot fleets that are not yet fully autonomous run with people watching: a hand-written rule program decides when the robot acts on its own and when a person takes over. Rules only cover the situations someone thought of in advance. This project measures what a different kind of model does in that seat: a **calibrated decision model**, a small model that is shown the situation in plain words and a short list of options that code wrote, picks one, and says how sure it is with a probability that means what it says. The training method is called **RLCD** (reinforcement learning from calibrated decisions); TypeSafe's **Jev** is the first such model, and it is the "judge" in every result below. An example: a human-sized robot is carrying a cup to Maya, who asked for it, and an operator's note says she is on a call and must not be handed anything until she looks up. The rule program hands her the cup. The judge waits.
+
+We measured this on four simulated setups and one real dataset, always against the same two baselines: a **rule program** written for the situations we anticipated and frozen before the tests, and an **oracle**, code that reads the true state. The setups are a **sorting cell** (an arm sorting parts with a person's hand nearby), the **duck** (a small two-legged robot in a room with a person), the **humanoid** (a human-sized robot fetching and handing over an object among people) and a **picking station** (a warehouse picker with a remote helper, at decision level with no physics). Every prediction was written down before its run; the misses stay in the record with the hits, next to 39 logged mistakes of our own.
+
+Three findings, in plain words:
+- **Where no rule was written, the judge handles the situation and the rules do not; once the rule is written, the rules win.** So the judge's value is the time before a rule exists, plus a number the operator can spend during that time. We measured that time: the rules' author closed the gap in minutes once shown the situations.
+- **The number keeps its meaning.** On the states its own actions create, the judge's probability stays within .02 of its hit rate; a strong open model's drifts by .135, so a fixed handoff threshold means one thing for the judge and something else, week to week, for the open model.
+- **The fleet can own the judgment.** A small model distilled from the judge's decisions and corrected only by the operator's vetoes reaches the judge on three bodies, with no cloud call, and the judge's own decisions compile into rules a person can read and ship.
+
+If you have five minutes: watch the clips under [See it move](#see-it-move), look at the ladder figure below, then read [docs/WHY.md](docs/WHY.md), one page in plain words.
+
+**Words used here.** *Judge*: the calibrated model in the decision seat. *Rule program* (or *the rules*): the hand-written policy, frozen before the tests. *Oracle*: code that knows the true state; the ceiling. *Bank*: a fixed set of test situations, ten or twenty runs each; the *anticipated* (or *written*) bank is what the rules were written for, the *unwritten* (or *unseen*) bank was designed afterwards. *Handled*: the situation ended the way its definition requires. *Veto window*: the judge proposes, an operator has one second to veto. *Gate*: below a stated confidence the robot asks instead of acting. *The copy* (or *the owned head*): a 421M-parameter model distilled from the judge, run on the robot. *Corrections* (or *vetoes*): the operator's disagreements, used as labels.
+
+**The programme.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in four simulated setups and one real dataset, asking where calibrated decision models create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns.
 
 **Three numbers.** On a second body, the RLCD judge handles 29 of 30 situations nobody wrote a rule for, where the rule program handles 1; once the program's author has seen the bank, the same program handles 29 (seven lines, fourteen minutes), so the judge's edge on unwritten situations is the time before a rule exists, not accuracy after. Driving its own states, its probability stays within .02 of its hit rate while a dense open 27B's runs .135 over, so a fixed handoff threshold means one thing for the judge and drifts for the open model. A 421M head the fleet owns, distilled from the judge's decisions and corrected only by the operator's vetoes, reaches the judge on three bodies (88.3 vs 87.9 % in the cell; 28 of 30 on the duck; on a human-sized humanoid one round of vetoes takes it from 0 to 25 of 30 fresh unwritten situations, above the judge's 19, with no falls and no wrong hand-overs) while walking like the rule program where the rules were written (95 % = 95 %; 36 of 40 on the humanoid, above its teacher's 33).
 
@@ -73,11 +86,11 @@ Anurag Akkiraju · September 2026 · MIT
 
 ## Start here (five minutes)
 
-0. [docs/WHY.md](docs/WHY.md): what this is and why, in plain words, one page.
-1. **The ladder figure above**, then [docs/DUCK-BENCH.md](docs/DUCK-BENCH.md): what the bench holds fixed, what each version changed, and the ladder table with every number.
+0. The clips under [See it move](#see-it-move): the humanoid on a phone call and with a child asking for scissors, rules against the judge; the owned copy before and after the operator's vetoes.
+1. [docs/WHY.md](docs/WHY.md): what this is and why, in plain words, one page. Then **the ladder figure above** and [docs/DUCK-BENCH.md](docs/DUCK-BENCH.md): what the bench holds fixed, what each version changed, and the ladder table with every number.
 2. [notebook/CLAIMS.md](notebook/CLAIMS.md): the claims ledger with boundaries, corrections appended and never rewritten. Read 4.54 (the owned head reaches its teacher), 4.58 (the correction lever), 4.61 (the copy reads like its teacher, no API).
 3. [docs/RECIPE.md](docs/RECIPE.md): what a team would do on Monday, with the schema and commands.
-4. The clips under [See it move](#see-it-move): the owned copy before and after the operator's vetoes, and the sorting cell's set-down rule.
+4. [docs/FETCH-BENCH.md](docs/FETCH-BENCH.md) and [docs/PICKING-BENCH.md](docs/PICKING-BENCH.md): the humanoid room and the picking station, each with its ladder.
 5. [notebook/LAB-NOTEBOOK.md](notebook/LAB-NOTEBOOK.md): 11,000 lines of dated pre-registrations, results and scoring, if you want to check any of it.
 
 ## The core results

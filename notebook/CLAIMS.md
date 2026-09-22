@@ -569,3 +569,8 @@ or replaced by the operator's answer, compile into a three-leaf rule that handle
 shipped wrong and no operator time at the rules' speed, tying the oracle and the programmer with hindsight; the draft from all
 decisions copies the judge's exception habit (40/60, eight operator seconds per line). Caveat: the learned clause reads "a note
 and the item in hand → return bin", true of this bank's three notes and not of notes in general. Three of four predictions.
+
+**4.74** (2026-09-22 11:35 PDT, E116) A second masked correction round on the humanoid keeps round one's result (25/30 unwritten, 36/40
+written, no wrong hand-over, one fall) and halves the veto window's operator cost (2.2 s per episode, 3 vetoes in 50 windows;
+the window reaches 30/30), but does not move the reaching child (5/10 in both rounds): the acceptable set permits waiting,
+so the labeller cannot teach moving on, the duck's E101 residue again. Four of five predictions.

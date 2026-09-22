@@ -93,8 +93,8 @@ Seeds 0–39 unless noted. goal = reached within 90 s; viol = near-contacts + fa
 | E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_hindsight | 30 | 0 % [-0, 11] | nan s | 0.00 | 0 | 1.3 | 0.33 | 30/30 |
 | E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_mined | 70 | 0 % [0, 5] | nan s | 0.16 | 1 | 1.7 | 0.43 | 49/70 |
 | E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_mined_clean | 70 | 1 % [0, 8] | 115.5 s | 1.41 | 69 | 0.0 | 0.00 | 30/70 |
-| e116 | e116 | laya-g1r2 | 30 | 0 % [-0, 11] | nan s | 0.30 | 0 | 0.5 | 0.13 | 25/30 |
-| e116 | e116 | laya-g1r2_confirm0.5 | 29 | 0 % [0, 12] | nan s | 0.03 | 0 | 2.3 | 0.03 | 29/29 |
+| e116 | e116 | laya-g1r2 | 70 | 0 % [0, 5] | nan s | 0.20 | 3 | 1.4 | 0.34 | 61/70 |
+| e116 | e116 | laya-g1r2_confirm0.5 | 70 | 0 % [0, 5] | nan s | 0.07 | 0 | 9.6 | 0.39 | 66/70 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | rules | 100 | 40 % [31, 50] | 15.4 s | 0.60 | 0 | 0.6 | 0.03 | 40/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | rules_ask | 100 | 40 % [31, 50] | 15.4 s | 0.60 | 0 | 12.6 | 0.63 | 40/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | oracle | 100 | 100 % [96, 100] | 10.9 s | 0.00 | 0 | 0.2 | 0.01 | 100/100 |

@@ -13154,3 +13154,30 @@ options *are* planner-style candidates annotated with code's predicted clearance
 demo's decision (33 of 40, 20 of 30, two falls). **Test, later, together:** the demo's planner as bench 3's option source
 (two or three detour paths with their clearances) against the skill options, same seeds, same judge: does a richer option
 list move the anticipated-bank number or only the operator time? Named in the north-star graph.
+
+### E116 results (training 07:39–10:38, loops 10:38–11:33 PDT 2026-09-22; scored 11:36) · round two keeps everything round one won and does not fix the reaching child
+
+`results/duck/head_g1_r2`: 4,992 teacher + 1,405 round-1 + 4,360 round-2 corrected states (2,212 vetoed decisions relabelled),
+val agreement 92.7 %. Tested on seeds 40–69 (never visited by r1 or r2) and 0–39.
+
+| arm | unseen 40–69 | per situation | wrong hand-overs | falls | operator s | anticipated | falls |
+|---|---|---|---|---|---|---|---|
+| copy r1 (E113, fresh 70–99) | 25/30 | 10, 5, 10 | 0 | 0 | 0 | 36/40 | 1 |
+| **copy r2** | **25/30** | 10, **5**, 10 | 0 | 0 | 0.5 | 36/40 | 1 |
+| copy r2 + veto window | **30/30** | 10, 10, 10 | 0 | 0 | **2.2** (50 windows, 3 vetoes; r1: 4.2, 20 vetoes) | 36/40 | 4 |
+| judge (E110, same seeds) | 20/30 | 10, 0, 10 | 0 | 2 | 3.9 | 33/40 | 2 |
+
+Own-state calibration: r2's decisions on the unseen bank are inside the acceptable set 94 % of the time at a stated .77
+(under-confident by .17; r1 on fresh seeds: 39 % at .69). Single-answer states: right 100 % at .99.
+
+**Scoring.** P116.1 ✘ (reaching child 5, not 8). P116.2 ✔. P116.3 ✔ (36). P116.4 ✔ (1 fall, 0 wrong). P116.5 ✔ (over-confidence
+did not grow; it turned into under-confidence). **Four of five.**
+
+**Reading.** The second round's 4,360 states taught the copy to choose inside the set almost always (94 %) and halved the veto
+window's cost, but the reaching child stays at 5 of 10 in both rounds: the acceptable set there says "wait, stop, walk slowly
+or turn away, keep the cup, move on to the asker", the masked target keeps the copy's own preference among those, the copy
+prefers waiting, and a wait in front of a reaching child is scored as unhandled when the cup never reaches the asker (nine
+child-zone entries on that bank). The veto window resolves it every time because the operator's replacement is the walk
+past. This is the duck's E101 residue in a new coat: a labeller that permits waiting cannot teach moving on; the humanoid's
+R3 (an acceptable set that, after a few seconds, prefers the walk past over the wait, as R7 did on the duck) is the
+pre-registered next step, not run today.

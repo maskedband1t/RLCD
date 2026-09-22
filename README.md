@@ -2,7 +2,7 @@
 
 Anurag Akkiraju · September 2026 · MIT
 
-**RLCD use cases in robotics, measured.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in three simulated instruments and one real dataset, asking where calibrated decision models — RLCD-trained "System One" models, of which TypeSafe's Jev is the first — create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns. Every prediction was dated before its run; failed predictions and 36 method errors stay in the record next to the results.
+**RLCD use cases in robotics, measured.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in three simulated instruments and one real dataset, asking where calibrated decision models — RLCD-trained "System One" models, of which TypeSafe's Jev is the first — create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns. Every prediction was dated before its run; failed predictions and 39 method errors stay in the record next to the results.
 
 **Three numbers.** On a second body, the RLCD judge handles 29 of 30 situations nobody wrote a rule for, where the rule program handles 1; once the program's author has seen the bank, the same program handles 29 (seven lines, fourteen minutes), so the judge's edge on unwritten situations is the time before a rule exists, not accuracy after. Driving its own states, its probability stays within .02 of its hit rate while a dense open 27B's runs .135 over, so a fixed handoff threshold means one thing for the judge and drifts for the open model. A 421M head the fleet owns, distilled from the judge's decisions and corrected only by the operator's vetoes, reaches the judge on three bodies (88.3 vs 87.9 % in the cell; 28 of 30 on the duck; on a human-sized humanoid one round of vetoes takes it from 0 to 25 of 30 fresh unwritten situations, above the judge's 19, with no falls and no wrong hand-overs) while walking like the rule program where the rules were written (95 % = 95 %; 36 of 40 on the humanoid, above its teacher's 33).
 
@@ -155,7 +155,7 @@ Log state, options and the probability vector for every decision. Convert number
 
 - `notebook/LAB-NOTEBOOK.md` — every pre-registration with its date, then its results and scoring; failed predictions kept.
 - `notebook/CLAIMS.md` — the claims ledger, each with its boundary; corrections appended, never rewritten.
-- `paper/appendix-method-errors.md` — the method errors we caught in our own work (32 so far), with fixes and the rules adopted.
+- `paper/appendix-method-errors.md` — the method errors we caught in our own work (39 so far), with fixes and the rules adopted.
 - `results/` — every run's raw outputs; `figures/` — the figures; `paper/main.md` — the paper draft.
 - One command regenerates the headline tables from the committed results:
 ```bash

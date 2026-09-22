@@ -13139,3 +13139,18 @@ lost). **Three of four.**
    measurement. It goes on the list.
 3. *Method error 39 mattered more than any model choice.* Same records, same trees, 20/60 with the station's facts hidden from
    the compiler and 60/60 with them visible. The feature set is now body-agnostic and the notes are words, not a keyword list.
+
+### Field note (2026-09-22 11:06 PDT) · Jev at the decision node of a G1 in a virtual kitchen (x.com/jpmontoya271/status/2102420153829056638)
+A 22-second demo by an independent builder: TypeSafe's Jev in control of a Unitree G1 in a virtual kitchen, mission "reach the
+stove with obstacles on the way"; a VLM and depth information map the kitchen, a path planner proposes ways around the
+obstacles, and Jev chooses which move to make next. No numbers, no baseline, no failure cases: a demonstration of the
+architecture, not a measurement of it. **What it confirms:** the same division of labour we run on bench 3, on the same body,
+arrived at independently: a frontier model translates the world once (use case 20), code enumerates the options (here a
+planner's candidate paths; our skills with the closest-approach annotation, R2), and the calibrated judge chooses at the
+node (the GaP pattern, Jacob's 5.42 s). **What it does not say and we do:** what a rule program does at the same node
+(bench 3: 39 of 40 where written, 10 of 30 where not), what the judge misses (the reaching child, 0 of 10), what the choice
+costs the operator, and what the fleet keeps (the copy, 25 of 30 after one round). **Probe:** none needed; E110's R2
+options *are* planner-style candidates annotated with code's predicted clearance, and E110 is the measured version of this
+demo's decision (33 of 40, 20 of 30, two falls). **Test, later, together:** the demo's planner as bench 3's option source
+(two or three detour paths with their clearances) against the skill options, same seeds, same judge: does a richer option
+list move the anticipated-bank number or only the operator time? Named in the north-star graph.

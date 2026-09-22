@@ -96,3 +96,39 @@ arms completed all 140 episodes asking nineteen times per episode, and the scori
 judge record carried a probability. Fix: API errors are counted per episode and three in a row abort the arm; the
 dead-judge episodes are quarantined in `e95_jev_invalid_apicredits.jsonl`. Rule: an arm that cannot reach its model
 has no result, and a harness must refuse to produce one.
+
+**31. The teacher's unseen records admitted into a correction round (E98, 2026-09-21).** A `--seeds 0-69` filter let the
+judge's unseen-bank decisions into the copy's training set; the run was killed at minute three and relaunched with a separate
+`--extra` path for corrections. Rule: the teacher's data for the copy is the anticipated bank only; the unseen bank is for testing.
+
+**32. Turn-in-place was a no-op on the shipped walking policy (bench 2 R5, E99, 2026-09-21).** The duck's policy turns two
+degrees a second in place, so turn-away, follow and step-aside did nothing for four rounds, and the scripted person walked
+through the robot. Fix: turns became arcs at slow walk; the person detours. Rule: measure every skill's effect on the body
+before any arm is scored on it.
+
+**33. A circular split (E107, 2026-09-21).** One prediction split the field logs by the governor's own confidence threshold,
+the quantity under test. Reported as circular, with a correction paragraph. Rule: a split variable must never be the thing measured.
+
+**34. A stop-start every second topples the humanoid (bench 3, E108–E109, 2026-09-21).** The G1's walking policy cannot
+take a halt each cycle; asks and stops became falls. Fix: per-skill stands (ask at zero command, stop and wait at the
+creep-cancelling reverse, confirm as a slow walk) and the operator's answer holding the wheel for two seconds. Rule: a body's
+fragility belongs in the instrument, not in the judge's score.
+
+**35. A checklist item that mixed two questions (E111, 2026-09-21).** Item one's truth conflated two conditions; the literal
+truth was reported. Rule: one item, one condition.
+
+**36. The doorway fact fires inside the kick zone (bench 2, found by E114, 2026-09-22).** "Passed" reads at ten centimetres
+past the door line; the kick detector counts a fast step to fifteen. Every arm ran under it; the judge's and the oracle's
+object-in-door scores were partly decision-timing luck; the deterministic rewritten rule exposed it. Fix planned as R8. Rule:
+run every new instrument against the rewritten rules first.
+
+**37. Placing while a hand is in the source tote counted as unacceptable (bench 4, E117, 2026-09-22).** The set forbade a
+placement that touches nothing. Fix: R1; no outcome changed. Rule: acceptable sets describe contact, not proximity.
+
+**38. The drafted-rule arms had no station variant (E122, 2026-09-22).** They fell through to the duck's program and crashed
+on a missing fact before a line ran. Fix: a station variant. Rule: every arm is body-aware or refuses to run.
+
+**39. The drafting tool never saw a body's facts (E122, 2026-09-22).** Its features were six note keywords and the duck's
+fact keys; on the station the novelty gate found nothing new on the leak and recall lines and the frozen rules shipped them
+(20 of 60). Fix: every fact dict flattened, notes as a bag of words (60 of 60). Rule: a compiler must be shown every fact the
+judge saw.

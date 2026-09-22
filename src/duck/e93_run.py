@@ -126,6 +126,7 @@ class DuckLaya:
         self.render, self.question = render_state, question; self.agent = laya.Agent(os.environ.get("DUCK_HEAD", "results/duck/head_r3"), device="mps" if torch.backends.mps.is_available() else "cpu")
         self.tau, self.confirm = tau, confirm; self.name = "laya" + os.environ.get("DUCK_HEAD_TAG", "") + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")); self.calls = 0; self.latency = []; self.errors = 0   # DUCK_HEAD_TAG e.g. "-r4" runs two heads in one results file (E99)
     def decide(self, f, opts, room):
+        if len(opts) == 1: k1 = next(iter(opts)); return k1, {"choice": k1, "confidence": 1.0, "probabilities": {k1: 1.0}, "source": "single-option"}
         q = self.question(opts); t0 = time.time()
         ans = self.agent.predict(self.render(f), {"action": {"type": "choice", "instructions": q["ins"], "criteria": q["crit"]}})["answers"]["action"]
         probs = {k: round(float(v), 3) for k, v in ans.get("probabilities", {}).items()}; top1 = max(probs.values()) if probs else float(ans["confidence"])

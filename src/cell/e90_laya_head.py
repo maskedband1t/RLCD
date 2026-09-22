@@ -45,6 +45,7 @@ def build_items(rows, tok, cfg):
     items = []; dropped = 0
     for r in rows:
         q = question(r["options"]); keys = list(q["crit"].keys())
+        if len(keys) < 2: dropped += 1; continue   # a single-option decision carries nothing to learn (the station's "done" states)
         target = np.array([r["answer"]["probabilities"].get(k, 0.0) for k in keys], float); s = target.sum(); target = target / s if s > 0 else np.full(len(keys), 1 / len(keys))
         seq, markers = build_sequence(tok, render_state(r["state"], cfg["max_len"]), q, cfg["max_len"], cfg["head_max_len"])
         if len(markers) != len(keys): dropped += 1; continue

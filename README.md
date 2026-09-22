@@ -2,6 +2,14 @@
 
 Anurag Akkiraju · September 2026 · MIT
 
+**The gap.** A robot fleet with people supervising it runs on hand-written rules, and rules only cover the situations someone thought of in advance. New situations arrive every day, and a person covers them until an engineer writes the rule.
+**The bet.** A small calibrated decision model in the seat between the robot's policy and the person: shown the situation in plain words and a list of options code wrote, it picks one and says how sure it is, with a probability that means what it says.
+**Measured.** Four simulated setups and one real dataset, 122 pre-registered experiments, every one against the rule program an engineer would write first and against an oracle that knows the truth. The misses are in the record.
+
+![A human-sized humanoid carries a cup to Maya, who is on a call. Left, the rules hand it to her anyway. Middle, the rules rewritten with hindsight wait. Right, the calibrated judge waits until she looks up.](figures/demo-g1-seed42-phone-rules-vs-judge.gif)
+
+*Same seed, same body. Maya asked for the cup; a note says she is on a call. Left, the frozen rules hand it over. Middle, the same rules after their author saw the situation. Right, the judge waits, stated confidence .31, and hands over when she looks up.*
+
 **In one minute.** Robot fleets that are not yet fully autonomous run with people watching: a hand-written rule program decides when the robot acts on its own and when a person takes over. Rules only cover the situations someone thought of in advance. This project measures what a different kind of model does in that seat: a **calibrated decision model**, a small model that is shown the situation in plain words and a short list of options that code wrote, picks one, and says how sure it is with a probability that means what it says. The training method is called **RLCD** (reinforcement learning from calibrated decisions); TypeSafe's **Jev** is the first such model, and it is the "judge" in every result below. An example: a human-sized robot is carrying a cup to Maya, who asked for it, and an operator's note says she is on a call and must not be handed anything until she looks up. The rule program hands her the cup. The judge waits.
 
 We measured this on four simulated setups and one real dataset, always against the same two baselines: a **rule program** written for the situations we anticipated and frozen before the tests, and an **oracle**, code that reads the true state. The setups are a **sorting cell** (an arm sorting parts with a person's hand nearby), the **duck** (a small two-legged robot in a room with a person), the **humanoid** (a human-sized robot fetching and handing over an object among people) and a **picking station** (a warehouse picker with a remote helper, at decision level with no physics). Every prediction was written down before its run; the misses stay in the record with the hits, next to 39 logged mistakes of our own.
@@ -10,6 +18,16 @@ Three findings, in plain words:
 - **Where no rule was written, the judge handles the situation and the rules do not; once the rule is written, the rules win.** So the judge's value is the time before a rule exists, plus a number the operator can spend during that time. We measured that time: the rules' author closed the gap in minutes once shown the situations.
 - **The number keeps its meaning.** On the states its own actions create, the judge's probability stays within .02 of its hit rate; a strong open model's drifts by .135, so a fixed handoff threshold means one thing for the judge and something else, week to week, for the open model.
 - **The fleet can own the judgment.** A small model distilled from the judge's decisions and corrected only by the operator's vetoes reaches the judge on three bodies, with no cloud call, and the judge's own decisions compile into rules a person can read and ship.
+
+**Where a calibrated number fits in a robot fleet**, each measured or tried here (the full table with status is under [Use cases](#use-cases-for-rlcd-models-in-robotics)):
+- **The judgment seat**: code lists what the robot could do next, the model picks one and says how sure it is.
+- **The handoff trigger and the confirm window**: hand the robot to a person when the probability splits, or propose and give the operator one second to veto, at two thirds of the operator time.
+- **The surprise gate**: when the facts deviate and no note explains it, low confidence becomes an ask instead of a wrong action.
+- **The owned copy**: distil the cloud judge into a small model on the robot and correct it from operator vetoes alone.
+- **Rules drafted from decisions**: the judge's decisions on a new situation, filtered by the vetoes, compile into a rule a person can read and ship.
+- **The annotator, the trainability scorer and the verifier**: label teleop hours, score which recordings are worth learning from, and grade episodes against a checklist with calibrated yes/no answers as a reward.
+- **The picking station**: the grasp-score threshold and the remote picker, with wrong picks, exceptions and operator seconds as the numbers.
+- **Where it did not work**: a critic over a language planner's steps, a wrist-camera perception question, and dispatch by expected cost, all negative and kept.
 
 If you have five minutes: watch the clips under [See it move](#see-it-move), look at the ladder figure below, then read [docs/WHY.md](docs/WHY.md), one page in plain words.
 

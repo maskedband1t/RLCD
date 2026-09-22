@@ -13181,3 +13181,7 @@ child-zone entries on that bank). The veto window resolves it every time because
 past. This is the duck's E101 residue in a new coat: a labeller that permits waiting cannot teach moving on; the humanoid's
 R3 (an acceptable set that, after a few seconds, prefers the walk past over the wait, as R7 did on the duck) is the
 pre-registered next step, not run today.
+
+*Method error 40 (11:38 PDT, tooling, no result affected):* the station's teacher records include 440 single-option decisions (the
+"done" state), which the copy's trainer cannot take (index out of range) and which carry nothing to learn. Fix: the trainer drops
+them and the copy answers a single-option state without the head. E120 relaunched on the same pre-registration.

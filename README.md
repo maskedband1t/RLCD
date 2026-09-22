@@ -158,6 +158,34 @@ Calibrated arms read `TYPESAFE_API_KEY` from the environment (`jev-latest`; `CEL
 | `src/duck/`, `results/duck/` | the duck bench: MicroDuck in a room with a person; every iteration on the leaderboard |
 | `models/` | checkpoints and how to reproduce them |
 
+## Why this kind of model, and not a frontier model in the seat
+
+Not because a frontier vision-language model judges worse. The seat has four requirements and a frontier model in it fails three.
+
+1. **Speed.** The seat decides every half second while the body moves. A calibrated decision model answers in a tenth of a second; a frontier model takes seconds. Three seconds of think time on a moving body doubled near-contacts and lost 11 of 29 unwritten situations with no gain in task time (E105); on a skill graph a decision node that waits paid the same latency in task time, 5.4 s per pickup with the calibrated judge against 8.8 s with a frontier model (Jacob's Graph-as-Policy test).
+2. **The number.** Every operator-time saving here comes from a probability that means the same thing every time: propose and wait one second for a veto, gate only the unflagged surprises. This kind of model returns a probability per option as its native output, and it holds on the states its own actions create (D7, D8). A frontier model generates text; its confidence is a sentence. The nearest test we could afford, a dense open 27B behind the identical interface, kept the accuracy and drifted the number by .135 (D4, D7).
+3. **Cost.** A fraction of a cent per decision against cents, at on the order of a hundred thousand decisions per robot per day.
+4. **Ownership.** The judgment distils into a 421M model the fleet owns, retrains from its operators' corrections, and runs on the robot for free (E91c, E103). Nobody owns a frontier model.
+
+Frontier models belong outside the loop, in three roles the map names: writing the rule program or the skill graph, translating the world into facts once, and teaching. **The honest gap:** a frontier model in the seat itself is unrun here; the direct comparison on judgment quality is a claim this work does not make, and it is first on the list below.
+
+## What to test next, singly and together
+
+Untested things are listed the way any scientific work lists them: what each would show, alone or in combination.
+
+| test | alone, it would show | together with |
+|---|---|---|
+| A frontier model in the judge's seat, same harness | whether the accuracy gap to a calibrated model is real, at known cost and latency | the think-time coupling (E105): its quality at its own latency |
+| A frontier model as the *teacher* of the owned copy | whether distillation from a text-generating model yields a calibrated copy at all | the correction loop: whose corrections repair whose blindness |
+| A human-sized body (an open G1 walking policy runs headless here, 0.6–0.9 m/s, real turns) | the ladder at human distances and speeds; whether the mechanisms reproduce | a home room and a store aisle: the two companies' worlds |
+| One operator, many robots | what the confirm window and the gate buy when attention is the scarce resource | the humanoid fleet: the number a fleet company pays for |
+| Real takeover logs as the correction source | whether operators' takeovers teach what code's acceptable sets taught | shadow scoring of the teleop stream: one number before anything touches a robot |
+| Cadence without staleness (decide every 1.5 s on fresh facts) | whether fewer decisions or staler ones produced E105's gain | the governor setting cadence from the scene |
+| The open 27B on the fixed instrument (running) | the ladder's open-model row on the same body and seeds as the judge | the note ablation: does the 27B read the notes? |
+| A site twin from the robot's own sensors as the bench's world | the anticipated bank generated from a real floor plan | correction rounds and own-state calibration in the twin before the first real episode |
+| The other twelve Eidon shards; sub-action labels | the annotator's accuracy, not only its triage | the trainability probe at fourteen times the size |
+| The cross event as a governor rule | whether the one unsolved anticipated situation is code's, as the set-down rule was | every judge on the ladder, re-scored |
+
 ## Boundaries
 
 Everything positive about the decision loop is measured in simulation we built, with ground truth we defined. Real data appears three times: dispatch on fleet records (E53) and object identity on wrist-camera frames (E64) were negative; quality triage of real demonstrations (E97) was positive and activity recognition negative. The clone is about 200 MB because every decision record is included. The RLCD claim rests on two checkpoints of one vendor's family. Forty held-out seeds per loop; single-answer calibration cells of 122–545 decisions. A frontier model in the judge's seat is unrun; the harness runs any model behind the identical interface.

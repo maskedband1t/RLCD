@@ -52,3 +52,16 @@ not the accuracy leader anywhere; its edge is a number a governor can spend, at 
 
 Evidence for every sentence: the [README](../README.md), the [claims ledger](../notebook/CLAIMS.md), the
 [lab notebook](../notebook/LAB-NOTEBOOK.md).
+
+**Why this kind of model and not a frontier model like Astra.** Not because a frontier model judges worse. The seat needs
+four things and a frontier model fails three: speed (a tenth of a second against seconds, and seconds cost safety on a
+moving robot), an honest number as its native output (a frontier model's confidence is a sentence), cost (a fraction of
+a cent against cents, at a hundred thousand decisions a robot-day), and ownership (a 421-million-parameter copy the
+fleet can retrain and run for free). Frontier models belong outside the loop: writing the rules, translating the world
+into facts once, teaching. We have not put a frontier model in the seat ourselves; that is the first thing on the list.
+
+**What to test next.** A frontier model in the seat at its own latency; a frontier model as the copy's teacher; a
+human-sized body (an open humanoid walking policy already runs here) in a home room and a store aisle; one operator for
+many robots; real takeover logs as the corrections; deciding less often on fresh facts; the open 27B on the same body;
+a twin of the deployment site as the bench's world; the rest of the real recordings; the one unsolved crossing
+situation as a safety rule. Each is listed in the README with what it would show alone and in combination.

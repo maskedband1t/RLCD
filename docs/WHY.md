@@ -90,6 +90,14 @@ the edge is reading, not general caution. And the rules' author, given the bank,
 point: the judge's value is not that it beats a rule that exists; it is that it handles the situation before the rule
 does, with a number that says how sure it is.
 
+**The picking station.** The loop a warehouse or store picker runs on is a grasp score, a threshold, and a remote person
+for the rest. We built that loop at decision level, with no physics, and ran the same arms through it. On sixty lines an
+operator's note made unusual (a knife ordered without a sleeve, a bottle that turns out to be leaking, a recalled lot), the
+frozen rules shipped every item and the judge shipped none; on the forty ordinary lines the rules handled all forty and the
+judge handled thirty-two, faster, but six of its misses were double picks it placed with high stated confidence, which
+neither the gate nor the veto window can catch. That is the honest shape on every bench: the judge covers what a note
+announces on day one, and it has one confident blind spot per bench that a one-line rule covers.
+
 **How the judge helps write the next rule.** Its decisions on the new situation are recorded with the facts it saw. Keep
 the ones the operator did not veto, compile them into a small decision tree over those facts, and the tree reads like a
 rule: on the duck, "if the note says follow, follow the person; if standing and the person has crutches, wait; at the

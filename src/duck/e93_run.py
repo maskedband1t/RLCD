@@ -6,11 +6,13 @@ import numpy as np
 sys.path.insert(0, "src")
 BODY = os.environ.get("DUCK_BODY", "duck")   # "g1": the humanoid fetch room (bench 3) behind the identical harness
 if BODY == "g1": from humanoid.fetch_sim import Room, DECISION_S, MAX_T, EVENTS
+elif BODY == "pick": from picking.station import Station as Room, DECISION_S, MAX_T, EVENTS   # bench 4: the picking station, decision level
 else: from duck.e93_sim import Room, DECISION_S, MAX_T, EVENTS
 ROLE = ("You are the judgment layer of a human-sized household robot that fetches and hands over objects with people in the room; code executes whatever you choose and owns the walking and the arms."
-        if BODY == "g1" else "You are the judgment layer of a small walking robot that shares a room with a person; code executes whatever you choose and owns the low-level walking.")
+        if BODY == "g1" else "You are the judgment layer of a picking robot at a warehouse station: it picks order lines out of a tote into a customer tote or a return bin, and a remote picker can be asked; code executes whatever you choose and owns the grasping."
+        if BODY == "pick" else "You are the judgment layer of a small walking robot that shares a room with a person; code executes whatever you choose and owns the low-level walking.")
 THINK_S = float(os.environ.get("DUCK_THINK_S", "0"))   # E105: injected decision latency in seconds (0 = the synchronous loop of every run before E105)
-ASK_S = 4.0; CONFIRM_S = 1.0
+ASK_S = 20.0 if BODY == "pick" else 4.0; CONFIRM_S = 1.0   # a remote picker's click costs about twenty seconds of attention; the small robots' operator answers in four
 
 class Rules:
     """A program written for the anticipated cases: stop close to a person, slow when they approach, wait at a blocked door."""
@@ -66,7 +68,7 @@ class RulesMined(Rules):
         return super().decide(f, opts, room)
 
 def mined_path(arm):
-    body = "g1" if BODY == "g1" else "duck"; suffix = arm[len("rules_mined_"):] if arm.startswith("rules_mined_") else "all"
+    body = {"g1": "g1", "pick": "pick"}.get(BODY, "duck"); suffix = arm[len("rules_mined_"):] if arm.startswith("rules_mined_") else "all"
     return os.environ.get("DUCK_MINED_DIR", "results/duck") + f"/mined_{body}_{suffix}.pkl"
 
 class Oracle:
@@ -133,6 +135,8 @@ class DuckLaya:
         return choice, j
 
 def make_arm(arm):
+    if BODY == "pick" and arm in ("rules", "rules_ask", "oracle"):
+        from picking.arms import PickRules, PickRulesAsk, PickOracle; return {"rules": PickRules, "rules_ask": PickRulesAsk, "oracle": PickOracle}[arm]()
     if BODY == "g1" and arm.startswith("rules_mined"):
         from humanoid.fetch_arms import FetchRulesMined; a = FetchRulesMined(mined_path(arm)); a.name = arm; return a
     if BODY == "g1" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):

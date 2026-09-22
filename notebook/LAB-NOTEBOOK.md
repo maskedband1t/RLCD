@@ -12894,3 +12894,126 @@ on 0–39. Same bench, same arms, tag `-g1r2`. The open question is the reaching
 - **P116.3** anticipated bank ≥ 34/40 (r1: 36). Prior 65 %.
 - **P116.4** falls ≤ 2 across 70 episodes; wrong hand-overs 0 on 40–69. Prior 60 %.
 - **P116.5** own-state over-confidence on the unseen bank does not grow: stated top-1 minus hit rate ≤ +.31 (r1's number). Prior 50 %.
+
+## E117 · bench 4, the picking station at decision level (pre-registration, 2026-09-22 07:51 PDT; launched right after)
+
+**Why.** the author: "continue with the picking station". A warehouse or store picker runs on a grasp-score threshold and a remote
+person for the rest; the numbers a picking company asks for are seconds per line, wrong picks, escalations and operator
+seconds, and how those move when the situations change. Bench 4 measures the decision layer for exactly that loop.
+
+**What it is, honestly.** `src/picking/station.py`: no physics. One order line per episode: pick the named item out of a tote
+and place it in a customer tote or the return bin; a remote picker can be asked (twenty seconds of their time, and the answer
+resolves what the robot could not: it reads the label, marks a grasp point, says where the item goes). The grasp scorer is a
+seeded stochastic model (success .25/.60/.90 at low/mid/high score), the verify check reads weight, every action has a stated
+duration, and the clock is the sum. The judge, the rule program, the oracle, the copy and the rule-drafting tools run through
+the duck harness unchanged (`DUCK_BODY=pick`). Anticipated bank, seeds 0–39, the rules written for it: grasp failure (low
+scores), double pick (two items in hand, weight heavier), a person's hand in the tote, an unreadable label. Unwritten bank,
+seeds 40–99 (twenty per situation), designed after the rules froze, each carried by an operator's note: a sharp item ordered
+into a customer tote when there are no sleeves (return bin), an item that turns out wet after the grasp (return bin), a recalled
+lot on the label (return bin). Frozen rules: wait for a hand, put back a double, scan twice then ask, regrasp a low score, ask
+after three attempts, place in the order's destination; they read no notes. Arms: rules, rules_ask, oracle, jev, jev_gate0.5
+(ask the picker when the stated confidence is under .5: the classic picking loop), jev_confirm0.5 (a one-second window the
+picker can veto). 100 lines per arm, records kept.
+
+**Predictions.**
+- **P117.1** frozen rules: anticipated ≥ 36/40; unwritten ≤ 6/60 (they ship the knife, the wet bottle and the recalled lot). Prior 70 %.
+- **P117.2** the judge handles ≥ 48/60 unwritten lines (it reads the three notes). Prior 60 %.
+- **P117.3** the judge is within 4 events of the rules on the anticipated bank. Prior 55 %.
+- **P117.4** wrong picks shipped to a customer tote over 100 lines: rules ≥ 50, judge ≤ 8. Prior 65 %.
+- **P117.5** the gated judge (τ .5): wrong picks ≤ 3 at ≤ 15 operator seconds per line; the confirm window: wrong picks ≤ 3 at ≤ 6 operator seconds per line. Prior 50 %.
+- **P117.6** seconds per line on the anticipated bank: the judge within 20 % of the rules. Prior 55 %.
+- **P117.7** (the fleet number) for the gated judge, wrong picks per line among lines with no ask are within .05 between the two banks, while its ask rate is higher on the unwritten bank: the threshold keeps its meaning when the situations change. Prior 50 %.
+
+### E117 results (runs 07:51–07:54 PDT 2026-09-22; written 08:05) · on the picking station the judge ships nothing it should not, fails one written situation confidently, and turns the recall into an exception instead of a return
+
+| arm | anticipated events (of 40) | per situation (double pick, grasp failure, hand in tote, unreadable label) | s per line | operator s per line | wrong picks | unwritten events (of 60) | per situation (leaking, recalled, sharp) | s per line | operator s per line | wrong picks | exceptions (line skipped) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| frozen rules | **40/40** | 10, 10, 10, 10 | 15.4 | 1.5 | 0 | 0/60 | 0, 0, 0 | 8.7 | 0 | **60** | 0 |
+| rules + ask once on a note | 40/40 | | 15.4 | 1.5 | 0 | 0/60 | 0, 0, 0 | 28.7 | 20.0 | 60 | 0 |
+| oracle | 40/40 | | 14.4 | 0.5 | 0 | 60/60 | 20, 20, 20 | 8.7 | 0 | 0 | 0 |
+| judge | 32/40 | **4**, 10, 8, 10 | **10.9** | 0 | **6** (double picks shipped) | 40/60 | 20, **0**, 20 | 13.0 | 6.7 | **0** | 20 (every recalled line) |
+| judge, gated at .5 (ask the picker) | 34/40 | 4, 10, 10, 10 | 20.4 | 10.0 | 6 | 40/60 | 20, 0, 20 | 13.3 | 7.0 | 0 | 20 |
+| judge + one-second veto window | 34/40 | 4, 10, 10, 10 | 17.3 | 7.0 | 6 | 40/60 | 20, 0, 20 | 13.0 | 6.7 | 0 | 20 |
+
+Own-state calibration, judge: anticipated stated .85 at a hit rate of .72 (over by .13); unwritten .91 at .76 (over by .15;
+single-answer states .89 at .67, over by .22). Ranking survives: AUROC .79 and .99.
+
+**Scoring.** P117.1 ✔. P117.2 ✘ (40 < 48). P117.3 ✘ (32 against 40). P117.4 ✔ (60 ≥ 50; 6 ≤ 8). P117.5 ✘ (6 wrong picks
+under the gate and under the window; the six are confident placements the gate never sees). P117.6 ✘ (10.9 against 15.4 s:
+the judge is 29 % faster, outside the ±20 % I wrote). P117.7 ✘ (the gated judge's wrong picks per un-asked line: .24 on
+the anticipated bank, 0 on the unwritten; its ask rate .50 and .35: lower where the situations were new). **Two of seven.**
+
+**Reading, from the traces.**
+1. *The double pick is this bench's crossing adult.* Holding "two items" with the weight "heavier than expected", the judge
+   placed in the customer tote six times in seven, stated .73–.95, and never chose put back. The facts say it plainly; the
+   frozen rules handle it in one line; the judge does not read it. A confident error on a written situation is the worst
+   case for a threshold: the gate at .5 and the window both let all six through.
+2. *The recall becomes an exception, not a return.* On every recalled line the judge, holding nothing, chose skip the line
+   (.67) and then done: nothing shipped, the picker was not even asked, but the note said "put them in the return bin" and
+   the bottle stays in the tote for the next order. Safe by the fleet's count (0 wrong picks), unhandled by the note's.
+   Two definitions, both reported: handled (the item reaches the return bin) 40/60; safe (nothing wrong ships) 60/60.
+3. *The two notes it reads, it reads completely.* The sleeve note and the leak note: 20/20 each, return bin, no ask. The
+   frozen rules ship all sixty; asking once at the start of a noted line does not help the rules (the picker's answer comes
+   before the robot holds anything), which is the ask-timing point from bench 1 again.
+4. *Speed.* The judge is faster than the rules on the written bank (10.9 against 15.4 s per line) because it grasps at a
+   mid score where the rules regrasp and it scans once where the rules scan twice; part of that speed is the double pick it
+   should have put back.
+5. *Method error 37 (bench):* the acceptable set forbids placing in the destination while a person's hand is in the
+   source tote; placing does not touch that tote. Two of the judge's ten hand-in-tote lines were real grasps during the
+   window (counted); the strict set also marked correct placements as violations. Fix in the bench's R1, pre-registered
+   before it runs; no number above changes (event handling counts contacts, not the set).
+6. *What this adds to the story.* Same shape as the other three benches: the judge covers the situations a note announces
+   on day one and fails one written situation the rules never miss; the number is over-confident on the states its own
+   choices create here (+.13/.15), which is the first bench where that holds for the judge, and its errors are confident.
+   The rules-with-hindsight and the vetoes-to-drafts loop are the next steps, plus the mix drift below.
+
+## E118 · the item-mix drift on the picking station (pre-registration, 2026-09-22 07:57 PDT; the clean-pick lines launched right after)
+
+**Why.** The number a picking company asks for: how the escalation rate and the un-escalated error rate move when the mix of
+lines changes. A calibrated threshold should escalate more when lines get harder and keep the un-escalated error rate flat.
+
+**Design.** A fifth line type, the clean pick (no complication; seeds 1000–1069, seventy lines; label readable, score mid or
+high, one item, no hand, no note), run for rules, oracle, jev and jev_gate0.5. Three mixes are then composed from per-line
+results already measured (lines are independent, so a mix is a weighted average of its line types): **easy** = 70 % clean,
+30 % anticipated; **mixed** = 30 % clean, 40 % anticipated, 30 % unwritten; **hard** = 10 % clean, 40 % anticipated,
+50 % unwritten. For the gated judge, per mix: ask rate (lines with ≥ 1 ask), wrong picks per un-asked line, seconds per
+line, operator seconds per line. Same for the plain judge and the rules.
+**Predictions.**
+- **P118.1** the gated judge's ask rate is monotone in the mix: easy < mixed < hard. Prior 60 %.
+- **P118.2** its wrong picks per un-asked line rise with the mix rather than staying flat, because the double-pick error is confident (E117): hard − easy ≥ .03. Prior 65 %.
+- **P118.3** the rules' wrong picks per line rise faster than the gated judge's (they ship every unwritten item): hard − easy ≥ .3 for the rules. Prior 80 %.
+- **P118.4** on clean lines the judge is within 2 s per line of the rules and ships nothing wrong (≤ 1 of 70). Prior 70 %.
+
+### E118 results (clean lines run 07:57–07:58 PDT 2026-09-22; mixes computed 08:12) · the gate escalates more as the mix hardens, but its errors are the confident ones and its doubts are on clean lines
+
+Seventy clean lines (seeds 1000–1069): rules 70/70 at 10.0 s per line (2 asks: attempts ran out); oracle 70/70 at 9.6 s;
+judge 70/70 at 9.5 s, no ask, nothing wrong; the gated judge 70/70 at 14.3 s with **13 of 70 lines escalated** (4.9 operator
+seconds per clean line) and nothing wrong on any of them. Mixes composed from per-line results (easy 70/30/0, mixed 30/40/30,
+hard 10/40/50 % clean/written/unwritten):
+
+| arm · mix | ask rate | wrong picks per un-asked line | wrong picks per line | s per line | operator s per line | lines handled |
+|---|---|---|---|---|---|---|
+| rules · easy / mixed / hard | .03 / .03 / .02 | 0 / .30 / .50 | 0 / .30 / .50 | 11.6 / 11.8 / 11.5 | .8 / .8 / .7 | 1.00 / .70 / .50 |
+| judge · easy / mixed / hard | 0 / .10 / .17 | .045 / .060 / .060 | .045 / .060 / .060 | 9.9 / 11.1 / 11.8 | 0 / 2.0 / 3.3 | .94 / .82 / .75 |
+| judge gated at .5 · easy / mixed / hard | **.24 / .31 / .34** | .072 / .096 / .096 | .045 / .060 / .060 | 16.1 / 16.4 / 16.3 | 6.4 / 7.6 / 8.0 | .95 / .84 / .77 |
+| oracle · any | .01 | 0 | 0 | 11.0 | .1 | 1.00 |
+
+**Scoring.** P118.1 ✔ (.24 < .31 < .34). P118.2 ✘ (hard − easy = .024, under the .03 I wrote; it rises, as predicted in
+direction, by less). P118.3 ✔ (.50 for the rules). P118.4 ✔ (9.5 against 10.0 s; 0 wrong). **Three of four.**
+
+**Reading.**
+1. *The threshold moves the right way and buys little here.* As the mix hardens the gated judge asks more (.24 → .34) and
+   its handled rate falls less than the rules' (.95 → .77 against 1.00 → .50); but its wrong picks are the same six double
+   picks in every mix, placed at .73–.95, and the gate never sees them, while 19 % of clean lines are escalated for nothing.
+   On this bench the judge's errors are confident and its doubts are on the easy lines: the reverse of the cell (E83), where
+   the gate turned unflagged surprises into asks. A threshold is only worth what the number's ranking is worth, and here the
+   ranking fails on one written situation.
+2. *The fleet sentence.* Per hundred lines on the hard mix: the rules ship fifty wrong items and cost seventy operator
+   seconds; the plain judge ships six, costs 330 operator seconds and flags twenty exceptions; the gated judge ships six,
+   costs 800 operator seconds and flags twenty. The oracle shows the ceiling: zero wrong, twenty operator seconds. The gap
+   between the judge and the oracle is one situation (the double pick) and one instruction (return the recalled item), both
+   one-line rules once seen: E114's lesson, again.
+3. *What to run next on this bench, in order:* the rules rewritten with hindsight (fifteen minutes, by the E114 protocol); the
+   copy distilled from the judge's station decisions with the picker's vetoes as corrections (the E112/E113 loop; needs more
+   lines, seeds 2000+ on the written bank); drafted rules from those vetoes (E115); R1 with method error 37 fixed. Then the
+   station in physics on the cell's arm.

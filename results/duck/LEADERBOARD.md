@@ -103,3 +103,4 @@ Seeds 0–39 unless noted. goal = reached within 90 s; viol = near-contacts + fa
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | oracle | 70 | 100 % [95, 100] | 9.6 s | 0.00 | 0 | 0.0 | 0.00 | 70/70 |
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | jev | 70 | 100 % [95, 100] | 9.5 s | 0.00 | 0 | 0.0 | 0.00 | 70/70 |
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | jev_gate0.5 | 70 | 100 % [95, 100] | 14.3 s | 0.00 | 0 | 4.9 | 0.24 | 70/70 |
+| Bench 4, the rule program rewritten with hindsight (three clauses), all 160 lines | e119 | rules_hindsight | 170 | 100 % [98, 100] | 10.8 s | 0.00 | 0 | 0.6 | 0.03 | 170/170 |

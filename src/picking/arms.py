@@ -22,6 +22,17 @@ class PickRulesAsk(PickRules):
         if f["notes_from_operators"] and not self.asked: self.asked = True; return "ask_operator", {}
         return super().decide(f, opts, room)
 
+class PickRulesHindsight(PickRules):
+    """E119: the same program after its author has read the unwritten lines and the acceptable sets (2026-09-22, three clauses)."""
+    name = "rules_hindsight"
+    def decide(self, f, opts, room):
+        s = f["station"]; notes = " ".join(f["notes_from_operators"]).lower()
+        if s["holding"] == "the item":
+            if "sharp" in s["item_flags_on_label"] and "sleeve" in notes and s["destination"] == "customer_tote": return "place_in_return_bin", {}   # clause 1: no sleeves today
+            if s["item_condition"] == "wet_and_dripping": return "place_in_return_bin", {}                                                          # clause 2: wet does not ship
+            if "recall" in notes and "lot 42" in s["label"]: return "place_in_return_bin", {}                                                        # clause 3: the recalled lot
+        return super().decide(f, opts, room)
+
 class PickOracle:
     """Code that reads the true state: the first preferred action inside the acceptable set."""
     name = "oracle"

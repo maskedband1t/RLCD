@@ -12924,7 +12924,7 @@ picker can veto). 100 lines per arm, records kept.
 - **P117.6** seconds per line on the anticipated bank: the judge within 20 % of the rules. Prior 55 %.
 - **P117.7** (the fleet number) for the gated judge, wrong picks per line among lines with no ask are within .05 between the two banks, while its ask rate is higher on the unwritten bank: the threshold keeps its meaning when the situations change. Prior 50 %.
 
-### E117 results (runs 07:51–07:54 PDT 2026-09-22; written 08:05) · on the picking station the judge ships nothing it should not, fails one written situation confidently, and turns the recall into an exception instead of a return
+### E117 results (runs 07:51–07:54 PDT 2026-09-22; written 07:57) · on the picking station the judge ships nothing it should not, fails one written situation confidently, and turns the recall into an exception instead of a return
 
 | arm | anticipated events (of 40) | per situation (double pick, grasp failure, hand in tote, unreadable label) | s per line | operator s per line | wrong picks | unwritten events (of 60) | per situation (leaking, recalled, sharp) | s per line | operator s per line | wrong picks | exceptions (line skipped) |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -12984,7 +12984,7 @@ line, operator seconds per line. Same for the plain judge and the rules.
 - **P118.3** the rules' wrong picks per line rise faster than the gated judge's (they ship every unwritten item): hard − easy ≥ .3 for the rules. Prior 80 %.
 - **P118.4** on clean lines the judge is within 2 s per line of the rules and ships nothing wrong (≤ 1 of 70). Prior 70 %.
 
-### E118 results (clean lines run 07:57–07:58 PDT 2026-09-22; mixes computed 08:12) · the gate escalates more as the mix hardens, but its errors are the confident ones and its doubts are on clean lines
+### E118 results (clean lines run 07:57–07:58 PDT 2026-09-22; mixes computed 07:59) · the gate escalates more as the mix hardens, but its errors are the confident ones and its doubts are on clean lines
 
 Seventy clean lines (seeds 1000–1069): rules 70/70 at 10.0 s per line (2 asks: attempts ran out); oracle 70/70 at 9.6 s;
 judge 70/70 at 9.5 s, no ask, nothing wrong; the gated judge 70/70 at 14.3 s with **13 of 70 lines escalated** (4.9 operator
@@ -13017,3 +13017,34 @@ direction, by less). P118.3 ✔ (.50 for the rules). P118.4 ✔ (9.5 against 10.
    copy distilled from the judge's station decisions with the picker's vetoes as corrections (the E112/E113 loop; needs more
    lines, seeds 2000+ on the written bank); drafted rules from those vetoes (E115); R1 with method error 37 fixed. Then the
    station in physics on the cell's arm.
+
+## E119 · the picking station's rules rewritten with hindsight (pre-registration, 2026-09-22 08:01 PDT; launched right after)
+
+**Design.** The E114 protocol on bench 4: the rule program's author reads the unwritten lines and the acceptable sets (read
+08:00–08:01) and adds clauses; the programs run on the same 160 lines (written 0–39, unwritten 40–99, clean 1000–1069).
+Clauses: a sharp item ordered into a customer tote when a note says there are no sleeves → return bin; an item that reads wet
+→ return bin; a label that reads a recalled lot when a note says so → return bin. Three clauses, written by keyword on the
+note and the label, as a programmer would after the incident report.
+**Predictions.**
+- **P119.1** hindsight rules handle ≥ 57/60 unwritten lines and ship 0 wrong. Prior 75 %.
+- **P119.2** the written bank and the clean lines are unchanged (40/40, 70/70) and seconds per line within 0.5 s of the frozen rules. Prior 80 %.
+- **P119.3** (measurement) lines added and minutes from first read to launch.
+
+*Correction (2026-09-22 08:02 PDT).* Three times in the E117, E118 and E119 entries were typed ahead of the shell clock (08:05, 08:12, 08:24–08:26) and are corrected in place to the clock (07:57, 07:59, 08:00–08:01); the E119 launch line printed 08:01 by the shell. Predictions untouched. Rule from here: every time in the notebook comes from `date`, never typed.
+
+### E119 results (run 08:01 PDT 2026-09-22; written right after) · three clauses, two minutes, and the station's rules handle everything
+
+| arm | written 40 | unwritten 60 | clean 70 | wrong picks | s per line (written / unwritten / clean) | operator s per line |
+|---|---|---|---|---|---|---|
+| frozen rules | 40 | 0 | 70 | 60 | 15.4 / 8.7 / 10.0 | 1.5 / 0 / .6 |
+| judge | 32 | 40 (60 safe) | 70 | 6 | 10.9 / 13.0 / 9.5 | 0 / 6.7 / 0 |
+| rules rewritten with hindsight | **40** | **60** | **70** | **0** | 15.4 / 8.7 / 10.0 | 1.5 / 0 / .6 |
+| oracle | 40 | 60 | 70 | 0 | 14.4 / 8.7 / 9.6 | .5 / 0 / 0 |
+
+**Scoring.** P119.1 ✔ (60 ≥ 57; 0 wrong). P119.2 ✔ (40/40, 70/70; seconds identical). P119.3: three clauses, six lines,
+about two minutes from first read to launch. **Two of two.**
+
+**Reading.** The fourth bench says what the other three said, faster: once a situation has been seen, a keyword clause on the
+note and the label handles it completely, at the rules' speed, with no operator time; the judge's value was the interval
+before those six lines existed, and on this bench that interval bought sixty safe lines at the price of six confident double
+picks. The program with hindsight is also the ceiling: it ties the oracle everywhere.

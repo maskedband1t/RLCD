@@ -135,8 +135,8 @@ class DuckLaya:
         return choice, j
 
 def make_arm(arm):
-    if BODY == "pick" and arm in ("rules", "rules_ask", "oracle"):
-        from picking.arms import PickRules, PickRulesAsk, PickOracle; return {"rules": PickRules, "rules_ask": PickRulesAsk, "oracle": PickOracle}[arm]()
+    if BODY == "pick" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):
+        from picking.arms import PickRules, PickRulesAsk, PickRulesHindsight, PickOracle; return {"rules": PickRules, "rules_ask": PickRulesAsk, "rules_hindsight": PickRulesHindsight, "oracle": PickOracle}[arm]()
     if BODY == "g1" and arm.startswith("rules_mined"):
         from humanoid.fetch_arms import FetchRulesMined; a = FetchRulesMined(mined_path(arm)); a.name = arm; return a
     if BODY == "g1" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):

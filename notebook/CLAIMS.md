@@ -559,3 +559,7 @@ Two of seven predictions; the bench has no physics and says so.
 and its handled rate falls less than the rules' (.95 → .77 against 1.00 → .50), but its wrong picks are the same confident
 double picks in every mix and it escalates 19 % of clean lines for nothing: a threshold is worth what the number's ranking is
 worth, and here the ranking fails on one written situation. Three of four predictions.
+
+**4.72** (2026-09-22 08:02 PDT, E119) On the picking station the rule program rewritten by its author after reading the unwritten lines
+handles all 170 lines (written, unwritten, clean) with zero wrong picks at the frozen rules' speed, in three clauses and two
+minutes; it ties the oracle. Two of two predictions. With E114, the time-to-rule reading holds on every bench with a rule program.

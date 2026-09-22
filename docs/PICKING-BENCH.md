@@ -29,6 +29,7 @@ per line, and how those move when the mix of lines changes (E118).
 | frozen rules | **40** | 15.4 | 1.5 | 0 | 0 | 0 | 8.7 | 0 | 0 |
 | rules + ask once on a note | 40 | 15.4 | 1.5 | 0 | 0 | 0 | 28.7 | 20.0 | 0 |
 | oracle | 40 | 14.4 | 0.5 | 0 | 60 | 60 | 8.7 | 0 | 0 |
+| rules rewritten with hindsight (E119: three clauses, two minutes) | 40 | 15.4 | 1.5 | 0 | **60** | 60 | 8.7 | 0 | 0 |
 | judge | 32 (double pick 4 of 10) | **10.9** | 0 | **6** double picks shipped | 40 (recall 0 of 20) | **60** | 13.0 | 6.7 | 20 |
 | judge gated at .5 | 34 | 20.4 | 10.0 | 6 | 40 | 60 | 13.3 | 7.0 | 20 |
 | judge + one-second veto window | 34 | 17.3 | 7.0 | 6 | 40 | 60 | 13.0 | 6.7 | 20 |
@@ -42,7 +43,9 @@ note's instruction, so it is safe by the fleet's count and unhandled by the note
 confidently: holding two items with the weight reading heavier than expected, it places in the customer tote six times in
 seven at a stated .73 to .95, never putting one back; the gate at .5 and the veto window let all six through. That is this
 bench's crossing adult: the fact is in plain words, the rules handle it in one line, the judge does not read it. Two of seven
-pre-registered predictions held; the notebook has the misses. Method error 37 (the acceptable set forbade placing in the
+pre-registered predictions held; the notebook has the misses. Rewritten by its author after reading the unwritten lines, the
+rule program handles every line with zero wrong picks at its own speed, in three clauses and two minutes (E119): the judge's
+value on this bench was the interval before those six lines existed. Method error 37 (the acceptable set forbade placing in the
 destination while a hand was in the source tote) is fixed in the bench's next version before anything else runs on it.
 
 ## The item-mix drift (E118)

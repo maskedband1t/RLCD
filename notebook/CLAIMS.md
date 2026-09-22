@@ -563,3 +563,9 @@ worth, and here the ranking fails on one written situation. Three of four predic
 **4.72** (2026-09-22 08:02 PDT, E119) On the picking station the rule program rewritten by its author after reading the unwritten lines
 handles all 170 lines (written, unwritten, clean) with zero wrong picks at the frozen rules' speed, in three clauses and two
 minutes; it ties the oracle. Two of two predictions. With E114, the time-to-rule reading holds on every bench with a rule program.
+
+**4.73** (2026-09-22 11:01 PDT, E122b) On the picking station the judge's decisions on the unwritten lines, with the vetoed ones dropped
+or replaced by the operator's answer, compile into a three-leaf rule that handles all 60 fresh unwritten lines with nothing
+shipped wrong and no operator time at the rules' speed, tying the oracle and the programmer with hindsight; the draft from all
+decisions copies the judge's exception habit (40/60, eight operator seconds per line). Caveat: the learned clause reads "a note
+and the item in hand → return bin", true of this bank's three notes and not of notes in general. Three of four predictions.

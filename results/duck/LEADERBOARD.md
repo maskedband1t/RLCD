@@ -93,14 +93,31 @@ Seeds 0–39 unless noted. goal = reached within 90 s; viol = near-contacts + fa
 | E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_hindsight | 30 | 0 % [-0, 11] | nan s | 0.00 | 0 | 1.3 | 0.33 | 30/30 |
 | E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_mined | 70 | 0 % [0, 5] | nan s | 0.16 | 1 | 1.7 | 0.43 | 49/70 |
 | E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_mined_clean | 70 | 1 % [0, 8] | 115.5 s | 1.41 | 69 | 0.0 | 0.00 | 30/70 |
+| e116 | e116 | laya-g1r2 | 30 | 0 % [-0, 11] | nan s | 0.30 | 0 | 0.5 | 0.13 | 25/30 |
+| e116 | e116 | laya-g1r2_confirm0.5 | 29 | 0 % [0, 12] | nan s | 0.03 | 0 | 2.3 | 0.03 | 29/29 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | rules | 100 | 40 % [31, 50] | 15.4 s | 0.60 | 0 | 0.6 | 0.03 | 40/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | rules_ask | 100 | 40 % [31, 50] | 15.4 s | 0.60 | 0 | 12.6 | 0.63 | 40/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | oracle | 100 | 100 % [96, 100] | 10.9 s | 0.00 | 0 | 0.2 | 0.01 | 100/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | jev | 100 | 80 % [71, 87] | 14.7 s | 0.09 | 3 | 4.0 | 0.20 | 72/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | jev_gate0.5 | 100 | 80 % [71, 87] | 19.7 s | 0.06 | 0 | 8.2 | 0.41 | 74/100 |
 | Bench 4, the picking station at decision level: rules, oracle, the judge, the judge gated at .5 and behind a one-second veto window; seeds 0-39 anticipated, 40-99 unwritten | e117 | jev_confirm0.5 | 100 | 80 % [71, 87] | 17.9 s | 0.06 | 0 | 6.8 | 0.20 | 74/100 |
+| Bench 4 R1 (method error 37 fixed), the E117 arms re-run on seeds 0-99 | e117r1 | rules | 100 | 40 % [31, 50] | 15.4 s | 0.60 | 0 | 0.6 | 0.03 | 40/100 |
+| Bench 4 R1 (method error 37 fixed), the E117 arms re-run on seeds 0-99 | e117r1 | oracle | 100 | 100 % [96, 100] | 10.5 s | 0.00 | 0 | 0.2 | 0.01 | 100/100 |
+| Bench 4 R1 (method error 37 fixed), the E117 arms re-run on seeds 0-99 | e117r1 | jev | 100 | 80 % [71, 87] | 14.7 s | 0.09 | 3 | 4.0 | 0.20 | 72/100 |
+| Bench 4 R1 (method error 37 fixed), the E117 arms re-run on seeds 0-99 | e117r1 | jev_gate0.5 | 100 | 80 % [71, 87] | 19.9 s | 0.06 | 0 | 8.4 | 0.42 | 74/100 |
+| Bench 4 R1 (method error 37 fixed), the E117 arms re-run on seeds 0-99 | e117r1 | rules_hindsight | 100 | 100 % [96, 100] | 11.4 s | 0.00 | 0 | 0.6 | 0.03 | 100/100 |
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | rules | 70 | 100 % [95, 100] | 10.0 s | 0.00 | 0 | 0.6 | 0.03 | 70/70 |
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | oracle | 70 | 100 % [95, 100] | 9.6 s | 0.00 | 0 | 0.0 | 0.00 | 70/70 |
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | jev | 70 | 100 % [95, 100] | 9.5 s | 0.00 | 0 | 0.0 | 0.00 | 70/70 |
 | Bench 4, the clean-pick lines (seeds 1000-1069) for the item-mix drift | e118 | jev_gate0.5 | 70 | 100 % [95, 100] | 14.3 s | 0.00 | 0 | 4.9 | 0.24 | 70/70 |
 | Bench 4, the rule program rewritten with hindsight (three clauses), all 160 lines | e119 | rules_hindsight | 170 | 100 % [98, 100] | 10.8 s | 0.00 | 0 | 0.6 | 0.03 | 170/170 |
+| Bench 4 R1, the judge on fresh written lines 2000-2399 and fresh unwritten 3000-3059 (the copy's teacher data) | e120data | rules | 100 | 40 % [31, 50] | 14.8 s | 0.60 | 0 | 0.8 | 0.04 | 40/100 |
+| Bench 4 R1, the judge on fresh written lines 2000-2399 and fresh unwritten 3000-3059 (the copy's teacher data) | e120data | oracle | 100 | 100 % [96, 100] | 11.1 s | 0.00 | 0 | 0.6 | 0.03 | 100/100 |
+| Bench 4 R1, the judge on fresh written lines 2000-2399 and fresh unwritten 3000-3059 (the copy's teacher data) | e120data | jev | 460 | 96 % [93, 97] | 12.4 s | 0.18 | 19 | 1.8 | 0.09 | 359/460 |
+| Bench 4 R1, the judge on fresh written lines 2000-2399 and fresh unwritten 3000-3059 (the copy's teacher data) | e120data | rules_hindsight | 100 | 100 % [96, 100] | 11.7 s | 0.00 | 0 | 0.8 | 0.04 | 100/100 |
+| Bench 4 R1, the drafted rules (all / un-vetoed / corrected, scoped) on fresh unwritten lines | e122 | rules_mined_allscoped | 100 | 60 % [50, 69] | 21.2 s | 0.40 | 0 | 5.6 | 0.28 | 60/100 |
+| Bench 4 R1, the drafted rules (all / un-vetoed / corrected, scoped) on fresh unwritten lines | e122 | rules_mined_cleanscoped | 100 | 60 % [50, 69] | 13.2 s | 0.40 | 0 | 0.8 | 0.04 | 60/100 |
+| Bench 4 R1, the drafted rules (all / un-vetoed / corrected, scoped) on fresh unwritten lines | e122 | rules_mined_correctedscoped | 100 | 60 % [50, 69] | 13.2 s | 0.40 | 0 | 0.8 | 0.04 | 60/100 |
+| Bench 4 R1, the drafted rules with the body-agnostic feature set (method error 39 fixed) | e122b | rules_mined_allscoped | 100 | 79 % [70, 86] | 17.7 s | 0.00 | 0 | 5.4 | 0.27 | 79/100 |
+| Bench 4 R1, the drafted rules with the body-agnostic feature set (method error 39 fixed) | e122b | rules_mined_cleanscoped | 100 | 99 % [95, 100] | 11.1 s | 0.00 | 0 | 0.6 | 0.03 | 99/100 |
+| Bench 4 R1, the drafted rules with the body-agnostic feature set (method error 39 fixed) | e122b | rules_mined_correctedscoped | 100 | 99 % [95, 100] | 11.1 s | 0.00 | 0 | 0.6 | 0.03 | 99/100 |

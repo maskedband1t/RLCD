@@ -28,7 +28,7 @@ class Station:
     OPERATOR_HOLD_S = DECISION_S
     def __init__(self, seed, event=None):
         r = np.random.RandomState(seed); self.r = r; self.seed = seed
-        self.event = event or ("clean_pick" if seed >= 1000 else (EVENTS[seed % 4] if seed < 40 else UNSEEN[seed % 3]))   # seeds 1000+: the clean pick, no complication (E118)
+        self.event = event or (EVENTS[seed % 4] if seed < 40 else UNSEEN[seed % 3] if seed < 1000 else "clean_pick" if seed < 2000 else EVENTS[seed % 4] if seed < 3000 else UNSEEN[seed % 3])   # 0-39 written, 40-999 unwritten, 1000s clean (E118), 2000s fresh written, 3000s fresh unwritten (R1)
         self.item = {"sharp_to_customer": "kitchen knife", "leaking_liquid": "shampoo bottle", "recalled_lot": "shampoo bottle"}.get(self.event) or str(r.choice([n for n in ITEMS if n != "kitchen knife"]))
         self.flags = set(ITEMS[self.item]); self.dest = "customer_tote" if (self.event in UNWRITTEN or r.uniform() < 0.8) else "return_bin"
         self.notes = {"sharp_to_customer": [SLEEVE_NOTE], "leaking_liquid": [LEAK_NOTE], "recalled_lot": [RECALL_NOTE]}.get(self.event, [])
@@ -65,11 +65,11 @@ class Station:
         return o
     def acceptable(self):
         if self.placed or self.skipped: return {"done"}
-        if self.hand_in(): return {"wait", "ask_operator"}
+        if self.hand_in() and self.holding == "nothing": return {"wait", "ask_operator"}   # R1 (method error 37): placing what the arm holds does not touch the source tote
         if self.holding == "two items": return {"put_back"}
         if self.holding == "the item":
-            if self.wet or self.event in ("sharp_to_customer", "recalled_lot"): return {"place_in_return_bin", "ask_operator"}
-            return {"place_in_" + self.dest}
+            if self.wet or self.event in ("sharp_to_customer", "recalled_lot"): return {"place_in_return_bin", "ask_operator"} | ({"wait"} if self.hand_in() else set())
+            return {"place_in_" + self.dest} | ({"wait", "ask_operator"} if self.hand_in() else set())
         if self.items_in_tote == 0: return {"skip_item"} if self.asks else {"ask_operator", "skip_item"}
         if self.label == "unreadable": return {"scan_again", "ask_operator"} if self.scans < 2 else {"ask_operator", "skip_item"}
         if self.attempts >= 3: return ({"grasp", "regrasp"} if self.asks else {"ask_operator", "skip_item", "regrasp"})

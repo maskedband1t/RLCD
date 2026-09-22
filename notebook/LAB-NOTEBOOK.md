@@ -13048,3 +13048,94 @@ about two minutes from first read to launch. **Two of two.**
 note and the label handles it completely, at the rules' speed, with no operator time; the judge's value was the interval
 before those six lines existed, and on this bench that interval bought sixty safe lines at the price of six confident double
 picks. The program with hindsight is also the ceiling: it ties the oracle everywhere.
+
+## Bench 4 R1, and E120–E122: the data loop and the drafted rules on the picking station (pre-registration, 2026-09-22 10:46 PDT; launched right after)
+
+**R1 (bench change, before anything else runs).** Method error 37 fixed: placing what the arm holds in its destination while
+a person's hand is in the source tote is acceptable (the placement does not touch that tote); grasping is not. Seed scheme
+extended without touching 0–99 and 1000–1069: seeds 2000–2999 are written-bank lines (event by seed mod 4), 3000–3999 are
+unwritten-bank lines (seed mod 3), so fresh lines of every kind exist for the copy and the drafts. The E117 arms (rules,
+oracle, jev, jev_gate0.5) are re-run on 0–99 under R1 as `e117r1` so the ladder sits on one instrument.
+**E120, the owned copy on the station.** The judge runs 400 fresh written lines (2000–2399) and 60 fresh unwritten lines
+(3000–3059) with records; `head_pick_r0` is distilled from the judge's written-line decisions (0–39 and 2000–2399) with the
+E91 recipe and `picking.head_pick` rendering, after E116's training frees the GPU; tested on fresh written 2400–2439, on the
+unwritten 40–99 and on 3000–3059. **E121, the correction round:** the copy's visited states on 40–99 labelled by the
+acceptable set with masked targets; `head_pick_r1`; tested on 3000–3059 and 2400–2439. **E122, the drafted rules:** trees
+compiled from the judge's E117 decisions on 40–99, three variants (all, un-vetoed, and *corrected*: a vetoed decision
+relabelled with the operator's replacement, the oracle's first acceptable action), scoped by the novelty gate, tested on the
+fresh unwritten 3000–3059 and the written 0–39.
+
+**Predictions.**
+- **P(R1).1** under R1 the judge's per-decision acceptability on written lines rises above .72 and its handled counts do not change by more than 1 per situation. Prior 70 %.
+- **P120.1** the copy on fresh written lines 2400–2439 ≥ 30/40 (the judge 32 on 0–39). Prior 55 %.
+- **P120.2** the copy is blind on 40–99: handled ≤ 10/60 and ≥ 40 wrong items shipped, like the rules. Prior 65 %.
+- **P120.3** the copy inherits the double-pick failure: ≤ 5/10 on fresh written lines. Prior 70 %.
+- **P120.4** the copy decides in ≤ 100 ms. Prior 80 %.
+- **P121.1** after one masked round the copy handles ≥ 48/60 fresh unwritten lines with ≤ 5 wrong items shipped. Prior 55 %.
+- **P121.2** the written bank holds: ≥ 30/40 on 2400–2439. Prior 60 %.
+- **P122.1** the all-decisions draft reproduces the judge on fresh unwritten lines: sharp ≥ 18/20, leak ≥ 18/20, recall ≤ 5/20 handled. Prior 55 %.
+- **P122.2** the un-vetoed draft ships the recalled lot (the judge's skip was outside the set, so nothing un-vetoed remains there and the frozen rules take over): recall handled 0/20, wrong ≥ 15. Prior 60 %.
+- **P122.3** the corrected draft handles the recall ≥ 15/20 (the operator's replacement, place in the return bin, is what it learns). Prior 55 %.
+- **P122.4** no draft loses more than 2 written lines against the frozen rules' 40/40. Prior 65 %.
+
+### Bench 4 R1 result (2026-09-22 10:48 PDT) · the fix changed the set, not the outcomes
+
+Under R1 every handled count is identical to E117 (rules 40/40 and 0/60; judge 32/40 and 40/60; gated judge 34/40 and 40/60;
+oracle 40/40 and 60/60; the hindsight rules 40/40 and 60/60), and the judge's per-decision acceptability on written lines
+rises from .72 to .78, its over-confidence there from +.13 to +.07 (unwritten lines unchanged at +.15). **P(R1).1 ✔.** The
+E117 numbers stand; the ladder's instrument is R1 from here (`e117r1`).
+
+*Method error 38 (10:58 PDT, tooling, no result affected):* the drafted-rule arms had no station variant, so on bench 4 they fell
+through to the duck's program and crashed on a missing fact before any line ran. Fixed (`PickRulesMined`); E122 relaunched
+on the same pre-registration.
+
+### E122 result (2026-09-22 11:00 PDT) · the drafts handle the sharp lines only, and the reason is the drafting tool's feature set (method error 39)
+
+All three scoped drafts (all / un-vetoed / corrected; 5, 3 and 3 leaves, agreement 1.0 with the judge's decisions): fresh
+unwritten lines 20/60 each (sharp 20/20, leaking 0/20, recalled 0/20; 40 wrong items shipped), written lines 40/40, the
+judge's own reference on the same fresh lines 40/60 (E120data: sharp 20, leaking 20, recalled 0). The trees say "holding →
+place in the return bin", so why do the leaking and recalled lines ship? The novelty gate found exactly one new feature,
+`note:sharp`: the drafting tool's features were written for the duck and the humanoid (robot, person, people, six note
+keywords, options) and never included the station's facts (holding, label, condition, weight) nor the words "leak", "wet",
+"recall"; so the gate saw nothing new on those lines and the frozen program shipped them. **Method error 39 (tooling):** the
+feature set omitted a body's facts by omission. P122.1–4 are scored on this run as pre-registered: P122.1 ✘ (leak 0),
+P122.2 ✘ in letter (recall 0/20, 20 wrong: as predicted) but for the wrong reason, P122.3 ✘, P122.4 ✔. **One of four.**
+
+## E122b · the same drafts with a body-agnostic feature set (pre-registration, 2026-09-22 11:00 PDT; run right after)
+
+**Change.** `features()` now flattens every categorical fact dict generically (robot, person, station, the asker and any
+child from the people list) and represents notes as a bag of words (letters only, four or more, minus stopwords) instead of
+six hand-picked keywords; options as before. The duck and humanoid trees of E115/E115b stand as recorded with the old
+features. Same three variants, same seeds, same predictions P122.1–4 restated as P122b.1–4.
+
+### E122b results (2026-09-22 11:01 PDT) · with the station's facts visible, the un-vetoed draft handles every fresh unwritten line at the rules' speed
+
+The gate now finds the situation words by itself (note: bottles, customer, leaking, recall, return, sharp, sleeve, wet…, and
+the station facts). Same three drafts, fresh unwritten lines 3000–3059 and written 0–39:
+
+| draft (scoped) | fresh unwritten (of 60) | per situation (leak, recall, sharp) | wrong shipped | exceptions | s per line | operator s | written (of 40) |
+|---|---|---|---|---|---|---|---|
+| all decisions, 5 leaves | 40 | 20, **0**, 20 | 0 | 20 (the judge's skip, copied) | 14.8 | 8.0 | 39 |
+| un-vetoed, 3 leaves | **60** | 20, 20, 20 | 0 | 0 | **9.3** | **0** | 39 |
+| corrected (vetoes relabelled), 3 leaves | **60** | 20, 20, 20 | 0 | 0 | 9.3 | 0 | 39 |
+| reference: the judge (E120data) | 40 | 20, 0, 20 | 0 | 20 | 14.8 | 8.0 | 32 (E117) |
+| reference: hindsight rules / oracle | 60 / 60 | | 0 | 0 | 9.5 / 9.2 | .3 / 0 | 40 / 40 |
+
+**Scoring.** P122b.1 ✔ (the all-decisions draft reproduces the judge: sharp 20, leak 20, recall 0). P122b.2 ✘, in the good
+direction: I predicted the un-vetoed draft would ship the recalled lot because nothing un-vetoed remains on those lines; instead,
+dropping the judge's vetoed skip left the frozen program to grasp the item and the draft's "holding, with a note → return bin"
+clause, learned on the sharp and leak lines, placed it. P122b.3 ✔ (the corrected draft 20/20). P122b.4 ✔ (one written line
+lost). **Three of four.**
+
+**Reading.**
+1. *The vetoes did the work again, by subtraction.* The judge's only miss on this bench's unwritten lines was a decision the
+   operator vetoes (skip the line); removing it from the draft, or replacing it with the operator's answer, gives a
+   three-leaf rule that ties the oracle and the programmer with hindsight: every fresh unwritten line handled, nothing
+   shipped wrong, no operator time, at the rules' speed. The all-decisions draft copies the judge's exception habit and its
+   eight operator seconds per line.
+2. *The draft generalised across notes, which is a warning as much as a result.* The clause it learned is "a note is present
+   and the arm holds the item → return bin". True for all three notes in this bank; not true of a note that says nothing about
+   shipping. A person reviewing the tree sees that in one line; the second-designer bank is where it would be caught by
+   measurement. It goes on the list.
+3. *Method error 39 mattered more than any model choice.* Same records, same trees, 20/60 with the station's facts hidden from
+   the compiler and 60/60 with them visible. The feature set is now body-agnostic and the notes are words, not a keyword list.

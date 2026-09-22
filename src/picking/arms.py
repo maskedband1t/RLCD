@@ -33,6 +33,17 @@ class PickRulesHindsight(PickRules):
             if "recall" in notes and "lot 42" in s["label"]: return "place_in_return_bin", {}                                                        # clause 3: the recalled lot
         return super().decide(f, opts, room)
 
+class PickRulesMined(PickRules):
+    """E122: the frozen rules with the judge's drafted clauses in front (see duck.e93_run.RulesMined)."""
+    name = "rules_mined"
+    def __init__(self, path):
+        import joblib; from duck.e115_mine import mined_choice; self.m = joblib.load(path); self.mined_choice = mined_choice
+    def decide(self, f, opts, room):
+        if "done" in opts: return "done", {}
+        m = self.mined_choice(self.m, f, opts)
+        if m is not None: return m[0], {"confidence": m[1], "source": "mined"}
+        return super().decide(f, opts, room)
+
 class PickOracle:
     """Code that reads the true state: the first preferred action inside the acceptable set."""
     name = "oracle"

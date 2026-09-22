@@ -1,0 +1,15 @@
+|--- station.line_status is open <= 0.50
+|   |--- weights: [0.00, 60.00, 0.00, 0.00, 0.00] class: done
+|--- station.line_status is open >  0.50
+|   |--- station.verify_weight is as_expected <= 0.50
+|   |   |--- note:leaking <= 0.50
+|   |   |   |--- note:recall <= 0.50
+|   |   |   |   |--- weights: [20.00, 0.00, 0.00, 0.00, 0.00] class: ask_operator
+|   |   |   |--- note:recall >  0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 20.00] class: skip_item
+|   |   |--- note:leaking >  0.50
+|   |   |   |--- weights: [0.00, 0.00, 25.00, 0.00, 0.00] class: grasp
+|   |--- station.verify_weight is as_expected >  0.50
+|   |   |--- weights: [0.00, 0.00, 0.00, 40.00, 0.00] class: place_in_return_bin
+
+ | scoped: 142 old decisions, 45 old features; new features in the mined states: ['note:bottles', 'note:customer', 'note:inside', 'note:item', 'note:items', 'note:leaking', 'note:must', 'note:notice', 'note:picker', 'note:recall', 'note:remote', 'note:return', 'note:shampoo', 'note:sharp', 'note:ship', 'note:shipped', 'note:sleeve', 'note:sleeves', 'note:station', 'note:tote', 'note:unsure', 'station.item_condition=wet_and_dripping', 'station.item_flags_on_label=sharp', 'station.label=reads lot 42', 'station.line_status=skipped']

@@ -65,6 +65,17 @@ double picks in every mix, which it never sees, while it escalates 19 % of clean
 errors are confident and its doubts are on the easy lines, the reverse of the sorting cell: a threshold is worth what the
 number's ranking is worth. Three of four predictions held.
 
+## Rules drafted from the judge's decisions (E122b)
+
+The judge's 165 decisions on the unwritten lines, compiled into a decision tree over the station's facts and the words of the
+notes, scoped to states the written bank never showed, and placed in front of the frozen rules; tested on sixty fresh unwritten
+lines. From all decisions: 40 of 60, copying the judge's habit of skipping the recalled line (eight operator seconds per line).
+With the vetoed decisions dropped, or replaced by the operator's answer: **60 of 60**, nothing shipped wrong, no operator time,
+9.3 s per line, a three-leaf rule that ties the oracle and the programmer with hindsight. The learned clause reads "a note and
+the item in hand → return bin", true of this bank's three notes and not of notes in general; a person reviewing the tree sees
+that in one line. Three of four predictions; the first attempt (E122) found that the drafting tool had never been shown the
+station's facts (method error 39) and handled 20 of 60.
+
 ## How to run
 
 ```bash

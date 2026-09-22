@@ -37,9 +37,14 @@ def features(f, opts):
     for o in opts: x["opt:hand" if o.startswith("hand_to_") else f"opt:{o}"] = 1
     return x
 
+def present(x): return {k for k, v in x.items() if v}
+
 def mined_choice(model, f, opts, tau=0.6):
-    """The drafted clause's answer, or None where its leaf is not pure enough or its action is not on offer."""
-    x = model["vec"].transform([features(f, opts)]); pr = model["tree"].predict_proba(x)[0]; i = int(np.argmax(pr))
+    """The drafted clause's answer, or None where its leaf is not pure enough or its action is not on offer. A scoped draft (E115b)
+    also answers None unless the state carries a feature absent from the judge's anticipated-bank records (the old vocabulary)."""
+    fx = features(f, opts)
+    if model.get("old_vocab") is not None and not (present(fx) - model["old_vocab"]): return None
+    x = model["vec"].transform([fx]); pr = model["tree"].predict_proba(x)[0]; i = int(np.argmax(pr))
     key = decanon(model["classes"][i], f, opts)
     return (key, float(pr[i])) if pr[i] >= tau and key in opts else None
 
@@ -57,7 +62,8 @@ def main():
     from sklearn.feature_extraction import DictVectorizer
     from sklearn.tree import DecisionTreeClassifier, export_text
     ap = argparse.ArgumentParser(); ap.add_argument("--records", nargs="+", required=True); ap.add_argument("--arm", default="jev"); ap.add_argument("--seeds", default="70-99")
-    ap.add_argument("--out", required=True); ap.add_argument("--clean", action="store_true"); ap.add_argument("--depth", type=int, default=6); ap.add_argument("--leaf", type=int, default=15); a = ap.parse_args()
+    ap.add_argument("--out", required=True); ap.add_argument("--clean", action="store_true"); ap.add_argument("--depth", type=int, default=6); ap.add_argument("--leaf", type=int, default=15)
+    ap.add_argument("--old-records", nargs="*", default=[]); ap.add_argument("--old-seeds", default="0-39"); a = ap.parse_args()
     lo, hi = map(int, a.seeds.split("-")); rows = load(a.records, a.arm, set(range(lo, hi + 1))); n_all = len(rows)
     if a.clean: rows = [r for r in rows if r["answer"]["choice"] in r["acceptable"]]
     X = [features(r["state"], r["options"]) for r in rows]; y = [canon(r["answer"]["choice"], r["state"]) for r in rows]
@@ -65,7 +71,12 @@ def main():
     tree = DecisionTreeClassifier(max_depth=a.depth, min_samples_leaf=a.leaf, random_state=0).fit(Xm, y)
     names = [n.replace("=", " is ") for n in vec.get_feature_names_out()]
     text = export_text(tree, feature_names=names, show_weights=True, max_depth=a.depth)
-    joblib.dump({"vec": vec, "tree": tree, "classes": [str(c) for c in tree.classes_]}, a.out + ".pkl"); open(a.out + ".txt", "w").write(text)
-    print(f"{os.path.basename(a.out)}: {n_all} judge decisions, {len(rows)} used ({'inside the acceptable set only' if a.clean else 'all'}) | leaves {tree.get_n_leaves()} | depth {tree.get_depth()} | agreement with the judge on its own decisions {tree.score(Xm, y):.3f} | classes {sorted(set(y))}")
+    old_vocab = None; scope = ""
+    if a.old_records:
+        olo, ohi = map(int, a.old_seeds.split("-")); old = load(a.old_records, a.arm, set(range(olo, ohi + 1)))
+        old_vocab = set().union(*[present(features(r["state"], r["options"])) for r in old]); new_feats = sorted(set().union(*[present(x) for x in X]) - old_vocab)
+        scope = f" | scoped: {len(old)} old decisions, {len(old_vocab)} old features; new features in the mined states: {new_feats}"
+    joblib.dump({"vec": vec, "tree": tree, "classes": [str(c) for c in tree.classes_], "old_vocab": old_vocab}, a.out + ".pkl"); open(a.out + ".txt", "w").write(text + "\n" + scope + "\n")
+    print(f"{os.path.basename(a.out)}: {n_all} judge decisions, {len(rows)} used ({'inside the acceptable set only' if a.clean else 'all'}) | leaves {tree.get_n_leaves()} | depth {tree.get_depth()} | agreement with the judge on its own decisions {tree.score(Xm, y):.3f} | classes {sorted(set(y))}{scope}")
 
 if __name__ == "__main__": main()

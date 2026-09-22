@@ -528,3 +528,11 @@ beat the RLCD judge (duck 29 = 29 on the fresh bank; humanoid 30 against 20) wit
 the anticipated banks unchanged (95 % = 95 %; 39/40 = 39/40). The judge's value on situations no rule was written for is
 time-to-rule plus the calibrated number a governor spends, not accuracy after the fact. Caveat: the banks' author wrote the
 fixes; a second designer's bank is the open test. Method error 36 (doorway fact inside the kick zone) found by the rewritten rule.
+
+**4.67** (2026-09-22 01:02 PDT, E115, E115b) The judge's recorded decisions on a new situation compile into a decision tree a person can
+read as rules. Filtered by the operator's vetoes it beats the judge that produced it on the duck (30 against 29 on fresh
+seeds; 20 scoped, under the doorway flaw) and, with a finer tree, matches the judge on the humanoid (20 = 20) at no
+operator cost beyond the one ask a note requires and with no falls. Scoped by a novelty gate to states outside the old
+vocabulary, the drafts leave the anticipated banks exactly where the frozen rules had them (36/40, 39/40). Conditions: most
+decisions must survive the veto (78 % on the duck; 32 % on the humanoid starves the draft), and the judge's blind spots
+compile unless vetoed first. A pre-registered set of six predictions went one of six; the follow-up three of four.

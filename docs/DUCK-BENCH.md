@@ -70,6 +70,7 @@ positive). Every number is in `results/duck/LEADERBOARD.md` and the notebook's E
 | R5 (E102) | **the teacher, jev**, same instrument, same seeds | 82 % (child note 1/10: 13 child-zone entries) | 23/40 | **29/30** (10, 9, 10) — above the oracle | +.013 unseen, −.246 anticipated; single-answer states 100 % at .87–.89 |
 | R5 (E104) | sj, open 27B, same instrument and seeds | 72 % | 22/40 | **19/30** (10, 8, 1): reads the follow note, walks past the person on crutches | +.174 unseen, −.121 anticipated |
 | R5 (E114) | rules rewritten after their author read the bank: v1 (6 lines, nine minutes) / v2 (one more line after reading one trace) | 95 % | 36/40 | 20/30 (10, 0, 10) / **29/30** (10, 9, 10) on 70–99; 28/30 on 40–69 | – |
+| R5 (E115, E115b) | rules + the judge's drafted clauses: a decision tree from the judge's E102 decisions on 70–99, tested on 40–69; all decisions / un-vetoed / un-vetoed and scoped to new states | 98 % / 98 % / 95 % | 27/40 / 27/40 / **36/40** | 20/30 / **30/30** / 20/30 (the scoped draft loses the doorway to method error 36) | – |
 | R5 (E102) | jev_confirm0.5 | 72 % | 26/40 | 28/30 | 16 % of windows vetoed; 7.5 s/ep unseen, 26 s anticipated |
 | R6 (E101) | **laya-r6**, correction round with masked targets | **70 %** (approach: goal 0/10 — waits 90 s; child 2/10) | 24/40 | **29/30** (10, 10, 9) = the teacher; no start–stop falls | −.181 unseen (single-answer .982 at .978), −.263 anticipated |
 | R6 (E101) | laya-r6_confirm0.5 | 70 % | 24/40 | 27/30 | 70 windows, 29 vetoes, 6 s/ep |

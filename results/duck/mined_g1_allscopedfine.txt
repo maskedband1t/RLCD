@@ -1,0 +1,78 @@
+|--- person.attention is reaching_toward_the_robot <= 0.50
+|   |--- robot.status is standing <= 0.50
+|   |   |--- note:sharp <= 0.50
+|   |   |   |--- opt:hand <= 0.50
+|   |   |   |   |--- robot.table is close <= 0.50
+|   |   |   |   |   |--- person.bearing is left <= 0.50
+|   |   |   |   |   |   |--- robot.table is near <= 0.50
+|   |   |   |   |   |   |   |--- robot.doorway is passed <= 0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 120.00] class: walk
+|   |   |   |   |   |   |   |--- robot.doorway is passed >  0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 2.00, 0.00, 0.00, 0.00, 0.00, 0.00, 12.00] class: walk
+|   |   |   |   |   |   |--- robot.table is near >  0.50
+|   |   |   |   |   |   |   |--- person.attention is looking_at_the_robot <= 0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 3.00, 2.00] class: wait
+|   |   |   |   |   |   |   |--- person.attention is looking_at_the_robot >  0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 18.00] class: walk
+|   |   |   |   |   |--- person.bearing is left >  0.50
+|   |   |   |   |   |   |--- robot.table is in_the_room <= 0.50
+|   |   |   |   |   |   |   |--- robot.holding is nothing <= 0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1.00, 4.00] class: walk
+|   |   |   |   |   |   |   |--- robot.holding is nothing >  0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 2.00, 0.00, 0.00, 0.00, 55.00] class: walk
+|   |   |   |   |   |   |--- robot.table is in_the_room >  0.50
+|   |   |   |   |   |   |   |--- person.motion is toward_the_robot <= 0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 10.00, 0.00, 0.00, 0.00, 39.00] class: walk
+|   |   |   |   |   |   |   |--- person.motion is toward_the_robot >  0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 10.00, 0.00, 0.00, 0.00, 11.00] class: walk
+|   |   |   |   |--- robot.table is close >  0.50
+|   |   |   |   |   |--- robot.holding is cup <= 0.50
+|   |   |   |   |   |   |--- person.distance is in_the_room <= 0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 8.00, 0.00, 0.00, 0.00, 1.00] class: pick_up
+|   |   |   |   |   |   |--- person.distance is in_the_room >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 10.00, 0.00, 0.00, 0.00, 0.00] class: pick_up
+|   |   |   |   |   |--- robot.holding is cup >  0.50
+|   |   |   |   |   |   |--- asker.distance is far_away <= 0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.00, 0.00] class: wait
+|   |   |   |   |   |   |--- asker.distance is far_away >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 26.00] class: walk
+|   |   |   |--- opt:hand >  0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 8.00, 0.00, 0.00, 0.00, 0.00, 0.00] class: hand_to_asker
+|   |   |--- note:sharp >  0.50
+|   |   |   |--- weights: [10.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00] class: ask_operator
+|   |--- robot.status is standing >  0.50
+|   |   |--- asker.distance is in_the_room <= 0.50
+|   |   |   |--- note:sharp <= 0.50
+|   |   |   |   |--- robot.object is delivered <= 0.50
+|   |   |   |   |   |--- robot.table is in_the_room <= 0.50
+|   |   |   |   |   |   |--- child.attention is looking_at_the_robot <= 0.50
+|   |   |   |   |   |   |   |--- robot.doorway is ahead_open <= 0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 1.00, 1.00, 3.00, 0.00, 0.00, 0.00, 12.00] class: walk
+|   |   |   |   |   |   |   |--- robot.doorway is ahead_open >  0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 8.00] class: walk
+|   |   |   |   |   |   |--- child.attention is looking_at_the_robot >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 10.00] class: walk
+|   |   |   |   |   |--- robot.table is in_the_room >  0.50
+|   |   |   |   |   |   |--- person.distance is in_the_room <= 0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 1.00, 10.00, 0.00, 0.00, 0.00, 10.00] class: pick_up
+|   |   |   |   |   |   |--- person.distance is in_the_room >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 10.00, 0.00, 0.00, 0.00, 10.00] class: pick_up
+|   |   |   |   |--- robot.object is delivered >  0.50
+|   |   |   |   |   |--- weights: [0.00, 10.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00] class: done
+|   |   |   |--- note:sharp >  0.50
+|   |   |   |   |--- weights: [20.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00] class: ask_operator
+|   |   |--- asker.distance is in_the_room >  0.50
+|   |   |   |--- person.attention is on_the_phone <= 0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 10.00] class: walk
+|   |   |   |--- person.attention is on_the_phone >  0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 124.00, 0.00] class: wait
+|--- person.attention is reaching_toward_the_robot >  0.50
+|   |--- person.time_to_contact is under_2_s <= 0.50
+|   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 130.00, 0.00, 0.00, 0.00] class: step_around
+|   |--- person.time_to_contact is under_2_s >  0.50
+|   |   |--- robot.doorway is ahead_open <= 0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 300.00, 1.00, 0.00, 0.00] class: step_around
+|   |   |--- robot.doorway is ahead_open >  0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00] class: step_around
+
+ | scoped: 1377 old decisions, 75 old features; new features in the mined states: ['asker.attention=on_the_phone', 'asker.kind=child', 'child.attention=reaching_toward_the_robot', 'note:only the person who asked', 'note:sharp', 'person.attention=on_the_phone', 'person.attention=reaching_toward_the_robot', 'robot.holding=scissors']

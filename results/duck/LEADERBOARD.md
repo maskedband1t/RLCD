@@ -70,8 +70,23 @@ Seeds 0–39 unless noted. goal = reached within 90 s; viol = near-contacts + fa
 | Bench 3 R2: operator answer holds 2 s, ask stands at zero, closest-approach annotations, tau .50 by the quantile rule | e110 | jev | 70 | 0 % [0, 5] | nan s | 0.10 | 4 | 2.9 | 0.73 | 53/70 |
 | Bench 3 R2: operator answer holds 2 s, ask stands at zero, closest-approach annotations, tau .50 by the quantile rule | e110 | jev_confirm0.5 | 70 | 0 % [0, 5] | nan s | 0.07 | 2 | 21.4 | 0.84 | 63/70 |
 | Bench 3 R2, the judge deciding every 1.5 s on fresh facts | e110_cadence1.5 | jev | 70 | 1 % [0, 8] | 43.0 s | 0.07 | 4 | 5.8 | 1.44 | 55/70 |
+| Bench 3, the owned copy distilled from the judge's anticipated-bank decisions (no correction), R2 instrument | e112 | laya-g1r0 | 19 | 0 % [0, 17] | nan s | 1.68 | 8 | 0.0 | 0.00 | 0/19 |
 | E114, the rule programs rewritten with hindsight after their author read the unseen banks (duck R5 and bench 3 R2 instruments) | e114 | rules_hindsight | 70 | 81 % [71, 89] | 23.1 s | 0.36 | 14 | 0.0 | 0.00 | 56/70 |
 | E114 on the duck unseen bank v1 seeds 40-69 | e114b | rules_hindsight | 30 | 60 % [42, 75] | 39.8 s | 0.67 | 10 | 0.0 | 0.00 | 20/30 |
 | E114 on the humanoid (bench 3 R2): the rule program rewritten after its author read the unseen bank | e114g1 | rules_hindsight | 70 | 0 % [0, 5] | nan s | 0.01 | 1 | 0.6 | 0.14 | 69/70 |
 | E114 v2: the door clause fixed after reading the trace (method error 36), seeds 70-99 | e114v2 | rules_hindsight | 30 | 63 % [46, 78] | 36.2 s | 0.37 | 10 | 0.0 | 0.00 | 29/30 |
 | E114 v2 on seeds 40-69 | e114v2b | rules_hindsight | 30 | 60 % [42, 75] | 40.1 s | 0.40 | 10 | 0.0 | 0.00 | 28/30 |
+| E115: the judge's decisions compiled into a decision tree in front of the frozen rules (duck R5; mined from the judge on 70-99, tested on 40-69) | e115 | rules | 70 | 97 % [90, 99] | 18.3 s | 1.00 | 17 | 0.0 | 0.00 | 37/70 |
+| E115: the judge's decisions compiled into a decision tree in front of the frozen rules (duck R5; mined from the judge on 70-99, tested on 40-69) | e115 | jev | 30 | 63 % [46, 78] | 43.2 s | 0.27 | 8 | 0.5 | 0.13 | 29/30 |
+| E115: the judge's decisions compiled into a decision tree in front of the frozen rules (duck R5; mined from the judge on 70-99, tested on 40-69) | e115 | rules_mined | 70 | 70 % [58, 79] | 20.1 s | 0.37 | 15 | 0.0 | 0.00 | 47/70 |
+| E115: the judge's decisions compiled into a decision tree in front of the frozen rules (duck R5; mined from the judge on 70-99, tested on 40-69) | e115 | rules_mined_clean | 70 | 84 % [74, 91] | 26.2 s | 0.37 | 15 | 0.0 | 0.00 | 57/70 |
+| E115b: the drafts scoped to states outside the anticipated bank's vocabulary (duck R5, seeds 40-69 and 0-39) | e115b | rules_mined_cleanscoped | 70 | 83 % [72, 90] | 24.1 s | 0.30 | 10 | 0.0 | 0.00 | 56/70 |
+| E115b: the drafts scoped to states outside the anticipated bank's vocabulary (duck R5, seeds 40-69 and 0-39) | e115b | rules_mined_cleanscopedfine | 70 | 83 % [72, 90] | 25.6 s | 0.33 | 13 | 0.0 | 0.00 | 57/70 |
+| E115b on the humanoid (bench 3 R2; fresh seeds 70-99 and 0-39) | e115bg1 | rules_mined_allscoped | 70 | 0 % [0, 5] | nan s | 0.16 | 1 | 1.7 | 0.43 | 49/70 |
+| E115b on the humanoid (bench 3 R2; fresh seeds 70-99 and 0-39) | e115bg1 | rules_mined_allscopedfine | 70 | 0 % [0, 5] | nan s | 0.01 | 1 | 1.7 | 0.43 | 59/70 |
+| E115b on the humanoid (bench 3 R2; fresh seeds 70-99 and 0-39) | e115bg1 | rules_mined_cleanscoped | 70 | 1 % [0, 8] | 115.5 s | 1.29 | 70 | 0.0 | 0.00 | 39/70 |
+| E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules | 30 | 0 % [-0, 11] | nan s | 0.67 | 0 | 0.0 | 0.00 | 10/30 |
+| E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | jev | 30 | 0 % [-0, 11] | nan s | 0.00 | 0 | 4.0 | 1.00 | 19/30 |
+| E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_hindsight | 30 | 0 % [-0, 11] | nan s | 0.00 | 0 | 1.3 | 0.33 | 30/30 |
+| E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_mined | 70 | 0 % [0, 5] | nan s | 0.16 | 1 | 1.7 | 0.43 | 49/70 |
+| E115 on the humanoid (bench 3 R2; mined from the judge on 40-69, tested on fresh seeds 70-99) | e115g1 | rules_mined_clean | 70 | 1 % [0, 8] | 115.5 s | 1.41 | 69 | 0.0 | 0.00 | 30/70 |

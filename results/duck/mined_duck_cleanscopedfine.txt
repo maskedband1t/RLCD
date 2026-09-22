@@ -1,0 +1,57 @@
+|--- note:follow <= 0.50
+|   |--- robot.status is standing <= 0.50
+|   |   |--- robot.goal_distance is at_the_goal <= 0.50
+|   |   |   |--- person.bearing is behind <= 0.50
+|   |   |   |   |--- person.distance is in_the_room <= 0.50
+|   |   |   |   |   |--- person.distance is near <= 0.50
+|   |   |   |   |   |   |--- person.closing_speed is slow <= 0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 19.00] class: walk_slow
+|   |   |   |   |   |   |--- person.closing_speed is slow >  0.50
+|   |   |   |   |   |   |   |--- weights: [3.00, 0.00, 0.00, 1.00, 0.00, 0.00, 33.00] class: walk_slow
+|   |   |   |   |   |--- person.distance is near >  0.50
+|   |   |   |   |   |   |--- person.bearing is right <= 0.50
+|   |   |   |   |   |   |   |--- person.motion is away_from_the_robot <= 0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 1.00, 0.00, 0.00, 7.00] class: walk_slow
+|   |   |   |   |   |   |   |--- person.motion is away_from_the_robot >  0.50
+|   |   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 13.00] class: walk_slow
+|   |   |   |   |   |   |--- person.bearing is right >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 45.00] class: walk_slow
+|   |   |   |   |--- person.distance is in_the_room >  0.50
+|   |   |   |   |   |--- person.motion is away_from_the_robot <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 524.00] class: walk_slow
+|   |   |   |   |   |--- person.motion is away_from_the_robot >  0.50
+|   |   |   |   |   |   |--- robot.doorway is passed <= 0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 51.00] class: walk_slow
+|   |   |   |   |   |   |--- robot.doorway is passed >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 1.00, 14.00] class: walk_slow
+|   |   |   |--- person.bearing is behind >  0.50
+|   |   |   |   |--- person.motion is standing_still <= 0.50
+|   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 3.00, 0.00, 2.00] class: wait
+|   |   |   |   |--- person.motion is standing_still >  0.50
+|   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 15.00] class: walk_slow
+|   |   |--- robot.goal_distance is at_the_goal >  0.50
+|   |   |   |--- weights: [0.00, 19.00, 0.00, 0.00, 0.00, 0.00, 0.00] class: done
+|   |--- robot.status is standing >  0.50
+|   |   |--- person.distance is in_the_room <= 0.50
+|   |   |   |--- person.kind is adult <= 0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 164.00, 0.00, 0.00] class: wait
+|   |   |   |--- person.kind is adult >  0.50
+|   |   |   |   |--- person.motion is toward_the_robot <= 0.50
+|   |   |   |   |   |--- person.distance is near <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 11.00, 0.00, 0.00] class: wait
+|   |   |   |   |   |--- person.distance is near >  0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 4.00, 0.00, 2.00] class: wait
+|   |   |   |   |--- person.motion is toward_the_robot >  0.50
+|   |   |   |   |   |--- person.distance is near <= 0.50
+|   |   |   |   |   |   |--- person.bearing is right <= 0.50
+|   |   |   |   |   |   |   |--- weights: [1.00, 0.00, 0.00, 4.00, 0.00, 0.00, 0.00] class: stop
+|   |   |   |   |   |   |--- person.bearing is right >  0.50
+|   |   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 5.00, 2.00, 0.00, 0.00] class: stop
+|   |   |   |   |   |--- person.distance is near >  0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 7.00, 0.00, 0.00, 0.00] class: stop
+|   |   |--- person.distance is in_the_room >  0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 24.00] class: walk_slow
+|--- note:follow >  0.50
+|   |--- weights: [0.00, 0.00, 1231.00, 0.00, 0.00, 0.00, 0.00] class: follow_person
+
+ | scoped: 2470 old decisions, 38 old features; new features in the mined states: ['note:follow', 'note:right of way', 'person.kind=adult_with_crutches', 'robot.doorway=ahead_with_a_small_object_on_the_floor']

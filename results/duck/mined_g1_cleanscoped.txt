@@ -1,0 +1,21 @@
+|--- person.distance is near <= 0.50
+|   |--- robot.table is close <= 0.50
+|   |   |--- robot.doorway is passed <= 0.50
+|   |   |   |--- robot.table is in_the_room <= 0.50
+|   |   |   |   |--- robot.doorway is further_ahead <= 0.50
+|   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 41.00] class: walk
+|   |   |   |   |--- robot.doorway is further_ahead >  0.50
+|   |   |   |   |   |--- weights: [0.00, 0.00, 2.00, 1.00, 27.00] class: walk
+|   |   |   |--- robot.table is in_the_room >  0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 169.00] class: walk
+|   |   |--- robot.doorway is passed >  0.50
+|   |   |   |--- weights: [3.00, 0.00, 0.00, 0.00, 13.00] class: walk
+|   |--- robot.table is close >  0.50
+|   |   |--- opt:put_down <= 0.50
+|   |   |   |--- weights: [0.00, 0.00, 18.00, 0.00, 0.00] class: pick_up
+|   |   |--- opt:put_down >  0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 34.00] class: walk
+|--- person.distance is near >  0.50
+|   |--- weights: [7.00, 10.00, 0.00, 0.00, 9.00] class: hand_to_asker
+
+ | scoped: 1377 old decisions, 75 old features; new features in the mined states: ['asker.attention=on_the_phone', 'child.attention=reaching_toward_the_robot', 'note:only the person who asked', 'person.attention=on_the_phone', 'person.attention=reaching_toward_the_robot']

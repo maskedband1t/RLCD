@@ -92,5 +92,17 @@ accuracy after the fact. Two caveats are the banks' author wrote the fixes (a lo
 bound on a stranger's program), and the first attempt exposed an instrument flaw shared by every arm (the doorway fact fires
 inside the kick zone; method error 36), which a deterministic program finds and a stochastic judge crosses by luck.
 
+### 8.z The judge's decisions as a rule draft (E115, E115b)
+
+If the judge's value is the interval before a rule exists, its recorded decisions in that interval should shorten it. We
+compiled them into a decision tree over the same categorical facts the rule programs read and placed it in front of the frozen
+program. Filtered to the decisions the operator would not have vetoed, the duck's draft (eleven leaves; "if the note says
+follow, follow; if standing and the person has crutches, wait") handled 30 of 30 fresh runs of the unseen situations, one more
+than the judge, and scoped by a novelty gate to states outside the anticipated bank's vocabulary it left that bank at the frozen
+rules' 36 of 40. On the humanoid a third of the decisions survive the veto and the filtered draft fails; a finer tree from all
+decisions matches the judge (20 of 30) at rule cost and inherits its blind spot. The procedure that follows is judge, veto,
+compile, scope, review; the review is where the tree is silent. Six pre-registered predictions went one of six and the
+follow-up's four went three of four; the misses are the instrument flaw of §8.y and the compiler's capacity.
+
 ## Appendix A — Method: pre-registered predictions and their scores; adversarial review of the plan; 24 logged method errors.
 ## Appendix B — Suites, prompts, rater packet, per-type tables.

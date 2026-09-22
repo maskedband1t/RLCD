@@ -66,7 +66,8 @@ class RulesMined(Rules):
         return super().decide(f, opts, room)
 
 def mined_path(arm):
-    body = "g1" if BODY == "g1" else "duck"; return os.environ.get("DUCK_MINED_DIR", "results/duck") + f"/mined_{body}_{'clean' if arm.endswith('_clean') else 'all'}.pkl"
+    body = "g1" if BODY == "g1" else "duck"; suffix = arm[len("rules_mined_"):] if arm.startswith("rules_mined_") else "all"
+    return os.environ.get("DUCK_MINED_DIR", "results/duck") + f"/mined_{body}_{suffix}.pkl"
 
 class Oracle:
     name = "oracle"
@@ -132,7 +133,7 @@ class DuckLaya:
         return choice, j
 
 def make_arm(arm):
-    if BODY == "g1" and arm in ("rules_mined", "rules_mined_clean"):
+    if BODY == "g1" and arm.startswith("rules_mined"):
         from humanoid.fetch_arms import FetchRulesMined; a = FetchRulesMined(mined_path(arm)); a.name = arm; return a
     if BODY == "g1" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):
         from humanoid.fetch_arms import FetchRules, FetchRulesAsk, FetchRulesHindsight, FetchOracle; return {"rules": FetchRules, "rules_ask": FetchRulesAsk, "rules_hindsight": FetchRulesHindsight, "oracle": FetchOracle}[arm]()
@@ -145,7 +146,7 @@ def make_arm(arm):
     if arm == "rules": return Rules()
     if arm == "rules_ask": return RulesAsk()
     if arm == "rules_hindsight": return RulesHindsight()
-    if arm in ("rules_mined", "rules_mined_clean"):
+    if arm.startswith("rules_mined"):
         a = RulesMined(mined_path(arm)); a.name = arm; return a
     if arm == "oracle": return Oracle()
     if arm == "jev": return DuckJev()

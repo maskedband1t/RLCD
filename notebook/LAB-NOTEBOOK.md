@@ -12699,3 +12699,98 @@ with pure leaves on anticipated states too and overrides the frozen program wher
 child note), 9 events lost. A programmer reviewing the tree would gate its clauses on the situation's trigger (the note, the
 crutches), as the tree's own top splits suggest; that scoped variant is the next pre-registration (E115b), not a fix applied
 to these numbers. P115.4 fails on the duck as stated.
+
+### E115 results (runs 00:35–00:50 PDT 2026-09-22; written 00:55) · the judge's decisions compile into a good rule draft where most of them survive the veto, and into a bad one where they do not
+
+Trees: duck, all decisions 12 leaves (agreement with the judge's own choices .988); duck, un-vetoed only 11 leaves (.994; 2,206 of
+2,812 decisions, 78 %, were inside the acceptable set). Humanoid, all 20 leaves (.908); un-vetoed only 7 leaves (.934; 334 of
+1,049, 32 %). The duck's un-vetoed draft, in full, reads: *if the note says follow → follow the person (1,231 decisions); else if
+walking → keep walking slowly, done at the goal; else if standing with a person in the room → wait if they have crutches
+(164), stop if they are closing, wait if they are still; else walk slowly.* Drafts tested on seeds never mined:
+
+| body · bank | frozen rules | draft, all | draft, un-vetoed | hindsight programmer (E114) | judge, same seeds |
+|---|---|---|---|---|---|
+| duck · unseen 40–69 | 1/30 | 20/30 (follow 10, object 10, right of way **0**) | **30/30** | 28/30 | 29/30 (10, 10, 9) |
+| duck · anticipated 0–39 | 36/40 | 27/40 (blocked 6, child 6, cross 5; 5 zone entries, 5 door collisions) | 27/40 | 36/40 | 23/40 (E102) |
+| humanoid · fresh unseen 70–99 | 10/30 (phone 0, reaching 10, scissors 0) | 10/30 (0, 0, 10) | **0/30** (69 near contacts) | 30/30 | 19/30 (9, 0, 10) |
+| humanoid · anticipated 0–39 | 39/40 | 39/40 | 30/40 (blocked 0; 10 door collisions) | 39/40 | 33/40 (E110) |
+
+The judge on the humanoid's fresh seeds: 19/30 (phone 9, reaching child 0, scissors 10), consistent with E110's 20/30; its
+decisions sit inside the acceptable set 29 % of the time at a stated top-1 of .56 (over-confident by .27 on its own states),
+against 89 % at .80 on the duck's 40–69 (under by .10). The humanoid's acceptable sets are strict about speed choices; the
+judge handles the situation while choosing the unlisted speed, and the un-vetoed subset it leaves behind is a third of its
+decisions.
+
+**Scoring.** P115.1 ✘ (the all-decisions draft 20 < 25; the 30/30 belongs to the un-vetoed draft, which was not the predicted
+variant). P115.2 ✘ (phone 0/10; scissors 10 and reaching child 0 as predicted). P115.3 ✘ (0/10). P115.4 ✘ on the duck (27
+against 36) and for the humanoid's un-vetoed draft (30 against 39); ✔ for the humanoid's all-decisions draft (39). P115.5 ✔
+(29 ≥ 27). P115.6 ✘ (one tree has 20 leaves). **One of six.** The fixed interpretation for a draft that falls well short of the
+judge was "the judge uses something the categorical facts do not carry"; the humanoid's facts *do* carry the phone (the
+asker's attention is a feature), and the compiled tree never split on it: with leaves of at least 15 decisions and a depth of
+6, the judge's waiting is spread over wait, stop and walk_slow across states, no leaf reached 60 % purity where it mattered,
+the draft stayed silent within reach and the frozen program's hand-over fired. So the shortfall is the compiler's and the
+reviewer's, not the facts'.
+
+**Reading.**
+1. *A draft is only as good as the fraction of decisions that survive the veto.* On the duck the un-vetoed draft beats the judge
+   that produced it (30 against 29) and the programmer with hindsight (28): the vetoes removed the judge's walking past the
+   crutches, and what remained compiles into a rule a person can read. On the humanoid a third of the decisions survive, the
+   draft is starved (7 leaves) and fires "hand to the asker" whenever anyone is near: worse than no draft.
+2. *An unscoped draft overrides the old rules where they were right.* Nine anticipated events lost on the duck. The draft must
+   apply only where the state is new; the tree's own top split (the note) says where.
+3. *The judge's blind spot compiles too.* The all-decisions draft hands the cup to the reaching child exactly as the judge did
+   (0/10), while the frozen program never did (10/10): mining a rule from a judge reproduces its errors unless the vetoes remove
+   them first, which is the data loop in rule form.
+4. *What this changes in the deliverables.* The rule-drafting path is real but conditional; the docs get the duck's draft as the
+   worked example, the humanoid's as the counter-example, and the two fixes (veto first, scope to the new state) as the
+   procedure. E115b, pre-registered below, tests the scoping.
+
+## E115b · the drafts scoped to new states (pre-registration, 2026-09-22 00:54 PDT; launched right after)
+
+**Design.** Same drafts, one gate: the compiled tree decides only when the current state carries a feature never seen in the
+judge's anticipated-bank records of the same instrument (a new note keyword, a new kind of person, a new doorway fact, a new
+attention); elsewhere the frozen program decides. The old vocabulary is built by `e115_mine.py --old-records`, no hand-picked
+triggers. Variants: duck, un-vetoed draft scoped (`rules_mined_cleanscoped`) and the same with a finer tree (leaves ≥ 5,
+depth ≤ 8; `rules_mined_cleanscopedfine`); humanoid, all-decisions draft scoped (`rules_mined_allscoped`), the same finer
+(`rules_mined_allscopedfine`), and the un-vetoed draft scoped (`rules_mined_cleanscoped`). Same seeds as E115.
+**Predictions.**
+- **P115b.1** duck, un-vetoed scoped: unseen 40–69 stays ≥ 28/30 and the anticipated bank returns to ≥ 34/40 (frozen 36). Prior 65 %.
+- **P115b.2** humanoid, un-vetoed scoped: anticipated returns to ≥ 37/40 (was 30); unseen stays ≤ 10/30 (the draft itself is starved). Prior 60 %.
+- **P115b.3** humanoid, all-decisions scoped and finer: the phone clause appears (phone ≥ 5/10, was 0); reaching child stays ≤ 3/10. Prior 45 %.
+- **P115b.4** no scoped variant loses more than 2 anticipated events against the frozen rules on either body. Prior 65 %.
+
+### E115b results (runs 00:56–01:00 PDT 2026-09-22; written 01:03) · scoping restores the old rules everywhere; a finer tree finds the phone clause; the doorway flaw takes the object situation back
+
+The gate found the triggers by itself (features absent from 2,470 duck and 1,377 humanoid anticipated-bank decisions): duck
+`note:follow`, `note:right of way`, `person.kind=adult_with_crutches`, `robot.doorway=ahead_with_a_small_object_on_the_floor`;
+humanoid `asker.attention=on_the_phone`, `asker.kind=child`, `child.attention=reaching_toward_the_robot`, `note:phone`,
+`note:sharp`, `note:only the person who asked`.
+
+| draft (scoped to new states) | unseen bank | per situation | anticipated bank | falls | operator s |
+|---|---|---|---|---|---|
+| duck, un-vetoed, 11 leaves | 20/30 | follow 10, object **0**, right of way 10 | **36/40** (= frozen) | 0 | 0 |
+| duck, un-vetoed, finer (19 leaves) | 21/30 | 10, 1, 10 | 36/40 | 0 | 0 |
+| humanoid, all decisions, 20 leaves | 10/30 | phone 0, reaching 0, scissors 10 | 39/40 (= frozen) | 0 | 4.0 |
+| humanoid, all decisions, finer (26 leaves) | **20/30** | phone **10**, reaching 0, scissors 10 | 39/40 | 0 | 4.0 |
+| humanoid, un-vetoed, 7 leaves | 0/30 | 0, 0, 0 (69 near contacts) | 39/40 | 0 | 0 |
+| reference: judge, same seeds | 29/30 duck · 19/30 humanoid | | 23/40 · 33/40 | 0 · 0 | 0.5 · 4.0 |
+
+**Scoring.** P115b.1 ✘ (unseen 20 < 28; the anticipated half held, 36 ≥ 34). P115b.2 ✔ (39 ≥ 37; unseen 0 ≤ 10). P115b.3 ✔
+(phone 10 ≥ 5; reaching 0 ≤ 3). P115b.4 ✔ (36 = 36; 39 = 39). Three of four.
+
+**Reading.**
+1. *Scoping works as a procedure.* No hand-picked triggers; the anticipated banks are exactly the frozen rules' on both
+   bodies. The cost is the duck's object-in-door situation, and the trace says why: the draft only fires while the doorway
+   fact shows the object, the fact reads "passed" 5 cm before the kick zone ends (method error 36), the frozen program takes
+   over and walks fast into the object. The unscoped draft in E115 walked slowly everywhere and never met the flaw. Same
+   flaw, third time: it took the hindsight programmer's first attempt, and now the scoped draft. R8 fixes it for every arm.
+2. *The compiler's capacity was the humanoid's problem, not the facts.* With leaves of 5 and depth 8 the draft from all
+   decisions handles the phone call 10/10 and the scissors 10/10, the judge's own 20/30 on these seeds, with no falls and
+   four operator seconds (the one ask the note requires). The judge's blind spot on the reaching child compiles with it.
+3. *The un-vetoed humanoid draft stays starved.* A third of the decisions is not enough to draft from; scoping only
+   contains the damage. The fix is upstream: acceptable sets that treat the speed choices as equivalent where they are, so
+   the veto keeps only real errors; that is a bench change (R3 for the humanoid), pre-registered before it runs.
+4. *The procedure, as the docs will state it.* Judge covers day one → the operator's vetoes filter its decisions → the
+   decisions compile into a tree, scoped to the states the old rules never saw → a person reads the tree (where it is
+   silent is where to write) → the clause ships. Measured: duck 30/30 unscoped or 20/30 scoped under the doorway flaw;
+   humanoid 20/30 = the judge, at rule cost.

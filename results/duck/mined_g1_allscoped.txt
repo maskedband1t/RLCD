@@ -1,0 +1,60 @@
+|--- person.attention is reaching_toward_the_robot <= 0.50
+|   |--- robot.status is standing <= 0.50
+|   |   |--- opt:put_down <= 0.50
+|   |   |   |--- robot.doorway is further_ahead <= 0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 18.00, 0.00, 0.00, 0.00, 0.00] class: pick_up
+|   |   |   |--- robot.doorway is further_ahead >  0.50
+|   |   |   |   |--- opt:step_around <= 0.50
+|   |   |   |   |   |--- person.closing_speed is none <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 10.00, 0.00, 0.00, 0.00, 11.00] class: walk
+|   |   |   |   |   |--- person.closing_speed is none >  0.50
+|   |   |   |   |   |   |--- weights: [10.00, 0.00, 0.00, 0.00, 12.00, 0.00, 0.00, 0.00, 74.00] class: walk
+|   |   |   |   |--- opt:step_around >  0.50
+|   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 31.00] class: walk
+|   |   |--- opt:put_down >  0.50
+|   |   |   |--- asker.distance is near <= 0.50
+|   |   |   |   |--- person.bearing is ahead <= 0.50
+|   |   |   |   |   |--- person.bearing is left <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 106.00] class: walk
+|   |   |   |   |   |--- person.bearing is left >  0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 1.00, 20.00] class: walk
+|   |   |   |   |--- person.bearing is ahead >  0.50
+|   |   |   |   |   |--- robot.table is touching_distance <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 1.00, 0.00, 0.00, 0.00, 0.00, 9.00, 16.00] class: walk
+|   |   |   |   |   |--- robot.table is touching_distance >  0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 21.00] class: walk
+|   |   |   |--- asker.distance is near >  0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 1.00, 8.00, 0.00, 0.00, 0.00, 0.00, 9.00] class: walk
+|   |--- robot.status is standing >  0.50
+|   |   |--- robot.requester_distance is in_the_room <= 0.50
+|   |   |   |--- asker.kind is child <= 0.50
+|   |   |   |   |--- robot.doorway is further_ahead <= 0.50
+|   |   |   |   |   |--- weights: [0.00, 10.00, 1.00, 2.00, 0.00, 0.00, 0.00, 0.00, 8.00] class: done
+|   |   |   |   |--- robot.doorway is further_ahead >  0.50
+|   |   |   |   |   |--- robot.table is near <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00, 20.00] class: pick_up
+|   |   |   |   |   |--- robot.table is near >  0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 3.00, 0.00, 0.00, 0.00, 22.00] class: walk
+|   |   |   |--- asker.kind is child >  0.50
+|   |   |   |   |--- weights: [20.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00] class: ask_operator
+|   |   |--- robot.requester_distance is in_the_room >  0.50
+|   |   |   |--- person.bearing is behind <= 0.50
+|   |   |   |   |--- robot.table is near <= 0.50
+|   |   |   |   |   |--- robot.doorway is passed <= 0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 23.00, 3.00] class: wait
+|   |   |   |   |   |--- robot.doorway is passed >  0.50
+|   |   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 24.00, 0.00] class: wait
+|   |   |   |   |--- robot.table is near >  0.50
+|   |   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 68.00, 0.00] class: wait
+|   |   |   |--- person.bearing is behind >  0.50
+|   |   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 9.00, 7.00] class: wait
+|--- person.attention is reaching_toward_the_robot >  0.50
+|   |--- person.time_to_contact is under_2_s <= 0.50
+|   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 130.00, 0.00, 0.00, 0.00] class: step_around
+|   |--- person.time_to_contact is under_2_s >  0.50
+|   |   |--- robot.table is far_away <= 0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 20.00, 0.00, 0.00, 0.00] class: step_around
+|   |   |--- robot.table is far_away >  0.50
+|   |   |   |--- weights: [0.00, 0.00, 0.00, 0.00, 0.00, 300.00, 1.00, 0.00, 0.00] class: step_around
+
+ | scoped: 1377 old decisions, 75 old features; new features in the mined states: ['asker.attention=on_the_phone', 'asker.kind=child', 'child.attention=reaching_toward_the_robot', 'note:only the person who asked', 'note:sharp', 'person.attention=on_the_phone', 'person.attention=reaching_toward_the_robot', 'robot.holding=scissors']

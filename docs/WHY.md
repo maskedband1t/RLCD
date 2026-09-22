@@ -87,3 +87,13 @@ handles 19 of 30; a 7-billion one chooses acceptably 37 % of the time). Hiding t
 the edge is reading, not general caution. And the rules' author, given the bank, closed the gap in minutes, which is the
 point: the judge's value is not that it beats a rule that exists; it is that it handles the situation before the rule
 does, with a number that says how sure it is.
+
+**How the judge helps write the next rule.** Its decisions on the new situation are recorded with the facts it saw. Keep
+the ones the operator did not veto, compile them into a small decision tree over those facts, and the tree reads like a
+rule: on the duck, "if the note says follow, follow the person; if standing and the person has crutches, wait; at the
+goal, done". That draft handled 30 of 30 fresh runs of the new situations, one more than the judge that produced it, and
+when limited to states the old rules had never seen it left the old situations exactly where the old rules had them. Two
+conditions, both measured: most of the judge's decisions must survive the veto (on the humanoid only a third did and the
+draft was useless until a finer tree was fitted to all of them), and the judge's blind spots compile with it unless the
+vetoes remove them first. So the loop is: the judge covers day one, the operator's vetoes filter, the tree is the draft,
+and a person reads where the tree is silent before the clause ships.

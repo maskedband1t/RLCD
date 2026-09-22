@@ -65,3 +65,12 @@ human-sized body (an open humanoid walking policy already runs here) in a home r
 many robots; real takeover logs as the corrections; deciding less often on fresh facts; the open 27B on the same body;
 a twin of the deployment site as the bench's world; the rest of the real recordings; the one unsolved crossing
 situation as a safety rule. Each is listed in the README with what it would show alone and in combination.
+
+**How this could be unfair.** We wrote the rule programs ourselves and froze them while the judge's inputs improved; the
+unseen situations lean on notes, which is what the judge reads; the owned copy learns our own labels and is tested on new
+runs of the same situations, not on new situations; the benches changed between rounds after we saw results, though every
+change was announced before the next run and the baselines were re-run on it; the open 27-billion-parameter model was
+tested through a readout we built; and ten runs per situation cannot tell 33 from 35. The claims rest on the effects
+that survive all of this: 0 of 10 against 10 of 10, 1 of 30 against 29 of 30, a number that holds within .02 against one
+that drifts .135. Next on the list: write the rules a second time after seeing the unseen situations, so the sentence
+becomes "the judge handles a situation before its rule exists; once written, the rule wins".

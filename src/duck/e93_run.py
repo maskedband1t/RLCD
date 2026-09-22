@@ -123,7 +123,9 @@ def episode(seed, arm_name, record=None, verbose=False):
     goal = False; t_goal = None; pending = None; prev_key = "stop"
     while room.t < MAX_T and not room.fell:
         f = room.facts(); opts = room.options(); acc = room.acceptable()
-        if pending is not None: key, j = pending, {"source": "operator"}; pending = None
+        if pending is not None:
+            key, j = pending, {"source": "operator"}; pending = None
+            for _ in range(int(round(getattr(room, "OPERATOR_HOLD_S", DECISION_S) / DECISION_S)) - 1): room.run_skill(key)   # the operator's answer holds the wheel (2 s on the humanoid; one cycle elsewhere)
         else:
             key, j = arm.decide(f, opts, room)
             if str(j.get("source", "")).startswith("error:"):

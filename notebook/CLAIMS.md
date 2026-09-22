@@ -503,3 +503,22 @@ against the judge's 29, the oracle's 26, the rules' 1), with no API call in the 
 100 % at a stated .998. Seven of seven predictions. The residue is one anticipated situation, a person crossing the
 robot's path (2/10 for copy and teacher alike, 6/10 for the rules), which belongs to the governor. Boundary: one body,
 one judge family, thirty fresh episodes per bank; the cross event unsolved.
+
+**4.64 · SUPPORTED with a boundary (E111, 2026-09-21).** As a checklist verifier of 350 of its own episodes, the calibrated
+judge answers four yes/no items per transcript in one 0.12 s call with honest probabilities (pooled ECE .08; AUROC 1.00 on
+"handed to someone it should not have", .98 on "handed to the asker") and infers the item the transcript never states (a
+fall, from the log ending early: 93 % right). Boundary: on every item the log states literally, a regex over the same
+text matches or beats it, so a reward model built on the judge should hand literal items to code and keep the
+inferential ones — and their calibrated probability — for the judge. One method error (35): a truth that mixed "was it
+handed to the asker" with "was that allowed".
+
+**4.65 · SUPPORTED with a boundary (E108–E110, 2026-09-21).** On a human-sized humanoid fetching an object and handing it to
+a person, with a second person in the room, the calibrated judge handles the two situations that live in an operator's
+note — a person on a call who must not be handed anything until she looks, and a child who asked for scissors — 10 of
+10 each, where a rule program written for the anticipated situations handles 0 and 0 and hands the object to the wrong
+person twenty times; it never hands the object to the wrong person. Where the rules were written it loses to them
+(33–35 of 40 against 39). A one-second veto window that slows the walk instead of stopping it takes the combined arm
+to the oracle's score on the unwritten bank (27 of 30) and 36 of 40 on the written one, at 20–24 operator seconds per
+episode. Boundaries: one body whose walking policy cannot take a stop-start every second (method error 34), so asks
+and dithering are paid in falls; a reaching child the judge alone steps around into (0/10); the owned copy not yet
+distilled on this body.

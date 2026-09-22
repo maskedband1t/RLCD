@@ -62,7 +62,7 @@ into facts once, teaching. We have not put a frontier model in the seat ourselve
 
 **What to test next.** A frontier model in the seat at its own latency; a frontier model as the copy's teacher; a
 human-sized body (an open humanoid walking policy already runs here) in a home room and a store aisle; one operator for
-many robots; real takeover logs as the corrections; deciding less often on fresh facts; the open 27B on the same body;
+many robots; real takeover logs as the corrections; deciding less often on fresh facts; a bank of situations designed by someone else, scored before its designer sees any arm;
 a twin of the deployment site as the bench's world; the rest of the real recordings; the one unsolved crossing
 situation as a safety rule. Each is listed in the README with what it would show alone and in combination.
 
@@ -72,5 +72,18 @@ runs of the same situations, not on new situations; the benches changed between 
 change was announced before the next run and the baselines were re-run on it; the open 27-billion-parameter model was
 tested through a readout we built; and ten runs per situation cannot tell 33 from 35. The claims rest on the effects
 that survive all of this: 0 of 10 against 10 of 10, 1 of 30 against 29 of 30, a number that holds within .02 against one
-that drifts .135. Next on the list: write the rules a second time after seeing the unseen situations, so the sentence
-becomes "the judge handles a situation before its rule exists; once written, the rule wins".
+that drifts .135. Done (E114): written a second time by their author after seeing the unseen situations, the rules handle 29 of 30 on
+the duck (the judge's number) and 30 of 30 on the humanoid (the judge: 20), in under fifteen minutes per body. So the
+sentence is: the judge handles a situation before its rule exists; once written, the rule wins; and while the rule does
+not exist yet, the judge's number is what a governor spends.
+
+**What a rule is for, and how anyone can tell.** A rule is for the situations its author had in front of him when he wrote
+it. Nobody can list the situations they did not think of, so "unwritten" cannot be judged by reading the rule; it can only
+be judged by time. Here the rules were written and dated against the four anticipated situations, and the unseen
+situations were designed afterwards; whatever the rules do on those is what rules do on the day a new situation arrives.
+The operator notes are not a trick in the judge's favour: a note is a real thing (a supervisor's instruction) and the fair
+comparison for reading is against other readers, which we ran (an open 27-billion-parameter model reads the same notes and
+handles 19 of 30; a 7-billion one chooses acceptably 37 % of the time). Hiding the notes from the judge removed its edge, so
+the edge is reading, not general caution. And the rules' author, given the bank, closed the gap in minutes, which is the
+point: the judge's value is not that it beats a rule that exists; it is that it handles the situation before the rule
+does, with a number that says how sure it is.

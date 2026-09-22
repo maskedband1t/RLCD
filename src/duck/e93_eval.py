@@ -10,7 +10,7 @@ def load(p): return [json.loads(l) for l in open(p) if l.strip()]
 RUN = sys.argv[1] if len(sys.argv) > 1 else "e93"
 rows = load(f"results/duck/{RUN}.jsonl"); by = collections.defaultdict(dict)
 for r in rows: by[r["arm"]][r["seed"]] = r
-ARMS = ["rules", "rules_ask", "oracle", "jev"] + sorted({a for a in by if a.startswith("jev_")}) + sorted({a for a in by if a.startswith("sj")}) + sorted({a for a in by if a.startswith("laya")})
+ARMS = ["rules", "rules_ask", "oracle", "jev"] + sorted({a for a in by if a.startswith("rules_") and a != "rules_ask"}) + sorted({a for a in by if a.startswith("jev_")}) + sorted({a for a in by if a.startswith("sj")}) + sorted({a for a in by if a.startswith("laya")})
 BANK = sys.argv[2] if len(sys.argv) > 2 else None   # "anticipated" (seeds 0-39) | "unseen" (seeds 40+) | None = all
 if BANK: by = {a: {s_: r for s_, r in R.items() if (s_ < 40) == (BANK == "anticipated")} for a, R in by.items()}   # seeds >= 40 are the unseen bank (40-69 and the fresh 70-99)
 print(f"=== run {RUN} · bank {BANK or 'all'}")

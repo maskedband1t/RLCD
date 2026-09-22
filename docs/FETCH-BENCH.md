@@ -45,6 +45,7 @@ when standing. The cart is a ghost: entering the blocked doorway is counted, not
 | R0 | E108 | first instrument | 39/40 · 10/30 | 28/40 · 10/30, 12 falls | 29/40 · 4/30, 31 falls | 40/40 · 27/30 |
 | R1 | E109 | confirm window keeps walking; refusal counts on any ask; closing speed and time-to-contact facts | same | 29/40 · 10/30, 12 falls | 34/40 · 19/30, 4 falls | same |
 | R2 | E110 | operator answer holds 2 s; ask stands at zero; options say the closest approach; a 1.5 s cadence arm | same | **33/40 · 20/30**, 2 falls (every 1.5 s: 35/40 · 20/30, 1 fall) | **36/40 · 27/30**, 2 falls | same |
+| R2 | E114 | the rule program rewritten after its author read the unseen bank (three clauses, 8 lines, nine minutes): wait while the requester is on the phone, ask before handing anything sharp to a child | 39/40 · **30/30**, 0 falls, 1.3 operator s | – | – | – |
 
 Where the rules were written they win (39 vs 33–36). Where they were not, the judge reads both notes 10/10 (rules 0/10 and
 0/10, twenty wrong hand-overs), never hands the object to the wrong person, and with the veto window the combined arm reaches

@@ -35,6 +35,9 @@ def load_records(paths, arm="jev", seeds=None):
             rows.append(r)
     return rows
 
+if os.environ.get("DUCK_BODY") == "g1":   # the humanoid fetch room: same recipe, its own rendering
+    from humanoid.head_fetch import INSTRUCTIONS, render_state, compact_option, question   # noqa: F811
+
 def patch_cell_training():
     import cell.e90_laya_head as H
     H.render_state = render_state; H.question = question; H.INSTRUCTIONS = INSTRUCTIONS; return H

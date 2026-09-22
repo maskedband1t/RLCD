@@ -522,3 +522,9 @@ to the oracle's score on the unwritten bank (27 of 30) and 36 of 40 on the writt
 episode. Boundaries: one body whose walking policy cannot take a stop-start every second (method error 34), so asks
 and dithering are paid in falls; a reaching child the judge alone steps around into (0/10); the owned copy not yet
 distilled on this body.
+
+**4.66** (2026-09-21 23:56 PDT, E114) On both bodies the rule programs, rewritten by their author after reading the unseen banks, match or
+beat the RLCD judge (duck 29 = 29 on the fresh bank; humanoid 30 against 20) within fifteen minutes and under ten lines, with
+the anticipated banks unchanged (95 % = 95 %; 39/40 = 39/40). The judge's value on situations no rule was written for is
+time-to-rule plus the calibrated number a governor spends, not accuracy after the fact. Caveat: the banks' author wrote the
+fixes; a second designer's bank is the open test. Method error 36 (doorway fact inside the kick zone) found by the rewritten rule.

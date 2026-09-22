@@ -80,5 +80,17 @@ Later additions. The RLCD training recipe adds nothing over plain soft distillat
 
 The seat has four requirements — a decision every 0.1–1 s, a probability that keeps its meaning on the model's own states, a per-decision cost a fleet can afford at 10^5 decisions per robot-day, and a model the fleet can own and retrain — and a frontier vision-language model meets one. We did not run a frontier model in the seat; the nearest affordable test, a dense open 27B behind the identical interface, kept the judge's accuracy and drifted its number by .135 in its own states (D4, D7), and injected think time of 3 s cost the calibrated judge 11 of 29 unwritten situations and doubled near-contacts on a moving body (E105). Frontier models belong outside the loop: constructing the reflex, translating the world once, teaching. The untested items, singly and in combination, are: a frontier model in the seat at its own latency and as the copy's teacher; a human-sized body in a home room and a store aisle (an open G1 walking policy runs headless in our harness); one operator for many robots; real takeover logs as the correction source and shadow scoring of the teleop stream; cadence without staleness; a site twin as the bench's world; the annotator on the remaining real recordings; and the one unsolved anticipated situation, a person crossing the path, as a governor rule.
 
+### 8.y The rules written a second time (E114)
+
+The obvious objection to every "where no rule was written" number is that a rule can always be written. We measured it: the
+rule programs' author, given the unseen banks and the rooms' acceptable sets, rewrote both programs. On the duck the rewritten
+rules handle 20 of 30 at the first attempt (six lines, nine minutes) and 29 of 30 after one more line informed by one trace, the
+judge's number; on the humanoid 30 of 30 (eight lines, nine minutes) against the judge's 20. The anticipated banks were
+unchanged (95 % = 95 %; 39 of 40 = 39 of 40). So the calibrated judge's value on unwritten situations is the interval between a
+situation's first appearance and a programmer's fix, plus a number a governor can spend during that interval; it is not
+accuracy after the fact. Two caveats are the banks' author wrote the fixes (a lower bound on a stranger's minutes, an upper
+bound on a stranger's program), and the first attempt exposed an instrument flaw shared by every arm (the doorway fact fires
+inside the kick zone; method error 36), which a deterministic program finds and a stochastic judge crosses by luck.
+
 ## Appendix A — Method: pre-registered predictions and their scores; adversarial review of the plan; 24 logged method errors.
 ## Appendix B — Suites, prompts, rater packet, per-type tables.

@@ -12517,3 +12517,133 @@ unseen 27, 19.5–24 s). Five of six.
 
 **Bench 3 freezes here for the write-up.** Claim 4.65. Next rounds (not tonight): the owned copy on this body; unseen
 bank v2 (the world changes on its own) and v3 (items with physics).
+
+## E112 · the owned copy on the humanoid, before any correction (pre-registration, 2026-09-21 23:35 PDT; training launched right after)
+
+**Design.** The duck's R3 step on bench 3: distil the judge's 4,992 anticipated-bank decisions (seeds 0–39, the `jev` arm of
+E108–E110, three instrument versions of the same room) into the 421M head with the E91 recipe (plain soft cross-entropy on the
+probability vectors), rendering in `src/humanoid/head_fetch.py` (`head_g1_r0`). Test the copy (`laya`, `laya_confirm0.5`) on
+seeds 0–39 and on the unseen bank 40–69 it never saw, under the R2 instrument. The unseen bank is unseen for the copy as it
+was for the duck's R3 head; the teacher saw it.
+
+**Predictions.**
+- **P112.1** on the anticipated bank the copy handles ≥ 33/40 (its teacher's 33; on the duck the copy beat its teacher there). Prior 55 %.
+- **P112.2** on the notes it never saw the copy is blind: on_the_phone ≤ 3/10 and scissors_asks ≤ 3/10 (teacher 10/10 and 10/10). Prior 65 %.
+- **P112.3** the copy hands the object to the wrong person ≥ 5 times on the unseen bank (it hands to Maya on the phone, as the rules do). Prior 60 %.
+- **P112.4** the copy falls ≤ 2 times in 70 (it does not ask at every turn). Prior 60 %.
+- **P112.5** on single-answer unseen states the copy is confidently wrong: hit rate ≤ .50 at a stated top-1 ≥ .70 (the duck's E96 signature). Prior 55 %.
+- **P112.6** the copy decides in ≤ 120 ms on this machine. Prior 80 %.
+If the copy is blind as predicted, E113 is the correction round with the progress-aware sets and masked targets, as on the duck.
+
+### E104 results (2026-09-21 23:35 PDT finish; scored 23:45 PDT) · the dense open 27B on the fixed duck instrument (R5, seeds 70–99 and 0–39, same conditions as the judge's E102)
+
+| arm (R5) | anticipated goal | anticipated events | unseen events (70–99) | unseen per situation | own-state over-confidence (all decisions) | falls | near contacts |
+|---|---|---|---|---|---|---|---|
+| open 27B (E104) | 72 % | 22/40 (approach 10, blocked 10, child 0 with 9 zone-free, cross 2) | **19/30** | follow 10/10 · object in door 8/10 · right of way **1/10** | unseen **+.174** (ECE .203, AUROC .53); anticipated −.121 | 1 | 8 + 12 |
+| RLCD judge (E102) | 82 % | 23/40 (approach 10, blocked 10, child 1, cross 2) | **29/30** | follow 10/10 · object in door 9/10 · right of way **10/10** | unseen **+.013** (ECE .098); anticipated −.246 | 1 | 5 + 10 |
+| rule program (E102) | 95 % | — | 1/30 | — | — | 0 | — |
+
+**Scoring.** P104.1 ✔ (19 ≤ 24). P104.2 ✘ (72 % < 82 %: on the fixed body the 27B no longer beats the judge on the anticipated bank; its R2 90 % came with the broken instrument). P104.3 ✔ (+.174 against +.013: the 27B is over-confident by .16 more on the states its own choices created; D7's finding holds on the second body). P104.4 ✔ (follow 10/10). P104.5 ✔ (1 = 1, weakly). 4/5.
+
+**What the 27B does with a note.** It reads the follow note as well as the judge (10/10) and it keeps out of the child's zone (9/10 zone-free) but then never finishes (0/10 handled: it stops and stays stopped). It does not yield to the person on crutches (1/10): the note says "wait until they have fully passed; do not go around them", and the 27B walks on. So the 27B's failure on the unseen bank is not "cannot read"; it is reading the note and choosing the wrong action anyway, with a stated top-1 of .88 against a hit rate of .71. The judge's unseen edge over a reader of similar size is therefore not explained by the notes being readable text; both read the same text.
+
+**Honesty line for the docs.** The hero row "29 of 30 where the rule program handles 1" now has its open-model row on the same body and seeds: 19 of 30, over-confident by .17. The R2 27B row (6/30, 90 % goal) is superseded and should be labelled as the broken instrument in the ladder figure.
+
+## E114 · the rule programs rewritten with hindsight (pre-registration, 2026-09-21 23:47 PDT; launched right after)
+
+**Why now.** the author asked whether the operator notes are rigged in the judge's favour, and how anyone knows what a rule is or is
+not "for". The honest answer is a measurement: give the rule programs' author the unseen banks and let him fix the programs.
+Whatever the fixed programs score is what a programmer does *after* the situation has been seen; the frozen programs' score is
+what happens *before*. The judge's value on these banks is then the interval between the two, not a claim about accuracy.
+
+**Design.** Same author (me), the unseen banks' source and acceptable sets open (read 23:38–23:45; written 23:45–23:47; launched 23:47).
+Duck `rules_hindsight` = `rules` + three clauses (follow note → follow, wait when close; right of way → wait while the
+person with crutches is within 1.2 m ahead or beside; small object in the doorway → walk slowly), 6 lines. Humanoid
+`rules_hindsight` = `rules` + three clauses (requester on the phone → wait, do not hand over; sharp object requested by a
+child → ask the operator when within reach; approach the child slowly to get within reach), 8 lines. Run under the judge's
+own fixed-body conditions: duck R5 instrument with R2 options as in E102/E104 on seeds 70–99 and 0–39 (`e114`) and 40–69
+(`e114b`); humanoid R2 as in E110 on seeds 40–69 and 0–39 (`e114g1`). Frozen comparators: duck rules 1/30, judge 29/30,
+open 27B 19/30; humanoid rules 10/30 (phone 0, reaching child 10, scissors 0), judge 20/30 (10, 0, 10), oracle 27/30.
+
+**Predictions.**
+- **P114.1** duck hindsight rules on 70–99 handle ≥ 27/30 (judge 29). Prior 60 %.
+- **P114.2** duck hindsight rules on 40–69 handle ≥ 27/30 (same three situation types; seeds never opened while writing). Prior 60 %.
+- **P114.3** humanoid hindsight rules on 40–69 handle ≥ 27/30 (judge 20; the judge's 0/10 on the reaching child is a rules 10/10). Prior 65 %.
+- **P114.4** the anticipated banks are unchanged: duck goal within 3 points of the frozen rules' 95 %, humanoid events within 2 of 39/40. Prior 70 %.
+- **P114.5** humanoid falls ≤ 2 across 70 episodes (the rules rarely stand still mid-walk). Prior 70 %.
+- **P114.6** (measurement, no prior) the programmer's cost: ≤ 15 added lines per body and under 40 minutes from first read to launch.
+
+**Interpretation, fixed in advance.** If P114.1–3 hold, every "judge vs rules" number on the unseen banks is to be captioned
+"before anyone wrote the rule", with the hindsight row beside it; the judge's value is time-to-rule plus the calibrated number
+the governor spends, not accuracy on situations a programmer has already seen. If the hindsight rules fall short of the judge
+on any situation, that situation is one where reading the note beats a keyword, and the notebook names it. What this test
+cannot show: the same person wrote the banks and the fixes; a bank designed by someone else is still the open test (README,
+what-to-test-next).
+
+### Field note (2026-09-21 23:48 PDT) · White Circle's Halo (x.com/whitecircle/status/2102087563913609534; github.com/whitecircle/halo)
+A post-training framework for open Hugging Face models: pre-training, SFT, DPO/SMPO, GRPO (online and environment variants),
+distillation; "up to ~2.8× the training throughput of stock TRL" on 8×B300 (Flash Attention 4, Liger kernels, grouped GEMM);
+Hopper/Blackwell Docker images; Apache 2.0 with supplemental commercial terms. **Relevance now: none.** Our owned copy is a 421M
+head trained in minutes on ~5,000 judge decisions with soft cross-entropy on probability vectors, on this machine. **Relevance
+later:** if a fleet's owned judgment moves from a small head to a 7B–27B open model, throughput matters, and the open question
+E104 sharpened tonight is recipe, not size: a dense open 27B reader is over-confident by .17 on the states its own choices
+create, the judge by .01. Halo lists distillation; its README does not say whether the targets may be probability vectors.
+**Test, later, singly:** distil the judge into a 7B under Halo with (a) our soft-target recipe, (b) plain SFT on the argmax
+label; measure own-state calibration (the E96/E104 signature) and unseen-bank handling. **Together:** with the correction rounds
+(E101/E103): does a larger copy keep the teacher's reading on unwritten situations after masked-target correction, where the
+421M head needed two rounds? No probe tonight: it needs an 8-GPU box and the standing rule is no cloud spend.
+
+### E114 first result and an addendum (2026-09-21 23:52 PDT) · the door clause failed 10/10, and the reason is an instrument flaw
+
+Duck hindsight rules, seeds 70–99: follow note **10/10**, right of way **10/10**, object in the door **0/10** (goal reached in
+9, one kick in each of the 9). The trace (seed 71) shows the rule walking slowly the whole way to the door and switching to
+walk_fast the moment the doorway fact reads "passed", which fires at 10 cm past the door line, while the kick detector counts
+a fast step anywhere within 15 cm of the object. **Method error 36 (instrument):** the "passed" fact and the acceptable set
+both permit walk_fast 5 cm before the kick zone ends; every arm ran under it; the judge's 9/10 and the oracle's 8/10 on this
+situation are partly decision-timing luck. Fix belongs to the next instrument version (R8: "passed" at 20 cm) for all arms;
+not applied now, so the comparison stays on the instrument the other rows used.
+
+**Addendum, v2 (pre-registered before the run).** The programmer, having read the trace (about ten minutes), adds one line of
+state: keep walking slowly for three decisions after the doorway reads "passed". Same everything else. Files `e114v2`
+(70–99) and `e114v2b` (40–69). **P114.7** v2 handles object in the door ≥ 8/10 on 70–99 and the other two stay 10/10 (prior
+70 %). P114.1 is scored on v1 as pre-registered; v2 is reported beside it with its cost.
+
+*Correction (2026-09-21 23:55 PDT).* The E114 pre-registration's inner times were typed ahead of the clock ("read 23:45–23:58; written
+00:00–00:1x") and the addendum's header carried tomorrow's date; both were corrected in place to the shell clock (banks read
+23:38–23:45, programs written 23:45–23:47, launched 23:47; addendum 23:52 on 2026-09-21). Predictions untouched.
+
+### E114 results (runs 23:47–23:53 PDT 2026-09-21; written right after) · a programmer who has seen the bank matches the judge on both bodies in under fifteen minutes
+
+| body · bank | frozen rules | hindsight v1 (9 min) | hindsight v2 (+5 min, +1 line) | RLCD judge | oracle | anticipated bank, frozen → hindsight |
+|---|---|---|---|---|---|---|
+| duck · fresh unseen 70–99 (follow, object in door, right of way) | 1/30 | 20/30 (10, 0, 10) | **29/30** (10, 9, 10) | 29/30 (10, 9, 10) | 26/30 | 95 % → 95 %; 36/40 → 36/40 |
+| duck · unseen 40–69 | – | 20/30 (10, 0, 10) | **28/30** (10, 8, 10) | – | – | – |
+| humanoid · unseen 40–69 (phone, reaching child, scissors) | 10/30 (0, 10, 0) | **30/30** (10, 10, 10) | – | 20/30 (10, 0, 10); + veto window 27/30 | 27/30 | 39/40 → 39/40, 0 falls |
+
+Cost: duck 6 lines then 7; humanoid 8 lines; nine minutes from first read to launch on each body, plus five minutes and one
+line for the duck's door clause after reading one trace. Falls: duck v2 1 (70–99) and 2 (40–69), both on object-in-door
+episodes, the same body fault as every other arm; humanoid 0. Operator time: humanoid 1.3 s per episode (one ask per scissors
+episode, as the note instructs); duck 0.
+
+**Scoring.** P114.1 ✘ (v1 20 < 27; the miss was the door clause, an instrument boundary, not a note). P114.2 ✘ (v1 20).
+P114.3 ✔ (30 ≥ 27). P114.4 ✔ (95 = 95; 39 = 39). P114.5 ✔ (0 falls). P114.6 measured: 6–8 lines, nine minutes per body.
+Addendum P114.7 ✔ (object in door 9/10 ≥ 8; follow and right of way 10/10): v2 equals the judge on 70–99 (29 = 29) and
+holds on 40–69 (28). Three of five pre-registered; the two misses were repaired by one line after one trace.
+
+**Reading.**
+1. *What a rule is "for", measured.* A rule is for the situations its author had in front of him. Given the bank, the author
+   matched the judge on the duck (29 = 29) and beat it on the humanoid (30 against 20) in under fifteen minutes per body. So
+   on these banks the judge's advantage is not accuracy after the fact; it is the interval between a situation's first
+   appearance and a programmer's fix, plus a calibrated number that a governor can spend (the veto window, the gate), which
+   no clause produces. The docs are to caption every unseen-bank comparison "before anyone wrote the rule" with the
+   hindsight row beside it.
+2. *Reading is not uniformly better than a clause.* The judge's own miss on the humanoid (a child reaching for the cup, 0/10)
+   is a 10/10 for the frozen rules and for the rewritten ones: where the note names a person ("only the asker"), the clause
+   wins; where the note describes a condition ("on the phone", "anything sharp", "right of way"), the clause wins too, once
+   written. What the judge has that the clause does not is the day the note arrived.
+3. *A deterministic program is an instrument test.* The rule exposed the doorway detector's boundary (method error 36: the
+   "passed" fact fires 5 cm inside the kick zone) that the judge and the oracle crossed by decision-timing luck 9/10 and
+   8/10. Every future instrument version should be run against the rewritten rules first.
+4. *What this cannot show.* The same person wrote the banks and the fixes, so the nine minutes are a lower bound on a
+   stranger's time and the 30/30 an upper bound on a stranger's program. A bank designed by someone else, scored by the
+   frozen rules, the judge and the copy before its author sees it, is the open test (README, what-to-test-next).

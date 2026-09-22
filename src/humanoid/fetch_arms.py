@@ -30,6 +30,25 @@ class FetchRulesAsk(FetchRules):
         if f["notes_from_operators"] and not self.asked: self.asked = True; return "ask_operator", {}
         return super().decide(f, opts, room)
 
+class FetchRulesHindsight(FetchRules):
+    """E114: the same program after its author has read the unseen bank (a requester on the phone, a child reaching for the object,
+    a child asking for scissors) and the room's acceptable sets. Written 2026-09-22 with the source open; cost logged in the notebook."""
+    name = "rules_hindsight"
+    def decide(self, f, opts, room):
+        r = f["robot"]; p = f["person"]
+        sharp = "scissors" in f["task"].lower() or any("sharp" in n.lower() for n in f["notes_from_operators"])
+        child_asks = any(q["kind"] == "child" and q["asked_for_the_object"] for q in f["people"])
+        if r["status"] == "fallen_over": return "ask_operator", {}
+        if "done" in opts: return "done", {}
+        for k in opts:
+            if not k.startswith("hand_to_"): continue
+            q = next((q for q in f["people"] if q["name"] == k[len("hand_to_"):]), None)
+            if q is None or not q["asked_for_the_object"]: continue
+            if q["attention"] == "on_the_phone": return "wait", {}           # hindsight clause 1: do not interrupt a call
+            if sharp and q["kind"] == "child": return "ask_operator", {}   # hindsight clause 2: never hand anything sharp to a child; ask
+        if sharp and child_asks and r["holding"] != "nothing" and p["kind"] == "child" and p["distance"] in ("close", "near"): return "walk_slow", {}   # clause 2b: get within reach to ask
+        return super().decide(f, opts, room)
+
 class FetchOracle:
     """Code that reads the true state: the first preferred action inside the acceptable set."""
     name = "oracle"

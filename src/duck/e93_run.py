@@ -37,6 +37,20 @@ class RulesAsk(Rules):
         if f["notes_from_operators"] and not self.asked: self.asked = True; return "ask_operator", {}
         return super().decide(f, opts, room)
 
+class RulesHindsight(Rules):
+    """E114: the same program after its author has read the unseen bank (right of way, follow note, object in the door) and the
+    room's acceptable sets. Written 2026-09-22 with the source open; the programmer's cost is logged in the notebook."""
+    name = "rules_hindsight"
+    def decide(self, f, opts, room):
+        notes = " ".join(f["notes_from_operators"]).lower(); p = f["person"]; d = p["distance"]
+        if f["robot"]["status"] == "fallen_over": return "ask_operator", {}
+        if "follow" in notes and "follow_person" in opts:   # hindsight clause 1: the note replaces the task; keep two steps behind
+            return ("wait", {}) if d in ("touching_distance", "close") else ("follow_person", {})
+        if "right of way" in notes and p["kind"] == "adult_with_crutches" and d in ("touching_distance", "close", "near") and p["bearing"] in ("ahead", "left", "right"): return "wait", {}   # clause 2: let them pass
+        if f["robot"]["doorway"] == "ahead_with_a_small_object_on_the_floor" and d not in ("touching_distance", "close"): self.slow_after = 3; return "walk_slow", {}   # clause 3: slow through the doorway
+        if getattr(self, "slow_after", 0) > 0 and f["robot"]["doorway"] == "passed" and d not in ("touching_distance", "close"): self.slow_after -= 1; return "walk_slow", {}   # clause 3b (v2, after reading the trace): the object is still underfoot for 5 cm after the doorway reads "passed"
+        return super().decide(f, opts, room)
+
 class Oracle:
     name = "oracle"
     def decide(self, f, opts, room):
@@ -101,8 +115,8 @@ class DuckLaya:
         return choice, j
 
 def make_arm(arm):
-    if BODY == "g1" and arm in ("rules", "rules_ask", "oracle"):
-        from humanoid.fetch_arms import FetchRules, FetchRulesAsk, FetchOracle; return {"rules": FetchRules, "rules_ask": FetchRulesAsk, "oracle": FetchOracle}[arm]()
+    if BODY == "g1" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):
+        from humanoid.fetch_arms import FetchRules, FetchRulesAsk, FetchRulesHindsight, FetchOracle; return {"rules": FetchRules, "rules_ask": FetchRulesAsk, "rules_hindsight": FetchRulesHindsight, "oracle": FetchOracle}[arm]()
     if arm == "laya": return DuckLaya()
     if arm.startswith("laya_confirm"): return DuckLaya(tau=float(arm[len("laya_confirm"):]), confirm=True)
     if arm.startswith("laya_gate"): return DuckLaya(tau=float(arm[len("laya_gate"):]))
@@ -111,6 +125,7 @@ def make_arm(arm):
     if arm.startswith("sj_gate"): return DuckSJ(tau=float(arm[len("sj_gate"):]))
     if arm == "rules": return Rules()
     if arm == "rules_ask": return RulesAsk()
+    if arm == "rules_hindsight": return RulesHindsight()
     if arm == "oracle": return Oracle()
     if arm == "jev": return DuckJev()
     if arm.startswith("jev_gate"): return DuckJev(tau=float(arm[len("jev_gate"):]))

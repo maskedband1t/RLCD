@@ -12794,3 +12794,52 @@ humanoid `asker.attention=on_the_phone`, `asker.kind=child`, `child.attention=re
    decisions compile into a tree, scoped to the states the old rules never saw → a person reads the tree (where it is
    silent is where to write) → the clause ships. Measured: duck 30/30 unscoped or 20/30 scoped under the doorway flaw;
    humanoid 20/30 = the judge, at rule cost.
+
+### E112 results (training 23:35–00:54, loops 00:54–01:47 PDT; written 01:52 on 2026-09-22) · the copy transfers: it beats its teacher where the rules were written, is blind where they were not, and falls where the judge did not
+
+`results/duck/head_g1_r0`: 4,992 judge decisions (E108–E110, seeds 0–39), three epochs, val agreement 92.4 %, CE 1.138.
+Decision latency 79–87 ms on this machine. `e112.jsonl` (140 episodes), `e112_record.jsonl` (3,513 of the copy's own decisions).
+
+| arm | anticipated events | falls | operator s | unseen events (40–69) | per situation | wrong hand-overs | falls | operator s |
+|---|---|---|---|---|---|---|---|---|
+| frozen rules (E110) | 39/40 | 0 | 0 | 10/30 | phone 0, reaching 10, scissors 0 | 20 | 0 | 0 |
+| judge, jev (E110) | 33/40 | 2 | 3.9 | 20/30 | 10, 0, 10 | 0 | 2 | – |
+| **copy r0, no correction** | **35/40** (child 8, cross 7) | 1 | 2.0 | **0/30** | **0, 0, 0** | **20** | **9** | 0 |
+| copy r0 + one-second veto window | **40/40** | 0 | 13.9 (221 windows, 58 vetoes) | 14/30 | 1, **10**, 3 | 16 | 0 | 9.2 (100 windows, 44 vetoes) |
+| judge + veto window (E110) | 36/40 | 2 | 20–24 | 27/30 | 10, 7, 10 | – | – | – |
+
+Own-state calibration: anticipated, stated .60 at a hit rate of .81 (under by .21, like every copy so far); unseen, .63 at
+.66 (within .03); single-answer unseen states n 20, right 100 % at .99.
+
+**Scoring.** P112.1 ✔ (35 ≥ 33; above the teacher, as the duck's R3 copy was). P112.2 ✔ (0 and 0). P112.3 ✔ (20 ≥ 5: it
+hands Maya the cup mid-call and Zoe the scissors, exactly as the frozen rules do). P112.4 ✘ (10 falls in 70; the judge fell 2).
+P112.5 ✘ (the E96 signature did not appear: the copy is not confidently wrong on the unseen single-answer states, which on this
+bench are mostly "fallen → ask" and "done"; the duck's were the crutches and follow states with one acceptable action. The
+signature belongs to the acceptable-set design, not to the copy). P112.6 ✔ (≤ 87 ms). **Four of six.**
+
+**Reading.**
+1. *The recipe transfers whole.* Same distillation, same result shape as the duck's R3: the copy beats its teacher where the
+   rules were written (35 against 33, no API call, 80 ms) and is blind where they were not (0 of 30, 20 wrong hand-overs).
+2. *The copy's blindness costs falls the judge did not pay.* Nine falls on the unseen bank against the judge's two: the copy's
+   stated top-1 averages .60 there, it alternates stop and walk, and this body cannot take a stop-start every cycle (method
+   error 34). The veto window removes every fall (0 of 70) because a confirm window slow-walks instead of stopping; that is
+   the E109 finding again, now for the copy.
+3. *The veto window is the correction data.* 44 vetoes in 100 windows on the unseen bank; with them the copy handles the
+   reaching child 10 of 10, which the judge never did, because the veto's replacement is the oracle's action. Those vetoes
+   are the labels for E113.
+
+## E113 · the correction round on the humanoid, masked targets (pre-registration, 2026-09-22 01:50 PDT; launched right after)
+
+**Design.** The duck's R6 step on bench 3: every state the copy visited on seeds 40–69 (both arms, 1,405 decisions) labelled by
+code's acceptable set with masked targets (the copy's own probability vector restricted to the set and renormalised;
+`correction.py --targets masked`), added to the 4,992 teacher records; `head_g1_r1` trained with the same recipe. Tested where
+neither the copy nor the correction has been: fresh seeds 70–99, plus 0–39; arms `laya`, `laya_confirm0.5`, tag `-g1r1`.
+Bench 3 R2 as in E110/E112 (the progress clause is on by default on this bench).
+
+**Predictions.**
+- **P113.1** on fresh seeds the corrected copy reads both notes: phone ≥ 6/10 and scissors ≥ 6/10 (r0: 0 and 0; the judge 9 and 10). Prior 55 %.
+- **P113.2** reaching child ≥ 7/10 on fresh seeds (the vetoes taught the oracle's answer; the judge 0/10). Prior 55 %.
+- **P113.3** the anticipated bank stays ≥ 33/40 (masked targets keep the walking, as R6 kept the duck's reading and R7 its walking). Prior 65 %.
+- **P113.4** falls ≤ 5 across 70 episodes (r0: 10). Prior 50 %.
+- **P113.5** wrong hand-overs on 70–99 ≤ 4 (r0 on 40–69: 20). Prior 60 %.
+- **P113.6** the corrected copy + veto window on 70–99 ≥ 20/30 (the judge 19). Prior 55 %.

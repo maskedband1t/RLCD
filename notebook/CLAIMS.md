@@ -536,3 +536,9 @@ operator cost beyond the one ask a note requires and with no falls. Scoped by a 
 vocabulary, the drafts leave the anticipated banks exactly where the frozen rules had them (36/40, 39/40). Conditions: most
 decisions must survive the veto (78 % on the duck; 32 % on the humanoid starves the draft), and the judge's blind spots
 compile unless vetoed first. A pre-registered set of six predictions went one of six; the follow-up three of four.
+
+**4.68** (2026-09-22 01:51 PDT, E112) The owned copy transfers to the humanoid with the duck's result shape: distilled from the judge's
+4,992 decisions it handles 35 of 40 anticipated situations (its teacher 33) at 80 ms and is blind to all three unwritten ones
+(0 of 30, 20 wrong hand-overs); it falls 9 times where the judge fell 2, from alternating stop and walk, and a one-second veto
+window removes every fall while its vetoes hand it the reaching child 10 of 10. Four of six predictions; the E96 over-confidence
+signature did not appear because this bench's single-answer states are not the note states.

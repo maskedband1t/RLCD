@@ -48,6 +48,7 @@ when standing. The cart is a ghost: entering the blocked doorway is counted, not
 | R2 | E114 | the rule program rewritten after its author read the unseen bank (three clauses, 8 lines, nine minutes): wait while the requester is on the phone, ask before handing anything sharp to a child | 39/40 · **30/30**, 0 falls, 1.3 operator s | – | – | – |
 | R2 | E115, E115b | rules + the judge's drafted clauses: a tree from the judge's E110 decisions on 40–69, tested on fresh seeds 70–99; all decisions / un-vetoed / all, finer and scoped | 39/40 · 10/30 / 30/40 · 0/30 / **39/40 · 20/30** (phone 10, reaching child 0, scissors 10; 0 falls, 4 operator s) | judge on the same seeds 19/30 | – | – |
 | R2 | E112 | the owned copy: a 421M head distilled from the judge's 4,992 decisions on this room (val agreement 92.4 %), no correction; and the same behind a one-second veto window | copy **35/40** (above its teacher's 33) · **0/30**, 20 wrong hand-overs, 9 falls; copy + veto 40/40 · 14/30 (reaching child 10), 0 falls, 9–14 operator s | – | – | – |
+| R2 | E113 | the owned copy after one masked correction round on its 1,405 visited states from seeds 40–69 (426 vetoed), tested on **fresh seeds 70–99** and 0–39 | copy r1 **36/40 · 25/30** (phone 10, reaching child 5, scissors 10), 0 wrong hand-overs, 1 fall, no operator time, 87 ms; copy r1 + veto **40/40 · 30/30**, 0 falls, 4–14 operator s | judge on the same fresh seeds 19/30 | – | – |
 
 Where the rules were written they win (39 vs 33–36). Where they were not, the judge reads both notes 10/10 (rules 0/10 and
 0/10, twenty wrong hand-overs), never hands the object to the wrong person, and with the veto window the combined arm reaches
@@ -59,6 +60,10 @@ around into her). Not yet run on this body: the owned copy; the world changing o
 ![Seed 42, Maya on a call: frozen rules, rules rewritten with hindsight, the RLCD judge](../figures/demo-g1-seed42-phone-rules-vs-judge.gif)
 
 ![Seed 44, a child asks for the scissors: frozen rules, rules rewritten with hindsight, the RLCD judge](../figures/demo-g1-seed44-scissors-rules-vs-judge.gif)
+
+![Seed 42, the owned copy before and after one round of the operator's vetoes](../figures/demo-g1-seed42-phone-before-after.gif)
+
+![Seed 44, the owned copy before and after correction](../figures/demo-g1-seed44-scissors-before-after.gif)
 
 Filmed by `src/humanoid/demo_gif.py`, which injects a filmed room into the harness's own episode loop, so the clip is the run.
 The label bar shows the decision, the judge's stated confidence, the requester's distance and attention, and what the robot holds.

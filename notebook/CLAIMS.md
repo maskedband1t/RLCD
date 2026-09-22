@@ -542,3 +542,9 @@ compile unless vetoed first. A pre-registered set of six predictions went one of
 (0 of 30, 20 wrong hand-overs); it falls 9 times where the judge fell 2, from alternating stop and walk, and a one-second veto
 window removes every fall while its vetoes hand it the reaching child 10 of 10. Four of six predictions; the E96 over-confidence
 signature did not appear because this bench's single-answer states are not the note states.
+
+**4.69** (2026-09-22 07:35 PDT, E113) On the humanoid, one round of the operator's vetoes (1,405 visited states, masked targets) takes the
+owned copy from 0 to 25 of 30 fresh unwritten situations, above the judge that taught it (19 on the same seeds), with no
+wrong hand-over, no fall and no operator time at 87 ms; behind the one-second veto window 30 of 30 at four operator seconds
+per episode; where the rules were written it stays above its teacher (36 to 33 of 40). Five of six predictions; the miss is
+the reaching child at 5 of 10. The data loop that took two rounds on the duck closes in one on the second body.

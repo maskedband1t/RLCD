@@ -12843,3 +12843,54 @@ Bench 3 R2 as in E110/E112 (the progress clause is on by default on this bench).
 - **P113.4** falls ≤ 5 across 70 episodes (r0: 10). Prior 50 %.
 - **P113.5** wrong hand-overs on 70–99 ≤ 4 (r0 on 40–69: 20). Prior 60 %.
 - **P113.6** the corrected copy + veto window on 70–99 ≥ 20/30 (the judge 19). Prior 55 %.
+
+### E113 results (correction 01:50, training 01:50–03:33, loops 03:33–04:31 PDT; scored 07:36 on 2026-09-22) · one round of the operator's vetoes gives the humanoid's owned copy its teacher's reading on fresh seeds, and more
+
+`results/duck/head_g1_r1`: 4,992 teacher decisions + 1,405 corrected states from seeds 40–69 (426 vetoed decisions relabelled;
+masked targets), three epochs, val agreement 93.6 %, CE 1.007. Tested on fresh seeds 70–99 (never visited by the copy, the
+correction or the teacher) and on 0–39. Latency 86–87 ms.
+
+| arm | fresh unseen 70–99 | per situation | wrong hand-overs | falls | operator s | anticipated 0–39 | falls | operator s |
+|---|---|---|---|---|---|---|---|---|
+| frozen rules (E115 ref.) | 10/30 | phone 0, reaching 10, scissors 0 | 20 | 0 | 0 | 39/40 | 0 | 0 |
+| judge, jev (E115 ref.) | 19/30 | 9, 0, 10 | 0 | 0 | 4.0 | 33/40 (E110) | 2 | 3.9 |
+| rules rewritten with hindsight (E114) | 30/30 | 10, 10, 10 | 0 | 0 | 1.3 | 39/40 | 0 | 0 |
+| copy r0, no correction (E112, seeds 40–69) | 0/30 | 0, 0, 0 | 20 | 9 | 0 | 35/40 | 1 | 2.0 |
+| **copy r1, one masked round** | **25/30** | **10, 5, 10** | **0** | **0** | **0** | **36/40** | 1 | 2.0 |
+| copy r1 + one-second veto window | **30/30** | 10, 10, 10 | 0 | 0 | 4.2 (46 windows, 20 vetoes) | 40/40 | 0 | 13.6 |
+
+Own-state calibration: fresh unseen, stated .69 at a per-decision hit rate of .39 (over by .31; this bench's acceptable sets
+are strict about speed, and the judge's own hit rate on the same seeds was .29); single-answer states n 41, right 100 % at
+.89; anticipated, .59 at .82 (under by .23, as every copy).
+
+**Scoring.** P113.1 ✔ (10 and 10). P113.2 ✘ (reaching child 5 < 7; behind the veto window 10). P113.3 ✔ (36 ≥ 33). P113.4 ✔
+(1 fall ≤ 5, from 10). P113.5 ✔ (0 ≤ 4, from 20). P113.6 ✔ (30 ≥ 20). **Five of six.**
+
+**Reading.**
+1. *The data loop closes on the second body in one round.* The copy that handed Maya the cup mid-call and Zoe the scissors
+   twenty times now handles both 10 of 10 on seeds it never saw, above the judge that taught it (25 against 19), with no
+   wrong hand-over, no fall and no operator time, at 87 ms. Where the rules were written it stays above its teacher (36 to
+   33). On the duck this took two rounds and a progress clause (E103); here the progress clause was on from the start.
+2. *What one round did not teach.* The reaching child: 5 of 10. The vetoes on 40–69 replaced the copy's hand-over with the
+   oracle's wait, but the copy learned it as a wait-near-a-child rather than as "hand to the asker past the child": the
+   veto window fixes the other five at four seconds per episode. A second round with the copy's own r1 states is the duck's
+   E103 step and is not run tonight.
+3. *The falls were the blindness.* Ten falls at r0, one at r1: the corrected copy no longer wavers between stop and walk in
+   front of a person on the phone; it waits. The body's fragility (method error 34) is unchanged; the decisions are.
+4. *Over-confidence returned with competence.* At r0 the copy was within .03 on its own unseen states; at r1 it states .69
+   where .39 of its decisions are inside the strict set. Per-situation handling and per-decision acceptability are different
+   quantities on this bench (the judge: 19 of 30 at .29), and the resume-level claim is the handling; the calibration claim
+   stays with the duck and the cell, where the sets are not speed-strict.
+
+## E116 · the second correction round on the humanoid (pre-registration, 2026-09-22 07:39 PDT; launched right after)
+
+**Design.** The duck's E103 step: the corrected copy's own visited states (r1 on fresh seeds 70–99, both arms, 4,360
+decisions) labelled by the acceptable set with masked targets, added to round 1's 1,405 and the 4,992 teacher records;
+`head_g1_r2`. Tested on seeds 40–69 (visited by r0 in E112, never by r1 or r2, and the states differ with the policy) and
+on 0–39. Same bench, same arms, tag `-g1r2`. The open question is the reaching child (r1: 5/10).
+**Predictions.**
+- **P116.1** reaching child ≥ 8/10 on 40–69 (r1 on fresh seeds: 5; the round-1 vetoes on this situation came from the confirm arm's windows, round 2 adds r1's own hand-over states). Prior 50 %.
+- **P116.2** phone and scissors stay ≥ 9/10 each. Prior 70 %.
+- **P116.3** anticipated bank ≥ 34/40 (r1: 36). Prior 65 %.
+- **P116.4** falls ≤ 2 across 70 episodes; wrong hand-overs 0 on 40–69. Prior 60 %.
+- **P116.5** own-state over-confidence on the unseen bank does not grow: stated top-1 minus hit rate ≤ +.31 (r1's number). Prior 50 %.

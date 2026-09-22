@@ -72,6 +72,8 @@ Seeds 0–39 unless noted. goal = reached within 90 s; viol = near-contacts + fa
 | Bench 3 R2, the judge deciding every 1.5 s on fresh facts | e110_cadence1.5 | jev | 70 | 1 % [0, 8] | 43.0 s | 0.07 | 4 | 5.8 | 1.44 | 55/70 |
 | Bench 3, the owned copy distilled from the judge's anticipated-bank decisions (no correction), R2 instrument | e112 | laya-g1r0 | 70 | 0 % [0, 5] | nan s | 0.79 | 14 | 1.1 | 0.29 | 35/70 |
 | Bench 3, the owned copy distilled from the judge's anticipated-bank decisions (no correction), R2 instrument | e112 | laya-g1r0_confirm0.5 | 70 | 0 % [0, 5] | nan s | 0.26 | 0 | 11.9 | 0.37 | 54/70 |
+| Bench 3, the owned copy after one masked correction round on its visited states (seeds 40-69), tested on fresh seeds 70-99 and 0-39 | e113 | laya-g1r1 | 70 | 0 % [0, 5] | nan s | 0.21 | 13 | 1.1 | 0.29 | 61/70 |
+| Bench 3, the owned copy after one masked correction round on its visited states (seeds 40-69), tested on fresh seeds 70-99 and 0-39 | e113 | laya-g1r1_confirm0.5 | 70 | 1 % [0, 8] | 59.0 s | 0.00 | 0 | 9.6 | 0.31 | 70/70 |
 | E114, the rule programs rewritten with hindsight after their author read the unseen banks (duck R5 and bench 3 R2 instruments) | e114 | rules_hindsight | 70 | 81 % [71, 89] | 23.1 s | 0.36 | 14 | 0.0 | 0.00 | 56/70 |
 | E114 on the duck unseen bank v1 seeds 40-69 | e114b | rules_hindsight | 30 | 60 % [42, 75] | 39.8 s | 0.67 | 10 | 0.0 | 0.00 | 20/30 |
 | E114 on the humanoid (bench 3 R2): the rule program rewritten after its author read the unseen bank | e114g1 | rules_hindsight | 70 | 0 % [0, 5] | nan s | 0.01 | 1 | 0.6 | 0.14 | 69/70 |

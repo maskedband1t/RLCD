@@ -20,8 +20,10 @@ decisions and its operators' corrections, running on the robot, so it stops payi
    model. On situations nobody wrote a rule for, the model handled 29 of 30 and the rules 1 of 30. A fleet's costly
    moments are the second kind.
 3. *Every decision is a record, and every takeover is a free label.* The model returns a probability for each option,
-   so the fleet's own operation produces training data. The small owned copy reaches the cloud model on both robots we
-   tested, and operator corrections alone, written the right way, teach it to read the notes it was blind to.
+   so the fleet's own operation produces training data. The small owned copy reaches the cloud model on all three robots we
+   tested, and operator corrections alone, written the right way, teach it to read the notes it was blind to: on the
+   human-sized humanoid one round took it from 0 to 25 of 30 fresh unwritten situations, above the model that taught it,
+   with no falls and no wrong hand-overs.
 
 **How we test it, so a skeptic can check.** Two simulated setups with a person in the scene: a sorting cell where a
 hand enters the workspace, and a small walking robot crossing a room. A frozen hand-written rule program is the
@@ -34,8 +36,8 @@ runs.
 - The model beats the rules only where no rule was written, and loses to them where one was. That is the honest shape
   of the value.
 - Its stated sureness stays honest on the states it creates; an open model's does not.
-- The owned copy matches the cloud model on both robots, and after two rounds of operator corrections it walks like the
-  rule program and reads like the model, with no cloud call.
+- The owned copy matches the cloud model on all three robots, and after two rounds of operator corrections on the
+  biped and one on the humanoid it walks like the rule program and reads like the model, with no cloud call.
 - How you write a correction decides what the copy learns: label "all acceptable moves are equal" and it forgets how
   to walk; keep its own preferences and remove only the unacceptable ones and it learns to read.
 - On a moving robot, a slow decision costs safety, not time: three seconds of thinking doubled close calls. How often

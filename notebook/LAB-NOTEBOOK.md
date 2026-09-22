@@ -12142,3 +12142,94 @@ held** (28 ≥ 26). **P103.5 held** (E103a). **P103.6 held** (2 falls). **P103.7
 
 **The ladder, closed for this body.** Unseen events of 30: rules 1 · copy r3 10 · oracle 26 · copy r7 28 · teacher 29.
 Anticipated goal: teacher 82 · copy r7 95 · rules 95 · oracle 100. Claim 4.63.
+
+## Field note · jev_robot: a local 2B decider on a PiPER arm with a moving target (2026-09-21, 20:41 PDT; link from the author: x.com/huxiao93612565/status/2102046164916764901)
+
+**The post and repo** (xiao hu, 21 Sep; github.com/Hu-xiao-max/jev_robot, Apache-2.0; cloned read-only into third_party): "Open-source,
+Jev-inspired sim: local 2B model + PiPER robot in MuJoCo. Cube relocated 3× per run; robot detects, interrupts, recovers.
+10/10 seeds succeed, 32.6 ms median decision latency." The architecture is ours to the letter, built independently:
+hand-written English sensor facts (tool position, cube position from RGB-D back-projection, visibility, memory age,
+alignment, gripper state, execution history — "a hand-written state representation, not a trained vision system");
+a local decider (`Mapika/decider-2b`, Qwen3.5-2B-Base adapted for decision probabilities with native Choice / Score /
+Noul, 3.76 GB, Apache-2.0) returning a choice, a confidence and the full distribution over ten fixed skills by "a
+forward pass over decision labels", zero generated tokens; a governor that "verifies confidence, skill preconditions and
+observation freshness", rejects but never substitutes; physics that continues in 20 ms segments while the request is
+pending (the latency coupling of E105, by design); scripted disturbances (three pushes, 4–11 cm); a frozen controller
+validated on ten unused seeds; a chronological failure record (seven development attempts, an 8/10 batch, kept);
+published per-decision logs with states, probabilities and latencies. Their model-selection note considered Laya
+(rejected for the 512/1,024-token window — our constraint too), NanoJev and openjev.
+
+**What it changes on our map.** A fourth independent builder of the seat (after RobotKit, GaP with Jev at the nodes,
+jev-langgraph), and the first with an *open 2B RLCD-family model running locally at 33 ms* — the owned-head half of our
+story arriving as a checkpoint someone else trained. Their 10/10 is a ceiling, not a comparison: the scripted baseline
+in the repo is static (no interruption), so the question our method asks first — does a rule over the same facts do the
+same? — is unanswered there, and their logs let us answer it without running anything. E107.
+
+## E107 · what the 2B decider decides, from its published logs (pre-registration, 2026-09-21 20:41 PDT; run right after; offline, no API, no compute)
+
+**Material.** `benchmarks/dynamic/summary.json` (frozen controller, seeds 20–29, 141 decisions with state, choice,
+confidence, full probabilities, status) and the development batches under `benchmarks/development/` (seeds 10–19 and
+earlier pilots, including rejected decisions and failures).
+
+**Questions and predictions.**
+- **P107.1 A hand-written state machine over the same Boolean facts** (visible / recent / changed since approach /
+  over target / at grasp height / gripper closed / object held / over place / at release height / released / withdrawn /
+  seen inside tray / last error) **reproduces ≥ 90 % of the decider's 141 choices.** Prior 70 %. If it holds, the
+  decider's contribution in this task is the interface, not judgment (E65's lesson: not a critic of what a program
+  already decides).
+- **P107.2** the decider's mean top-1 probability over the 141 decisions is ≥ .90. Prior 65 %.
+- **P107.3** its confidence is lower on decisions taken right after a disturbance or an execution error
+  (`target_changed_since_last_approach` true or `last_execution_error` set): median top-1 at least .10 below the routine
+  decisions'. Prior 60 %.
+- **P107.4** on the development batches, where the governor rejected some choices, the decider's confidence separates
+  accepted from rejected decisions at AUROC ≥ .70. Prior 55 %. (Calibration proper cannot be scored on the frozen
+  batch: the governor accepted every choice, hit rate 1.0.)
+
+## E107 results (written 20:55 PDT) · in the pick-and-place cycle the 2B decider is four fifths a state machine; its sureness tracks the phase of the task, not the difficulty of the moment, and it does not predict the governor's rejections
+
+`src/field/e107_jev_robot.py` over jev_robot's published logs (frozen batch: 141 decisions, seeds 20–29; development batches:
+339 decisions with 14 governor rejections, 51 interruptions, 8 missed grasps, 4 failures).
+
+- **P107.1 failed** (80.1 %, 113/141): a state machine written in five minutes from their method doc reproduces four fifths of
+  the decider's choices; the 28 disagreements are one branch — after the cube moved or a grasp missed, my rule says
+  *observe*, the decider says *approach* (25) or *open the gripper* (3). Both are acceptable to their governor. A better
+  rule would take most of that branch; the decider's contribution in this task is the interface and that one branch.
+- **P107.2 failed** (mean top-1 .849, median .881, min .539; 23 of 141 below .70; none below their .35 threshold).
+- **P107.3 failed, in the opposite direction**: after a disturbance or an error the decider is *more* sure (median .986)
+  than in routine decisions (.845). Its sureness follows the phase: approach .98, close .97, move over the tray .95 —
+  and the tray phases are where it hesitates: lower to place .56, retreat .69, done .74, open .80. **The number
+  encodes which step of a fixed sequence it is on, not how hard the moment is.**
+- **P107.4 failed**: over the development batches the decider's confidence is *higher* on decisions that were later
+  interrupted, rejected or failed (median .979) than on completed ones (.881), AUROC .41 — and on the governor's own
+  14 rejections alone the strict number is in the same direction (below). Its confidence would not have told the
+  governor which choices to refuse; the deterministic checks did that, which is why the batch still passed 10/10.
+
+**Reading.** Someone built our architecture on a manipulator with an open 2B decision model and shipped 10/10 with
+33 ms decisions; read against baselines, most of that success is the governor's checks and a state machine's worth
+of choices, and the model's confidence is a phase indicator. That is the D1/D4 lesson (small and open models behind the
+identical interface do not carry a usable number) on someone else's logs — and it is also the E65 lesson: put a
+model in a seat a program already fills and you measure the program. The seat that pays is the one with situations no
+rule was written for, which this task does not contain. Four of four predictions failed; the run cost nothing and
+the logs were theirs. Method note: the "rejected" set of P107.4 as pre-registered mixes interruptions (the cube moved;
+not the model's fault) with governor rejections; the strict split is reported alongside.
+
+**Correction to E107's fourth reading (written 20:56 PDT, minutes after).** I wrote that the governor's own rejections point
+"in the same direction"; the strict split says the opposite and is circular: the 14 governor-rejected decisions have median
+confidence .297 — below their .35 threshold — so the governor rejected them *because* of the confidence (AUROC .80 for
+confidence predicting completion on that split is the threshold measuring itself). The non-circular split — outcomes the
+model's number did not decide: interruptions, missed grasps, failures — is the one that counts, and there confidence is
+higher on the bad outcomes (median .979 vs .881, AUROC .41). Corrected reading: the decider's number decides its own
+rejections and predicts nothing about the outcomes it did not decide. Method error 33: a pre-registered split that mixed
+a circular criterion into an outcome criterion; both halves now reported.
+
+## Feasibility probe · a human-sized body for the bench (2026-09-21, 20:58 PDT; on the author's question "what if the environment were closer to the two companies")
+
+`src/humanoid/probe_walk.py`: MuJoCo Playground's Unitree G1 joystick policy (ONNX, 103-dim observation, 29 actuators,
+Apache-2.0) on the playground's flat-terrain scene with the menagerie's G1 model, headless, plain MuJoCo, no playground
+package, fixed velocity commands. Stand 1 s: 0.74 m pelvis height. Walk at command 0.5: 0.58 m/s; at 1.0: 0.93 m/s;
+turn in place at 0.5 rad/s: 53° in 3 s (the duck: 11° in 5 s); walk and turn together: fine; stop: 0.53 m of
+deceleration over 2 s; no fall; about 80× real time. **Feasible.** The harness (facts, options, governor, banks,
+correction loop) is body-agnostic; the port is the skills on this body and the distances at human scale. Two rooms
+proposed: a home (doorway, clutter, a person who says follow me or wait here, a fetch that ends in a pick) and a store
+aisle with an operator charged per ask; plus the unmeasured item on the map, one operator for many robots. Waiting on
+the author's call against the writing deadline (abstract v5 by the 26th, send on the 29th).

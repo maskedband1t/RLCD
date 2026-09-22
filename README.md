@@ -55,6 +55,7 @@ Anurag Akkiraju · September 2026 · MIT
 
 ## Start here (five minutes)
 
+0. [docs/WHY.md](docs/WHY.md): what this is and why, in plain words, one page.
 1. **The ladder figure above**, then [docs/DUCK-BENCH.md](docs/DUCK-BENCH.md): what the bench holds fixed, what each version changed, and the ladder table with every number.
 2. [notebook/CLAIMS.md](notebook/CLAIMS.md): the claims ledger with boundaries, corrections appended and never rewritten. Read 4.54 (the owned head reaches its teacher), 4.58 (the correction lever), 4.61 (the copy reads like its teacher, no API).
 3. [docs/RECIPE.md](docs/RECIPE.md): what a team would do on Monday, with the schema and commands.

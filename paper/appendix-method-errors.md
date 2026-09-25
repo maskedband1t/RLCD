@@ -132,3 +132,104 @@ on a missing fact before a line ran. Fix: a station variant. Rule: every arm is 
 fact keys; on the station the novelty gate found nothing new on the leak and recall lines and the frozen rules shipped them
 (20 of 60). Fix: every fact dict flattened, notes as a bag of words (60 of 60). Rule: a compiler must be shown every fact the
 judge saw.
+
+**40. Single-option decisions in the copy's training set (bench 4, E120, 2026-09-22).** A third of the station's teacher
+records were "done"-only states, which the trainer cannot index and which carry nothing to learn. Fix: the trainer drops
+them and the copy answers a single-option state without the head. Rule: a training record needs at least two options.
+
+**41. An escape action without a progress bound (bench 3, E124, 2026-09-22).** The child-aware step-around removed every
+zone entry and produced a livelock: the judge circled the reaching child for the whole clock, 0 of 10 delivered, because the
+acceptable set permitted the escape action forever. Fix (R3b): three step-arounds in a row withdraw the option and count as a
+set entry. Rule: an acceptable set that permits an escape action needs a progress bound, or it is not an instrument for a
+situation that requires delivery.
+
+**42. A handled criterion that does not require the task to end (bench 3, bank v2, E126, 2026-09-22).** The pre-registered
+criterion for the requester leaving counted a correct put-down as handled; the judge put the cup down and then walked for
+the rest of the clock, never saying done, ten times out of ten, and scored 10 of 10. The scoring stands as registered;
+"finished" is reported beside "handled" from then on, and the wording of the done option, which names delivery and refusal
+but not a put-down, is tested as an instrument change (E129) rather than patched quietly. Rule: a handled criterion states
+how the episode ends.
+
+**43. A departing requester who never departs (bench 3, bank v2, E126/E129, 2026-09-22).** The "requester leaves" situation
+walked Maya to the far corner of the room and stopped her there, so after the correct put-down the facts said in the room,
+standing still, and the task line still said hand it to Maya; the judge rated done at zero and kept walking, and a wording
+test of the done option (E129) changed nothing. The judge was reading the facts; the bench had ended the task on a story its
+facts did not tell. Fix (bank v2.1): she walks out through the doorway and the facts say she is gone. Rule: a situation's
+facts must tell the story its note and its acceptable set assume.
+
+**44. Replication before the split (bench 4, E133, 2026-09-23).** Weighting the correction records by writing each four
+times, then splitting train and validation at random, put identical records on both sides; validation agreement rose from
+89.8 to 96.9 % while the copy's behaviour on fresh lines did not change. The fresh-line tests were unaffected. Fix: the
+trainer drops from validation any item whose rendered text is in the training set. Rule: replicate after the split, or
+weight the loss. *Amendment (E134):* dropping leaked items after the split left 19 of 532 validation items; the trainer now splits on
+unique texts before anything is replicated.
+
+**45. A fact key rendered only for the new bank's events (bench 3, bank v2, E136, 2026-09-23).** The object-condition fact
+was rendered only on bank v2's episodes, so its resting value "intact" marked every v2 episode as new to a novelty gate from
+the first decision, the second asker included, before anything had happened; the gate's fact-level test was confounded.
+In a fleet a new field appears on every episode once deployed. Fix for the test: the field's resting value counts as
+known, so the gate can fire only on a value or a person state the copy never saw. Rule: a new fact key must not be a proxy
+for the bank.
+
+**46. The model reloaded once per episode (tooling, E138/E139, 2026-09-24).** The harness constructs the arm at the start
+of every episode, and the arm's constructor loaded its model: the 16 GB encoder behind the local CLM client and the 421M
+owned head, once per episode, so a station line set whose model time summed to 10–20 minutes took 60–227 minutes of wall
+clock, and the "option embeddings cached once" property was lost at every episode boundary. Decisions were unaffected (the
+models are deterministic given the text). Fix: the heavy object is a process-level singleton keyed by its checkpoint; the arm
+wrapper, with its per-episode counters, is still built per episode. Rule: build the model once, the arm per episode; record
+wall clock beside model latency so a fivefold gap is seen the day it appears.
+
+**47. Contracts satisfied by the body's fault (bench 3, E143, 2026-09-24).** The shipped walking policy creeps forward at
+0.13 m/s on a zero command. Three of the fetch room's contracts were met by that creep and not by code: the judge chose the
+pick-up from two to three metres away, out of reach, and the failed attempt's stand let the creep carry the robot in, so the
+same premature choice succeeded on the next try; the judge's chosen waiting distance sat
+outside the requester's 2.5 m noticing radius and the creep carried it in; the departure trigger (within 3 m while holding)
+followed from the first. A post-trained body that truly stands failed the pick-up on 602 of 646 attempts and the phone
+situation 0 of 10, with nothing else wrong. Fix (R5): the pick-up skill responsible for its own approach when the table is in the room, so a
+premature pick-up walks in instead of repeating; the waiting distance left as a measurement of the judge's. Rule: a skill's success conditions are met by
+the skill's code, never by a body's fault, and a bench states which of its results the fault carried.
+
+**48. A leak the robot could not see (bench 3, bank v2, E147, 2026-09-24).** The cup's leak began three to six seconds
+after the pick-up and the hand-over was scored on the state at the end of its two-second skill, so a body that reached the
+requester ten seconds after the pick-up handed over a cup that was intact at the decision and leaking at the scoring: seven
+of ten, every one decided on "intact". Earlier results on this situation depended on the body arriving after the leak. Fix
+(R6): the onset triggered by the approach, half a second to a second after the robot comes within three metres holding the
+cup, so it is visible before the hand-over range on any body; the hand-over scored on the state at the decision. Rule: a
+decision is scored on what the robot saw when it decided.
+
+**49. Events on the clock (bench 3, E147, 2026-09-24).** The crossing person started at a clock time, the cart cleared the
+door at a clock time, and the child reached at a clock time, so a change in the body's speed moved the crossing into the
+robot's path (closest approach three centimetres, two falls) and the door and the child into the bounded-edit body's way.
+Maya's departure and her looking up were already triggered by the robot's state; the rest were not. Fix (R6): every
+scripted event triggered by the robot's progress. Rule: a bench for a decision layer triggers its events on the robot's
+state, never on the clock, or the body's speed becomes a hidden factor in every result.
+
+**50. A skill that moved without saying so (bench 3, E148, 2026-09-24).** The pick-up fix (R5) made a premature pick-up walk
+toward the table, but the option the judge read still said "only works within reach", and the approach walked whether or
+not a person was crossing: in the shipped body's crossing episodes the judge chose stop, then step around, then pick up as
+the person came within two steps, and the pick-up walked into her (four falls in ten). Fix (R5b): the approach never moves
+with a person within the near zone, and the option text says the skill walks up first. Rule: a skill's motion is part of
+its description, and any motion the governor adds obeys the same person rule the bench scores.
+
+**51. An option's text changed between runs meant to compare bodies (bench 3, E149, 2026-09-24).** Told that the pick-up
+would walk up to the table first, the judge chose it from across the room twice as often (248 against 119 premature choices
+on the written bank), and with the approach guarded near people it stood repeating the choice beside them: the shipped body
+crept into the child's zone and the crossing person (26 of 40, three falls). The change was made to describe a skill
+honestly; it changed the judge's policy instead, and the runs no longer compared bodies. Fix (R5c): the original text, no
+hidden motion, and a failed pick-up withdrawn from the next decision, the progress-bound pattern of R3b. Rule: hold the
+judge's inputs fixed across an instrument revision that compares bodies; bound a failing action by withdrawing it, not by
+making it move.
+
+**52. Scenery that could not be touched (bench 3, found 2026-09-24 by looking at a published clip).** The room's walls and the
+cart were given collision flags and had none of the effect they were given them for. MuJoCo Playground's feet-only training
+scene sets **every** robot geom to contype 0 and conaffinity 0 and provides contact through five explicit pairs (each foot to
+the floor, and three self-collisions), because that is what makes it fast on a GPU. Any scenery added to such a scene is
+decorative: the robot walked through the wall panels on its way to a requester standing off the doorway's axis, and the
+episode recorded no contact. The door-collision metric was a proximity proxy (inside the doorway zone while the cart was
+present), so the numbers looked sensible while no physics ever happened. Nothing in the acceptable sets, the notes or the
+hand-over scoring depended on it, and the people and the table are deliberately non-colliding with proximity scored instead;
+the walls and cart were not, and are the bug. Fix (R7): explicit contact pairs from each foot to each wall and to the cart,
+verified to leave mass and inertia untouched; driven at a wall panel the robot now contacts it and falls, and the doorway
+gap passes cleanly. Rule: in a scene built for speed, adding a geom does not add a constraint — assert the contact you
+intend, and never trust scenery you have not driven the robot into.
+

@@ -87,7 +87,11 @@ def train(out_dir, records=TRAIN_RECORDS, epochs=3, micro=4, accum=8, group=4, l
     if recipe == "ce_hard":  # E91: the log-only-the-action baseline — one-hot on the teacher's argmax
         for it in items: t = [0.0] * len(it["target"]); t[it["label"]] = 1.0; it["target"] = t
     log(f"recipe {recipe}")
-    random.Random(seed).shuffle(items); n_val = int(len(items) * val_frac); val, tr = items[:n_val], items[n_val:]
+    _groups = collections.defaultdict(list)
+    for it in items: _groups[tuple(int(x) for x in it['ids'])].append(it)   # method error 44: identical texts (replicated records) go to one side of the split together
+    _keys = list(_groups); random.Random(seed).shuffle(_keys); _nv = int(len(_keys) * val_frac)
+    val = [it for k in _keys[:_nv] for it in _groups[k]]; tr = [it for k in _keys[_nv:] for it in _groups[k]]; random.Random(seed).shuffle(tr)
+    log(f"split on {len(_keys)} unique texts: val {len(val)} items train {len(tr)} items")
     log(f"records {len(rows)} | items {len(items)} (dropped {dropped}) | train {len(tr)} val {len(val)} | mean options {np.mean([it['n'] for it in items]):.1f} | mean tokens {np.mean([len(it['ids']) for it in items]):.0f}")
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model = build_model(cfg, encoder_dir=os.path.join(mdir, "encoder")); model.load_state_dict(load_file(os.path.join(mdir, "model.safetensors")), strict=True)

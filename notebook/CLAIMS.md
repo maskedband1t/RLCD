@@ -574,3 +574,158 @@ and the item in hand → return bin", true of this bank's three notes and not of
 written, no wrong hand-over, one fall) and halves the veto window's operator cost (2.2 s per episode, 3 vetoes in 50 windows;
 the window reaches 30/30), but does not move the reaching child (5/10 in both rounds): the acceptable set permits waiting,
 so the labeller cannot teach moving on, the duck's E101 residue again. Four of five predictions.
+
+**4.75** (2026-09-22 15:04 PDT, E120, E121) On the picking station the owned copy transfers whole (33/40 where the rules were written, the
+judge's double-pick blind spot included; 0/60 and sixty wrong picks where they were not, at 60 ms), and one masked correction
+round takes it to 60/60 on fresh unwritten lines with nothing shipped wrong, at fifteen operator seconds per line, because
+the veto teaches which action was wrong and not which acceptable action is cheapest; the copy chose to ask. On this bench the
+un-vetoed drafted rule (60/60 at no operator cost) is the better owner of the judgment. Six of six predictions.
+
+**4.76** (2026-09-22 20:13 PDT, E124, E125) Two instrument iterations on the humanoid's one unsolved unwritten situation, the reaching child:
+putting the child-zone rule inside the step-around skill removed every zone entry and produced a two-minute livelock (0/10);
+adding a progress bound in the governor turned the livelock into three deliveries in ten with one zone entry, and the judge's
+best unwritten score on the bench, 22/30. The residue is a preference the judge does not take from the note (slow and
+straight, as the oracle does) rather than a missing rule. Two of six, then three of five predictions. *Amendment (2026-09-22 23:14 PDT, E130):* the 22/30 against R2's 20/30 and the reaching child's 3/10 against 0/10 are within the judge's measured run-to-run noise (five runs on these thirty seeds: 20–23; the child 0–3). What stands is structural: under R3 every reaching-child episode circled to the clock and under R3b none does.
+
+**4.77** (2026-09-22 22:39 PDT, E123) On the picking station, one correction round labelled with the operator's replacement action (the
+cheapest acceptable move at every visited state) gives the owned copy 60/60 on fresh unwritten lines with nothing shipped
+wrong, no asks and no operator time at the rules' speed, where the same states with masked labels gave 60/60 at fourteen
+operator seconds per line; the copy now beats the judge that taught it (40/60 at seven operator seconds) and ties the
+hindsight programmer and the drafted rule. The label form decides what the copy learns; the veto says not that, the
+replacement says this instead. Four of four predictions. Caveat: the replacement is the oracle's action in simulation and
+the operator's takeover action in a fleet.
+
+**4.78** (2026-09-22 23:10 PDT, E126 part 1, E129, E131) On the humanoid's bank v2, three situations that arise after the task has started
+(the cup starts leaking in hand, the requester walks off, a second person asks for the cup), frozen rules and the rules
+rewritten with hindsight for bank v1 hand the cup over wrongly thirty times out of thirty; the judge, reading a note left the
+day each situation appeared, handles all thirty with no wrong hand-over and no fall, and once the bench's facts say the
+requester has left (v2.1) it finishes all thirty, telling the operator as the note asks, at 2.7 operator seconds per episode.
+The judge's ten unfinished episodes under v2 were a bench flaw (method error 43): a departing requester who never departed.
+Rewording the done option (E129, four of five) changed nothing; fixing the facts (E131, five of five) changed everything.
+
+**4.79** (2026-09-23 01:21 PDT, E126 part 2) On the humanoid's bank v2, the owned copies corrected on the earlier bank cannot read the new
+notes: all three hand the leaking cup over and hand to the departing requester twenty times out of twenty (the third
+situation they pass by habit), where the judge handles all thirty on the day the notes appear. Each correction round raised
+the copy's stated confidence on situations it had never seen (.82, .88, .94 at the wrong hand-over; unacceptable decisions
+under the window's .5 line 108, 36, 4), so the veto window's rescue shrank from 29/30 to 20/30 to 10/30. The calibrated
+judge is the out-of-distribution reader, the copy the in-distribution owner, and correction erodes the calibration that
+separates them. Six of seven predictions over E126 (the blindness prediction failed by its threshold, not its intent).
+
+**4.80** (2026-09-23 03:23 PDT, E127, E133) The station's copy inherits the judge's double pick: at states that say holding two items and
+heavier than expected it places the pair at a stated .58 to .92, through a correction round with replacement labels (4/10)
+and the same round weighted four times (5/10), while a one-clause rule reads the fact ten of ten and the veto window at .5
+catches none. Where the fact is hard and the pattern rare, the stated number is not a signal and the rule is the cheaper
+owner; the judge and its copy own what the notes say and the corrections covered. Two of four and two of five predictions.
+
+**4.81** (2026-09-23 05:46 PDT, E134) The station's copy learns the double pick from takeover data after all: thirty-three put-back records
+at the two-items state, each counted four times, take it from 4–5 of 10 (E127, E133 with twenty-four) to 9 of 10 on fresh
+written lines, 38 of 40 overall, with the sixty fresh unwritten lines still handled at no operator time. Forty more written
+lines was the difference. Its calibration on the pattern is inverted, .39–.64 where it puts back and .75–.89 where it still
+places the pair, so a handoff line would send right answers to the picker and no wrong ones; the one-clause rule remains the
+cheaper owner with no residue. Four of five predictions. Amends 4.80: "neither learns it from the takeover data we have"
+held for the data of E127 and E133 and not for twice that.
+
+**4.82** (2026-09-23 05:48 PDT, analysis of E126 part 2's records) A copy-then-judge cascade on the copy's stated confidence does not work off
+the copy's corrections: to route the uncorrected copy's twenty fatal hand-overs on bank v2 to the judge the line must sit at
+.85 and send 91 % of all decisions; the twice-corrected copy's twenty are not all caught at any line below one, and at .95
+it keeps one decision in twenty. The copy's number separates nothing where it was never corrected, and less with every round.
+Descriptive, from records; no prediction was registered. What to test instead: a detector of "outside the corrections" that
+is not the copy's own number (the surprise gate; the judge as a sampled auditor).
+
+**4.83** (2026-09-23 10:11 PDT, E135) One replacement-label round on bank v2's takeovers makes the humanoid's copy whole on both banks: 30/30
+on fresh v2 seeds with no wrong hand-over and no operator time (r2 on the same seeds 10/30, twenty hand-overs at .96), and
+30/30 on v1 (r2 25/30), the reaching child 5 → 10 with zone entries 9 → 0, above the oracle's 27 and the judge's 20–23. Its
+mean stated confidence fell on v1 (.77 → .71) rather than rising as the masked rounds had made it; the label form decides
+what the copy learns and how sure it becomes. Three of five predictions, both misses in the copy's favour. Open: whether r3
+is blind and confident again on a bank it has not seen, which needs a bank written by someone else.
+
+**4.84** (2026-09-23 12:00 PDT, E136) The cascade that works is a novelty gate on the facts, not a line on the copy's number: the humanoid's
+copy r2 behind a gate that routes any decision with a feature outside its training vocabulary to the judge handles fresh
+bank-v2 seeds 30/30 (every decision routed) and its own bank at the copy's 25/30 with no decision routed, no false alarm in
+1,226 decisions. With the notes hidden the judge alone still handles v2 30/30 from the facts (a cup that says leaking, a
+requester that says gone), so on this bank the note bought speed, not correctness; the fact-level gate test was confounded
+by a fact key rendered only on v2 (method error 45) and is re-run as E136b. Four of five predictions. *E136b:* with the leaked key counted as known and the notes hidden, the fact-level gate fires in every leak episode 17–22 decisions after the pick-up (when the cup turns to leaking), in every departure episode when she is gone, and never on the second asker; behind it the copy's 10/30 becomes 28/30. Three of four; the routed share (85 %) is the judge's slowness without a note, not false alarms.
+
+**4.85** (2026-09-23 17:04 PDT, E137) The humanoid's blind-then-whole story replicates on the picking station where the new situation lives
+in facts the copy's corrections never touched: on a mismatched label and a held lot the copies corrected on bank v1 ship
+39–40 of 40 lines at a stated .80–.87, the frozen and hindsight rules ship all, the judge handles all forty from the note
+with nothing wrong, one replacement round on thirty lines takes the copy to 60/60 with nothing wrong while keeping its old
+lines, and a vocabulary gate flags every new-bank decision and none of the old. Two twists: the copies handle crushed
+packaging 20/20 with no note read, because bank v1's leak correction taught "condition other than dry → return bin" and
+the new value fell under it (blindness is about facts, not banks); and the judge reads "must not ship" and skips every
+damaged line, nothing shipped and nothing returned (0/20 by the registered criterion, 0 wrong by the ledger). Four of six.
+
+**4.86** (2026-09-24 03:17 PDT, E138 part 1) An open contrastive System One model (CLM-8B) with Jev's typed interface, run zero-shot on the
+station's own decisions, is a lookup in the reader's seat: its choice is acceptable 12 % of the time at a mean stated
+probability of .58 (over-confidence +.46, ECE .50, the reliability curve inverted in the middle), it loops on an action the
+state's words resemble (scan the label again, 3,118 of 3,906 decisions) and hands every unwritten line to the operator
+(60/60 handled, 60 asks, 20 operator seconds a line against Jev's 40/60 at 7.3), and on bank v2 it handles 16/60 with six
+wrong picks where Jev handles 40 with none. The same interface, the same questions, ECE .02 against .50: the calibrated
+number is a property of the model, not of the model class. Three of four scored predictions (one by the letter only);
+whether post-training the heads on the fleet's records recovers it is E139. *Part 2 (humanoid):* zero-shot it chooses pick_up on 4,050 of 4,136 decisions from across the room, handles 7/30 on bank v1 (the operator's) and 0/30 on v2, hit rate 0.00 at a stated .55. Interface parity is not competence parity. E138 in full: three of six, one by the letter.
+
+**4.87** (2026-09-24 07:05 PDT, E140, E141) Post-training the humanoid's exported walking policy by PPO on the decision layer's own command
+stream, on a CPU overnight from the exported weights, fixes the fault it was given (standing speed .357 → .115 m/s, tracking
+error .31 → .18, plain walking .22 → .12, no falls in a hundred fresh episodes) and breaks the code written around the fault:
+under the bench's −0.2 stand command, written for the shipped body's creep, the fixed body walks backwards and the judge
+falls from 20–23 to 10 of 30, the rules from 39 to 14 of 40; with the workaround removed the post-trained body makes the
+rules whole (40/40, the blocked door handled for the first time). An EXPO-style bounded edit over the frozen policy gets
+two thirds of the improvement (.162, .231) with no fall in 643 training evaluations against 44 for the direct fine-tune,
+and stays inside the old contracts (rules 39/40 under either instrument). Five of seven and two of five predictions.
+
+**4.88** (2026-09-24 11:14 PDT, E139) Post-trained for eight seconds on the same fleet records as the generative copy (the judge's decisions
+plus the operator's replacement actions, embedded once), the open contrastive model's two 20M heads handle every fresh
+unwritten line at no operator cost (120/120 on two line sets, where zero-shot they asked on every line and Jev handled 40)
+with their calibration recovered from ECE .50 to .06, within .04 of the copy's; from identical records they miss the finer
+endings the copy learned (bank v2 35 against 60: they return the wrong item and the held lot where the note asks for a
+put-back and a skip; written lines 27 against 37), and behind the veto window reach 54 at nineteen operator seconds a line.
+The calibrated number can be earned by the cheaper architecture on the distribution the records cover; resolution beyond it
+is what the copy's capacity buys. Four of six predictions.
+
+**4.89** (2026-09-24 11:26 PDT, E142) The simulator's tolerance, measured: with every body mass, all contact friction and every actuator gain
+perturbed by up to ±20 % per episode the three walking policies keep their outcomes (falls 9 %, 4 %, 0 %; the stand-speed
+ordering unchanged); at ±30 % the shipped policy and the direct fine-tune fall in 28 % and 32 % of episodes while the bounded
+edit falls in 5 %; at ±50 % all but the edit fall in most. Post-training without randomization did not narrow the fine-tune
+beyond its parent (equal falls at .3 and .5), Playground's randomization did not protect the parent at this range, and the
+bounded edit over the frozen base is the most tolerant of model error. For a modeling pipeline: land those three parameters
+within about twenty percent and the gait outcomes carry. 1 of six predictions, the misses in the post-trained policies' favour. *E142b (2026-09-24 11:37 PDT):* one family at a time at ±30 %, mass and friction alone cause at most three falls in a hundred for any policy; the actuator gains alone cause 21 % (shipped), 13 % (direct), 3 % (edit) and combine with the others to more than their sum for the fine-tune. Get the actuator model right; mass and friction may be rough. Four of five.
+
+**4.90** (2026-09-24 11:34 PDT, E144) On the contrastive heads, as on the generative copy, the label form of the same 776 correction states
+decides the operator's bill and the number's honesty, not the outcome: uniform, masked and replacement targets all handle
+the sixty fresh unwritten lines with nothing shipped wrong, at 10, 13 and 0 operator seconds a line; the replacement is
+slightly over-confident (+0.06), the masked slightly under, the uniform under-confident by 0.10 (ECE 0.16), a head
+that does not believe its own right answers. Held-out agreement (97.2–97.6 %) separates none of them. 4 of six predictions.
+
+**4.91** (2026-09-24 11:34 PDT, E143) With the −0.2 stand patch removed, the directly fine-tuned body still fails the phone situation 0/10 and
+both post-trained bodies fail the departing requester (4 and 5 of 10), and the reason is the fault the bench was built on:
+the shipped body's creep (0.13 m/s at a zero command) carried the robot inside the requester's 2.5 m noticing radius while the
+judge "waited" and, during a failed out-of-reach pick-up's stand, into the pick-up's reach, and a body that truly stands does neither
+(602 of 646 pick-up attempts fail: the same state and the same premature choice, seventy times over). Three of the fetch room's contracts were satisfied by the body's fault and not by code (method
+error 47); post-training the fault away exposed every place the code leaned on it. The un-patched shipped body sits at the
+noise floor on bank v1 (20/30), so the patch was never load-bearing there. Three of six predictions. *E147 (2026-09-24 12:11 PDT):* with the pick-up skill owning its approach the fine-tuned body's departures go 4 to 10 of 10 and its written bank 35 to 38 with the rules whole (40/40), and two more clock couplings surface: the leak onset timed from the pick-up charges a fast approach for a leak it could not see (seven hand-overs decided on an intact cup), and clock-triggered people and events move the cross, blocked and child-note outcomes with the body's speed (method errors 48, 49). Four of seven.
+
+**4.92** (2026-09-24 14:03 PDT, E145) On the humanoid the open contrastive model's heads, post-trained for 21 seconds on the copy's exact
+records, go from a lookup that picked up from across the room (7/30 and 0/30) to a copy that handles 26/30 and 30/30 with no
+wrong hand-over and no fall, the reaching child included (10/10, from the copy's replacement round), and stay undecided and
+uncalibrated: 59 % of decisions are stop, a hundred decisions and 53 s per episode against the copy's 24, 37 % of decisions
+acceptable, ECE .25 and over-confidence +.20 where the same recipe gave .06 on the station. The cheap architecture learns
+what to do from the fleet's records on both benches and learns how sure to be only where decisions follow from facts, not
+from geometry and time; the generative copy learned both. Four of six predictions, one miss in the heads' favour.
+
+**4.93** (2026-09-24 14:13 PDT, E143–E150) On a humanoid bench that no longer leans on the body (events triggered by the robot's state,
+decisions scored on what the robot saw, no hidden motion, no stand patch; five revisions in a day, method errors 47–51),
+post-training the walking policy makes the frozen rules whole (40/40 on the fine-tuned body against 39 on the shipped, the
+blocked door 10/10 for the first time without a patch) and costs the judge: 37 → 30 on the written bank and 21 → 11 on the
+unwritten, because its habits, learned on a body that crept (a wait outside the requester's noticing radius, a walk past a
+standing person), meet people and wait too far on a body that stands still; the bounded edit sits between. The new-bank
+situations are 10/10 with no wrong hand-over on every body. A fleet that post-trains its policy re-derives its skills'
+contracts and re-corrects its decision layer on the new body. Five of eight predictions on the final run.
+
+**4.94** (2026-09-24 14:45 PDT, E146) Six cumulative correction rounds of the station's owned model, each scored on the lines the rounds cover
+and on a bank none of the first five touches: the expected calibration error on the corrected distribution falls .362 → .047
+→ .013 → .008 while on the untouched bank it rises .307 → .331 → .374 → .399, the model's stated probability at its wrong
+decisions there rises .62 → .81 → .87 → .90, and the operator's veto window, which rescued 34 of 60 lines from the
+uncorrected model, rescues 0 after two rounds. The round that finally covers that bank restores it (ECE .117, handled 20 →
+35, the window's rescue +19). Correction makes the number honest where it corrects and dishonest where it does not, and the
+operator's safety net is what degrades; a falling intervention rate is therefore not evidence of a safer fleet unless an
+untouched bank is scored every round. Five of six predictions; the same shape as the humanoid copy's three rounds (4.79).

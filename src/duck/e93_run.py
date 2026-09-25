@@ -79,13 +79,21 @@ class Oracle:
             if k in acc and k in opts: return k, {}
         return "stop", {}
 
+_HEAVY = {}
+def _shared(key, build):
+    """Method error 46: the harness builds an arm per episode; the model behind it (a 16 GB encoder, a 421M head) is loaded once per process and shared."""
+    if key not in _HEAVY: _HEAVY[key] = build()
+    return _HEAVY[key]
+
 class DuckJev:
     """The calibrated judge: one Choice over code's options, in one call. Gate: below tau -> ask. Confirm: below tau -> propose."""
     def __init__(self, tau=None, confirm=False, model=None):
         from typesafe_sdk import TypeSafeClient, Choice
-        self.client = TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"]); self.Choice = Choice
-        self.model = model or os.environ.get("CELL_JEV_MODEL", "jev-latest"); self.tau = tau; self.confirm = confirm
-        self.name = "jev" + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")); self.calls = 0; self.latency = []; self.errors = 0
+        self.Choice = Choice; self.model = model or os.environ.get("CELL_JEV_MODEL", "jev-latest"); self.tau = tau; self.confirm = confirm
+        if self.model.startswith("clm"):   # E138: a second System One model (CLM-8B, local) behind the same arm
+            from duck.clm_local import ClmLocalClient; self.client = _shared(("clm", os.environ.get("CLM_CKPT", ""), os.environ.get("CLM_ENCODER", "")), ClmLocalClient); base = "clm"
+        else: self.client = TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"]); base = "jev"
+        self.name = base + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")); self.calls = 0; self.latency = []; self.errors = 0
     def decide(self, f, opts, room):
         q = {"action": self.Choice(instructions={"role": ROLE,
                                                   "ask": "Which single action should the robot take right now? Follow the task and the operators' notes; keep people comfortable and safe before making progress."}, criteria=opts)}
@@ -123,7 +131,7 @@ class DuckLaya:
     def __init__(self, tau=None, confirm=False):
         os.environ.setdefault("USE_TF", "0"); import laya, torch
         from duck.head import render_state, question
-        self.render, self.question = render_state, question; self.agent = laya.Agent(os.environ.get("DUCK_HEAD", "results/duck/head_r3"), device="mps" if torch.backends.mps.is_available() else "cpu")
+        self.render, self.question = render_state, question; _h = os.environ.get("DUCK_HEAD", "results/duck/head_r3"); _d = "mps" if torch.backends.mps.is_available() else "cpu"; self.agent = _shared(("laya", _h, _d), lambda: laya.Agent(_h, device=_d))
         self.tau, self.confirm = tau, confirm; self.name = "laya" + os.environ.get("DUCK_HEAD_TAG", "") + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")); self.calls = 0; self.latency = []; self.errors = 0   # DUCK_HEAD_TAG e.g. "-r4" runs two heads in one results file (E99)
     def decide(self, f, opts, room):
         if len(opts) == 1: k1 = next(iter(opts)); return k1, {"choice": k1, "confidence": 1.0, "probabilities": {k1: 1.0}, "source": "single-option"}
@@ -135,7 +143,30 @@ class DuckLaya:
         if self.tau is not None and top1 < self.tau and choice not in ("ask_operator", "done"): return (("confirm:" + choice), dict(j, confirm=True)) if self.confirm else ("ask_operator", dict(j, gated=True))
         return choice, j
 
+class DuckLayaGate:
+    """E136: the owned copy behind a novelty gate. A decision whose rendered facts, note words or options contain a feature outside
+    the copy's training vocabulary (E115's features) goes to the judge; everything else is the copy's, at its speed.
+    DUCK_GATE_VOCAB: colon-separated paths; a .json file is a saved feature list, a .jsonl file is records (state, options)."""
+    def __init__(self, vocab_paths):
+        import json as _json
+        from duck.e115_mine import features as _feat, present as _present
+        self._feat, self._present = _feat, _present; self.copy = DuckLaya(None, False); self.judge = DuckJev(None, False); self.vocab = set()
+        for p in vocab_paths:
+            if p.endswith(".json"): self.vocab |= set(_json.load(open(p)))
+            else:
+                for l in open(p):
+                    r = _json.loads(l)
+                    if "state" in r and "options" in r: self.vocab |= _present(_feat(r["state"], r["options"]))
+        self.name = "laya_gate" + os.environ.get("DUCK_HEAD_TAG", ""); self.calls = 0; self.latency = []; self.errors = 0; self.routed = 0
+    def decide(self, f, opts, room):
+        novel = self._present(self._feat(f, opts)) - self.vocab
+        if novel:
+            self.routed += 1; key, j = self.judge.decide(f, opts, room); self.calls += 1; self.latency = self.judge.latency; self.errors = self.judge.errors
+            return key, dict(j, routed=True, novel=sorted(novel)[:8])
+        key, j = self.copy.decide(f, opts, room); return key, dict(j, routed=False)
+
 def make_arm(arm):
+    if arm == "laya_gate": return DuckLayaGate([p for p in os.environ.get("DUCK_GATE_VOCAB", "").split(":") if p])
     if BODY == "pick" and arm.startswith("rules_mined"):
         from picking.arms import PickRulesMined; a = PickRulesMined(mined_path(arm)); a.name = arm; return a
     if BODY == "pick" and arm in ("rules", "rules_ask", "rules_hindsight", "oracle"):
@@ -162,7 +193,7 @@ def make_arm(arm):
     raise ValueError(arm)
 
 def episode(seed, arm_name, record=None, verbose=False):
-    room = Room(seed); arm = make_arm(arm_name); st = dict(operator_s=0.0, n_asks=0, n_confirms=0, n_vetoes=0, decisions=0, log=[], acceptable=0, deferred=0, api_errors=0, consecutive_errors=0)
+    room = Room(seed); arm = make_arm(arm_name); arm.name += os.environ.get("DUCK_RUN_TAG", ""); st = dict(operator_s=0.0, n_asks=0, n_confirms=0, n_vetoes=0, decisions=0, log=[], acceptable=0, deferred=0, api_errors=0, consecutive_errors=0)
     room.physics(int(1.0 / room.cdt))  # one second to settle on the standing policy
     goal = False; t_goal = None; pending = None; prev_key = "stop"
     while room.t < MAX_T and not room.fell:

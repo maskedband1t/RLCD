@@ -88,6 +88,22 @@ Later additions. The RLCD training recipe adds nothing over plain soft distillat
 
 The seat has four requirements — a decision every 0.1–1 s, a probability that keeps its meaning on the model's own states, a per-decision cost a fleet can afford at 10^5 decisions per robot-day, and a model the fleet can own and retrain — and a frontier vision-language model meets one. We did not run a frontier model in the seat; the nearest affordable test, a dense open 27B behind the identical interface, kept the judge's accuracy and drifted its number by .135 in its own states (D4, D7), and injected think time of 3 s cost the calibrated judge 11 of 29 unwritten situations and doubled near-contacts on a moving body (E105). Frontier models belong outside the loop: constructing the reflex, translating the world once, teaching. The untested items, singly and in combination, are: a frontier model in the seat at its own latency and as the copy's teacher; a human-sized body in a home room and a store aisle (an open G1 walking policy runs headless in our harness); one operator for many robots; real takeover logs as the correction source and shadow scoring of the teleop stream; cadence without staleness; a site twin as the bench's world; the annotator on the remaining real recordings; and the one unsolved anticipated situation, a person crossing the path, as a governor rule.
 
+A second System One model answered part of this. CLM-8B, open, with Jev's typed interface and a contrastive lookup
+inside (a frozen encoder, two projection heads, a softmax over scaled cosines), run zero-shot on the station's own decisions,
+chose an acceptable action 12 % of the time at a mean stated probability of .58, an expected calibration error of .50 against
+Jev's .02 on the same kind of decisions, and handled the unwritten lines only by handing every one to the operator. The
+interface does not make the number; the model does. "Calibrated decision model" is a claim about the probability, to be
+measured for each model that makes it, and post-training on the fleet's own records is the test of whether a cheaper
+architecture can earn it. It can, on the distribution the records cover: post-trained for eight seconds on the same records as
+the generative copy, the heads handle every unwritten line at no operator cost with an expected calibration error of .06,
+and miss the finer endings the copy learned from identical records (35 against 60 on a second bank). The extra capacity
+buys resolution where the finer note lives, and the veto window buys it back at nineteen operator seconds a line.
+On the humanoid the same recipe takes the open model from seven to twenty-six of thirty and from none to thirty of thirty
+with no wrong hand-over, and leaves its number uncalibrated (an expected calibration error of .25) and its gait undecided,
+where the generative copy is whole and sure: the cheap architecture learns what to do from the fleet's records on both
+benches and learns how sure to be only where decisions follow from facts rather than from geometry and time.
+
+
 ### 8.y The rules written a second time (E114)
 
 The obvious objection to every "where no rule was written" number is that a rule can always be written. We measured it: the
@@ -112,5 +128,106 @@ decisions matches the judge (20 of 30) at rule cost and inherits its blind spot.
 compile, scope, review; the review is where the tree is silent. Six pre-registered predictions went one of six and the
 follow-up's four went three of four; the misses are the instrument flaw of §8.y and the compiler's capacity.
 
-## Appendix A — Method: pre-registered predictions and their scores; adversarial review of the plan; 24 logged method errors.
+### 8.w A fourth bench: the picking station at decision level (E117–E123)
+
+The loop a warehouse or store picker runs on, a grasp score, a threshold and a remote person for the rest, was modelled at
+decision level with no physics: a seeded grasp scorer, a verify check, stated durations, and a picker whose answer costs twenty
+seconds and resolves what the robot could not. The same shape as the other three benches appeared with two sharp edges. On
+sixty unwritten lines, each announced by a note, the frozen rules shipped every item and the judge shipped none, reading two
+of three notes completely and turning the recalled lot into a flagged exception; on forty written lines the rules handled all
+forty and the judge 32, six of its misses being double picks placed at a stated .73 to .95, the one error class no threshold
+catches. As the mix of lines hardened the gated judge escalated more and lost fewer lines than the rules, but escalated a fifth
+of clean lines for nothing. The rules rewritten by their author after reading the lines handled every line in three clauses
+and two minutes, and the judge's own decisions with the vetoed ones removed compiled into a three-leaf rule that did the same
+at no operator cost. The owned copy transferred whole and, after one masked correction round, handled every fresh unwritten
+line with nothing shipped wrong, at fifteen operator seconds per line: the veto had taught which action was wrong, not which
+acceptable action was cheapest, and the copy chose to ask. Labelling the same visited states with the operator's replacement
+instead, the cheapest acceptable action at each, gave a copy that handled every fresh unwritten line with nothing shipped
+wrong, no asks and no operator time at the rules' speed, beating the judge that taught it (40 of 60 at seven operator
+seconds) and tying the hindsight programmer and the drafted rule: the veto says not that, the replacement says this instead,
+and a fleet's takeover logs carry the second for free. In simulation the replacement is the oracle's action; in a fleet it
+is what the operator did.
+The copy's one written-bank blind spot is its teacher's, the double pick: at states that say holding two items and heavier
+than expected it places the pair at a stated .58 to .92, through a correction round and the same round weighted four
+times; forty more written lines of takeovers, thirty-three put-back records instead of twenty-four, take it to nine of
+ten, though its number on the pattern is inverted, .39 to .64 where it puts back and .75 to .89 where it still places
+the pair. A one-clause rule reads the fact ten of ten in a minute with no residue. The division of labour this bench ends
+on is the rule for what the sensor says, the judge for what the note says, the copy for what the corrections covered, with
+the price of "covered" measured in lines.
+A second unwritten bank, designed after the copy's corrections and carrying no new fact keys or options, replicates the
+humanoid's story at decision level: the copies ship a mismatched label and a held lot thirty-nine to forty of forty at a
+stated .80 to .87, the judge handles all forty from the note, one replacement round on thirty lines makes the copy whole with
+its old lines kept, and the copy's training vocabulary flags every new-bank decision and none of the old. Two twists
+belong in the record: the copies handle crushed packaging twenty of twenty with no note read, because the earlier leak
+correction had taught them that a condition other than dry goes to the return bin (blindness is about facts, not banks);
+and the judge reads "must not ship" and skips every damaged line, nothing shipped and nothing returned.
+
+### 8.v The world changing on its own, and two noise floors (E126–E132)
+
+Three situations on the humanoid arise after the task has started: the cup starts leaking in the robot's hand, the
+requester walks off as the robot reaches her, a second person asks for the cup. Each carries the note an operator would
+leave. The frozen rules and the rules rewritten with hindsight for the previous unwritten bank cannot see any of the three
+and hand the cup over wrongly thirty times out of thirty; the judge, reading the day's note, handles all thirty with no
+wrong hand-over and no fall. Ten of its episodes ran to the clock, and the reason turned out to be the bench's: the
+departing requester was walked to the far corner of the room and stopped there, so the facts said in the room, standing
+still, while the story said she had left, and the judge kept walking toward her with done rated at zero over fifteen
+hundred decisions. Rewording the done option changed nothing (four of five predictions, the one that mattered failed);
+letting her leave and saying so in the facts had the judge put the cup down, tell the operator and finish, ten of ten (five
+of five). The lesson is written as a method error: a situation's facts must tell the story its note and its acceptable set
+assume, or the judge's failure is the bench's.
+
+The owned copies were run on the same bank after their corrections on the earlier one, the nearest thing to a second
+designer's bank we could make ourselves. They cannot read the new notes: each hands the leaking cup over and hands to the
+departing requester twenty times out of twenty, passing the third situation by habit. Worse, each correction round had
+raised the copy's stated confidence on situations it had never seen, from .82 to .94 at the fatal hand-over, so the veto
+window's rescue shrank from 29 of 30 with the uncorrected copy to 10 of 30 with the twice-corrected one. This is the
+clearest statement in the report of why a calibrated model sits in the seat: the judge is the out-of-distribution reader,
+the copy the in-distribution owner, and correction erodes the calibration that separates them. (Post-training the body
+itself, the humanoid's exported walking policy fine-tuned by PPO on the decision layer's command stream, fixes the fault it
+is given, standing speed .357 to .115 m/s with no fall in a hundred episodes, and breaks the code written around the fault:
+the bench's −0.2 stand command, a patch for the old body's creep, walks the new body backwards and the judge falls from
+20–23 to 10 of 30 until the patch is removed, after which the rules are whole for the first time. A bounded edit over the
+frozen policy gets two thirds of the improvement without a fall in training and inside the old contracts. Perturbing every mass, friction and actuator gain by up to twenty
+percent per episode leaves all three walkers' outcomes intact and thirty percent breaks the shipped policy and the fine-tune
+but not the bounded edit: the tolerance a simulator must meet on this body is about twenty percent on those parameters,
+and post-training on one parameter set did not narrow it.) Removing the patch fixed the contract it had broken and exposed two
+more that the shipped body's creep had been meeting without code, the judge's out-of-reach pick-up, which the creep turned into a success by drifting the body
+in, and the judge's waiting distance against the requester's noticing radius: a body's fault had become load-bearing,
+and post-training the fault away exposed every place the code leaned on it.
+Fixing the pick-up's contract restored the fine-tuned body (departures four to ten of ten, the written bank thirty-eight of
+forty) and exposed two more: a leak timed from the pick-up that a fast approach could not see before handing over, and
+scripted people and events timed by the clock. A bench for a decision layer triggers its events on the robot's state and
+scores each decision on what the robot saw, or the body's speed is a hidden factor in every number.
+On that bench, five revisions later, post-training the body makes the frozen rules whole (forty of forty on the fine-tuned
+body) and costs the judge (thirty-seven to thirty on the written bank, twenty-one to eleven on the unwritten): its habits,
+learned on a body that crept, meet people and wait too far on a body that stands still. The rules were written against
+geometry and survive a change of body; the judge's geometry was learned from the old body's behaviour, and a fleet that
+post-trains its policy re-corrects its decision layer on the new body.
+A cascade on the copy's number does not repair this: read off the same records, a line that routes the uncorrected copy's
+twenty fatal decisions to the judge sits at .85 and sends nine decisions in ten, and no line below one catches all of the
+twice-corrected copy's. The detector of "outside the corrections" has to come from somewhere other than the copy.
+With a second architecture whose rounds cost seconds the whole curve is measurable, and it is two curves in opposite
+directions from the same data: six cumulative rounds of the fleet's own takeovers drive the expected calibration error from
+.362 to .008 on the lines they cover and from .307 to .399 on a bank they never touch, the stated probability at the wrong
+decisions there climbing from .62 to .90, while the operator's veto window falls from rescuing thirty-four lines of sixty to
+rescuing none. The round that finally covers that bank restores all three. A falling intervention rate is therefore not
+evidence of a safer fleet unless an untouched bank is scored every round, and that measurement costs seconds.
+One replacement-label round on the new bank's own takeovers then makes the copy whole: thirty of thirty on fresh seeds of the
+new bank with no wrong hand-over and no operator time, and thirty of thirty on the old bank, where the round also took the
+reaching child from five to ten with no zone entry, above the oracle and the judge; its stated confidence on the old bank
+fell rather than rose, so the label form decides how sure the copy becomes as well as what it learns. The loop closes one
+bank behind the world; what stands between the banks is the judge, or a gate that knows the situation is new. That gate exists and is not a line
+on the copy's number: a decision whose facts, note words or options contain a feature outside the copy's training
+vocabulary goes to the judge. Behind it the copy handles the new bank thirty of thirty with every decision routed and its
+own bank at its own score with none routed, no false alarm in twelve hundred decisions. With the notes hidden the judge
+still handles the new bank thirty of thirty from the facts alone, so on this bank the note bought speed, not correctness.
+
+The same week produced the noise floors. The API is not bit-reproducible: on identical states the stated probability
+differs between runs by 0.003 on average and up to 0.13 on one option. On the humanoid a close call sends the physics down a
+different path, and five runs of the same judge on the same thirty seeds gave 20, 21, 21, 22, 23, so an earlier "best
+score" of 22 against 20 was withdrawn as noise while the structural change it came with, ten livelocked episodes to none,
+stands. On the station, decision-level and without physics, three runs gave identical outcomes to the line. Every ladder in
+this report now carries its floor: about two on the humanoid, zero on the station.
+
+## Appendix A — Method: pre-registered predictions and their scores; adversarial review of the plan; 43 logged method errors.
 ## Appendix B — Suites, prompts, rater packet, per-type tables.

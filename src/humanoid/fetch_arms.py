@@ -66,6 +66,6 @@ class FetchOracle:
     name = "oracle"
     def decide(self, f, opts, room):
         acc = room.acceptable(); hands = sorted(k for k in acc if k.startswith("hand_to_"))
-        for k in ["done"] + hands + ["pick_up", "walk", "walk_slow", "step_around", "wait", "follow_person", "stop", "turn_away", "ask_operator", "put_down"]:
+        for k in ["done"] + hands + ["put_down", "pick_up", "walk", "walk_slow", "step_around", "wait", "follow_person", "stop", "turn_away", "ask_operator"]:   # put-down before waiting or asking: it is only ever acceptable where the note asks for it (bank v2, E126)
             if k in acc and k in opts: return k, {}
         return "stop", {}

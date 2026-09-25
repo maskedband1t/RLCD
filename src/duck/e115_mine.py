@@ -64,7 +64,7 @@ def mined_choice(model, f, opts, tau=0.6):
     return (key, float(pr[i])) if pr[i] >= tau and key in opts else None
 
 PREFER = {"pick": ["done", "put_back", "place_in_return_bin", "place_in_customer_tote", "grasp", "regrasp", "scan_again", "wait", "ask_operator", "skip_item"],
-          "g1": ["done", "pick_up", "walk", "walk_slow", "step_around", "wait", "stop", "turn_away", "ask_operator", "put_down"],
+          "g1": ["done", "put_down", "pick_up", "walk", "walk_slow", "step_around", "wait", "stop", "turn_away", "ask_operator"],
           "duck": ["done", "follow_person", "walk_fast", "walk_slow", "wait", "step_aside", "stop", "turn_away", "ask_operator"]}
 
 def corrected_label(r, body):

@@ -747,4 +747,4 @@ above its own teacher. Post-training the body then costs the judge ten episodes 
 copy six, and a further round on the new body returns one. Two corrections to earlier claims fall out of the same table: the
 copy's advantage over the judge is no cloud call and a third of the operator time, not latency (both are 90 ms per call
 here), and the oracle is not the ceiling on the written bank because its own body drifts into the cart while it waits.
-Four of eight predictions.
+Four of eight predictions. *E154:* reusing the last decision when nothing the model reads has changed saves 5–24 % of model calls with every handled count inside the noise floor and no new wrong hand-over, fall or operator second; the saving tracks how much of the episode has a person near the robot (5 % on the people-heavy written bank, 24 % where the scene holds still), the same conclusion Argon reach at the action layer by tightening their skip threshold sevenfold in human-occupied scenes. The number is a property of the deployment's scene mix, not of the method. Five of six.

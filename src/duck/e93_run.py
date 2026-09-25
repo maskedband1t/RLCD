@@ -165,6 +165,25 @@ class DuckLayaGate:
             return key, dict(j, routed=True, novel=sorted(novel)[:8])
         key, j = self.copy.decide(f, opts, room); return key, dict(j, routed=False)
 
+class SkipWrapper:
+    """E154: reuse the last decision when nothing the model reads has changed. Guards, matching Argon's (gripper events and
+    human presence): never skip across a change of what the robot holds, with a person inside the near band, when the option
+    set changed, or after an ask or a hand-over."""
+    def __init__(self, inner):
+        self.inner = inner; self.name = inner.name + "_skip"; self.last_sig = None; self.last = None; self.skipped = 0
+        for a in ("tau", "confirm"): setattr(self, a, getattr(inner, a, None))
+    def __getattr__(self, k): return getattr(self.__dict__["inner"], k)
+    def decide(self, f, opts, room):
+        import json as _json
+        sig = _json.dumps({k: v for k, v in f.items() if k != "recent_actions"}, sort_keys=True, default=str) + "|" + "|".join(sorted(opts))
+        near = f.get("person", {}).get("distance") in ("touching_distance", "close", "near")
+        holds = f.get("robot", {}).get("holding")
+        safe = (self.last is not None and sig == self.last_sig and not near and holds == getattr(self, "_last_holds", holds)
+                and not str(self.last[0]).startswith(("ask_operator", "hand_to", "confirm:")))
+        if safe: self.skipped += 1; return self.last[0], dict(self.last[1], skipped=True)
+        out = self.inner.decide(f, opts, room); self.last_sig = sig; self.last = out; self._last_holds = holds
+        self.name = self.inner.name + "_skip"; return out
+
 def make_arm(arm):
     if arm == "laya_gate": return DuckLayaGate([p for p in os.environ.get("DUCK_GATE_VOCAB", "").split(":") if p])
     if BODY == "pick" and arm.startswith("rules_mined"):
@@ -193,7 +212,9 @@ def make_arm(arm):
     raise ValueError(arm)
 
 def episode(seed, arm_name, record=None, verbose=False):
-    room = Room(seed); arm = make_arm(arm_name); arm.name += os.environ.get("DUCK_RUN_TAG", ""); st = dict(operator_s=0.0, n_asks=0, n_confirms=0, n_vetoes=0, decisions=0, log=[], acceptable=0, deferred=0, api_errors=0, consecutive_errors=0)
+    room = Room(seed); arm = make_arm(arm_name)
+    if os.environ.get("DUCK_SKIP") == "1": arm = SkipWrapper(arm)   # E154: Argon's lever 2 at the decision layer
+    arm.name += os.environ.get("DUCK_RUN_TAG", ""); st = dict(operator_s=0.0, n_asks=0, n_confirms=0, n_vetoes=0, decisions=0, log=[], acceptable=0, deferred=0, api_errors=0, consecutive_errors=0)
     room.physics(int(1.0 / room.cdt))  # one second to settle on the standing policy
     goal = False; t_goal = None; pending = None; prev_key = "stop"
     while room.t < MAX_T and not room.fell:

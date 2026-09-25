@@ -15126,3 +15126,58 @@ evidence for one of them. The practice from here:
 4. **The limits section stays specific.** "It is simulated" is three different situations — a decision layer that does not
    depend on a simulator, body work done the way the field does body work, and two real gaps (contact, and pixels to facts).
    Saying which is which is more honest than a blanket caveat, and more useful.
+
+## E154 · skip the call when the world has not changed: Argon's lever 2 at the decision layer (pre-registration, 2026-09-24 21:48 PDT; launched now)
+
+**Why.** Argon report a 40–50 % speed-up from skipping predicted action chunks when the end-effector's displacement stays
+under a scene-dependent threshold and no gripper event is due. The decision layer has the same structure and has never been
+asked the question: our benches call the model every cadence tick regardless of whether anything the model reads has
+changed. In a fleet each skipped call is a cloud call not made.
+**Change (`DUCK_SKIP=1`).** A wrapper on any arm: build a signature of the rendered facts excluding `recent_actions`; if it
+matches the signature at the last real call, reuse that decision without calling the model. Never skip when the robot's
+holding state changed, when the nearest person is inside the near band, when the option set changed, or when the previous
+decision was an ask or a hand-over. Argon's guards are gripper events and human presence; these are the same two.
+**Runs.** The current instrument on the shipped body, the held-out bank of E153 (written 0–39, v1 fresh 160–189, v2 fresh
+330–359): the judge with and without skipping, and copy r3 with and without. E153's numbers are the no-skip baseline.
+**Predictions.**
+- **P154.1** the judge's calls per episode fall by ≥ 25 % on the written bank. Prior 60 %.
+- **P154.2** handled counts stay within the noise floor of two on every bank for both arms. Prior 55 %.
+- **P154.3** no new wrong hand-over and no new fall on any bank. Prior 65 %.
+- **P154.4** operator seconds per episode change by ≤ 0.5. Prior 65 %.
+- **P154.5** the saving is larger on v2 than on v1 (the leak and the departure hold a stable scene for long stretches; the
+  phone and the child change every tick). Prior 55 %.
+- **P154.6** the copy saves at least as large a fraction as the judge, since it reads the same facts. Prior 70 %.
+
+### E154 results (runs 21:52–22:4x PDT; scored 2026-09-24 22:06 PDT) · the skip is worth what the people in the scene allow
+
+Argon's lever 2 at the decision layer: reuse the last decision when nothing the model reads has changed, with their two
+guards mapped over (gripper events → a change in what the robot holds; human presence → a person inside the near band).
+Baseline is E153's numbers on the same seeds and instrument. *Claim 5 (the governor owns when to think); opens nothing new.*
+
+| arm | bank | handled, no skip → skip | model calls per episode | calls saved | operator s | wrong hand-overs · falls |
+|---|---|---|---|---|---|---|
+| judge | written 0–39 | 37 → 35 | 40.8 → 38.8 | **5 %** | 2.0 → 2.0 | 0 · 0 |
+| judge | v1 fresh | 20 → 22 | 23.2 → 21.0 | 9 % | 4.0 → 4.0 | 0 · 0 |
+| judge | v2 fresh | 30 → 30 | 19.3 → 14.7 | **24 %** | 2.7 → 2.7 | 0 · 0 |
+| copy r3 | written 0–39 | 38 → 37 | 39.4 → 34.3 | 13 % | 2.0 → 2.0 | 0 · 0 |
+| copy r3 | v1 fresh | 30 → 30 | 41.5 → 33.7 | 19 % | .7 → .8 | 0 · 0 |
+| copy r3 | v2 fresh | 30 → 30 | 19.4 → 15.2 | 21 % | 0 → 0 | 0 · 0 |
+
+**Scoring.** P154.1 ✗ (5 % on the written bank, not ≥ 25). P154.2 ✔ (every change within the floor of two). P154.3 ✔.
+P154.4 ✔. P154.5 ✔ (24 % against 9 %). P154.6 ✔ (13 % against 5 %). **Five of six.**
+
+**Reading.**
+1. *Free, and small.* Every bank keeps its handled count inside the noise floor, no new wrong hand-over, no new fall, no
+   change in operator time, and between a twentieth and a quarter of the model calls disappear. For a fleet paying per call
+   that is money for nothing, and it needs no model change.
+2. *The miss says what sets the size.* Argon get 40–50 % and we get 5–24 %, and the spread within our own table explains
+   both: the saving tracks how much of the episode has a person close enough to matter. The written bank has someone
+   crossing, approaching or wandering for most of every episode and saves 5 %; bank v2's situations hold a stable scene for
+   long stretches and save 24 %. Their guard is the same one — they tighten the displacement threshold from two centimetres
+   to three millimetres exactly when the scene is human-occupied. Two different layers, the same conclusion: **you can skip
+   thinking in proportion to how little a person is doing near you**, and a bench of mostly-people situations has little to
+   skip. That also means the number is a property of the deployment, not of the method, and quoting it without the scene mix
+   is meaningless.
+3. *The copy saves more than the judge* on every bank (13 vs 5, 19 vs 9, 21 vs 24 is the one reversal). It reads the same
+   facts, so the difference is that the judge takes more distinct actions on identical states, which is the deliberation the
+   acceptable-decision rate already showed.

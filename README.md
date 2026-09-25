@@ -133,6 +133,38 @@ If you have five minutes: watch the clips under [See it move](#see-it-move), loo
 4. [docs/FETCH-BENCH.md](docs/FETCH-BENCH.md) and [docs/PICKING-BENCH.md](docs/PICKING-BENCH.md): the humanoid room and the picking station, each with its ladder.
 5. [notebook/LAB-NOTEBOOK.md](notebook/LAB-NOTEBOOK.md): 11,000 lines of dated pre-registrations, results and scoring, if you want to check any of it.
 
+## The argument, in five claims
+
+The results below are evidence for five claims. Every experiment in this programme attaches to one of them or opens a sixth,
+and that is deliberate: a flat list of findings is not a position, and a reader should be able to hold the position in their
+head and then check it.
+
+**1. The judge's value is time, not accuracy.** Where no rule was written it handles the situation and the rules do not;
+once the rule is written, the rules win. We measured the gap by having the rules' author read the bank and rewrite the
+program, and he closed it in minutes. So what a calibrated model in this seat sells is the days before a rule exists, plus
+the operator seconds it spends inside them. *Results 6, 7, 11, 12, 13.*
+
+**2. The probability is the product.** Every mechanism that makes any of this useful — the hand-off threshold, the
+one-second veto window, the surprise gate — runs on a number that means what it says. Four models with the same typed
+interface, on identical decisions, span a calibration error from two hundredths to a half. "Calibrated decision model" is a
+claim to be earned per model, not a property of an interface or a class. *Results 1, 2, 3, 15.*
+
+**3. The fleet can own the judgment, and the operator's intervention is the mechanism.** Distil the judge into a model the
+robot runs, then correct it from takeovers the fleet is already paying for. What the intervention is turned into decides
+what is learned: a veto teaches the model to ask, the operator's replacement action teaches it the cheapest right thing.
+After three rounds the fleet's own model is the best arm on the bench, above the teacher it came from. *Results 4, 8, 16.*
+
+**4. The loop quietly eats its own safety net.** Correcting a model makes its number honest where you corrected and steadily
+dishonest where you did not. Over six rounds the operator's veto window went from rescuing thirty-four lines in sixty to
+rescuing none, while the model's confidence where it was wrong climbed. A falling intervention rate is therefore not
+evidence of a safer fleet unless a bank the corrections never touch is scored every round. The fix is not a threshold on the
+model's own confidence, which fails exactly where it is needed, but a novelty check on the facts. *Results 9, 17.*
+
+**5. Post-training the body is a change of body.** It fixes the fault you aim at, breaks every piece of code that was
+written around that fault, and costs a layer that reads each situation from scratch more than a layer the fleet has
+corrected. *Results 5, 10, 14.*
+
+
 ## The core results
 
 Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are seed-matched bootstraps. Evidence pointers name the experiment in the [lab notebook](notebook/LAB-NOTEBOOK.md) and the [claims ledger](notebook/CLAIMS.md).
@@ -279,6 +311,30 @@ Untested things are listed the way any scientific work lists them: what each wou
 | An unseen bank designed by a second person, scored before its designer sees any arm | the time-to-rule claim without the author's own hindsight | the frozen rules, the judge and the corrected copy, both bodies |
 | The picking station in physics (the cell's MuJoCo arm), and its rules rewritten with hindsight | whether the decision-level numbers survive a real grasp, and the time-to-rule on this bench | the drafted rules from the picker's vetoes (E115), the owned copy distilled from the judge's station decisions, a second designer's unwritten lines |
 | The corrected copy on situations it was never corrected on | whether the operator's vetoes teach reading that transfers, or only the three situations they covered | a fourth unseen situation held out from every correction round |
+
+## What is simulated, and what that means
+
+"It is all simulated" is three different situations here, and they deserve three different answers.
+
+**The decision-layer results do not depend on a simulator at all.** The judge reads facts in words and picks from options
+code wrote. Whether those facts came from a physics engine or a real robot's perception stack has no bearing on whether its
+probability matches its hit rate, whether correcting it on a fleet's takeovers erodes that probability off the corrected
+distribution, or whether the operator's veto window keeps catching anything. Those are properties of the model and of the
+loop, and a real fleet's takeover logs have exactly the same shape as ours. This is where most of the programme lives.
+
+**The body results are done the way the field does body work.** Essentially every walking policy on every humanoid is
+trained in simulation with domain randomisation and transferred, and the post-training here runs in MuJoCo Playground, on
+Unitree's G1 model, starting from the policy that actually ships with it. That is the standard method, not a stand-in for
+it, and the measured tolerance — mass, friction and actuator gains perturbed per episode, with the gains carrying almost all
+of the brittleness — is a contribution to that practice rather than an apology for it. The field is also moving toward
+post-training inside learned world models, which is more simulation, not less.
+
+**Two gaps are real and we do not paper over them.** Contact-rich manipulation simulates badly, which is exactly why the
+field does that work on real hardware; there is no contact bench here and the picking station is honest about being
+decision-level. And our benches hand the decision layer its facts, so the seam from pixels to facts is measured once
+(E86) and then bypassed. A bench whose facts come from a segmenter running on rendered frames would close the larger of the
+two, and it is the next gap worth spending on.
+
 
 ## Boundaries
 

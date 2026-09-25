@@ -15108,3 +15108,21 @@ banks, not worse. **Four of eight.**
    deliberates with acceptable-but-suboptimal actions (the judge waits and asks). It is consistent across arms in this table
    and is **not** the same quantity as the judge's .02 on its own typed questions. Worth a separate measurement (E154)
    rather than a sentence.
+
+---
+
+## Standing practice, added 2026-09-24 · the five-claim spine
+
+The programme now has more results than a reader can hold as a list, so the README carries five claims and every result is
+evidence for one of them. The practice from here:
+
+1. **Every pre-registration names the claim it tests** (1 time, 2 the number, 3 ownership, 4 the loop's decay, 5 the body),
+   or says explicitly that it opens a sixth. A pre-registration that attaches to nothing is a sign the work has drifted.
+2. **Every result that lands gets a dated row in the README's log** — what was demonstrated, on what date, with the number —
+   and a snapshot is pushed. The commit history is the cadence, and the log is where a reader sees the programme is live.
+3. **A result that contradicts an earlier claim amends that claim in place, with the date**, rather than sitting beside it.
+   Two such corrections landed with E153 (the copy's advantage is not latency; the oracle is not the ceiling on the written
+   bank).
+4. **The limits section stays specific.** "It is simulated" is three different situations — a decision layer that does not
+   depend on a simulator, body work done the way the field does body work, and two real gaps (contact, and pixels to facts).
+   Saying which is which is more honest than a blanket caveat, and more useful.

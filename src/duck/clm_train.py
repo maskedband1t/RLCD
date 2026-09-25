@@ -28,7 +28,7 @@ def load_rows(paths, arm=None, seeds=None):
             rows.append(r)
     return rows
 
-def examples(rows, role):
+def examples(rows, role, smooth=0.0):
     out, dropped = [], 0
     for r in rows:
         opts = r["options"]
@@ -37,7 +37,12 @@ def examples(rows, role):
         stext, keys, cands = build_pairs(r["state"], {"action": q})["action"]
         probs = r["answer"].get("probabilities") or {}; tgt = np.array([float(probs.get(k, 0.0)) for k in keys], dtype=np.float32)
         if tgt.sum() <= 0: tgt = np.array([float(k == r["answer"]["choice"]) for k in keys], dtype=np.float32)
-        tgt = tgt / tgt.sum(); out.append((stext, keys, cands, tgt))
+        tgt = tgt / tgt.sum()
+        if smooth > 0:   # E155: soften the correction target over the actions that were acceptable, so a round teaches the action without teaching certainty
+            acc = [k for k in (r.get("acceptable") or []) if k in keys] or list(keys)
+            u = np.array([1.0 / len(acc) if k in acc else 0.0 for k in keys], dtype=np.float32)
+            tgt = (1.0 - smooth) * tgt + smooth * u; tgt = tgt / tgt.sum()
+        out.append((stext, keys, cands, tgt))
     return out, dropped
 
 class DiskCache:
@@ -59,11 +64,11 @@ def embed_all(texts, cache_path, log):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--out", required=True); ap.add_argument("--records", nargs="+", required=True); ap.add_argument("--arm", default="jev"); ap.add_argument("--seeds", default=None)
     ap.add_argument("--extra", nargs="*", default=[]); ap.add_argument("--epochs", type=int, default=3); ap.add_argument("--lr", type=float, default=5e-4); ap.add_argument("--batch", type=int, default=64); ap.add_argument("--wd", type=float, default=0.01)
-    ap.add_argument("--init", default=None, help="reference head checkpoint to start from (default: the CLM_v0.1-8B head)"); ap.add_argument("--cache", default=os.path.join(ROOT, "results", "duck", "clm_emb_cache.pkl")); ap.add_argument("--val-frac", type=float, default=0.1); ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--init", default=None, help="reference head checkpoint to start from (default: the CLM_v0.1-8B head)"); ap.add_argument("--cache", default=os.path.join(ROOT, "results", "duck", "clm_emb_cache.pkl")); ap.add_argument("--smooth", type=float, default=0.0, help="E155: mix this much uniform-over-acceptable into every target"); ap.add_argument("--entropy", type=float, default=0.0, help="E155: add lambda * sum(p log p), i.e. reward keeping entropy"); ap.add_argument("--val-frac", type=float, default=0.1); ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args(); log = lambda m: print(m, flush=True)
     os.environ.setdefault("DUCK_BODY", "pick"); from duck.e93_run import ROLE
     teacher = load_rows(a.records, a.arm, a.seeds); extra = load_rows(a.extra)
-    ex_t, d1 = examples(teacher, ROLE); ex_e, d2 = examples(extra, ROLE); ex = ex_t + ex_e
+    ex_t, d1 = examples(teacher, ROLE); ex_e, d2 = examples(extra, ROLE, smooth=a.smooth); ex = ex_t + ex_e
     log(f"clm post-training: {len(teacher)} teacher rows ({a.arm}, {a.seeds}) + {len(extra)} correction rows -> {len(ex)} examples (dropped {d1 + d2} single-option)")
     texts = [e[0] for e in ex] + [c for e in ex for c in e[2]]; vec = embed_all(texts, a.cache, log)
     import torch, torch.nn.functional as F
@@ -100,10 +105,11 @@ def main():
         rng.shuffle(tr); tot = 0.0
         for i in range(0, len(tr), a.batch):
             b = tr[i:i + a.batch]; S, C, M, T = tensors(b); lp = F.log_softmax(logits(S, C, M), -1); loss = -(T * lp).sum(-1).mean()
+            if a.entropy > 0: loss = loss + a.entropy * (lp.exp() * lp).masked_fill(~M, 0.0).sum(-1).mean()   # E155: minimising sum(p log p) maximises entropy
             opt.zero_grad(); loss.backward(); opt.step(); sched.step(); tot += float(loss) * len(b)
         ce, ag = evaluate(val) if val else (float("nan"), float("nan")); log(f"=== epoch {ep}: train CE {tot / len(tr):.3f} | val CE {ce:.3f} agreement {100 * ag:.1f}% | logit_scale {logit_scale.exp().item():.2f} | {time.time() - t0:.0f}s")
     out = {"state_head": sh.state_dict(), "action_head": ah.state_dict(), "logit_scale": logit_scale.detach().cpu(), "cfg": cfg, "projection_dim": kw["proj"],
-           "meta": {"records": a.records, "arm": a.arm, "seeds": a.seeds, "extra": a.extra, "epochs": a.epochs, "lr": a.lr, "init": init, "examples": len(ex)}}
+           "meta": {"records": a.records, "arm": a.arm, "seeds": a.seeds, "extra": a.extra, "epochs": a.epochs, "lr": a.lr, "init": init, "examples": len(ex), "smooth": a.smooth, "entropy": a.entropy}}
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True); torch.save(out, a.out); log(f"saved {a.out} | val CE {ce:.3f} agreement {100 * ag:.1f}%")
 
 if __name__ == "__main__": main()

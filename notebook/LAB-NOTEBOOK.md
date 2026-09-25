@@ -15106,8 +15106,8 @@ banks, not worse. **Four of eight.**
 4. *A caveat on the calibration column,* which reads against the programme's other calibration numbers: here the quantity is
    the top-1 probability against whether the chosen action was in the acceptable set, which penalises a model that
    deliberates with acceptable-but-suboptimal actions (the judge waits and asks). It is consistent across arms in this table
-   and is **not** the same quantity as the judge's .02 on its own typed questions. Worth a separate measurement (E154)
-   rather than a sentence.
+   and is **not** the same quantity as the judge's .02 on its own typed questions. Worth a separate measurement (E156)
+   rather than a sentence; E154 went to the call-skipping probe.
 
 ---
 
@@ -15181,3 +15181,66 @@ P154.4 ✔. P154.5 ✔ (24 % against 9 %). P154.6 ✔ (13 % against 5 %). **Five
 3. *The copy saves more than the judge* on every bank (13 vs 5, 19 vs 9, 21 vs 24 is the one reversal). It reads the same
    facts, so the difference is that the judge takes more distinct actions on identical states, which is the deliberation the
    acceptable-decision rate already showed.
+
+## E155 · can the second curve be flattened: two candidate fixes for correction's off-distribution cost (pre-registration, 2026-09-24 22:28 PDT; launched now)
+
+**Why.** Claim 4 is currently a warning: correcting a model makes its number honest where you correct and steadily dishonest
+where you do not, and the operator's veto window stops catching anything (E146: ECE .307 → .399 on an untouched bank, the
+confidence at its wrong decisions .62 → .90, the window's rescue 34 → 0 of 60). A warning is worth less than a recipe. Two
+cheap changes could plausibly keep the uncertainty a veto window needs, and on the contrastive heads each costs seconds.
+
+**Design.** E146's h4 exactly — the teacher's decisions plus the four correction files in the order the fleet produced them,
+which is the head with the worst off-distribution calibration — retrained three ways, everything else identical:
+- **baseline**, one-hot replacement targets (h4 as it stands);
+- **smoothed**, every correction target mixed 85/15 with the uniform over the actions that were *acceptable* at that state,
+  so the round teaches the action without teaching certainty;
+- **entropy-rewarded**, the same one-hot targets plus λ = 0.05 × Σ p log p in the loss, which pushes the head to keep mass
+  on the alternatives it is not being corrected toward.
+Each scored on **bank v2 4030–4089**, which none of the four rounds touches, and on **fresh unwritten 3120–3179**, which they
+cover, with and without the one-second veto window.
+
+**Predictions.**
+- **P155.1** at least one variant cuts the ECE on the untouched bank by ≥ .05 against the baseline's .376. Prior 55 %.
+- **P155.2** the smoothed variant's ECE on the untouched bank is below the baseline's. Prior 60 %.
+- **P155.3** the entropy-rewarded variant reduces it more than the smoothed one. Prior 45 %.
+- **P155.4** at least one variant restores the veto window's rescue on the untouched bank to ≥ 5 lines of 60 (baseline: 0).
+  Prior 50 %.
+- **P155.5** the mean stated probability at the variants' wrong decisions on the untouched bank falls below .80 for at least
+  one variant (baseline .86). Prior 55 %.
+- **P155.6** no variant loses more than 2 of the 60 fresh unwritten lines the corrections cover. Prior 65 %.
+- **P155.7** the handled count on the untouched bank alone (not behind the window) stays within 3 of the baseline's 20 for
+  every variant: this is about the number, not about coverage. Prior 60 %.
+
+### E155 results (three trainings of 7 s; evaluations 22:30–22:39 PDT; scored 2026-09-24 22:43 PDT) · the uncertainty cannot be put back through the loss
+
+E146's h4 retrained three ways, everything else identical, scored on the bank its four correction rounds never touch and on
+the lines they cover.
+
+| variant | untouched v2, alone | behind the veto window | the window's rescue | ECE there | stated probability at its wrong decisions | covered lines | ECE there |
+|---|---|---|---|---|---|---|---|
+| baseline, one-hot replacement | 20/60 | 20/60 | **+0** | .376 | .86 | 60/60 | .012 |
+| targets smoothed 15 % over the acceptable set | 20/60 | 22/60 | +2 | **.339** | **.80** | 60/60 | .048 |
+| entropy rewarded, λ = .05 | 20/60 | 20/60 | +0 | .365 | .84 | 60/60 | .016 |
+
+**Scoring.** P155.1 ✗ (best improvement .037, not ≥ .05). P155.2 ✔ (.339 < .376). P155.3 ✗ (entropy .365, worse than
+smoothing). P155.4 ✗ (+2, not ≥ 5). P155.5 ✗ (.80, not < .80). P155.6 ✔ (60/60 both). P155.7 ✔ (20/60 all three).
+**Three of seven, and the two that matter both failed.**
+
+**Reading.**
+1. *Neither fix recovers the uncertainty that matters.* Smoothing the correction targets moves the calibration error on the
+   untouched bank by .037 and the confidence at the wrong decisions from .86 to .80, which is real and nowhere near enough:
+   the veto window still rescues two lines of sixty against the thirty-four it rescued from the uncorrected model. Rewarding
+   entropy does almost nothing.
+2. *And smoothing trades one calibration for the other.* Its error on the covered lines goes .012 → .048, four times worse,
+   to buy .037 on the untouched bank. Netted out it is close to a wash, which is what you would expect from a change that
+   flattens every target rather than the ones that deserve flattening.
+3. *The reason is that the information is not in the labels.* Every training example is, by construction, a state the model
+   has evidence for, so nothing in the loss can tell it which regions it has no evidence for. Softening targets changes the
+   target distribution; it does not change the geometry that puts an unsupported state near a confidently-corrected one.
+   Support has to be measured from outside the model's own probability — which is exactly why the novelty gate works
+   (E136: every decision on a new bank routed, none of 1,226 on its own, no false alarm).
+4. *So claim 4's prescription is now demonstrated rather than preferred.* "The fix is a novelty check on the facts, not a
+   threshold on the model's confidence" was an inference from the cascade analysis; it is now also the conclusion of two
+   in-loss fixes that did not work. The remaining in-model idea worth a test is giving the uncertainty somewhere to live in
+   the output space — an explicit abstention option present in every option set — rather than trying to reshape the mass over
+   actions the model is being told to take. That is E157, not launched tonight.

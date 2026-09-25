@@ -728,7 +728,7 @@ decisions there rises .62 → .81 → .87 → .90, and the operator's veto windo
 uncorrected model, rescues 0 after two rounds. The round that finally covers that bank restores it (ECE .117, handled 20 →
 35, the window's rescue +19). Correction makes the number honest where it corrects and dishonest where it does not, and the
 operator's safety net is what degrades; a falling intervention rate is therefore not evidence of a safer fleet unless an
-untouched bank is scored every round. Five of six predictions; the same shape as the humanoid copy's three rounds (4.79).
+untouched bank is scored every round. Five of six predictions; the same shape as the humanoid copy's three rounds (4.79). *E155 (negative):* the lost uncertainty cannot be put back through the loss. Smoothing the correction targets fifteen percent over the acceptable set moves the untouched bank's calibration error only .376 → .339 and the confidence at its wrong decisions .86 → .80, restoring two of the thirty-four lines the veto window used to rescue, and it pays for that by making the covered lines four times worse calibrated (.012 → .048); rewarding entropy does almost nothing. Every training example is by construction a state the model has evidence for, so no loss term can mark the regions it has none for. Support must be measured outside the model's own probability, which is why the novelty gate works. Three of seven.
 
 **4.95** (2026-09-24 19:46 PDT, E151) On the post-trained humanoid the fleet's owned copy beats the cloud judge that taught it: 25/30 against
 12/30 on a fresh unwritten bank (the judge fails the phone 0/10 by waiting outside the requester's noticing radius on a body

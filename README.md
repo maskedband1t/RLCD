@@ -26,8 +26,10 @@ what the robot can see, and none of them **contradicts** it. **It has now fallen
 judge handles 48 of 60 situations against the frozen rules' 24, and on the two written by the author that had never seen the
 rules, 24 of 24 against 12. Read it as *not overturned* rather than *confirmed*, because it is five situations and not sixty
 independent trials. It also cost the claim something: the situation both authors independently thought of is one that
-nothing here handles, and the operator's veto window turned out to make one situation strictly worse. A human author's bank
-is still open and is still the strongest version.
+nothing here handles, and one of our own findings from that bank was withdrawn within the hour: the
+veto window looked like it destroyed a situation, until the decision records showed the arm had never picked the object up,
+so the judgment it appeared to fail was never exercised. A human author's bank is still open and is still the strongest
+version.
 
 Four findings, in plain words:
 - **Where no rule was written, the judge handles the situation and the rules do not; once the rule is written, the rules win.** So the judge's value is the time before a rule exists, plus a number the operator can spend during that time. We measured that time: the rules' author closed the gap in minutes once shown the situations.
@@ -46,6 +48,14 @@ Four findings, in plain words:
 - **Where it did not work**: a critic over a language planner's steps, a wrist-camera perception question, and dispatch by expected cost, all negative and kept.
 
 ## What landed, and when
+
+**The last two days, in one line: a programme that spent them attacking its own results.** A speed claim was published and
+half of it withdrawn inside the hour when pairing killed it. The structural conflict underneath the headline finding — that
+the author of the rules also invented every situation they fail on — was tested with a bank from an author who had never seen
+them, rather than confessed in a footnote. A finding about the operator's veto window was published and half-withdrawn when
+the decision records showed the arm had never exercised the judgment it appeared to fail. The field's own two humanoid
+training recipes were read from source to check whether our simulator-tolerance result was a quirk of the one policy we
+drive. Three of those four corrected something this repository had already said, which is the point.
 
 The programme runs daily and this section is the log: what was demonstrated, on what date, with the number. Every entry has a
 pre-registered prediction written before the run and scored after it in [the lab notebook](notebook/LAB-NOTEBOOK.md), and the
@@ -154,11 +164,12 @@ If you have five minutes: watch the clips under [See it move](#see-it-move), loo
 4. [docs/FETCH-BENCH.md](docs/FETCH-BENCH.md) and [docs/PICKING-BENCH.md](docs/PICKING-BENCH.md): the humanoid room and the picking station, each with its ladder.
 5. [notebook/LAB-NOTEBOOK.md](notebook/LAB-NOTEBOOK.md): 11,000 lines of dated pre-registrations, results and scoring, if you want to check any of it.
 
-## The argument, in five claims
+## The argument, in six claims
 
-The results below are evidence for five claims. Every experiment in this programme attaches to one of them or opens a sixth,
+The results below are evidence for six claims. Every experiment in this programme attaches to one of them or opens a new one,
 and that is deliberate: a flat list of findings is not a position, and a reader should be able to hold the position in their
-head and then check it.
+head and then check it. Two of the six carry a dated amendment, because a result that contradicts a claim amends it in place
+rather than sitting beside it.
 
 **1. The judge's value is time, not accuracy.** Where no rule was written it handles the situation and the rules do not;
 once the rule is written, the rules win. We measured the gap by having the rules' author read the bank and rewrite the
@@ -180,7 +191,7 @@ robot runs, then correct it from takeovers the fleet is already paying for. What
 what is learned: a veto teaches the model to ask, the operator's replacement action teaches it the cheapest right thing.
 After three rounds the fleet's own model is the best arm on the bench, above the teacher it came from. *Results 4, 8, 16.*
 
-**4. The loop quietly eats its own safety net.** Correcting a model makes its number honest where you corrected and steadily
+**4. The loop quietly eats its own safety net, and the net is recoverable.** Correcting a model makes its number honest where you corrected and steadily
 dishonest where you did not. Over six rounds the operator's veto window went from rescuing thirty-four lines in sixty to
 rescuing none, while the model's confidence where it was wrong climbed. A falling intervention rate is therefore not
 evidence of a safer fleet unless a bank the corrections never touch is scored every round. The fix is not a threshold on the
@@ -310,7 +321,7 @@ Log state, options and the probability vector for every decision. Convert number
 
 - `notebook/LAB-NOTEBOOK.md` — every pre-registration with its date, then its results and scoring; failed predictions kept.
 - `notebook/CLAIMS.md` — the claims ledger, each with its boundary; corrections appended, never rewritten.
-- `paper/appendix-method-errors.md` — the method errors we caught in our own work (52 so far), with fixes and the rules adopted.
+- `paper/appendix-method-errors.md` — the method errors we caught in our own work (54 so far), with fixes and the rules adopted.
 - `results/` — every run's raw outputs; `figures/` — the figures; `paper/main.md` — the paper draft.
 - One command regenerates the headline tables from the committed results:
 ```bash

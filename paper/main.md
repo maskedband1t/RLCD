@@ -84,27 +84,7 @@ Later additions. The RLCD training recipe adds nothing over plain soft distillat
 
 **Limits.** One simulated airframe on one course family; sim-supplied perception and an oracle in place of an operator; two checkpoints of one vendor's RLCD family (`jev-latest`, `jev-preview`; D8), dated per run, with ±0.08 run-to-run drift in probabilities; author-written probes, with independent-rater ground truth still pending for the irreducible items; n = 20 per gate threshold; a 7B, not a frontier planner, as the baseline in most text probes. As of 2026-09-18 we found no other closed-loop robotics comparison of a judgment head against a baseline controller with seeds and intervals: the field's robotics uses (a real SO-101 arm behind a multi-robot CLI whose own documentation says nobody has measured the head on a robot, two simulated arms with one video each, a rigorous but 0.5B local parking head) are demonstrations or self-declared estimates, and a public request for a measured vouch (Kinsley, 2026-09-18) drew theory and no numbers. The method appendix lists twenty-five errors we caught in our own work along the way, three of them in claims that had already been stated in earlier drafts and three in the instrument built on the last night; we consider that list part of the result.
 
-### 8.x Why a calibrated decision model in the seat, and not a frontier model; what to test next
-
-The seat has four requirements — a decision every 0.1–1 s, a probability that keeps its meaning on the model's own states, a per-decision cost a fleet can afford at 10^5 decisions per robot-day, and a model the fleet can own and retrain — and a frontier vision-language model meets one. We did not run a frontier model in the seat; the nearest affordable test, a dense open 27B behind the identical interface, kept the judge's accuracy and drifted its number by .135 in its own states (D4, D7), and injected think time of 3 s cost the calibrated judge 11 of 29 unwritten situations and doubled near-contacts on a moving body (E105). Frontier models belong outside the loop: constructing the reflex, translating the world once, teaching. The untested items, singly and in combination, are: a frontier model in the seat at its own latency and as the copy's teacher; a human-sized body in a home room and a store aisle (an open G1 walking policy runs headless in our harness); one operator for many robots; real takeover logs as the correction source and shadow scoring of the teleop stream; cadence without staleness; a site twin as the bench's world; the annotator on the remaining real recordings; and the one unsolved anticipated situation, a person crossing the path, as a governor rule.
-
-A second System One model answered part of this. CLM-8B, open, with Jev's typed interface and a contrastive lookup
-inside (a frozen encoder, two projection heads, a softmax over scaled cosines), run zero-shot on the station's own decisions,
-chose an acceptable action 12 % of the time at a mean stated probability of .58, an expected calibration error of .50 against
-Jev's .02 on the same kind of decisions, and handled the unwritten lines only by handing every one to the operator. The
-interface does not make the number; the model does. "Calibrated decision model" is a claim about the probability, to be
-measured for each model that makes it, and post-training on the fleet's own records is the test of whether a cheaper
-architecture can earn it. It can, on the distribution the records cover: post-trained for eight seconds on the same records as
-the generative copy, the heads handle every unwritten line at no operator cost with an expected calibration error of .06,
-and miss the finer endings the copy learned from identical records (35 against 60 on a second bank). The extra capacity
-buys resolution where the finer note lives, and the veto window buys it back at nineteen operator seconds a line.
-On the humanoid the same recipe takes the open model from seven to twenty-six of thirty and from none to thirty of thirty
-with no wrong hand-over, and leaves its number uncalibrated (an expected calibration error of .25) and its gait undecided,
-where the generative copy is whole and sure: the cheap architecture learns what to do from the fleet's records on both
-benches and learns how sure to be only where decisions follow from facts rather than from geometry and time.
-
-
-### 8.y The rules written a second time (E114)
+### 8.1 The rules written a second time (E114)
 
 The obvious objection to every "where no rule was written" number is that a rule can always be written. We measured it: the
 rule programs' author, given the unseen banks and the rooms' acceptable sets, rewrote both programs. On the duck the rewritten
@@ -116,7 +96,7 @@ accuracy after the fact. Two caveats are the banks' author wrote the fixes (a lo
 bound on a stranger's program), and the first attempt exposed an instrument flaw shared by every arm (the doorway fact fires
 inside the kick zone; method error 36), which a deterministic program finds and a stochastic judge crosses by luck.
 
-### 8.z The judge's decisions as a rule draft (E115, E115b)
+### 8.2 The judge's decisions as a rule draft (E115, E115b)
 
 If the judge's value is the interval before a rule exists, its recorded decisions in that interval should shorten it. We
 compiled them into a decision tree over the same categorical facts the rule programs read and placed it in front of the frozen
@@ -126,9 +106,9 @@ than the judge, and scoped by a novelty gate to states outside the anticipated b
 rules' 36 of 40. On the humanoid a third of the decisions survive the veto and the filtered draft fails; a finer tree from all
 decisions matches the judge (20 of 30) at rule cost and inherits its blind spot. The procedure that follows is judge, veto,
 compile, scope, review; the review is where the tree is silent. Six pre-registered predictions went one of six and the
-follow-up's four went three of four; the misses are the instrument flaw of §8.y and the compiler's capacity.
+follow-up's four went three of four; the misses are the instrument flaw of §8.1 and the compiler's capacity.
 
-### 8.w A fourth bench: the picking station at decision level (E117–E123)
+### 8.3 A fourth bench: the picking station at decision level (E117–E123)
 
 The loop a warehouse or store picker runs on, a grasp score, a threshold and a remote person for the rest, was modelled at
 decision level with no physics: a seeded grasp scorer, a verify check, stated durations, and a picker whose answer costs twenty
@@ -162,7 +142,7 @@ belong in the record: the copies handle crushed packaging twenty of twenty with 
 correction had taught them that a condition other than dry goes to the return bin (blindness is about facts, not banks);
 and the judge reads "must not ship" and skips every damaged line, nothing shipped and nothing returned.
 
-### 8.v The world changing on its own, and two noise floors (E126–E132)
+### 8.4 The world changing on its own, and two noise floors (E126–E132)
 
 Three situations on the humanoid arise after the task has started: the cup starts leaking in the robot's hand, the
 requester walks off as the robot reaches her, a second person asks for the cup. Each carries the note an operator would
@@ -229,5 +209,109 @@ score" of 22 against 20 was withdrawn as noise while the structural change it ca
 stands. On the station, decision-level and without physics, three runs gave identical outcomes to the line. Every ladder in
 this report now carries its floor: about two on the humanoid, zero on the station.
 
-## Appendix A — Method: pre-registered predictions and their scores; adversarial review of the plan; 43 logged method errors.
+### 8.5 Why a calibrated decision model in the seat, and not a frontier model; what to test next
+
+The seat has four requirements — a decision every 0.1–1 s, a probability that keeps its meaning on the model's own states, a per-decision cost a fleet can afford at 10^5 decisions per robot-day, and a model the fleet can own and retrain — and a frontier vision-language model meets one. We did not run a frontier model in the seat; the nearest affordable test, a dense open 27B behind the identical interface, kept the judge's accuracy and drifted its number by .135 in its own states (D4, D7), and injected think time of 3 s cost the calibrated judge 11 of 29 unwritten situations and doubled near-contacts on a moving body (E105). Frontier models belong outside the loop: constructing the reflex, translating the world once, teaching. The untested items, singly and in combination, are: a frontier model in the seat at its own latency and as the copy's teacher; a human-sized body in a home room and a store aisle (an open G1 walking policy runs headless in our harness); one operator for many robots; real takeover logs as the correction source and shadow scoring of the teleop stream; cadence without staleness; a site twin as the bench's world; the annotator on the remaining real recordings; and the one unsolved anticipated situation, a person crossing the path, as a governor rule.
+
+A second System One model answered part of this. CLM-8B, open, with Jev's typed interface and a contrastive lookup
+inside (a frozen encoder, two projection heads, a softmax over scaled cosines), run zero-shot on the station's own decisions,
+chose an acceptable action 12 % of the time at a mean stated probability of .58, an expected calibration error of .50 against
+Jev's .02 on the same kind of decisions, and handled the unwritten lines only by handing every one to the operator. The
+interface does not make the number; the model does. "Calibrated decision model" is a claim about the probability, to be
+measured for each model that makes it, and post-training on the fleet's own records is the test of whether a cheaper
+architecture can earn it. It can, on the distribution the records cover: post-trained for eight seconds on the same records as
+the generative copy, the heads handle every unwritten line at no operator cost with an expected calibration error of .06,
+and miss the finer endings the copy learned from identical records (35 against 60 on a second bank). The extra capacity
+buys resolution where the finer note lives, and the veto window buys it back at nineteen operator seconds a line.
+On the humanoid the same recipe takes the open model from seven to twenty-six of thirty and from none to thirty of thirty
+with no wrong hand-over, and leaves its number uncalibrated (an expected calibration error of .25) and its gait undecided,
+where the generative copy is whole and sure: the cheap architecture learns what to do from the fleet's records on both
+benches and learns how sure to be only where decisions follow from facts rather than from geometry and time.
+
+
+## 9. The argument as six claims, and the work that tested them (E133–E160)
+
+**Why this section exists, and what it says about §§1–8.** This programme outgrew what a reader can hold as a list. Since
+24 September its results are organised as six claims, each experiment attaching to one or opening a new one, and a result
+that contradicts a claim amending it in place with a date. §§1–7 predate that structure and are organised by instrument
+rather than by claim; §8's subsections are the later work appended to the discussion. This section states the spine and
+places the work done after E132, which the sections above do not cover. Restructuring §§4–7 around the spine is the largest
+piece of open work on this paper.
+
+**Claim 1. The judge's value is time, not accuracy.** Where no rule was written it handles the situation and the frozen rules
+do not; once the rule is written, the rules win, and the rules' author closes the gap in minutes (§8.1, §8.3). The product is
+the interval before a rule exists plus the operator seconds spent inside it. The whole ladder on a held-out bank (E153) puts
+the fleet's own thrice-corrected copy above the cloud teacher it was distilled from, 30/30 against 20/30 on fresh unwritten
+situations.
+
+**Claim 2. The probability is the product, and it is earned per model.** Every mechanism here runs on a number that means
+what it says: the hand-off threshold, the one-second veto window, the surprise gate. Four models behind one typed interface,
+on identical decisions, span a calibration error from .02 to .50 (D4, D7, D8, E138). *Amended 25 September (E158):* the veto
+window is not uniformly a safety net. On a bank written partly by an author who had never seen the rules it took one
+situation from nothing handled to everything handled, and on another its own overhead meant the robot never picked the object
+up, so the action that situation needed was offered in none of its 289 decisions.
+
+**Claim 3. The fleet can own the judgment, and the operator's intervention is the mechanism.** Distil the judge, then correct
+from takeovers the fleet already pays for. The form the intervention is written down in decides what is learned: a veto
+teaches the model to ask, the operator's replacement action teaches the cheapest right thing (E123, E144). Weight is not
+data: the same records counted four times move nothing, forty more lines move a rare failure from 5/10 to 9/10 (E133, E134).
+
+**Claim 4. The loop quietly eats its own safety net, and the net is recoverable.** Six cumulative correction rounds, scored
+every round on a bank none of them touch: calibration error falls .362 → .008 where corrected and rises .307 → .399 where
+not, the probability stated at wrong decisions there climbs .62 → .90, and the operator's veto window falls from rescuing 34
+of 60 lines to rescuing none (E146, E151). The fix is not a threshold on the model's own confidence, which fails exactly
+where it is needed, but a novelty check over the facts (E136); two attempts to put the lost uncertainty back through the
+training loss both failed (E155). *Amended 25 September (E157):* the net is recoverable and the lever is the label form. The
+same 1,493 records written down as vetoes rather than as the operator's replacement action bring the window's rescue back to
+14 of 60 on an untouched bank, against 0 for replacement labels and 3 for escalation labels, at about 24 operator seconds a
+line.
+
+**Claim 5. Post-training the body is a change of body, and it has a tolerance.** It fixes the fault it is given, breaks the
+code written around that fault, and costs a layer that reads each situation from scratch more than one the fleet has
+corrected (E140–E152). Of the three things a simulator can be wrong about, only the actuators matter: body mass costs at most
+three falls in a hundred at ±30 %, contact friction nothing at any magnitude tested, and actuator gains nothing to ±15 %,
+four at ±20 % and twenty-one at ±30 % (E142, E142b, E159). **The usable form is a specification: get the actuator model
+within about a fifth of the real thing.** Reading both dominant open training stacks for this robot from source, neither
+randomises actuator gains; one ships the function that would do it and its humanoid config never calls it. Post-training as a
+bounded residual is the tolerant arm, taking zero falls under gain error to ±25 %.
+
+**Claim 6. The seat costs time, and correction buys back the time that failure wastes.** Paired on the situations both arms
+handle, putting a model in the decision seat costs +34 s an episode over the frozen rules. The mechanism is the failure mode:
+a model's miss costs 122 s against 25 s for its successes, while the rules miss in 15 s, *faster than they succeed*, because
+a wrong rule ships the wrong action without hesitating. So correction halves a fleet's cost per episode by failing less
+rather than by deciding faster; the one change that does buy decision speed is a correction round on a body that has changed
+underneath, faster on 17 of 19 and 27 of 30 paired situations with decisions per episode cut 115 → 46 (E153).
+
+### 9.1 The independence test (E158)
+
+Every "situation no rule was written for" in §§4–8 was invented by the author of the rule program it defeats, who also wrote
+the scoring sets. That is a structural conflict and it sits underneath claim 1. On 25 September it was tested rather than
+declared: a second model, given only the room, its fact vocabulary and its action list, instructed to read no file, and which
+had never seen the rule program, the banks, the scoring sets or any result, wrote situations of its own. Five situations, two
+of them its, predictions registered before any arm ran, six of eight held. The judge handles 48 of 60 against the frozen
+rules' 24, and 24 of 24 against 12 on the blind author's two alone.
+
+Three things qualify it. **The sample is five situations, not sixty trials:** every cell is 0/12 or 12/12 because seeds
+within a situation vary only by position jitter. **The blind author saw the author's description of the world,** which
+encodes choices about which facts exist, so it is independent of the rule program's author and not of that framing. **A human
+author's bank remains open** and is the only version that can also speak to whether these situations are realistic.
+
+Two results came out of it that no bank written here had produced. Every operator's note in this programme *supplements* what
+the robot can observe; the blind author's contradict it, and the judge acts on the note against every sensor, 12 of 12, at
+28.7 operator seconds an episode against an oracle's zero. And both authors independently wrote the same situation —
+*someone else is already holding the object* — which is the one nothing handles: the rules, the judge and the fleet's copy
+all take 0 of 12, all three failing by never terminating, at 173 to 239 decisions with no ask.
+
+### 9.2 Two errors of our own, from these two weeks
+
+**Method error 53.** A speed comparison between arms with different success rates measures how often each fails, not how fast
+it decides, because failures are the expensive episodes. A reported 2.3× speed-up evaporated under pairing on shared
+successful episodes. An archive sweep found 88 arm pairs that would mislead unpaired; in the cases that had been published
+the direction survived and the magnitude was 1.7–2.5× overstated, and one published number was corrected in place.
+
+**Method error 54.** Before explaining why an arm failed a situation, check whether the action that situation requires was
+ever in its option set. A published claim that the veto window "destroys" a situation was withdrawn within the hour when the
+decision records showed the arm had never picked the object up.
+
+## Appendix A — Method: pre-registered predictions and their scores; adversarial review of the plan; 54 logged method errors.
 ## Appendix B — Suites, prompts, rater packet, per-type tables.

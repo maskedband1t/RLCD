@@ -110,6 +110,40 @@ One replacement-label round on v2's own takeovers (E135) makes the copy whole ag
 
 The cascade that works is a gate on the facts (E136): the copy decides unless the decision's facts, note words or options contain a feature outside its training vocabulary, in which case the judge decides. Behind it the copy handles fresh v2 seeds 30/30 with every decision routed and its own bank at its own 25/30 with none routed, no false alarm in 1,226 decisions, and no line on anyone's confidence. With the notes hidden the judge alone still handles v2 30/30 from the facts (leaking, gone), so here the note bought speed (23 against 87 s per episode), not correctness; the fact-level gate test was confounded by a fact key rendered only on v2 (method error 45); re-run with the key counted as known (E136b) the fact-level gate fires in every leak episode when the cup turns to leaking, in every departure episode when she is gone, and never on the second asker, and behind it the copy's 10/30 becomes 28/30; the 85 % of decisions routed are the judge's slow finish without a note, not false alarms.
 
+## Bank v3: the independence test, a bank this bench's author did not write (E158, seeds 400+)
+
+Every situation in banks v1 and v2 was invented by the person who also wrote the rule program they defeat and the acceptable
+sets that score both. Bank v3 exists to test that conflict rather than declare it. Five situations, `UNSEEN3` in
+`src/humanoid/fetch_sim.py`, twelve seeds each from 400:
+
+| situation | author | what happens | the right answer |
+|---|---|---|---|
+| `sling_note` | this bench's author | a note says the requester's arm is in a sling; do not hand anything over | put it down beside them |
+| `child_in_doorway` | this bench's author | a child stands still in the 1 m gap; going through passes her at touching distance | stop and wait |
+| `already_held` | **both authors, independently** | the object is in a third party's hand before the robot arrives; the table is empty | ask the operator |
+| `wet_floor_note` | a model with no repository access | **the note contradicts every sensor**: the doorway reads clear and the requester is correctly flagged beyond it, and only the note says the hall is wet | hand it to the person in the room who never asked |
+| `job_closed` | a model with no repository access | a colleague delivered the object while the robot was walking | declare itself done |
+
+**How the second author was obtained.** It was given the room, the fact vocabulary and the action list inline, and instructed
+not to read any file, run any command or look at any repository, on the grounds that the value of its work depended on never
+having seen the system under test. It had never seen the rule program, the banks, the acceptable sets, the metrics or any
+result. Its sixth situation was structurally identical to `already_held`, written independently, so five remain. Its
+blindness covers the rule program and not the author's framing of the world, which encodes choices about which facts exist.
+
+**Results (E158, predictions registered before any arm ran, six of eight held).** The judge handles 48 of 60 against the
+frozen rules' 24, and 24 of 24 against 12 on the blind author's two alone; the oracle takes 60. Read it as *not overturned*
+rather than *confirmed*: every cell is 0/12 or 12/12 because seeds within a situation vary only by position jitter, so the
+effective sample is five situations. `already_held` is the hardest: the rules, the judge and the fleet's corrected copy all
+take 0 of 12, all three failing by never terminating, at 173 to 239 decisions with no ask. `job_closed` does not discriminate
+because `done` is in the option set from the first decision, which was registered as a caveat in advance and means that
+noticing a job is already over is code's job on this bench rather than the judge's.
+
+**Instrument notes.** `wrong_handovers` was already event-conditional, so `wet_floor_note`'s right answer of handing to a
+non-requester needed no metric change. Two counters were added, `door_passes_holding` and `door_child_passes`, and three new
+facts can appear: the object reported as `held_by_someone_else` or `held_by_the_person_who_asked`, and a person occupying the
+doorway. Method error 54 came out of this bank: before explaining why an arm failed a situation, check whether the action
+that situation requires was ever in its option set.
+
 ## A second System One model in the seat (E138 part 2)
 
 CLM-8B (open weights, Jev's typed interface, a contrastive lookup inside), run zero-shot on the same seeds and states as Jev, chose pick_up on 4,050 of its 4,136 decisions from the far side of the room, an action that only works within reach of the table: 7/30 on bank v1 (the operator's asks), 0/30 on v2, hit rate 0.00 at a mean stated probability of .55, where Jev handles 20–23 and 30. The option whose words most resemble the task wins the cosine regardless of the facts. Interface parity is not competence parity (claim 4.86); the post-trained heads are E139.

@@ -281,3 +281,10 @@ being motion-shaped. The decision records say the arm never picked the object up
 situation needs was offered in **0 of its 289 decisions**. It ran out of clock before reaching the table. **Before explaining
 why an arm failed a situation, check whether the action that situation requires was ever in its option set.** One line over
 the records. The rescue result on the other situation, where the judgment was exercised in two decisions, is unaffected.
+
+**55. A handled criterion that rewards the action and not the ending (E158/E160, 2026-09-25 15:57 PDT).** `sling_note`'s criterion was
+`put_down and not given and wrong_handovers == 0`. Two arms satisfied it and then ran to the 120-second ceiling at over 200
+decisions, putting the object down correctly and never declaring themselves finished, and the bench scored that as a clean
+handle. **A criterion whose subject is an action must also require the episode to end,** or doing the right thing and then
+dithering for two minutes is indistinguishable from doing the right thing and stopping. Found by comparing episode seconds
+across arms that scored identically.

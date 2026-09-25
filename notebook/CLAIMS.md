@@ -835,3 +835,19 @@ is now measured across five magnitudes. Strengthens 4.89 and 4.90.
 others. Under actuator-gain perturbation the bounded edit takes **zero falls all the way to +/-25 %**, where the shipped
 policy is at 15 and the direct fine-tune at 5, and 3 points at +/-30 %. It already preserved the contracts written around the
 old body (E141); it is also the arm that degrades most gracefully when the simulator is wrong about the actuators.
+
+**4.107** (2026-09-25 15:57 PDT, E160) The novelty gate replicates on situations its authors never saw, and its precision is the strong
+part. On bank v3 it routes **93.8 %** of decisions to the judge and takes the fleet's copy from 37 of 60 to **48 of 60**,
+exactly the bare judge's score; on the copy's own written bank it makes **no call at all in forty episodes**. It is selective
+rather than blanket: on the one new situation whose facts are all in-vocabulary (a child, a set of distances) it fired zero
+times and the copy handled it 12 of 12 alone. Novelty in the facts, not novelty in the situation, is what it detects, and
+that is the right thing to detect.
+
+**4.108** (2026-09-25 15:57 PDT, E160) **Routing is necessary and not sufficient, and it is not free.** Two measured ceilings on claim 4's
+fix. First, a gate can only be as good as what it routes to: on *someone else is already holding the object* it routed 100 %
+of 168 decisions an episode and still scored **0 of 12**, because the judge is 0 of 12 there too. Every earlier bank hid this
+because every earlier bank had a judge that could handle it. Second, routing costs time where the copy was already right: on
+the sling-note situation the bare copy handles all twelve in **12.1 s and 20 decisions**, and the gated copy, routing every
+decision, inherits the judge's behaviour and takes **120.5 s and 208 decisions** for the same score. **A novelty gate should
+route on novelty *and* on whether the judge is actually better there**, which this programme has never measured. Amends 4.84
+and connects claim 4's fix to claim 6's currency.

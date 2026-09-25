@@ -15745,3 +15745,60 @@ the claim-4 fix which has never been exposed because every previous bank had a j
   Prior 75 %. **This is the experiment's point.**
 - **P160.4** False alarms on the written bank stay ≤ 5 % of decisions routed. Prior 70 %.
 - **P160.5** The gated copy beats the bare copy's 37/60 on bank v3 by ≥ 6. Prior 65 %.
+
+### E160 · results (2026-09-25 15:57 PDT). The novelty gate routes almost perfectly on a bank we did not write, and routing is only as good as what it routes to
+
+**Five of five predictions held**, which is itself worth noting: after E136 and E137 the routing mechanism is well enough
+understood that the predictions were not risky. The interesting content is in the two situations the predictions did not cover.
+
+| situation | routed to the judge | bare copy (E158) | **gated copy** | bare judge (E158) |
+|---|---|---|---|---|
+| `child_in_doorway` | **0 %** | 12/12 | 12/12 | 12/12 |
+| `wet_floor_note` | 66 % | **1/12** | **12/12** | 12/12 |
+| `job_closed` | 100 % | 12/12 | 12/12 | 12/12 |
+| `sling_note` | 100 % | 12/12 | 12/12 | 12/12 |
+| `already_held` | 100 % | **0/12** | **0/12** | **0/12** |
+| **total** | **93.8 %** | **37/60** | **48/60** | **48/60** |
+| written bank, seeds 0–39 | **0.0 %** | — | 38/40 | — |
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P160.1 | the gate routes ≥ 80 % of bank v3 decisions | 70 % | 93.8 % | ✓ |
+| P160.2 | the gated copy is within 2 of the bare judge's 48 | 55 % | exactly 48 | ✓ |
+| P160.3 | `already_held` is not rescued, ≤ 2 of 12 | 75 % | **0/12** | ✓ |
+| P160.4 | false alarms ≤ 5 % on the written bank | 70 % | **0.0 %**, no call in 40 episodes | ✓ |
+| P160.5 | the gated copy beats the bare copy by ≥ 6 | 65 % | **+11** | ✓ |
+
+**1. The gate replicates on situations we did not write, and the false-alarm rate is zero.** 93.8 % of bank v3's decisions
+routed, and **not one call in forty episodes of the copy's own bank**. E136 established this on banks I wrote; it now holds on
+a bank whose situations came partly from an author that had never seen the rules, the banks or the vocabulary. The gate is
+also *selective rather than blanket*: on `child_in_doorway` it fired **zero** times, because a child and a set of distances
+are inside the copy's vocabulary even though the situation is new, and the copy handled it 12/12 alone. Novelty in the facts,
+not novelty in the situation, is what it detects, and that turns out to be the right thing to detect.
+
+**2. The pre-registered point holds: routing is necessary and not sufficient.** On `already_held` the gate routed **100 %**
+of 168 decisions an episode to the judge, and still scored **0 of 12**, because the judge is also 0 of 12 there. A gate can
+only be as good as the thing it routes to, and every earlier bank hid that because every earlier bank had a judge that could
+handle it. **This is the first measured ceiling on claim 4's fix.**
+
+**3. The finding nobody predicted, and it is claim 6 arriving inside claim 4's fix.** On `sling_note` the bare copy handles
+all twelve in **12.1 s and 20 decisions**. The gate fires on every decision, routes to the judge, and therefore inherits the
+judge's behaviour there: **120.5 s and 208 decisions, hitting the time ceiling on all twelve.** Same score, **ten times the
+time**. The gate made the copy an order of magnitude slower on a situation the copy already handled perfectly and quickly.
+
+So the gate's +11 handled is bought, and the bill is legible per situation: it wins `wet_floor_note` outright (1 → 12), it
+changes nothing on two, it cannot help on `already_held`, and it costs ten times the episode time on `sling_note`. **A
+novelty gate should route on novelty *and* on whether the judge is actually better there**, and we have never measured the
+second half.
+
+**Method error 55: a handled criterion that rewards the right action without requiring the episode to end.**
+`sling_note`'s criterion is `put_down and not given and wrong_handovers == 0`. The judge and the gated copy both satisfy it
+and then run to the 120 s ceiling at over 200 decisions. They put the object down correctly and never declared themselves
+finished, and the bench scored that as a clean handle. **Any criterion whose subject is an action rather than an ending must
+also require the ending**, or an arm that does the right thing and then dithers for two minutes is indistinguishable from one
+that does the right thing and stops. E158's numbers for `sling_note` carry this defect and are amended by it; the 48/60 and
+37/60 totals are unaffected in coverage but overstate how cleanly two of the arms finished.
+
+**Next, singly and together.** A gate that also asks whether the judge is better on this kind of novelty, which needs a
+per-situation record we now have. The termination requirement added to `sling_note` and every similar criterion, re-scored.
+And the open one from E158 is unchanged: a human author's bank.

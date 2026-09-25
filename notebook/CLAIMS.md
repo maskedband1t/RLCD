@@ -551,7 +551,7 @@ the reaching child at 5 of 10. The data loop that took two rounds on the duck cl
 
 **4.70** (2026-09-22 07:58 PDT, E117) On a decision-level picking station the judge ships nothing it should not on sixty unwritten lines
 (reads the sleeve and leak notes 20/20 each; turns the recalled lot into a flagged exception) where the frozen rules ship all
-sixty, at 11 seconds per line against the rules' 15 on written lines; it fails the double pick confidently (6 of 7 placed in
+sixty, at 11.1 seconds per line against the rules' 13.7 on the written lines, paired on the 32 both handle (amended 2026-09-25 00:17 PDT; the unpaired 10.9 against 15.4 overstated it, method error 53); it fails the double pick confidently (6 of 7 placed in
 the customer tote at .73–.95) where the rules never do, and neither the gate nor the veto window catches a confident error.
 Two of seven predictions; the bench has no physics and says so.
 

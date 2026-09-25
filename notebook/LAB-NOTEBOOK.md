@@ -15434,3 +15434,44 @@ it decides **whether the operator can still intervene later**. Claim 4's net is 
 price*. Neither is overturned. **Next, singly and together:** a mixed label form (masked on states inside the acceptable set,
 ask outside it) to test whether the rescue survives without the dithering; and the same three forms on the humanoid bench,
 where the rounds and the E151 decay were originally measured.
+
+### Audit (2026-09-25 00:17 PDT, no new runs) · method error 53 applied to every number this programme has already published
+
+Prompted by a challenge I should have made myself: if an unpaired episode-time comparison misled me tonight, it has been
+misleading me since E93. I swept **every** results file in `results/duck/`, every arm pair with ≥20 shared seeds, flagging
+any pair where the arms' handled rates differ by >15 points and the unpaired episode-time gap either flips sign or shrinks by
+>40 % when paired on the episodes **both arms handled correctly**. **88 arm pairs flagged.**
+
+**The finding is milder than I feared in one specific way, and that matters.** The defect is pervasive in the underlying
+data, but in almost every case that actually reached the README the *direction* survives pairing and only the *magnitude* is
+wrong, typically by two to four times:
+
+| published comparison | unpaired | paired | verdict |
+|---|---|---|---|
+| the judge vs the oracle, humanoid (E148–E150, E153) | +43 s | +24 s | direction holds, 1.8× overstated |
+| the judge vs the frozen rules, duck (E93, E93b) | +30 s | +12 s | direction holds, 2.5× overstated |
+| the judge vs the rules, station written bank (E117) | −4.5 s | **−2.6 s** | direction holds, 1.7× overstated — **corrected in README and CLAIMS** |
+| the copy r3 vs the judge, fresh bank (E153) | −32 s | +4 s | **withdrawn last night**, method error 53 |
+
+**One published number was wrong enough to fix and is fixed.** The station's written bank read "the judge handles 32 at 11 s
+per line against the rules' 15". Paired on the 32 lines both handle it is **11.1 against 13.7, and the judge is faster on 22
+of 32**. Amended in place in README result 13 and claim 3.x with the date and the reason.
+
+**Genuine sign flips exist, and none of them were published.** Oracle against the frozen rules on the duck (E94, E95, E99,
+E103a) reads as the oracle being ~10 s *slower* unpaired and ~2 s *faster* paired; E151's judge against the copy flips from
+12 s slower to 8 s faster; E123's corrected copy against the rules flips from +6 s to −6 s. I checked each against the
+README and none is quoted there. That is luck, not method.
+
+**The mechanism, and the rule it gives us.** Whether pairing matters at all is decided by one cheap within-arm check: *do an
+arm's missed episodes cost more or less time than its handled ones?*
+
+- **Humanoid:** a miss costs the judge **122 s** against 25 s for a success. Failure dominates the average. Pairing is
+  mandatory.
+- **Station:** a miss costs the judge **10.2 s** against 11.1 s for a success — no asymmetry at all, because the station is
+  decision-level with no physics and failing costs no time. Pairing barely moves anything, which is exactly why the station
+  number survived at 1.7×.
+
+So the asymmetry is a property of **embodied episodes**, not of the decision layer. **New standing rule:** before any speed
+or operator-second comparison between arms, run the handled-against-missed check within each arm first; it says which regime
+you are in and therefore whether the average is a decision-speed statement or a fleet-cost statement. Both are legitimate
+numbers and they are not the same number, and this programme spent months quoting one and meaning the other.

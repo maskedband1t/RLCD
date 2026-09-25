@@ -248,3 +248,11 @@ on the twenty seeds both arms handle, the copy is 4.1 s *slower* and faster on t
 arms with different success rates must be paired on shared successful episodes, and the unpaired average reported separately
 and labelled as a fleet cost rather than a decision speed.** The re-correction result survived the pairing (17/19 and 27/30);
 the distillation result did not. Caught within the hour, before the claim left the notebook.
+
+**53, continued (audit, 2026-09-25 00:17 PDT).** Applied to the whole archive: 88 arm pairs across every results file would mislead if
+compared unpaired. In the cases that reached the README the direction survives and the magnitude is 1.7–2.5× overstated; one
+published number (the station's written bank, "11 s per line against the rules' 15") was amended in place to the paired
+11.1 against 13.7. Real sign flips exist (oracle vs rules on the duck; E151's judge vs copy; E123's copy vs rules) and none
+had been quoted, which is luck rather than method. The diagnostic that decides whether pairing matters is the within-arm
+handled-against-missed time: 122 s against 25 s on the humanoid (pairing mandatory), 10.2 against 11.1 on the station (no
+asymmetry, because a decision-level bench charges nothing for failing). The asymmetry belongs to embodied episodes.

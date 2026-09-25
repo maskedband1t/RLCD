@@ -15718,3 +15718,30 @@ the one parameter family that breaks the others. That is a new and clean result 
 **What this still cannot say.** We perturb at evaluation; domain randomisation acts at training. This measures the exposure a
 non-randomised policy carries, not what an Isaac-Lab-trained checkpoint would do, which we cannot run on this hardware. And
 the two stacks were read, not executed: I read three files of Isaac Lab on `main` and one of MuJoCo Playground locally.
+
+## E160 · does our proposed fix for claim 4 work on a bank we did not write (pre-registration, 2026-09-25 15:38 PDT; launched now)
+
+**Why.** E136 established the fix for claim 4: not a threshold on the copy's own confidence, which fails exactly where it is
+needed, but a **novelty gate over the facts** — any feature outside the copy's training vocabulary routes that decision to
+the judge. It was measured on banks I wrote. Bank v3 is the first bank whose situations I did not all write, and it is full
+of facts the copy has never seen (`held_by_someone_else`, `held_by_the_person_who_asked`, a child occupying the doorway, a
+note that contradicts the doorway fact). So: **does the gate fire where it should on someone else's bank, and does firing
+help?**
+
+**The sharp question, and it is not the routing rate.** E158 found `already_held` is 0/12 for the frozen rules, the judge
+**and** the copy alike, all three failing by never terminating with zero asks. A gate routes the copy's hard decisions to the
+judge. **If the judge is also 0/12 there, novelty detection is necessary and not sufficient,** and that is a real limit on
+the claim-4 fix which has never been exposed because every previous bank had a judge that could handle it.
+
+**Design.** The `laya_gate` arm, vocabulary built from everything `head_g1_r3` was trained on: the distillation records
+(E112) and the three correction rounds (E113, E116, E135). Scored on **bank v3, seeds 400–459** (12 per situation) and on
+**the written bank, seeds 0–39**, the copy's own ground, as the false-alarm control. Compared against E158's bare copy
+(37/60) and bare judge (48/60) on identical seeds.
+
+**Predictions.**
+- **P160.1** The gate routes ≥ 80 % of bank v3 decisions to the judge. Prior 70 %.
+- **P160.2** The gated copy handles ≥ 46 of 60 on bank v3, i.e. within 2 of the bare judge's 48. Prior 55 %.
+- **P160.3** On `already_held` the gate does **not** rescue it: ≤ 2 of 12, because the judge it routes to is 0/12 there.
+  Prior 75 %. **This is the experiment's point.**
+- **P160.4** False alarms on the written bank stay ≤ 5 % of decisions routed. Prior 70 %.
+- **P160.5** The gated copy beats the bare copy's 37/60 on bank v3 by ≥ 6. Prior 65 %.

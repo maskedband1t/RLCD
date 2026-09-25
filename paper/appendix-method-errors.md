@@ -89,6 +89,24 @@ corrected in place with dated notes, and the E91b refit — which fitted the pro
 re-read as unnecessary. Rule: name the quantity a "confidence" is before comparing two of them, and gate on a
 probability.
 
+**28. Two instrument faults that made a new body look like a model failure (E93, 2026-09-20).** (a) *A scripted deadlock.*
+The scripted person paused whenever the robot came within 0.45 m, and the acceptable set said stop or wait whenever a person
+was within 0.5 m, so any cautious policy and the person waited for each other until the clock ran out. The oracle itself sat
+at 0.45 m for 80 s in seven episodes, which is where its 33/40 came from; the rule program escaped only because its author's
+six-second timeout walks through a standing person. (b) *Misattributed violations.* A child-zone entry was counted whenever
+the distance fell below a metre, including when the child walked up to a robot that was standing still exactly as the note
+asked. Fixed for E93b: the person pauses only for a *moving* robot, and a zone entry counts only when the robot is moving.
+**A bench that charges an arm for standing still will always prefer the arm that does not stop.**
+
+**29. A skill that promised motion and delivered six millimetres (E94, 2026-09-21).** (a) `step_aside` commanded the walking
+policy's lateral velocity, which moves that body 6 mm in four seconds — measured only after the run. Both the oracle and the
+judge chose it near a paused person, because it was acceptable and its option text promised distance, and the person stayed
+paused because the robot counted as "moving": error 28's deadlock in a new form, now for the oracle too. (b) The follow
+target sat behind the doorway posts, wedging the oracle in five of ten follow episodes. (c) The cut-off detector fired on
+acceptable decisions. Fixed for R2: a real detour verified to move the body *before* the run, the person pauses at most two
+seconds, the follow target moved in front of the door line, and the detector made strictly narrower than the rule.
+**Every option's text is a promise about the world; measure that the skill keeps it before an arm is scored on choosing it.**
+
 **30. A dead judge that kept scoring (E95, 2026-09-21).** The TypeSafe account ran out of API credits during the R2 run.
 The duck harness mapped every failed call to `ask_operator` with a `source: error` tag and carried on; the two judge
 arms completed all 140 episodes asking nineteen times per episode, and the scoring script tabulated them as results

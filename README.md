@@ -16,7 +16,16 @@ Anurag Akkiraju · September 2026 · MIT
 
 We measured this on four simulated setups and one real dataset, always against the same two baselines: a **rule program** written for the situations we anticipated and frozen before the tests, and an **oracle**, code that reads the true state. The setups are a **sorting cell** (an arm sorting parts with a person's hand nearby), the **duck** (a small two-legged robot in a room with a person), the **humanoid** (a human-sized robot fetching and handing over an object among people) and a **picking station** (a warehouse picker with a remote helper, at decision level with no physics). Every prediction was written down before its run; the misses stay in the record with the hits, next to 39 logged mistakes of our own.
 
-Three findings, in plain words:
+**The biggest thing wrong with all of it, stated up front.** Every "situation no rule was written for" in this programme was
+invented by the same person who wrote the rule program that fails on it, and who wrote the scoring sets that judge both. That
+is a real conflict and it sits underneath the first finding below. Since 25 September it is being tested rather than
+confessed: a second author with no access to this repository, which has never seen the rule program, the banks, the scoring
+sets or any result, wrote a bank of its own, and every arm is being scored on it with the predictions registered in advance
+(E158). It immediately found a hole none of the four benches had: every operator's note ever written here **supplements**
+what the robot can see, and none of them **contradicts** it. A human author's bank is still open and is still the strongest
+version. Whichever way it falls will be reported here.
+
+Four findings, in plain words:
 - **Where no rule was written, the judge handles the situation and the rules do not; once the rule is written, the rules win.** So the judge's value is the time before a rule exists, plus a number the operator can spend during that time. We measured that time: the rules' author closed the gap in minutes once shown the situations.
 - **Correcting the fleet's model makes its number honest where you correct and dishonest where you do not.** Six rounds of the operator's own takeovers drive the calibration error on the corrected lines from .362 to .008 and, on a bank the rounds never touch, from .307 to .399; the model's confidence where it is wrong there climbs from .62 to .90, and the operator's veto window, which rescued 34 of 60 lines from the uncorrected model, rescues none after two rounds. The round that covers that bank restores all three. So a falling intervention rate is not evidence of a safer fleet unless an untouched bank is scored every round (E146, and the same shape on a second body in E126).
 - **The number keeps its meaning.** On the states its own actions create, the judge's probability stays within .02 of its hit rate; a strong open model's drifts by .135, so a fixed handoff threshold means one thing for the judge and something else, week to week, for the open model. An open System One model with the same typed interface, run zero-shot on the same decisions, sits at an expected calibration error of .50, hands every unwritten line to the operator and, on the humanoid, attempts a pick-up from across the room on 98 percent of its decisions (E138): the number is a property of the model, not of the interface.

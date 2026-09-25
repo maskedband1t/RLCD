@@ -241,7 +241,7 @@ def episode(seed, arm_name, record=None, verbose=False):
         # records carry the tagged arm name (e.g. laya-r4) so two heads in one record file stay apart
         if record is not None and "probabilities" in j: record.append({"key": hashlib.sha1(json.dumps([f, sorted(opts)], sort_keys=True).encode()).hexdigest(), "state": f, "options": opts, "answer": j, "arm": arm.name, "seed": seed, "acceptable": sorted(acc), "event": room.event})
         if key == "ask_operator": st["n_asks"] += 1; st["operator_s"] += ASK_S; room.run_skill("ask_operator"); pending = make_arm("oracle").decide(room.facts(), room.options(), room)[0]; continue
-        if key == "done": goal = room.goal_dist() < 0.25; t_goal = room.t; break
+        if key == "done": room.declared_done = True; goal = room.goal_dist() < 0.25; t_goal = room.t; break
         if THINK_S > 0:   # E105: a slow decider — the body carries on with its previous command while the judge thinks, then the (stale) decision executes
             carry = prev_key if prev_key in ("walk_fast", "walk_slow", "stop") else "stop"
             for _ in range(int(round(THINK_S / DECISION_S))): room.run_skill(carry)

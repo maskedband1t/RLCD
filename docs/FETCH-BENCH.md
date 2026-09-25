@@ -192,6 +192,20 @@ person at the table). The rules were written against geometry and survive the ch
 learned from the old body's behaviour. What closes the loop is correcting the owned copy on the new body's episodes and
 scoring the pair (claim 4.93).
 
+## The ladder, end to end
+
+Seeds 160–189 and 330–359 had never been trained on, corrected on or scored. Every rung of the post-training ladder run
+against them under one instrument (E153):
+
+![The post-training ladder end to end](../figures/fig22-ladder.png)
+
+The rules own the bank they were written for and nothing else. The judge owns what a note describes and pays operator
+seconds for it. The copy distilled from the judge without correction is worse than useless off the written bank, forty wrong
+hand-overs: inheriting a teacher's behaviour is not inheriting its reading. Three rounds of the operator's corrections make
+that same copy the best arm on this bench, above the judge that taught it, at one operator second an episode and no cloud
+call. Post-training the body then costs the judge ten episodes across the two fresh banks and the corrected copy six
+(claim 4.96).
+
 ## See it move
 
 ![Seed 42, Maya on a call: frozen rules, rules rewritten with hindsight, the RLCD judge](../figures/demo-g1-seed42-phone-rules-vs-judge.gif)

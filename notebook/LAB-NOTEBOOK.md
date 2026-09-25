@@ -15064,3 +15064,47 @@ r4 came from r3's visited states on 100–129 and 260–289, disjoint from every
 4. *So the ladder's closing claim is stronger than this morning's:* post-training the body breaks the code written around it
    and costs a model that reads from scratch; it does not cost a model the fleet has corrected, and one round on the new
    body's own episodes takes that model past the judge at 80 ms and no operator time.
+
+### E153 results (runs 19:41–20:35 PDT; scored 2026-09-24 20:40 PDT) · the ladder end to end, on a bank nothing had ever touched
+
+Seeds 160–189 (v1: the phone, the reaching child, the scissors) and 330–359 (v2: the departure, the leak, the second asker)
+had never been trained on, corrected on or scored before this run. 0–39 is the anticipated bank the rule program was written
+for. One instrument throughout (R5c, R6b, door posts, true zeros).
+
+| rung | arm · body | written /40 | v1 fresh /30 | v2 fresh /30 | wrong hand-overs | operator s per episode | median call |
+|---|---|---|---|---|---|---|---|
+| 0, out of the box | frozen rules · shipped | **39** | 10 (phone 0, child 10, scissors 0) | **0** | **50** | 0 | – |
+| the big model | judge · shipped | 37 | 20 (child 0) | 30 | 0 | 2.8 | .09 s |
+| distil | copy r0, no correction · shipped | 36 | **2** | 10 | **40** | .8 | .08 s |
+| correct (three rounds) | **copy r3 · shipped** | **38** | **30** | **30** | 0 | 1.0 | .09 s |
+| post-train the body | judge · fine-tuned | 34 | **10** (phone 0, child 0) | 30 | 0 | 3.9 | .09 s |
+| the same copy, new body | copy r3 · fine-tuned | 31 | 24 (scissors 4) | 30 | 0 | 1.1 | .09 s |
+| re-correct on the new body | copy r4 · fine-tuned | 32 | 25 (child 5) | 30 | 0 | 1.1 | .08 s |
+| ceiling | oracle · shipped | 32 (blocked 2) | **30** | **30** | 0 | 0 | – |
+
+**Scoring.** P153.1 ✗ (rules 39 written ✔, v2 fresh 0 ✔, but v1 fresh 10 not ≤ 4: they take the reaching child 10/10 by
+walking slowly and never entering her zone). P153.2 ✔ (30 and 20). P153.3 ✔ (2 and 10; 40 wrong hand-overs). P153.4 ✔
+(30 and 30 at 1.0 operator s). P153.5 ✔ (60 → 54 across the two fresh banks, a cost of six). P153.6 ✗ (r4 recovers one of
+the six, not four). P153.7 ✗ (the judge's median call is .09 s here, not ≥ .10, and the copies on the fine-tuned body cost
+1.1 operator s, not ≤ 1). P153.8 ✗, and backwards: the corrected copies are **better** calibrated than the judge on these
+banks, not worse. **Four of eight.**
+
+**Reading.**
+1. *The ladder is the story, in one table.* The rules own the bank they were written for and nothing else (39, 10, 0, fifty
+   wrong hand-overs). The judge owns what a note describes (37, 20, 30) and pays 2.8 operator seconds. The copy distilled
+   from it with no correction is worse than useless off the written bank (2 and 10, forty wrong hand-overs) — inheriting a
+   teacher's behaviour is not inheriting its reading. Three correction rounds make that same copy the best arm on the bench
+   (**38, 30, 30**, no wrong hand-over, one operator second), above the judge that taught it and above the oracle on the
+   written bank.
+2. *Post-training the body costs the reader more than the corrected model.* Ten episodes off the judge across the two fresh
+   banks, six off the copy. The judge loses the phone and the child entirely; the copy keeps the phone and loses part of the
+   scissors. A further round on the new body returns one of the six and rebalances which situation is weak.
+3. *Two claims of this programme need correcting from this table.* The copies' speed advantage over the judge is not the
+   headline it has been: the judge's median call here is 90 ms, the same as the copy's, so what the copy buys is **no cloud
+   call and a third of the operator time**, not latency. And the oracle is not the ceiling on the written bank (32, the
+   blocked door 2/10), because its own body still drifts into the cart while it waits.
+4. *A caveat on the calibration column,* which reads against the programme's other calibration numbers: here the quantity is
+   the top-1 probability against whether the chosen action was in the acceptable set, which penalises a model that
+   deliberates with acceptable-but-suboptimal actions (the judge waits and asks). It is consistent across arms in this table
+   and is **not** the same quantity as the judge's .02 on its own typed questions. Worth a separate measurement (E154)
+   rather than a sentence.

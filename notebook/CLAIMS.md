@@ -737,3 +737,14 @@ that no longer drifts in), 30/30 against 30/30 on the second fresh bank, and 32/
 the change; one further round on the new body's own episodes buys decisiveness rather than coverage (acceptable decisions
 81 → 95 %, episode time 61 → 28 s), and behind a one-second veto window that copy reaches the oracle's 30/30 at 1.4 operator
 seconds. Post-training the body costs a layer that reads from scratch and not a layer the fleet has corrected. Five of seven.
+
+**4.96** (2026-09-24 20:40 PDT, E153) The whole post-training ladder on one humanoid bank never trained on, corrected on or scored before:
+the frozen rules own the bank they were written for and nothing else (39/40, 10/30, 0/30, fifty wrong hand-overs); the cloud
+judge reads what a note describes (37, 20, 30) at 2.8 operator seconds an episode; the copy distilled from it with no
+correction is worse than useless off the written bank (2/30 and 10/30, forty wrong hand-overs); three rounds of the
+operator's corrections make that same copy the best arm on the bench (38, 30, 30, no wrong hand-over, one operator second),
+above its own teacher. Post-training the body then costs the judge ten episodes across the two fresh banks and the corrected
+copy six, and a further round on the new body returns one. Two corrections to earlier claims fall out of the same table: the
+copy's advantage over the judge is no cloud call and a third of the operator time, not latency (both are 90 ms per call
+here), and the oracle is not the ceiling on the written bank because its own body drifts into the cart while it waits.
+Four of eight predictions.

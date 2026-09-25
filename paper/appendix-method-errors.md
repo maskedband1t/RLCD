@@ -240,3 +240,11 @@ fix: the room is drawn as it is simulated, two door posts rather than solid pane
 and episode length identical on eight seeds across four situations. The doorway remains what it always was, a fact in the
 state. Second rule: when a bench's picture claims a constraint its model does not enforce, either enforce it or stop
 drawing it — and prefer the change that provably moves no number.
+
+**53. A speed-up that was a failure rate in disguise (2026-09-25 00:00 PDT).** I read episode seconds off E153 per arm and reported the copy
+as 2.3× faster than the judge on the fresh bank. The arms have different failure rates and failures are the expensive
+episodes (122 s against 25 s), so the average was dominated by how often each arm failed, not by how fast it decided. Paired
+on the twenty seeds both arms handle, the copy is 4.1 s *slower* and faster on ten of twenty. **Any speed comparison between
+arms with different success rates must be paired on shared successful episodes, and the unpaired average reported separately
+and labelled as a fleet cost rather than a decision speed.** The re-correction result survived the pairing (17/19 and 27/30);
+the distillation result did not. Caught within the hour, before the claim left the notebook.

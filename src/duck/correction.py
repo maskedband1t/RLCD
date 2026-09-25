@@ -2,7 +2,7 @@
 unseen bank, label each with code's acceptable set as a uniform soft target, and write them as teacher-format records.
 Usage: PYTHONPATH=src python src/duck/correction.py --record results/duck/e96_record.jsonl --seeds 40-69 --out results/duck/e98_correction_records.jsonl"""
 import json, argparse, collections
-ap = argparse.ArgumentParser(); ap.add_argument("--record", required=True); ap.add_argument("--seeds", default="40-69"); ap.add_argument("--out", required=True); ap.add_argument("--targets", choices=["uniform", "masked", "replacement"], default="uniform", help="uniform over the acceptable set (E98) | the recorded head's probabilities masked to the acceptable set and renormalised (E101)"); a = ap.parse_args()
+ap = argparse.ArgumentParser(); ap.add_argument("--record", required=True); ap.add_argument("--seeds", default="40-69"); ap.add_argument("--out", required=True); ap.add_argument("--targets", choices=["uniform", "masked", "replacement", "ask"], default="uniform", help="uniform over the acceptable set (E98) | the recorded head's probabilities masked to the acceptable set and renormalised (E101)"); a = ap.parse_args()
 lo, hi = a.seeds.split("-"); seeds = set(range(int(lo), int(hi) + 1)); n = 0; fixed = 0; ev = collections.Counter()
 with open(a.out, "w") as f:
     for l in open(a.record):
@@ -18,6 +18,12 @@ with open(a.out, "w") as f:
             import os as _os; from duck.e115_mine import PREFER
             body = {"g1": "g1", "pick": "pick"}.get(_os.environ.get("DUCK_BODY", "duck"), "duck")
             pick = next((k for k in PREFER[body] if k in acc), None) or next((k for k in sorted(acc) if k.startswith("hand_to_")), None) or sorted(acc)[0]
+            probs = {k: (1.0 if k == pick else 0.0) for k in r["options"]}; choice = pick
+        elif a.targets == "ask":   # E157: teach escalation where the model was wrong. Vetoed states -> one-hot on the ask; states it already had right -> the replacement, unchanged.
+            import os as _os; from duck.e115_mine import PREFER
+            body = {"g1": "g1", "pick": "pick"}.get(_os.environ.get("DUCK_BODY", "duck"), "duck")
+            pick = next((k for k in PREFER[body] if k in acc), None) or next((k for k in sorted(acc) if k.startswith("hand_to_")), None) or sorted(acc)[0]
+            if r["answer"]["choice"] not in acc and "ask_operator" in r["options"]: pick = "ask_operator"
             probs = {k: (1.0 if k == pick else 0.0) for k in r["options"]}; choice = pick
         else: probs = {k: (round(1.0 / len(acc), 4) if k in acc else 0.0) for k in r["options"]}; choice = sorted(acc)[0]
         fixed += r["answer"]["choice"] not in acc; ev[r.get("event")] += 1

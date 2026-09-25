@@ -7867,7 +7867,7 @@ the author, two corrections in a row, both recorded in memory: (1) *"rlcd value 
 untapped and we shouldnt be so authoritative … folks are finding creative ways
 of representing the 'CD' in RLCD"*; (2) *"you are researching, you cannot
 focus on outcome vs figuring out what to do and brainstorming; nothing you do
-at this exact moment is preparing a final artifact for reflex/mason."*
+at this exact moment is preparing a final artifact for the fleet company."*
 Consequences: the memo written earlier tonight is demoted to
 `notebook/working/rlcd-use-cases-working-note.md` and labelled as scaffold;
 README framing rewritten from "the product is" to "an open exploration"; the
@@ -7916,8 +7916,7 @@ cached drone judgments into a jevlike head; measure what survives: stations,
 contact, handoff curve, calibration; seen seeds vs held-out vs randomised).
 Prediction block to be logged here before any run.
 
-the author's framing, verbatim: *"all of this btw is to push reflex data
-collection and sovereignty in the future right, to feedback loop on."*
+the author's framing, verbatim: *"all of this btw is to push fleet data collection and sovereignty in the future right, to feedback loop on."*
 
 ---
 
@@ -12879,7 +12878,7 @@ are strict about speed, and the judge's own hit rate on the same seeds was .29);
    front of a person on the phone; it waits. The body's fragility (method error 34) is unchanged; the decisions are.
 4. *Over-confidence returned with competence.* At r0 the copy was within .03 on its own unseen states; at r1 it states .69
    where .39 of its decisions are inside the strict set. Per-situation handling and per-decision acceptability are different
-   quantities on this bench (the judge: 19 of 30 at .29), and the resume-level claim is the handling; the calibration claim
+   quantities on this bench (the judge: 19 of 30 at .29), and the headline claim is the handling; the calibration claim
    stays with the duck and the cell, where the sets are not speed-strict.
 
 ## E116 · the second correction round on the humanoid (pre-registration, 2026-09-22 07:39 PDT; launched right after)
@@ -15244,3 +15243,194 @@ smoothing). P155.4 ✗ (+2, not ≥ 5). P155.5 ✗ (.80, not < .80). P155.6 ✔ 
    in-loss fixes that did not work. The remaining in-model idea worth a test is giving the uncertainty somewhere to live in
    the output space — an explicit abstention option present in every option set — rather than trying to reshape the mass over
    actions the model is being told to take. That is E157, not launched tonight.
+
+## E157 · teach it to escalate rather than guess: the ask as the place uncertainty lives (pre-registration, 2026-09-24 23:49 PDT; launched now)
+
+**Why.** E155 showed the lost uncertainty cannot be put back through the loss. The remaining in-model idea was to give it
+somewhere to live in the output space, and the station's option set already has that somewhere: `ask_operator` is offered at
+every state. So the sharp question is not "add an abstention option" but **does training the model to ask on the states where
+it was vetoed make it ask on states it has never seen?**
+**What the baseline actually fails at.** On the untouched bank v2 the replacement-trained head (E155's base) ships **zero
+wrong picks** and asks **zero** times, and still handles only 20 of 60. Its failure is not an unsafe action, it is guessing
+an ending: it puts the mismatched item and the held lot in the return bin because bank v1's notes taught "a note means the
+return bin", where these notes ask for a put-back and a skipped line. The fleet's wish here is not a better-calibrated
+number, it is a model that escalates instead of inventing an ending.
+**Design.** The same four correction files as E155's h4, regenerated in three label forms and trained identically:
+**replacement** (E155's base, already measured), **masked** (the head's own distribution renormalised onto the acceptable
+set), and **ask** (one-hot on `ask_operator` for exactly the states where the head's choice was outside the acceptable set,
+258 of the 1,493 records; the replacement unchanged everywhere else). Scored on the untouched bank v2 4030–4089 and the
+covered lines 3120–3179, alone and behind the one-second veto window.
+**Predictions.**
+- **P157.1** the ask-trained head asks on ≥ 20 of the 60 untouched lines (baseline 0). Prior 55 %.
+- **P157.2** its handled count on the untouched bank ≥ 35/60 (baseline 20). Prior 50 %.
+- **P157.3** it still ships ≤ 2 wrong picks there (baseline 0): escalation must not buy coverage with errors. Prior 75 %.
+- **P157.4** it costs ≥ 8 operator seconds per line on the **covered** lines, where asking is waste (baseline 0): the price
+  of escalation is paid where it is not needed. Prior 60 %.
+- **P157.5** masked lands between replacement and ask on both asks and operator seconds on the untouched bank. Prior 55 %.
+- **P157.6** both new forms keep ≥ 55 of the 60 covered lines. Prior 65 %.
+- **P157.7** the ask form's ECE on the untouched bank improves on the baseline's .376 by ≥ .05. Prior 40 %.
+
+### Analysis (2026-09-24 23:55 PDT, no new runs) · the column we had all along: the seat costs time, and correction is what buys it back
+
+Argon's post is entirely denominated in task time against a teleoperation baseline, and reading it properly made me look at a
+column this programme has recorded in every row since E93 and never once treated as an outcome. From E153's ladder, the
+held-out bank, one instrument, **episode seconds beside handled counts**:
+
+| rung · body | v1 fresh: handled · robot s · operator s · decisions | written: handled · robot s |
+|---|---|---|
+| frozen rules · shipped | 10/30 · **17.6** · 0 · 28 | 39/40 · **20.1** |
+| the judge · shipped | 20/30 · 57.8 · 4.0 · 24 | 37/40 · 53.2 |
+| copy r0, no correction · shipped | 2/30 · 43.4 · 0 · 26 | 36/40 · 52.7 |
+| **copy r3, three rounds · shipped** | **30/30 · 25.6 · 0.7 · 42** | 38/40 · 52.4 |
+| the judge · post-trained | 10/30 · **92.7** · 6.7 · 48 | 34/40 · 58.5 |
+| copy r3 unchanged · post-trained | 24/30 · 63.8 · 0 · **115** | 31/40 · 55.1 |
+| **copy r4, re-corrected · post-trained** | 25/30 · **28.7** · 0 · **46** | 32/40 · 59.5 |
+| oracle · shipped | 30/30 · 18.9 · 0 · 25 | 32/40 · 15.8 |
+
+**What it says.**
+1. *The seat is not free.* Putting the judge in it costs **3.3×** the rules' episode time on the fresh bank (57.8 s against
+   17.6) and 2.6× on the written one, plus four operator seconds an episode. That is the price of reading, and this
+   programme has been quoting the judge's coverage wins without ever quoting it.
+2. *Correction buys the time back.* Three rounds take the copy from its teacher's 57.8 s to **25.6 s**, a 2.3× speed-up,
+   while taking handled from 20 to 30 and operator seconds from 4.0 to 0.7. The corrected copy is within 35 % of the
+   oracle's time at the oracle's score, with no cloud call.
+3. *And when the body changes, the round is almost pure speed.* On the post-trained body the re-correction takes the copy
+   63.8 s → **28.7 s** and its decisions per episode **115 → 46**, while handled moves 24 → 25. This is Argon's lever 3
+   arriving at the decision layer in the other layer's units: the intervention round bought **decisiveness**, not coverage,
+   and decisiveness is speed. Their threshold observation — a slow policy gains nothing from intervention data, a fast one
+   compounds — has an analogue here: the rounds buy correctness first (r0 → r3) and speed afterwards (r3 → r4).
+4. *A fleet's cost per task is two numbers and we have both.* Robot seconds and operator seconds. The judge on the fresh
+   bank is 57.8 + 4.0; the corrected copy is 25.6 + 0.7; the same copy after a round on the new body is 28.7 + 0.
+5. *The dithering is visible in the decision count,* which is the mechanism behind all of the above: 115 decisions an episode
+   for an uncorrected-on-this-body copy against 46 after one round. Nothing about the situations changed.
+
+**This opens claim 6** — the seat costs time and correction is what buys it back — and it is the first claim in this
+programme that a deployment economist rather than a safety engineer would care about most.
+
+### Amendment (2026-09-25 00:00 PDT) · the paired test, and what it takes back
+
+Before the speed reading above went any further I ran the check it needed: the arms in that table have different failure
+rates, and an average over episodes mixes successes with failures. Two panels, same E153 file.
+
+**A. Within an arm on the fresh v1 bank, handled episodes against missed ones.**
+
+| arm | handled n · s | missed n · s |
+|---|---|---|
+| frozen rules | 10 · 21.9 | 20 · **15.4** |
+| the judge | 20 · 25.5 | 10 · **122.3** |
+| copy r0 | 2 · 23.5 | 28 · 44.8 |
+| copy r3 | 30 · 25.6 | — |
+| judge · post-trained | 10 · 34.5 | 20 · **121.8** |
+| copy r3 · post-trained | 24 · 49.6 | 6 · **120.5** |
+| copy r4 · post-trained | 25 · 28.0 | 5 · 32.6 |
+| oracle | 30 · 18.9 | — |
+
+A miss is not a short episode, it is the expensive one: the judge's failures cost **122 s against 25 s** for its successes.
+The frozen rules are the exact opposite and it is the most useful line in the table — **they miss in 15 s, faster than they
+succeed**, because a rule program that is wrong ships the wrong action immediately and with no hesitation. *The model's
+failure mode is dithering; the rule program's failure mode is confident wrong action.* A fleet finds out the rules are wrong
+cheaply, and pays two minutes to find out the model is.
+
+**B. Paired on the same seeds, restricted to seeds both arms handled correctly.**
+
+| comparison | bank | n | mean | median | faster on |
+|---|---|---|---|---|---|
+| frozen rules → the judge | written | 36 | 20.0 → 54.0 s (**+34.0**) | +7.2 | judge on 10/36 |
+| the judge → copy r3 | v1 fresh | 20 | 25.5 → 29.6 s (**+4.1**) | +2.5 | copy on 10/20 |
+| copy r3 → copy r4, new body | v1 fresh | 19 | 50.5 → 30.3 s (**−20.2**) | −10.0 | r4 on **17/19** |
+| copy r3 → copy r4, new body | v2 fresh | 30 | 28.4 → 23.9 s (**−4.5**) | −4.5 | r4 on **27/30** |
+| copy r3 → oracle | v1 fresh | 30 | 25.6 → 18.9 s (−6.7) | −2.8 | oracle on 27/30 |
+
+**What this takes back.** The line I wrote an hour ago — *three correction rounds make the copy 2.3× faster than its own
+teacher* — is **wrong as a statement about the copy thinking faster**, and I withdraw it. On the twenty seeds both arms
+handle, the copy is 4.1 s *slower* than the judge and faster on ten of twenty, a coin flip. The 57.8 → 25.6 s gap in the
+unpaired table is almost entirely **composition**: the judge's average is twenty successes at 25.5 s plus ten failures at
+122.3 s. Correction did not speed the copy up there. It removed the failures, and the failures were what cost the time.
+Logged as method error 53.
+
+**What survives, and is now paired.**
+1. *The seat costs time, and this one is solid.* On the 36 written-bank seeds both arms handle, the judge takes **+34 s mean,
+   +7.2 s median** over the frozen rules and is faster on only ten of thirty-six. The mean-median gap is the dithering tail.
+2. *A correction round on a changed body buys real per-episode speed.* This is the strongest thing here and it is paired on
+   two independent banks: **17 of 19** seeds faster on v1 fresh (50.5 → 30.3 s) and **27 of 30** on v2 fresh (28.4 → 23.9 s),
+   with decisions per episode 115 → 46. Coverage moved by one, inside the noise floor. The round bought speed, not coverage —
+   which is Argon's lever-3 shape, and here it is measured against a paired control rather than an average.
+3. *The corrected copy does not reach the ceiling.* The oracle is faster on 27 of 30 shared seeds, 18.9 against 25.6 s.
+4. *The average is still the right fleet number.* A fleet pays the 122-second failures, so cost per episode averaged over the
+   whole bank is what a deployment is billed. The corrected copy really is the cheapest arm that handles the fresh bank —
+   **because it fails less, not because it thinks faster.** Both halves of that sentence belong in the claim.
+
+### E157 · results (2026-09-25 00:05 PDT). The ask is learnable and lands in the wrong places; the veto window comes back from the dead
+
+**Untouched bank v2, station seeds 4030–4089, 60 lines never trained on, corrected on or scored.** The station is
+deterministic (E132 reproduced E130's counts exactly), so differences here are not noise.
+
+| label form | arm | handled | wrong picks | asks | lines that asked | operator s / line |
+|---|---|---|---|---|---|---|
+| replacement (E155 base) | bare | 20/60 | 0 | 0 | 0 | 0.0 |
+| masked (veto) | bare | 20/60 | 1 | 28 | 6 | 9.3 |
+| masked (veto) | **+ 1 s veto window** | **34/60** | **0** | 37 | 10 | 24.3 |
+| ask (escalate) | bare | 20/60 | 0 | 15 | 15 | 5.0 |
+| ask (escalate) | + 1 s veto window | 23/60 | 0 | 23 | 15 | 44.0 |
+
+**Covered lines, seeds 3120–3179, which the four correction files do cover.** All six arms keep 60/60 and ship nothing wrong.
+The difference is the bill: replacement 0.0 operator s a line, ask **9.3**, masked **14.0**.
+
+**Calibration on the untouched bank**, top-1 probability against membership of the acceptable set:
+
+| head | n | hit rate | mean top-1 | over-confidence | ECE | probability at its WRONG decisions |
+|---|---|---|---|---|---|---|
+| replacement (E155 base) | — | — | — | — | .376 | **.86** |
+| ask | 230 | .517 | .812 | +.294 | **.315** | .766 |
+| masked | 252 | .516 | .775 | +.259 | **.261** | .711 |
+
+**Scoring the pre-registration: three hits, three misses, one hit I gave 40 %.**
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P157.1 | ask-trained head asks on ≥ 20 of 60 untouched lines | 55 % | **15** | ✗ |
+| P157.2 | its handled count ≥ 35/60 | 50 % | **20/60**, exactly the baseline | ✗ |
+| P157.3 | it ships ≤ 2 wrong picks | 75 % | **0** | ✓ |
+| P157.4 | it costs ≥ 8 operator s a line where asking is waste | 60 % | **9.3** | ✓ |
+| P157.5 | masked lands between replacement and ask on asks *and* operator seconds | 55 % | asks 28 > 15, op s 9.3 > 5.0; above both | ✗ |
+| P157.6 | both new forms keep ≥ 55 of 60 covered lines | 65 % | **60/60 and 60/60** | ✓ |
+| P157.7 | ask's ECE beats .376 by ≥ .05 | 40 % | **.315**, a gain of .061 | ✓ |
+
+**1. The main hypothesis failed, and cleanly.** Training on `ask_operator` where the head was vetoed *does* teach it to ask —
+it asks on fifteen untouched lines where the baseline asks on none — but **it does not ask where it is wrong**. Handled stays
+at exactly 20/60. It asks on 28 of the 60 lines it already handles perfectly and on 15 of the 60 it fails, so it escalates
+*more often where escalation is waste than where it is needed*. The bill is 9.3 operator seconds a line on lines that needed
+nobody. The escalation is real and it is aimed at the wrong states. That is P157.1 and P157.2 both, and the prediction that
+the price would be paid in the wrong place (P157.4, prior 60 %) is the one that held.
+
+**2. The result I was not testing for is the better one: the veto window comes back from the dead, and the label form is the
+switch.** E151 found the operator's one-second window rescuing 34 of 60 lines from an uncorrected head and **0** after two
+rounds of replacement labels — the loop eating its own safety net, claim 4. Here, on a bank none of the rounds touched:
+
+| head trained with | bare | behind the 1 s window | the window's rescue |
+|---|---|---|---|
+| replacement labels (E155 base) | 20/60 | 20/60 | **+0** |
+| ask labels | 20/60 | 23/60 | +3 |
+| **masked (veto) labels** | 20/60 | **34/60** | **+14** |
+
+Same records, same four correction files, same training, same states. **The only difference is what the operator's
+intervention was written down as, and it decides whether the operator can still save the run a round later.** Replacement
+labels produce a head confident enough that the window catches nothing; masked labels leave enough of the distribution alive
+that the window catches fourteen of sixty. The safety net claim 4 watched die is **recoverable, and the lever is the label
+form, not a confidence threshold and not more data.**
+
+**3. And the cost is real, so this is a trade and not a free lunch.** The masked head behind the window costs **24.3 operator
+seconds a line** against the baseline's 0.0, and 14.0 a line on the covered lines where nothing was needed. Fourteen more
+lines handled for about twenty-four seconds of a person's attention each. Whether that is worth buying is a fleet's call and
+depends on what a missed line costs — but it is now a priced option rather than a lost capability.
+
+**4. A mechanism detail worth keeping.** On the untouched bank the ask head asks **once** in each of fifteen episodes; the
+masked head asks **4.7 times** in each of six. The ask label teaches *escalate and stop*; the veto label teaches *that one is
+wrong, keep trying*. That is the same split E120 found between the two forms at the action level, showing up here as episode
+behaviour, and it explains why masked costs more operator seconds while asking on fewer lines.
+
+**What this does to the claims.** Claim 3 gains its sharpest version: the label form does not merely decide what is learned,
+it decides **whether the operator can still intervene later**. Claim 4's net is amended from *lost* to *recoverable at a
+price*. Neither is overturned. **Next, singly and together:** a mixed label form (masked on states inside the acceptable set,
+ask outside it) to test whether the rescue survives without the dithering; and the same three forms on the humanoid bench,
+where the rounds and the E151 decay were originally measured.

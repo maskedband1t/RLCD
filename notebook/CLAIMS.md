@@ -748,3 +748,38 @@ copy six, and a further round on the new body returns one. Two corrections to ea
 copy's advantage over the judge is no cloud call and a third of the operator time, not latency (both are 90 ms per call
 here), and the oracle is not the ceiling on the written bank because its own body drifts into the cart while it waits.
 Four of eight predictions. *E154:* reusing the last decision when nothing the model reads has changed saves 5–24 % of model calls with every handled count inside the noise floor and no new wrong hand-over, fall or operator second; the saving tracks how much of the episode has a person near the robot (5 % on the people-heavy written bank, 24 % where the scene holds still), the same conclusion Argon reach at the action layer by tightening their skip threshold sevenfold in human-occupied scenes. The number is a property of the deployment's scene mix, not of the method. Five of six.
+
+**4.97** (2026-09-24, analysis of E153 and E151; no new runs; **amended 2026-09-25 00:01 PDT after the paired test, see below**) The
+decision seat costs time and correction buys back the time that failure wastes. Paired on the 36 written-bank seeds both arms
+handle, putting the judge in the seat costs **+34 s mean and +7.2 s median** an episode over the frozen rules and is faster on
+only ten of thirty-six: that is the price of reading, and this programme had never quoted it beside its coverage wins. A miss
+is the expensive episode, not the short one — the judge's failures cost 122 s against 25 s for its successes — while the
+frozen rules **miss in 15 s, faster than they succeed**, because a wrong rule ships the wrong action without hesitating. The
+model's failure mode is dithering; the rule program's is confident wrong action. Correction therefore makes the fleet's cost
+per episode fall (57.8 → 25.6 s on the fresh bank) **because it removes failures, not because the copy decides faster** — on
+shared handled seeds the corrected copy is 4.1 s slower than its teacher and faster on ten of twenty. The corrected copy does
+not reach the ceiling: the oracle is faster on 27 of 30 shared seeds.
+
+**4.98** (2026-09-25 00:01 PDT, paired re-analysis of E153; no new runs) A correction round on a body that has changed underneath buys real
+per-episode speed, paired and on two independent banks: **17 of 19** shared handled seeds faster on the fresh v1 bank
+(50.5 → 30.3 s) and **27 of 30** on the fresh v2 bank (28.4 → 23.9 s), with decisions per episode falling 115 → 46 while
+handled moves 24 → 25, inside the noise floor. The round bought decisiveness rather than coverage. This is the shape Argon
+report for intervention data at the action layer, measured here at the decision layer against a paired control rather than an
+average. Supersedes the unpaired 2.3× distillation speed-up withdrawn in method error 53.
+
+**4.99** (2026-09-25, E157) The operator's one-second veto window is recoverable after correction has eaten it, and the lever
+is the form the intervention is written down in, not a confidence threshold and not more data. Same 1,493 correction records,
+same four files, same training, scored on sixty station lines the corrections never touched: the window rescues **+0** lines
+for a head trained on the operator's replacement action, **+3** for one trained to ask, and **+14** for one trained on the
+operator's veto, which also carries the best calibration of the three (ECE .261 against the replacement head's .376, and
+probability at its wrong decisions .71 against .86). The station is deterministic, so this is not noise. It costs 24.3
+operator seconds a line, making the capability a priced option rather than a lost one. Amends claim 4 from *lost* to
+*recoverable at a price*.
+
+**4.100** (2026-09-25, E157) Training a head to escalate teaches it to escalate but not where. One-hot on `ask_operator` at
+exactly the states where the head was vetoed makes it ask on fifteen of sixty untouched lines against the baseline's zero,
+and on twenty-eight of the sixty lines it already handles perfectly — so it asks more often where escalation is waste than
+where it is needed, and its handled count does not move at all (20/60, exactly the baseline). The bill is 9.3 operator
+seconds a line on lines that needed nobody. The ask label teaches *escalate once and stop* (one ask in each of fifteen
+episodes); the veto label teaches *that one is wrong, keep trying* (4.7 asks in each of six). Pre-registered P157.1 and
+P157.2 both missed; P157.4, which predicted the price would be paid in the wrong place, held.

@@ -15529,3 +15529,74 @@ banks v1 and v2 (`laya-g1r3`) · oracle. Seeds 400–459, twelve per situation.
 - **P158.7** The hardest single situation, averaged across arms, is `wet_floor_note`. Prior 55 %.
 - **P158.8** The blind author's two situations are harder on average than my three. Prior 45 %, stated low because
   `job_closed` looks easy.
+
+### E158 · results (2026-09-25 08:43 PDT). The claim survives an author who had not seen the rules, and the situation both authors thought of is the one nothing handles
+
+**Six of eight predictions held.** Judge **48/60**, frozen rules **24/60**, oracle 60/60. On the blind author's two situations
+alone: the judge **24/24**, the rules **12/24**.
+
+| arm | note forbids the hand-over | child in the doorway | someone else holds it | **the note contradicts the sensors** | **the job closed itself** | total |
+|---|---|---|---|---|---|---|
+| | *mine* | *mine* | *mine, and the blind author's too* | *blind* | *blind* | |
+| frozen rules | 0/12 | **12/12** | 0/12 | 0/12 | **12/12** | 24/60 |
+| the judge | 12/12 | 12/12 | **0/12** | **12/12** | 12/12 | **48/60** |
+| the judge + 1 s veto window | 12/12 | 12/12 | **12/12** | **0/12** | 12/12 | 48/60 |
+| the fleet's copy (corrected on v1, v2) | 12/12 | 12/12 | 0/12 | 1/12 | 12/12 | 37/60 |
+| oracle | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | 60/60 |
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P158.1 | judge ≥ 15 more than the rules | 55 % | +24 | ✓ |
+| P158.2 | the gap is smaller than bank v2's 30 | 80 % | 24 | ✓ |
+| P158.3 | the rules handle ≥ 20 of 60 | 75 % | 24/60, two situations outright | ✓ |
+| P158.4 | on the contradicting note the judge handles ≤ 6 of 12 | 60 % | **12/12** | ✗ |
+| P158.5 | the corrected copy handles fewer than the judge | 70 % | 37 against 48 | ✓ |
+| P158.6 | ≥ 4 of 5 arms take ≥ 10 of the job-closed lines | 70 % | 5 of 5 | ✓ |
+| P158.7 | the hardest situation is the contradicting note | 55 % | it is *someone else holds it* | ✗ |
+| P158.8 | the blind author's two are harder than my three | 45 % | 63.5 % against 66.7 % | ✓ (inside noise) |
+
+**1. The headline claim survives its first independent test.** On a bank where two of five situations were written by an
+author that had never seen the rule program, the banks, the scoring sets or any result, the judge handles twice what the
+frozen rules do. The caveat this programme has carried since the beginning is now tested rather than confessed, and it came
+out the way the claim said it would.
+
+**2. The prediction I got most wrong is the best news in the result.** I gave 60 % to the judge failing the blind author's
+contradicting note, the case where the doorway reads clear, the requester is correctly flagged beyond it, and only the note
+says the hall is wet. It handled **12 of 12**. A note that contradicts every sensor is still read and still acted on. That
+closes the hole the blind author found. **The price is the story:** 67.0 s and **28.7 operator seconds** an episode with 7.2
+asks, against the oracle's 8.2 s and zero. Eight times the time and half a minute of a person's attention to act on one
+sentence. Claim 6's shape again, on a situation invented by someone else.
+
+**3. The situation both authors independently wrote is the one nothing handles.** *Someone else is already holding the
+object.* The frozen rules, the judge and the fleet's own corrected copy all take **0 of 12**, and all three fail the same
+way: they never terminate. Every one of the 36 episodes runs to the 120 s ceiling, at 173 to 239 decisions, with **zero asks**.
+The blind author named non-termination as a failure mode for a different situation — *"it simply never terminates, because
+the success condition is not a thing it can observe"* — and it turned up here instead, in the situation both authors thought
+of. Two independent authors converging on the gap, and the gap being real, is the strongest single thing in this result.
+
+**4. The veto window is not a safety net on this bank. It is a switch.** The same one-second window takes *someone else holds
+it* from 0/12 to **12/12**, and takes the contradicting note from 12/12 to **0/12**. On the situation it breaks it burns
+**92.2 operator seconds** an episode with 9.7 vetoes and hits the 120 s ceiling on all twelve. It rescues the failure whose
+shape is *not asking* and destroys the one whose answer is a hand-over to an unexpected person, because its proposals are
+about motion and it keeps re-proposing motion. This is new and uncomfortable for claim 2, and it is the first time in this
+programme that the window has made an arm strictly worse on a situation.
+
+**5. The one situation that did not discriminate failed exactly as pre-registered.** *The job closed itself* is 12/12 for
+every arm, because `done` is in the option set from the first decision and every arm ordered to finish when finishing is
+offered takes it at decision one. The finding is the one registered in advance: **noticing that a job is already over is
+code's job on this bench, not the judge's.** One asymmetry survives it — the judge is the only arm that dithers there, 14.8
+decisions and 7.9 s against 1.0 decision and 1.0 s for everyone else.
+
+**Limits, stated because the table looks stronger than it is.**
+- **Five situations, not sixty trials.** Every cell is 0/12 or 12/12 because seeds within a situation vary only by small
+  position jitter. The effective sample is **five**, and a binomial on five is not a confident instrument. The right reading
+  is "the claim was not overturned", not "the claim is confirmed at n=60".
+- **The blind author saw my description of the world**, which encodes my choices about which facts exist. It is independent
+  of the rule program's author, which is the caveat, and not of my framing.
+- **A human author is still open**, and is still the only source that can say whether any of this is what a real shift
+  throws at a robot.
+
+**Next, singly and together.** The rules rewritten with hindsight on this bank, which is claim 1's time-to-rule measurement
+and the natural companion. A correction round for the copy on these five. And the obvious one: why the veto window destroys
+the contradicting note, which is either a real interaction or the confirm wrapper's known quarrel with this body's gait
+(E110) and needs separating.

@@ -783,3 +783,34 @@ where it is needed, and its handled count does not move at all (20/60, exactly t
 seconds a line on lines that needed nobody. The ask label teaches *escalate once and stop* (one ask in each of fifteen
 episodes); the veto label teaches *that one is wrong, keep trying* (4.7 asks in each of six). Pre-registered P157.1 and
 P157.2 both missed; P157.4, which predicted the price would be paid in the wrong place, held.
+
+**4.101** (2026-09-25 08:43 PDT, E158) The headline claim survives a bank its author did not write. On five situations in the humanoid
+fetch room, two of them written by a model given only the room, the fact list and the action list, which read no file and
+never saw the rule program, the banks, the scoring sets or any result, the judge handles **48 of 60** against the frozen
+rules' **24**, with the oracle at 60. On the blind author's two situations alone the judge takes 24 of 24 and the rules 12.
+The gap is smaller than on the banks I wrote myself, as pre-registered. **Read as "not overturned", not as "confirmed":**
+every cell is 0/12 or 12/12 because seeds within a situation vary only by position jitter, so the effective sample is five
+situations, not sixty trials.
+
+**4.102** (2026-09-25 08:43 PDT, E158) A note that contradicts every sensor is still read and still acted on, and it costs. Where the
+doorway reads clear, the requester is correctly flagged beyond it, and only the operator's note says the hall is wet, the
+judge hands the object to a person in the room who never asked, **12 of 12**, against the frozen rules' 0. I pre-registered
+60 % that it would fail this and it did not. The price is 67.0 s and **28.7 operator seconds** an episode against the
+oracle's 8.2 s and zero: eight times the time and half a minute of a person's attention to act on one sentence. Every note
+situation in this programme before this one *supplemented* what the robot could see; this is the first that *contradicts* it,
+and the blind author found that hole in three minutes.
+
+**4.103** (2026-09-25 08:43 PDT, E158) The operator's one-second veto window is a switch on this bank, not a safety net. The same window
+takes *someone else is already holding the object* from 0 of 12 to **12 of 12**, and takes the contradicting note from 12 of
+12 to **0 of 12**, burning 92.2 operator seconds an episode and hitting the time ceiling on all twelve. It rescues the
+failure whose shape is *not asking* and destroys the one whose answer is a hand-over to an unexpected person, because its
+proposals are about motion and it keeps re-proposing motion. First time in this programme the window has made an arm strictly
+worse on a situation. Whether this is a real interaction or the confirm wrapper's known quarrel with this body's gait (E110)
+is unseparated and is the next run. Amends claim 2.
+
+**4.104** (2026-09-25 08:43 PDT, E158) Two authors who could not see each other's work independently wrote the same situation — *someone
+else is already holding the object* — and it is the one nothing handles. The frozen rules, the judge and the fleet's own
+corrected copy all take 0 of 12, and all three fail identically: they never terminate, running every one of 36 episodes to
+the 120 s ceiling at 173 to 239 decisions with **zero asks**. Independent convergence is evidence the gap is real rather than
+an artefact of knowing what the rules cover, and the failure mode is one the blind author had named for a different
+situation.

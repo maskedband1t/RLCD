@@ -22,8 +22,12 @@ is a real conflict and it sits underneath the first finding below. Since 25 Sept
 confessed: a second author with no access to this repository, which has never seen the rule program, the banks, the scoring
 sets or any result, wrote a bank of its own, and every arm is being scored on it with the predictions registered in advance
 (E158). It immediately found a hole none of the four benches had: every operator's note ever written here **supplements**
-what the robot can see, and none of them **contradicts** it. A human author's bank is still open and is still the strongest
-version. Whichever way it falls will be reported here.
+what the robot can see, and none of them **contradicts** it. **It has now fallen, and the claim survived**: on that bank the
+judge handles 48 of 60 situations against the frozen rules' 24, and on the two written by the author that had never seen the
+rules, 24 of 24 against 12. Read it as *not overturned* rather than *confirmed*, because it is five situations and not sixty
+independent trials. It also cost the claim something: the situation both authors independently thought of is one that
+nothing here handles, and the operator's veto window turned out to make one situation strictly worse. A human author's bank
+is still open and is still the strongest version.
 
 Four findings, in plain words:
 - **Where no rule was written, the judge handles the situation and the rules do not; once the rule is written, the rules win.** So the judge's value is the time before a rule exists, plus a number the operator can spend during that time. We measured that time: the rules' author closed the gap in minutes once shown the situations.
@@ -49,6 +53,7 @@ misses are kept. Snapshots are pushed as work lands, so the commit history is th
 
 | date | what was demonstrated | the number |
 |---|---|---|
+| 25 Sep | **The independence test: a bank written by an author that had never seen the rules.** Three situations by me and two by a model with no repository access, predictions registered before any arm ran | the claim survives, judge 48 of 60 against the frozen rules' 24 and 24 of 24 against 12 on the blind author's two; a note that contradicts every sensor is still read (12 of 12) at 29 operator seconds an episode; the situation both authors independently wrote is 0 of 12 for the rules, the judge and the copy alike, all failing by never terminating; the veto window is a switch, +12 on one situation and −12 on another |
 | 25 Sep | **The safety net the loop ate is recoverable, and the lever is the label form.** Three ways of writing down the same operator interventions, scored on a bank the corrections never touched | the one-second veto window rescues 0 lines for a head trained on the replacement action, 3 for one trained to ask and **14 of 60** for one trained on vetoes, at 24 operator seconds a line; teaching a head to ask makes it ask on 15 untouched lines against 0, but on 28 of the 60 it already handles, and its coverage does not move |
 | 24 Sep | **The column we had all along: what the decision seat costs in time.** Prompted by Argon Robotics' speed write-up, which is denominated entirely in task time | paired on the same situations the seat costs 34 s an episode over the frozen rules; a miss is the expensive episode (2 min against 25 s) while the rules miss in 15 s, faster than they succeed; correction halves the fleet's cost per episode by removing failures, and a round on a changed body is a genuine speed-up, faster on 17/19 and 27/30 paired situations with decisions per episode cut 115 → 46 |
 | 24 Sep | **Two attempts to fix correction's hidden cost, both negative.** Softening the correction targets, and rewarding the model for keeping uncertainty | neither recovers what a veto window needs: the best moves calibration on the untouched bank by less than four hundredths and restores two of the thirty-four rescued lines, while making the corrected lines four times worse. The information is not in the labels, because every training example is a state the model has evidence for, so support has to be measured from outside its own probability |
@@ -162,7 +167,11 @@ the operator seconds it spends inside them. *Results 6, 7, 11, 12, 13.*
 **2. The probability is the product.** Every mechanism that makes any of this useful — the hand-off threshold, the
 one-second veto window, the surprise gate — runs on a number that means what it says. Four models with the same typed
 interface, on identical decisions, span a calibration error from two hundredths to a half. "Calibrated decision model" is a
-claim to be earned per model, not a property of an interface or a class. *Results 1, 2, 3, 15.*
+claim to be earned per model, not a property of an interface or a class. **Amended 25 September:** the veto window is not
+uniformly a safety net. On a bank written partly by an author who had never seen the rules, the same one-second window took
+one situation from nothing handled to everything handled, and another from everything handled to nothing, burning ninety
+seconds of a person's attention an episode on the one it broke. It rescues the failure whose shape is *not asking* and
+destroys the one whose answer is a hand-over to an unexpected person. *Results 1, 2, 3, 15, 20.*
 
 **3. The fleet can own the judgment, and the operator's intervention is the mechanism.** Distil the judge into a model the
 robot runs, then correct it from takeovers the fleet is already paying for. What the intervention is turned into decides
@@ -236,6 +245,8 @@ Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are
 18. **What the decision seat costs in time, and why a miss is the expensive episode.** Paired on the thirty-six situations both arms handle, the judge costs **+34 s an episode** over the frozen rules and the rules are faster on twenty-six of them. The reason is the failure mode: the model's misses cost 122 s against 25 s for its successes, while **the rules miss in 15 s, faster than they succeed**, because a wrong rule ships the wrong action without hesitating. So a corrected copy halves the fleet's cost per episode by failing less, not by deciding faster — and the one change that does make it decide faster is a correction round on a body that has changed underneath, faster on **17 of 19** and **27 of 30** paired situations with decisions per episode cut 115 → 46. — E153 paired re-analysis; [Figure 23](figures/fig23-failure-cost.png); method error 53.
 
 19. **The operator's veto window is recoverable, and the label form is the switch.** Same 1,493 correction records, same four files, same training, three ways of writing down what the operator did. On sixty lines the corrections never touched, the one-second window rescues **+0** lines for a head trained on the operator's replacement action, **+3** for one trained to ask, and **+14** for one trained on vetoes, which also carries the best calibration of the three (.261 against .376). It is not free: 24.3 operator seconds a line. Teaching a head to ask does teach it to ask — fifteen untouched lines against the baseline's zero — but it asks on twenty-eight of the sixty lines it already handles and its coverage does not move at all, so the escalation is learned and aimed at the wrong states. — E157; [Figure 24](figures/fig24-veto-recovered.png).
+
+20. **The claim survives a bank its author did not write, and the situation two independent authors both thought of is the one nothing handles.** Five situations in the humanoid fetch room: three written by me, who also wrote the rule program every arm is scored against, and two by a model given only the room, the fact list and the action list, which read no file and never saw the rules, the banks, the scoring sets or any result. Predictions registered before any arm ran; six of eight held. The judge handles **48 of 60** against the frozen rules' **24**, and **24 of 24** against **12** on the blind author's two alone. Three things it cost: a note that *contradicts* every sensor is read correctly, 12 of 12, but at **28.7 operator seconds** an episode against an oracle's zero; the situation both authors converged on, *someone else is already holding the object*, is **0 of 12** for the rules, the judge and the fleet's copy alike, all three failing by never terminating; and the one-second veto window proved to be a switch rather than a net, taking one situation from 0 to 12 and another from 12 to 0. Every cell is 0/12 or 12/12 because seeds vary only by position jitter, so this is five situations, not sixty trials. — E158; [Figure 25](figures/fig25-independence.png).
 
 ![Figure 13: the picking station, unwritten lines handled and safe per arm, and the written lines with seconds and operator seconds per line](figures/fig13-picking-station.png)
 

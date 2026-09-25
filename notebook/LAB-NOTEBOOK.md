@@ -14991,3 +14991,43 @@ needs re-running.
 
 **Open, not claimed:** a physically real doorway. It needs either a lateral-velocity command on this body or a planner in
 the governor, plus a re-baseline of every humanoid result. Worth doing as its own experiment, not as a patch.
+
+## E153 · the ladder end to end: one held-out bank, one instrument, every rung (pre-registration, 2026-09-24 19:17 PDT; chained behind E151)
+
+**Why.** Every rung of the post-training ladder now exists in this programme, but scattered across benches and measured under
+five different instrument versions from today alone. A demonstration is one experiment, not a document: walk a single bank
+that nothing was ever trained or corrected on through every rung, in order, under one instrument, and report one table whose
+rows are the rungs. This is the artefact a reader is shown.
+
+**The bank.** Humanoid seeds **160–189** (bank v1 fresh: the phone, the reaching child, the scissors) and **330–359** (bank
+v2 fresh: the departure, the leak, the second asker). Neither block has ever been trained on, corrected on, or scored. The
+written bank 0–39 runs beside them because it is the only place the rule program's author ever wrote a rule, and the ladder's
+first claim is what happens off it.
+
+**The rungs**, all under the current defaults (R5c, R6b, door posts, true zeros):
+
+| rung | arm | body |
+|---|---|---|
+| 0, out of the box | frozen rules | shipped |
+| ceiling | oracle | shipped |
+| the big model | judge | shipped |
+| distil (rung 04) | copy r0, no correction | shipped |
+| correct (rung 02) | copy r3, three rounds | shipped |
+| post-train the body (rung 03) | judge | fine-tuned |
+| the same copy, new body | copy r3 | fine-tuned |
+| re-correct on the new body | copy r4 (E151) | fine-tuned |
+
+**Columns:** handled, wrong hand-overs, falls, operator seconds per episode, decisions per episode, model latency, and the
+expected calibration error over that arm's own decisions on the two fresh banks.
+
+**Predictions.**
+- **P153.1** the frozen rules are ≥ 36/40 on the written bank and ≤ 4/30 on each fresh bank. Prior 75 %.
+- **P153.2** the judge on the shipped body is ≥ 24/30 on fresh v2 and 15–24/30 on fresh v1. Prior 60 %.
+- **P153.3** copy r0 (no correction) is ≤ 12/30 on each fresh bank with ≥ 12 wrong hand-overs across the two. Prior 60 %.
+- **P153.4** copy r3 is ≥ 24/30 on fresh v1 and ≥ 24/30 on fresh v2, at ≤ 1 operator second per episode. Prior 55 %.
+- **P153.5** moving copy r3 to the fine-tuned body costs it ≥ 5 episodes across the two fresh banks (its habits were learned
+  on the old body, as the judge's were in E150). Prior 55 %.
+- **P153.6** copy r4, re-corrected on the new body, recovers ≥ 4 of whatever r3 lost there. Prior 55 %.
+- **P153.7** the copies' latency stays ≤ 0.12 s against the judge's ≥ 0.10 s per call, and the copies spend ≤ 1 operator
+  second per episode against the judge's ≥ 2. Prior 70 %.
+- **P153.8** on the fresh banks every copy's ECE is worse than the judge's by ≥ .05, and r4's on v2 is better than r3's. Prior 50 %.

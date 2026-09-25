@@ -32,6 +32,23 @@ Three findings, in plain words:
 - **The picking station**: the grasp-score threshold and the remote picker, with wrong picks, exceptions and operator seconds as the numbers.
 - **Where it did not work**: a critic over a language planner's steps, a wrist-camera perception question, and dispatch by expected cost, all negative and kept.
 
+## What landed, and when
+
+The programme runs daily and this section is the log: what was demonstrated, on what date, with the number. Every entry has a
+pre-registered prediction written before the run and scored after it in [the lab notebook](notebook/LAB-NOTEBOOK.md), and the
+misses are kept. Snapshots are pushed as work lands, so the commit history is the cadence.
+
+| date | what was demonstrated | the number |
+|---|---|---|
+| 24 Sep | **Post-training the body.** The humanoid's exported walking policy fine-tuned by PPO on the decision layer's own command stream, overnight on a laptop CPU | speed when told to stand .357 → .115 m/s, tracking error .31 → .18, no falls in a hundred episodes; a bounded edit over the frozen policy gets two thirds of that and never fell in 643 training evaluations |
+| 24 Sep | **How wrong a simulator may be.** Every body mass, all contact friction and every actuator gain perturbed per episode | outcomes hold to ±20 %, break at ±30 % for all but the bounded edit; the actuator gains carry essentially all of it, and they are the one family the shipped policy's training never randomised |
+| 24 Sep | **What correcting a model does to its own number.** Six cumulative rounds of the fleet's takeovers, scored every round on a bank the rounds never touch | calibration error .362 → .008 where corrected and .307 → .399 where not; the operator's veto window falls from rescuing 34 of 60 lines to rescuing none, and the round that covers that bank restores all three |
+| 24 Sep | **A second System One model, open, in the same seat.** Same typed questions, same seeds | zero-shot a lookup rather than a reader: calibration error .50 against the calibrated judge's .02; post-trained for eight seconds on the same fleet records, .06 on the distribution those records cover |
+| 24 Sep | **The bench audited against itself.** Six pre-registered instrument revisions in a day after post-training the body exposed what the old body's faults had been covering | method errors 47 to 52, including a wall the robot could pass through and a leak it was charged for but could not see; each found, logged and fixed in the open |
+| 23 Sep | **The world changing after the task starts.** A cup that leaks in hand, a requester who walks off, a second person who asks | frozen rules and rules rewritten for the previous bank hand the cup over wrongly 30 of 30; the judge reads the day's note 30 of 30; one correction round makes the fleet's own copy whole on both banks |
+| 22 Sep | **What the operator's intervention teaches.** The veto against the replacement action, on the same visited states | the veto says "not that" and the copy learns to ask, at 14 operator seconds a line; the replacement says "this instead" and the copy does the oracle's job at none |
+
+
 If you have five minutes: watch the clips under [See it move](#see-it-move), look at the ladder figure below, then read [docs/WHY.md](docs/WHY.md), one page in plain words.
 
 **Words used here.** *Judge*: the calibrated model in the decision seat. *Rule program* (or *the rules*): the hand-written policy, frozen before the tests. *Oracle*: code that knows the true state; the ceiling. *Bank*: a fixed set of test situations, ten or twenty runs each; the *anticipated* (or *written*) bank is what the rules were written for, the *unwritten* (or *unseen*) bank was designed afterwards. *Handled*: the situation ended the way its definition requires. *Veto window*: the judge proposes, an operator has one second to veto. *Gate*: below a stated confidence the robot asks instead of acting. *The copy* (or *the owned head*): a 421M-parameter model distilled from the judge, run on the robot. *Corrections* (or *vetoes*): the operator's disagreements, used as labels.

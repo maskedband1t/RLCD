@@ -15031,3 +15031,36 @@ expected calibration error over that arm's own decisions on the two fresh banks.
 - **P153.7** the copies' latency stays ≤ 0.12 s against the judge's ≥ 0.10 s per call, and the copies spend ≤ 1 operator
   second per episode against the judge's ≥ 2. Prior 70 %.
 - **P153.8** on the fresh banks every copy's ECE is worse than the judge's by ≥ .05, and r4's on v2 is better than r3's. Prior 50 %.
+
+### E151 results (phase A 14:15–14:49, training 14:49–19:24, loops to 19:39 PDT; scored 2026-09-24 19:46 PDT) · the loop closes: on the post-trained body the fleet's own copy beats the judge
+
+All on the fine-tuned body (E140), the current instrument. Seeds 130–159 (v1) and 300–329 (v2) are fresh; the corrections for
+r4 came from r3's visited states on 100–129 and 260–289, disjoint from every test seed.
+
+| arm | written 0–39 | v1 fresh 130–159 | v2 fresh 300–329 | operator s per episode (v1) | acceptable decisions | s per episode (v1) |
+|---|---|---|---|---|---|---|
+| judge | 30/40 (E150, same seeds) | **12/30** (phone **0/10**, child 2, scissors 10) | 30/30 | 6.7 | 42 % | 90.2 |
+| copy r3, corrected on the **shipped** body | 31/40 | **25/30** (phone 10, child 10, scissors 5) | 30/30 | 0.1 | 81 % | 61.0 |
+| **copy r4, re-corrected on this body** | 32/40 | 25/30 (phone 10, child 5, scissors 10) | 30/30 | **0.0** | **95 %** | **27.8** |
+| copy r4 + veto window | **37/40** (32.8 operator s) | **30/30** | 30/30 | 1.4 | 95 % | 29.4 |
+| oracle | – | 30/30 | 30/30 | 0 | 100 % | 26.5 |
+
+**Scoring.** P151.1 ✔ (31 ≤ 34). P151.2 ✗ (the phone 10/10, not ≤ 6). P151.3 ✗ (32 against 31, a gain of one). P151.4 ✔
+(25, 30, 0 wrong, 0 falls). P151.5 ✔ (r4 beats the judge on this body on both: 32 against 30, 25 against 12). P151.6 ✔
+(10/10). P151.7 ✔ (30/30 and 30/30). **Five of seven.**
+
+**Reading.**
+1. *E150's conclusion was about the judge, not about the decision layer.* Post-training the body cost the judge 21 → 11 of 30
+   because it waits for the caller outside her noticing radius on a body that no longer drifts in. The copy does not have
+   that problem: r3, corrected on the **old** body, handles the phone 10/10 on the new one, because what it learned from the
+   operator's replacements is where to stand, not a habit of drifting there. The layer that could not survive a change of
+   body is the one reading from scratch each time; the layer that was corrected survived it.
+2. *And re-correcting on the new body tightens it.* r4 against r3 on the same body: acceptable decisions 81 → 95 % on v1 and
+   79 → 93 % on v2, episode time 61 → 27.8 s, operator seconds .1 → 0, the written bank 31 → 32. The handled counts barely
+   move because r3 was already near the ceiling; what the round buys is decisiveness, which is what the operator pays for.
+3. *The trade inside the fresh v1 bank is worth naming:* r3 solved the reaching child 10/10 and the scissors 5/10; r4 the
+   reverse. Behind the veto window r4 is 30/30, the oracle's score, at 1.4 operator seconds an episode. On this bench the
+   fleet's owned copy plus a one-second window is the best arm there has ever been, and it makes no cloud call.
+4. *So the ladder's closing claim is stronger than this morning's:* post-training the body breaks the code written around it
+   and costs a model that reads from scratch; it does not cost a model the fleet has corrected, and one round on the new
+   body's own episodes takes that model past the judge at 80 ms and no operator time.

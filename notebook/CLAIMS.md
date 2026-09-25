@@ -729,3 +729,11 @@ uncorrected model, rescues 0 after two rounds. The round that finally covers tha
 35, the window's rescue +19). Correction makes the number honest where it corrects and dishonest where it does not, and the
 operator's safety net is what degrades; a falling intervention rate is therefore not evidence of a safer fleet unless an
 untouched bank is scored every round. Five of six predictions; the same shape as the humanoid copy's three rounds (4.79).
+
+**4.95** (2026-09-24 19:46 PDT, E151) On the post-trained humanoid the fleet's owned copy beats the cloud judge that taught it: 25/30 against
+12/30 on a fresh unwritten bank (the judge fails the phone 0/10 by waiting outside the requester's noticing radius on a body
+that no longer drifts in), 30/30 against 30/30 on the second fresh bank, and 32/40 against 30/40 on the written bank, at
+80 ms and no operator time against 6.7 operator seconds an episode. The copy corrected on the **old** body already survives
+the change; one further round on the new body's own episodes buys decisiveness rather than coverage (acceptable decisions
+81 → 95 %, episode time 61 → 28 s), and behind a one-second veto window that copy reaches the oracle's 30/30 at 1.4 operator
+seconds. Post-training the body costs a layer that reads from scratch and not a layer the fleet has corrected. Five of seven.

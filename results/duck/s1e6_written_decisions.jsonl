@@ -1,0 +1,1116 @@
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.579, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.829, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.835, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.831, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.424, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.352, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.351, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.367, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.38, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "step_aside", "conf": 0.363, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 0, "event": "cross", "choice": "step_aside", "conf": 0.373, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "step_aside", "conf": 0.469, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "step_aside", "conf": 0.628, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "step_aside", "conf": 0.397, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.39, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.604, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.684, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.721, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.649, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.664, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.716, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.598, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.65, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.744, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.746, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.77, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.756, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.742, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.747, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.758, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.754, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.755, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.616, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.731, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.757, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.723, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.725, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.725, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.652, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.665, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.762, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.755, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.619, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.621, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.603, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.616, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.6, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.594, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.592, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.614, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.697, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.652, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.767, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.821, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.753, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.771, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.74, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.748, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.754, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.74, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.749, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "walk_slow", "conf": 0.736, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 0, "event": "cross", "choice": "done", "conf": 0.917, "acc": ["done"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.579, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.829, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.835, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.831, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.424, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.371, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.405, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "step_aside", "conf": 0.361, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 1, "event": "approach", "choice": "step_aside", "conf": 0.379, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "ask_operator", "conf": 0.326, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": false}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.48, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.582, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.621, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.621, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.627, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.621, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.6, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.625, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.608, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.6, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.609, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.628, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.614, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.598, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.6, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.601, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.629, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.637, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.601, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.608, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.625, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.615, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.603, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.62, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.613, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.622, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.603, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.595, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.609, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.613, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.62, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.619, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.604, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.613, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.625, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.619, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.615, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.609, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.615, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.601, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.62, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.611, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.601, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.59, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.608, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.592, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.603, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.601, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.604, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.602, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.606, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.607, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.62, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.614, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.633, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.608, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.6, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.621, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.612, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.622, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.619, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.615, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.608, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.611, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.613, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.644, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.636, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.657, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.622, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.628, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.617, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.638, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.635, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.618, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.629, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.611, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.634, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.616, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.621, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.608, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.611, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.601, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.615, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.632, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 1, "event": "approach", "choice": "walk_slow", "conf": 0.624, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.629, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.85, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.856, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.851, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.312, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.772, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.863, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.841, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.846, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.347, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.424, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.448, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.355, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.546, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.759, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.789, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.786, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.794, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.784, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.803, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.793, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.815, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.806, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.812, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.805, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.813, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.808, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.81, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.799, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.823, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.823, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.361, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.344, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.339, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.434, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "step_aside", "conf": 0.494, "acc": ["stop", "turn_away", "wait"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.335, "acc": ["stop", "turn_away", "wait"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "walk_slow", "conf": 0.401, "acc": ["stop", "turn_away", "wait"], "ok": false}
+{"seed": 2, "event": "child_note", "choice": "done", "conf": 0.81, "acc": ["done"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "ask_operator", "conf": 0.795, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 3, "event": "blocked", "choice": "stop", "conf": 0.362, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "stop", "conf": 0.286, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "step_aside", "conf": 0.324, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 3, "event": "blocked", "choice": "ask_operator", "conf": 0.364, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.402, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.49, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.505, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.578, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.515, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.633, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.655, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.692, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.778, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.794, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.815, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.817, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.812, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.822, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.81, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.83, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.813, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.818, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.806, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.764, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.741, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.737, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.74, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.728, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "walk_slow", "conf": 0.737, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 3, "event": "blocked", "choice": "done", "conf": 0.921, "acc": ["done"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.587, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.436, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.372, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.377, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.358, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.338, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.452, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.36, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.38, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.368, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.646, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.475, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.57, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.451, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.441, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 4, "event": "cross", "choice": "step_aside", "conf": 0.465, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.573, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.786, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.738, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.748, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.729, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.743, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.719, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.746, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.724, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "walk_slow", "conf": 0.742, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 4, "event": "cross", "choice": "done", "conf": 0.924, "acc": ["done"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.587, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.834, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.838, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.837, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.846, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.831, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.842, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "walk_slow", "conf": 0.422, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.338, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.336, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.588, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.453, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.662, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.658, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.328, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.648, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.322, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.327, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.337, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.648, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.35, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.502, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.329, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.63, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.547, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.66, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.532, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.323, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.651, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.326, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.605, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.327, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.331, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.339, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.402, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.634, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 5, "event": "approach", "choice": "step_aside", "conf": 0.654, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.629, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.328, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.409, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.854, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.845, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.855, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.845, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.847, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.845, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.848, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.858, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.354, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.338, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.488, "acc": ["stop", "turn_away", "wait", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.451, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.453, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.754, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.778, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.79, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.78, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.801, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.79, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.792, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.781, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.792, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.779, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.38, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.387, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.438, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.424, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.412, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.737, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.788, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.792, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.782, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.785, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.787, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.792, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.787, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.745, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.734, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.77, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.797, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.38, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.442, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.45, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.546, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.688, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.737, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.738, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.745, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.741, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.767, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.747, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.759, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.755, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.754, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.758, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.749, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.752, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.749, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.744, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.385, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.42, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "step_aside", "conf": 0.429, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.547, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.413, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.687, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.721, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.708, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.717, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.715, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.72, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.723, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.725, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.721, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.724, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "walk_slow", "conf": 0.722, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.574, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.448, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.469, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.473, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.714, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 6, "event": "child_note", "choice": "wait", "conf": 0.718, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 7, "event": "blocked", "choice": "ask_operator", "conf": 0.795, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 7, "event": "blocked", "choice": "stop", "conf": 0.324, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.355, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.414, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.369, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.437, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.428, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.46, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.505, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.737, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.455, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "step_aside", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 7, "event": "blocked", "choice": "walk_fast", "conf": 0.403, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.314, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.472, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.603, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.605, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.621, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.501, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.66, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.684, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.675, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.667, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.608, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.728, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.718, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.695, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.643, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.622, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.605, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.595, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.55, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.781, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.775, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.708, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.695, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.701, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.731, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.745, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.698, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.708, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.701, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 7, "event": "blocked", "choice": "done", "conf": 0.927, "acc": ["done"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.587, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.834, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.427, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.384, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.369, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.362, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.396, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.404, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.33, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.345, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.515, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.448, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.417, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 8, "event": "cross", "choice": "step_aside", "conf": 0.372, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.471, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.678, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.568, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.606, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.728, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.724, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.737, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.579, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.695, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.693, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.784, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.725, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.725, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.719, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.721, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.718, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.708, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.705, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.722, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.787, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.752, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.74, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.748, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.724, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.706, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.722, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.713, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.715, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.716, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.718, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.733, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.586, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.765, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.756, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.626, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.62, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.505, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.616, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.613, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.595, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.711, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.763, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.807, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.764, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.795, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.665, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 8, "event": "cross", "choice": "walk_slow", "conf": 0.752, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "walk_slow", "conf": 0.587, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "walk_slow", "conf": 0.834, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "walk_slow", "conf": 0.838, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "walk_slow", "conf": 0.442, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "walk_slow", "conf": 0.379, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.351, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.362, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.564, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.494, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.653, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.657, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.516, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "ask_operator", "conf": 0.378, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.539, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.468, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.428, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.627, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.487, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.382, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.638, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.503, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.644, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.477, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.349, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.626, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.357, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.332, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.375, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.465, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.631, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.367, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.367, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.377, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 9, "event": "approach", "choice": "step_aside", "conf": 0.395, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.627, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.855, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.853, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.853, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.857, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.859, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.331, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.325, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.499, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.772, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.846, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.849, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.84, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.854, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "step_aside", "conf": 0.367, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "step_aside", "conf": 0.354, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "step_aside", "conf": 0.335, "acc": ["stop", "turn_away", "wait", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.591, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.767, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.791, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.803, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.802, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.821, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.811, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.813, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.811, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.815, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.809, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.818, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.814, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.796, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.798, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.526, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.472, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.468, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.384, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.368, "acc": ["stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.319, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.537, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.567, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.59, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.644, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.695, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.77, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.799, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.796, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.799, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.817, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.816, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.812, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.818, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.787, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.789, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.784, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.583, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.437, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.379, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 10, "event": "child_note", "choice": "wait", "conf": 0.372, "acc": ["stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.374, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.666, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.616, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.583, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.503, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.633, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.727, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "walk_slow", "conf": 0.732, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 10, "event": "child_note", "choice": "done", "conf": 0.864, "acc": ["done"], "ok": true}
+{"seed": 11, "event": "blocked", "choice": "ask_operator", "conf": 0.795, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 11, "event": "blocked", "choice": "stop", "conf": 0.391, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 11, "event": "blocked", "choice": "stop", "conf": 0.274, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 11, "event": "blocked", "choice": "step_aside", "conf": 0.415, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 11, "event": "blocked", "choice": "step_aside", "conf": 0.325, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 11, "event": "blocked", "choice": "step_aside", "conf": 0.312, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.579, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.829, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.835, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.831, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.425, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.357, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.426, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.268, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.725, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.478, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.462, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.559, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 12, "event": "cross", "choice": "step_aside", "conf": 0.403, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.466, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.686, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.612, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.691, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.657, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.726, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.735, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.676, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.787, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.766, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.737, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.753, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.741, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.754, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.768, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.765, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.763, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.698, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.625, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.646, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.636, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.649, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.656, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.646, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.658, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.656, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.667, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.66, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.664, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.646, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.66, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.7, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.691, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.7, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.712, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.705, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.767, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.762, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.641, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.691, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.766, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.742, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.622, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.663, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.762, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.621, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.487, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.624, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.7, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.706, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.573, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.584, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.54, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.569, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.544, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.716, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.77, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.805, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.814, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.824, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.815, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.767, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.756, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.738, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.746, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.731, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.748, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.736, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "walk_slow", "conf": 0.706, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 12, "event": "cross", "choice": "done", "conf": 0.925, "acc": ["done"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "walk_slow", "conf": 0.587, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "walk_slow", "conf": 0.834, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "walk_slow", "conf": 0.838, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "walk_slow", "conf": 0.837, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "walk_slow", "conf": 0.846, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "walk_slow", "conf": 0.831, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.39, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.366, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.482, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.633, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.449, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.678, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.499, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.53, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.647, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.491, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.639, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.533, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.627, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.502, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.443, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.619, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.485, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.614, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.533, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.502, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.615, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.511, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.604, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.465, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.626, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.505, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.398, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.629, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 13, "event": "approach", "choice": "step_aside", "conf": 0.521, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.629, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.85, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.856, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.851, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.334, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.772, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.863, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.841, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.846, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.347, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.391, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.34, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.372, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.723, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.785, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.789, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.786, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.794, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.784, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.803, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.793, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.815, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.806, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.812, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.805, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.813, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.808, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.81, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.799, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.807, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.358, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.361, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "walk_slow", "conf": 0.344, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.339, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.372, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.513, "acc": ["stop", "turn_away", "wait"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "step_aside", "conf": 0.382, "acc": ["stop", "turn_away", "wait"], "ok": false}
+{"seed": 14, "event": "child_note", "choice": "done", "conf": 0.801, "acc": ["done"], "ok": true}
+{"seed": 15, "event": "blocked", "choice": "ask_operator", "conf": 0.795, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 15, "event": "blocked", "choice": "step_aside", "conf": 0.325, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 15, "event": "blocked", "choice": "step_aside", "conf": 0.377, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 15, "event": "blocked", "choice": "step_aside", "conf": 0.451, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 16, "event": "cross", "choice": "walk_slow", "conf": 0.587, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "walk_slow", "conf": 0.834, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "walk_slow", "conf": 0.838, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "walk_slow", "conf": 0.837, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "walk_slow", "conf": 0.384, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "step_aside", "conf": 0.371, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 16, "event": "cross", "choice": "step_aside", "conf": 0.327, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "step_aside", "conf": 0.444, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "step_aside", "conf": 0.419, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 16, "event": "cross", "choice": "step_aside", "conf": 0.516, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.579, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.393, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.402, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.378, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.446, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.398, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.369, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.324, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "walk_slow", "conf": 0.46, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.455, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.61, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.55, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.652, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.637, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.573, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.646, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.491, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.409, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.478, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.461, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.639, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.502, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.63, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.547, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.661, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.532, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.493, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.388, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.478, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.381, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.479, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.639, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.472, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.394, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.653, "acc": ["stop", "wait", "walk_slow"], "ok": false}
+{"seed": 17, "event": "approach", "choice": "step_aside", "conf": 0.538, "acc": ["step_aside", "stop", "turn_away", "wait", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.627, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.855, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.853, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.853, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.857, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.852, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.324, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.328, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.769, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.847, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.342, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.362, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.345, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.406, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.439, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.547, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.455, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.775, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.799, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.797, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.802, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.794, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.806, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.807, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.803, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.793, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.8, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.795, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.801, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.362, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.384, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.43, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.539, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.693, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.731, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.723, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.726, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.738, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.741, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.742, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.757, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.747, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.761, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.748, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.765, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.749, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.765, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.748, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.761, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.745, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.378, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.391, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "step_aside", "conf": 0.444, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.516, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.698, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.732, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.729, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.739, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.742, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.74, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.736, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.755, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.749, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.752, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.745, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.757, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.75, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.751, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "wait", "conf": 0.6, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "wait", "conf": 0.435, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "wait", "conf": 0.457, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "wait", "conf": 0.462, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "wait", "conf": 0.437, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.461, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.705, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.729, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.7, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.712, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.712, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.727, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.733, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.723, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "walk_slow", "conf": 0.719, "acc": ["walk_fast", "walk_slow"], "ok": true}
+{"seed": 18, "event": "child_note", "choice": "done", "conf": 0.862, "acc": ["done"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "ask_operator", "conf": 0.803, "acc": ["walk_fast", "walk_slow"], "ok": false}
+{"seed": 19, "event": "blocked", "choice": "step_aside", "conf": 0.381, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 19, "event": "blocked", "choice": "step_aside", "conf": 0.277, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 19, "event": "blocked", "choice": "step_aside", "conf": 0.327, "acc": ["ask_operator", "stop", "turn_away", "wait"], "ok": false}
+{"seed": 19, "event": "blocked", "choice": "step_aside", "conf": 0.462, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "wait", "conf": 0.485, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "wait", "conf": 0.379, "acc": ["step_aside", "stop", "turn_away", "wait"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "wait", "conf": 0.402, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.497, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.684, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.72, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.71, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.699, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.706, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.714, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.72, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.719, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.71, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.72, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.72, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.713, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.717, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.713, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.721, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.719, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.721, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.716, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.721, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.721, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.703, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.717, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.723, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.724, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.719, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.733, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.724, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.719, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.724, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.736, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.737, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.723, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.733, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.731, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.721, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.722, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.72, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.731, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.724, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.717, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.728, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.717, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.738, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.728, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.736, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.744, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.736, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.742, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.746, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.736, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.736, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.733, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.741, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.738, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.741, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.739, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.738, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.731, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.726, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.731, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.735, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.718, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.725, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.737, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.745, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.732, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.747, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.733, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.741, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.729, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.739, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.728, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.728, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.731, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.727, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.738, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.73, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.741, "acc": ["stop", "wait", "walk_slow"], "ok": true}
+{"seed": 19, "event": "blocked", "choice": "walk_slow", "conf": 0.734, "acc": ["stop", "wait", "walk_slow"], "ok": true}

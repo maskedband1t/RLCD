@@ -30,6 +30,21 @@ def _safety_sig(f):
     return json.dumps(d, sort_keys=True, default=str)
 
 
+_CAL = None
+
+
+def _calibrate(c):
+    """Raw confidence -> P(choice acceptable), from results/duck/s1_calibrator.json."""
+    global _CAL
+    if _CAL is None:
+        import bisect
+        d = json.load(open("results/duck/s1_calibrator.json"))
+        _CAL = (d["edges"], d["rates"], bisect)
+    edges, rates, bisect = _CAL
+    i = max(0, min(len(rates) - 1, bisect.bisect_left(edges, c) - 1))
+    return rates[i]
+
+
 class Skip:
     """E154's wrapper with a pluggable change-test. Guards are byte-identical to E154's."""
     MODE, TAU, P = "exact", None, 0.45
@@ -61,6 +76,18 @@ class Skip:
                 ok = _safety_sig(f) == self.last_safe
             elif self.mode == "calibrated":
                 ok = self.last_conf is not None and self.last_conf >= self.tau
+            elif self.mode == "geom":
+                # S1-E7: Argon's physical gate. Skip when the code-measured distance to
+                # the person is large. Knows nothing about the model or the notes.
+                try:
+                    ok = room.person_dist() >= self.tau
+                except Exception:
+                    ok = False
+            elif self.mode == "recal":
+                # S1-E5: map raw confidence through a calibrator fitted on a different
+                # bank, then gate on the calibrated probability. tau now names something.
+                ok = (self.last_conf is not None
+                      and _calibrate(self.last_conf) >= self.tau)
             elif self.mode == "random":
                 # S1-E3 control: skip at a matched RATE with no state test at all.
                 # Isolates committing-to-an-action from the skip test's content.
@@ -103,7 +130,7 @@ def main():
 
     rows = []
     for mode in a.modes.split(","):
-        Skip.MODE, Skip.TAU, Skip.P = mode, (a.tau if mode == "calibrated" else None), a.p
+        Skip.MODE, Skip.TAU, Skip.P = mode, (a.tau if mode in ("calibrated", "recal", "geom") else None), a.p
         t0 = time.time()
         print(f"\n=== {mode}{'' if Skip.TAU is None else ' tau=' + str(Skip.TAU)} ===", flush=True)
         for s in seeds:

@@ -15632,3 +15632,44 @@ quarrel with the wrapper, are still not separated,** and nothing about judgment 
 0/12 and I read the zero as a decision. The check that catches it is one line over the decision records — *was the action the
 situation needs ever in the option set?* — and it belongs in the scoring of every situation whose right answer is a specific
 action, before any narrative is written about why an arm failed.
+
+## E159 · what the field actually randomises, against what actually breaks the policy (pre-registration, 2026-09-25 12:55 PDT; launched now)
+
+**Why.** the author pointed at Isaac Lab. It cannot run on this machine — it needs CUDA ≥ 13 and an NVIDIA RTX GPU, and this is
+an Apple M4 Pro with no CUDA — and cloud compute is out of scope, so the useful thing is its source, which is open. Reading
+it produced a field observation that bears directly on E142b.
+
+**What Isaac Lab's humanoid locomotion recipe actually randomises.** Its base velocity environment's `EventCfg` carries:
+base mass by uniform(−5, +5) kg, centre of mass by ±0.05 m in x and y, joint reset positions scaled 0.5–1.5, pushes of
+±0.5 m/s every 10–15 s, and a "physics material" event whose friction range is **degenerate** (static 0.8–0.8, dynamic
+0.6–0.6, restitution 0.0–0.0 — it assigns a constant, it does not randomise). **Actuator gains are not randomised.** The
+framework ships `randomize_actuator_gains`, which can add, scale or set stiffness and damping, so this is a **choice, not a
+limitation**. And the **G1-specific config narrows it further**: `push_robot`, `add_base_mass` and `base_com` are all set to
+`None`, and `reset_robot_joints` is re-parameterised to (1.0, 1.0), which is no randomisation at all. NVIDIA's shipped G1
+walking recipe trains with essentially no domain randomisation.
+
+**Why that matters here.** E142b measured, one family at a time at ±30 %: mass alone costs the shipped policy 3 % falls,
+friction alone 0 %, **gains alone 21 %** (direct fine-tune 13 %, bounded edit 3 %), against 28 % for all three together. The
+gains carry essentially all of it. So **both dominant open humanoid stacks omit randomisation of the one family we measured
+as carrying the breakage** — MuJoCo Playground's G1, whose policy we drive, and Isaac Lab's G1, independently.
+
+**The gap in our own data.** We have gain-only at ±30 % and nothing below it, and Isaac Lab's base-mass envelope is ±5 kg,
+which on this 33.34 kg robot is **±15 % of the whole robot**. So the question we cannot currently answer is whether gains
+bite *inside* the magnitude range the field does randomise other things to.
+
+**Design.** The E142 harness, three policies (shipped ONNX, direct fine-tune, bounded edit), 100 episodes each, one family at
+a time: **gains at δ = .10, .15, .20, .25**, and **mass and friction at δ = .15 and .20** as the in-envelope reference.
+Unperturbed controls already exist from E142 (shipped .01, direct .00, edit .00).
+
+**Predictions.**
+- **P159.1** Gain-only costs the shipped policy ≥ 5 points of fall rate over its control at δ = .20. Prior 65 %.
+- **P159.2** At δ = .15, the magnitude Isaac Lab randomises base mass to, **gain-only costs the shipped policy at least 3
+  points more than mass-only.** Prior 60 %. This is the experiment's point.
+- **P159.3** Mass-only stays within 2 points of control at both .15 and .20 for all three policies. Prior 80 %.
+- **P159.4** The bounded edit's gain-only fall rate is below the shipped policy's at every δ tested. Prior 75 %.
+- **P159.5** Gain-only fall rate is monotone non-decreasing in δ for the shipped policy. Prior 60 %.
+- **P159.6** Friction-only stays within 2 points of control at both δ for all three policies. Prior 75 %.
+
+**What this cannot say.** We are perturbing at *evaluation*; domain randomisation acts at *training*. This measures the
+exposure a non-randomised policy carries, not what Isaac Lab's own policy would do, which we cannot run. The honest claim is
+about the envelope, not about their checkpoint.

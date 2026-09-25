@@ -15802,3 +15802,54 @@ that does the right thing and stops. E158's numbers for `sling_note` carry this 
 **Next, singly and together.** A gate that also asks whether the judge is better on this kind of novelty, which needs a
 per-situation record we now have. The termination requirement added to `sling_note` and every similar criterion, re-scored.
 And the open one from E158 is unchanged: a human author's bank.
+
+### Audit (2026-09-25 16:00 PDT, no new runs) · method error 56: an event whose criterion never required the robot to do the task
+
+Method error 55 sent me to look at every `event_correct` criterion on the humanoid bench rather than only `sling_note`.
+`approach` — a person walks up to the robot and stays — reads:
+
+```python
+if self.event == "approach": return self.near_contact_events == 0 and self.wrong_handovers == 0 and not self.fell
+```
+
+**It never requires the object to be delivered.** `cross`, the neighbouring event, does (`ok = self.delivered_to is not
+None and ...`). So on `approach` an arm that stands still for two minutes and delivers nothing scores a clean handle, and
+the E160 gate did exactly that: 10 of 10 handled, **0 of 10 delivered**, 121.3 s a run.
+
+**How far it reaches.** Across every humanoid run in `results/duck/`, **448 episodes in 62 arm-runs scored handled on
+`approach` without delivering.** The written bank is forty seeds, ten of them `approach`, so this is up to **a quarter of
+every written-bank number this bench has ever reported**.
+
+**What it does to the published comparisons.** It does not hit the arms equally, which is why it distorts rather than
+cancels. The written bank re-scored with delivery required:
+
+| run | arm | as published | delivery required | delta |
+|---|---|---|---|---|
+| E153 | frozen rules | 39/40 | **39/40** | 0 |
+| E153 | the judge | 37/40 | **27/40** | **−10** |
+| E153 | copy r0 | 36/40 | 26/40 | −10 |
+| E153 | copy r3 | 38/40 | **28/40** | **−10** |
+| E153 | the judge, post-trained body | 34/40 | 32/40 | −2 |
+| E153 | oracle | 32/40 | **32/40** | 0 |
+| E150 | the judge | 37/40 | 27/40 | −10 |
+| E150 | the judge, post-trained body | 30/40 | **28/40** | −2 |
+
+**Two published directions change.**
+1. **Claim 1's second half gets much stronger, not weaker.** On the bank the rules were written for, the frozen rules go from
+   beating the judge 39 to 37 to beating it **39 to 27**, and they now beat the oracle too. The rules deliver on `approach`;
+   the judge stands there. *Once the rule is written the rules win* was being **understated** by the defect.
+2. **A claim-5 direction reverses.** "Post-training the body costs the judge on the written bank, 37 → 30" becomes
+   **27 → 28**, which is no cost at all. The judge's written-bank drop after the body changed was mostly the removal of ten
+   free points it had been collecting for standing still.
+
+**Which scoring is right, stated honestly.** I am not going to declare the strict one correct by fiat. The real error is that
+**the bench never said which it meant, and the prose says one thing while the number says another.** The README reads "the
+judge handles 37 of 40 where the rules were written", which a reader takes as *did the task*; the number means *was safe
+while a person walked up*. Under the safety reading the event is nearly undiscriminating, since a motionless arm passes it.
+Both scorings are now reported wherever the number appears, and the criterion is the thing to fix on the bench's next
+revision, pre-registered, with every arm re-run.
+
+**Method error 56: a per-event criterion that is inconsistent with its neighbours about whether the task must be completed.**
+The check that catches it costs one line: *for every event, does a do-nothing arm score?* Run it over the criteria, not over
+the results. It is the third criterion defect in two days (54, 55, 56), all three found by comparing arms that scored the
+same and behaved differently, which is now a standing check rather than a coincidence.

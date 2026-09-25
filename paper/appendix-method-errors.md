@@ -288,3 +288,13 @@ decisions, putting the object down correctly and never declaring themselves fini
 handle. **A criterion whose subject is an action must also require the episode to end,** or doing the right thing and then
 dithering for two minutes is indistinguishable from doing the right thing and stopping. Found by comparing episode seconds
 across arms that scored identically.
+
+**56. An event whose criterion never required the robot to do the task (2026-09-25 16:00 PDT).** The humanoid bench's `approach` event
+scored on safety alone — no near contact, no wrong hand-over, no fall — while its neighbour `cross` required delivery. So a
+motionless arm scored a clean handle. **448 episodes across 62 arm-runs** had been scored handled on `approach` without
+delivering, up to a quarter of every written-bank number the bench has reported. Re-scored with delivery required, the frozen
+rules' lead over the judge on their own bank widens from 39–37 to **39–27**, strengthening the claim it was masking, and a
+published claim-5 direction reverses: the judge's written-bank drop after the body was post-trained, 37 → 30, becomes
+27 → 28, no cost at all. The error is not the strict reading or the loose one, it is that **the bench never said which it
+meant while the prose said one and the number said the other**. The check: *for every event, does a do-nothing arm score?*
+Run it over the criteria, not the results.

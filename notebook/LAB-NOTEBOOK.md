@@ -15673,3 +15673,48 @@ Unperturbed controls already exist from E142 (shipped .01, direct .00, edit .00)
 **What this cannot say.** We are perturbing at *evaluation*; domain randomisation acts at *training*. This measures the
 exposure a non-randomised policy carries, not what Isaac Lab's own policy would do, which we cannot run. The honest claim is
 about the envelope, not about their checkpoint.
+
+### E159 · results (2026-09-25 13:11 PDT). The field leaves the dangerous parameter alone, and at the field's own magnitudes that costs almost nothing
+
+**Four of six predictions held, and the two that missed are the dramatic ones.** Falls per 100 episodes, one family at a
+time, controls at δ=0 from E142:
+
+| family · policy | control | ±10 % | ±15 % | ±20 % | ±25 % | ±30 % |
+|---|---|---|---|---|---|---|
+| **gains** · shipped | 1 | 1 | 2 | **5** | **15** | **21** |
+| gains · direct fine-tune | 0 | 0 | 1 | 1 | 5 | 13 |
+| gains · bounded edit | 0 | 0 | 0 | 0 | **0** | 3 |
+| mass · shipped | 1 | — | 1 | 1 | — | 3 |
+| friction · shipped | 1 | — | 0 | 0 | — | 0 |
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P159.1 | gains cost the shipped policy ≥ 5 points over control at ±20 % | 65 % | +4 | ✗ |
+| P159.2 | at ±15 % gains cost ≥ 3 points more than mass | 60 % | +1 | ✗ |
+| P159.3 | mass within 2 points of control at ±15 and ±20 % | 80 % | yes, all three policies | ✓ |
+| P159.4 | the bounded edit is at or below the shipped policy at every δ | 75 % | 0 all the way to ±25 % | ✓ |
+| P159.5 | gains monotone in δ for the shipped policy | 60 % | 1, 2, 5, 15, 21 | ✓ |
+| P159.6 | friction within 2 points of control at ±15 and ±20 % | 75 % | yes, all three | ✓ |
+
+**1. The sharp version of the hypothesis is wrong and I withdraw it.** I expected the field's omission to bite inside the
+field's own randomisation magnitudes. It does not. At ±15 %, the magnitude Isaac Lab randomises base mass to, perturbing the
+actuator gains instead costs the shipped policy **one point**. The exposure is a large-perturbation phenomenon: flat to
+±15 %, +4 at ±20 %, then it accelerates to 15 and 21 points.
+
+**2. What replaces it is more useful than what I predicted.** The curve gives a fleet a number: **the actuator model has to
+be within about 20 % of the real thing.** Inside that band, leaving gains out of the randomisation set costs almost nothing,
+and both stacks are fine. Outside it, nothing in either stack protects you, and the cost climbs fast. That is an engineering
+specification rather than a complaint about somebody's config, and it is the honest form of the finding.
+
+**3. Mass and friction are flat everywhere, which sharpens claim 5's advice.** Mass costs at most 3 points at ±30 % and
+friction costs nothing at all, at any magnitude tested, for any of the three policies. So "get the actuator model right, mass
+and friction may be rough" survives intact and is now measured across five magnitudes rather than one.
+
+**4. The bounded edit is the robust one, and by a wide margin.** Zero falls under gain perturbation all the way to ±25 %,
+where the shipped policy is at 15 and the direct fine-tune at 5, and 3 points at ±30 %. Post-training that keeps RL's
+volatility inside a small bounded residual does not just preserve the old contracts (E141); it is markedly more tolerant of
+the one parameter family that breaks the others. That is a new and clean result for claim 5.
+
+**What this still cannot say.** We perturb at evaluation; domain randomisation acts at training. This measures the exposure a
+non-randomised policy carries, not what an Isaac-Lab-trained checkpoint would do, which we cannot run on this hardware. And
+the two stacks were read, not executed: I read three files of Isaac Lab on `main` and one of MuJoCo Playground locally.

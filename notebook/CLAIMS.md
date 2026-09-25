@@ -818,3 +818,20 @@ corrected copy all take 0 of 12, and all three fail identically: they never term
 the 120 s ceiling at 173 to 239 decisions with **zero asks**. Independent convergence is evidence the gap is real rather than
 an artefact of knowing what the rules cover, and the failure mode is one the blind author had named for a different
 situation.
+
+**4.105** (2026-09-25 13:11 PDT, E159, with Isaac Lab and MuJoCo Playground read from source) Neither dominant open humanoid stack
+randomises actuator gains when training this robot, and at the magnitudes they do randomise, that costs almost nothing.
+Isaac Lab ships `randomize_actuator_gains` and its G1 locomotion config never calls it, while also setting `push_robot`,
+`add_base_mass` and `base_com` to `None` and reset-joint scaling to (1.0, 1.0). MuJoCo Playground's G1, whose policy we
+drive, randomises floor friction U(0.4, 1.0), joint friction loss x U(0.5, 2.0), armature x U(1.0, 1.05), link masses
+x U(0.9, 1.1) and torso mass +/-1 kg, and leaves the position gain alone. **I predicted the omission would bite inside their
+own envelope and it does not:** at +/-15 %, the magnitude Isaac Lab randomises base mass to, perturbing gains instead costs
+the shipped policy one point of fall rate. The exposure is flat to +/-15 %, +4 points at +/-20 %, then 15 and 21 at +/-25 and
++/-30 %. **The usable output is a specification rather than a complaint: the actuator model must be within about 20 % of the
+real thing.** Mass costs at most 3 points at +/-30 % and friction nothing at any magnitude, so claim 5's advice survives and
+is now measured across five magnitudes. Strengthens 4.89 and 4.90.
+
+**4.106** (2026-09-25 13:11 PDT, E159) Post-training as a bounded residual is markedly more tolerant of the parameter that breaks the
+others. Under actuator-gain perturbation the bounded edit takes **zero falls all the way to +/-25 %**, where the shipped
+policy is at 15 and the direct fine-tune at 5, and 3 points at +/-30 %. It already preserved the contracts written around the
+old body (E141); it is also the arm that degrades most gracefully when the simulator is wrong about the actuators.

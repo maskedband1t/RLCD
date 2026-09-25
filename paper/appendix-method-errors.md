@@ -231,5 +231,12 @@ hand-over scoring depended on it, and the people and the table are deliberately 
 the walls and cart were not, and are the bug. Fix (R7): explicit contact pairs from each foot to each wall and to the cart,
 verified to leave mass and inertia untouched; driven at a wall panel the robot now contacts it and falls, and the doorway
 gap passes cleanly. Rule: in a scene built for speed, adding a geom does not add a constraint — assert the contact you
-intend, and never trust scenery you have not driven the robot into.
-
+intend, and never trust scenery you have not driven the robot into. *Amendment (same day):* making the walls real was tried
+and reverted. With the contacts in place every arm fell in nearly every episode, because the requester stands off the
+doorway's axis, the gap is narrower than where she stands, and the governor steers straight at its target on a body with no
+lateral velocity; a two-stage waypoint through the gap did not help, since the robot has two metres of travel to correct
+1.6 m of offset. A physical doorway needs a navigation layer this bench does not have. What shipped instead is a rendering
+fix: the room is drawn as it is simulated, two door posts rather than solid panels, verified to leave every outcome, fall
+and episode length identical on eight seeds across four situations. The doorway remains what it always was, a fact in the
+state. Second rule: when a bench's picture claims a constraint its model does not enforce, either enforce it or stop
+drawing it — and prefer the change that provably moves no number.

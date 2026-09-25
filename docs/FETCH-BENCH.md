@@ -8,6 +8,14 @@ every run is pre-registered. Source: `src/humanoid/fetch_sim.py`, `src/humanoid/
 
 ## What is fixed
 
+**The room is drawn as it is simulated.** MuJoCo Playground's feet-only scene collides through five explicit pairs (each foot
+to the floor, three self-collisions) and sets every other robot geom's collision masks to zero, so anything added to it is
+scenery: the table, the parcel and the people do not collide, and neither did the doorway. People are scored by proximity
+instead (nearest approach, child-zone entries, wrong hand-overs), which is deliberate and is where the safety numbers come
+from. The doorway is a fact in the state, not a physical constraint, and since 2026-09-24 it is drawn as two posts rather
+than as solid walls a robot could be seen passing through (method error 52). Making it physical was tried and reverted: it
+needs a navigation layer this bench does not have, and is open work rather than a claim.
+
 - **Body.** The G1 with its shipped walking policy. Code commands velocities; scripted arm motions pick, carry (the object rides
   the wrist as a weld), hand over (a ramped standing pose, then the object is attached to the person) and put down.
 - **Room.** A table with the object; a doorway (walls, a 1 m gap) at 4.2 m that a cart can block; the requester beyond the door.

@@ -14968,3 +14968,26 @@ judge and the oracle on 40–69 and 230–259. The comparison is E150's table on
   an ask or a hand-over, not by the path. Prior 65 %.
 - **P152.5** the oracle stays ≥ 27/30 on each unwritten bank. Prior 65 %.
 - **P152.6** at least one arm's episodes get longer by ≥ 5 s on the written bank (the detour round the wall is real distance). Prior 60 %.
+
+### E152 · void, and what the attempt taught (2026-09-24 17:28 PDT)
+
+The run completed and is **not scored**: its predictions were written against a fix that turned out to be broken. With
+explicit foot-to-scenery contact pairs every arm fell in nearly every episode (the oracle 40/40 on the written bank, the
+rules 40/40, the judge 30/40), which is not "the shortcut is gone" but a bench that no longer works.
+
+**Why the fix failed.** The requester stands at y ≈ 0.3–0.9 and the doorway gap is |y| < 0.5, so the straight line from the
+table to her passes through a wall panel. The governor's `steer` points at the target and the walking policy has no lateral
+velocity; with the walls real the robot walks into one and trips. A two-stage waypoint (line up on the doorway axis, then
+cross) did not help: from the table at y = −1.6 the robot has about two metres of forward travel to correct 1.6 m of lateral
+offset at a yaw rate of 0.8 rad/s, and it arrives at the wall plane still at y ≈ −0.8 to −1.1. A room with a physical
+doorway needs a navigation layer this bench does not have and is not about.
+
+**What was done instead.** Reverted the pairs and the router. The doorway is what it always was: a **fact in the state**
+(`doorway: further_ahead / ahead_open / ahead_blocked_by_a_cart / passed`), and the decision being scored is whether the
+judge waits for the cart to clear, not whether the robot can thread a gap. The room is now **drawn as it is simulated**: two
+door posts instead of two solid panels, so no clip shows a robot passing through a wall. Verified on eight seeds across
+four situations that every outcome, fall and episode length is identical to the panels, so no result changes and nothing
+needs re-running.
+
+**Open, not claimed:** a physically real doorway. It needs either a lateral-velocity command on this body or a planner in
+the governor, plus a re-baseline of every humanoid result. Worth doing as its own experiment, not as a patch.

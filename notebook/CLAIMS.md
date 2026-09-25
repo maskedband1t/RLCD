@@ -800,13 +800,17 @@ oracle's 8.2 s and zero: eight times the time and half a minute of a person's at
 situation in this programme before this one *supplemented* what the robot could see; this is the first that *contradicts* it,
 and the blind author found that hole in three minutes.
 
-**4.103** (2026-09-25 08:43 PDT, E158) The operator's one-second veto window is a switch on this bank, not a safety net. The same window
-takes *someone else is already holding the object* from 0 of 12 to **12 of 12**, and takes the contradicting note from 12 of
-12 to **0 of 12**, burning 92.2 operator seconds an episode and hitting the time ceiling on all twelve. It rescues the
-failure whose shape is *not asking* and destroys the one whose answer is a hand-over to an unexpected person, because its
-proposals are about motion and it keeps re-proposing motion. First time in this programme the window has made an arm strictly
-worse on a situation. Whether this is a real interaction or the confirm wrapper's known quarrel with this body's gait (E110)
-is unseparated and is the next run. Amends claim 2.
+**4.103** (2026-09-25, E158; **half withdrawn 2026-09-25 08:47 PDT after the records check, method error 54**) The operator's
+one-second veto window turns a non-terminating failure into a resolved one: on *someone else is already holding the object*
+it takes the judge from 0 of 12 to **12 of 12**, in two decisions, ending properly at 11.5 s where the bare judge runs 173
+decisions to the two-minute ceiling. That half stands and it is the claim-4 shape. **The other half is withdrawn.** I also
+wrote that the window "destroys" the contradicting-note situation, 12 of 12 to 0 of 12. The decision records say the window
+arm **never picked the object up in any of the twelve episodes**, so the hand-over that situation needs was offered in **0 of
+its 289 decisions**: the judgment I reported it failing was never exercised. What is true there is a cost finding and belongs
+to claim 6, not claim 2 — on a situation needing sustained travel, a pick-up and then a hand-over, the window's overhead
+(92.2 operator seconds an episode, 9.7 vetoes) exhausted the two-minute budget before step one, where the bare judge finished
+in 67 s. Whether that is a general locomotion overhead or this body's known quarrel with a stop-start gait (E110) is
+unseparated, and no judgment claim is available from that cell either way.
 
 **4.104** (2026-09-25 08:43 PDT, E158) Two authors who could not see each other's work independently wrote the same situation — *someone
 else is already holding the object* — and it is the one nothing handles. The frozen rules, the judge and the fleet's own

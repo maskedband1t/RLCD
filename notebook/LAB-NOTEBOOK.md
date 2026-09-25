@@ -15600,3 +15600,35 @@ decisions and 7.9 s against 1.0 decision and 1.0 s for everyone else.
 and the natural companion. A correction round for the copy on these five. And the obvious one: why the veto window destroys
 the contradicting note, which is either a real interaction or the confirm wrapper's known quarrel with this body's gait
 (E110) and needs separating.
+
+### E158 · amendment (2026-09-25 08:47 PDT). Withdrawing point 4: the veto window did not destroy a judgment, it never let the task start
+
+I wrote an hour ago that the one-second veto window "destroys" the blind author's contradicting-note situation, taking it
+from 12/12 to 0/12, and framed it as the window rescuing the *not asking* failure and breaking the *wrong recipient* one.
+**Half of that is wrong and I withdraw it.** The check I should have run first, on the decision records:
+
+| arm | decisions | `hand_to_Ellis` offered | chosen | ever picked the object up | hit the 120 s ceiling |
+|---|---|---|---|---|---|
+| the judge | 199 | **37** | 6 | **12/12** | 0/12 |
+| the judge + 1 s veto window | 289 | **0** | 0 | **0/12** | **12/12** |
+
+The window arm **never picked the object up in any of the twelve episodes**, and the hand-over was therefore never in its
+option set even once. It spent 289 decisions walking, proposing, being vetoed and asking, was "far away" from Ellis in 154 of
+them, and ran out of clock before reaching the table. **The judgment I reported it failing was never exercised.**
+
+**What survives.** The window's rescue of *someone else is already holding the object*, 0/12 → 12/12, is real: there the
+judgment was exercised, in two decisions, and the episode ended properly at 11.5 s. The window turns a non-terminating
+failure into a resolved one, which is the claim-4 shape and stands.
+
+**What replaces the withdrawn half, and it is still worth having.** On a situation that requires sustained travel, a pick-up
+and then a hand-over, the window's per-decision overhead was **fatal to the task**: 92.2 operator seconds an episode, 9.7
+vetoes, and no progress past step one in two minutes, where the bare judge finished in 67 s. That is claim 6's territory, not
+claim 2's — the cost of the seat is wall-clock, and on a long-horizon situation the cost can exceed the budget. It is also
+partly this bench's property: E110 already records that this body's gait cannot take a stop-start every second and that the
+window has to slow the walk rather than stop it. **The two explanations, a general locomotion overhead and this body's known
+quarrel with the wrapper, are still not separated,** and nothing about judgment can be claimed from this cell either way.
+
+**Method error 54: reporting a judgment finding from an arm that never exercised the judgment.** The arm's handled count was
+0/12 and I read the zero as a decision. The check that catches it is one line over the decision records — *was the action the
+situation needs ever in the option set?* — and it belongs in the scoring of every situation whose right answer is a specific
+action, before any narrative is written about why an arm failed.

@@ -256,3 +256,10 @@ published number (the station's written bank, "11 s per line against the rules' 
 had been quoted, which is luck rather than method. The diagnostic that decides whether pairing matters is the within-arm
 handled-against-missed time: 122 s against 25 s on the humanoid (pairing mandatory), 10.2 against 11.1 on the station (no
 asymmetry, because a decision-level bench charges nothing for failing). The asymmetry belongs to embodied episodes.
+
+**54. A judgment finding from an arm that never exercised the judgment (2026-09-25 08:47 PDT).** On E158's contradicting-note situation the
+veto-window arm scored 0 of 12 and I wrote that the window "destroys" the situation, with a mechanism about its proposals
+being motion-shaped. The decision records say the arm never picked the object up in any episode, so the hand-over the
+situation needs was offered in **0 of its 289 decisions**. It ran out of clock before reaching the table. **Before explaining
+why an arm failed a situation, check whether the action that situation requires was ever in its option set.** One line over
+the records. The rescue result on the other situation, where the judgment was exercised in two decisions, is unaffected.

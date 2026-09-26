@@ -881,3 +881,18 @@ achievement. AUROC **.995** on its training bank means over-confidence there: it
 85 %. **It is better where it was not trained.** Third place this programme has found the same shape: post-training on
 operation data buys competence where you trained and over-confidence with it. Tightening the threshold does not fix it —
 τ .95 buys accuracy and no extra handled — because the lever is calibration, not the cut point.
+
+**4.113** (2026-09-25 22:39 PDT, E163; amends the scope of 4.111) The learned skip gate does not transfer to situations it has never seen.
+On the bank two of whose five situations came from an author with no access to this repository, it skips **64.6 %** of
+decisions against 36.1 % on the bank it was tested on, and the reused choice is acceptable **8.8 %** of the time against
+85.4 %. The mechanism was registered in advance: unfamiliar facts drop silently out of its feature vocabulary, so it scores
+on the fraction of the state it recognises and is confident about that. **4.111 therefore reads: the learned head beats the
+hand-written rule and the model's introspection on banks this programme designed, and fails on one it did not.**
+
+**4.114** (2026-09-25 22:39 PDT, E163) An outcome measure can be blind to a behavioural collapse that a per-decision measure sees plainly,
+and on a small bank it usually is. The gate above made 91 % unacceptable decisions and scored **36 of 60 handled, identical
+to the no-skip judge**, because three of bank v3's five situations are flat across every real arm: two are handled by all of
+them and one by none. The bank's resolving power is **24 episodes, not 60**, and the head's gain on one discriminating
+situation cancelled its loss on the other. **Had only the handled count been available, the conclusion would have been that
+the gate transfers fine.** Every result on a small bank must report which of its situations can separate arms at all, and a
+per-decision acceptability rate must be reported beside every outcome count.

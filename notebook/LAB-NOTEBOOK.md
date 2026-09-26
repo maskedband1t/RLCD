@@ -16020,3 +16020,86 @@ mis-calibrated score trades savings for nothing. That is P162.6's miss and it is
 obvious fix and tests whether the over-confidence is about coverage or about the trajectory. Score the head's calibration
 rather than its AUROC, and put the novelty check underneath it, since that is the fix claim 4 already has. And the honest
 version of the whole line: **run the head on the bank we did not write (bank v3), where nothing it has seen applies.**
+
+## E163 · the learned skip gate on the bank we did not write (pre-registration, 2026-09-25 22:24 PDT; launched now)
+
+**Why, and it came from a reader rather than from me.** E162's head was trained on the written bank and tested on the fresh
+v1 bank. **Both of those banks are banks I wrote.** It has never met bank v3, two of whose five situations came from an
+author with no access to this repository. Asked how strongly we had tested genuinely novel situations, the honest answer was
+"less strongly than the board implies", so this closes it.
+
+**The sharp version.** Bank v3 carries facts the head's vocabulary has never contained — `held_by_someone_else`,
+`held_by_the_person_who_asked`, a person occupying the doorway. A DictVectorizer silently drops unknown features, so on
+those states the head is scoring on **whatever fraction of the state it happens to recognise**, which is the worst case for
+an over-confident model and exactly the situation a fleet meets on a new day.
+
+**Arms.** `jev` with the head at τ .90 and τ .95 on seeds 400–459. Baselines on identical seeds from E158: no-skip judge
+**48/60** as published and **36/60** with the ending required (method error 55); frozen rules 24/60; oracle 60/60.
+
+**Predictions.**
+- **P163.1** The head skips **more** than the 36 % it skipped on the fresh v1 bank, because unknown features drop out and the
+  remaining ones look familiar. Prior 65 %. *This is the failure mode I expect.*
+- **P163.2** When it skips on bank v3 the reused choice is acceptable **less** than the 85 % it managed on v1 fresh. Prior 70 %.
+- **P163.3** Handled falls below the no-skip judge by more than the noise floor of two. Prior 60 %.
+- **P163.4** It still beats E161's introspective gate on handled. Prior 75 %.
+- **P163.5** τ .95 is closer to the no-skip judge than τ .90 on handled. Prior 65 %.
+
+**What a bad result here means, said before seeing it.** If the head degrades sharply on the one bank it could not have been
+tuned against, then the E162 result is a statement about banks I designed and not about novel situations, and the board has
+to say so.
+
+### E163 · results (2026-09-25 22:38 PDT). The gate does not transfer, the episode score cannot see it, and that is the finding
+
+**Three of five predictions held, one missed, one was not scoreable.** The failure I registered happened. The reason the
+bench nearly missed it is more important than the failure.
+
+| measure | the bank it was tested on (v1 fresh) | **the bank it had never met (v3)** |
+|---|---|---|
+| decisions skipped | 36.1 % | **64.6 %** |
+| reused choice acceptable | **85.4 %** | **8.8 %** |
+
+At τ .95: 30.1 % at 98.3 % acceptable on v1, against **59.8 % at 8.1 %** on v3. **The gate skips nearly twice as often on
+situations it has never seen and is wrong about it more than nine times in ten.** Exactly the mechanism registered in
+advance: bank v3 carries facts the head's vocabulary never contained, the vectoriser drops them silently, and the head
+scores on the fraction of the state it recognises and feels confident about it.
+
+**And the episode score did not move at all.** Handled, with the ending required: no-skip judge **36/60**, head τ .90
+**36/60**, head τ .95 **36/60**. Calls fell 91.1 → 33.6 an episode, a 63 % saving. On the outcome measure alone this looks
+like a free two-thirds saving with no cost whatsoever.
+
+**It is not free, and here is why the bench could not see it.** Per situation, with the ending required:
+
+| situation | rules | judge | copy | head .90 | head .95 | oracle | |
+|---|---|---|---|---|---|---|---|
+| `sling_note` | 0/12 | 0/12 | **12/12** | 2/12 | 0/12 | 12/12 | discriminates |
+| `child_in_doorway` | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | **flat for every arm** |
+| `already_held` | 0/12 | 0/12 | 0/12 | 0/12 | 0/12 | 12/12 | **flat at zero** |
+| `wet_floor_note` | 0/12 | **12/12** | 1/12 | 10/12 | 12/12 | 12/12 | discriminates |
+| `job_closed` | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | 12/12 | **flat for every arm** |
+
+**Three of the five situations cannot tell any real arm from any other.** Two are handled by everybody and one by nobody. So
+the outcome measure has an effective resolution of twenty-four episodes, not sixty, and inside those two the head's gain on
+one situation (+2) and its loss on the other (−2) happened to cancel exactly.
+
+**The finding, and it is a methodological one.** *The per-decision measure and the per-episode measure disagree, and here the
+per-decision measure is the one telling the truth.* An arm making 91 % unacceptable decisions while scoring identically to
+one making almost none is not a safe arm; it is an arm whose damage this bench cannot resolve. **Had I only had the handled
+count, I would have concluded the gate transfers fine and shipped that conclusion.** It does not transfer at all.
+
+**What this does to E162.** Its result stands as written and its scope shrinks. The learned head beats the hand-written rule
+and the model's own introspection **on banks I designed**. It does not survive contact with a bank I did not write. The
+board's claim about novel situations is amended accordingly, and the reader who asked the question is the reason.
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P163.1 | skips more than the 36 % it skipped on v1 fresh | 65 % | 64.6 % | ✓ |
+| P163.2 | reused choice acceptable less than 85 % | 70 % | **8.8 %** | ✓ |
+| P163.3 | handled falls below the no-skip judge by more than two | 60 % | no fall at all, 36 = 36 | ✗ |
+| P163.4 | still beats E161's introspective gate | 75 % | **not scoreable** — that arm never ran on v3 | — |
+| P163.5 | τ .95 sits closer to the no-skip judge than τ .90 | 65 % | matches it situation by situation | ✓ |
+
+**Next, singly and together.** Re-scale the head's score against held-back situations, which is the untried textbook fix and
+now has a sharper target: the failure is confidence on states it half-recognises. Put the novelty check *underneath* the
+gate, so a state carrying unknown features is never eligible to be skipped — the two mechanisms have never been composed and
+this is the obvious pairing. And a bench note: **three of bank v3's five situations are flat across every arm, so the bank's
+resolving power is 24 episodes and not 60**, which every future result on it must state.

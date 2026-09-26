@@ -298,3 +298,10 @@ published claim-5 direction reverses: the judge's written-bank drop after the bo
 27 → 28, no cost at all. The error is not the strict reading or the loose one, it is that **the bench never said which it
 meant while the prose said one and the number said the other**. The check: *for every event, does a do-nothing arm score?*
 Run it over the criteria, not the results.
+
+**57. Ranking arms on a bank whose unit of observation is five (2026-09-25 23:17 PDT).** Bank v3's sixty episodes are five designed
+situations with position jitter, not sixty samples. Treating them as sixty produced a headline comparison between two arms
+whose bootstrap interval over situations is [−41.7, +78.3] and crosses zero. The same data also shows the apparent advantage
+living entirely in the three situations the author wrote, vanishing on the two an outside author wrote. **State the unit of
+observation and count it before comparing arms; seeds within a designed situation are jitter, not evidence.** A small
+independent bank is for finding holes, which it did, and not for ranking, which it cannot do.

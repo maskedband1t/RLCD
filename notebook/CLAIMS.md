@@ -906,10 +906,18 @@ half the time. The registered fix, prescribed by 4.114 rather than chosen: **han
 acceptable-decision rate above the chance floor measured on that same situation.** The floors are measurements (28-69 % by
 situation), so the threshold cannot be tuned toward a result.
 
-**4.116** (2026-09-25 23:02 PDT, E164 re-scoring; amends 4.101 and result 20) Under that rule, on the bank two of whose five situations came
-from an author with no access to this repository, **the cloud judge's lead over the frozen rule program is one situation in
-sixty**: rules 24/60, judge 25/60. The fleet's own corrected copy takes **36/60** and is the only arm that clearly beats the
-rules. Published, the judge led the copy 48 to 37; the copy loses one situation to the stricter rule and the judge loses
-twenty-three. **The judge reaches the outcome by grinding or by luck, the copy by deciding.** Random falls 24 → 6 under the
-same rule and doing nothing stays at 0, so the rule is discriminating rather than merely deflating. Claim 1's first half is
-narrowed to the banks this programme designed; claim 3 is strengthened.
+**4.116** (2026-09-25, E164 re-scoring; **WITHDRAWN 2026-09-25 23:18 PDT**, see 4.117) Claimed that under the chance bar the
+fleet's corrected copy beat the cloud judge 36 to 25 on the independence bank, and that the judge's lead over the frozen
+rules was one situation in sixty. The second half stands. **The first half is withdrawn**: bank v3's unit of observation is
+five situations, not sixty episodes, and bootstrapping over situations gives the copy a +18.3-point advantage with a 95 %
+interval of [−41.7, +78.3].
+
+**4.117** (2026-09-25 23:18 PDT, adversarial re-analysis of E158/E164; method error 57) Three attacks on that comparison, registered before
+running. **The bar is not the problem:** the copy sits above the judge at every decision-quality bar from none to 70 %, so
+the ordering is not an artefact of the threshold I chose. **The unit is:** over five situations the interval crosses zero by
+a wide margin. **And the familiarity hypothesis is the one the data picks:** on the three situations I wrote the copy leads
+24/36 to 12/36; on the two an outside author wrote it *trails* 12/24 to 13/24. What survives is narrower and is about
+mechanism rather than ranking: **the judge's outcomes do not survive a decision-quality bar and the copy's do** (judge
+36 → 25 → 13 → 11 as the bar tightens; copy 37 → 36 → 36 → 36), which says the judge reaches outcomes by grinding or by luck
+far more often. **And the general lesson: a small independent bank is for finding holes, which bank v3 did twice, not for
+ranking arms, which it cannot do.**

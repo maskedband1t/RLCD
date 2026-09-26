@@ -16224,3 +16224,73 @@ counted.
 
 **And the honest caveat on the rule itself.** It is stricter than any comparable published work and it is measured rather
 than chosen, but it is still one rule invented by the same author. It should be run past someone else before it is leaned on.
+
+## Adversarial check (2026-09-25 23:17 PDT, no new runs) · three attacks on "the copy beats the judge 36 to 25"
+
+**Why.** That number is four hours old, it depends on a scoring rule I invented the same evening, and its real sample is
+five situations. It is now the headline of the independence result and is about to be said out loud. Registering the three
+attacks and what would falsify the claim, before running any of them.
+
+- **A. The unit is the situation, not the episode.** Twelve seeds of one situation are one observation with jitter, not
+  twelve. A bootstrap over *situations* is the honest interval. **Falsified if the interval on (copy − judge) crosses zero.**
+- **B. The chance bar is mine and unreviewed, and it moved the judge from 48 to 25.** Sweep the bar from none through
+  several thresholds. **Falsified if the ordering copy > judge holds only at the bar I happened to pick.**
+- **C. The copy may be winning on familiarity rather than competence.** It has had three correction rounds on banks I wrote,
+  and bank v3 still uses my fact vocabulary and my action list. **Falsified if the copy's advantage lives entirely in the
+  three situations I authored and vanishes on the two the blind author wrote.**
+
+### Results of the three attacks (2026-09-25 23:17 PDT). "The copy beats the judge" is withdrawn. Five situations can find a hole; they cannot rank arms
+
+**B survives. A and C kill it.**
+
+**B. The ordering is not an artefact of the bar I chose.** Copy above judge at every decision-quality bar tested:
+
+| bar | judge | copy | random | rules |
+|---|---|---|---|---|
+| ending only, no decision bar | 36 | 37 | 24 | 24 |
+| **the chance floor (mine)** | **25** | **36** | **6** | 24 |
+| fixed 40 % | 20 | 36 | 24 | 24 |
+| fixed 50 % | 13 | 36 | 6 | 24 |
+| fixed 60 % | 11 | 36 | 5 | 24 |
+| fixed 70 % | 1 | 25 | 5 | 12 |
+
+The direction is stable, and the *size* is entirely the bar's doing: with no decision bar they are tied, 36 to 37. So the
+robust statement is not "the copy scores higher" but **"the judge's results do not survive a decision-quality bar and the
+copy's do"**, which is a statement about how each arm reaches its outcome, not about which is better.
+
+**A. At the honest unit the difference is not supported.** Twelve seeds of one situation are one observation with jitter.
+Bootstrapping over the five *situations*: the copy's mean per-situation advantage is **+18.3 points** with a 95 % interval of
+**[−41.7, +78.3]**. It crosses zero comfortably. **On five situations this comparison cannot be made**, and I made it four
+hours ago and put it on a public page.
+
+**C. The copy's advantage lives entirely in the situations I wrote.**
+
+| situation | author | judge | copy | |
+|---|---|---|---|---|
+| `sling_note` | **mine** | 0/12 | **12/12** | copy +12 |
+| `child_in_doorway` | mine | 12/12 | 12/12 | tied |
+| `already_held` | mine | 0/12 | 0/12 | tied |
+| `job_closed` | **blind** | 1/12 | **12/12** | copy +11 |
+| `wet_floor_note` | **blind** | **12/12** | 0/12 | judge +12 |
+
+**On my three situations: judge 12/36, copy 24/36, copy ahead by twelve. On the blind author's two: judge 13/24, copy 12/24,
+copy behind by one.** The advantage does not survive to situations written by someone else. The familiarity hypothesis I
+registered as the falsifier is the one the data picks.
+
+**What is withdrawn.** *The fleet's own corrected copy beats the cloud judge on a bank it did not write.* Not supported. The
+README, the claims ledger and the board all carried it and all are corrected.
+
+**What survives, stated narrowly.**
+1. **The judge's outcomes do not survive a decision-quality bar and the copy's do.** Robust across six bars. The judge
+   reaches outcomes by grinding or by luck far more often than the copy does. This is about mechanism, not ranking.
+2. **A scoring rule must separate a real arm from a coin.** Random goes 24 → 6 under the chance bar while the rules and the
+   oracle do not move at all.
+3. **The independence bank's value was finding holes, not ranking arms**, and I conflated the two. Five situations found two
+   things no bank of mine contained — an operator's note that contradicts every sensor, and a job that finished while the
+   robot was walking — and independently reproduced a gap I had also written. **That is what a small independent bank is
+   for.** It cannot rank, and every future use of it must say so.
+
+**Method error 57: ranking arms on a bank whose unit of observation is five.** Sixty episodes looked like sixty
+observations. They were five situations with position jitter, and the bootstrap over the honest unit crosses zero by a wide
+margin. **Before comparing arms, state the unit and count it.** Seeds within a designed situation are not independent
+samples of anything.

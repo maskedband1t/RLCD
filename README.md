@@ -92,7 +92,22 @@ If you have five minutes: watch the clips under [See it move](#see-it-move), loo
 
 **The programme.** A self-directed research programme (September 2026): more than a hundred pre-registered experiments in four simulated setups and one real dataset, asking where calibrated decision models create value in a robot fleet with human oversight, and how the fleet's own decisions become judgment it owns.
 
-**One claim, two seats.** A uniform constant applied to a non-uniform stream is wasteful at one end and dangerous at the other, and the field's fix is always a hand-written detector for which regime it is in: a rule program deciding when a robot asks for help, a fixed horizon deciding how long a policy may dream inside a world model, a gripper-event rule deciding which motion may be accelerated. This programme asks whether a **calibrated per-step number is the general form of that detector** — general because a number that means what it says transfers where a hand-written rule does not. Measured here at the human–robot boundary; measured at the policy–world-model boundary in [world-model-divergence](https://github.com/maskedband1t/world-model-divergence). The two seats share one experimental skeleton — uniform, rule, calibrated, oracle, compared at matched effort — set out in [the programme spec](https://github.com/maskedband1t/world-model-divergence/blob/main/docs/ADAPTIVE-EFFORT.md).
+**One claim, two seats.** A uniform constant applied to a non-uniform stream is wasteful at one end and dangerous at the other, and the field's fix is always a hand-written detector for which regime it is in: a rule program deciding when a robot asks for help, a fixed horizon deciding how long a policy may dream inside a world model, a gripper-event rule deciding which motion may be accelerated. This programme asks whether a **calibrated per-step number is the general form of that detector** — and measures what that is
+worth against the right control. Seat 1 has now answered part of it: a state-dependent test buys
+**+0.100 handled events** over an arm that skips at the *same rate* with no test at all, which
+buys **+0.000**, replicated on two banks. So the detector's *content* earns its place; skipping
+alone does not.
+
+**What the same work did not support, stated here rather than buried.** The original form of this
+claim was that a calibrated number is general *because it transfers where a hand-written rule does
+not*. On that bench it does not survive: a raw, uncalibrated threshold transferred nearly as well
+for **behaviour** (conditional accuracy drifting under .08 across a 53-point base-rate shift), and
+an attempt to show physical thresholds transfer worse produced an interval spanning zero. What
+calibration demonstrably buys there is that the number attached to the gate is roughly **true**
+(half the calibration error off its fit distribution) — which matters for reasoning about the gate
+and composing it with other numbers, not for where it fires.
+
+Measured here at the human–robot boundary; measured at the policy–world-model boundary in [world-model-divergence](https://github.com/maskedband1t/world-model-divergence). The two seats share one experimental skeleton — uniform, rule, calibrated, oracle, compared at matched effort — set out in [the programme spec](https://github.com/maskedband1t/world-model-divergence/blob/main/docs/ADAPTIVE-EFFORT.md).
 
 **Three numbers.** On a second body, the RLCD judge handles 29 of 30 situations nobody wrote a rule for, where the rule program handles 1; once the program's author has seen the bank, the same program handles 29 (seven lines, fourteen minutes), so the judge's edge on unwritten situations is the time before a rule exists, not accuracy after. Driving its own states, its probability stays within .02 of its hit rate while a dense open 27B's runs .135 over, so a fixed handoff threshold means one thing for the judge and drifts for the open model. A 421M head the fleet owns, distilled from the judge's decisions and corrected only by the operator's vetoes, reaches the judge on three bodies (88.3 vs 87.9 % in the cell; 28 of 30 on the duck; on a human-sized humanoid one round of vetoes takes it from 0 to 25 of 30 fresh unwritten situations, above the judge's 19, with no falls and no wrong hand-overs) while walking like the rule program where the rules were written (95 % = 95 %; 36 of 40 on the humanoid, above its teacher's 33).
 

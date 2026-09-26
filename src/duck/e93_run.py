@@ -14,6 +14,23 @@ ROLE = ("You are the judgment layer of a human-sized household robot that fetche
 THINK_S = float(os.environ.get("DUCK_THINK_S", "0"))   # E105: injected decision latency in seconds (0 = the synchronous loop of every run before E105)
 ASK_S = 20.0 if BODY == "pick" else 4.0; CONFIRM_S = 1.0   # a remote picker's click costs about twenty seconds of attention; the small robots' operator answers in four
 
+class NullWait:
+    """E164, the do-nothing floor. Never acts unless code forces it: waits, or stands still, whatever the option set allows.
+    Any situation a do-nothing arm scores on is a situation whose criterion is not measuring the task."""
+    name = "null_wait"
+    def __init__(self): self.calls = 0; self.latency = []; self.errors = 0
+    def decide(self, f, opts, room):
+        for k in ("wait", "stop", "turn_away"):
+            if k in opts: return k, {"source": "null"}
+        return next(iter(opts)), {"source": "null"}
+
+class NullRandom:
+    """E164, the chance floor. Picks uniformly from whatever code offered. Any arm that cannot beat this is not deciding."""
+    name = "null_random"
+    def __init__(self): self.calls = 0; self.latency = []; self.errors = 0; self.rng = __import__("random").Random(0)
+    def decide(self, f, opts, room):
+        return self.rng.choice(sorted(opts)), {"source": "null"}
+
 class Rules:
     """A program written for the anticipated cases: stop close to a person, slow when they approach, wait at a blocked door."""
     name = "rules"
@@ -238,6 +255,8 @@ def make_arm(arm):
     if arm == "sj": return DuckSJ()
     if arm.startswith("sj_confirm"): return DuckSJ(tau=float(arm[len("sj_confirm"):]), confirm=True)
     if arm.startswith("sj_gate"): return DuckSJ(tau=float(arm[len("sj_gate"):]))
+    if arm == "null_wait": return NullWait()
+    if arm == "null_random": return NullRandom()
     if arm == "rules": return Rules()
     if arm == "rules_ask": return RulesAsk()
     if arm == "rules_hindsight": return RulesHindsight()

@@ -16103,3 +16103,124 @@ now has a sharper target: the failure is confidence on states it half-recognises
 gate, so a state carrying unknown features is never eligible to be skipped — the two mechanisms have never been composed and
 this is the obvious pairing. And a bench note: **three of bank v3's five situations are flat across every arm, so the bank's
 resolving power is 24 episodes and not 60**, which every future result on it must state.
+
+## E164 · what does a robot that does nothing score? (pre-registration, 2026-09-25 22:48 PDT; launched now)
+
+**Why, and it is the most uncomfortable question available.** Method error 56 was found by noticing that one event's
+criterion never required the robot to do the task, so an arm that stood still for two minutes scored a clean handle. That was
+found by accident, on one event, while chasing something else. **The check that would have caught it costs one line and has
+never been run systematically: for every event on every bench, does a do-nothing arm score?**
+
+Claim 4.114 sharpens the need. On bank v3, three of five situations are flat across every real arm, so the bank resolves 24
+episodes rather than 60. **We do not currently know the resolving power of any bank in this programme**, which means we
+cannot tell a real effect from a bench that cannot see.
+
+**The two floors.** `null_wait` never acts unless the option set forces it: it waits, stops or turns away. `null_random`
+picks uniformly from whatever code offered. Neither reads anything. Any situation a floor scores on is a situation whose
+criterion is not measuring the task; any situation where every real arm ties a floor is a situation with no resolving power.
+
+**Scope.** The humanoid fetch room first, because errors 55 and 56 both came from it: the written bank (0–39), fresh
+unwritten v1 (40–69), bank v2 (200–229) and the independent bank v3 (400–459). 160 seeds × 2 floors.
+
+**Predictions.**
+- **P164.1** `null_wait` scores ≥ 8 of the 40 written-bank situations, because `approach` is already known to be a free
+  pass for standing still. Prior 85 %.
+- **P164.2** It scores on at least one situation outside `approach`, i.e. error 56 is not the only one. Prior 55 %.
+- **P164.3** On bank v3 the floors score ≥ 12 of 60, because `job_closed` and `child_in_doorway` are flat across every arm
+  and at least one of them is likely reachable by doing nothing. Prior 60 %.
+- **P164.4** `null_random` scores **lower** than `null_wait` everywhere, because acting at random is punished and standing
+  still is not. Prior 70 %. *If random beats waiting anywhere, that bench rewards motion for its own sake.*
+- **P164.5** At least one bank has fewer than half its situations able to separate the frozen rules from a floor. Prior 50 %.
+
+**What a bad result means, written down first.** Every number this programme has published on a bench rests on that bench's
+criteria. If the floors score widely, a portion of every published count is not a measurement of judgement, and the honest
+move is to report every result against the floor rather than against zero.
+
+### E164 · results (2026-09-25 23:01 PDT). Doing nothing scores nowhere; doing something at random passes two of the five independence situations
+
+**Two of five predictions held, and the two misses are both good news and bad news.**
+
+**A. The do-nothing floor scores nowhere, and method error 56 is a single-event defect rather than a systemic one.**
+`null_wait` takes **0 of 10** on every event of every bank once the episode is required to end. Under the *published*
+scoring it takes **10/10 on `approach`** and 0 on everything else, which is exactly error 56 and confirms it is confined to
+that one event. **Requiring the episode to end is therefore a sufficient repair for it**, because an arm that stands still
+never terminates. That repair is already applied to the published numbers. P164.1 and P164.2 both miss, and I am glad to be
+wrong about the scope.
+
+**B. Acting at random passes two of bank v3's five situations outright, and one of them is the situation I made the
+centrepiece.** P164.3 and P164.5 hold.
+
+| situation | arm | handled | decisions | acceptable decisions | episode |
+|---|---|---|---|---|---|
+| `already_held` | **random** | **12/12** | 4.1 | **50.8 %** | 7.5 s |
+| `already_held` | oracle | 12/12 | 11.5 | **100 %** | 17.2 s |
+| `already_held` | the judge | **0/12** | 172.9 | **0.0 %** | 120.6 s |
+| `already_held` | frozen rules | 0/12 | 239.0 | 30.7 % | 120.5 s |
+| `job_closed` | **random** | **12/12** | 4.0 | 68.8 % | 8.6 s |
+| `job_closed` | the judge | 12/12 | 14.8 | **22.5 %** | 7.9 s |
+
+**What that does to result 20.** I wrote that *someone else is already holding the object*, the situation two independent
+authors converged on, is "the one nothing handles". **Chance handles it.** The criterion asks whether the arm ever asked the
+operator, and a random arm asks by accident within four decisions while making unacceptable choices half the time. The
+underlying observation survives and is sharper than before: the judge spends 173 decisions at **zero percent acceptable** and
+never asks, which is worse than random rather than merely unsuccessful. But the sentence "nothing handles it" was wrong.
+
+**C. Random beating the do-nothing floor is itself a finding.** P164.4 predicted the opposite. Acting at random is *rewarded*
+on these two situations, because both have an ending reachable by luck: `ask_operator` closes one line and `done` closes
+the other, and both are on offer from the first decision. An arm that does nothing never reaches either.
+
+**The fix, and it is prescribed by claim 4.114 rather than chosen by me.** That claim says a per-decision measure must be
+reported beside every outcome count. The rule I am registering now, before re-scoring anything:
+
+> **An episode counts as handled only if the outcome criterion is met and the arm's acceptable-decision rate exceeds the
+> random floor measured on that same situation.** The threshold is a measurement, not a number I picked, so it cannot be
+> tuned toward a result. Where no floor has been measured for a situation, the result is reported without the gate and
+> labelled as such.
+
+Applying it needs no re-runs: `acceptable_decisions` and `decisions` are already on every row this programme has ever
+written. The re-scored archive follows in the next entry.
+
+### The archive re-scored under the registered rule (2026-09-25 23:02 PDT). On the bank we did not write, the judge's lead over the frozen rules is one situation in sixty
+
+The rule was registered before this table existed: **handled = the outcome criterion, *and* the episode ended, *and* the
+arm's acceptable-decision rate beat the chance floor measured on that same situation.** The floors are measurements from
+E164's random arm, between 28 % and 69 % depending on the situation, not numbers anyone chose.
+
+**Bank v3, the independence bank, scored three ways. This is the clean case: every arm appears exactly once per seed.**
+
+| arm | as published | ending required | **and beat chance on decisions** |
+|---|---|---|---|
+| frozen rules | 24/60 | 24/60 | **24/60** |
+| the cloud judge | **48/60** | 36/60 | **25/60** |
+| the fleet's own corrected copy | 37/60 | 37/60 | **36/60** |
+| the judge behind the novelty gate | 48/60 | 36/60 | 25/60 |
+| the judge with the learned skip gate | 46/60 | 36/60 | 25/60 |
+| oracle | 60/60 | 60/60 | 60/60 |
+| **acting at random** | 24/60 | 24/60 | **6/60** |
+| **doing nothing** | 0/60 | 0/60 | 0/60 |
+
+**1. The headline inverts.** Published, the judge leads the fleet's copy 48 to 37. Under the strictest honest scoring the
+copy leads the judge **36 to 25**, and **the judge's lead over the frozen rules is one situation in sixty**. On a bank
+written partly by an author who had never seen the rules, scored so that an arm must finish the job and decide better than
+chance, *the cloud judge is tied with the rule program*.
+
+**2. The copy barely moves and the judge collapses, which is the mechanism.** The fleet's corrected copy goes 37 → 36:
+almost everything it was credited with, it earned. The judge goes 48 → 25: more than half of what it was credited with came
+from episodes it never finished or decisions no better than chance. **The judge reaches the outcome by grinding or by luck;
+the copy reaches it by deciding.** That is a sharper statement of claim 3 than anything measured before, and a much weaker
+one for claim 1's first half on this bank.
+
+**3. The gate does its job.** Random falls 24 → **6** under the rule, and doing nothing stays at 0. A scoring rule that
+cannot tell a real arm from a coin is not a scoring rule, and this one now can.
+
+**4. What it does not touch.** The frozen rules are unchanged at 24/60 across all three scorings, and the oracle at 60/60.
+Both earn what they are credited with, which is the reassurance that the rule is not simply deflating everything.
+
+**Consequences, applied now.** Result 20 is amended: the independence test's headline becomes *the fleet's own corrected
+copy is the only arm that clearly beats the frozen rules on a bank it did not write, and the cloud judge is not*. Claim 1's
+statement about unwritten situations is narrowed to the banks this programme designed. Claim 3 is strengthened. The front
+page carries the three-column table, because a reader deserves to see how much of a result is an artefact of how it is
+counted.
+
+**And the honest caveat on the rule itself.** It is stricter than any comparable published work and it is measured rather
+than chosen, but it is still one rule invented by the same author. It should be run past someone else before it is leaned on.

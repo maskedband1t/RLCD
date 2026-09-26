@@ -15853,3 +15853,87 @@ revision, pre-registered, with every arm re-run.
 The check that catches it costs one line: *for every event, does a do-nothing arm score?* Run it over the criteria, not over
 the results. It is the third criterion defect in two days (54, 55, 56), all three found by comparing arms that scored the
 same and behaved differently, which is now a standing check rather than a coincidence.
+
+## E161 · a static skip rule against a dynamic one: the decision carries its own shelf life (pre-registration, 2026-09-25 17:56 PDT; launched now)
+
+**Why.** Argon's inference-time skipping is gated on **two hand-tuned end-effector displacement numbers**, 2 cm in clean
+scenes and 0.3 cm in cluttered ones, because one did not transfer between scene types; they state they cannot explain why
+their own optimum sits where it does. E154 mapped that lever to our layer and it worked, saving 5–24 % of model calls — but
+**our skip is a hand-written rule with two guards too**, which is the shape this programme argues against everywhere else.
+
+**The economics, which is the argument.** A static threshold has to be priced for the worst case it will ever meet: 0.3 cm is
+the cautious setting, applying it everywhere gives back the speed, applying 2 cm everywhere hurts in the cluttered case, so
+the world gets bucketed into two kinds of scene. Two is not a property of the world, it is how many buckets a person had
+patience to tune. **A calibrated gate is priced per decision**: aggressive exactly where it is safe, cautious exactly where it
+is not, no boundary anyone has to define. And a constant emits no record, so it cannot improve from operation; a typed gate
+emits one on every skip, and when a skip was wrong the operator's takeover labels it.
+
+**The design, and the part I think is new.** Do not build a separate gate — a gate that needs its own model call has saved
+nothing. **Make the decision carry its own shelf life.** One extra typed question on the call already being made: *you have
+just chosen an action; how much longer does that choice stay the right one?* Four options mapping to skip budgets — `none`
+0, `about_one_more` 1, `about_three_more` 3, `until_the_facts_change` 8. While budget remains the last decision is reused
+and no call is made. One calibrated probability replaces a rule plus two guards, and the gate is free.
+
+**Arms.** `jev` (no skip, the baseline) and `jev_shelf0.5` (skip while the stated shelf life holds at p ≥ .5), on the
+written bank (seeds 0–39, where the rules were written) and the fresh unwritten v1 bank (seeds 40–69). Same instrument, same
+seeds. E154's static rule saved 5 % on the written bank and 9 % on v1 fresh, which is the number to beat.
+
+**Predictions.**
+- **P161.1** The shelf arm makes ≥ 20 % fewer model calls an episode than the no-skip judge. Prior 70 %.
+- **P161.2** On the written bank its handled count stays within the noise floor of the no-skip judge, about two in thirty. Prior 65 %.
+- **P161.3** On the fresh unwritten bank the same. Prior 55 %.
+- **P161.4** It saves **more** calls than E154's static rule did on the same banks. Prior 65 %. *This is the dynamic-beats-static test.*
+- **P161.5** The stated shelf life is calibrated: decisions reused under `until_the_facts_change` are inside the acceptable
+  set more often than those reused under `about_one_more`. Prior 60 %. *This is the test of whether the new question means
+  anything at all, and it is the one I would most like to be wrong about cheaply.*
+- **P161.6** No increase in wrong hand-overs or falls on either bank. Prior 75 %.
+
+**What this cannot say.** Argon skip *frames* at the action layer; we skip *decisions* at the decision layer. The shapes match
+and the layers do not, so a win here is an argument for the shape, not a measurement of their pipeline.
+
+### E161 · results (2026-09-25 18:07 PDT). The saving is real and enormous, the quality cost disqualifies it, and the reason is that a model cannot be asked how long its own decision lasts
+
+**Three of six predictions held.** The two that matter most both missed, and the way they missed is the finding.
+
+| arm | bank | handled | model calls / episode | decisions / episode | operator s | wrong · falls |
+|---|---|---|---|---|---|---|
+| judge, no skip | written 0–39 | **36/40** | 40.9 | 41.4 | 2.0 | 0 · 1 |
+| judge + shelf (τ .5) | written 0–39 | **23/40** | **13.5** | **98.1** | **12.4** | 0 · 0 |
+| judge, no skip | v1 fresh 40–69 | 23/30 | 26.5 | 27.5 | 4.0 | 0 · 0 |
+| judge + shelf (τ .5) | v1 fresh 40–69 | 20/30 | **8.6** | 70.6 | 4.0 | 0 · 0 |
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P161.1 | ≥ 20 % fewer model calls | 70 % | **67 % fewer, both banks** | ✓ |
+| P161.2 | written-bank handled within the noise floor | 65 % | **36 → 23**, far outside | ✗ |
+| P161.3 | fresh-bank handled within the noise floor | 55 % | 23 → 20, marginally outside | ✗ |
+| P161.4 | saves more than E154's static rule | 65 % | **67 % against 5 % and 9 %** | ✓ |
+| P161.5 | the stated shelf life is calibrated | 60 % | **it is not; see below** | ✗ |
+| P161.6 | no more wrong hand-overs or falls | 75 % | 0 wrong, falls 1 → 0 | ✓ |
+
+**1. The saving is real and it is an order of magnitude past the static rule.** Two thirds of all model calls disappear, on
+both banks, against E154's 5 % and 9 %. That part of the idea works exactly as argued.
+
+**2. The quality cost disqualifies it as built.** On the bank the rules were written for, handled falls **36 → 23**, operator
+seconds rise **2.0 → 12.4**, and decisions per episode go **41 → 98**. It saves calls and spends the savings on dithering.
+
+**3. The reason, and this is the result.** The model **cannot answer the question**. Across 798 real answers it used **two of
+the four options**: `until_the_facts_change` 86 % of the time and `none` 14 %. It never once said *about one more* or
+*about three more*. So the graded shelf life collapsed into a binary skip-eight-or-skip-nothing, which is **a constant
+wearing a probability's clothes** — exactly the thing this experiment existed to replace. And it was wrong about it: among
+5,094 decisions reused under `until_the_facts_change`, only **40.3 %** were inside the acceptable set.
+
+**What it means, and it is better than a win.** *You cannot get a dynamic gate by asking a model to be dynamic.* Asked to
+introspect on how long its own choice stays right, this model returns a constant with an on/off switch. The shelf life is
+not a thing a model knows about itself; it is a thing the **records** know, because the records contain every case where a
+reused decision went wrong and when. So the design that follows is the loop, not the prompt: **learn the shelf life from
+operation — from the fleet's own skipped decisions and the takeovers that followed them — rather than asking for it.**
+Argon's hand-tuned constant is not beaten by asking a model to be clever. It is beaten by the data a fleet already produces.
+
+**That is the same lesson as claim 3 in a new place.** The label form decides what is learned; here, *the source* decides
+whether it can be learned at all. Introspection gives a constant; operation gives a distribution.
+
+**Next, singly and together.** Train a shelf-life head on E161's own records, where every reused decision is labelled by
+whether it was still acceptable — supervised data this run has now produced, 5,094 rows of it. Score it against both the
+static rule and this introspective gate. And sweep τ, which is unlikely to rescue the introspective version, since a
+threshold cannot fix a variable with two values.

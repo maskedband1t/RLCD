@@ -851,3 +851,18 @@ the sling-note situation the bare copy handles all twelve in **12.1 s and 20 dec
 decision, inherits the judge's behaviour and takes **120.5 s and 208 decisions** for the same score. **A novelty gate should
 route on novelty *and* on whether the judge is actually better there**, which this programme has never measured. Amends 4.84
 and connects claim 4's fix to claim 6's currency.
+
+**4.109** (2026-09-25 18:08 PDT, E161) A model cannot be asked how long its own decision stays right. Given one extra typed question on a
+call it was already making, with four graded answers, the judge used **two of them**: *until the facts change* 86 % of the
+time and *none* 14 %, never once the two middle options. The graded shelf life collapsed into skip-eight-or-skip-nothing,
+which is a constant wearing a probability's clothes, and it was wrong about it: of 5,094 decisions reused under *until the
+facts change*, **40.3 %** were inside the acceptable set. Introspection returns a constant; the records contain a
+distribution. **The shelf life is not a thing a model knows about itself, it is a thing operation knows**, and the design
+that follows is to learn it from the fleet's own skipped decisions and the takeovers that followed them.
+
+**4.110** (2026-09-25 18:08 PDT, E161) The dynamic skip's *saving* is real and an order of magnitude past the static rule, and it is not
+free. Two thirds of all model calls disappear on both banks, against the hand-written rule's 5 % and 9 % (E154). But on the
+bank the rules were written for, handled falls **36 → 23 of 40**, operator seconds rise **2.0 → 12.4** and decisions an
+episode go **41 → 98**: it saves calls and spends the saving on dithering. Wrong hand-overs stay at zero and falls go 1 → 0,
+so the cost is competence and operator time rather than safety. The saving proves the lever exists; the cost proves this is
+the wrong way to pull it.

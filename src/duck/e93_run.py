@@ -93,18 +93,43 @@ class DuckJev:
         if self.model.startswith("clm"):   # E138: a second System One model (CLM-8B, local) behind the same arm
             from duck.clm_local import ClmLocalClient; self.client = _shared(("clm", os.environ.get("CLM_CKPT", ""), os.environ.get("CLM_ENCODER", "")), ClmLocalClient); base = "clm"
         else: self.client = TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"]); base = "jev"
-        self.name = base + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")); self.calls = 0; self.latency = []; self.errors = 0
+        self.shelf_tau = float(os.environ["DUCK_SHELF_TAU"]) if os.environ.get("DUCK_SHELF_TAU") else None
+        self._shelf_budget = 0; self._shelf_last = None; self._shelf_saved = 0; self._shelf_stated = []
+        self.name = base + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")) + ("" if self.shelf_tau is None else f"_shelf{self.shelf_tau}")
+        self.calls = 0; self.latency = []; self.errors = 0
+    SHELF = {"none": 0, "about_one_more": 1, "about_three_more": 3, "until_the_facts_change": 8}
     def decide(self, f, opts, room):
+        # E161: the dynamic skip. While a previous decision's stated shelf life has budget left, reuse it and make no call.
+        if self._shelf_budget > 0 and self._shelf_last is not None:
+            self._shelf_budget -= 1; self._shelf_saved += 1
+            return self._shelf_last[0], dict(self._shelf_last[1], skipped=True, source="shelf")
         q = {"action": self.Choice(instructions={"role": ROLE,
                                                   "ask": "Which single action should the robot take right now? Follow the task and the operators' notes; keep people comfortable and safe before making progress."}, criteria=opts)}
+        if self.shelf_tau is not None:
+            q["shelf"] = self.Choice(instructions={"role": ROLE,
+                "ask": "You have just chosen an action. If the robot keeps taking it, how much longer does that choice stay the right one, assuming the situation develops as you expect?"},
+                criteria={"none": "It could be wrong on the very next decision; re-decide immediately.",
+                         "about_one_more": "It stays right for about one more decision.",
+                         "about_three_more": "It stays right for about three more decisions.",
+                         "until_the_facts_change": "It stays right until something in the facts actually changes."})
         t0 = time.time()
         try: r = self.client.system_one(state=f, model=self.model, questions=q)
         except Exception as e: self.errors += 1; return "ask_operator", {"source": f"error:{type(e).__name__}"}
+        if self.shelf_tau is not None and "shelf" in r.answers:
+            sa = r.answers["shelf"]; pb = {k: float(v) for k, v in sa.probabilities.items()}; tot = max(1e-9, sum(pb.values()))
+            p_holds = sum(v for k, v in pb.items() if self.SHELF.get(k, 0) > 0) / tot
+            self._shelf_budget = self.SHELF.get(sa.choice, 0) if p_holds >= self.shelf_tau else 0
+            self._shelf_stated.append((sa.choice, round(p_holds, 3)))
+            self._shelf_say = (sa.choice, round(p_holds, 3))
         a = r.answers["action"]; j = {"choice": a.choice, "confidence": round(float(a.confidence), 3), "probabilities": {k: round(float(v), 3) for k, v in a.probabilities.items()}, "latency": round(time.time() - t0, 3), "tokens": r.usage.input_tokens + r.usage.output_tokens}
         self.calls += 1; self.latency.append(j["latency"]); choice = j["choice"]
         if self.tau is not None and j["confidence"] < self.tau and choice not in ("ask_operator", "done"):
             if self.confirm: return "confirm:" + choice, dict(j, confirm=True)
             return "ask_operator", dict(j, gated=True)
+        if self.shelf_tau is not None:
+            sh = getattr(self, "_shelf_say", None)
+            if sh: j = dict(j, shelf=sh[0], shelf_p=sh[1], shelf_budget=self._shelf_budget)
+            self._shelf_last = (choice, j)
         return choice, j
 
 class DuckSJ:

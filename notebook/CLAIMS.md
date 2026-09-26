@@ -896,3 +896,20 @@ them and one by none. The bank's resolving power is **24 episodes, not 60**, and
 situation cancelled its loss on the other. **Had only the handled count been available, the conclusion would have been that
 the gate transfers fine.** Every result on a small bank must report which of its situations can separate arms at all, and a
 per-decision acceptability rate must be reported beside every outcome count.
+
+**4.115** (2026-09-25 23:02 PDT, E164) A scoring rule that cannot separate a real arm from a coin is not a scoring rule. Measuring the two
+floors for the first time: **doing nothing scores nowhere** once an episode is required to end, which confines method
+error 56 to the single \`approach\` event and makes the ending requirement a sufficient repair for it. But **acting at random
+passes two of bank v3's five situations outright**, including *someone else is already holding the object*, which result 20
+called the one nothing handles. Chance asks the operator by accident inside four decisions while making unacceptable choices
+half the time. The registered fix, prescribed by 4.114 rather than chosen: **handled requires the outcome, the ending, and an
+acceptable-decision rate above the chance floor measured on that same situation.** The floors are measurements (28-69 % by
+situation), so the threshold cannot be tuned toward a result.
+
+**4.116** (2026-09-25 23:02 PDT, E164 re-scoring; amends 4.101 and result 20) Under that rule, on the bank two of whose five situations came
+from an author with no access to this repository, **the cloud judge's lead over the frozen rule program is one situation in
+sixty**: rules 24/60, judge 25/60. The fleet's own corrected copy takes **36/60** and is the only arm that clearly beats the
+rules. Published, the judge led the copy 48 to 37; the copy loses one situation to the stricter rule and the judge loses
+twenty-three. **The judge reaches the outcome by grinding or by luck, the copy by deciding.** Random falls 24 → 6 under the
+same rule and doing nothing stays at 0, so the rule is discriminating rather than merely deflating. Claim 1's first half is
+narrowed to the banks this programme designed; claim 3 is strengthened.

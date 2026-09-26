@@ -15937,3 +15937,86 @@ whether it can be learned at all. Introspection gives a constant; operation give
 whether it was still acceptable — supervised data this run has now produced, 5,094 rows of it. Score it against both the
 static rule and this introspective gate. And sweep τ, which is unlikely to rescue the introspective version, since a
 threshold cannot fix a variable with two values.
+
+## E162 · the shelf life learned from operation instead of asked for (pre-registration, 2026-09-25 18:39 PDT; launched now)
+
+**Why.** E161 showed the model cannot answer *how long does my choice stay right* — it used two of four options, said
+`until_the_facts_change` 86 % of the time and was right 40 % of the time. But the **records** can answer it, because every
+decision in the no-skip baseline is a case where we know whether the previous choice would still have been acceptable. That
+is the loop argument in its smallest form: **not a cleverer prompt, the data a fleet already produces.**
+
+**The head.** From E161's own no-skip baseline records: given the facts now and the action chosen last time, would reusing
+that action still be acceptable? Features are E115's categorical extractor plus the last action and whether it is still on
+offer — **no model call, microseconds**, so the gate can sit in front of a call it then does not make. Logistic regression,
+1,597 training rows from the written bank (seeds 0–39).
+
+**Offline, before any closed-loop run:** AUROC **.995** on the training bank and **.925** on the held-out fresh unwritten
+bank (766 rows). Thresholded on the held-out bank it would skip 41.5 % of decisions at 95 % acceptable (τ .90) and 35.1 % at
+**100 %** acceptable (τ .95), against introspection's 86 % skipped at 40.3 % acceptable.
+
+**Why the offline number is optimistic and the closed-loop run is the real test.** Offline the head is scored on the
+baseline's own trajectory. In closed loop, skipping *changes* the trajectory, so the states it meets are its own — the
+covariate-shift problem this programme has measured everywhere else (E77, E80). I expect the closed-loop saving to be lower
+than 41.5 % and I am registering that.
+
+**Arms.** `jev` with the head at τ .90 and τ .95, seeds 0–69. Baseline is E161's no-skip `jev` on identical seeds:
+36/40 written at 40.9 calls, 23/30 fresh at 26.5 calls. **Seeds 0–39 are training seeds and are not held out; 40–69 are.**
+
+**Predictions.**
+- **P162.1** On the held-out fresh bank the head at τ .90 saves ≥ 25 % of model calls. Prior 60 %.
+- **P162.2** Its handled count there stays within the noise floor, about two in thirty, of the no-skip judge's 23/30. Prior 55 %.
+- **P162.3** It beats E161's introspective gate on handled on **both** banks. Prior 85 %.
+- **P162.4** The closed-loop saving is **lower** than the offline 41.5 %, because skipping changes the trajectory. Prior 70 %.
+- **P162.5** It saves more than E154's static rule did, 5 % written and 9 % fresh. Prior 80 %.
+- **P162.6** τ .95 saves less and handles more than τ .90. Prior 70 %.
+
+### E162 · results (2026-09-25 18:48 PDT). Learning the shelf life beats asking for it, and the learned gate reproduces claim 4 on itself
+
+**Five of six predictions held.** The learned head beats both the hand-written rule and the model's own introspection. And
+it is **worse on the bank it was trained on than on the bank it was not**, which is backwards, and the mechanism is the
+thing this programme keeps finding.
+
+| arm | bank | handled | calls / ep | calls saved | skipped | reused choice acceptable |
+|---|---|---|---|---|---|---|
+| judge, no skip | written 0–39 | **36/40** | 40.9 | — | — | — |
+| judge, no skip | fresh 40–69 *held out* | **23/30** | 26.5 | — | — | — |
+| E154 static rule | both | ≈ baseline | — | 5 % / 9 % | — | — |
+| E161 introspection | written | 23/40 | 13.5 | 67 % | 86 % | **40.3 %** |
+| E161 introspection | fresh *held out* | 20/30 | 8.6 | 68 % | 86 % | 40.3 % |
+| **learned head τ .90** | written | 30/40 | 8.5 | 79 % | **73.7 %** | **62.4 %** |
+| **learned head τ .90** | fresh *held out* | **21/30** | 17.8 | **33 %** | 36.1 % | **85.4 %** |
+| **learned head τ .95** | written | 26/40 | 13.0 | 68 % | 56.5 % | 86.4 % |
+| **learned head τ .95** | fresh *held out* | **21/30** | 18.2 | 31 % | 30.1 % | **98.3 %** |
+
+| | prediction | prior | outcome | |
+|---|---|---|---|---|
+| P162.1 | held-out saving ≥ 25 % at τ .90 | 60 % | 33 % | ✓ |
+| P162.2 | held-out handled within the noise floor of 23/30 | 55 % | 21/30, exactly at it | ✓ |
+| P162.3 | beats the introspective gate on handled, both banks | 85 % | 30>23, 26>23, 21>20 | ✓ |
+| P162.4 | the closed-loop saving is lower than the offline 41.5 % | 70 % | 33 % and 31 % | ✓ |
+| P162.5 | beats the static rule's 5 % and 9 % | 80 % | 79 % and 33 % | ✓ |
+| P162.6 | τ .95 saves less and handles **more** than τ .90 | 70 % | saves less, handles **fewer or equal** | ✗ |
+
+**1. Learning it beats asking for it, decisively, and that is the headline.** On held-out situations the head skips a third
+of all decisions and is right about it **85–98 %** of the time, where the model asked to introspect skipped 86 % and was
+right **40 %**. Handled costs two in thirty, exactly the noise floor. A hand-written rule saved 9 % on this bank; a logistic
+regression over categorical facts, costing microseconds and trained on data the failed run produced as a by-product, saves
+**33 %** at the same competence. **The constant is not beaten by a cleverer model. It is beaten by the fleet's own records.**
+
+**2. And the gate does to itself exactly what claim 4 says post-training does.** It fit the training trajectory almost
+perfectly, AUROC **.995**, and that is the problem rather than the achievement. On the states it was trained on it is
+over-confident, so it skips **73.7 %** of decisions instead of the 41.5 % the offline curve promised, and once it starts
+skipping the trajectory leaves the distribution it learned, where its accuracy collapses to **62.4 %** and handled falls
+36 → 30. On the held-out bank, where it was *less* sure, it skipped 36 % and was right 85 %. **The head is better where it
+was not trained, because confidence where it was trained is what does the damage.** Correction makes the number honest where
+you correct and dishonest where you do not — measured here on a gate rather than on a decision layer, which is the third
+place this programme has found it.
+
+**3. The threshold is not the lever, the calibration is.** τ .95 buys accuracy (98.3 % on held out) and buys **no extra
+handled**: 21/30 either way, and on the written bank it is worse (26 against 30). Tightening a threshold on a
+mis-calibrated score trades savings for nothing. That is P162.6's miss and it is the useful half of it.
+
+**What follows, singly and together.** Train the head on *both* banks' baseline records and hold out a third, which is the
+obvious fix and tests whether the over-confidence is about coverage or about the trajectory. Score the head's calibration
+rather than its AUROC, and put the novelty check underneath it, since that is the fix claim 4 already has. And the honest
+version of the whole line: **run the head on the bank we did not write (bank v3), where nothing it has seen applies.**

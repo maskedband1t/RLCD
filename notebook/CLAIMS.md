@@ -866,3 +866,18 @@ bank the rules were written for, handled falls **36 → 23 of 40**, operator sec
 episode go **41 → 98**: it saves calls and spends the saving on dithering. Wrong hand-overs stay at zero and falls go 1 → 0,
 so the cost is competence and operator time rather than safety. The saving proves the lever exists; the cost proves this is
 the wrong way to pull it.
+
+**4.111** (2026-09-25 18:49 PDT, E162) A hand-tuned skip threshold is beaten by a nearly free head learned from the fleet's own records, not
+by a cleverer model. Trained on the no-skip baseline's decisions — *given the facts now and the action chosen last time,
+would reusing it still be acceptable* — over categorical features costing microseconds, it skips **33 %** of all model calls
+on held-out situations and is right about it **85 %** of the time at τ .90 and **98 %** at τ .95, against the model's own
+introspection at 86 % skipped and **40 %** right (4.109) and a hand-written rule's 9 % saved (E154). Handled costs two in
+thirty, exactly the noise floor.
+
+**4.112** (2026-09-25 18:49 PDT, E162) The learned gate reproduces claim 4 on itself, and the fit is the problem rather than the
+achievement. AUROC **.995** on its training bank means over-confidence there: it skips **73.7 %** of decisions instead of the
+41.5 % its own offline curve promised, the trajectory then leaves the distribution it learned, its accuracy collapses to
+**62.4 %** and handled falls 36 → 30 of 40. On the held-out bank, where it was less sure, it skipped 36 % and was right
+85 %. **It is better where it was not trained.** Third place this programme has found the same shape: post-training on
+operation data buys competence where you trained and over-confidence with it. Tightening the threshold does not fix it —
+τ .95 buys accuracy and no extra handled — because the lever is calibration, not the cut point.

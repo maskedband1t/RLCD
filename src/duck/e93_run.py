@@ -94,11 +94,23 @@ class DuckJev:
             from duck.clm_local import ClmLocalClient; self.client = _shared(("clm", os.environ.get("CLM_CKPT", ""), os.environ.get("CLM_ENCODER", "")), ClmLocalClient); base = "clm"
         else: self.client = TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"]); base = "jev"
         self.shelf_tau = float(os.environ["DUCK_SHELF_TAU"]) if os.environ.get("DUCK_SHELF_TAU") else None
+        import pickle as _pk
+        self.head = _pk.load(open(os.environ["DUCK_SHELF_HEAD"], "rb")) if os.environ.get("DUCK_SHELF_HEAD") else None
+        self.head_tau = float(os.environ.get("DUCK_HEAD_TAU", "0.9"))
         self._shelf_budget = 0; self._shelf_last = None; self._shelf_saved = 0; self._shelf_stated = []
-        self.name = base + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")) + ("" if self.shelf_tau is None else f"_shelf{self.shelf_tau}")
+        self.name = base + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")) + ("" if self.shelf_tau is None else f"_shelf{self.shelf_tau}") + ("" if self.head is None else f"_head{self.head_tau}")
         self.calls = 0; self.latency = []; self.errors = 0
     SHELF = {"none": 0, "about_one_more": 1, "about_three_more": 3, "until_the_facts_change": 8}
     def decide(self, f, opts, room):
+        # E162: the learned shelf-life head. Cheap categorical features over the facts now plus the action chosen last time;
+        # if it says reusing that action is still acceptable, reuse it and make no model call.
+        if self.head is not None and self._shelf_last is not None:
+            from duck.e162_shelf_head import feats as _feats
+            x = self.head["vec"].transform([_feats(f, opts, self._shelf_last[0])])
+            p_ok = float(self.head["clf"].predict_proba(x)[0][1])
+            if p_ok >= self.head_tau and self._shelf_last[0] in opts:
+                self._shelf_saved += 1
+                return self._shelf_last[0], dict(self._shelf_last[1], skipped=True, source="head", head_p=round(p_ok, 3))
         # E161: the dynamic skip. While a previous decision's stated shelf life has budget left, reuse it and make no call.
         if self._shelf_budget > 0 and self._shelf_last is not None:
             self._shelf_budget -= 1; self._shelf_saved += 1
@@ -126,6 +138,7 @@ class DuckJev:
         if self.tau is not None and j["confidence"] < self.tau and choice not in ("ask_operator", "done"):
             if self.confirm: return "confirm:" + choice, dict(j, confirm=True)
             return "ask_operator", dict(j, gated=True)
+        if self.head is not None: self._shelf_last = (choice, j)
         if self.shelf_tau is not None:
             sh = getattr(self, "_shelf_say", None)
             if sh: j = dict(j, shelf=sh[0], shelf_p=sh[1], shelf_budget=self._shelf_budget)

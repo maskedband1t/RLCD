@@ -231,15 +231,19 @@ than worked around.
 
 The seven claims below are the argument. This table is the shape it takes: each layer of the harness, and the measurement that was not expected.
 
-| layer | what it does | the measurement that mattered |
-|---|---|---|
-| **Executor** | moves the body; frozen, never retrained here | fails to deliver on **5.6 %** of *correctly chosen* skills — so every chooser-against-chooser comparison in this repository was invalid until that number existed |
-| **Enumerator** | decides which options exist | the **set** is a resource and the **text** is nearly inert: every intervention that pruned the set hurt, and cutting the text by 96 % *improved* the outcome 37/40 → 40/40 |
-| **Scorer** | ranks the options and says how sure | the number is **earned per model**, not conferred by the interface: four models, same typed seat, calibration error **.02 to .50** |
-| **Governor** | owns safety, veto, and when to ask | a calibrated gate removes **95 % of contact for 18 % operator time** and Pareto-dominates a geometric-proxy gate on operator time, contact and completion at once |
-| **Planner** | holds the target across decisions | two findings, and the second is sharper. A hidden parameter is not a target, it is **persistence**: a code-supplied destination held for **24** decisions where a model asked to choose one re-picks every **3.1**. And with *no model at all*, varying only the **order** of a three-object plan over 25 seeds: one order succeeds 25/25 with no falls, a second **deadlocks 0/25**, and a third — equally legal — succeeds 17/25 and **topples the robot 7 times**. The plan that works is not merely a correct order; it is the one order inside the locomotion policy's competence |
-| **Recorder → corrections** | turns the fleet's own operation into training data | the **label form** decides what survives off-distribution: vetoes rescue **14 of 60**, the operator's replacement action **0** |
-| **Operator** | the person the harness escalates to | **every operator-seconds figure here was measured at one operator per robot.** At one to four the calibrated model loses one episode; at one to eight it loses five, because the queue exceeds the robot's patience. The frozen rules, which never ask, hold twenty in twenty at every ratio |
+| layer | what it does | the measurement that mattered | argued in |
+|---|---|---|---|
+| **Executor** | moves the body; frozen, never retrained here | fails to deliver on **5.6 %** of *correctly chosen* skills — so every chooser-against-chooser comparison in this repository was invalid until that number existed | claims **1**, **5** |
+| **Enumerator** | decides which options exist | the **set** is a resource and the **text** is nearly inert: every intervention that pruned the set hurt, and cutting the text by 96 % *improved* the outcome 37/40 → 40/40 | claim **7** |
+| **Scorer** | ranks the options and says how sure | the number is **earned per model**, not conferred by the interface: four models, same typed seat, calibration error **.02 to .50** | claims **1**, **2**, **6** |
+| **Governor** | owns safety, veto, and when to ask | a calibrated gate removes **95 % of contact for 18 % operator time** and Pareto-dominates a geometric-proxy gate on operator time, contact and completion at once | **no claim of its own** |
+| **Planner** | holds the target across decisions | two findings, and the second is sharper. A hidden parameter is not a target, it is **persistence**: a code-supplied destination held for **24** decisions where a model asked to choose one re-picks every **3.1**. And with *no model at all*, varying only the **order** of a three-object plan over 25 seeds: one order succeeds 25/25 with no falls, a second **deadlocks 0/25**, and a third — equally legal — succeeds 17/25 and **topples the robot 7 times**. The plan that works is not merely a correct order; it is the one order inside the locomotion policy's competence | **no claim of its own** |
+| **Recorder → corrections** | turns the fleet's own operation into training data | the **label form** decides what survives off-distribution: vetoes rescue **14 of 60**, the operator's replacement action **0** | claims **3**, **4** |
+| **Operator** | the person the harness escalates to | **every operator-seconds figure here was measured at one operator per robot.** At one to four the calibrated model loses one episode; at one to eight it loses five, because the queue exceeds the robot's patience. The frozen rules, which never ask, hold twenty in twenty at every ratio | claim **2**'s amendment |
+
+**How this document is organised, so the structure is visible.** **The seven claims are the spine** — every experiment attaches to one or opens a new one. Everything else is a *view* onto them: this table is the **structural** view (which layer), *At a glance* is the **instrument** view (which bench), and *What landed, and when* is the **chronological** view. Same argument, three indexes.
+
+**And the mapping exposes where the argument is thin.** Two layers have no claim of their own. The **Governor** is measured — a calibrated gate removing 95 % of contact for 18 % operator time — but only as a mechanism inside claim 2 rather than as a position about safety layers. The **Planner** became a box this week and its findings are still inside claim 7. Both are arguments waiting to be made, and saying so here is cheaper than a reader noticing.
 
 **The one-line version.** *You cannot evaluate a decision layer without building the harness around it, and most of what determines the outcome is the harness.* Two of those rows contradict things this repository previously asserted, which is why they are here rather than in a footnote.
 
@@ -278,7 +282,7 @@ one, and that is deliberate: a flat list of findings is not a position, and a re
 their head and then check it. Four of the seven carry a dated amendment, because a result that contradicts a claim amends it
 in place rather than sitting beside it. The seventh was opened on 26 September by four experiments that converged on it.
 
-**1. The judge's value is time, not accuracy.** Where no rule was written it handles the situation and the rules do not;
+**1. The judge's value is time, not accuracy.** *(Scorer, and its amendment the Executor.)* Where no rule was written it handles the situation and the rules do not;
 once the rule is written, the rules win. We measured the gap by having the rules' author read the bank and rewrite the
 program, and he closed it in minutes. So what a calibrated model in this seat sells is the days before a rule exists, plus
 the operator seconds it spends inside them. **Amended 26 September:** every rules-against-judge comparison in this programme
@@ -289,7 +293,7 @@ episodes, because it clips the door frame while executing a correctly-chosen wal
 weaker body by waiting and stepping around more. **A chooser comparison is only a chooser comparison once the motion layer's
 own failure rate is measured and held equal.** And the pattern generalises past choosers: the plan-order result extends it to planners, and the validation result to filters — **every layer's correct behaviour is defined by the layer beneath it.** *Results 6, 7, 11, 12, 13.*
 
-**2. The probability is the product.** Every mechanism that makes any of this useful — the hand-off threshold, the
+**2. The probability is the product.** *(Scorer, and its 26 September amendment the Operator.)* Every mechanism that makes any of this useful — the hand-off threshold, the
 one-second veto window, the surprise gate — runs on a number that means what it says. Four models with the same typed
 interface, on identical decisions, span a calibration error from two hundredths to a half. "Calibrated decision model" is a
 claim to be earned per model, not a property of an interface or a class. **Amended 26 September:** and what that number buys is *composability*, not *portability* — on the walking bench a raw, uncalibrated threshold moved behaviour just as well, its conditional accuracy drifting under .08 across a 53-point base-rate shift, while only the calibrated version stayed roughly true (half the calibration error off its fit distribution). The meaning is what lets it be reasoned about and combined, not what decides where the gate fires. **Amended 25 September:** the veto window is not free, and on a
@@ -305,12 +309,12 @@ unavailable. The frozen rules, which never ask, hold twenty in twenty at every r
 seven. **Escalation is priced by the operator-to-robot ratio, and every operator-seconds figure in this repository was
 measured at one to one.** *Results 1, 2, 3, 15, 20.*
 
-**3. The fleet can own the judgment, and the operator's intervention is the mechanism.** Distil the judge into a model the
+**3. The fleet can own the judgment, and the operator's intervention is the mechanism.** *(Recorder → corrections.)* Distil the judge into a model the
 robot runs, then correct it from takeovers the fleet is already paying for. What the intervention is turned into decides
 what is learned: a veto teaches the model to ask, the operator's replacement action teaches it the cheapest right thing — but only on the distribution you corrected: claim 4's amendment measures that same label rescuing nothing on a bank the corrections never touched, so "cheapest right thing" is an in-distribution property.
 After three rounds the fleet's own model is the best arm on the bench, above the teacher it came from. *Results 4, 8, 16.*
 
-**4. The loop quietly eats its own safety net, and the net is recoverable.** Correcting a model makes its number honest where you corrected and steadily
+**4. The loop quietly eats its own safety net, and the net is recoverable.** *(Recorder → corrections.)* Correcting a model makes its number honest where you corrected and steadily
 dishonest where you did not. Over six rounds the operator's veto window went from rescuing thirty-four lines in sixty to
 rescuing none, while the model's confidence where it was wrong climbed. A falling intervention rate is therefore not
 evidence of a safer fleet unless a bank the corrections never touch is scored every round. The fix is not a threshold on the
@@ -324,7 +328,7 @@ operator took, and fourteen lines in sixty for a model trained on the same inter
 about twenty-four seconds of a person's attention a line, so the capability is a priced option rather than a loss.
 *Results 17, 19, 22.*
 
-**5. Post-training the body is a change of body.** It fixes the fault you aim at, breaks every piece of code that was
+**5. Post-training the body is a change of body.** *(Executor.)* It fixes the fault you aim at, breaks every piece of code that was
 written around that fault, and costs a layer that reads each situation from scratch more than a layer the fleet has
 corrected. **Added 25 September:** it also has a tolerance, and we can now state it as a number. Of the three things a
 simulator can be wrong about, only the actuators matter: body mass costs at most three falls in a hundred even when it is
@@ -334,7 +338,7 @@ fifth of the real thing, and mass and friction may be rough.** Neither of the tw
 randomises the actuator gains during training, which at their own magnitudes costs them almost nothing and outside it
 protects nobody. *Results 5, 10, 14, 21.*
 
-**6. The seat costs time, and correction buys back the time that failure wastes.** Paired on the same situations, putting a
+**6. The seat costs time, and correction buys back the time that failure wastes.** *(Scorer, priced.)* Paired on the same situations, putting a
 model in the decision seat costs thirty-four seconds an episode over the frozen rules, and the rules are faster on twenty-six
 of thirty-six: that is the price of reading, and it belongs beside the coverage wins. The reason is that a miss is the
 expensive episode — the model's failures cost two minutes against twenty-five seconds for its successes, while the rule
@@ -346,7 +350,7 @@ nineteen situations on one fresh bank and twenty-seven of thirty on another, wit
 and fifteen to forty-six while coverage stays put. A fleet's cost per task is robot seconds plus operator seconds, and both
 are measured here. *Result 18.*
 
-**7. The option set is a resource; the option text is close to free.** *Opened 26 September.* This programme had treated
+**7. The option set is a resource; the option text is close to free.** *(Enumerator, and the Planner's findings still sit here.)* *Opened 26 September.* This programme had treated
 the prose describing each option as the substance of the typed interface. Six experiments on one bench say the opposite, and
 they agree: **every intervention that pruned the set hurt, and the only one that helped deleted text.** Removing every
 acceptable action on a quarter of decisions costs a perfect chooser sixteen points of acceptable decisions. Filtering options

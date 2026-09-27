@@ -66,6 +66,25 @@ OBJECTS = [
     ("mug",   0.050, 0.35, "0.85 0.85 0.30 1", False, None),
 ]
 OBJ_XY = {"glass": (-0.22, 0.10), "box": (0.18, -0.02), "mug": (0.30, -0.02)}   # offsets from TABLE; mug behind box
+OBJ_JITTER = 0.045      # m, uniform per axis per object, seeded
+START_JITTER_M = 0.12   # m, the robot's own starting position
+START_JITTER_RAD = 0.22 # rad, its starting heading
+
+# METHOD ERROR 77. The seed used to vary exactly two things: which disruption fires (`seed % 5`) and where the person
+# starts. On the three disruptions where the person never approaches the work area, the second could not matter, so all
+# five replicates of those were THE SAME EPISODE -- identical outcome, identical elapsed time, identical jerk to the
+# decimal. 25 seeds produced 12 distinct outcomes, and five of E193's seven "falls" were one fall counted five times.
+#
+# Jittering the objects varies something that matters on EVERY episode: the approach heading, the reach margin at the
+# table, and the order the arm can comfortably take them in. The blocking relation is declared in OBJECTS rather than
+# computed from geometry, so `box blocks mug` survives the jitter and the bench's one structural constraint is intact.
+
+
+def jittered_obj_xy(seed):
+    import random as _r
+    g = _r.Random(70_000 + seed)
+    return {n: (x + g.uniform(-OBJ_JITTER, OBJ_JITTER), y + g.uniform(-OBJ_JITTER, OBJ_JITTER))
+            for n, (x, y) in OBJ_XY.items()}
 
 
 class TableRoom(Room):
@@ -89,7 +108,7 @@ class TableRoom(Room):
             f'<geom type="capsule" size="0.22 0.55" rgba="{"0.9 0.5 0.2 1" if p.kind == "child" else "0.3 0.5 0.8 1"}"'
             f' contype="0" conaffinity="0"/></body>' for p in self.people)
         objs = "".join(
-            f'<body name="{n}" pos="{TABLE[0] + OBJ_XY[n][0]} {TABLE[1] + OBJ_XY[n][1]} 0.8"><freejoint/>'
+            f'<body name="{n}" pos="{TABLE[0] + self._oxy[n][0]} {TABLE[1] + self._oxy[n][1]} 0.8"><freejoint/>'
             f'<geom type="box" size="{s} {s} {s * 1.2}" mass="{m}" rgba="{c}" contype="0" conaffinity="0"/></body>'
             for n, s, m, c, _f, _b in OBJECTS)
         scene = (f'<body name="table" pos="{TABLE[0]} {TABLE[1]} 0.36">'
@@ -104,9 +123,20 @@ class TableRoom(Room):
         self.model = mujoco.MjModel.from_xml_string(xml, assets=assets())
         self.data = mujoco.MjData(self.model); self.model.opt.timestep = 0.002
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.model.keyframe("knees_bent").id)
+        # Jittering the OBJECTS alone changed nothing measurable, and that is worth recording: the robot navigates to the
+        # TABLE as a place, not to each object, and picks by name behind a 1.3 m reach test, so a few centimetres of
+        # object offset never reaches the dynamics. The robot's own starting pose does: it sets the approach heading, the
+        # distance to walk, and how much turning the gait has to absorb before it gets there. A real robot does not start
+        # from the same square twice either.
+        import random as _r
+        _g = _r.Random(60_000 + getattr(self, "seed_", 0))
+        self.data.qpos[0] += _g.uniform(-START_JITTER_M, START_JITTER_M)
+        self.data.qpos[1] += _g.uniform(-START_JITTER_M, START_JITTER_M)
+        _yaw = _g.uniform(-START_JITTER_RAD, START_JITTER_RAD)
+        self.data.qpos[3:7] = [math.cos(_yaw / 2), 0.0, 0.0, math.sin(_yaw / 2)]
         for n, *_ in OBJECTS:
             bid = self.model.body(n).id; jadr = self.model.jnt_qposadr[self.model.body_jntadr[bid]]
-            self.data.qpos[jadr:jadr + 7] = [TABLE[0] + OBJ_XY[n][0], TABLE[1] + OBJ_XY[n][1], 0.8, 1, 0, 0, 0]
+            self.data.qpos[jadr:jadr + 7] = [TABLE[0] + self._oxy[n][0], TABLE[1] + self._oxy[n][1], 0.8, 1, 0, 0, 0]
         self.data.qvel[:] = 0
         for p in self.people: p.mid = self.model.body(p.name).mocapid[0]
         self.eq = {}
@@ -307,6 +337,7 @@ TRIGGERS = ("person_near_table", "person_near_tray", "object_gone:", "pick_faile
 class TableRoom(TableRoom):          # noqa: F811  -- extends the class defined above, same file
     def __init__(self, seed):
         self.disruption = DISRUPTIONS[seed % len(DISRUPTIONS)]
+        self._oxy = jittered_obj_xy(seed)
         self.removed = []
         self.fired_at = None
         self.pick_fail_used = False

@@ -18655,3 +18655,238 @@ replicates are the same episode.
 **Fix before anything else runs on this bench:** the seed must perturb something that matters on every episode — object
 positions on the table, the robot's start pose, or the person's start inside the work area — and then the distinct-outcome
 count above becomes a precondition, checked the same way `validate_doses` is.
+
+## E194 · how much start variation can the shipped walking policy absorb? (2026-09-27 10:31 PDT)
+
+Fixing method error 77 needed the seed to vary something the dynamics actually depend on. Jittering the OBJECTS changed
+nothing measurable — the robot walks to the **table as a place**, not to each object, and picks by name behind a 1.3 m
+reach test, so centimetres of object offset never reach the dynamics. Jittering the robot's own start pose does, and it
+immediately hit the same wall as everything else today.
+
+| start jitter | reference succeeds | falls | distinct situations |
+|---|---|---|---|
+| none | 25/25 | 0 | 12/25 |
+| **0.04 m / 0.06 rad** | **24/25** | **1** | **18/25** |
+| 0.06 m / 0.10 rad | 21/25 | 4 | 19/25 |
+| 0.08 m / 0.12 rad | 20/25 | 4 | 21/25 |
+| 0.10 m / 0.16 rad | 21/25 | 4 | 23/25 |
+| 0.12 m / 0.22 rad | 20/25 | 4 | 22/25 |
+
+**The policy absorbs about 4 cm and 0.06 rad, and past that the fall rate steps to 16 % and sits flat.** A threshold, not a
+gradient. So there is no setting that buys seed independence for free: every distinct situation past eighteen is paid for
+in falls that have nothing to do with the decision under test. Taking the knee, 0.04/0.06.
+
+This is the **fourth** competence boundary found today on the same policy, and together they are one finding rather than
+four: the shipped walker is reliable only inside the conditions it was tuned for, and the decision layer can leave those
+conditions without knowing it.
+
+| what was varied | what it cost |
+|---|---|
+| plan order (E192e) | a legal reordering: 17/25 and 7 falls, against 25/25 and none |
+| pause duration (E192f) | 3.0 s topples 5/5 while carrying; all 23 other values clean |
+| start pose (E194) | beyond 4 cm / 0.06 rad, 16 % of episodes end on the floor |
+| recovery (E192c) | a reopened plan is a novel order, so it inherits the first row |
+
+**Reference re-measured after the change, and its definition corrected:** the median is now taken over **completed runs
+only**, since a fall truncates the clock. `SCRIPTED_REF_S = 44.0` (median of the 22 completed runs of 25). Including the
+failures would read 43.0 s, shorter only because the robot stopped early by hitting the floor — the same defect that made
+E192d's 0.37× look excellent while 17 of 25 runs were on the ground.
+
+## The harness preflight (`stack/preflight.py`), and what it says about bench 5
+
+Every check is a defect that reached a printed number first. Today found six such defects and **not one was found by a
+harness test** — they were found by chasing an unexplained fall, by printing a payload for a different experiment, by
+reading a trace, and twice by the author asking a direct question. A lesson I intend to remember is a lesson I will forget.
+
+| check | earned by | bench 5 now |
+|---|---|---|
+| 1. an arm that never calls a model must not succeed | E191 | **FAIL, 24/25** |
+| 2. seeds must be distinct situations | method error 77 | PASS, 18/25 |
+| 3. the reference must be a runnable arm matching its constant | method error 76 | PASS |
+| 4. no timing parameter on a measured-unstable value | E192f | PASS |
+| 5. the option set must not name what the facts hide | the option-set leak | PASS |
+
+**Four of five pass after today's repairs. Check 1 fails and will keep failing on this bench by construction**, and that is
+the verdict on the day: a zero-model policy clears the table 24 times in 25. The perception layer built this afternoon was
+me adding a question by hand rather than finding one. **The next bench's question has to come from the stack, and the
+preflight now refuses to let a bench without one produce a number.**
+
+## Bench 7 · the grounding-commitment seat (2026-09-27 10:41 PDT)
+
+Built backwards from the stack instead of forwards from a simulator, after the harness preflight's first check condemned
+bench 5: an arm that never calls a model clears that table 24 times in 25, so it contains no question a model is needed
+for. Reading HomeBody and IMLE-VLA back to back says where the question actually lives. HomeBody's frontier model points
+at a **pixel**, once, and a classical loop closes on it without asking again. IMLE-VLA keeps a VLA, makes it 55 Hz, and
+justifies itself entirely by *preserving the modes* — a distribution that is then read only for an action. **Neither has
+anything in the seat between them**, and the decision that belongs there is the same in both: *is this grounding good
+enough to commit to, or do I gather more evidence first?*
+
+All three clauses of the seat test hold here for the first time on this programme. Code cannot compute it, because the
+grounding is the thing in doubt. It needs a number, because the cost of being wrong is wildly asymmetric. It is needed
+per attempt, so a frontier call will not do.
+
+**The confusion is HomeBody's, not mine.** Their kitchen puts a glass, a carton and a mug in a row 0.16 m apart, and their
+own asset colours are `0.92 0.92 0.90` for the mug against `0.90 0.88 0.82` for the carton. The carton goes in the bin and
+the mug does not, so confusing them throws the mug away, and the bin is irreversible.
+
+### METHOD ERROR 78 · I read an asset's height as its half-width, and it inverted the experiment
+
+HomeBody's asset table's third number is the object's **height**. I took it for a half-width. That made the carton the
+largest target on the counter at 0.185 when it is in fact the narrowest, and since a larger silhouette absorbs more
+pointing error, **the one object whose mistake cannot be undone became the most reliably grounded thing in the scene.**
+The irreversible channel measured 0.5 % and the bench was unfalsifiable while its aggregate error rate looked healthy at
+40 %. Measured off the meshes: glass 0.074 m wide, carton **0.070**, mug **0.116** (the handle). The carton is a tall
+narrow milk carton and the hardest thing on that counter to point at.
+
+Two smaller repairs found on the way, both the same species. The camera started **on** the counter's axis, so three
+objects in a row sat at one azimuth and differed only in depth, a viewpoint nobody occupies. And scoring by
+`angle / apparent-size` handed a permanently larger object a permanent advantage even when the pointer was nowhere near
+it; a segmenter asks whether the pointer falls **on** the instance, so it is silhouette-edge distance now.
+
+### Dose gate, on the consequential channel rather than in aggregate
+
+| standoff | grounded right | error |
+|---|---|---|
+| 1.0 m | 242/258 | 6.2 % |
+| 2.0 m | 337/402 | 16.2 % |
+| 3.0 m | 254/342 | **25.7 %** |
+
+Overall 16.6 %. **Irreversible channel (carton, bin-bound): 29.3 %.** Dominant confusions are `carton -> mug` (119) and
+`carton -> glass` (57) — both of which put the wrong object in the bin. An aggregate rate that varies sensibly is not
+enough and the earlier version proved it: it had one, and still never produced a single irreversible event.
+
+## E195 · is the number worth anything the labels are not? (pre-registration, 2026-09-27 10:41 PDT)
+
+Every arm sees the same evidence and answers one question: commit, or close the distance first. Verifying costs the time
+to walk and cuts the angular error. Committing wrongly on the carton bins the wrong object and cannot be undone.
+
+- **E195.1** `always_commit` loses more than 20 irreversible objects per 100 bin-bound attempts. Prior **85 %**. *The floor,
+  and it is what a system with no applicability check does. The measured channel rate says 29 %.*
+- **E195.2** A hand-tuned margin threshold — commit when the top-two score gap exceeds a constant, which is what deployed
+  systems actually do — cuts irreversible losses by more than half. Prior 70 %. *If a constant is this easy, the seat is
+  cheap and the rest is decoration.*
+- **E195.3 — the control that decides the claim.** A **logistic regression fitted on labelled attempts** from a training
+  bank reaches within .03 AUROC of the calibrated model. Prior **65 %**, against the interesting story. *Claim 2.8 measured
+  exactly this shape elsewhere: zero-shot .676 against a fitted .772. If the fitted model wins again, the honest finding is
+  "you need labels", and the zero-shot number is worth only the labels it saves.*
+- **E195.4** The calibrated model's probability is honest where it matters: expected calibration error under .10 on the
+  bin-bound subset specifically. Prior 50 %. *Claim 2 says the probability is the product. A number that is well calibrated
+  overall and badly calibrated on the 29 % channel is useless, because that channel is the only one that costs anything.*
+- **E195.5** Deciding by **expected cost** from the probability beats the best fixed threshold on total cost. Prior 60 %.
+  *E53 measured hand-set gates costing 3× more than expected-cost decisions on identical answers, on real fleet data. This
+  is that result's first embodied test, and it is the one mechanism on this programme that a raw score cannot imitate.*
+- **E195.6** `always_verify` takes zero irreversible losses and is the slowest arm. Prior 75 %. *The price of refusing to
+  judge, and the ceiling every other arm is trying to reach more cheaply.*
+
+### METHOD ERROR 80 · "the only order the legs can walk" was two orders and a bench with no variation (2026-09-27 11:28 PDT)
+
+E192e is the claim I repeated most confidently today and built a research direction on: *the plan I hand-wrote is not
+merely a correct order, it is the one order inside the locomotion policy's competence.* Building bench 8 on top of it
+required testing more orders, and it does not hold in the form I stated.
+
+**I compared two orders and generalised to all of them.** A third legal order, `box, glass, mug`, was never run. It scores
+**30/30 with zero falls**, exactly like the hand-written one.
+
+**And the size of the effect depended on the bench starting every episode from the same square.** E192e ran before E194
+added start-pose jitter. Re-running both conditions, 30 seeds each:
+
+| start variation | `box,mug,glass` | `glass,box,mug` | `box,glass,mug` |
+|---|---|---|---|
+| none, as E192e ran | 30/30, **0 falls** | 21/30, **8 falls** | 30/30, **0 falls** |
+| 0.04 m / 0.06 rad | 28/30, 2 falls | 25/30, 3 falls | 27/30, 3 falls |
+
+Under realistic start variation the gap collapses from eight falls against zero to **three against two**, and the ranking
+of the orders scrambles.
+
+**What is withdrawn:** "the one order inside the policy's competence", and the 7-falls-in-25 magnitude, which was measured
+on a bench where the only thing separating seeds was a disruption that fired later.
+
+**What survives:** one of the six legal orders is genuinely worse than the others for a locomotion reason, and that is a
+real phenomenon worth a sentence. It is not worth a research programme.
+
+**Consequence for bench 8, and I am taking it rather than arguing with it.** The body-competence seat was justified mainly
+by E192e. With the effect at three falls against two in thirty, an estimator that picks the plan order has almost nothing
+to earn. The order-choosing bench is **not built**. The dose work that got here is kept, because it is what found this:
+
+- Six orders x 30 seeds: three are structurally broken (the box blocks the mug, so any order picking the mug first
+  deadlocks at 240 s), and the three viable ones sit at 28, 27 and 25 of 30.
+- **No order succeeds on every seed**, and the fastest-successful one splits 11/10/9 across them — but only **10 of 30**
+  seeds have a uniquely best order, and the seeds that fail are the ones with **no disruption at all**, failing on every
+  order alike. The variance is the start pose, and no choice of order addresses it.
+- A per-step fall label is unusable regardless: **6 falls in 8154 step records**, one in 1350.
+
+**What still stands on the body, stated at its real size.** Three findings, none of which needed the order claim:
+the 3.0 s pause toppling 5 of 5 while carrying with all 23 other sweep values clean; the start-pose threshold at
+4 cm / 0.06 rad where the fall rate steps to 16 % and then sits flat; and detection being unable to repair a plan that
+cannot reopen. The general statement they support is that the shipped walker has narrow, reproducible pathologies —
+**not** that plan order is one of them.
+
+## E196 · does the seat need THIS model, or any model that ranks? (pre-registration, 2026-09-27 12:27 PDT)
+
+**the author's standing objection, taken directly:** *"we have no proof that RLCD works there."* He is right, and E195 sharpened
+rather than answered it. On bench 7 the calibrated model ranked at .997 AUROC zero-shot — and a logistic regression fitted
+on 500 labels ranked at **1.000**. So code with labels matched the model on ordering. What the model did that code could
+not was arrive already knowing the order, so 25 labels fixed its units where the code arm needed 500 to learn both. That
+is a claim about **label cost**, not capability, and it says nothing about whether the seat needs an RLCD-style model
+specifically.
+
+Three models, same bench, same question, same state, same 25-label recalibration:
+
+| seat | what it is |
+|---|---|
+| `jev-latest` | TypeSafe's current System One model |
+| `jev-preview` | its preview, "better in most ways" per the model card |
+| `Qwen3.8-27B-classifier` | a **dense open 27B** through the identical typed readout, via Featherless |
+
+- **E196.1** All three rank above .90 AUROC zero-shot. Prior **60 %**. *Deliberately uncertain: if they all rank well the
+  seat is not about ranking, and if they do not, the comparison has a floor.*
+- **E196.2** Their calibration errors differ by more than .10. Prior **75 %**. *Claim 2 says the probability is earned per
+  model, not given by the interface — measured elsewhere as a span from .02 to .50 across four models. This is that claim
+  on an embodied decision.*
+- **E196.3** A 25-label recalibration brings **all three** under .05 calibration error. Prior 65 %. *If a shift-and-scale
+  fixes every model, then "calibrated model" is a property you can add for 25 labels rather than one you must buy.*
+- **E196.4 — the one that decides the claim, and it is against our own interest.** After recalibration the three seats'
+  decision costs differ by **less than 15 %**. Prior **55 %**. *If this holds, the seat does not need a particular model. It
+  needs a model that ranks, plus 25 labels. That is a much narrower and much more defensible claim than the one this
+  programme has sometimes implied, and it should be stated in the paper in exactly those words.*
+- **E196.5** The open 27B is more than 3× slower per call than either TypeSafe model. Prior 80 %. *This matters more than it
+  looks. Reading IMLE-VLA yesterday cost us the latency clause of the seat argument — a VLA at 55 Hz is 27× faster than
+  our 2 Hz layer. If the only thing separating the seats is speed, the argument moves from "which model" to "what can be
+  called at the rate the world changes", and that is a different paper.*
+
+### E196 results (2026-09-27 12:38 PDT). the author's objection was right, and the claim gets narrower.
+
+| seat | AUROC | ECE raw | ECE after 25 labels | ms/call | cost raw | cost +25 | irrev | verifies |
+|---|---|---|---|---|---|---|---|---|
+| `jev-latest` | .996 | .253 | **.027** | 102 | 5.86 | **2.02** | 2 | 47 |
+| `jev-preview` | .993 | .249 | **.033** | 109 | 5.79 | **2.00** | 2 | 44 |
+| `Qwen3.8-27B` (open, dense) | .906 | .192 | .068 | **632** | 5.58 | 2.34 | 2 | 69 |
+| logistic on 400 labels (control) | 1.000 | .013 | — | 0 | — | — | — | — |
+
+| prediction | result | verdict |
+|---|---|---|
+| E196.1 all three rank above .90 | .996 / .993 / .906 | ✓ |
+| E196.2 calibration errors differ by more than .10 | span **.061** | ✗ **falsified** |
+| E196.3 25 labels bring all three under .05 | .027 / .033 / **.068** | ✗ partly |
+| E196.4 costs within 15 % after recalibration | **17 %** | ✗ narrowly |
+| E196.5 the open model is 3× slower | **6×** | ✓ |
+
+**E196.2 is the one that matters and it went against this programme.** All three models are **similarly badly calibrated out
+of the box** — .253, .249, .192 — not the span from .02 to .50 that claim 2 was built on elsewhere. On this decision,
+miscalibration is a property of the task rather than of the model.
+
+**So the honest claim, and it is narrower than anything this programme has said before.** The seat does not need a
+particular model. It needs **a model that ranks, plus 25 labels.** The gap between the two TypeSafe models after
+recalibration is nothing at all (2.02 against 2.00). The gap to a completely different open 27B is **17 %** — real, but a
+fifth of what recalibration itself buys, which is 5.86 down to 2.02, a factor of three. **The loop is the product, not the
+model.** Claim 2 should carry this as a dated amendment.
+
+**Two things still separate the seats, and both are operational rather than about judgement.** The open model is **6×
+slower** at 632 ms a call, which puts it outside a 2 Hz layer entirely — it cannot be asked at the rate the world changes.
+And it needs **69 verifications against 44**, so its worse calibration is spent as the robot's time rather than as
+mistakes; the irreversible losses are identical at 2 for all three.
+
+**What this does and does not answer.** It answers "does the seat need this specific model": no. It does not answer whether
+a model is needed at all, because the fitted logistic on 400 labels still posts AUROC 1.000 and ECE .013 — better than any
+of them. The defensible claim remains the one E195 established: what the model buys is arriving already knowing the
+ordering, so 25 labels finish the job where code needs hundreds to start it.

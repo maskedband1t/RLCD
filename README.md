@@ -371,6 +371,56 @@ safety filter, a planner holding a target — is worth exactly as much as the ch
 evaluates it with an oracle will measure zero. **Confirmed independently on a second bench and a different instrument:** on the walking bench a state-dependent skip test buys **+0.100** handled events over an arm that skips at the *same rate* with no state test at all, which buys **+0.000**, replicated at n=40 and n=30. Machinery that constrains a choice is worth exactly the chooser's fallibility, measured twice. *E170, E171, E172, E178, E179, E183, S1-E3, S1-E4.*
 
 
+## When a calibrated ask is worth it, and when a hand-written rule is better
+
+The programme's seven claims narrow, on their own evidence, to one decision where a calibrated number
+is *structurally* required rather than merely useful: **whether to involve a person.** It is the only
+decision that spends a budget outside the robot, and a threshold on it has to mean the same thing in
+every situation or it cannot be set at all.
+
+So it is worth stating exactly when it beats the obvious alternative — a program that abstains on a
+flag — and the answer comes mostly from experiments that failed.
+
+### It wins when the surprise arrives unflagged
+
+When the surprise is in the facts and **no note announces it** (E83): a program's "ask when flagged"
+rule is **identical to the frozen rules** — 65.0 %, paired **+0.0** — because there is nothing to flag.
+The judgment head gains **+19.2 [+10.8, +28.7]** over both, and **the confidence gate is the only lever
+that reduces violations further, .93 → .68**, at 20 operator-seconds an episode.
+
+The same contrast appears on the drone course (E69), where the geometric proxy had no flag available
+and the calibrated gate **Pareto-dominated it on operator time, contact and completion at once** —
+95 % of contact removed for 18 % operator time.
+
+**So the condition is: if code can flag it, a program's abstention rule is as good, cheaper and
+auditable. If nothing flags it, only a calibrated number catches it.**
+
+### It loses in four measured situations
+
+| condition | what happened |
+|---|---|
+| **the surprise arrives flagged** (E71) | the gate leaves **.55** violations an episode against **.40** for "ask whenever a note exists" at matched operator time, and AUROC(confidence → not wrong) is only **.618**. Probability mass spreads over substitutable options, so the number carries little signal |
+| **the hazard is faster than the handoff** (E71) | a hand appears while a fragile heavy part is carried. The model pauses at .53–.68 confidence; gating turns that split into a 4 s ask, **and the part slips and breaks during it**. **0 of 6 for every gated arm**, against an oracle's 6 of 6 — which set the part down first |
+| **the operator is scarce** (E170) | one operator per robot **18 of 20**; one across four, 17; **one across eight, 13** — while frozen rules that never ask hold **20 of 20 at every ratio**. The operator is not slow, they are unavailable |
+| **off the distribution its corrections covered** | six correction rounds took the veto window from rescuing **34 of 60** lines to **none**. Claim 4's fix is explicit and uncomfortable: *not* a threshold on the model's own confidence, **which fails exactly where it is needed**, but a novelty check on the facts |
+
+That last row is the one to volunteer first. **The gate's own input is least trustworthy precisely
+off-distribution, which is where the gate matters most.** A novelty check on the facts backstops it;
+the confidence alone does not.
+
+### The envelope
+
+> A calibrated ask beats a hand-written abstention rule when **the surprise is unflagged**, **the
+> hazard is slower than the handoff**, **an operator is actually available** (measured between one and
+> four robots each), and **a novelty check on the facts covers the off-distribution case.**
+>
+> Outside those four conditions a program's flag-based rule is as good, cheaper and auditable, and
+> should be preferred.
+
+Four conditions, all measured, three of them established by experiments that failed. Anyone adopting
+this should check their own deployment against the four before assuming the 95 %-for-18 % number
+transfers.
+
 ## The core results
 
 Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are seed-matched bootstraps. Evidence pointers name the experiment in the [lab notebook](notebook/LAB-NOTEBOOK.md) and the [claims ledger](notebook/CLAIMS.md).

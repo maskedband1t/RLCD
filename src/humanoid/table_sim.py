@@ -56,7 +56,7 @@ FRAGILE_SPEED = 0.5                 # m/s of commanded forward speed above which
 # Argon's convention (task time against a reference) and Epoch AI's 2026 survey ("robots are typically 3-10x slower than
 # humans") both denominate in HUMAN time, which this is not, so neither citation licenses comparing our multiple to
 # theirs.
-SCRIPTED_REF_S = 45.0
+SCRIPTED_REF_S = 44.0       # median of the 22 COMPLETED runs of 25; re-measured after the start-pose jitter
 TELEOP_REF_S = SCRIPTED_REF_S       # kept so old call sites keep working; the name is wrong and is being retired
 
 # name, half-size, mass, colour, fragile, blocks
@@ -67,8 +67,20 @@ OBJECTS = [
 ]
 OBJ_XY = {"glass": (-0.22, 0.10), "box": (0.18, -0.02), "mug": (0.30, -0.02)}   # offsets from TABLE; mug behind box
 OBJ_JITTER = 0.045      # m, uniform per axis per object, seeded
-START_JITTER_M = 0.12   # m, the robot's own starting position
-START_JITTER_RAD = 0.22 # rad, its starting heading
+# MEASURED, not chosen (E194). Sweeping start-pose jitter against two things that trade off directly:
+#
+#   jitter        reference succeeds   falls   distinct situations
+#   none               25/25             0            12/25
+#   0.04 / 0.06        24/25             1            18/25     <- taken
+#   0.06 / 0.10        21/25             4            19/25
+#   0.10 / 0.16        21/25             4            23/25
+#
+# The walking policy absorbs roughly 4 cm and 0.06 rad of start variation; past that the fall rate jumps to 16 % and then
+# sits flat, which is a threshold rather than a gradient. So there is no setting that buys full seed independence for
+# free: every extra distinct situation past 18 is paid for in falls that have nothing to do with the decision under test.
+# 0.04 / 0.06 is the knee -- enough variation for the seeds to be 18 distinct situations instead of 12, at one fall.
+START_JITTER_M = 0.04
+START_JITTER_RAD = 0.06
 
 # METHOD ERROR 77. The seed used to vary exactly two things: which disruption fires (`seed % 5`) and where the person
 # starts. On the three disruptions where the person never approaches the work area, the second could not matter, so all

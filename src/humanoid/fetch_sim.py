@@ -17,6 +17,7 @@ PICK_R5B = os.environ.get("FETCH_PICK_R5B", "0") == "1"   # R5b (E149): the pick
 POSTS = os.environ.get("FETCH_POSTS", "1") == "1"   # R7 (E152): the room is drawn as it is simulated. The MJX feet-only scene collides through five explicit pairs, so every geom added to it is scenery (method error 52); the doorway is a fact in the state, not a constraint, so it is drawn as two posts rather than as solid walls the robot can be seen passing through.
 R6 = os.environ.get("FETCH_R6", "1") == "1"   # default since E150 (2026-09-24); FETCH_R6=0 restores the clock-timed events   # R6 (E148): every scripted event triggered by the robot's state, and a hand-over scored on the state at its decision (method errors 48, 49)
 PICK_R5 = os.environ.get("FETCH_PICK_R5", "1") == "1"   # default since E147; FETCH_PICK_R5=0 restores the repeating pick-up   # R5 (E147): the pick-up skill approaches the table itself when it is in the room
+EYE = os.environ.get("FETCH_EYE", "0") == "1"   # E166: mount a first-person head camera and make the view available
 HIDE_NOTES = os.environ.get("DUCK_HIDE_NOTES", "0") == "1"   # E136: the situation without its note
 LEAVES_ROOM = os.environ.get("FETCH_LEAVES_ROOM", "1") == "1"   # bank v2.1 (E131) is the default since E126 part 2 ran under v2 as registered; FETCH_LEAVES_ROOM=0 restores v2
 PROGRESS = os.environ.get("DUCK_PROGRESS", "1") == "1"   # the progress clause is on by default on this bench (E103's lesson)

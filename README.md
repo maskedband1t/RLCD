@@ -4,9 +4,13 @@ Anurag Akkiraju · September 2026 · MIT
 
 **The gap.** A robot fleet with people supervising it runs on hand-written rules, and rules only cover the situations someone thought of in advance. New situations arrive every day, and a person covers them until an engineer writes the rule.
 
-**The bet.** A small calibrated decision model in the seat between the robot's policy and the person: shown the situation in plain words and a list of options code wrote, it picks one and says how sure it is, with a probability that means what it says. And the seam around that seat: what the number is worth as a fleet corrects the model on its own takeovers, and what happens to it when the body underneath is post-trained.
+**The bet, and what happened to it.** The bet was a small calibrated decision model in the seat between the robot's policy and the person: shown the situation in plain words and a list of options code wrote, it picks one and says how sure it is, with a probability that means what it says.
 
-**Measured.** Four simulated setups and one real dataset, 165 pre-registered experiments, every one against the rule program an engineer would write first and against an oracle that knows the truth. The misses are in the record.
+To test that bet I had to build everything around the seat — a planner that holds the target, an enumerator that decides which options exist, a governor that owns safety and when to involve a person, an executor that moves the body, and a recorder that turns every decision into training data. **Most of what determined the outcome turned out to be that scaffolding, not the model sitting in the seat.** The model's contribution is real and it is bounded: it buys the window before a rule exists, and its number has to be earned per model rather than assumed from an interface. The surprises are all one layer out.
+
+So this is a report on a **supervision harness**, measured layer by layer, in which a calibrated decision model is one component whose value is stated with its price. That is a smaller claim than the bet and a more useful one, because it survives the bet being wrong.
+
+**Measured.** Four simulated setups and one real dataset, 165 pre-registered experiments, every one against the rule program an engineer would write first and against an oracle that knows the truth. The misses are in the record, and roughly one scored result in four is negative.
 
 ![A human-sized humanoid carries a cup to Maya, who is on a call. Left, the rules hand it to her anyway. Middle, the rules rewritten with hindsight wait. Right, the calibrated judge waits until she looks up.](figures/demo-g1-seed42-phone-rules-vs-judge.gif)
 
@@ -122,6 +126,43 @@ Measured here at the human–robot boundary; measured at the policy–world-mode
 
 *The RLCD-specific result. Reliability on the states each model's own actions created: two RLCD checkpoints sit within .02 of their hit rate; a dense open 27B through the identical readout runs .135 over. Its ranking survives, so a gate recovers it; its number does not, so a fixed threshold means a different thing for it (D7, D8, D4d).*
 
+## How to read this record
+
+This repository keeps its failures. If you are skimming it — or pointing a tool at it — the counts
+below are the fastest honest summary, and every one is checkable in the files named.
+
+| | count | where |
+|---|---|---|
+| Scored results | **29 supported · 9 negative · 1 partial** | `notebook/CLAIMS.md`, status on each entry |
+| Pre-registered experiments | more than 150, predictions dated before each run and never edited afterwards | `notebook/LAB-NOTEBOOK.md` |
+| Method errors logged against myself | **65**, each with the rule that would have caught it | search `method error` in `notebook/LAB-NOTEBOOK.md` |
+| Claims withdrawn or retracted after further work | **43 recorded withdrawals** | search `withdraw` / `retract` |
+
+**Why the negatives are here.** A programme that reports only what worked gives a reader no way to
+tell luck from method. So the failures stay, named, next to the results they were meant to support:
+a critic over a language planner's steps, a wrist-camera perception question, dispatch by expected
+cost, a distilled student that collapsed onto one action, an intervention that pruned an option set
+and made things worse. Roughly **one scored result in four is negative.** That ratio is the point,
+not an apology.
+
+**Why the method errors are numbered.** Each one records a mistake in *how* something was measured
+— an unpaired mean that inflated a speed-up by 2x, a monotone transform a single-threshold gate
+could not see, a point estimate scored without its interval, a bug that cost fifteen episodes and
+forced every comparison it touched to be re-run. They are numbered so the same mistake is not made
+twice and so a reader can see which published figures were affected.
+
+**What is strongest here.** In rough order of how much would have to be wrong for them to fall:
+a calibrated judgment reads operator notes a frozen rule program does not, where no rule was
+written; the same interface does not confer the same calibration, which is earned per model (four
+models, calibration error .02 to .50); a fleet-owned copy distilled from those decisions reaches its
+teacher on three bodies; and a state-dependent gate beats an arm that fires at the same rate with no
+test at all, which is the control that separates a working gate from merely doing less.
+
+**What this is not.** One simulator family per bench, one operator model, simulator-supplied
+perception, and — where it is stated — small samples whose intervals are given. Several benches
+cannot resolve the effects they were pointed at, and where that is true it is written down rather
+than worked around.
+
 ## At a glance
 
 | instrument | the question | what we found |
@@ -186,31 +227,87 @@ Measured here at the human–robot boundary; measured at the policy–world-mode
 4. [docs/FETCH-BENCH.md](docs/FETCH-BENCH.md) and [docs/PICKING-BENCH.md](docs/PICKING-BENCH.md): the humanoid room and the picking station, each with its ladder.
 5. [notebook/LAB-NOTEBOOK.md](notebook/LAB-NOTEBOOK.md): 11,000 lines of dated pre-registrations, results and scoring, if you want to check any of it.
 
-## The argument, in six claims
+## The harness, layer by layer
 
-The results below are evidence for six claims. Every experiment in this programme attaches to one of them or opens a new one,
-and that is deliberate: a flat list of findings is not a position, and a reader should be able to hold the position in their
-head and then check it. Two of the six carry a dated amendment, because a result that contradicts a claim amends it in place
-rather than sitting beside it.
+The seven claims below are the argument. This table is the shape it takes: each layer of the harness, and the measurement that was not expected.
+
+| layer | what it does | the measurement that mattered |
+|---|---|---|
+| **Executor** | moves the body; frozen, never retrained here | fails to deliver on **5.6 %** of *correctly chosen* skills — so every chooser-against-chooser comparison in this repository was invalid until that number existed |
+| **Enumerator** | decides which options exist | the **set** is a resource and the **text** is nearly inert: every intervention that pruned the set hurt, and cutting the text by 96 % *improved* the outcome 37/40 → 40/40 |
+| **Scorer** | ranks the options and says how sure | the number is **earned per model**, not conferred by the interface: four models, same typed seat, calibration error **.02 to .50** |
+| **Governor** | owns safety, veto, and when to ask | a calibrated gate removes **95 % of contact for 18 % operator time** and Pareto-dominates a geometric-proxy gate on operator time, contact and completion at once |
+| **Planner** | holds the target across decisions | two findings, and the second is sharper. A hidden parameter is not a target, it is **persistence**: a code-supplied destination held for **24** decisions where a model asked to choose one re-picks every **3.1**. And with *no model at all*, varying only the **order** of a three-object plan over 25 seeds: one order succeeds 25/25 with no falls, a second **deadlocks 0/25**, and a third — equally legal — succeeds 17/25 and **topples the robot 7 times**. The plan that works is not merely a correct order; it is the one order inside the locomotion policy's competence |
+| **Recorder → corrections** | turns the fleet's own operation into training data | the **label form** decides what survives off-distribution: vetoes rescue **14 of 60**, the operator's replacement action **0** |
+| **Operator** | the person the harness escalates to | **every operator-seconds figure here was measured at one operator per robot.** At one to four the calibrated model loses one episode; at one to eight it loses five, because the queue exceeds the robot's patience. The frozen rules, which never ask, hold twenty in twenty at every ratio |
+
+**The one-line version.** *You cannot evaluate a decision layer without building the harness around it, and most of what determines the outcome is the harness.* Two of those rows contradict things this repository previously asserted, which is why they are here rather than in a footnote.
+
+**And the pattern underneath the table, which is the actual thesis.** Three findings, on three different layers, are the same finding:
+
+- The **executor** fails on 5.6 % of correctly chosen skills, so a **chooser** comparison is not a chooser comparison until that number is known.
+- The plan order that works is the one inside the **locomotion policy's** competence, so a **planner** cannot be evaluated as a planner — a legal, correct ordering topples the robot seven times in twenty-five.
+- Pruning the option set hurt everywhere, and an oracle is immune to a bad option, so a **validator** is worth exactly the **chooser's** fallibility and measures zero against a perfect one.
+
+> **Every layer's correct behaviour is defined by the layer beneath it.** That is why this had to become a harness before any of it could be measured, and it is the one sentence worth carrying out of the whole programme.
+
+**What this costs the original bet.** A calibrated model in the seat is worth the window before a rule exists, and not obviously worth more than that. Its number is necessary for every mechanism built on it and is not sufficient, because those mechanisms also need a person to be free. Anyone adopting this should budget for the harness first and the model second.
+
+## Three systems, and which one the harness is for
+
+"System Two" appears throughout this repository and is never given a section, and **System Zero is not named at all** — even though it is the layer that keeps turning out to govern the others. Naming all three closes the story, because the harness exists to connect them and each earns its place for a different measured reason.
+
+| | what it is | why it sits there | measured |
+|---|---|---|---|
+| **System 0** — the body | the locomotion or manipulation policy, plus the reflex above it. **Frozen throughout this programme** | it is the only layer that touches the world, and the one nobody here is qualified to retrain | fails to deliver on **5.6 %** of correctly chosen skills · its competence decides which *plans* are legal — a legal ordering topples the robot **7 times in 25** · its simulator needs the **actuator model within about a fifth**, while mass and friction may be rough |
+| **System 1** — the seat | a small typed model that picks one option from a code-written set and says how sure it is | it is the only layer that can read a sentence a person wrote this morning and act on it in 0.1 s | handles **29 of 30** situations no rule was written for where the frozen rules handle 1 · calibration **.02 to .50** across four models in the identical seat · a **421M** copy the fleet owns reaches its teacher on three bodies |
+| **System 2** — outside the loop | a frontier model, consulted once per situation rather than once per decision | it is the only layer that can write the things the other two consume | **drafts the rule program**, and given the bank its author closed the coverage gap in **minutes** · writes the fact vocabulary · **teaches** the owned head · **proposes options**, and a real vision-language enumerator offered **no acceptable action on 13.2 %** of decisions, which is why the contract checks it |
+
+**Why System 2 is not in the seat, stated as measurements rather than preference.** The seat has four requirements: a decision every 0.1–1 s, a probability that keeps its meaning on the states the model's own actions create, a per-decision cost a fleet can afford at 10⁵ decisions per robot-day, and a model the fleet can own and retrain. **A frontier model meets one.** On the same robot with the same local perception a frontier agent took **70–71 s** an episode against the calibrated model's **27 s** — and *the decision was never the bottleneck, perception was.* In closed loop, 200 ms of judgment latency is free, 300 ms costs, and 3 s costs **11 of 29** unwritten situations while doubling near-contacts. A dense open 27B behind the identical interface keeps its accuracy and drifts its stated sureness by **.135** on the states its own actions create.
+
+**What System 2 is unambiguously better at, and this is the part to build on.** Every measured System-2 contribution is one-shot, offline or generative, and each is something the other two layers cannot do at all: writing the rules, writing the fact vocabulary, teaching the owned head, and proposing options. Claim 7 says the option *set* is the resource; System 2 is the only layer that can enlarge it, and its 13.2 % failure rate is an argument for the contract checking it rather than for removing it.
+
+> **Reason slowly once, execute quickly many times.** That framing is a practitioner's, not ours, and it is the cleanest statement of the division: System 2 reasons once per *situation*, System 1 decides once per *tick*, System 0 acts continuously. The harness is the contract that lets the slow layer's output survive being consumed by the fast one.
+
+**The open edge, named honestly.** The two layers System 2 could plausibly own inside the loop — the **planner** and the **enumerator** — are the two that were code until this week, and neither has been post-trained by anyone. The field post-trains System 0. This programme post-trained System 1. Claim 7 says the enumerator is where the remaining leverage is, and it is the one box still a hand-written function nobody varied.
+
+## The argument, in seven claims
+
+The results below are evidence for seven claims. Every experiment in this programme attaches to one of them or opens a new
+one, and that is deliberate: a flat list of findings is not a position, and a reader should be able to hold the position in
+their head and then check it. Four of the seven carry a dated amendment, because a result that contradicts a claim amends it
+in place rather than sitting beside it. The seventh was opened on 26 September by four experiments that converged on it.
 
 **1. The judge's value is time, not accuracy.** Where no rule was written it handles the situation and the rules do not;
 once the rule is written, the rules win. We measured the gap by having the rules' author read the bank and rewrite the
 program, and he closed it in minutes. So what a calibrated model in this seat sells is the days before a rule exists, plus
-the operator seconds it spends inside them. *Results 6, 7, 11, 12, 13.*
+the operator seconds it spends inside them. **Amended 26 September:** every rules-against-judge comparison in this programme
+was read as chooser against chooser, and at least one of them was not. Declaring a postcondition on each skill makes a
+failure attributable to a layer, and the oracle — which by construction never picks an unacceptable action — still loses
+episodes, because it clips the door frame while executing a correctly-chosen walk. The motion layer fails to deliver on
+5.6 % of correctly-chosen skills, and the frozen rules' apparent win over the oracle is a worse chooser compensating for a
+weaker body by waiting and stepping around more. **A chooser comparison is only a chooser comparison once the motion layer's
+own failure rate is measured and held equal.** And the pattern generalises past choosers: the plan-order result extends it to planners, and the validation result to filters — **every layer's correct behaviour is defined by the layer beneath it.** *Results 6, 7, 11, 12, 13.*
 
 **2. The probability is the product.** Every mechanism that makes any of this useful — the hand-off threshold, the
 one-second veto window, the surprise gate — runs on a number that means what it says. Four models with the same typed
 interface, on identical decisions, span a calibration error from two hundredths to a half. "Calibrated decision model" is a
-claim to be earned per model, not a property of an interface or a class. **Amended 25 September:** the veto window is not free, and on a
+claim to be earned per model, not a property of an interface or a class. **Amended 26 September:** and what that number buys is *composability*, not *portability* — on the walking bench a raw, uncalibrated threshold moved behaviour just as well, its conditional accuracy drifting under .08 across a 53-point base-rate shift, while only the calibrated version stayed roughly true (half the calibration error off its fit distribution). The meaning is what lets it be reasoned about and combined, not what decides where the gate fires. **Amended 25 September:** the veto window is not free, and on a
 long situation its cost can exceed the budget. On a bank written partly by an author who had never seen the rules, the same
 one-second window took one situation from nothing handled to everything handled, by turning a robot that never terminated
 into one that resolved the line in two decisions. On another it scored nothing at all, but for a reason that is about time
 rather than judgment: the arm never picked the object up, so the action that situation needs was never offered to it, and it
-spent two minutes and ninety seconds of a person's attention getting nowhere. *Results 1, 2, 3, 15, 20.*
+spent two minutes and ninety seconds of a person's attention getting nowhere. **Amended 26 September:** the number is
+necessary and not sufficient, because every mechanism it drives also needs a person to be free. With one operator per robot
+the calibrated model handles eighteen situations in twenty; with one operator across four it loses one; with one across
+eight it loses five, because the queue exceeds the robot's patience on every ask and the operator is not slow but
+unavailable. The frozen rules, which never ask, hold twenty in twenty at every ratio, so the gap widens from two episodes to
+seven. **Escalation is priced by the operator-to-robot ratio, and every operator-seconds figure in this repository was
+measured at one to one.** *Results 1, 2, 3, 15, 20.*
 
 **3. The fleet can own the judgment, and the operator's intervention is the mechanism.** Distil the judge into a model the
 robot runs, then correct it from takeovers the fleet is already paying for. What the intervention is turned into decides
-what is learned: a veto teaches the model to ask, the operator's replacement action teaches it the cheapest right thing.
+what is learned: a veto teaches the model to ask, the operator's replacement action teaches it the cheapest right thing — but only on the distribution you corrected: claim 4's amendment measures that same label rescuing nothing on a bank the corrections never touched, so "cheapest right thing" is an in-distribution property.
 After three rounds the fleet's own model is the best arm on the bench, above the teacher it came from. *Results 4, 8, 16.*
 
 **4. The loop quietly eats its own safety net, and the net is recoverable.** Correcting a model makes its number honest where you corrected and steadily
@@ -248,6 +345,26 @@ One thing does make it decide faster: a correction round on a body that has chan
 nineteen situations on one fresh bank and twenty-seven of thirty on another, with decisions per episode cut from a hundred
 and fifteen to forty-six while coverage stays put. A fleet's cost per task is robot seconds plus operator seconds, and both
 are measured here. *Result 18.*
+
+**7. The option set is a resource; the option text is close to free.** *Opened 26 September.* This programme had treated
+the prose describing each option as the substance of the typed interface. Six experiments on one bench say the opposite, and
+they agree: **every intervention that pruned the set hurt, and the only one that helped deleted text.** Removing every
+acceptable action on a quarter of decisions costs a perfect chooser sixteen points of acceptable decisions. Filtering options
+by a predicted person-distance takes the rule program from thirty-nine of forty to thirty-one *and makes safety worse*, because
+blocking the actions that make progress raises total time spent near people by nearly half and blocks actions that were
+acceptable anyway. Validating a vision model's proposals against the declared preconditions — the "let the big model propose,
+let code check, let the calibrated model pick" design this programme had been arguing for — costs the calibrated chooser three
+episodes in ten, because it cuts the offered set from eight and a half options to one and a half, and **a chooser with one and
+a half options cannot exercise judgment however good it is**. Meanwhile a *bad* option costs almost nothing: an oracle is
+immune to an inapplicable option at every rate we injected, because a chooser that knows better ignores it. And the text is
+nearly inert — code appended a genuine two-second forward simulation to every option, fifty-seven per cent of all the
+characters the model read, and removing all of it moved the chooser one episode in forty; cutting the text by ninety-six per
+cent to the bare skill name **improved** the outcome from thirty-seven of forty to forty of forty and **halved** the
+decisions, because the prose was making the chooser dither rather than commit. **So the instinct to protect a chooser by
+filtering what it sees is backwards here. Offer more, describe less, and treat the chooser's own fallibility as the thing to
+measure and correct.** A corollary that generalises past this claim: machinery that constrains a choice — validation, a
+safety filter, a planner holding a target — is worth exactly as much as the chooser's fallibility, and any experiment that
+evaluates it with an oracle will measure zero. **Confirmed independently on a second bench and a different instrument:** on the walking bench a state-dependent skip test buys **+0.100** handled events over an arm that skips at the *same rate* with no state test at all, which buys **+0.000**, replicated at n=40 and n=30. Machinery that constrains a choice is worth exactly the chooser's fallibility, measured twice. *E170, E171, E172, E178, E179, E183, S1-E3, S1-E4.*
 
 
 ## The core results

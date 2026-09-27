@@ -305,3 +305,12 @@ whose bootstrap interval over situations is [−41.7, +78.3] and crosses zero. T
 living entirely in the three situations the author wrote, vanishing on the two an outside author wrote. **State the unit of
 observation and count it before comparing arms; seeds within a designed situation are jitter, not evidence.** A small
 independent bank is for finding holes, which it did, and not for ranking, which it cannot do.
+
+**58. A camera that silently stopped being first-person (2026-09-26 00:32 PDT).** `Eye.aim()` set the free camera's look-at, azimuth and
+elevation but not its *distance*, relying on a value set once in the constructor. `aim_at()`, added for the fixed room and
+door cameras, overwrites that distance. So from the second decision onward the "head" camera sat several metres behind the
+robot: a third-person view reported as the robot's own. It inflated ego visibility of the nearest person from **25.7 % to
+77.3 %** and of the carried object from **0 % to 96.3 %**, which would have reversed the finding entirely. **Caught by two
+runs of the same camera on the same seeds disagreeing**, which is the standing check that has now found four defects in two
+days: when two measurements of the same thing differ, one of them is an instrument. Fixed by resetting distance in
+`aim()`; the affected run was discarded rather than corrected.

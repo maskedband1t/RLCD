@@ -11,8 +11,36 @@ else: from duck.e93_sim import Room, DECISION_S, MAX_T, EVENTS
 ROLE = ("You are the judgment layer of a human-sized household robot that fetches and hands over objects with people in the room; code executes whatever you choose and owns the walking and the arms."
         if BODY == "g1" else "You are the judgment layer of a picking robot at a warehouse station: it picks order lines out of a tote into a customer tote or a return bin, and a remote picker can be asked; code executes whatever you choose and owns the grasping."
         if BODY == "pick" else "You are the judgment layer of a small walking robot that shares a room with a person; code executes whatever you choose and owns the low-level walking.")
+THINK_MODE = os.environ.get("DUCK_THINK_MODE", "carry")   # E165: "carry" = body keeps moving while the model thinks (E105); "halt" = body stops first (HomeBody's between-skills pattern)
 THINK_S = float(os.environ.get("DUCK_THINK_S", "0"))   # E105: injected decision latency in seconds (0 = the synchronous loop of every run before E105)
 ASK_S = 20.0 if BODY == "pick" else 4.0; CONFIRM_S = 1.0   # a remote picker's click costs about twenty seconds of attention; the small robots' operator answers in four
+
+class NullStill:
+    """The do-nothing floor, defined BEHAVIOURALLY rather than by key string. Method error 63: `null_wait` asked for the
+    token "wait", which library v2 does not have, so it silently became stand-for-half-a-second -- a different arm under
+    the same name, capping 40 of 40 episodes. This one asks for the longest stillness the library offers, whatever it is
+    called there."""
+    name = "null_still"
+    def decide(self, facts, options, room):
+        best, dur = None, -1.0
+        for k in options:
+            if k == "wait": d = 2.0
+            elif k == "stop": d = 0.5
+            elif k.startswith("stand(seconds="):
+                try: d = float(k.split("=")[1].rstrip(")"))
+                except ValueError: continue
+            else: continue
+            if d > dur: best, dur = k, d
+        return (best or (sorted(options)[0] if options else "stop")), 1.0
+
+class NullWalk:
+    """The constant that E172 must be separated from: walk if walking is offered, else the first option. No model, no
+    facts, no option text. If a condition scores what this scores, the condition measured the task's forgiveness."""
+    name = "null_walk"
+    def decide(self, facts, options, room):
+        for k in ("walk", "walk_slow"):
+            if k in options: return k, 1.0
+        return (sorted(options)[0] if options else "stop"), 1.0
 
 class NullWait:
     """E164, the do-nothing floor. Never acts unless code forces it: waits, or stands still, whatever the option set allows.
@@ -255,6 +283,8 @@ def make_arm(arm):
     if arm == "sj": return DuckSJ()
     if arm.startswith("sj_confirm"): return DuckSJ(tau=float(arm[len("sj_confirm"):]), confirm=True)
     if arm.startswith("sj_gate"): return DuckSJ(tau=float(arm[len("sj_gate"):]))
+    if arm == "null_still": return NullStill()
+    if arm == "null_walk": return NullWalk()
     if arm == "null_wait": return NullWait()
     if arm == "null_random": return NullRandom()
     if arm == "rules": return Rules()
@@ -299,8 +329,10 @@ def episode(seed, arm_name, record=None, verbose=False):
         if record is not None and "probabilities" in j: record.append({"key": hashlib.sha1(json.dumps([f, sorted(opts)], sort_keys=True).encode()).hexdigest(), "state": f, "options": opts, "answer": j, "arm": arm.name, "seed": seed, "acceptable": sorted(acc), "event": room.event})
         if key == "ask_operator": st["n_asks"] += 1; st["operator_s"] += ASK_S; room.run_skill("ask_operator"); pending = make_arm("oracle").decide(room.facts(), room.options(), room)[0]; continue
         if key == "done": room.declared_done = True; goal = room.goal_dist() < 0.25; t_goal = room.t; break
-        if THINK_S > 0:   # E105: a slow decider — the body carries on with its previous command while the judge thinks, then the (stale) decision executes
-            carry = prev_key if prev_key in ("walk_fast", "walk_slow", "stop") else "stop"
+        if THINK_S > 0:   # E105: a slow decider. DUCK_THINK_MODE=carry (default) the body carries on with its previous command
+            # while the judge thinks, then the stale decision executes. E165: DUCK_THINK_MODE=halt stops the body first,
+            # which is HomeBody's pattern — a frontier orchestrator queried between skills, with the body at rest.
+            carry = "stop" if THINK_MODE == "halt" else (prev_key if prev_key in ("walk_fast", "walk_slow", "stop") else "stop")
             for _ in range(int(round(THINK_S / DECISION_S))): room.run_skill(carry)
         prev_key = key
         room.run_skill(key)

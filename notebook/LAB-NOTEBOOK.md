@@ -16294,3 +16294,2364 @@ README, the claims ledger and the board all carried it and all are corrected.
 observations. They were five situations with position jitter, and the bootstrap over the honest unit crosses zero by a wide
 margin. **Before comparing arms, state the unit and count it.** Seeds within a designed situation are not independent
 samples of anything.
+
+## E165 · when is a slow orchestrator safe? Building on HomeBody's stated limitation (pre-registration, 2026-09-25 23:24 PDT; launched now)
+
+**Why.** HomeBody puts a frontier VLM directly over a hand-written skill library on the same robot this bench drives, and
+names its own limitation: *"GPT Astra's reasoning latency introduces pauses between skills."* Demonstrations run at 7–14×
+speed. **In their architecture the body is at rest while the model thinks**, because the pause falls between skills.
+
+E105 measured the other case on this bench: three seconds of injected think time while **the body carries on with its
+previous command** costs the judge 11 of its 29 unwritten situations and doubles near-contacts. Those two settings have never
+been compared, and the difference between them is a design rule anybody building a HomeBody-style system would want.
+
+**The question, in one line.** *Is a slow orchestrator safe exactly when the body can stop?*
+
+**Design.** The same judge, the same seeds, the same instrument, latency injected two ways:
+- **`carry`** — the body continues its previous command while the model thinks. E105's setting, and what happens if you
+  query a frontier model mid-motion.
+- **`halt`** — the body is commanded to stop for the duration, then the decision executes. **HomeBody's setting.**
+
+Latencies 0, 1, 3 and 6 seconds, the last chosen because frontier reasoning latency is seconds rather than tenths. Written
+bank (0–39) and fresh unwritten v1 (40–69). Handled counts under the full bar registered yesterday: outcome, ending, and
+beating the chance floor on decision quality.
+
+**Predictions.**
+- **P165.1** At 3 s, `halt` costs fewer than 3 situations against the 0 s baseline, while `carry` costs 8 or more. Prior 65 %.
+  *This is the design rule, if it holds.*
+- **P165.2** Near-contact events rise with latency under `carry` and do **not** rise under `halt`. Prior 80 %.
+- **P165.3** `halt` costs episode time roughly linearly in latency and `carry` does not, because a stopped robot makes no
+  progress while it thinks. Prior 75 %. *The price of safety here is throughput, which is exactly Argon's currency.*
+- **P165.4** At 6 s even `halt` loses ≥ 4 situations, because some situations move on their own while the robot stands
+  there. Prior 55 %. *If this holds, "stop while you think" is not a general escape.*
+- **P165.5** The fresh unwritten bank degrades faster than the written one under both modes, because unwritten situations
+  are the ones where a stale decision matters. Prior 60 %.
+
+**What this gives somebody building their system.** If P165.1 and P165.2 hold, the rule is: **a frontier orchestrator is safe
+precisely while the body can be stopped, and the cost is throughput rather than safety.** If P165.4 also holds, that escape
+has a ceiling, and the ceiling is where the world moves faster than the model thinks.
+
+## E166 · pixels to facts, stage 1: is the fact even in the image? (pre-registration, 2026-09-25 23:37 PDT)
+
+**Why this and not a perception model.** Every fact the decision layer reads is handed to it by the simulator. That is the
+largest honest gap in this programme and it has been parked as "blocked on an RTX machine", which turns out to be wrong:
+MuJoCo renders segmentation and depth on this laptop today. But the first question is not whether a model could produce
+those facts from pixels. **It is whether the fact is in the image at all.** If the person a safety clause is about stands
+behind the robot, no perception system can report her distance. That is a ceiling on the enterprise rather than a defect of
+any model, and nobody has measured it.
+
+**The instrument.** A first-person head camera on the G1, driven from the robot's own pose: 58° vertical field of view at
+1.25 m, which is an Intel RealSense D435i at head height, the camera most G1 stacks including HomeBody's actually carry.
+Per decision we render the head view and count, for every person and the object, how many pixels it occupies.
+
+**The physical argument that makes this worth running.** A 58° vertical cone from 1.25 m looking horizontally covers, at
+0.5 m range, only the band from about 0.97 m to 1.53 m above the floor. **A person at touching distance is mostly below the
+frame.** A child at that range is almost entirely below it. So the geometry predicts that visibility of a person *falls* as
+they get closer, which is exactly backwards from what a safety clause needs, and the decision layer's most safety-critical
+fact — the nearest person's distance, motion and attention — should be least available precisely when it matters most.
+
+**Design.** The oracle and the frozen rules, written bank (0–39) and fresh unwritten v1 (40–69), with the eye on. At every
+decision, log: the nearest person's identity and true distance band, whether that person is visible from the head and at how
+many pixels, the same for the object and for the requester, and the decision taken.
+
+**Predictions.**
+- **P166.1** The nearest person is visible at **fewer than 85 %** of decisions. Prior 70 %.
+- **P166.2** Visibility of the nearest person **falls** as true distance falls below 1 m, rather than rising. Prior 75 %.
+  *This is the geometric argument and it is the point of the experiment.*
+- **P166.3** At touching distance, under 0.5 m, the nearest person is visible at **fewer than half** of decisions. Prior 65 %.
+- **P166.4** Once the object is held it is visible at fewer than 50 % of decisions, because it rides at wrist height below
+  the camera's cone. Prior 70 %.
+- **P166.5** At least one event has nearest-person visibility below 50 % overall. Prior 55 %.
+
+**What each outcome means, written before the run.** If P166.2 and P166.3 hold, then a head-mounted camera is structurally
+the wrong sensor for the decision layer's safety facts, and the honest conclusion is that this fact layer needs a second
+viewpoint or a different sensor rather than a better model. If they fail, the information is there and the gap really is a
+modelling problem, which is a much better position to be in and the perception model becomes worth building.
+
+## E167 · what a viewpoint that is not the robot's head buys (pre-registration, 2026-09-26 00:19 PDT; launched now)
+
+**Why, and it came from the author in one sentence.** E166's ego view is far worse than I predicted: the nearest person visible
+at **25.7 %** of decisions, and the carried object at **0.0 %** across 1,249 decisions while carrying. The geometry is
+decisive rather than a bug. An object at wrist height sits about 56° below a level camera whose frame is ±29°, so the robot
+structurally cannot see its own hands. And a ±36.5° horizontal frame means a person who is not roughly in front is simply
+absent; the instrument check confirms it is binary, with a person at 0.35 m filling 97 % of the frame or not appearing at all.
+
+**So the question is not "can a model read these pixels".** It is *which viewpoint contains the fact at all*, and the answer
+matters commercially because **the cheapest fix is a camera already on the wall.**
+
+**Four viewpoints, same decisions.** `head` (ego, the E166 baseline), `wrist` (on the manipulating arm, looking along it),
+`room` (fixed high in a corner, the kind a warehouse already has), `door` (fixed above the threshold). Oracle and frozen
+rules, written bank and fresh unwritten v1.
+
+**Predictions.**
+- **P167.1** One fixed room camera raises nearest-person visibility from 26 % to **above 80 %**. Prior 75 %.
+- **P167.2** The wrist view recovers the carried object from 0 % to **above 50 %**. Prior 65 %.
+- **P167.3** Head and room together exceed **85 %** for the nearest person. Prior 70 %.
+- **P167.4** The room camera alone beats head-plus-wrist for the nearest person. Prior 80 %.
+- **P167.5** No single view exceeds 95 %, because furniture and people occlude. Prior 60 %.
+
+**What follows if these hold.** The honest recommendation stops being "build a better perception model" and becomes
+**"the facts this decision layer needs are mostly not in the robot's own view, and a fixed camera recovers them for the price
+of a bracket"**. That is a cheaper and more useful thing to tell a fleet than anything about model architecture, and it is a
+direct consequence of a question I had not thought to ask until it was asked of me.
+
+## E169 · when the choices come from intelligence: what does a model-generated option set cost? (pre-registration, 2026-09-26 11:43 PDT)
+
+**Why.** This programme has measured the chooser for 168 experiments while I hand-wrote the option set it chooses from.
+the author's instruction was that the choices must come from intelligence, and that is also the honest fix for the assumption
+method error 54 exposed: an arm scored zero on a situation because **the action it needed was never offered to it**, and I
+wrote a paragraph about its judgement before checking.
+
+**The instrument is now real and local.** `mlx-community/Qwen2.5-VL-7B-Instruct-4bit`, 5.3 GB, inside the 8 GB rule,
+loads in 2.8 s and answers in 2.5 s on this laptop. Fed the robot's own rendered head view from the eye built for E166. That
+is HomeBody's architecture — a vision-language model proposing skills from the ego view — running here for free.
+
+**A single pilot frame, before any registration, because it decides whether the experiment is worth running.** Seed 403,
+eight decisions in, object on the table. Code's applicable set: walk, walk slowly, stop, wait, turn away, step around,
+follow person, **pick up**, ask operator. The model proposed: *move forward, turn left, turn right, stop, look up.* Two real
+actions, two the robot does not have, one that is not an action, and **it missed the pick-up**, which is the task.
+
+**Design.** At every decision on the written bank and fresh unwritten v1, record three sets: **C**, what code says is
+applicable; **M**, what the model proposes from the head view plus the typed facts; and **A**, the acceptable set. Then run
+the chooser twice, once over C and once over M.
+
+**Measures.** Recall of the needed action, |A ∩ M| / |A|. Hallucination rate, the fraction of M not in the skill vocabulary
+at all. Precision against applicability, |M ∩ C| / |M|. And the downstream number that matters: **handled over M against
+handled over C**, same arm, same seeds.
+
+**Predictions.**
+- **P169.1** The model's set misses at least one acceptable action on **more than a third** of decisions. Prior 70 %.
+- **P169.2** More than 20 % of what it proposes is not in the skill vocabulary at all. Prior 65 %.
+- **P169.3** It systematically under-proposes the **task** actions (pick up, hand over, put down) relative to **navigation**
+  actions, because navigation is what an ego view makes obvious. Prior 75 %. *The pilot frame is exactly this.*
+- **P169.4** Handled over M is at least 10 points below handled over C for the same arm. Prior 70 %.
+- **P169.5** Giving the model the typed facts alongside the image raises recall by more than 15 points over the image alone.
+  Prior 60 %. *If this holds, the fact layer earns its keep twice: once for choosing and once for enumerating.*
+
+**What it means either way.** If the enumerator is this lossy, then every result this programme has published is conditional
+on an option set I supplied, and the honest framing of the whole contribution changes: **the chooser is not the bottleneck,
+the offering is.** If it is not lossy, the assumption was safe and we can say so with a number instead of a hope.
+
+**Instrument note.** MLX throws a `recursive_mutex` error on interpreter exit after generation. It comes after the output
+and does not affect results, but every run must write incrementally so a crash at exit cannot lose data.
+
+## E170 · the four-layer stack, and the two assumptions it lets us finally test (pre-registration, 2026-09-26 14:25 PDT; launched now)
+
+**What was built.** `src/stack/` puts a seam at every layer: Planner, Enumerator, Chooser, Motion, Control. Every earlier
+experiment varied only the Chooser while I hand-wrote the Enumerator, scripted the Planner out of existence, and gave the
+operator infinite availability. Each is now a component with at least two implementations.
+
+**Validated before use.** With the script planner, code enumerator and free operator, `stack.run.episode` reproduces
+`duck.e93_run.episode` **seed for seed on 20 seeds for both the oracle (17/20) and the frozen rules (20/20)**. Getting
+there took three fixes: the one-second settle before the loop, the `recent` and `cmd` updates that feed the acceptable
+set through the circling clause, and the operator's answer persisting as one held command rather than a fresh decision at 2 Hz. A refactor that does not
+reproduce is worthless, and this one now does.
+
+**Two assumptions, finally testable.**
+
+**A. The enumerator.** `DroppedEnumerator(r)` removes one acceptable action with probability r. `NoisyEnumerator(r)`
+adds a plausible action that is not applicable. These are method error 54's failure mode and its mirror, made deliberate.
+E169 measured a real generative enumerator failing to offer any acceptable action on 15 % of decisions even with facts, so
+r = .25 is not a pessimistic setting.
+
+**B. The operator.** `QueuedOperator(fleet, rate)` is one operator across several robots. An ask joins a queue whose depth
+comes from the other robots' ask rate, so **an arm that asks a lot makes the queue worse for itself**, and waits beyond
+twelve seconds are given up on. This is the layer the whole value proposition rests on and the bench has never had it.
+
+**Predictions.**
+- **E170.1** Dropping one acceptable action a quarter of the time costs the frozen rules **more** than it costs the judge,
+  because a rule program has one answer per situation and the judge has a distribution. Prior 60 %.
+- **E170.2** The noisy enumerator costs the judge more than the rules, because an inapplicable option is something a
+  calibrated model can be talked into and a rule ignores. Prior 65 %.
+- **E170.3** Under a contended operator the judge loses more handled than the rules do, because it asks more, and its asks
+  are the thing that now queues. Prior 70 %. *If this holds, every operator-seconds number in this repo understates the
+  judge's cost.*
+- **E170.4** The oracle is nearly unaffected by the queue, because it barely asks. Prior 80 %.
+- **E170.5** At least one arm's handled count under a dropped enumerator falls below its own score under a contended
+  operator, i.e. **the offering matters more than the asking**. Prior 55 %.
+
+## Method error 59 · the matcher could not read the output of the condition it was scoring (2026-09-26 14:35 PDT)
+
+E169's three enumerator conditions were scored by `to_skill()`, which matched **space-separated synonyms** — "step around",
+"pick up", "put down", "walk slow". The declared-vocabulary prompt tells the model to emit **exact underscored skill names**.
+So across 212 decisions the matcher silently discarded **549 correct lines** — `turn_away` 148 times, `step_around` 146,
+`hand_to_maya` 175, `pick_up` 72 — and worse, rewrote `walk_slow` to `walk`, turning a correct answer into a wrong one
+rather than a missing one.
+
+**The direction matters and it cuts both ways**, which is why this was not a harmless bug. Re-scored from the recorded raw
+text with a matcher that tries exact vocabulary names first (longest first, so `walk_slow` beats `walk`) and normalises
+underscores before the synonym pass, on 23 test cases including the ones that failed:
+
+| condition | offers an acceptable action | offers something inapplicable | set size |
+|---|---|---|---|
+| image only | 22.6 % (was 22.6) | 6.6 % (was 6.6) | 0.4 |
+| image + facts, free-form | 86.8 % (was 86.8) | 80.7 % (was 80.7) | 3.0 |
+| **image + facts + declared vocabulary** | **40.1 % (was 34.0)** | **69.8 % (was 6.6)** | **4.9 (was 2.4)** |
+| code's hand-written preconditions | 100 % | 0 % | 8.9 |
+
+The bug had been **flattering** the fair condition on hallucination by an order of magnitude and **penalising** it on recall.
+Only the two free-form conditions were unaffected, because they never write underscores.
+
+**Recoverable only because the raw text was recorded.** No model was re-run. That decision was made in E169 for exactly
+this reason and it paid for itself the same day.
+
+## E170.6 · the finding the fix exposed: a declared library is recited, not enumerated (2026-09-26 14:35 PDT)
+
+The corrected table says something I did not predict and would have got backwards. **Giving the model its own skill library
+made it a worse enumerator.** The mechanism is visible in the raw counts: across 212 decisions it proposes `hand_to` 175
+times, `wait` 153, `step_around` 150, `turn_away` 149, `stop` 149 — very nearly the same set every decision, independent of
+situation. It offers **more** options than the free-form condition (4.9 vs 3.0) and contains an acceptable one **less** often
+(40.1 % vs 86.8 %). By event it collapses where the situation is subtlest: on `child_note` it offers an acceptable action on
+12 % of decisions against free-form's 95 %.
+
+**Why this bears on HomeBody.** Their VLM chooses over a declared library of **five** skills, small enough that reciting all
+of it is nearly the same as enumerating correctly. Ours is twelve. If recitation is the failure mode, the declared-library
+architecture holds only while the library is small — which is the property that must break for a general-purpose robot.
+
+**The confound is mine and it is tested before the claim is made.** My vocab prompt says *"list every skill from that library
+… that the robot could validly execute right now"*, which invites recitation. **E169c** re-runs the same 212 decisions with a
+prompt that asks for **at most three, most appropriate first**, changing nothing else.
+- **Prediction:** the constrained prompt raises acceptable-in-set above 40.1 % and cuts set size below 4.9, but **stays below
+  the free-form condition's 86.8 %**, because the deeper problem is that a name list is a weaker conditioning signal than a
+  free description of the scene. Prior 55 % — genuinely uncertain, and if the constrained prompt reaches free-form's recall
+  then the recitation finding is a prompt artifact and gets withdrawn.
+
+## E171 · how much of the chooser's score is code's forecast, not the chooser? (pre-registration, 2026-09-26 14:38 PDT; launched now)
+
+**Found while building the VLM enumerator seam, and it reframes the programme.** Every option description this bench has
+ever handed a chooser ends with a code-computed, per-option, quantitative forecast:
+
+> `Code's estimate: within the next two seconds this would bring you to about 0.2 m from a person — touching distance.`
+
+It is a **forward simulation of that specific candidate action**, run by hand-written code, rendered as text. It appears on
+**7 of 8 options** and is **40 % of all option text the chooser reads.** On seed 0 the eight options carry five distinct
+forecasts ranging from 0.2 m to 1.4 m.
+
+**So the chooser's task has never been "look at the world and decide."** It has been "read code's collision forecast per
+action and avoid the one that says touching distance." That is a much easier task, and it is a candidate explanation for the
+single most awkward result in this repo: **why a frozen rule program keeps pace with a calibrated model.** If code already
+did the forecasting, a rule over facts and a model over text are both reading the same pre-chewed answer.
+
+**This is not a bug.** A real stack has a predictive collision checker and piping it through the typed interface is correct
+engineering — it is what "typed interface" is *for*. What is wrong is the **claim**, which has never said so. And it would
+have silently wrecked the VLM-enumerator experiment: a vision model cannot produce that line, so attributing the whole drop
+to "the enumerator" would have been method error 56's exact shape a fifth time.
+
+**Design.** One intervention, one line: strip everything from `Code's estimate:` onward, leaving the state-independent skill
+description untouched. Factorial over `docs ∈ {code, fixed}` × arms, written bank seeds 0–39.
+
+**Predictions.**
+- **E171.1 — the control that validates the instrument.** `rules` reads typed facts, not option text, so it must be
+  **bit-identical** across the two doc conditions. Prior 90 %. *If rules moves at all, my model of that arm is wrong and
+  everything downstream of it is suspect.*
+- **E171.2** `oracle` reads ground truth, so also identical. Prior 90 %.
+- **E171.3** `jev` **drops**, because the forecast is the primary signal in `cross` and `approach`, which are half the
+  written bank's event types. Prior 75 %.
+- **E171.4 — the number that matters.** Jev's drop is **more than 4 of 40**, i.e. larger than the humanoid noise floor of 2
+  on 30 seeds. Prior 60 %. *If this holds, every published Jev-vs-rules comparison in this repo was run with code doing the
+  forecasting for both, and the honest statement of claim 1 changes.*
+- **E171.5** Stripping the forecast hurts jev **more** than the 25 % dropped enumerator of E170 does, i.e. **the option text
+  matters more than the option set**. Prior 55 %.
+
+**Limitation recorded before the run.** An unhandled key in `run_skill` falls to `else: set_cmd(0,0); physics(n)` — half a
+second of standing still. So a hallucinated or inapplicable option costs 0.5 s here and nothing else, where on a real robot
+it could be a collision. **This bench systematically understates the cost of a bad option.** That applies to E170's noise
+condition and to every VLM-enumerator result that follows.
+
+## E170 · results (2026-09-26 14:42 PDT). Two of five predictions wrong, one design flaw of mine, one strong finding.
+
+**Handled out of 20, seeds 0-19, written bank.**
+
+| arm | code enum | drop .25 (one) | noise .25 | 1 op : 4 robots | 1 op : 8 robots |
+|---|---|---|---|---|---|
+| rules | 20/20 | 20/20 | 20/20 | 20/20 | **20/20** |
+| jev | 18/20 | 17/20 | 17/20 | 17/20 | **13/20** |
+| oracle | 17/20 | 17/20 | 17/20 | 17/20 | 17/20 |
+
+### E170.1 and .2 FAILED, and the reason is my design, not the arms
+
+I predicted the dropped enumerator would cost the frozen rules **more** than the judge (prior 60 %) and the noisy one would
+cost the judge more (prior 65 %). The enumerator columns are **flat**: rules 20/20/20, oracle 17/17/17, jev 18/17/17.
+
+**The flaw: `acceptable` in these situations is `{walk, walk_slow}` — two actions — and `DroppedEnumerator` removed one at
+random.** The other survived, so the decision stayed solvable and a 25 % dropout was nearly a no-op. **I set the rate without
+checking the size of the set I was sampling from.** No conclusion about enumerator sensitivity can be drawn from these
+columns in either direction.
+
+**Fixed against the measurement rather than against intuition.** E169 measured what a real vision enumerator actually does
+wrong: on **13.2 %** of decisions it offers *no* acceptable action at all. So `mode="all"` now removes every acceptable
+action at rate r, which is that failure mode, and `mode="one"` is kept as `drop1x` so the null above stays reproducible.
+Re-running.
+
+### E170.3 CONFIRMED, and it is the finding
+
+**The only arm a contended operator can hurt is the arm that asks.** Rules asks zero times and is 20/20 at every fleet size.
+Oracle asks zero times and is 17/20 at every fleet size. Jev asks, and the dose-response is clean:
+
+| fleet | jev handled | asks | wait | abandoned |
+|---|---|---|---|---|
+| 1 operator : 1 robot (every prior experiment) | 18/20 | 10 | 0 s | 0 |
+| 1 operator : 4 robots | 17/20 | 5 | 4 s each | 0 |
+| 1 operator : 8 robots | **13/20** | 5 | — | **5 of 5** |
+
+At 8:1 the queue exceeds the robot's patience on **every** ask, so the ask is not slow, it is **unavailable**. Five episodes
+lost, against a measured noise floor of 2 on 30 seeds. **The gap to the frozen rule program widens from 2 episodes to 7.**
+
+**Why this matters more than the number.** Asking has been read throughout this programme as the *virtue* of a calibrated
+chooser — it knows when it does not know, and E123/E144 showed the label form that teaches it to ask. Priced at a realistic
+fleet ratio, asking is the thing that breaks it. **Every operator-seconds figure in this repo was measured at 1:1**, and the
+deployment ratio a fleet actually runs is the parameter that decides whether escalation is a feature or a liability. That
+belongs on claim 2 and in the write-up, not in a footnote.
+
+### E170.4 CONFIRMED (oracle unaffected, 0 asks). E170.5 unresolved — the dropped-enumerator arm was invalid.
+
+## Method errors 60 and 61 · a conflated label and a fault injector that never fired (2026-09-26 14:51 PDT)
+
+**60. Two experiments filed under one label.** I renamed `DroppedEnumerator`'s conditions in code (`mode="one"` became
+`drop1x0.25`, `mode="all"` took over `drop0.25`) and appended the new run to the same results file. `rules` and `oracle`
+then held **40 rows across 20 distinct seeds** under `drop0.25` — the pre-fix and post-fix experiments averaged together by
+any `group by enumerator`. Caught by an impossible number: oracle at **exactly** 100 % acceptable decisions under a dropout
+that removes every acceptable action.
+**Structural fix, not a cleanup:** every row now carries `run` (a timestamp) and `sha` (the commit it was produced by), so
+a future conflation is detectable instead of invisible. 180 affected rows purged and re-run.
+
+**61. The fault injector delivered no faults.** Probing it directly: **0 of 25 decisions** at rate .25. Two compounding bugs.
+`build_enum` is called *inside* `episode()`, so `random.Random(0)` was re-seeded per episode and all 20 "independent"
+episodes received an **identical** fault sequence — twenty seeds worth one seed of fault sampling. And `Random(0)`'s first 25
+draws have a minimum of **0.2505**, every one just above the threshold, so at the headline rate the injector was a no-op.
+`drop0.5` fired, which is exactly why the bug hid: the sweep looked like it was working.
+**Fix:** the injector is seeded from the episode seed (`10_000 + seed`). Verified: 25.2 % delivered at rate .25, with a
+per-episode spread of 3-10 faults where it had been constant. Every `drop*` and `noise*` row purged and re-run.
+
+**The pattern across today's three instrument bugs is worth naming.** 59, 60 and 61 were each caught by a number being *too
+clean* — a condition scoring exactly its floor, rows bit-identical across a real intervention, exactly zero faults injected.
+**Suspicious cleanliness is the tell**, and it is cheaper to check than a suspicious result.
+
+## E171 · results (2026-09-26 14:51 PDT). Both headline predictions failed, and the failure is the finding.
+
+Written bank seeds 0-39, free operator, code's option **set** identical in both conditions; only the per-option forecast text
+removed (57 % of the characters the chooser reads).
+
+| arm | option text | handled /40 | acceptable-decision rate | decisions |
+|---|---|---|---|---|
+| rules | full | 39 | 87.1 % | 1035 |
+| rules | forecast stripped | 39 | 87.1 % | 1035 |
+| oracle | full | 32 | 100.0 % | 849 |
+| oracle | forecast stripped | 32 | 100.0 % | 849 |
+| **jev** | full | **38** | **84.3 %** | 1661 |
+| **jev** | forecast stripped | **37** | **84.4 %** | 1864 |
+
+**E171.1 and .2 CONFIRMED** — rules and oracle bit-identical on all 40 seeds, which validated the instrument before any API
+call was spent.
+**E171.3 FAILED** (prior 75 %). Jev dropped one episode, inside the noise floor of 2.
+**E171.4 FAILED** (prior 60 %). The drop is 1, not more than 4. **The acceptable-decision rate did not move at all**:
+84.3 % to 84.4 % across 1661 and 1864 decisions.
+
+**What this means, in both directions.** The chooser was **not** leaning on code's forecast, so the confound this experiment
+was registered to expose does not exist and claim 1 needs no asterisk. But a quantitative per-option forward simulation —
+*"this would bring you to about 0.2 m from a person, touching distance"* — sat in the prompt in plain English and removing it
+changed nothing. **57 % of the prompt was inert.** Either the model re-derives it from the typed facts, or it never read it.
+One real effect did appear: Jev needed **12 % more decisions** (1661 to 1864) to reach the same handled count.
+
+**E170.5 RESOLVED, opposite to the prediction** (prior 55 % that text matters more than set). At a 25 % fault rate the option
+**set** costs the oracle **16 points** of acceptable decisions; the option **text** costs it **zero**. What you offer matters;
+how you describe it barely does. And the oracle is completely immune to the noisy enumerator at every rate — a chooser that
+knows better ignores an inapplicable option, so **only a fallible chooser can be talked into one**.
+
+## E172 · what is the chooser actually reading? (pre-registration, 2026-09-26 14:51 PDT; launched now)
+`code/keys` replaces every option description with the bare skill name ("walk slow", "ask operator") — the option set
+unchanged, the text reduced from 1523 characters to about 90.
+- **E172.1** Jev's handled falls by more than the noise floor of 2 on 40 seeds. Prior 55 %.
+- **E172.2** If it does **not** fall, then the typed facts carry essentially the whole decision and the option descriptions
+  this programme has treated as the core of the typed interface are decoration. That is the more consequential outcome and it
+  would go straight into the write-up, because it says the interface can be an enum rather than prose.
+
+## E173 · the skill library, declared once, and what declaring it exposed (2026-09-26 15:09 PDT)
+
+**the author's diagnosis, and it is correct.** Every layer-to-layer bug this programme has hit was a translator between two
+dialects of the same word, and the translators kept being the bug. Method error 59 is the clean case: a model emitted
+`step_around`, the scorer looked for `"step around"`, 549 correct lines went in the bin. That is not a matcher bug. **It is
+the absence of a declared contract**, and the right fix is architectural.
+
+**What a "skill" actually was before today.** Four unlinked fragments across three files: a name string in
+`fetch_sim.OPTIONS`, a description string beside it, an execution branch in an eleven-way `elif` chain in `run_skill`, and
+a precondition written as an imperative `opts.pop(...)` line in `options()`. No typed parameters — `hand_to_Maya` was a
+string key built by f-string concatenation. **No skill declared what it achieved.** `walk_slow` was re-declared
+independently in four files (15, 5, 2 and 8 mentions).
+
+**`src/stack/skills.py`** declares it once: `name`, typed `params`, `precondition(state)`, `effect(state)`,
+state-independent `doc`, `cost_s`, `run`. The Enumerator reads the precondition, the Planner matches effects to
+preconditions, the Chooser reads name and doc, the Motion layer calls run. **`resolve()` is the only place text becomes a
+skill**, so there cannot be two matchers that disagree.
+
+**Verified, because a contract that merely describes is worthless:** the declared preconditions reproduce
+`fetch_sim.options()` **exactly on 560 of 560 states** across 40 seeds.
+
+### What declaring effects exposed immediately
+
+**Six of twelve skills carry an effect and are plannable** — `walk`, `walk_slow`, `pick_up`, `put_down`, `hand_to`, `done`.
+The other six — `stop`, `wait`, `turn_away`, `step_around`, `follow_person`, `ask_operator` — change the world without
+advancing the task, so a Planner **structurally cannot chain them**. This is why the Planner had to be scripted out of
+existence for 165 experiments: **half the library is not plannable and nothing said so until it was written down.**
+
+### What the one resolver exposed: the library is missing skills, and a model can tell you which
+
+Run over every line the three vision conditions ever wrote, 39 distinct unresolved phrasings split into two causes:
+- **~250 of 424 free-form misses were my translator being thin** — `move to the table`, `move closer`, `return to the
+  table`, `move through the doorway`, all plain `walk`. Widened once, in the one place, and reported both ways below
+  because widening a translator after seeing its misses flatters whichever condition it rescues.
+- **~130 were actions the library does not have.** `turn right` / `turn towards the doorway` (85 lines): there is no
+  parameterised turn, only `turn_away` from the nearest person. `step back from the doorway` / `move back to a safe
+  distance from the child` / `step back two steps` (40 lines): **there is no retreat skill at all** — `step_around` veers
+  sideways, `turn_away` rotates in place, nothing backs up. `look at` / `look around for` (8 lines): no gaze skill.
+
+**This is a use for a generative enumerator that is independent of whether it chooses well: it tells you what your skill
+library is missing.** The model asked to back away forty times against a library that cannot. **Honest limit: whether
+retreating would help is untested, because the bench cannot execute one.** That is the follow-up, not the claim.
+
+### The corrected table, on one basis, with the floor
+
+Compared base-name to base-name — the legacy records store base names while the contract resolves to concrete keys, and
+comparing those silently fails, which is the same units bug appearing at the boundary with old data.
+
+| enumerator | acceptable in set | vs floor | sets with an invalid option | unresolved |
+|---|---|---|---|---|
+| image only | 64.2 % | **-16.0** | 6.6 % | 70.4 % |
+| image + facts, free-form | 91.5 % | **+11.3** | 80.7 % | 16.9 % |
+| + declared vocabulary | 40.1 % | **-40.1** | 69.8 % | 0.0 % |
+| **floor: always `{walk}`, no model** | **80.2 %** | — | 0 % | 0 % |
+| code's hand-written preconditions | 100 % | +19.8 | 0 % | — |
+
+**Only one of three conditions beats a constant**, by 11 points, and it contaminates 81 % of its option sets. The
+declared-vocabulary condition is **40 points below a constant** while being the only one that speaks the contract
+perfectly. Before the resolver was widened: image 22.6 %, free-form 86.8 %, vocab 40.1 % — so widening moved image-only a
+long way, free-form by 4.7 points, and vocab not at all.
+
+**The architecture this argues for is neither of them alone:** free-form proposal, resolved through the one contract,
+filtered by the declared preconditions. That is `ValidatedEnumerator(VLMEnumerator)` and it is the next run.
+
+## E172 · results (2026-09-26 15:10 PDT). The floors first, as promised, and they changed the reading twice.
+
+**The floors, run on the new stack before any conclusion was drawn from it** — the commitment made when the stack was built,
+because every time this programme adds machinery it adds a new way to pass accidentally.
+
+| arm | handled /40 | acceptable-decision rate | decisions | what it chose |
+|---|---|---|---|---|
+| null_wait | **10** | 13.5 % | 2400 | `wait` 100 % |
+| null_random | **10** | 37.4 % | 3815 | spread across six skills |
+| null_walk (always walk) | **0** | 48.7 % | 9560 | `walk` 100 % |
+| jev, full option text (1523 chars) | 37 | 84.3 % | 1736 | walk 44 %, step_around 25 %, walk_slow 12 %, pick_up 8 % |
+| jev, keys only (62 chars) | **40** | 77.3 % | **827** | walk 66 %, pick_up 12 %, stop 8 %, hand_to_Maya 5 % |
+
+**A floor nobody had measured: doing nothing handles 10 of 40.** A quarter of the written bank is passed by waiting, because
+for several events the correct behaviour *is* not to proceed. **That is a floor under every `handled` number in this repo**
+and it did not exist until this run. The chance bar registered earlier demanded an acceptable-decision floor; it should have
+demanded this one too.
+
+**E172.1 FAILED, E172.2 CONFIRMED** (prior 55 % / the alternative). Reducing the option text by 96 % did not hurt the
+chooser — it **improved** the outcome, 37 to 40 of 40, and **halved the decisions**, 1736 to 827.
+
+**The check this needed, and it was the right check to insist on.** Three numbers — better outcome, lower acceptable rate,
+half the decisions — are equally consistent with "the model got decisive" and "the model degenerated to always walking", so
+`null_walk` was added as an explicit arm. **It scores 0 of 40**, because walking forever never picks the object up, never
+hands it over and never declares done. And keys-only jev picks walk **66 %** of the time, not 100 %. Not degenerate.
+
+**What it means.** The prose in the option text made the chooser **dither**: more decisions, each more likely to be
+individually acceptable (84.3 % vs 77.3 %), and worse at finishing. Removing it made the chooser commit.
+
+**Size, stated honestly.** jev on full text scored 38/40 in E171 and 37/40 here under identical settings, so this arm carries
+about **one episode of API nondeterminism**. 40 against 37-38 is a 2-3 episode effect over a >=1 episode noise floor — real
+but not large. The 6-7 point fall in acceptable-decision rate is the sturdier half and reproduced in both runs.
+
+**Consequence for the interface claim.** This programme has treated prose option descriptions as the core of the typed
+interface. On this bench they are worse than the bare skill names: **the interface can be an enum.** Combined with E171 (the
+per-option forecast is inert) and E170.5 (the option *set* costs the oracle 16 points where the *text* costs it zero), the
+consistent picture is that **what you offer is the whole game and how you describe it is close to noise.**
+
+## E174 · the choices come from intelligence, in the loop, end to end (pre-registration, 2026-09-26 15:12 PDT; launched now)
+
+**Now a config change rather than a script, which is the point of the contract.** `--enum vlm/facts` puts a local
+vision-language model in the enumerator's seat: it looks through the robot's own head camera, proposes actions in free text,
+and those lines go through `skills.resolve()` — the same single function the scorer uses — to become the option set the
+chooser picks from. Nothing hand-written in the middle, no matcher. `--enum validated:vlm/facts` additionally filters the
+proposals through the declared preconditions.
+
+**Verified before use:** `code/contract` (option set and text both from the declared library) reproduces the bench's own
+options end to end on **24 of 24 seed-arm pairs** for rules and oracle.
+
+**The primary measurement is the oracle**, because a perfect chooser isolates the enumerator completely: any fall from its
+17/20 is the enumerator's cost and nothing else. Standing alone (E173, 212 decisions, floored) the free-form enumerator
+offers an acceptable action on **91.5 %** of decisions, against **80.2 %** for a constant that always proposes `{walk}`, and
+puts an inapplicable action in **80.7 %** of its sets.
+
+**Predictions.**
+- **E174.1** Oracle on the raw VLM set scores **below** its 17/20, because per-decision recall of 91.5 % over ~21 decisions
+  leaves only `.915^21` = 15 % of episodes with no bad option set at all. Prior 80 %.
+- **E174.2** Oracle on the **validated** set beats oracle on the raw set, because filtering removes the 80.7 %
+  contamination, and both stay at or below `code`, because validation can subtract an invalid option but cannot add an
+  acceptable one the model never proposed. Prior 70 %.
+- **E174.3 — the one I expect to be counter-intuitive.** Handled will hold up **much better than the per-decision
+  arithmetic predicts**, because E170 showed this task is forgiving: at a 25 % fault rate the oracle lost 16 points of
+  acceptable decisions and **zero** handled. So I predict oracle on validated:vlm lands **within 3 of 17/20** despite one in
+  ten decisions being offered no acceptable action. Prior 60 %. *If that holds, the lesson is that per-decision enumerator
+  recall is the wrong metric for a forgiving task, and the field's option-set benchmarks measure the wrong thing.*
+- **E174.4** An **empty** option set — nothing the model said resolves to a library skill — occurs on fewer than 5 % of
+  decisions for the free-form prompt. Prior 70 %. It is recorded, not papered over: an empty set ends the episode, which is
+  paralysis and the honest outcome.
+
+## Method error 62 · a postcondition and a goal are not the same field (2026-09-26 15:20 PDT)
+
+The contract's `effect` conflated two things. `pick_up`'s effect is a **postcondition**: after one execution you are holding
+the object or the motion layer failed. `walk`'s effect is a **goal**: approached over many executions and guaranteed by
+none. With one field, every `walk` scored as a motion failure and the **oracle — which by construction never picks an
+unacceptable skill — came back 137 of 161 decisions "motion failure".** Caught inside minutes by the number being absurd.
+
+Split into `postcondition` (checkable after one run), `goal` (what chaining aims at) and `progress` (a scalar one run
+should reduce, with a floor of 2 cm against the ~17 cm a slow walk covers in half a second). The library now reads:
+**6 plannable, 4 with a postcondition, 2 with a progress measure, and 6 accountable for nothing.** `verify()` still
+reproduces `fetch_sim.options()` on 560/560 states.
+
+## E175 · layer attribution, and why a frozen rule program beats the oracle (2026-09-26 15:20 PDT)
+
+**With a postcondition declared, a failure can be attributed to a layer for the first time.** A wrong pick is the chooser's
+regardless of what followed; only a *right* pick can expose the motion layer.
+
+| arm | handled /8 | decisions | attributable | chooser | motion | clean |
+|---|---|---|---|---|---|---|
+| null_random | 2 | 765 | 200 | 479 | 78 | 122 |
+| rules | 8 | 207 | 148 | 27 | **4** | 144 |
+| oracle | 6 | 170 | 161 | **0** | **9** | 152 |
+
+**The motion layer's own failure rate, isolated for the first time: 5.6 % of correctly-chosen skills fail to deliver**, read
+off the oracle, whose chooser errors are zero by construction.
+
+**And it resolves a standing puzzle.** The repo has carried "the frozen rules beat the oracle" (39/40 vs 32/40) as an awkward
+result. Both of the oracle's losses here are `blocked`, with **every single decision acceptable** (22/22 and 21/21) and zero
+chooser errors — it picked the object up, walked, handed to Maya, declared done, and scored zero. `event_correct` for
+`blocked` demands `door_collisions == 0`, and each losing episode logged 1-2 **motion** failures on `walk`: it clipped the
+door frame while executing a correctly-chosen skill. **The oracle's losses are not decision errors.** The rules program
+avoids them by choosing differently — more waiting and stepping around — so **a worse chooser is compensating for a weaker
+motion layer**, and the comparison was never chooser-versus-chooser at all. This was invisible until effects were declared.
+
+## E176 · are these the right atomic skills? Tested on data already collected (2026-09-26 15:20 PDT)
+
+**the author's question, and his instinct was right.** The current twelve mix abstraction levels and hide their arguments:
+`walk`'s destination comes from `room.destination()`, so it means "go wherever the bench thinks the goal is";
+`walk`/`walk_slow` differ by a speed argument; `turn_away`/`step_around`/`follow_person` all navigate relative to a person
+who is always implicitly the nearest; `stop`/`wait` differ by a duration.
+
+**Tested before building anything**, by re-resolving the 1161 lines E169 already recorded against a parameterised library.
+No simulation, no model calls.
+
+| condition | lines | unresolved, 12 hidden-argument skills | unresolved, parameterised | rescued |
+|---|---|---|---|---|
+| image only | 1272 | 70.4 % | **14.5 %** | 711 |
+| image + facts | 1161 | 16.9 % | **1.1 %** | 183 |
+| + declared vocabulary | 1049 | 0.0 % | 0.0 % | 0 |
+
+**Fifteen-fold reduction on the free-form condition.** And the bound forms the model requests name the library: `move_to`
+450, `give` 281, `turn_to` 174, `pick` 149, `ask_operator` 57, `stand` 37 — **six skills, not twelve**, which is very nearly
+HomeBody's pick/place/move shape, arrived at from what a model asks for rather than from taste.
+
+**Two findings inside the finding.**
+- **What it never asks for.** `place`/`put_down` and `done` appear nowhere in the top twelve requested forms, yet
+  `put_down` is *required* for four events in the bank (requester_leaves, object_leaks, sling_note, and as an ending in
+  job_closed). A generative enumerator systematically under-proposes the endings that refuse the task.
+- **A category no skill library can express.** The lines still unresolved are `keep a safe distance from Zoe`,
+  `keep watch for the child` — **constraints to maintain**, not actions to run. That is a different slot in the
+  architecture and nothing in the stack has it.
+
+**Caveats, stated before the redesign.** (1) This measures **resolvability, not competence**: the declared-vocabulary
+condition resolves 100 % and still scores 40 points below a constant. (2) I wrote both the candidate library and its
+matcher, so the rescued forms are enumerated in the notebook rather than asserted. (3) A parameterised library is a **bigger
+action space** — `move_to` over six targets and two speeds is twelve navigation options where there were two — so choosing
+may get **harder**. That is the experiment, not a foregone conclusion. (4) Rebuilding the library makes a **different bench**;
+it gets a new name and its numbers are not comparable to the 165 experiments before it, which is method error 60's lesson at
+a larger scale.
+
+## E174 amended before results (2026-09-26 15:22 PDT) · the silent fallback, caught on the first row
+
+**`ValidatedEnumerator` ended `return keep or valid`.** When the vision model proposed nothing applicable, the enumerator
+silently handed back the full declared option set — so the "validated VLM" condition **quietly became the code enumerator
+exactly when the model failed**, and the fallback rate, which is the single number the experiment exists to measure, was
+invisible.
+
+**Caught on the first row written:** the oracle took **233 decisions** instead of its usual 21, with **25 of them
+acceptable** — a perfect chooser making unacceptable decisions 89 % of the time, because the acceptable actions were not
+being offered. Run killed and its rows discarded rather than analysed.
+
+**Fixed as an explicit axis**, because what to do when the enumerator offers nothing is a real architectural choice:
+- `|code` hand back the full declared set and **count it** — an upper bound that assumes a safety net exists
+- `|stop` offer only `stop`, which is what a real stack with a watchdog does — **the default**
+- `|none` offer nothing, which ends the episode as paralysis — the lower bound
+
+Every episode now records `enum_calls`, `enum_fallbacks`, `enum_kept`, `enum_rejected`, `enum_proposed`,
+`enum_unresolved`. **E174.5 (new):** the fallback rate for free-form + validation is under 15 % of decisions. Prior 55 %.
+
+**And a recorded decision cap.** With `|stop`, a paralysed robot stands still to the time limit, which at 2.5 s per model
+call is ten minutes of compute on one already-failed episode. `--max-dec 60` is 3x the oracle's normal length and any
+episode reaching it has failed unambiguously; `capped` is written to the record, so the censoring is visible rather than
+looking like a short successful run.
+
+## E176 part 2 · library v2 built, and a claim of mine corrected (2026-09-26 15:29 PDT)
+
+`src/stack/skills2.py`: eight skills with explicit arguments — `move_to(place, speed)`, `turn_to(place)`,
+`stand(seconds)`, `pick`, `put_down`, `give(person)`, `ask_operator`, `done` — over the sim's existing primitives.
+**No new physics.** v1's `walk` was `steer(CMD_FAST, room.destination())`; v2's `move_to` is that call with the
+destination passed in instead of looked up. Verified: `move_to(destination, normal)` and `move_to(destination, slow)`
+move the body **0.0000 m** differently from `walk` and `walk_slow` over eight steps.
+
+**I said v2 was a strict superset. That was wrong and the measurement caught it.** `Oracle2` reproduced `FetchOracle` on
+only **10 of 16 seeds**, and every difference was v2 taking 2-3 more decisions. The cause:
+
+**v2 cannot express `step_around`, and the reason is the finding.** `step_around` is not a primitive. It is a *sequence
+with a conditional branch*: if a child is within 1.4 m, **retreat first** (turn away from the child at slow walk), then
+veer aside, then continue, then stop. That child-aware retreat came from **E124**, an experiment specifically about
+children. It is a small policy, and no combination of `move_to(place, speed)` and `turn_to(place)` expresses it.
+
+**This is the counterweight to parameterising everything, and it lands on HomeBody.** A five-skill pick/place/move library
+**structurally cannot express a child-aware evasive manoeuvre.** It would have to emerge from the VLM sequencing
+primitives — so the safety behaviour stops being guaranteed by code and gets re-derived by a model on every encounter.
+**The skills you most want to be compound are exactly the ones carrying hard-won safety knowledge.**
+
+### The redesign, fully priced
+
+| per decision, 240 states | v1 | v2 |
+|---|---|---|
+| options offered | 8.5 | **23.9** (2.8x) |
+| distinct v1-equivalent choices | 8.5 | 8.0 (only `step_around` lost) |
+| redundant duplicates | 0 | 4.2 — **27 % of the growth** |
+| genuinely new capability | 0 | 11.7 — **76 % of the growth** |
+| unresolved lines from a real model | 16.9 % | **1.1 %** |
+
+Three quarters of the blowup is real capability; a quarter is redundancy and is fixable (`stand(4.0)` always reduces to
+`wait`; `move_to(person:X)` need not enumerate everyone). **And the frozen rules program is written in v1's vocabulary,
+so v2 forfeits the strongest baseline in the repo until one is rewritten.**
+
+## E177 · does a 2.8x action space make choosing harder? (pre-registration, 2026-09-26 15:29 PDT; launched now)
+
+**Comparable on outcome, not on per-decision acceptability.** The acceptable sets are authored in v1's words, so
+per-decision scoring cannot cross the libraries. `event_correct` asks about `delivered_to`, `door_collisions`,
+`wrong_handovers` — physical facts indifferent to vocabulary — so **handled is comparable and it is the thing that
+matters.** `acceptable2()` counts a v2 action acceptable only when its reduction is in the bench's acceptable set; the
+11.7 genuinely new actions per decision are counted **neither acceptable nor unacceptable**, because nothing has said
+which they are and guessing would be scoring my own redesign favourably.
+
+**Predictions.**
+- **E177.1** `jev` handles **fewer** episodes on v2 than on v1, because 23.9 options against 8.5 is a harder choice and
+  E172 already showed this chooser dithers when given more to read. Prior 65 %.
+- **E177.2** `jev` on v2 shows a **lower** acceptable-decision rate than on v1 by more than the noise floor, partly
+  mechanically: 11.7 of 23.9 options can never count as acceptable. Prior 85 % — near-certain, and therefore **not
+  evidence of anything**; it is recorded so it is not mistaken for a finding later.
+- **E177.3 — the one worth running.** `jev` on v2 chooses at least one genuinely-new action (a `move_to` or `turn_to`
+  target v1 could not express) in more than half of episodes. Prior 70 %. *If it never reaches for the new capability,
+  the redesign bought resolvability and nothing else.*
+- **E177.4** The floors rise on v2: `null_random` handles **more** than its 10/40, because a random pick from a set
+  containing 11.7 navigation targets moves the robot around more purposefully than a random pick from v1's set of
+  mostly-stationary actions. Prior 50 % — a genuine coin flip, and the reason the floors get re-run rather than assumed.
+
+## Method error 63 · a floor named by a key string is a different floor in a different vocabulary (2026-09-26 15:32 PDT)
+
+`null_wait` asks for the key `"wait"`. v2 has no such key, so `episode()`'s `if key not in opts` fallback substituted
+`stand(seconds=0.5)`. **It stood for half a second instead of two, took four times as many decisions, and hit the 90-decision
+cap on 40 of 40 episodes** — where on v1 it never capped once. Its acceptable-decision rate "rose" from 13.5 % to 31.7 %
+purely because of that substitution. **The arm was not the same arm.** `capped` caught it, which is the second time today a
+field added for bookkeeping caught a substantive error.
+
+**The fix is to define the floors behaviourally rather than by key**: "do nothing" means *choose the longest available
+stand*, not *choose the token `wait`*. Being re-run once E177's chooser arms finish; the v2 floor numbers above are
+withdrawn and must not be quoted.
+
+**`null_random` is a separate and unfixable-by-renaming problem.** Sampling uniformly from v2's 23.9 options, of which
+11.7 can never count acceptable, gives 11.3 % against v1's 37.4 % — that difference is **mechanical**, not behavioural, and
+a uniform-random floor is therefore not comparable across libraries at all. The comparable floor across libraries is the
+**outcome** (handled), where it is 10/40 on v1 and 8/40 on v2.
+
+## E177 · first result (2026-09-26 15:32 PDT): the action space costs a perfect chooser nothing
+
+**`oracle` handles 32 of 40 on v2 — exactly its 32 of 40 on v1** (E171, same seeds, same bank), at 100 % acceptable
+decisions in both. So tripling the option set does not, by itself, make the task harder: the ceiling is unchanged. Whatever
+E177.1 finds about `jev` is therefore attributable to the chooser coping with a larger set, not to the bench getting
+harder — which is the control that makes the comparison worth anything.
+
+## E177 restarted clean (2026-09-26 15:33 PDT)
+
+Two fixes, and the run was **killed rather than allowed to finish**, because `e177.sh` makes four sequential invocations
+and editing the library mid-script would have put pre-fix and post-fix code under one label — method error 60 exactly.
+Its rows are deleted.
+
+1. **`null_still`** replaces `null_wait`: the do-nothing floor now asks for *the longest stillness the library offers*
+   rather than for the token `wait`.
+2. **`stand(4.0)` removed from v2.** It reduced to the same v1 action as `stand(2.0)`, so it was pure redundancy, and it
+   made the floor incomparable (v1's longest stillness is 2 s). Action space now **22.9** options (2.7x v1's 8.5) with
+   redundancy down from 4.2 to **3.2** per decision; genuinely-new capability unchanged at 11.7.
+
+**Verified comparable:** `null_still` on v1 picks `wait` and on v2 picks `stand(seconds=2.0)`, giving **identical**
+results — 60 decisions, 7 acceptable, not handled, uncapped.
+
+## E178 · constraints that filter instead of inform (pre-registration, 2026-09-26 15:39 PDT; queued behind E177)
+
+**This fills the architectural slot E173 identified as missing.** A real vision model asks for "keep a safe distance from
+Zoe" and "keep watch for the child" — **conditions to hold while doing something else**, which no skill library can
+express and which nothing in this stack had a place for.
+
+**And the bench already computes one.** `predicted_dist(key)` forward-simulates each candidate action for two seconds and
+returns its closest approach to any person. That number was appended to every option as prose —
+*"Code's estimate: ... about 0.2 m from a person — touching distance"* — and **E171 measured that channel as inert**:
+removing all of it moved the chooser by one episode in forty and its acceptable-decision rate by 0.1 points.
+
+So the constraint is computed, stated in plain English, and ignored. `ConstrainedEnumerator` stops asking: an action
+predicted to violate the constraint **is not offered**. If every action violates it, `fallback="safest"` offers only the
+least-violating one — never an empty set, and never a silent return of the unfiltered set, which is the mistake
+`ValidatedEnumerator` made earlier today.
+
+**One seed already shows the shape** (seed 0, oracle): unconstrained 21 decisions and handled; at 0.5 m the filter fires on
+17 decisions, blocks 66 options, takes 33 decisions and still handles; **at 0.8 m it fires on 42 decisions, blocks 167, hits
+the cap and fails.** A tight constraint is paralysing.
+
+**Predictions.**
+- **E178.1** Filtering at 0.5 m reduces `jev`'s near-contact events, which the identical information as prose failed to
+  do. Prior 80 %. *This is the direct test of inform-versus-filter and the whole point of the layer.*
+- **E178.2** `rules` near-contacts are **unchanged**, because the rule program already encodes the avoidance. Prior 70 %.
+  A control: if rules changes, the filter is doing something other than what I think.
+- **E178.3** At 0.8 m handled falls by more than 4 of 40 for every arm, the constraint having become paralysing. Prior 85 %
+  — near-certain from the single seed above, recorded so the sweep is not mistaken for a discovery.
+- **E178.4 — the useful one.** There exists a threshold at which near-contact events reach **zero** without costing more
+  than the noise floor of 2 in handled. Prior 45 %. *If no such threshold exists, then on this bench safety and throughput
+  genuinely trade off and the honest advice to a fleet is to pick a point on the curve rather than to expect both.*
+
+## E174 · results (2026-09-26 15:41 PDT). The chance bar earns its registration.
+
+Oracle chooser throughout, so the enumerator is isolated: the chooser is perfect and every loss is the enumerator's.
+
+| enumerator | handled /10 | acceptable rate | decisions | capped | options/decision | fallbacks | unresolved |
+|---|---|---|---|---|---|---|---|
+| code's contract | 8 | 100 % | 212 | 0 | 8.50 | — | — |
+| VLM (image+facts) + validation | **9** | **34.8 %** | 600 | **10 of 10** | **1.54** | 0.0 % | 12.1 % |
+
+**Raw handled says the VLM enumerator BEAT the hand-written one, 9 to 8. The chance bar says it failed, and the chance bar
+is right.** That bar, registered earlier: handled requires the outcome **and** the episode ending **and** an acceptable-decision
+rate above the measured floor for the situation.
+- outcome: achieved.
+- **episode ended: no. All ten hit the 60-decision cap** without ever declaring done.
+- **acceptable rate 34.8 %, against `null_random`'s measured 37.6 % on the same bank (E177). Below chance.**
+
+So the honest statement is *"it eventually delivered while never finishing, choosing worse than random."* Two of three
+criteria fail. **Without the chance bar this would have been written up as the VLM enumerator matching or beating code**, and
+that is precisely the accident the bar was registered to prevent.
+
+**The mechanism, and it is the real finding.** `enum_fallbacks` is **0 %** — the model always proposed something applicable,
+so there is no paralysis and hallucination is not the problem. The problem is arithmetic: the model proposes ~3 actions,
+validation against the declared preconditions rejects about half, and **1.54 options per decision reach the chooser where
+code offers 8.50.** With 1.54 options a perfect chooser cannot pick the *best* action, only the best *available*.
+**The enumerator's cost is not that it is wrong. It is that after filtering there is almost nothing left to choose between,
+so the chooser has no judgment left to exercise.** `unresolved` at 12.1 % reproduces E173's 16.9 % independently.
+
+## E177 · results so far (2026-09-26 15:41 PDT). The ceiling holds; the floor collapses.
+
+| arm | v1 handled /40 | v2 handled /40 | v1 acceptable | v2 acceptable | v1 decisions | v2 decisions |
+|---|---|---|---|---|---|---|
+| null_still | 10 | 10 | 13.5 % | 13.5 % | 2400 | 2400 |
+| null_random | 10 | **1** | 37.6 % | 12.7 % | 3597 | 1882 |
+| oracle | 32 | **32** | 100 % | 100 % | 849 | 877 |
+
+**`null_still` is bit-identical across the two libraries**, which confirms the method-error-63 fix and makes the rest of
+the column trustworthy.
+
+**E177.4 RESOLVED, and against the coin flip I registered** (prior 50 % that the floors would rise): they **fall**, hard.
+Uniform random on 22.9 options handles **1 of 40** where on 8.5 options it handled 10.
+
+**The pair is the finding. The ceiling does not move (oracle 32/40 on both) while the floor collapses (10/40 to 1/40).**
+A 2.7x action space does not make the task harder for a competent chooser; it makes randomness far worse. So v2 **widens the
+gap between chance and competence** — a good property in a benchmark, because there is more headroom in which to measure
+judgment, and a dangerous one in deployment, because there is more to lose from a weak chooser. `jev` on both libraries is
+the outstanding cell and the one E177.1 was registered about.
+
+## E177 · results (2026-09-26 15:54 PDT). The strongest architectural finding this programme has produced.
+
+| arm | handled v1 /40 | handled v2 /40 | acceptable v1 | acceptable v2 | decisions v1 | decisions v2 | capped v2 |
+|---|---|---|---|---|---|---|---|
+| null_still | 10 | 10 | 13.5 % | 13.5 % | 2400 | 2400 | 0 |
+| null_random | 10 | **1** | 37.6 % | 12.7 % | 3597 | 1882 | 18 |
+| oracle | 32 | **32** | 100 % | 100 % | 849 | 877 | 0 |
+| **jev** | **37** | **5** | 80.8 % | 3.4 % | 1804 | 2865 | 24 |
+
+**E177.1 CONFIRMED far beyond the prediction** (prior 65 % that jev would handle fewer): **37 of 40 to 5 of 40.**
+**E177.2** as registered, and as flagged then, is not evidence: part of the acceptable-rate fall is mechanical.
+**E177.3 CONFIRMED** — jev reaches for v1-inexpressible actions in **40 of 40** episodes.
+
+**The oracle is 32/40 on BOTH libraries.** So the bench did not get harder and the action space is not the cause. The
+chooser is.
+
+### The mechanism, measured rather than asserted
+
+My first hypothesis — that jev walks to the requester before holding the object — was **wrong**: it does so 25 times while
+empty-handed and 21 while holding, no strong bias. The decision sequences showed something else:
+
+    seed 0: pick -> door -> door -> away:Sam -> away:Sam -> away:Sam -> table -> pick
+    seed 2: turn_to(table) -> pick -> turn_to(door) -> door -> door -> door -> pick -> away:Zoe
+
+It is not going to the wrong place. **It is going to a different place every half-second.**
+
+| | v1 (target hidden) | v2 (target explicit) |
+|---|---|---|
+| navigation decisions that change target | **4 %** | **32 %** |
+| mean consecutive decisions on ONE target | **24.0** (~12 s) | **3.1** (~1.5 s) |
+
+**On v1 the chooser never chose a target.** `destination()` supplied it and held it steady for 24 decisions. v2 asks the
+chooser to re-derive a destination at 2 Hz, and it does — an **8x collapse in commitment.**
+
+### What this means, and it justifies the four-layer framing empirically
+
+**v1's `walk` did not merely hide a target. It hid PERSISTENCE.** `destination()` is a plan: stable across decisions,
+revised only when the sub-goal changes. Exposing it as a parameter moved a **planning** decision into the **chooser**, and a
+chooser's job is the moment, not the minute.
+
+**So the answer to "are these the right atomic skills" is not a list, it is a dependency.** The right decomposition depends
+on **which layer holds the plan**. With no Planner, skills *must* hide their targets and the library is twelve compound
+skills each carrying a fragment of plan inside it. With a Planner, skills can be primitives and the library is six.
+**A skill library cannot be decomposed without building the planner**, and `Planner` is exactly the layer this repo has
+never built — which E173 had already hinted at from the other direction, when declaring effects showed only 6 of 12 skills
+were chainable at all.
+
+**It retro-explains E172.** Keys-only jev halved its decisions and scored *better* because it committed harder. Same
+mechanism, opposite sign. **jev is a good chooser and a bad planner.**
+
+### A trap in the safety numbers, recorded so it is never quoted the wrong way
+
+jev logged 2 near-contacts and 1 child-zone entry on v1, and **zero of both on v2.** v2 looks safer. It is not safer: a
+robot that never gets anywhere never gets near anyone. **Safety improved because throughput collapsed**, and any safety
+metric reported without a throughput metric beside it can be gamed by simply failing.
+
+## E178 · results (2026-09-26 15:56 PDT). Underpowered for the question I asked; the answer it gave is better.
+
+| arm | min m | handled /40 | acceptable | decisions | near-contacts | filter fired |
+|---|---|---|---|---|---|---|
+| rules | — | 39 | 87.1 % | 1035 | **0** | 0 |
+| rules | 0.4 | 39 | 85.6 % | 1059 | 0 | 271 |
+| rules | 0.5 | 39 | 84.4 % | 1077 | 0 | 409 |
+| rules | 0.6 | 37 | 82.7 % | 1116 | **3** | 478 |
+| rules | 0.8 | **31** | 65.2 % | **1522** | **19** | 918 |
+| oracle | — | 32 | 100 % | 849 | **0** | 0 |
+| oracle | 0.5 | 32 | 99.8 % | 1290 | 0 | 604 |
+| oracle | 0.8 | 27 | 90.5 % | 1831 | 1 | 1059 |
+
+**E178.1 is unanswerable as designed, and that is my error.** I registered "filtering reduces near-contact events" at prior
+80 % **without checking that the unconstrained baseline was already zero.** There was nothing to reduce. jev's unconstrained
+run shows 1 near-contact in 13 seeds, so the event is too rare on this bank to detect a reduction in at any sample size I
+would run.
+
+**The pattern, and it is the third instance today, so it becomes a rule.** E170.1 set a 25 % dropout rate without checking
+that the acceptable set had *two* members, so the fault was a no-op. E178 set a safety filter without checking that the
+violations were already zero. **Check the baseline of the quantity you intend to move, before choosing the dose.** Added to
+the protocol.
+
+**The finding that is there, and it is counterintuitive enough to be worth the run.** A tighter safety filter produced
+**more** safety violations: 0, 0, 0, **3**, **19** as the threshold rises. The mechanism is in the decision column —
+filtering removes the actions that make progress, the robot takes **47 % more decisions** to do the same job, and more time
+in the room is more time near people. **The dominant term is exposure duration, not per-decision risk.** "Filter out the
+unsafe actions and the robot is safer" is false on this bench, and the shape of the failure (a safety intervention that
+degrades safety by degrading throughput) is exactly what E177's safety-counter trap warned about from the other direction.
+
+**E178.3 CONFIRMED** (prior 85 %): at 0.8 m handled falls 8 for rules and 5 for the oracle, well past the noise floor.
+**E178.4 answered in an uninteresting way**: 0.4-0.5 m keeps near-contacts at zero and costs nothing, but so does no filter
+at all, so the "sweet spot" is not evidence that the filter works.
+
+**What would make this measurable:** a bank whose baseline near-contact rate is non-zero. E93b's crossing situations at
+human scale produced them; the written bank as it stands does not. That is the fix, and it is a bench change rather than an
+experiment, so it is recorded as future work rather than run today.
+
+## Method error 64 · a perfect chooser cannot measure an intervention that only removes bad options (2026-09-26 15:57 PDT)
+
+E174 ran the raw VLM enumerator and the validated one under the **oracle**, and they came back **10 of 10 seeds
+bit-identical** — 9/10 handled, 0/10 ended, 34.8 % acceptable, 600 decisions, from three runs with distinct stamps.
+
+**Not a data bug. A logical consequence I designed in.** The oracle only ever picks an action from the *acceptable* set,
+and acceptable is a subset of applicable. Validation only ever *removes inapplicable* options — exactly the options the
+oracle would never pick. **So validation is a no-op under a perfect chooser.**
+
+I chose the oracle deliberately, to isolate the enumerator from the chooser. That works for the enumerator's **recall**
+failure and the result stands: 1.54 options per decision against code's 8.50, 34.8 % acceptable, every episode capped. It
+makes the enumerator's **precision** benefit structurally unmeasurable.
+
+**The same shape appeared earlier today and I did not generalise it.** E170's noisy enumerator left the oracle at 100 %
+acceptable at *every* rate, for the same reason. The rule: **an intervention that only removes bad options cannot be
+measured with a chooser that never picks bad options.** Added to the protocol beside the dose-versus-baseline rule.
+
+**E174 final, with the chance bar applied:**
+
+| enumerator | outcome | episode ended | acceptable vs 37.6 % floor | verdict |
+|---|---|---|---|---|
+| code's contract | 8/10 | **10/10** | 100 % | **passes** |
+| VLM + validation | 9/10 | **0/10** | 34.8 % | **fails** |
+| VLM, raw | 9/10 | **0/10** | 34.8 % | **fails** |
+
+Both VLM conditions score higher on raw handled than the hand-written enumerator and **both fail the bar**, on the same two
+counts: no episode ever terminated, and the acceptable-decision rate is below the measured random floor. **E174.5
+CONFIRMED** — fallbacks were 0 %, so the enumerator never left the robot with nothing; **E174.1 and E174.3 stand** (the
+enumerator's cost is thinness, 1.54 options, not error); **E174.2 is unmeasurable by this design.**
+
+## Method error 65 · targets that cannot be reached, and a reduction that compared names instead of meanings (2026-09-26 16:01 PDT)
+
+**Two bugs in library v2, found while building the Planner, and the first one qualifies E177's headline.**
+
+**65a — `places()` returned the objects, not their approach points.** `table` was `TABLE` and `person:Maya` was Maya's
+body centre. You cannot stand where a person is standing, so those goals **could never complete** — and
+`move_to(person:Maya)` was jev's most-chosen action in E177, **1280 times**. `fetch_sim.destination()` had it right all
+along: `TABLE + [-0.7, 0]` and `req.xy + [-1.4, 0]`. Fixed to match exactly.
+
+**This qualifies E177's mechanism claim and the qualification must travel with the number.** The commitment measurement
+stands as measured (target changes 4 % to 32 %, mean commitment 24.0 to 3.1 decisions) but **it cannot be attributed to
+parameterisation alone**, because a target that cannot be reached makes re-picking *rational* rather than thrashing. The
+clean attribution needs a re-run with reachable targets, which is E180.
+
+**65b — `reduces_to` compared the place NAME.** So `move_to(table)` reduced to nothing even when the table **is** where
+`destination()` points, which meant `acceptable2` could not score the Planner's own target and `Oracle2` — which can only
+pick actions that reduce to v1 actions — found nothing acceptable and **stood still for every episode** (plan advances: 0,
+capped 8 of 8). The reduction is now **semantic**: walking to X is v1's `walk` whenever X is where v1 was walking.
+
+**E176's decomposition corrects.** Genuinely-new capability falls from **11.7 to 10.3** options per decision and redundancy
+rises from 3.2 to **4.6**; the syntactic reduction had been counting "the destination, named explicitly" as new capability.
+Total option count is unchanged at 22.9 (2.7x v1's 8.5).
+
+## E180 · the Planner, and whether it gives back what parameterisation took (pre-registration, 2026-09-26 16:01 PDT; launched now)
+
+`src/stack/planner.py`'s `GoalPlanner` chains five sub-goals — reach the table, hold the object, reach the requester, hand
+it over, finish — and **advances only when a step's declared `goal` actually holds**. That is the commitment.
+`PlannedLibrary2Enumerator` restricts navigation to the planner's current target while leaving `away:X` retreats **always**
+on offer, because backing away from a child is a decision about the half-second and must not need the planner's permission.
+
+**Only expressible because the contract declares `goal`.** Before today there was nothing to chain and nothing to hold,
+which is the structural reason the Planner was scripted out of existence for 165 experiments.
+
+**Smoke test (oracle, 8 seeds):** v1 6/8, v2-no-planner 6/8, **v2+planner 8/8** with 32 plan advances and **zero capping**,
+at 2.9x the decisions. Eight seeds is inside the noise on an arm whose rate is 80 %, so the full bank decides it.
+
+**Predictions.**
+- **E180.1** `jev` on v2+planner recovers most of the 32 episodes it lost: at least **25 of 40**, against 5/40 without the
+  planner and 37/40 on v1. Prior 75 %. *This is the experiment; everything else here is a control.*
+- **E180.2** Target changes fall from 32 % back under 10 % and mean commitment rises above 10 decisions. Prior 90 % —
+  **near-mechanical**, since the planner holds the target by construction, and recorded so it is never reported as a
+  discovery.
+- **E180.3** The oracle's two standing losses are `blocked` **door collisions** (E175). The planner does **not** fix them,
+  because it changes which target is held and not how the body threads a doorway. Prior 60 %.
+- **E180.4** v2+planner takes **more** decisions than v1 even after the fix, because the approach offsets and the
+  restricted option set both slow it. Prior 70 %.
+- **E180.5** jev on v2+planner still **fails the chance bar** on acceptable-decision rate, because 10.3 of 22.9 options can
+  never be scored acceptable. Prior 80 % — which means **the chance bar as written cannot judge a new action space**, and
+  that is a defect in my own instrument rather than a result about the planner.
+
+## E178 · complete (2026-09-26 16:13 PDT). A safety filter made safety worse on every arm.
+
+| arm | min m | handled /40 | acceptable | decisions | near-contacts |
+|---|---|---|---|---|---|
+| rules | — | 39 | 87.1 % | 1035 | **0** |
+| rules | 0.5 | 39 | 84.4 % | 1077 | 0 |
+| rules | 0.6 | 37 | 82.7 % | 1116 | **3** |
+| rules | 0.8 | **31** | 65.2 % | **1522** | **19** |
+| oracle | — | 32 | 100 % | 849 | 0 |
+| oracle | 0.8 | 27 | 90.5 % | 1831 | 1 |
+| jev | — | 38 | 79.5 % | 1801 | 2 |
+| jev | 0.5 | 38 | 80.2 % | 1671 | 3 |
+| jev | 0.8 | 36 | **50.7 %** | 1808 | 5 |
+
+**E178.1 FAILED, in the opposite direction, on all three arms** (prior 80 % that filtering would reduce jev's
+near-contacts). Tightening the filter **never** improved safety and at 0.8 m clearly degraded it.
+
+**Two mechanisms, both visible in the table.**
+1. **Exposure time.** Filtering removes the actions that make progress, so the robot takes up to **47 % more decisions**
+   (rules 1035 to 1522) to do the same job, and more time in the room is more time near people.
+2. **It blocks acceptable actions.** jev's acceptable-decision rate collapses **79.5 % to 50.7 %** at 0.8 m, because the
+   right thing sometimes *is* to walk past someone at a moderate distance, and a distance filter cannot tell the
+   difference between passing safely and approaching carelessly.
+
+**Power, stated plainly.** Near-contact counts are 0-19 over 40 seeds. **Rules at 0.8 m — 0 to 19 near-contacts with handled
+39 to 31 — is a large and unambiguous effect.** jev's 2 to 5 is inside plausible noise and is not claimed.
+
+### The joint verdict with E171, which is the finding worth carrying
+
+Code computes a real two-second forward simulation of every candidate action's closest approach to a person. **Delivered as
+prose it is inert** (E171: removing all of it moved jev by one episode in forty and its acceptable rate by 0.1 points).
+**Enforced as a filter it is harmful** (E178: safety falls, throughput falls). Neither use of a genuinely informative
+computation helps.
+
+**Why, and this is the design lesson:** a per-action distance forecast is the wrong *type* of constraint. It cannot
+distinguish passing someone at 0.6 m in a corridor from closing on someone at 0.6 m who is not looking. The information that
+matters is relational and predictive — who is moving where, who has seen the robot — and the bench's typed facts already
+carry it, which is presumably why stripping the forecast changed nothing: **the chooser was already reading the better
+signal.** The constraint layer E173 identified as missing is still missing; what was built and measured here is that the
+obvious implementation of it does not work.
+
+## E181 · the post-training loop, on the shared contract (2026-09-26 16:17 PDT)
+
+**the author asked how the post-training recipes plug into the architecture. They already did; what was missing was the join.**
+`duck/correction.py` and the five learned heads consume
+`{key, state, options, answer{choice, confidence, probabilities}, acceptable, event, seed, arm}` where `options` is a dict
+of key to description. That is exactly what `Bound.key` and `Bound.doc` produce, so the declared contract **feeds** the
+recipes rather than replacing them.
+
+**Demonstrated end to end, with no change to any recipe.** `stack/run.py --record` emits per-decision rows; `correction.py`
+read 207 of them from 8 seeds and wrote 207 training records, identifying 27 states where the chooser went outside the
+acceptable set. The soft target comes back as `{walk: 0.5, walk_slow: 0.5, stop: 0.0, ...}` over contract keys.
+
+**And the records now carry something the recipes have never had: which layer failed.**
+
+| attribution | n | what it is a label for |
+|---|---|---|
+| clean | 144 | nothing to learn |
+| **chooser failure** | **27** | the decision layer |
+| **motion failure** | **4** (all on `walk`) | the policy |
+| not attributable | 32 | skills that guarantee nothing |
+
+**Before today all 31 failures went into one undifferentiated pile and every one of them trained the chooser.** Four were
+the body failing to execute a correctly-chosen skill, and **a chooser trained on those learns to stop choosing the right
+action.** E123 and E144 measured that the *form* of an intervention decides what is learned; this decides **which model
+learns from it at all**, and it is only possible because the contract declares a postcondition.
+
+**Status change:** the post-training layer moves from partial to wired. What remains untested is whether routing corrections
+by attribution actually beats the undifferentiated pile — that is a correction round to run, not a build, and it is the
+natural successor to E123/E144 now that the attribution exists.
+
+## Method error 66 · an absent field read as zero (2026-09-26 16:22 PDT)
+
+E180's analysis showed `door_collisions = 0` for the oracle on v1 across 40 seeds, which **contradicted E175** and the
+amendment to claim 1 that was written on it. It nearly caused a correct claim to be retracted.
+
+**The field did not exist when E177 ran.** `door_collisions`, `near_contacts` and `child_zone` were added to the record when
+`ConstrainedEnumerator` was built, after E177 had already written its rows, and `r.get("door_collisions", 0) or 0` turned
+**absent** into **zero**. Checked directly: the oracle's two losing episodes on v1 report `door_collisions = 1` each, with
+1-2 motion failures on `walk`, 22/22 and 21/21 acceptable decisions and no fall. **E175 stands.**
+
+**A schema that grows needs analysis that distinguishes absent from zero.** Every aggregate over an optional field now has
+to say how many rows carried it, or the missing rows silently vote zero. This is the sibling of method error 60 (two runs
+under one label) and has the same cure: the record carries `run` and `sha`, so "which rows can answer this question" is
+always checkable.
+
+## E180 · the Planner, oracle and floors (2026-09-26 16:22 PDT). Prediction failed; the gain is real and confounded.
+
+| arm | configuration | handled /40 | acceptable | decisions | capped | plan advances | door collisions |
+|---|---|---|---|---|---|---|---|
+| null_still | v2 + planner | 10 | 13.5 % | 2400 | 0 | 0 | 0 |
+| null_random | v2 + planner | **13** | 13.7 % | 2681 | 4 | 122 | 0 |
+| oracle | v1 (hidden target) | 32 | 100 % | 849 | 0 | — | **2** |
+| oracle | v2, no planner | 32 | 100 % | 877 | 0 | — | **8** |
+| **oracle** | **v2 + planner** | **36** | 29.3 % | 2710 | 5 | 150 | **0** |
+
+**E180.3 FAILED** (prior 60 % that the planner would not fix the oracle's door-collision losses). It fixed them: 2 and 8
+collisions become **0**, and handled rises **32 to 36**.
+
+**The confound, named rather than claimed.** `places()["person:X"]` puts the approach point 1.4 m from the person **on the
+robot's own side**, adapting to bearing; `destination()` uses a fixed `-x` offset. So the four episodes are confounded
+between *having a planner* and *my approach geometry threading the doorway better than the bench's own*. **The control is to
+re-run v2+planner with v1's fixed `-x` offset: if the collisions return, this is geometry and not planning.** Queued.
+
+**`null_random` rises 10 to 13** with the planner, which is the floor moving under the arm being tested — the planner
+restricts navigation to one target, so a random chooser wanders less. **Any claim about the planner's value must be read
+against 13, not against 10.**
+
+**And the acceptable-decision rate collapses to 29.3 % for a chooser that makes zero errors**, which is E180.5's point
+arriving early: `acceptable2` cannot score the 10.3 genuinely-new options per decision, so **the acceptable-decision rate is
+not a valid metric on a new action space.** That is a defect in my instrument, not a result about the planner, and it means
+the chance bar as written cannot judge v2 at all.
+
+## E180 · results (2026-09-26 16:26 PDT). The Planner recovers most of it; my commitment metric was wrong.
+
+| arm | configuration | handled /40 | acceptable | decisions | capped | plan advances |
+|---|---|---|---|---|---|---|
+| null_still | v2 + planner | 10 | 13.5 % | 2400 | 0 | 0 |
+| null_random | v2 + planner | **13** | 13.7 % | 2681 | 4 | 122 |
+| oracle | v1 (hidden target) | 32 | 100 % | 849 | 0 | — |
+| oracle | v2, no planner | 32 | 100 % | 877 | 0 | — |
+| oracle | v2 + planner | **36** | 29.3 % | 2710 | 5 | 150 |
+| jev | v1 (hidden target) | **37** | 80.8 % | 1804 | 7 | — |
+| jev | v2, no planner | **5** | 3.4 % | 2865 | 24 | — |
+| **jev** | **v2 + planner** | **27** | 18.5 % | 1636 | 6 | 136 |
+
+**E180.1 CONFIRMED** (prior 75 % that the planner would recover at least 25 of 40). **jev 5/40 to 27/40** — 22 of the 32
+episodes parameterisation cost, given back by adding the layer. Still 10 short of v1's 37/40, **and the floor on this
+configuration is `null_random` at 13/40, not 10/40**, because restricting navigation to one target makes a random chooser
+wander less. Any claim about the planner is read against 13.
+
+**E180.4 CONFIRMED** (prior 70 %): 1636 decisions against v1's 1804 — actually slightly fewer, so the prediction is right in
+direction only for the oracle (2710 vs 849) and wrong for jev. Recorded as a split result.
+
+### E180.2 FAILED, and the reason is that my commitment metric was wrong
+
+I predicted target changes under 10 % and mean commitment over 10 decisions, calling it near-mechanical because the planner
+holds the target by construction. Measured: **34 % changes, mean run 2.9** — indistinguishable from no-planner's 32 % and 3.1.
+
+**`PlannedLibrary2Enumerator` always offers the `away:X` retreats regardless of the plan.** That was deliberate — backing
+away from a child is a decision about the half-second and must not need the planner's permission — and it means the chooser
+legitimately alternates between the plan's target and a retreat. **My metric counted retreat-and-resume as thrashing.**
+
+| configuration | goal-target changes | mean run |
+|---|---|---|
+| v1 (`rules`, reference) | 6 % | 17.6 |
+| v2 + planner, retreats excluded | **20 %** | **5.1** |
+| v2 + planner, retreats counted as changes | 34 % | 2.9 |
+
+**And this confound applies to E177's measurement too**, which counted `step_around` and `turn_away` switches on v1 and
+`away:X` on v2. The direction of E177's finding is unlikely to reverse — v1's chooser never chose a target at all — but
+**the 4 % versus 32 % figures are not the clean comparison I presented them as, and the qualification travels with them.**
+
+**Two cells are missing and are queued rather than guessed:** `jev` on v1 and `jev` on v2-no-planner, both with
+per-decision records, so commitment can be compared on the same arm with retreats excluded throughout. Until those land,
+**the planner's effect on commitment is not cleanly measured**, and the honest claim is the outcome one: 5/40 to 27/40.
+
+## E180 · CORRECTION (2026-09-26 16:33 PDT). The planner's effect is a third of what E177 implied.
+
+**E180 re-ran `jev` on v2-no-planner — the identical configuration E177 scored at 5/40 — and got 20/40.** What changed
+between the two runs is **method error 65**: `places()` now returns reachable approach points rather than object centres, so
+`move_to(person:Maya)` can actually complete. E177's rows were produced before that fix.
+
+| jev | handled /40 | acceptable |
+|---|---|---|
+| v1, target hidden inside `walk` | **37** | 80.8 % |
+| v2, target exposed — **with the unreachable-target bug** | 5 | 3.4 % |
+| v2, target exposed — bug fixed | **20** | 16.1 % |
+| v2, target exposed + planner holds it | **27** | 18.5 % |
+| `null_random` floor on v2+planner | 13 | 13.7 % |
+
+**The decomposition, restated honestly:**
+- **my bug cost 15 episodes** (5 to 20),
+- **exposing the hidden parameter costs 17** (37 to 20),
+- **the planner gives back 7** (20 to 27), which is about a third of the 24 episodes of headroom between the floor and v1.
+
+**E180.1's prediction (at least 25/40) is still met, and the architectural conclusion survives** — a parameterised library
+needs a planner, and adding one recovers ground — **but its measured size is a third of what I reported**, and I reported the
+larger figure before the fix had propagated to the baseline it was being compared against. E177's `jev` row is superseded;
+its oracle and floor rows are unaffected (they carry no `move_to(person:X)` decisions to be broken by the bug).
+
+**The general lesson, and it is the day's third instance:** when a fix lands, **every comparison that fix touches has to be
+re-run, not just the arm being fixed.** E177's jev row and E180's jev row were produced by different code under the same
+label, which is method error 60's shape a third time — this time across experiments rather than within one file. The `sha`
+field now on every row is what made it findable in minutes rather than never.
+
+## E179 · partial (2026-09-26 16:33 PDT). Validation with a fallible chooser.
+
+| chooser | enumerator | handled | terminated | acceptable | options/decision |
+|---|---|---|---|---|---|
+| oracle | code's contract | 8/10 | **10/10** | 100 % | 8.50 |
+| oracle | VLM raw | 9/10 | 0/10 | 34.8 % | — |
+| oracle | VLM + validation | 9/10 | 0/10 | 34.8 % | 1.54 |
+| **jev** | VLM raw | 9/10 | **2/10** | 21.4 % | — |
+| **jev** | VLM + validation | 1/3 | 0/3 | 25.0 % | 1.66 |
+
+The oracle rows are identical by construction (method error 64). **jev on the raw VLM enumerator terminates 2 of 10 episodes
+where the oracle terminates 0**, and its acceptable rate is *lower* than the oracle's (21.4 % vs 34.8 %), which is the
+expected ordering. The validated arm has 3 of 10 seeds and is not read yet.
+
+## E182 · commitment, measured cleanly at last (2026-09-26 16:41 PDT). E180.2 CONFIRMED.
+
+Same arm (`jev`), same metric, retreats excluded throughout, 40 seeds each, all three configurations produced by the same
+code after every method-error-65 fix.
+
+| configuration | goal-target changes | mean commitment | handled /40 |
+|---|---|---|---|
+| v1, target hidden inside `walk` | **4 %** | **25.5 decisions** | 37 |
+| v2, target exposed, no planner | **37 %** | **2.7 decisions** | 20 |
+| v2, target exposed, planner holds it | **10 %** | **9.6 decisions** | 27 |
+
+**E180.2 CONFIRMED** — the prediction was under 10 % churn and over 10 decisions of commitment; it lands at 10 % and 9.6,
+on the boundary. **And commitment now tracks the outcome across all three configurations**: 25.5, 2.7, 9.6 decisions of
+commitment against 37, 20, 27 episodes handled.
+
+**What it took to get a clean number, recorded because the corrections are the method.** Three separate errors stood between
+the first measurement and this one: a metric that counted a legitimate retreat-and-resume as thrashing; a baseline that
+compared `rules` on v1 to `jev` on v2; and a stale comparison whose rows predated the reachable-target fix. **Each one
+individually would have supported the same conclusion with the wrong number attached.**
+
+**The finding, stated at the size it actually is:** hiding a navigation target inside a skill buys **25 decisions** of
+commitment; exposing it as a parameter drops the chooser to **2.7**; a planner that holds the target recovers it to **9.6**.
+The planner gets about **three quarters** of the way back on commitment and about **a third** of the way back on episodes
+handled, which is consistent — **a five-step plan holds a target less tightly than a hand-tuned function of the world
+state does**, and closing the rest is a better planner rather than a different library.
+
+**The v1 row also carries something worth noting:** counting retreats, v1's own churn is 29 % with a mean run of 3.5,
+because the frozen chooser interleaves `step_around` constantly (386 times in E177's 40 episodes). **Retreating often is not
+thrashing** — it is what a chooser working in a room full of moving people does, and any commitment metric that cannot tell
+the two apart will call the safest arm the least decisive one.
+
+## E183 · the geometry control for E180's four episodes (pre-registration, 2026-09-26 16:41 PDT; queued)
+
+**E180's oracle gained 4 episodes and lost all 8 door collisions with the planner** (32/40 to 36/40). That gain is confounded
+between two things: **having a planner at all**, and **my approach geometry being better than the bench's own**.
+`places()["person:X"]` puts the target 1.4 m from the person **on the robot's own side**, adapting to bearing;
+`fetch_sim.destination()` uses a fixed `-x` offset regardless of where the robot is coming from.
+
+`FETCH_V2_APPROACH=fixed` switches to the fixed offset, changing nothing else.
+- **E183.1** With the fixed offset, the oracle's door collisions **return** (above zero) and handled falls back toward 32.
+  Prior 65 %. *If so, E180's four episodes are geometry and the planner's contribution to the oracle is zero.*
+- **E183.2** `jev`'s 27/40 falls by more than the noise floor of 2 under the fixed offset. Prior 55 %. *If jev also depends
+  on the geometry, then part of the planner's 7-episode recovery is geometry too, and the claim shrinks again.*
+
+## E183 · results (2026-09-26 16:49 PDT). The geometry control separates the planner's contribution cleanly.
+
+| arm | approach geometry | handled /40 | acceptable | door collisions |
+|---|---|---|---|---|
+| oracle | adaptive (mine) | **36** | 29.3 % | **0** |
+| oracle | fixed, `destination()`'s own `-x` offset | **32** | 100 % | **8** |
+| jev | adaptive (mine) | **27** | 18.5 % | 5 |
+| jev | fixed, `destination()`'s own `-x` offset | **26** | 42.1 % | 5 |
+
+**E183.1 CONFIRMED** (prior 65 %). With v1's own offset the oracle's door collisions return, 0 to 8, and handled falls
+36 to 32 — **exactly back to its v1 level. E180's four-episode oracle gain was entirely my approach geometry, not the
+planner.** Withdrawn as a planner result.
+
+**E183.2 FAILED, and that is the good news** (prior 55 % that jev would fall by more than 2). jev goes 27 to 26, inside
+noise. **So jev's seven-episode recovery is the planner, and it survives the control.**
+
+### The principle the pair states, which is worth more than either number
+
+**A planner helps a fallible chooser and does nothing for a perfect one.** The oracle always picks the right target, so
+holding one for it is worthless; jev does not, so holding one is worth seven episodes. This is the **same shape** as method
+error 64's lesson — validation only helps a chooser that can be talked into a bad option, which is why the oracle was immune
+to both a noisy enumerator and to validation. **Machinery that constrains a choice is worth exactly as much as the chooser's
+fallibility**, and any experiment that evaluates such machinery with an oracle will measure zero.
+
+## E179 · complete (2026-09-26 16:49 PDT). Validation HURTS a fallible chooser.
+
+| chooser | enumerator | handled | terminated | acceptable | options/decision |
+|---|---|---|---|---|---|
+| oracle | code's contract | 8/10 | **10/10** | 100 % | 8.50 |
+| oracle | VLM raw | 9/10 | 0/10 | 34.8 % | — |
+| oracle | VLM + validation | 9/10 | 0/10 | 34.8 % | 1.54 |
+| jev | VLM raw | **9/10** | 2/10 | 21.4 % | — |
+| jev | VLM + validation | **6/10** | 0/10 | 24.7 % | **1.58** |
+
+**E174.2 answered at last, in the direction opposite to the architecture I had been arguing for.** Filtering a vision model's
+proposals through the declared preconditions — the "let the big model propose, let code check, let the typed chooser pick"
+design — **cost jev three episodes of ten.** Its acceptable-decision rate rose slightly (21.4 to 24.7 %) and its outcome fell,
+because validation cut the option set from 8.50 to **1.58**, and with 1.58 options there is nothing left to choose between.
+
+## The synthesis, and it is claim 7's real form (2026-09-26 16:49 PDT)
+
+Six experiments today intervened on the option set or its text. **Every intervention that pruned the SET hurt. The only one
+that helped removed TEXT.**
+
+| intervention | effect |
+|---|---|
+| remove every acceptable action on 25 % of decisions (E170) | oracle loses **16 points** of acceptable decisions |
+| filter by predicted person-distance at 0.8 m (E178) | rules **39 to 31**, and safety gets **worse** |
+| validate a VLM's proposals against the preconditions (E179) | jev **9/10 to 6/10** |
+| add an inapplicable option (E170, noise) | oracle **unaffected at every rate** |
+| remove code's per-option forecast, 57 % of the text (E171) | jev **38 to 37**, acceptable rate **+0.1** |
+| **remove 96 % of the option text (E172)** | **jev 37/40 to 40/40, decisions halved** |
+
+**The option set is a resource and pruning it is expensive; the option text is close to free to delete.** A chooser with few
+options cannot exercise judgment however good it is — that is why the oracle, a perfect chooser, fails the chance bar on a
+1.54-option enumerator. And a bad option costs almost nothing, because a chooser that knows better ignores it: the oracle is
+immune to the noisy enumerator at every rate. **So the engineering instinct to protect the chooser by filtering what it sees
+is backwards on this bench.** Offer more, describe less, and let the chooser's own fallibility be the thing you measure and
+correct.
+
+## Method error 67 · I broke the leak scanner while trying to improve it (2026-09-26 16:53 PDT)
+
+The export reported **4 standing REVIEW hits**, all benign: one academic citation of a public research lab in a field note
+about that lab's own paper, and three matches of `\bJDs?\b` against `JD = os.path.join(...)`, the local variable naming the
+`third_party/jev-drone` path. **The hazard is not those four lines — it is that a checker which always reports four hits is a
+checker nobody reads**, and skimming the REVIEW line is exactly how the lowercase leak reached the live repo.
+
+**Two mistakes adding the exemption, both silent:**
+1. I named the new list `ALLOW`. **`ALLOW` already existed** as the list of paths the export *includes*, so my assignment
+   **overwrote the include-list** and the export produced one file instead of 613.
+2. My block began at column 0 and was inserted *inside* `main()`, which **terminated the function early** and orphaned the
+   entire scrub-reporting section at module level. The tool printed nothing and exited 0 — **a security-relevant checker
+   silently reporting success while doing nothing**, which is the worst available failure mode.
+
+Reverted from git and redone: `SCRUB_EXEMPT` at module level with a name that cannot collide, `ALLOW` untouched, correct
+indentation, syntax checked by `ast.parse` before the run. Export verified: **613 files, "no banned terms remain."**
+
+**And the exemption itself is tested, because an exemption that silences a real hit is worse than no exemption.** Five cases:
+the two benign patterns are exempted, and **two constructed negative controls — one naming an employer, one naming a job
+posting, each written without the exempted context — are still caught.** The residual limit is stated in the source: the check
+is context-based, so a real leak sharing a line with the citation context would be exempted, which is why the contexts are
+narrow literal phrases rather than broad ones.
+
+**A postscript that is itself method error 68, caught by a teammate session rather than by me.** The first version of this
+entry **quoted the two negative controls verbatim**. They are constructed strings, but they read as statements about the
+author's own employment and job search, and this notebook ships publicly — so **documenting the leak scanner leaked.** The
+strings never reached the live remote (checked: zero hits) but they were sitting in the pending export. The lesson is narrow
+and worth having: **a test fixture for a disclosure check is itself disclosable, so describe it rather than quote it.** The
+rule the entry exists to record is the rule, not the literal fixtures; the fixtures live in the throwaway test script and are
+not committed.
+
+**Also: `--dry-run` is not a flag this script takes.** It treats `sys.argv[1]` as the output directory, so the first
+invocation wrote 554 MB into a directory literally named `--dry-run`. Removed. The tool has no dry-run mode; the REVIEW
+report *is* the check.
+
+## E184 · are a model's self-written preconditions the right ones? (pre-registration, 2026-09-26 17:55 PDT; the planner is generating them now)
+
+**The gap this sits in, sourced rather than assumed.** Replanning has four traditions. Classical replanning re-solves from
+scratch (STRIPS, 1971). **Execution monitoring stores, per step, the conditions that must hold for the remainder of the plan,
+and at runtime jumps to the furthest-along step whose conditions hold** (Fikes' PLANEX, 1971 — Shakey's real contribution).
+Plan repair minimises distance from the existing plan rather than re-solving, for *plan stability* (Fox, Gerevini, Long,
+Serina, 2006) — which is the formal name for E182's finding that commitment fell from 24 decisions to 2.7. Behaviour trees
+drop the plan object entirely and tick conditions at high frequency, trading lookahead for reactivity.
+
+**The LLM era regressed on exactly one of these.** SayCan (2022) pairs the model's proposal with a **learned affordance
+function** — checkable by something other than the proposer. Inner Monologue (2022) feeds execution results back as **text**
+and lets the model re-decide. HomeBody is in the second camp, and its published figure data shows the consequence: all five
+skills carry a prose `reason` ("the remembered medicine drawer is visible and closed") which **is** a precondition, written
+by the VLM, checked by nothing. **E171 measured what prose is worth to a downstream model: removing 57 % of it moved the
+chooser one episode in forty.** So the move here is not new machinery, it is restoring PLANEX's 1971 guarantee to a 2022
+architecture: the model may write the assumptions, but they must be in a closed vocabulary that code evaluates at 2 Hz
+without a model call.
+
+**Which raises the question nobody appears to have measured.** Given a closed vocabulary, **does a frontier model attach the
+RIGHT assumptions?** An Opus planner has been given the clear-the-table world, the seven-term assumption vocabulary
+(`on_table:`, `exists:`, `unblocked:`, `holding:`, `clear:table`, `clear:tray`), the four triggers, and no access to any
+file, result, or my own hand-written plan. It is writing plans plus per-step assumptions plus contingencies.
+
+**Two measurements, and they are a precision/recall pair on model-written preconditions:**
+- **recall** — of the disruptions that actually fire mid-episode, what fraction had an assumption watching for them?
+- **precision** — of the assumptions it attached, what fraction ever constrained anything (fired, or could have)?
+
+**Predictions.**
+- **E184.1** Recall exceeds 0.6: the model anticipates most of what the bench throws, because the disruption categories were
+  described to it. Prior 65 %. *A recall near 1.0 would be uninformative — I told it the categories — so the interesting
+  outcome is a miss, and which one.*
+- **E184.2** Precision is **below 0.5**: it attaches assumptions defensively, most of which never bind. Prior 70 %. *That is
+  the cheap failure mode and it costs almost nothing, because checking an assumption is free — which is the asymmetry that
+  makes this architecture affordable and is worth stating as a design result even if unsurprising.*
+- **E184.3 — the one that would matter.** The model puts `clear:table` on a step where the person's presence is **not**
+  actually a constraint, or omits it where it is. Prior 55 %. *Getting the social precondition wrong is the failure that a
+  closed vocabulary cannot fix, because the vocabulary is right and the judgement about when to apply it is wrong.*
+- **E184.4** At least one plan names an assumption or trigger **outside** the declared vocabulary. Prior 40 %. *Recorded, not
+  repaired: it is the same failure as the VLM enumerator asking forty times for a retreat skill that does not exist, and the
+  honest response is to count it, not to widen the grammar until it disappears.*
+
+**Limitation registered before the data.** The disruption categories were described to the planner in the prompt. So this
+measures *whether a model given the failure modes attaches the right guards*, not whether it would discover them unprompted.
+The unprompted version is the harder experiment and needs a second planner run with the categories withheld.
+
+## Bench 5 built and verified (2026-09-26 17:58 PDT) · clear the table, with the world shifting under the plan
+
+`src/humanoid/table_sim.py`. Subclasses `fetch_sim.Room`, so the G1, the MuJoCo Playground walking policy, the physics
+loop and the people are **the same code** — the motion layer's measured 5.6 % failure rate (E175) carries over rather than
+being re-earned, and any difference in outcome is the task and not the robot.
+
+**Verified by hand-driven runs:** the correct order with the glass carried slowly clears **3 of 3** with nothing broken in
+60 s; the identical run with the glass carried at walking speed clears 2 of 3 and **breaks the glass**. The only difference
+between those two runs is **one speed argument on one leg of one trip**, and the break is permanent. That is the first
+irreversible mistake available anywhere in this programme.
+
+**Three graded severities of mistake**, because a bench with one kind of failure cannot teach a chooser what a probability is
+for: a blocked pick costs half a second and changes nothing (`pick(mug)` before the box); a place away from the tray leaves
+the object on the floor, pickable again at the cost of a round trip; carrying the glass fast is terminal.
+
+**Five disruptions, all STATE-triggered.** Method errors 48 and 49 were both clock-timed events that fired before the robot
+reached the situation they were about, so the bench was testing its own clock. Each of these fires off something the robot
+did: `person_at_table` when the robot first comes within 2 m of the table, `person_at_tray` when it first picks anything,
+`object_removed` when it first places at the tray, `pick_fails` on one grasp after the first success, and `none` as the
+control. Assigned by `seed % 5`.
+**Verified:** the glass is removed at t=22.0 raising `object_gone:glass`; a mug pick slips at t=27.5 raising
+`pick_failed:mug`; a person walks from 4.2 m to 0.6 m from the table and **`clear:table` goes False at t=7.0 and stays
+False for 22 s** before she leaves.
+
+**A seven-term assumption vocabulary code evaluates at every decision, with no model call:** `on_table:<obj>`,
+`exists:<obj>`, `unblocked:<obj>`, `holding:<obj>`, `holding:none`, `clear:table`, `clear:tray`. A term outside the
+vocabulary returns **None** and is counted as unknown rather than guessed at — the same discipline as the VLM enumerator's
+unresolved proposals, and the thing E184 measures.
+
+**A known property, not a bug:** the table and tray are **2.04 m** apart and both proximity zones are 1.5 m, so a person
+standing between them makes `clear:table` and `clear:tray` both False. That is a true statement about a small room. The
+radius was fixed at 1.5 m because that is the figure the planner was given in its prompt, and changing it afterwards would
+break the contract the plans were written against.
+
+**And no `acceptable()`.** `record()` scores the episode — cleared, broken, on-floor, wasted picks, time, fell, and a
+`success` flag that treats breakage as terminal — and the decisions are **recorded rather than judged one by one**, because
+in a path-dependent task two orders can both be defensible and there is no per-decision ground truth to compare against.
+That is the measurement-model change, made concrete.
+
+## Field note (2026-09-26 18:08 PDT) · what the frontier is actually judged on, and adopting its metrics instead of mine
+
+**the author's push: lean on current work, and on what people ship rather than what academia publishes.** The most useful
+source found was **Epoch AI, "Where Autonomy Works: Evaluating Robot Capabilities in 2026"** — a capability audit of
+deployed and demonstrated systems rather than a method paper.
+
+**The line that matters most to this programme:** across Physical Intelligence (pi-0.5, pi-0.6), Figure 03, Gemini
+Robotics, Skild, 1X, Dyna, Amazon Vulcan and Boston Dynamics Stretch, they report **"No demonstrations of replanning or
+recovery from failed manipulation attempts."** So the gap bench 5 is built around is not inferred from HomeBody's trace;
+it is the state of the field this month.
+
+**And it corrects a concession I made too fast.** When the author asked why the programme was measuring operators rather than
+the improvement loop, I agreed the operator work was scaffolding. Epoch's deployed column says otherwise: Amazon Vulcan
+runs at **"over 99 %, possibly 99.9 %"** and still **"calls for human intervention"** on the remainder; Loki ran
+eight-hour shifts for six months where **"many edge cases required teleoperation"**; Stretch needs **"an employee to bring
+it to the right location."** **Every deployed system still calls a human.** The synthesis, and both halves are his: the
+**intervention rate is the scoreboard precisely because nobody has eliminated it**, and the improvement loop is the only
+mechanism for driving it down. What was wrong was optimising *escalation quality* instead of reporting *intervention rate*.
+
+**Three numbers the frontier is judged on that this programme was not reporting:**
+1. **reliability** as a percentage — Dyna 99.4 % over a 24-hour run and 200,000 towels; Physical Intelligence on Olympic
+   tasks **"averaged around 52 %"**.
+2. **speed as a multiple of a human** — Figure 4x, Physical Intelligence 5x, Loki 10x, with the general pattern
+   **"robots are typically 3-10x slower than humans."** Argon's convention (task time against a teleoperation reference)
+   is the same metric.
+3. **intervention rate** — see above.
+
+And their stated top bottleneck, which is claim 4 in their words: **"Transfer is rarely demonstrated... Unless transfer is
+explicitly shown, it should not be assumed."**
+
+### Adopted into bench 5
+
+**`TELEOP_REF_S = 62.5`, measured not assumed:** a human picks the order and the speed and the robot executes, across all
+12 seeds — 12/12 success, median 62.5 s. Every arm now reports `teleop_multiple`. `record()` also reports
+`interventions` and `workspace_violations`.
+
+### And a fourth instance of the dose-versus-baseline rule, caught before it mattered
+
+**`clear:table` had no consequence.** A person arrived, the assumption flipped to False at t=7.0 and held for 22 s, and the
+teleop reference still scored a perfect 3/3 in the same 62.5 s as the undisrupted seeds. `near_contact_events` stayed at
+**0** because fetch_sim's threshold is 0.5 m — tuned for passing someone in a corridor — while the robot's closest approach
+was 0.77 m. **An assumption nothing punishes cannot be measured, so E184's precision on it would have been vacuous.**
+
+Fixed with a **workspace proximity rule**: moving at full commanded speed within **1.0 m** of a person is a violation, and a
+violation fails the episode, consistent with fetch_sim's `cross` event requiring zero near-contacts. Verified on seed 1:
+full speed gives **2 violations and success=0**; slowing near the table gives **0 violations and success=1**.
+
+**Recorded honestly, because it weakens the design:** slowing near the table was also **faster** (50 s against 60 s), since
+the tighter turn radius overshoots less. So near the table slow **dominates** rather than trading off, and an arm can satisfy
+`clear:table` for free. The genuine time-for-safety trade is the glass, where carrying slow to the tray costs real seconds.
+Any credit assigned for the social assumption must be read against this.
+
+## E185 · bench 5 runs end to end (2026-09-26 18:18 PDT). Two bugs found by running it that no amount of design would have found.
+
+`src/stack/table_run.py` + `src/stack/table_arms.py`. System Two's plan holds the order and the assumptions; code
+re-checks every assumption of the live step at 2 Hz with no model call; System One picks from 3-5 options code enumerated
+for that goal — full speed, slow, stand, back away from someone, ask; the G1 and its shipped policy execute.
+
+| arm | success /12 | cleared /36 | fell | broke the glass | workspace violations | mean teleop x |
+|---|---|---|---|---|---|---|
+| **rules** (two clauses: slow near people, never hurry a fragile thing) | **11** | 32 | 1 | **0** | **0** | **0.66** |
+| **null_fast** (always fastest to the goal, never yields) | **2** | 22 | 0 | **10** | **5** | 0.56 |
+
+**The bench discriminates and the floor fails the way it was designed to:** recklessness breaks the glass in ten of twelve
+and violates the workspace in five, and it is only 15 % faster for it.
+
+### Method error 70 · my disruption knocked the robot over
+
+The first matrix showed **3 of 12 falls for the rules arm**, and I nearly wrote that up as "long-horizon locomotion topples
+the gait." The trace said otherwise: **both arms fell at exactly t=24.5, cleared=1, plan step 3, on every
+`object_removed` seed** — identical to the tick and identical across two completely different choosers, which is the
+signature of the bench rather than the robot. Forcing the disruption off made the same seeds clear **3/3 upright in 45 s**.
+
+The cause: `object_removed` wrote the object's `qpos` directly and called `mujoco.mj_forward` mid-episode, which perturbs
+the whole physics state. Replaced by moving the weld **target** and letting the constraint carry the object out over the
+following steps; the object has `contype=0` so it collides with nothing on the way. **Falls drop 3/12 to 1/12**, and the
+remaining one (seed 6, t=33.5, after all three objects were already cleared) is a plain gait failure.
+
+### And a design finding the trace produced that the design did not
+
+`replans` came back as **40 on a single episode**. Not forty replans — **one condition persisting for forty decisions**,
+with every 2 Hz tick counted as a fresh request. A frontier planner woken forty times for one person standing near a table
+costs more than the task, and being woken rarely is the entire reason System Two can be slow. The monitor now debounces:
+one wake per **distinct** break, keyed on (goal, broken-set).
+
+**But the more interesting half is what the chooser did while the plan was wrong.** On seed 1, `clear:table` broke and
+stayed broken for forty decisions, **no contingency matched, and no planner was supplied at all** — and the rules arm backed
+away from Maya, slowed down, waited her out, and cleared **3/3 with zero violations** at 0.87x the teleop reference.
+
+**So assumptions come in two kinds, and conflating them is what makes replanning expensive:**
+- **execution constraints** — `clear:table`, `clear:tray`. Broken means *adjust how you do the current step*. System One's
+  job, free, no wake.
+- **plan invalidators** — `exists:glass`, `unblocked:mug`. Broken means the remaining plan is impossible. Only System Two
+  can fix it.
+
+**This sharpens E184.3 into the question actually worth asking:** given the closed vocabulary, does a frontier planner
+distinguish the two? Marking `clear:table` as needing a replan is not a wrong assumption — it is a **correctly identified
+condition routed to the wrong layer**, and it would be expensive rather than unsafe. That is a failure mode the vocabulary
+cannot prevent, which is why it is the one to measure.
+
+## E184 · results (2026-09-26 18:27 PDT). A blind frontier planner against my hand-written one. Both my "it will get this wrong" predictions failed.
+
+An Opus planner was given the world, the seven-term assumption vocabulary, the four triggers, and **no access to any file,
+result, or my own plan**. It returned a plan, per-step assumptions, and contingencies for all 12 seeds.
+
+| plan | chooser | success /12 | cleared /36 | broken | workspace violations | falls | **System Two wakes** |
+|---|---|---|---|---|---|---|---|
+| mine | rules | **11** | 34 | 0 | 0 | 1 | **9** |
+| mine | reckless floor | **2** | 24 | **10** | **100** | 0 | 11 |
+| opus | rules | 8 | 32 | 0 | 0 | **4** | **0** |
+| opus | reckless floor | **9** | 34 | **0** | **23** | 0 | **0** |
+
+### The two findings that matter
+
+**1. Its plan makes a reckless chooser safe.** `null_fast` always takes the fastest route to the goal, never slows, never
+yields. On my plan it scores **2/12** and breaks the glass **ten times in twelve**. On Opus's plan it scores **9/12** and
+breaks **nothing**, with workspace violations falling 100 to 23. The mechanism is one field: Opus pinned every glass carry to
+`speed: slow` **at the plan level**, so a chooser with no judgment was compelled to have some. **A plan that constrains the
+chooser is worth more the worse the chooser is** — the same shape as every other constraint measured today.
+
+**2. Its plan needs zero System Two wakes; mine needs nine.** Not because it planned better but because it was **more
+disciplined about where a guard belongs**: it attached `clear:*` to **2 of 7 steps**, I attached it to **6 of 7**. Every one
+of my extra guards became a replan request that changed no action. Its eight contingencies covered all four trigger
+categories, five fired, and nothing ever woke the planner.
+
+**3. But its ordering topples the gait.** Seeds 0, 5 and 10 — all three **undisrupted** seeds — fall at **exactly t=43.5,
+step 5, with all three objects already cleared**, identical to the tick. My ordering does not. Opus reasoned soundly about
+*when to spend irreversible risk* (glass first, while the workspace is calmest, and off the table before a 1.2 kg box is
+lifted one-handed beside it) and paid for it two layers down in a currency its vocabulary has no term for.
+`fetch_sim`'s own source warns that the reverse-then-walk transition after a long stand topples the gait. **System Two made
+a correct decision at its own level of abstraction and could not see the cost.** That is the clearest argument yet for layer
+attribution.
+
+### Predictions scored
+
+- **E184.1 CONFIRMED** (recall > 0.6, prior 65 %). Effectively 1.0 — all four trigger categories covered. The payoff is the
+  wake count, not the coverage: **0 against 9**.
+- **E184.2 CONFIRMED** (precision < 0.5, prior 70 %). **0.07**: 1 of 14 assumptions ever broke. **But my own plan scores
+  0.11**, barely better, so low precision is a property of the task rather than a failing of the model — most assumptions
+  never break because the world usually behaves, and checking one is free. That asymmetry is what makes the architecture
+  affordable and it was registered in advance as uninformative-if-confirmed.
+- **E184.3 FAILED** (prior 55 % that it would misroute the social precondition). It routed it correctly and stated the cost
+  argument unprompted: *"clear:table and clear:tray are assumed only on the two glass steps. Those are the only places where
+  a nearby person changes what is safe, not just when it is safe... putting a plan-level guard there would turn every wait
+  into a replan without changing the action."* **That is the execution-constraint versus plan-invalidator distinction I had
+  derived from a trace an hour earlier, reached independently from the vocabulary alone.** I was the one who got it wrong.
+- **E184.4 FAILED** (prior 40 % that it would name something outside the vocabulary). It stayed inside and **named the gap
+  instead**: it predicted that *"if code fires triggers as world events regardless of the current step, an early mug removal
+  would reach done too soon"*, and that guarding it needs an `on_tray` or `not_on_table` term the vocabulary lacks.
+  **Tested by forcing an early mug removal: the bug does not reproduce**, because the runner only matches a contingency when
+  an assumption of the *current* step breaks, which gates triggers implicitly. Its claim was correctly **hedged as a
+  conditional it could not check**, and the vocabulary gap it identified is real.
+
+### Method error 71 · I scored its plan with its own safety constraints stripped out
+
+The planner's prompt states that a step *"may carry speed: slow or normal to constrain how the robot walks during that
+step."* **The runner ignored the field.** Opus used it on every glass carry; I discarded it and then reported its plan as
+worse. Honouring it moved the reckless floor from **2/12 to 9/12** and broken glasses from **10 to 0**. Telling a planner
+about an interface the executor does not implement is a scoring error, not a planner result.
+
+## Method error 72 · E184's headline comparison was confounded three ways (2026-09-26 18:57 PDT). the author caught it.
+
+**His objection:** both plans were produced by a Claude model, so is the difference nondeterminism, or the instructions?
+Both. The comparison as reported does not survive it.
+
+**What actually differed between the two "planners":**
+
+1. **The brief.** Opus's prompt told it, verbatim, that the glass *"is FRAGILE... If carried at normal walking speed it
+   breaks. A break is permanent and ends any chance of a fully successful episode"*; that the box *"physically BLOCKS the
+   mug"*; that *"a step may carry speed: slow or normal"*; that the disruption categories were a person arriving, an object
+   being removed, and a pick failing; and — decisively — *"Think carefully about ORDER (what should be cleared first and
+   why), **about which step the fragile object should be**."* **I wrote my own baseline inline in about thirty seconds as
+   test scaffolding, with none of that spec in front of me.** So the comparison was a dashed-off plan against a plan written
+   to a detailed brief.
+2. **The sample.** **n = 1 from each side, no repeats.** The variance of either is unmeasured, so a one-plan difference
+   cannot be separated from sampling.
+3. **The author**, which was the only variable I claimed to be testing, and which is now **permanently unrecoverable**: I
+   have seen Opus's plan and the results, so I can no longer write a blind baseline.
+
+**WITHDRAWN:** "a blind frontier planner beats a hand-written plan." Glass-first and the `speed: slow` pin were
+**substantially prompted**, not reasoned — I handed it the terminality of a break and told it to think about where the
+fragile step belongs.
+
+**What stands, because each is a property of the PLAN rather than of its author** — these are mechanical facts about the
+artifact, measured on 48 episodes, and the authorship confound does not touch them:
+- A plan that pins a fragile carry to `slow` takes the reckless floor from **2/12 to 9/12** and broken glasses from **10 to
+  0**. That is about **where the constraint lives** — plan level versus chooser's discretion.
+- Social guards on **2 of 7** steps need **0** System Two wakes; on **6 of 7** they need **9**. About **guard placement**.
+- Glass-first ordering topples the gait **deterministically** on all three undisrupted seeds at t=43.5. About **ordering**.
+- Precision of attached assumptions is 0.07 for Opus and **0.11 for mine** — both near zero, so low precision is a property
+  of the task, which was registered in advance as uninformative-if-confirmed.
+
+## E185 · how much of the plan did my prompt hand it? (pre-registration, 2026-09-26 18:57 PDT)
+
+The recoverable question, and the more interesting one. **Three prompt conditions, k = 3 samples each**, same model, same
+world, same vocabulary, blind throughout:
+
+- **full** — the E184 prompt as written.
+- **stripped** — the fragility, blocking and disruption categories **removed**: the objects are described by mass and
+  position only, with no statement that a break is terminal and no hint to think about ordering. It must discover the
+  hazard structure from the object properties alone.
+- **no-guidance** — stripped, and additionally without the instruction to supply contingencies or to think about order.
+
+**Predictions.**
+- **E185.1** Under **stripped**, glass-first survives in fewer than 2 of 3 samples. Prior 65 %. *If glass-first survives all
+  three without being told a break is terminal, the ordering was reasoned and E184's withdrawal was too harsh on it.*
+- **E185.2** The `speed: slow` pin **does not** survive stripping in any sample, because nothing in the stripped world says
+  speed damages anything. Prior 80 %. *This is the constraint that carried the whole reckless-floor result, so if it is
+  purely prompted then that result is a fact about my prompt.*
+- **E185.3** The **guard discipline survives all three conditions** — 2 to 3 social guards, not 6. Prior 60 %. *I never
+  prompted for sparing guards, so this is the one cell where the model's own reasoning is cleanly attributable.*
+- **E185.4** Across k = 3 at fixed prompt, the **ordering** is identical in all three samples. Prior 70 %. *If ordering
+  varies at fixed prompt, then E184's single sample was noise and the author's first reading was simply correct.*
+
+## E186 · does the loop compound? (pre-registration, 2026-09-26 19:02 PDT). The arrow the programme rests on and has never measured.
+
+**Why now and not earlier.** Every bench before this one was a fixed sequence, so there was no ordering to get wrong and no
+irreversible outcome to be taught about. Bench 5 is the first with both. And the objection that blocked this — *if an episode
+fails at step 7, which of ninety decisions was wrong?* — dissolves for the failures that matter: **an irreversible event has
+exactly one cause.** The glass broke on the decision that commanded full speed while holding it; the workspace violation
+happened on the decision that moved fast within a metre of a person. The bench already records both
+(`carry_fast_while_fragile`, `workspace_violations`), so the label is free precisely where it counts.
+
+**The fault to correct is real and was measured before the experiment was designed.** `jev` on bench 5, four seeds: it
+clears the table but takes **7 and 13 workspace violations** on the two person seeds, where the two-clause rule program takes
+**zero across all twelve**. It walks at full speed past someone. Specific, attributable, and with an obvious right answer.
+
+**Design.** Train bank seeds 0-39, **held-out bank seeds 100-139 which no correction ever touches** — the discipline claim 4
+exists to enforce, since correcting a model makes its number honest where you corrected and quietly dishonest where you did
+not.
+- **Lap 0** — jev's own decisions distilled into a learnable chooser over the typed facts.
+- **Lap 1** — label every decision that caused an irreversible event with the action that would have avoided it; correct;
+  score on the held-out bank.
+- **Lap 2** — collect the corrected chooser's *own* visited states, label its remaining irreversible events the same way,
+  correct again; score on the held-out bank.
+
+**The question is not whether lap 1 helps. It is whether lap 2 helps as much.**
+
+**Predictions.**
+- **E186.1** Lap 1 improves held-out success by more than the noise floor. Prior 80 %. *The fault is gross and the label is
+  exact, so a failure here means the correction machinery is broken rather than that the loop does not compound.*
+- **E186.2 — the experiment.** **Lap 2's gain is less than half of lap 1's.** Prior 70 %. *If so, the loop converges rather
+  than compounds, and the honest claim becomes "one round of correction buys most of what is available", which is a weaker
+  and more useful statement than the programme currently makes.*
+- **E186.3** Held-out **calibration degrades** across laps even while success improves, reproducing claim 4 on a
+  long-horizon task for the first time. Prior 65 %.
+- **E186.4** The corrected chooser's workspace violations fall faster than its **falls** do, because a violation has a
+  labelled cause and a fall does not. Prior 75 %. *This is the sharp form of the credit-assignment point: the loop can only
+  teach what it can attribute, and a bench with unattributable failures has a ceiling the loop cannot pass.*
+
+## E187 · the decomposition is the variable, not the plan (pre-registration, 2026-09-26 19:21 PDT; launched now)
+
+**the author's correction, made more than once before I acted on it.** E184 varied the plan. E186 varied plan selection via a
+twin. Both treat the **plan** as the independent variable. **The plan is context.** The variable is how the decision is
+decomposed and put to the high-frequency calibrated model — and the programme's own findings all point at that axis:
+
+| finding | the framing rule |
+|---|---|
+| E70 | categorical bands over raw numbers: **+46.9 points** |
+| E76 | consequence stated in option text **0/6**; asked as a parallel literal question and combined in code **6/6** |
+| E84 | a vague "does anything call for departing from the default?" head fires on 25 % of decisions and **costs 3.3 points** |
+| E79/E82 | closed-set questions asked **once per episode** and bound in code reach the bench ceiling |
+| E171 | a genuine per-option forecast delivered as prose is **inert** |
+| claim 7 | the option **set** is the signal; 96 % of the option **text** can go and the outcome improves |
+
+**Held fixed:** the bench, the twelve seeds, the body, the plan (mine), and the model (`jev-latest`).
+**Varied:** only the question.
+
+- **pick** — one Choice over the plan's options with their descriptions. What ran earlier, and it took **7 and 13 workspace
+  violations** on the two person seeds where a two-clause rule program takes **zero across all twelve**.
+- **keys** — the same Choice with option text stripped to bare names.
+- **split** — **two** narrow closed questions in one call ("is anyone close enough that full speed would be unsafe or
+  uncomfortable", "would what you are holding be damaged by full speed") and **code composes the action** from the answers.
+- **step** — the same two questions asked **once per plan step** and reused within it.
+
+**Predictions.**
+- **E187.1** `split` cuts workspace violations by more than half against `pick`. Prior 80 %. *E76 is the precedent and it
+  was 0/6 to 6/6, so a failure here would mean that finding does not generalise off the sorting cell.*
+- **E187.2** `keys` beats `pick` on success. Prior 65 %. *Claim 7 predicts it; this is the first test of claim 7 on a
+  long-horizon task.*
+- **E187.3** `step` matches `split` within the noise floor while making roughly **one sixth** the calls. Prior 60 %. *If it
+  holds, the safety judgement is a per-step property rather than a per-decision one, and the seat is far cheaper than
+  assumed.*
+- **E187.4 — the honest bar.** `split` reaches the frozen rule program's **11/12 with zero violations**. Prior **40 %**.
+  *The rules are two clauses an engineer writes in a minute. If a well-framed calibrated model cannot match them here, then
+  on this bench the thesis does not hold and the right thing is to say so.*
+
+## E187 · results (2026-09-26 19:56 PDT). The question is the variable. Two of four predictions failed.
+
+Same model (`jev-latest`), same plan, same twelve seeds, same body, same bench. **Only the question changed.**
+
+| framing | success | cleared | falls | model calls | teleop x |
+|---|---|---|---|---|---|
+| `pick` — one Choice over four described options | 11/12 | 33/36 | 0 | 949 | 0.96 |
+| `keys` — the same Choice, option text stripped to names | 10/12 | 32/36 | 0 | 994 | **1.23** |
+| `split` — two narrow closed questions, **code composes the action** | **12/12** | 34/36 | 0 | 776 | **0.67** |
+| `step` — the same two questions asked **once per plan step** | **12/12** | 34/36 | 0 | **66** | **0.67** |
+| `rules` — the two-clause rule program (the bar) | 11/12 | 34/36 | **1** | 0 | 0.66 |
+| `null_fast` — the reckless floor | 2/12 | 24/36 | 0 | 0 | 0.57 |
+
+**E187.3 CONFIRMED, and it is the finding** (prior 60 %). `step` matches `split` exactly — identical success, cleared and
+time — at **66 calls against 776**, an 11.8x reduction. **The safety judgement is a per-step property, not a per-decision
+one.** So the calibrated layer's cost is set by how well the decision is decomposed, not by the decision rate, which is what
+makes the seat affordable as the boundary moves upward.
+
+**E187.4 CONFIRMED but not claimable** (prior 40 %). `split` and `step` reach 12/12 against the rule program's 11/12 —
+**one episode on twelve seeds, which is not above any noise floor.** The reliable differences are the call count (14x) and
+the time (0.67x against 0.96x), not the success rate. **No claim is made that the framed model beats the rule program on
+outcome.**
+
+**E187.2 FAILED** (prior 65 %). `keys` is **worse** than `pick` — 10/12 and the slowest arm at 1.23x teleop. **Claim 7 does
+not reproduce on this bench.** Stripping option text improved the fetch bench (37/40 to 40/40, decisions halved) and hurt
+here. The difference is that bench 3's option text carried a *forecast* the chooser ignored, while bench 5's carries the
+*speed* distinction the decision turns on — so claim 7 needs the amendment that removing option text helps only when the
+text is not where the decision lives.
+
+**E187.1 unresolvable, and it is the dose-versus-baseline rule for the fifth time today.** I predicted `split` would cut
+workspace violations; `pick` produced **zero**. The 7 and 13 violations I was reasoning from were a **different arm**
+(`DuckJev`) on a **different plan** (Opus's). I registered a reduction without re-checking the baseline under the actual
+conditions.
+
+### The confidences, which are the more persuasive half and need no outcome measurement
+
+Three verbatim exchanges, same state, same model:
+
+| the moment | asked "which of these four actions?" | asked "is anyone close enough to matter?" |
+|---|---|---|
+| nobody near, hands empty — the easy call | **0.56, and it picks the wrong (over-cautious) action** | **0.99**, correct |
+| carrying the fragile glass | 0.96, correct | 1.0 (fragility question), correct |
+| person 1.8 m away and 0.6 m from the table — borderline | **0.81**, confident | **0.66 / 0.34**, honestly split |
+
+**Asked badly the confidences come out backwards** — low where the answer is obvious, high where it genuinely is not. Asked
+well they come out right. **"Pick one of four actions" bundles two independent judgements into one categorical choice, so the
+returned probability is a mixture over both and cannot be thresholded.** Split them and each number is about one thing and a
+governor can spend it. That is the argument for a probability rather than a pick, and it is visible in three exchanges.
+
+**Honest scope:** one bench, one model, twelve seeds. The direction now has support on two benches — E76 on the sorting cell
+(0/6 to 6/6) and E187 here — which is the strongest form available without a third.
+
+## Bench 5b · clear AND sort (2026-09-26 20:02 PDT). The picking station's worst result, embodied.
+
+`src/humanoid/sort_sim.py`. Bench 5 is left untouched so E187's numbers stay valid. Crockery (glass, mug) goes to the
+**shelf**; packaging (box) goes to the **bin**. HomeBody's own task shape — their deployment sorts the coffee bag to the
+island and the carton to the bin, and their VLM's stated reason for one navigate is *"The held carton belongs in blue bin A"*,
+a semantic assertion about where a thing belongs.
+
+**the author's point, and it reframes why this variant matters:** right-object-wrong-place is **the** primary failure mode in
+warehouse picking. A wrong tote is a wrong shipment — a return, a refund, a customer. `FOUR-LAYERS-WALKTHROUGH.md` already
+names it as the canonical case for a probability: *"A wrong pick ships to a customer."*
+
+**And this programme has already measured it, as its ugliest result.** E117/E127 on the picking station: the model places both
+items in the customer tote at stated confidence **.58 to .84, six times in seven**, and **neither a confidence gate nor a
+one-second operator veto catches it**, because the model is not confused — it is **confidently wrong**. So bench 5b is the
+embodied version of a failure the two standard safety mechanisms both failed on.
+
+**The asymmetry, verified three ways:** glass to the shelf sorts correctly; glass to the **bin is lost and no longer
+pickable** (irreversible); box to the shelf is **misplaced but still pickable** (recoverable at the cost of a round trip).
+Three graded severities, as in bench 5.
+
+**Three irreversible failure modes now, and therefore three questions** — which is the method, not a guess:
+| failure mode | the question | rate it changes at |
+|---|---|---|
+| break something fragile | would full speed damage what you hold? | per step (what is held) |
+| crowd a person | is anyone close enough that full speed is unsafe? | per step (E187.3 measured this) |
+| **discard something to keep** | **is what you hold something to keep or to throw away?** | **per step** |
+
+**The corollary is the test:** a failure mode with no question cannot be prevented, and a question with no failure mode is
+waste — which is E184's assumption precision of 0.07 restated as a design rule.
+
+## E188 · does decomposing the destination question fix what a gate and a veto could not? (pre-registration, 2026-09-26 20:02 PDT)
+
+**The sharpest experiment available, because it joins the strongest negative result to the newest positive one.** E117/E127:
+a confidence gate and a one-second veto both fail on the confidently-wrong destination. E187: decomposing the question
+changes what the probability means (0.56 on an easy call and 0.81 on a hard one under the naive framing; 0.99 and 0.66 under
+the split one).
+
+- **E188.1** Under the **naive** framing (one Choice over the action options), the calibrated model loses at least one
+  keep-object to the bin across 12 seeds, at stated confidence **above .5** — reproducing E117's confidently-wrong shape on
+  an embodied bench. Prior 60 %.
+- **E188.2** Under the **split** framing, with "keep or throw away" asked as its own closed question, losses fall to zero.
+  Prior 65 %.
+- **E188.3 — the one that would matter most.** On the decisions where the split framing is **wrong** about the
+  destination, its stated probability is **below** its probability on the decisions where it is right, by more than .1.
+  Prior 55 %. *That is the property E117 found missing: a number that separates its own errors. If decomposition restores
+  it, then a gate becomes usable exactly where gating previously failed, and that is a mechanism rather than a score.*
+
+## Method error 74 · the proximity question violates rule 1 of my own manual (2026-09-26 20:12 PDT). the author's challenge.
+
+**He asked how we could possibly decide whether someone is uncomfortable, and what input we are giving.** Dumping the exact
+payload settles it. About the person the model receives **seven categorical fields**: name, kind, distance from the robot,
+motion, attention, distance to the table, distance to the tray. Nothing else.
+
+**Two problems, and the second is worse.**
+
+**1. The question promises what the input cannot support.** At the moment it answered `unsafe` at **0.89**, the person was
+`far_away` from the robot — 4.21 m in ground truth — and `close` to the table, 0.62 m. So it was not answering about
+proximity to the robot; it was reasoning about her standing where the robot is headed. Defensible reasoning, but **not what
+the words asked**, and "uncomfortable" is not derivable from `standing` plus `looking_at_the_robot` plus three distance
+bands. This is E84's shape exactly: a question vaguer than its evidence.
+
+**2. The question should not be asked of a model at all.** `fetch_sim.predicted_dist()` **already computes in code** how
+close each candidate action brings the robot to a person over the next two seconds. So the proximity question fails the first
+rule of the manual I had just written — *code cannot compute the answer* — and I violated it on the one question the whole
+E187 sweep was built around. E187's result (14x fewer calls, 0.67x teleop) stands as a statement about **decomposition**, but
+one of its two questions should have been a code check.
+
+**What the model can legitimately be asked about a person is intent and prediction, not distance:**
+| instead of | ask |
+|---|---|
+| is anyone close enough to be uncomfortable? (code computes distance) | **is this person settled here, or about to move on?** |
+| — | **has this person actually registered the robot?** |
+| — | **would this person mind the robot working beside them right now?** (needs the notes) |
+
+**And the answer to "how could we ever know what uncomfortable means": we do not ask the model to know.** The threshold is
+learned from interventions — every takeover where an operator judged the robot too close labels a state. That is the loop's
+job, and it is the same structure as E161/E162/E163: asked to introspect its own shelf life the model used two of four
+options and was right 40 % of the time, while a head learned from the fleet's records was right 85-98 %. **The model supplies
+a fast judgement about what it can see; the threshold for what that judgement means comes from what humans intervened on.**
+
+**Re-registered:** E187's proximity question is replaced by a code check plus a *settledness* question, and the sweep is
+re-run. Until then E187's numbers are a decomposition result, not evidence that those were the right two questions.
+
+## Unresolved · bench 5b scored 2/3 with the box uncounted (2026-09-26 20:12 PDT)
+
+The full end-to-end run sorted 2 of 3 with `lost` and `misplaced` both empty, so the box was neither thrown away nor
+misplaced. Placing the box at the bin **works in isolation** — `placed_at={'box':'bin'}`, `cleared=['box']` — so the
+failure is in the episode, not the mechanic. Open, and no claim rests on that run.
+
+## HomeBody's kitchen, loaded (2026-09-26 20:19 PDT). There was no structural reason not to, and I deferred it twice.
+
+**the author pushed three times on why we were not using their published mesh. He was right and I was wrong.** Earlier today I
+wrote that their scan was *"realism, not the bottleneck"* and recorded it as an option explicitly not taken. That was
+deferral dressed as a judgement.
+
+**What it took:** a ~100-line GLB parser (`tools/glb_to_obj.py`, no dependencies beyond numpy — MuJoCo reads OBJ and STL,
+not GLB), plus fixing my own axis convention. The first conversion assumed glTF Y-up and produced an **11-metre-tall
+kitchen**; HomeBody's own `room.json` bounds put the 11 m range on a horizontal axis, so the asset is already Z-up. With no
+swap the conversion gives **12.5 x 11.3 x 3.2 m** against their published **13.2 x 11.7 x 3.0** — the small difference is
+that `room.glb` is the 9.7 MB *simulation* mesh rather than the 14 MB full one.
+
+**It is not expensive.** MuJoCo loads the 153,024-triangle scan in **0.14 s** and steps at **1229x real time** with the mesh
+as a visual geom over a flat collision plane. The scan's floor sits at z = -0.58 with 142,556 vertices in that band, spanning
+8.3 x 10.2 m of open floor, so lifting the mesh by 0.58 puts the robot on it.
+
+**Rendered and verified:** the G1 stands in their kitchen among their counters, sink, island and cabinets.
+`tools/hb_room_demo.py`.
+
+### What this changes, and it is the perception question rather than the realism one
+
+The head camera now looks at **a real scanned kitchen with real occlusion** — counters that hide objects, an island you
+cannot see past. So the fact-quality experiment stops being a synthetic corruption I invent and becomes the real thing:
+**derive the typed facts from pixels in their room and see whether E187's decomposition result survives.** That is the
+honest version of the author's "any robot we work on would need these cameras", and it is now a build rather than a blocker.
+
+**The comparison table, updated.** Of eight rows where we differed from HomeBody, the only remaining **structural** blocker
+is **real hardware**. Their room: have it. Their cameras: have them. Their skills: `pick`, `place`, `navigate` yes;
+`open_drawer`/`pick_drawer` is a hinge joint, which is work and not a blocker. Their sequencing: Opus. Their balance
+policy: MuJoCo Playground's G1.
+
+**Remaining to be exactly their setup plus our layer:** place the task objects on their actual counter, add the drawer, and
+adopt their five skill names.
+
+## The task, built into HomeBody's kitchen (2026-09-26 20:31 PDT). Objects on their counter, and a working drawer.
+
+`tools/hb_kitchen.py`. Geometry established from the mesh rather than guessed, and my first attempt was wrong twice.
+
+**The floor is at z = -1.25**, not the -0.58 I first used. Found by horizontal **surface area** per height rather than
+vertex density: -1.30..-1.20 carries **56 m2**, by far the largest band. What I had called the floor was a **countertop**,
+which is why the robot sagged to z = 0.657 — it was standing on a counter. Lifting the mesh by 1.25 puts the floor at zero.
+
+**The counter surface is 0.90 m above that**, carrying **20.3 m2**, densest over x 6..9, y 0..3. The three objects sit on
+the densest run at (7.40, 1.55): `glass` (fragile), `carton` (packaging, HomeBody's own discard case), `mug`. The bin sits
+on open floor at (5.20, -1.20).
+
+**The drawer is a slide joint, not a hinge** — a drawer pulls out — with range 0..0.45 m along -y toward the open floor,
+and `medicine` inside as HomeBody's `pick_drawer` case. **MuJoCo allows a freejoint only on a top-level body**, so the
+contents cannot be nested inside the drawer; `medicine` is top level and **welded to the drawer** with a relative pose,
+which is the same pattern the counter objects use and means it travels with the drawer until picked. **Verified:** opening
+the drawer 0.40 m moves the medicine from y = 0.95 to y = 0.55, exactly the distance travelled.
+
+**Welds are solved during stepping, not by `mj_forward`.** Setting the drawer's qpos and calling `mj_forward` left the
+medicine behind; stepping carries it. Worth recording because the twin's snapshot/restore depends on the same distinction.
+
+**Rendered first-person from the robot's own head position:** their counter with the three objects beside their scanned
+sink and faucet, and the open drawer with the medicine in it. `tools/hb_eye_demo.py`, `tools/hb_render_demo.py`.
+
+**Cosmetic, recorded not fixed:** the three objects sit close to the sink cut-out on that counter run and two of them
+overhang it. Placement wants a nudge along +x to a solid stretch before any run that depends on a pick succeeding.
+
+**Remaining to be exactly HomeBody's setup with our layer:** their five skill names (`pick`, `place`, `open_drawer`,
+`pick_drawer`, `navigate`) wired to these bodies, and then the framing sweep re-run in this room with facts derived from
+the head camera rather than handed over by the simulator. The only structural blocker remains hardware.
+
+## Why it looked blocky (2026-09-26 20:35 PDT). Two causes, and the second was destroying the reason to use the scan at all.
+
+**the author asked why everything looked blocky.** Two separate faults, both mine.
+
+**1. The objects were literally boxes.** `<geom type="box">` for a glass and a mug. Now a cylinder, a box (a carton
+genuinely is one), a cylinder, and a short cylinder for the medicine. **This is not cosmetic either:** a vision model asked
+to identify a mug from an untextured cube is being asked something no perception system could do.
+
+**2. The converter was throwing away the scan's entire appearance.** `glb_to_obj.py` kept only POSITION and face indices.
+Their `room.glb` carries **27 embedded PNGs (3.4 MB of the 9.2 MB BIN chunk), 27 textures, 51 materials, and TEXCOORD_0 on
+every primitive** — all discarded. So the kitchen rendered as flat grey polygons.
+
+**That is the difference between the perception experiment being real and being theatre.** The reason to use their scan is
+to derive facts from the head camera instead of having the simulator hand them over. **An untextured scan tests occlusion
+but not recognition, and recognition is most of what perception is.**
+
+`tools/glb_to_mujoco.py` recovers it: extracts the embedded images to PNG, splits the mesh **by material** (MuJoCo assigns
+one material per geom), writes per-group OBJs carrying `vt` with the V axis flipped (glTF's UV origin is top-left), and
+emits the `<texture>`/`<material>`/`<mesh>`/`<geom>` XML. Result: **51 material groups, 27 images, 23 textured
+materials**, loading as ngeom 129, nmesh 86, ntex 25.
+
+**One MuJoCo detail worth keeping:** it computes a volume inertia even for static visual geoms and refuses near-degenerate
+scan fragments with *"mesh volume is too small."* `inertia="shell"` on the `<mesh>` is the fix.
+
+### And the object placement was wrong twice, found by measurement rather than by eye
+
+First pass put them at (7.40, 1.55), which is **over the sink basin**. Second pass at (6.62, 1.52) left them **floating
+inside the stove**. Found properly by gridding counter-height horizontal faces at 10 cm and **subtracting every cell with
+geometry 0.06-0.45 m above it**: the longest genuinely clear run is **0.40 m wide at (4.30, 1.65)**. Objects, drawer, bin
+and the robot's start all moved onto that.
+
+**Recorded because it generalises:** "is there a surface here" is not the same question as "is there a surface here with
+nothing on it", and only the second one places an object. Two wrong placements came from asking the first.
+
+## E189 · facts from the camera in HomeBody's kitchen (2026-09-26 20:42 PDT). The perception gap is the binding constraint.
+
+**the author asked for the framing sweep with camera facts. Before running a sweep that depends on camera facts, measure
+whether camera facts are any good** — the dose-versus-baseline rule, applied for once before the experiment rather than
+after it.
+
+**Prediction registered before the run:** presence-recall high, identity-accuracy low, because the objects are primitives.
+
+Four head-camera views in the textured kitchen, ground truth from the sim, Qwen2.5-VL-7B-4bit local:
+
+| view | truth | the VLM said | |
+|---|---|---|---|
+| counter, far | 3 objects | **5**, including a "microwave" | wrong |
+| counter, close | 3 objects | **3**, named `cylinder, cube, cylinder` | count right, **identity 0/3** |
+| **drawer open** | **open** | **"not open"**, 1 object | **wrong, and it gates `pick_drawer`** |
+| carrying the mug | 2 on counter, holding the mug | "toaster" | wrong |
+
+**Identity: 1 of 11 across all four views.** A hallucinated microwave and a hallucinated toaster.
+
+**The identity number is a LOWER BOUND and the confound is mine.** The room is photographic; **my objects are untextured
+Platonic solids**. When it answered `cylinder, cube, cylinder` it was **correct** — that is literally what is there. It
+cannot call a yellow cylinder a mug because it does not look like one. So this measures *can a VLM name untextured
+primitives in a real room*, which is not the question.
+
+**What is NOT confounded is worse.** Object **count** was right **once in four**, and it reported the drawer **closed while
+it was open** — a large box protruding into plain view, whose state is the precondition for `pick_drawer`. Those are
+structural facts that do not depend on my objects looking realistic.
+
+### What this does to the rest of the programme
+
+**Every result above perception inherits an assumption that does not hold.** E187's decomposition finding — 14x fewer
+calls, 0.67x teleop, confidences the right way round — was measured with facts **handed over by the simulator**. E170's
+enumerator sensitivity, E184's assumptions, bench 5's whole scoring: all of it assumes the typed facts are true.
+
+**So the binding constraint is not the decomposition, the planner, or the loop. It is perception**, and this is the first
+time the programme has measured that on realistic imagery rather than named it as a gap.
+
+**Two things follow, and the second is the honest one.**
+1. The confound is fixable: give the objects realistic appearance (textured meshes rather than primitives) and re-run, so
+   the identity number means something.
+2. **The claim scope tightens immediately and should be stated that way from now on:** *decomposition helps given good
+   facts*, and good facts are not currently available from a camera in a photoreal room with this model. That is a smaller
+   claim than the one I have been making all day, and it is the one the evidence supports.
+
+**Placement, fixed for the fourth time and finally by the right method.** Three earlier attempts reasoned about the mesh
+and all failed — over the sink basin, inside the stove, then straddling a sink cutout, because *"nothing above"* does not
+imply *"something solid below"*. `mj_ray` cast **downward into the loaded model**, keeping cells whose **first** hit is at
+counter height, found a genuine 0.8 m run at y = 2.00, x = 1.00-1.70, surface **z = 0.924** measured rather than assumed.
+**Query the model; do not reason about the mesh.**
+
+## E191 · what is left for the model, once code computes everything computable? (pre-registration, 2026-09-26 20:54 PDT; launched now)
+
+**Forced by method error 74.** E187 asked the calibrated model two questions on bench 5: is anyone close enough that full
+speed is unsafe, and would what you hold be damaged by full speed. **Both are computable in code** —
+`predicted_dist("walk")` forward-simulates the first and `props(holding)["fragile"]` is a lookup for the second. So E187
+compared four ways of asking a model, without ever asking whether the model was needed.
+
+`TableCodeOnly` computes both and makes **zero model calls**. Same bench, same plan, same twelve seeds.
+
+- **E191.1** `code_only` matches or beats every model framing on success. Prior **75 %**. *If it does, bench 5 contains no
+  judgement requiring a model, and E187's finding is about the **cost** of asking rather than the **value** of asking —
+  which is a much narrower claim and the one the evidence would support.*
+- **E191.2** `code_only` is at least as fast as `step` in teleop multiple, having no call latency and no dithering.
+  Prior 70 %.
+- **E191.3** `code_only` **ties the frozen rules program** (11/12), because the rules' two clauses encode the same two
+  computations. Prior 65 %. *A tie is the informative outcome: it would say the "two hand-written clauses" and "compute
+  the two quantities properly" are the same arm.*
+- **E191.4 — the one that would rescue the thesis.** There exists at least one seed where `split` or `step` succeeds and
+  `code_only` fails. Prior 30 %. *That seed would be the first evidence on this bench of a decision a model gets right
+  that code does not, and finding none is the honest answer that bench 5 cannot test the thesis.*
+
+## E192 · the decision code cannot compute: act on the reading, or look again? (pre-registration, 2026-09-26 21:07 PDT; launched now)
+
+**Why this bench exists.** E191 settled that bench 5 cannot test the thesis. `code_only` made zero model calls, tied the
+best framing at 12/12, and beat the frozen rules program — because the simulator handed the chooser both judgements
+already true. **Code can compute anything it can observe.** E189 measured what a real robot observes instead: VLM
+identity 1/11, a drawer reported closed while open.
+
+So bench 5 now runs with perception in the loop (`stack/percept.py`). The corruption changes only what the chooser is
+**told**; the physics are untouched, so a glass mislabelled as the mug and carried fast really breaks, through the same
+code path as every earlier bench. Five failure modes, one per episode by `seed % 5`. Three are declared **anticipated**
+and `code_3` carries a hand-written check for each. Two are **held out** — their signatures sit in evidence fields those
+checks do not read. New action `look_closer`, costing 3.0 s of the same clock the 62.5 s teleop reference is measured on,
+so verifying everything is a real strategy at a real price. 20 seeds, 4 per mode.
+
+**`code_all` is shipped as the control against my own rigging.** Five rules for five modes, perfect anticipation. I chose
+which fields `code_3` reads, so without this control the bench proves whatever I want.
+
+- **E192.1** `null_trust` (act on every reading) fails a majority of episodes. Prior **85 %**. *This is the floor and it is
+  what most deployed stacks do. If it does not fail, the corruption has no teeth and nothing below means anything.*
+- **E192.2** `code_3` beats `null_trust` on the three **anticipated** modes and is **no better than `null_trust` on the two
+  held-out modes**. Prior 80 %. *The second half is the real content: a hand-written check is exactly as good as its
+  author's experience and not one episode better.*
+- **E192.3** `jev_trust` beats `code_3` **on the held-out modes**. Prior 55 %. *The first thing on this programme that code
+  cannot do by being written more carefully. A coin-flip prior because the model may simply not read the evidence rows.*
+- **E192.4 — the bound.** `jev_trust` does **not** beat `code_all`. Prior 70 %. *If this holds, the honest claim is "a
+  calibrated layer spares you writing a rule for each mode you have not met yet" — not "it does what code cannot". I
+  expect to be reporting the narrower claim, and the control is here so I have to.*
+- **E192.5** `always_verify` takes no perception-caused failures and is the slowest arm, above 1.3× teleop. Prior 75 %.
+  *The price of refusing to judge. If `always_verify` is both safest AND fast enough, the calibrated layer is pointless
+  here and I should say so.*
+- **E192.6** `jev_trust`'s confidence gate fires on fewer than a third of decisions. Prior 60 %. *E84 measured that a vague
+  question firing on 25 % of decisions costs 3.3 points. A gate that fires constantly is `always_verify` wearing a
+  disguise, and `gated` is counted separately so that is visible rather than hidden in the headline.*
+
+### METHOD ERROR 75 · six predictions registered against a bench that measured nothing (2026-09-26 21:13 PDT)
+
+E192 above was registered and smoke-run before anyone checked that its corruptions could change an outcome. They could
+not. Bench 5 scores exactly three failure channels — a broken object, a workspace violation, an object left uncleared —
+and **four of my five perception modes reached none of them**. `null_trust`, an arm that acts on every reading no matter
+how bad, scored 4/5.
+
+Four separate defects, all mine:
+
+1. **`stale_clear` was inert by construction.** It hid the fact that the box blocks the mug — but the plan already picks
+   the box first, so the hidden fact never mattered. `duplicate` was worse: it changed no physical quantity at all.
+2. **The chooser's own proximity computation bypassed the corruption.** `predicted_dist` walks the person list *inside*
+   the real room, so hiding a person from `facts()` left the arm still seeing them. `unlisted_person` measured zero
+   violations because the lie never reached the decision.
+3. **A static plan cannot skip a step.** `step_done` advanced on `room.holding`, never on belief, so reporting an object
+   already finished changed nothing — the plan ran to completion regardless of what it had been told.
+4. **Mode and disruption were perfectly correlated.** The room picks its disruption with `seed % 5` and I keyed the
+   perception mode the same way, so every `low_conf` episode carried one and the same physical disruption. No effect
+   could have been separated from it. Keyed on `seed // 5` now, over 25 seeds, so each mode meets all five exactly once.
+
+This is the **dose-versus-baseline rule for the seventh time** — register a prediction about detecting or reducing a
+quantity without first checking the quantity is nonzero. Writing the lesson down six times did not work, so it is now
+**code**: `percept.validate_doses()` refuses to admit a mode until a trust-everything arm actually fails on it, through
+the channel that mode declares. The gate is a precondition of the run, not a note in a file.
+
+**E192.1–E192.6 are withdrawn**, not adjusted. They were registered against a bench that could not move. Two had already
+failed at smoke scale — `always_verify` was the *fastest* safe arm at 0.82× teleop rather than the slowest above 1.3×,
+and the confidence gate fired on 65 % of decisions rather than under a third, making `jev_trust` an expensive imitation
+of `always_verify`. Those two observations survive as the reason the gate below exists; the predictions do not.
+
+## E192b · does perception create a decision code cannot make? (pre-registration, 2026-09-26 21:13 PDT; gate passed, launched now)
+
+Dose gate passed on all five modes: `null_trust` fails 19/25. The rebuilt design pairs each failure channel with one
+**anticipated** mode (`code_3` carries a hand-written check) and one **held-out** twin reaching the same channel through
+a different evidence field:
+
+| channel | anticipated mode | its tell | held-out twin | its tell |
+|---|---|---|---|---|
+| broken object | `mislabel` | mass disagrees with the label | `low_conf` | detector confidence 0.41 |
+| left uncleared | `ghost_done` | detected 0 times | `ghost_done_quiet` | position reading 47 s old |
+| violation | `unlisted_person` | motion with nobody reported | — | none |
+
+Same channel, same consequence, different tell: that is what makes it a generalisation test rather than two experiments.
+`code_all` reads all five tells and is the control that bounds every claim below.
+
+- **E192b.1** `code_3` beats `null_trust` overall. Prior **90 %**. *Sanity: the hand-written checks work on what they were
+  written for. If this fails the checks are broken and nothing else is interpretable.*
+- **E192b.2** `code_3` is **no better than `null_trust` on the two held-out modes**, within one episode. Prior 80 %. *The
+  real content. A hand-written check is worth exactly its author's experience.*
+- **E192b.3** `jev_trust` beats `code_3` on the held-out modes by at least 3 of 10 episodes. Prior 50 %. *The first thing
+  on this programme that writing more careful code would not fix. Genuinely a coin flip: the model may not read the
+  evidence rows at all, and E161–163 measured that models are poor at judging their own inputs.*
+- **E192b.4 — the bound.** `jev_trust` does **not** beat `code_all`. Prior 70 %. *Then the honest claim is "a calibrated
+  layer spares you writing a rule per mode you have not yet met", not "it does what code cannot".*
+- **E192b.5** `always_verify` takes zero perception-caused failures. Prior 85 %. *It resolves every reading before acting,
+  so anything else is a bug in the proxy.*
+- **E192b.6** `always_verify` costs at least 1.15× teleop, and `jev_trust` comes in under it. Prior 55 %. *Restated from
+  the withdrawn E192.5 because the smoke run showed verification was too cheap to trade against. If `always_verify` is
+  both safest and fastest again, the calibrated layer earns nothing here and the report says exactly that.*
+- **E192b.7** `jev_trust`'s confidence gate fires on under 40 % of decisions. Prior 45 %. *At smoke scale it fired on
+  65 %. A gate that fires constantly is `always_verify` in disguise, and `gated` is reported separately so the headline
+  cannot hide it.*
+
+## E192c · detection versus recovery, the second condition (pre-registration, 2026-09-26 21:20 PDT; launched now)
+
+**E192b's result forced this.** Every arm's failures decompose into exactly three channels, and the decomposition is
+unambiguous:
+
+| arm | fails /25 | broke | violated | uncleared only | looks | calls |
+|---|---|---|---|---|---|---|
+| `null_trust` | 19 | 7 | 2 | 10 | 0 | 0 |
+| `code_3` | 19 | 4 | 0 | 15 | 34 | 0 |
+| `code_all` | 15 | 0 | 0 | 15 | 63 | 0 |
+| `always_verify` | 10 | 0 | 0 | **10** | 77 | 0 |
+| `jev_trust` | 10 | 0 | 0 | **10** | 77 | 81 |
+| `rules` | 20 | 8 | 2 | 10 | 0 | 0 |
+
+**Detection closes two channels completely and the third not at all.** Breaks go to zero and violations go to zero the
+moment an arm checks its readings. The two ghost modes are **0 of 5 for every arm on the board, including
+`always_verify`**, which resolves every reading before it acts. Looking harder cannot help: by the time the robot
+learns the box is not in the tray, the plan has advanced past the step that would have cleared it, and a static step
+list has no way back. **Detection without recovery is worth exactly zero on the channel that needs recovery.**
+
+That is the Epoch AI 2026 audit finding in miniature — no replanning or recovery from failed manipulation across PI,
+Figure, Gemini Robotics, Skild, 1X, Dyna and Stretch. Here it is measurable: ten identical failures that no amount of
+perception fixes.
+
+`recover_missing` in `table_run.py` reopens a plan for an object that is genuinely unfinished and has no remaining step.
+It is a **condition applied identically to every arm**, not an arm's private advantage, so the pair of runs is a 2×2 of
+detection × recovery.
+
+- **E192c.1** With recovery on, `always_verify` and `jev_trust` clear both ghost modes, reaching at least 22/25. Prior
+  **80 %**. *If recovery does not close the channel, my diagnosis of the 10 identical failures is wrong.*
+- **E192c.2** Recovery alone does **not** rescue `null_trust`: it stays below 12/25, because reopening a plan cannot
+  unbreak a glass. Prior 85 %. *The two capabilities are not substitutes, and this is the half that says so.*
+- **E192c.3 — the interaction.** The gain from recovery is **larger for the arms that detect** than for `null_trust`.
+  Prior 75 %. *Detection converts into completed work only when a planner can act on it. That is a measured division of
+  labour between a fast calibrated layer and a slow deliberate one, which is the question the author actually asked.*
+- **E192c.4** `jev_trust` remains behaviourally indistinguishable from `always_verify` under recovery too. Prior 65 %.
+  *Stated because it is the honest expectation. In E192b the two spent an identical 77 looks and posted identical
+  success and identical failure causes, differing only in timing on 3 seeds. Framed as it is, the calibrated layer is
+  `always_verify` with an 81-call invoice, and no amount of recovery changes that. Breaking this tie needs a framing
+  where looking has a price the model must weigh, which E192d will test and this run will not.*
+
+### E192c correction · my stated mechanism for the ten identical failures was wrong (2026-09-26 21:42 PDT)
+
+E192b reported that both ghost modes were 0/5 for every arm and I explained it as *"by the time the robot learns the box
+is not in the tray, the plan has advanced past the step that would have cleared it."* **A trace says that is not what
+happened.** The robot was not past the step. It was stuck on the step *after* it, for the full 200 seconds:
+
+```
+t=  0.0  ASSUMPTION BROKE ['unblocked:mug'], no contingency, no planner
+t=  0.0  goal=pick:mug  opts=6 -> move_to(place=table,speed=normal)   [broken: ['unblocked:mug']]
+...    (the same two lines, 400 times, to t=199.5)
+```
+
+The box is believed finished, so the plan skips it, so the box goes on **physically blocking the mug**, and `pick(mug)`
+fails forever. And `always_verify` could not fix it because `options_with_look` only ever offered a look at the **current
+step's** object: it re-examined the mug four hundred times and the box, the one reading that was wrong, was never a
+candidate. Two defects, both mine:
+
+1. **Look candidates were scoped to the live goal.** A robot re-checking its scene does not look only at what it is about
+   to touch. Now every object in the report is a candidate.
+2. **Recovery sat behind the once-per-distinct-break debounce.** The belief hiding the missing object is only corrected
+   by a look, which happens *after* the break first fires, so by the time there was anything to recover the single
+   permitted attempt was already spent. Recovery is local bookkeeping rather than a model call, so it is now checked on
+   every stuck tick and bounded by `RECOVER_CAP = 2` instead.
+
+The conclusion "detection without recovery is worth zero" was **reached from a mechanism I had not verified**, and the
+corrected bench contradicts it: with both defects fixed, `always_verify` goes from 15/25 to **21/25**. The observation was
+right and the explanation was invented. Checking the trace before writing the mechanism is not optional.
+
+## E192e · the plan that works is the only order the legs can walk (2026-09-26 21:42 PDT). Not a perception result at all.
+
+Chasing a fall I found something bigger. Under recovery, falls became the dominant failure and were **100 % within a
+mode** — every one of five `ghost_done` seeds, every one of five `unlisted_person` seeds. Method error 70's signature
+exactly: a failure identical across seeds is the bench, not the robot. So I took perception and recovery out entirely and
+varied **only the order of the plan**, with the zero-model `code_only` chooser on the plain bench, 25 seeds:
+
+| plan order | success | cleared | falls |
+|---|---|---|---|
+| `box, mug, glass` — the hand-written plan | **25/25** | 70/75 | **0** |
+| `mug, box, glass` | 0/25 | 0/75 | 0 |
+| `glass, box, mug` | 17/25 | 67/75 | **7** |
+
+- The hand-written order is **perfect**, and it is the order I chose by hand months ago without knowing why it mattered.
+- `mug` first is a **deadlock**: the box blocks the mug, and with no contingency the robot fails the same pick to the time
+  limit. The bench's physical constraint is real and unforgiving.
+- `glass` first is **legal, correct, and topples the robot 7 times in 25.** Nothing about it is wrong as a plan.
+
+**The plan that works is not merely a correct order. It is the one order inside the locomotion policy's competence.** That
+is a motion-layer constraint masquerading as a planning choice, and it has a consequence for the whole programme:
+**replanning is dangerous in a way nobody measures.** A recovered plan can be perfectly correct and still fall over,
+because it generates trajectories the shipped policy was never evaluated on. The Epoch AI 2026 audit found no deployed
+system demonstrating replanning or recovery; this is a measured reason why, and it is not timidity.
+
+**Consequence for E192c, and it is a confound I have to carry rather than hide.** Recovery produces novel orders, novel
+orders cause falls, and falls are a MOTION-layer failure with nothing to do with whether the chooser trusted a bad
+reading. So every table from here reports falls in their own column and gives success twice: raw over all seeds, and
+**censored** over the seeds that stayed upright, which is the chooser-attributable number. Reporting only one of those
+two would let a motion-layer fall count against a chooser, or let a chooser bank credit for an episode its legs ended.
+
+### Scope limit on E192b · it ran with an information leak in the option set (2026-09-26 21:45 PDT)
+
+Printing the exact payload for E192d found it. Under `mislabel` the report called the glass a **"mug"**, so two rows in the
+report both read "mug" — while the option builder still offered `look_closer(object=glass)`, taking the name from the
+plan. **The mismatch between the report and the option list was the answer, given away for free.** Claim 7 says the
+option set carries the signal, which cuts both ways: whatever the option set reveals is something the model never had to
+infer. The same leak sat in `low_conf`.
+
+Fixed by reporting the glass as a **"cup"** — a wrong label that collides with nothing — and mapping a reported label back
+to the real object only when a look is executed, inside the simulator, where no chooser sees it. The option set now says
+exactly what perception said and not one word more.
+
+**E192b's numbers stand as reported but carry this limit.** The leak could only have *helped* the model arms, and the E192b
+finding was that the calibrated arm earned nothing over a zero-call policy — a leak in its favour makes that finding
+stronger, not weaker. Every table from E192c on is post-fix.
+
+## E192d · one look per episode: the bench becomes a pure ranking test (pre-registration, 2026-09-26 21:45 PDT)
+
+**Why a budget, and why exactly one.** E192b's most useful finding was a null: the calibrated arm and the fixed
+"re-examine everything" arm spent an identical 77 looks over 25 episodes and posted identical successes and identical
+failure causes. Eighty-one model calls bought what zero bought. The reason is not a bad model, it is a bench where
+looking is nearly free — so looking at everything is optimal and there is nothing to judge. Method error 64's rule:
+**an intervention cannot be measured against a comparison arm it never diverges from.**
+
+Scarce verification is also the deployed condition. You cannot re-examine every reading at 2 Hz; the whole reason a fast
+calibrated layer exists is that the slow one cannot be called on everything. `E192_LOOK_BUDGET=1` gives each episode
+**exactly one look**, and since exactly one thing is wrong per episode, one look is precisely enough **if it is spent on
+the right reading.** The question stops being "is something suspect" and becomes "**which** reading do I spend it on".
+Ranking several readings when none of them trips a rule is the one thing that requires a number per candidate, which is
+what a calibrated model returns and what a frontier model's stated certainty is not.
+
+The payload was printed before registering, and each mode now carries exactly one tell, each in a different field, with
+no duplicate rows and no true object name anywhere in the option set:
+
+| mode | the tell | field it lives in | position in the report |
+|---|---|---|---|
+| `mislabel` | a "cup" weighing 0.25 kg where that label implies 0.35 | `measured_mass_kg` | **first** |
+| `low_conf` | the same cup, readings consistent, confidence 0.41 | `detector_confidence` | **first** |
+| `ghost_done` | a box believed binned that nothing currently sees | `times_detected` | third |
+| `ghost_done_quiet` | the same box, seen once, position reading 47 s old | `position_age_s` | third |
+| `unlisted_person` | movement in the cell with nobody reported | `motion_sensor` | not in the object rows |
+
+`always_verify` spends its one look on the **first row of the report**, deliberately, not on the alphabetically first
+object — "box" sorts first and the box is exactly what the ghost modes corrupt, so alphabetical order would have handed
+it the right answer by an accident of spelling and the experiment would have measured the alphabet. Report order gets it
+2 of 5 modes right, which is the honest performance of any policy that cannot rank.
+
+- **E192d.1** `jev_rank` beats `always_verify` by at least 4 of 25. Prior **60 %**. *The cheapest arm that cannot rank
+  versus one that can, with the budget forcing a ranking. If this fails, ranking readings is not something this model does
+  and the whole "which question do we ask the fast layer" thesis loses its best instance.*
+- **E192d.2** `jev_rank` beats `jev_trust`. Prior 70 %. *Same model, same budget, same information; the only difference is
+  whether the question asked for a **choice among candidates** or a yes/no about the report. This is E187's decomposition
+  result on a decision where the answer is not computable, and it is the sharpest test of "the questions themselves make
+  the biggest difference" that this programme has.*
+- **E192d.3** `code_3` matches `code_all` on the three anticipated modes and loses to it on the two held out. Prior 85 %.
+  *The seam is doing what it was built to do.*
+- **E192d.4 — the bound, restated because it is the claim that will actually survive.** `jev_rank` does not beat
+  `code_all`. Prior 65 %. *`code_all` has one hand-written rule per failure mode and perfect foreknowledge. If the model
+  merely matches it, the honest claim is "a calibrated layer spares you writing a rule for each mode you have not met",
+  which is worth saying and is not the same as "it does what code cannot".*
+- **E192d.5** On the two held-out modes, `jev_rank` beats `code_3` by at least 4 of 10. Prior 55 %. *The generalisation
+  claim, stated on the only cells where it means anything.*
+- **E192d.6** Falls are **not** concentrated in any single arm: no arm has more than twice the fall count of the arm with
+  the fewest. Prior 50 %. *E192e showed a recovered plan order can topple the robot independently of any choice. If falls
+  cluster by arm, the censored column is carrying real signal and the raw success column is partly a locomotion result
+  wearing a chooser's name.*
+
+## E192f · how long the robot thinks is a locomotion parameter (2026-09-26 21:54 PDT). Found by chasing a fall I could not explain.
+
+Under recovery, `code_all` fell on **25 of 25** seeds and `code_3` on 15. One hundred percent within an arm is method
+error 70's signature: a failure identical across seeds is the bench, not the chooser. Seed 0 has disruption `none` and a
+stationary person, so nothing in the world explained it, and `always_verify` did the *same walk with the same load* on the
+same seed thirteen seconds later and stayed up.
+
+Driving the sequence by hand, with no chooser and no perception, isolated it to the initial pause. Sweeping the pause from
+0.5 s to 12.0 s in 0.5 s steps, five seeds each:
+
+| pause before walking | seeds toppled | where |
+|---|---|---|
+| 0.5 – 2.5 s | 0/5 | — |
+| **3.0 s** | **5/5** | while carrying the box |
+| 3.5 – 12.0 s | 0/5 | — |
+
+**One value in twenty-four, and it fails every time.** Empty-handed it never falls, so the mechanism needs the load: a
+3.0 s pause leaves the gait phase somewhere from which resuming a walk under 1.2 kg is unrecoverable. `LOOK_S = 3.0` was
+a round number I typed without measuring anything, and it landed on the single pathological point in the range.
+
+**The finding that generalises past my bug.** The locomotion policy has narrow, reproducible instabilities at specific
+pause durations, and **any pause the decision layer introduces can land on one.** So the latency of a deliberation is not
+only a throughput cost, it is an input to stability. A stack that calls a slow model for 3 seconds and a fast one for 0.1
+is not merely trading accuracy against speed; it is selecting gait-resumption conditions. Nobody designing a two-system
+robot stack is currently reasoning about that, and it is a concrete instance of the boundary the author's email says to design
+for: **move the boundary between the fast and slow layer and you change which pause durations the legs ever see.**
+
+`LOOK_S` is now 2.0 s, chosen from the sweep's stable region and defensible independently as about one vision round trip,
+with an assertion against the measured-unstable set so the value cannot silently drift back.
+
+**Cost of the fix, paid rather than hidden:** E192b and the first E192c both ran with `LOOK_S = 3.0`, so every fall in them
+is suspect and both are re-run. E192b's headline (the calibrated arm bought nothing over a zero-call policy) does not
+depend on falls — it had **zero** falls, because without recovery no arm ever reached the pathological sequence. That
+finding stands. Every fall count published before this entry does not.
+
+### METHOD ERROR 76 · the yardstick was a script I wrote, labelled as a human, and not reproducible
+(2026-09-26 22:55 PDT — **the author asked "how do we know this"** about the teleoperation reference. We did not.)
+
+`table_sim.TELEOP_REF_S = 62.5` carried the comment *"Measured, not assumed: a human picks the order and the speed and the
+robot executes, over all 12 seeds, 12/12 success, median 62.5 s."* Three things are wrong with that sentence.
+
+1. **No human ever drove this robot.** I wrote the order and the speeds by hand and the simulator executed the script.
+   There was no video link, no joystick, no reaction time, no hesitation and no depth misjudgement. A person operating a
+   real robot remotely has all of those, so the number is a **lower bound on human remote operation, not an estimate of
+   it**, and every ratio computed against it flatters the autonomous arms by an unknown margin.
+2. **It was not reproducible.** The script was never committed. The number survived only as a constant and a comment, so
+   nobody, including me, could re-derive or check it. **A reference with no runnable arm behind it is a guess with a
+   decimal point**, and writing "measured, not assumed" in the comment made it look audited when nothing had audited it.
+3. **The number itself does not hold.** Rebuilt as a real arm (`stack/scripted_ref.py`, an explicit scripted-optimal
+   policy: slow while holding the glass or within 1.4 m of a person, fastest otherwise), it measures **45.0 s median**,
+   12/12 success, range 26.5–54.0 s. The 62.5 cannot be reconciled with it, because the thing that produced 62.5 is gone.
+   The reproducible number wins.
+
+**Every time ratio reported today is inflated by 62.5/45.0 = 1.389 in the robots' favour**, since the reference is the
+divisor. Restated:
+
+| where | arm | as reported | corrected |
+|---|---|---|---|
+| E187 sweep | `code_only` | 0.65× | **0.90×** |
+| E187 sweep | `split` / `step` | 0.67× | **0.93×** |
+| E187 sweep | `rules` | 0.66× | **0.92×** |
+| E187 sweep | `pick` / `keys` | 1.23× | **1.71×** |
+| E192c | `always_verify` | 0.76× | **1.06×** |
+| E192c | `jev_trust` | 0.70× | **0.97×** |
+
+**Nothing on this bench beats the reference any more.** The fastest honest number of the day is 0.90× and it belongs to the
+zero-model arm. And any claim of the form "faster than teleoperation" is withdrawn outright: the citations that motivated
+the metric — Argon's task-time convention and Epoch AI's "robots are typically 3–10× slower than humans" — are both
+denominated in **human** time, which this reference is not, so neither licenses comparing our multiple to theirs.
+
+**E192d's ratios are worse than merely inflated and should not be quoted at all.** `jev_rank` and `code_all` show 0.37×
+(0.51× corrected) while falling on 17 of 25 runs, and a fall ends an episode early, so those are short **because they
+failed**, not because they were quick. A time ratio is meaningless on an arm whose failures truncate the clock, and it
+should be reported only over completed runs.
+
+The constant is now `SCRIPTED_REF_S = 45.0` with `TELEOP_REF_S` aliased to it so old call sites keep working while the
+misleading name is retired. **The general rule this earns: a reference value ships as an arm that can be re-run, or it does
+not ship.**
+
+## E193 · does jerk predict a fall early enough to act on? (2026-09-27 10:10 PDT — from the author's IMLE-VLA link)
+
+Ke Li's group reports proprioceptive jerk and cuts it 2.2–3.0× against π0.5. E192e and E192f had found our robot toppling
+with **no signal that predicted it**, so jerk is the obvious instrument and it costs nothing to compute from state already
+logged. Pelvis linear velocity every control step, differentiated twice. Zero-model chooser, no perception, no recovery,
+so the only variable is the body.
+
+| prediction | result | verdict |
+|---|---|---|
+| **E193.1** jerk in the last 2 s exceeds the episode's earlier median by >2× | **3.89×** on fall episodes, 1.34× on upright | ✓ |
+| **E193.2** jerk separates fall from upright at ≥0.80 AUROC with 1.0 s lead | **0.857** | ✓ *on the number* |
+| **E193.3** commanded speed alone stays under 0.65 AUROC | **0.754** | ✗ **falsified** |
+| **E193.4** if .2 holds, seat 3 is a code seat | not evaluable, see below | — |
+
+**E193.3 is the one that matters and it failed.** Jerk reaches .857 and the dumb baseline — forward speed, a number code
+already has — reaches .754. That is not a jerk result, it is mostly a speed result with jerk adding a little. And at 2.0 s
+of lead both invert below chance (jerk .246, speed .000), which means the feature is not monotone in lead time and a
+threshold fitted at one horizon means nothing at another.
+
+### METHOD ERROR 77 · 25 seeds are 12 situations, and three of five groups are one situation five times
+
+Five of the seven "fall episodes" had **identical** `t_end` of 43.5 s and identical mean jerk of 431.3. Not similar —
+identical to the decimal. Their person start positions do differ, so it is not a seeding bug; the person is simply parked
+far from the work area on those seeds and never moves, so the robot's trajectory is unaffected by the only thing the seed
+varies. Counting distinct outcome signatures across 25 seeds on a fixed plan and a zero-model chooser:
+
+| disruption | seeds | distinct outcomes |
+|---|---|---|
+| `none` | 5 | **1** |
+| `object_removed` | 5 | **1** |
+| `pick_fails` | 5 | **1** |
+| `person_at_table` | 5 | 4 |
+| `person_at_tray` | 5 | 5 |
+
+**25 seeds produce 12 distinct outcomes.** The seed varies exactly two things: which disruption fires (`seed % 5`) and where
+the person starts. On the three disruptions where the person never approaches, the second one cannot matter, so all five
+replicates are the same episode.
+
+**Consequences, and they reach everything run today.**
+- Every interval computed on n=25 is too narrow; the effective sample is about 12, and for three of the five groups it is
+  **one situation with five copies**.
+- E193's seven falls are **three** distinct falls. Its AUROCs are not trustworthy at any lead time and the ✓ on E193.2 should
+  be read as "not measured" rather than "confirmed".
+- The E192 family's per-mode cells are 5 seeds each, which across the collapsed groups is **fewer than 5 situations**, so
+  differences of one or two episodes there are not differences at all.
+- This compounds with **method error 76**: the reference time was a script, and now the sample size is a fifth of what was
+  printed. The headline comparisons from today survive as directions, not as magnitudes.
+
+**Fix before anything else runs on this bench:** the seed must perturb something that matters on every episode — object
+positions on the table, the robot's start pose, or the person's start inside the work area — and then the distinct-outcome
+count above becomes a precondition, checked the same way `validate_doses` is.

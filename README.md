@@ -275,6 +275,42 @@ The seven claims below are the argument. This table is the shape it takes: each 
 
 **The open edge, named honestly.** The two layers System 2 could plausibly own inside the loop — the **planner** and the **enumerator** — are the two that were code until this week, and neither has been post-trained by anyone. The field post-trains System 0. This programme post-trained System 1. Claim 7 says the enumerator is where the remaining leverage is, and it is the one box still a hand-written function nobody varied.
 
+## The harness as a call-reduction cascade
+
+A frontier model can already orchestrate a long-horizon task — Stanford's HomeBody does it on this same
+robot with a hand-written skill library and a frontier model selecting, and it works. Their stated
+limitation is the whole problem: *"reasoning latency introduces pauses between skills,"* with
+demonstrations shown at **7–10× speed**.
+
+So the question is not whether the slow layer can decide. It is **how few times you have to ask it.**
+Read that way, every box in the harness is one stage of a sieve, and each stage removes a class of
+frontier call:
+
+| stage | what it does | measured reduction |
+|---|---|---|
+| **1 · Compile** | the slow layer writes a rule once; code checks it free forever | its author, given the situations, **closed the coverage gap in minutes** (E114) |
+| **2 · Cache** | the same state gets the same decision | fingerprint → judgment replay, **65 % hit rate**, and misses fell back to hold-course and were not decisive (E68) |
+| **3 · Distil** | a small model is trained on the slow layer's decisions | 59 % → **75.8 %** held-out, and labels on the student's **own visited states beat twice the teacher's data** (E77 → E80, E81) |
+| **4 · Commit** | ask once, hold the answer for many steps | a code-held destination lasted **24 decisions** where a model asked to choose one re-picked every **3.1** |
+| **5 · Trigger** | call the slow layer *only* when something changed | **unmeasured here** — and, per an external survey of deployed systems, unmeasured everywhere |
+
+Whatever survives all five is a call you genuinely had to make.
+
+**Asking a person is a separate branch, not a stage.** It spends a different budget — an operator queue
+with a service rate rather than a model's latency — and it is the one decision where a calibrated number
+is structurally required. Its operating envelope is a section of its own below.
+
+**What this reframes.** These are not competing designs to choose between; they are a sieve, and each
+stage has its own reduction factor. Four of the five are measured. The fifth decides how large the
+residue actually is, which is why *"when should the slow layer be consulted again"* is the most
+valuable unmeasured question in this repository.
+
+**And the honest gap: the cascade has measured stages and no measured total.** A reduction factor needs
+a denominator, and the denominator is a frontier model in the seat at every decision — which this
+programme did not run until an attempt begun on 27 September, and which has not yet produced a run free
+of substitutions. Until it does, every number in the table above is a stage's local effect and none of
+them compose into a claim about the whole.
+
 ## The argument, in seven claims
 
 The results below are evidence for seven claims. Every experiment in this programme attaches to one of them or opens a new
@@ -307,7 +343,21 @@ the calibrated model handles eighteen situations in twenty; with one operator ac
 eight it loses five, because the queue exceeds the robot's patience on every ask and the operator is not slow but
 unavailable. The frozen rules, which never ask, hold twenty in twenty at every ratio, so the gap widens from two episodes to
 seven. **Escalation is priced by the operator-to-robot ratio, and every operator-seconds figure in this repository was
-measured at one to one.** *Results 1, 2, 3, 15, 20.*
+measured at one to one.** **Amended 27 September, and it narrows this claim rather than extending it:** put three models in
+one seat on an embodied decision — commit to a grounding, or walk closer and look again, where committing wrongly bins an
+object that cannot be recovered — and the span this claim was built on does not appear. Two TypeSafe models and a different
+lab's dense open 27B, through an identical typed readout, come back at **.253, .249 and .192** calibration error. They are
+similarly badly calibrated, not two hundredths against a half. **On this decision, miscalibration is a property of the task
+rather than of the model.** A two-parameter recalibration on **twenty-five** labels fixes it for all three (.027, .033,
+.068), and afterwards the two TypeSafe models are indistinguishable in decision cost (2.02 against 2.00 per run) while the
+open model is **17 % worse** — real, and a fifth of what recalibration itself buys, which is 5.86 down to 2.02. **So the
+seat needs a model that ranks, plus twenty-five labels; it does not need a particular model, and the loop is the product.**
+What still separates the seats is operational rather than judgemental: the open model is **6× slower** at 632 ms a call,
+outside a 2 Hz layer entirely, and it spends its worse calibration as the robot's time (69 verifications against 44) rather
+than as mistakes, all three taking the same two irreversible losses. And the honest bound on the whole comparison is that a
+logistic regression fitted on 400 labels still beats every model in the seat, at AUROC 1.000 and calibration error .013, so
+what a calibrated model buys here is **arriving already knowing the ordering**, not knowing it better.
+*Results 1, 2, 3, 15, 20, 26.*
 
 **3. The fleet can own the judgment, and the operator's intervention is the mechanism.** *(Recorder → corrections.)* Distil the judge into a model the
 robot runs, then correct it from takeovers the fleet is already paying for. What the intervention is turned into decides

@@ -333,7 +333,7 @@ def episode(seed, arm_name, record=None, verbose=False):
             elif key not in opts: key = "stop"
         st["decisions"] += 1; st["acceptable"] += key in acc; st["deferred"] += (key == "ask_operator" and key not in acc)
         st["log"].append((round(room.t, 1), key, round(room.person_dist(), 2), j.get("confidence"), key in acc))
-        room.recent.append(f"t={room.t:.0f}s: {key}"); room.cmd = (0.12 if key in ("walk_fast", "walk") else 0.06 if key == "walk_slow" else 0.0, 0.0)
+        room.recent.append(f"t={room.t:.0f}s: {key}"); room.cmd = (0.12 if key in ("walk_fast", "walk") else 0.06 if key == "walk_slow" else 0.0, 0.0)   # METHOD ERROR 81: this attribute is VESTIGIAL for locomotion. run_skill() steers with the module   # constants CMD_FAST/CMD_SLOW (0.7/0.35), never with room.cmd. Do not read 0.12 as the robot's speed:   # measured travel is 0.343 m/s on walk and 0.210 m/s on walk_slow.
         # records carry the tagged arm name (e.g. laya-r4) so two heads in one record file stay apart
         if record is not None and "probabilities" in j: record.append({"key": hashlib.sha1(json.dumps([f, sorted(opts)], sort_keys=True).encode()).hexdigest(), "state": f, "options": opts, "answer": j, "arm": arm.name, "seed": seed, "acceptable": sorted(acc), "event": room.event})
         if key == "ask_operator": st["n_asks"] += 1; st["operator_s"] += ASK_S; room.run_skill("ask_operator"); pending = make_arm("oracle").decide(room.facts(), room.options(), room)[0]; continue

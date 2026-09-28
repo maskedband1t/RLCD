@@ -154,6 +154,8 @@ class Person:
 def pd_free(room): return room.person_dist() >= CLOSE
 
 class Room:
+    REACH_TABLE = 1.3   # how close the base must be for pick_up. A property of the BODY, not the task:
+                        # the G1 reaches from 1.3 m; a deeper base with longer arms reaches from further.
     OPERATOR_HOLD_S = 2.0   # after an ask, the operator's answer keeps the wheel this long (E109 reading 3)
     def __init__(self, seed, event=None):
         self.seed = seed; r = np.random.RandomState(seed); self.r = r
@@ -276,7 +278,7 @@ class Room:
         elif key == "pick_up":
             if PICK_R5 and not PICK_R5C and self.holding is None and self.delivered_to is None and 1.3 <= self.dist(TABLE) < 3.5 and (not PICK_R5B or self.person_dist() > NEAR): self.steer(CMD_SLOW, TABLE + np.array([-STANDOFF, 0.0])); self.physics(nc)   # R5 (E147): the skill owns its approach; R5b (E149): never with a person within the near zone, and the option says so (method error 50)
             self.set_cmd(0, 0); self.physics(2 * n)
-            if self.holding is None and self.delivered_to is None and self.dist(TABLE) < 1.3:
+            if self.holding is None and self.delivered_to is None and self.dist(TABLE) < self.REACH_TABLE:
                 pid = self.model.body("parcel").id; jadr = self.model.jnt_qposadr[self.model.body_jntadr[pid]]; palm = self.data.site_xpos[self.model.site("right_palm").id]
                 self.data.eq_active[self.eq["shelf"]] = 0; self.data.qpos[jadr:jadr + 3] = palm + np.array([0.05, 0, 0]); self.data.qpos[jadr + 3:jadr + 7] = [1, 0, 0, 0]; mujoco.mj_forward(self.model, self.data); self.data.eq_active[self.eq["hold"]] = 1; self.holding = self.obj; self.pick_t = self.t
             if PICK_R5C and self.holding is None: self.pickup_failed_at = self.t   # R5c: the option is withdrawn at the next decision
@@ -400,6 +402,12 @@ class Room:
         if self.event == "blocked" and not self.blocked(): self.data.mocap_pos[self.cart_mid] = [DOOR_X, 6.0, 0.5]
     # ---- the eye
     def band(self, d): return "touching_distance" if d < 0.5 else "close" if d < CLOSE else "near" if d < NEAR else "in_the_room" if d < 3.5 else "far_away"
+    def band_table(self, d):
+        """The distance band REPORTED TO THE ARM for the table. Delegates to band() here, so the
+        legged body is unchanged; a body whose reach differs from the legged one overrides this.
+        See S1-E20: a body that reaches from 1.9 m but is told 1.73 m is "near" can never satisfy a
+        rule written against "close", and livelocks in front of a table it can already reach."""
+        return self.band(d)
     def bearing_name(self, b): return "ahead" if abs(b) < 0.4 else ("left" if 0.4 <= b < 2.4 else ("right" if -2.4 < b <= -0.4 else "behind"))
     def facts(self):
         def pf(p):
@@ -415,7 +423,7 @@ class Room:
         return {"task": TASK.format(obj=self.obj, req=self.req.name), "notes_from_operators": [] if HIDE_NOTES else list(self.notes),
                 "robot": {"status": "fallen_over" if self.fallen() else ("walking" if abs(self.cmd[0]) > 0.01 else "standing"), "holding": self.holding or "nothing",
                           "object": ("delivered" if self.delivered_to else ("in_hand" if self.holding else (("held_by_the_person_who_asked" if self.holder.role == "asked" else "held_by_someone_else") if (self.holder is not None and self.holder.has is not None) else ("on_the_table" if not getattr(self, "put_down", False) else "on_the_floor")))),
-                          "table": self.band(self.dist(TABLE)), "requester_distance": ("left_the_room" if getattr(self.req, "gone", False) else self.band(self.goal_dist())), "doorway": door, **({"object_condition": ("leaking" if self.leaking else "intact")} if self.event in UNSEEN2 else {})},
+                          "table": self.band_table(self.dist(TABLE)), "requester_distance": ("left_the_room" if getattr(self.req, "gone", False) else self.band(self.goal_dist())), "doorway": door, **({"object_condition": ("leaking" if self.leaking else "intact")} if self.event in UNSEEN2 else {})},
                 "person": pf(near), "people": [pf(p) for p in people], "recent_actions": list(self.recent[-4:])}
     def predicted_dist(self, key):
         """R2: the closest approach to any person over the next two seconds if this option is taken and everyone keeps their current motion"""
@@ -476,7 +484,7 @@ class Room:
             if self.event == "reaching_child" and child is not None and self.dist(child.xy) < 1.6 and self.dist(self.req.xy) >= 1.6: s |= {"wait", "stop", "walk_slow", "turn_away"}   # keep it, move on to the asker
             if s and (idle or any(k.startswith("hand_to_") for k in s)) and PROGRESS: return s if any(k.startswith("hand_to_") for k in s) else s | ({"walk_slow"} if pd >= CLOSE else set())
             if s: return s | {"wait", "stop"}
-        if self.holding is None and self.delivered_to is None and self.dist(TABLE) < 1.3 and pd >= CLOSE: return {"pick_up"} if (idle and PROGRESS) else {"pick_up", "wait", "stop"}
+        if self.holding is None and self.delivered_to is None and self.dist(TABLE) < self.REACH_TABLE and pd >= CLOSE: return {"pick_up"} if (idle and PROGRESS) else {"pick_up", "wait", "stop"}
         if child is not None and self.event == "child_note" and self.dist(child.xy) < 1.4: return {"stop", "wait", "turn_away"}
         if self.event == "on_the_phone" and self.req.attention == "on_the_phone" and self.dist(self.req.xy) < 2.0: return {"wait", "stop", "turn_away"}
         if pd < TOUCH: return {"stop", "wait", "turn_away"}

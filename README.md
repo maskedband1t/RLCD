@@ -14,8 +14,9 @@ takes a real bimanual task from 25 % to 80 %. Three data and inference levers ta
 **And almost nobody measures whether the structure worked.** One group publishes a real humanoid in a real apartment with
 **zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %. A leading lab states
 it plainly: robotics has no equivalent of "check the answer, run the tests", so success detectors are hand-built per task
-or a person watches, and neither scales. **Of twenty-two papers and systems read for this record, seventeen report nothing
-about their own uncertainty at all.**
+or a person watches, and neither scales. **Of twenty-four papers and systems read for this record, eighteen report nothing
+about their own uncertainty at all** — and the one that does it properly, with pointwise Wilson intervals on a
+measured quantity, arrived this week.
 
 **This is that measurement.** A supervision harness, measured layer by layer — a planner that holds the target, an
 enumerator that decides which options exist, a governor that owns safety and when to involve a person, an executor that
@@ -31,6 +32,34 @@ claim than the one this started with, and a more useful one, because it survives
 | **A correction is worth what it is written down as, not how much of it you have.** | The same operator takeovers recorded as a **veto** rescue 14 of 60 situations on a bank the corrections never touched. Recorded as the **replacement action**, they rescue **zero**. |
 | **The improvement loop quietly eats its own safety net.** | Six correction rounds: calibration error **.362 → .008** where you corrected, and **.307 → .399** where you did not, while the operator's veto window falls from rescuing 34 of 60 to none. **A falling intervention rate is not evidence of a safer fleet.** |
 | **Escalation is priced by how many robots share an operator.** | 18 of 20 situations handled at one robot per operator; **13 of 20 at eight**, because the queue outlasts the robot's patience. Every operator-seconds figure here was measured at one-to-one and says so. |
+
+## The body this runs on
+
+![A wheeled two-arm mobile manipulator standing in a furnished kitchen: an omnidirectional four-wheel base, a vertical lift column, a white torso shell, two six-jointed arms ending in parallel-jaw grippers, and a small head with two camera eyes. Counters, cabinets, a fridge, a microwave and bar stools surround it.](figures/ffw-kitchen-close.png)
+
+**A wheeled two-arm mobile manipulator, not a walker** — omnidirectional base, lift column, two arms with parallel-jaw
+grippers. This is the form factor most commercial fleets have converged on, and it is the body the harness is measured
+on. It is the open **ROBOTIS FFW** model (Apache-2.0, commit `d8344c0`), vendored at `third_party/robotis_ffw/` with its
+provenance, its verified kinematic structure and **its two gaps recorded** — the shipped model has no cameras
+(`ncam == 0`) and no sites (`nsite == 0`), and only 1 of 65 geoms is named.
+
+**The same body, different tasks.** Each is a separate bench with its own arms, its own zero-model control, and its own
+dose gate:
+
+| | |
+|---|---|
+| ![The robot drives sideways and diagonally across the kitchen floor without turning, demonstrating omnidirectional base motion.](figures/ffw-holonomic.gif) | ![The robot crosses the room, closes on an object and carries it back.](figures/ffw-fetch.gif) |
+| **Holonomic drive** — the base moves sideways and diagonally without turning, which is what makes the approach pose a free choice rather than a consequence of the path. | **Fetch and hand over** — three stages: walk, pick, hand. An arm can stumble into success here, which is exactly why it is not the long-horizon bench. |
+| ![The robot carries an object to a delivery point in the kitchen under an oracle policy.](figures/ffw-oracle-delivery.gif) | ![The robot repeatedly approaches the counter, takes an object and carries it to the bin, over a long multi-object episode.](figures/kitchen-longhorizon.gif) |
+| **Oracle delivery** — the arm that knows the truth. Every bench ships one, and every bench also ships a zero-model arm; **the bench is invalid if the zero-model arm succeeds.** | **Long-horizon counter clearing** — four stages per object, three objects, so a failure at stage 2 of object 3 still costs the whole episode. |
+
+**Two things stated rather than buried.** The **grasp is scripted**: when the base is within reach and the hands are
+empty, the object is carried — the arm is not solved for. Every arm gets that same approximation, because what is under
+test is what the robot *decides*, not whether an IK solver converges. And the long-horizon kitchen bench above
+(**S1-E30**) is **killed**: the environment is stable and reusable, but the task on it turned out trivial — it failed its
+own discrimination gate, so no result is claimed from it. The environment stays; the bench does not.
+
+---
 
 ![A human-sized humanoid carries a cup to Maya, who is on a call. Left, the rules hand it to her anyway. Middle, the rules rewritten with hindsight wait. Right, the calibrated judge waits until she looks up.](figures/demo-g1-seed42-phone-rules-vs-judge.gif)
 
@@ -489,7 +518,10 @@ transfers.
 
 Written 28 September after reading every link this programme has been sent: 52 posts, 20 papers, and a dozen project
 pages. The per-source record is [notebook/JOURNAL-CLUB.md](notebook/JOURNAL-CLUB.md); the argument is
-[notebook/FIELD-STATE.md](notebook/FIELD-STATE.md). Three categories, and only the first is uncomfortable.
+[notebook/FIELD-STATE.md](notebook/FIELD-STATE.md). Every external result is set against ours, row by row, in
+[notebook/CONVERGENCE.md](notebook/CONVERGENCE.md) — labelled *they-were-first*, *independent-arrival*, *we-are-ahead* or
+*against-us*. **The pattern across those rows is the argument; a log with only favourable rows is a log nobody should
+believe.** Four categories, and the last two are the uncomfortable ones.
 
 ### Prior work — they got there first, and the claims above are narrowed to say so
 
@@ -499,6 +531,28 @@ pages. The per-source record is [notebook/JOURNAL-CLUB.md](notebook/JOURNAL-CLUB
 - **Failure-Aware Bimanual Teleoperation** (arXiv 2602.01092). A conservative risk score with a head predicting
   irreversible failure within H steps, driving graded haptic assistance that stays transparent at low risk. 10 tasks,
   40 trials each. **A calibrated risk estimate gating an intervention, on real hardware, before us.**
+
+### Against us — external results that bound or contradict a claim here
+
+- **A harness can cost accuracy.** Dimensional's open navigation benchmark (2,000+ tasks, 133 environments) published a
+  first case in which the *same* frontier models score **1.00 without** their stack and **0.91 and 0.72 with** it, while
+  on a second case the stack halves the time (34 s → 16 s). **A scaffold that buys latency and spends success is the
+  mirror image of the trade measured throughout this record**, and "structure beats weights" is too strong as stated.
+  One case so far, not the full suite; their model-fixed comparison has infrastructure and, by its own text, no paid
+  model trials yet.
+- **Scaffolding is not free, said twice in one day.** Kintsugi-VLA (arXiv 2609.31048) buys **+5.8 and +6.7 points** of
+  recovery success and reports the bill: **clean-task success falls 76.8 % → 74.7 %.** Two independent groups now report
+  the same direction of cost.
+- **The actuator-shift diagnosis is not ours alone.** Self-Adaptive VLA (arXiv 2609.30092) treats **actuation bias and
+  joint encoder offsets** as *the* deployment shift worth a post-training recipe. The axis ablation here — gains **21 %**
+  of falls against mass 3 % and friction 0 % — stands, because they run no axis comparison; the claim that nobody attends
+  to the actuator side does not, and is withdrawn.
+- **The number this record said was missing now exists.** Result 12 shows a per-decision confidence flat at .52–.66
+  through a 37-second livelock: a decision-level score cannot see a sequence-level failure. Kintsugi-VLA's
+  **interventional recoverability** — P(task completed \| simulator restored to state *s*), by Monte Carlo branching with
+  **pointwise Wilson intervals**, giving a **terminal low-recoverability frontier** — is exactly the sequence-level
+  thresholdable quantity that was missing. **It is a better answer than the one here, and the probe against it is
+  pre-registered rather than assumed.**
 
 ### Convergent — arrived at independently, by us and by others, which is the good kind of agreement
 

@@ -450,3 +450,302 @@ post at a time, so these have to be worked by hand. They are listed in `/tmp/xli
 **The count that matters:** of the 22 sources with enough substance to judge, **seventeen report nothing on uncertainty at
 all.** The exceptions are Sirius-Fleet, the Failure-Aware teleoperation paper, RWM-U, Scalable Real2Sim (estimation error
 bars, not learned confidence) and PLARE (measures its own label noise, then regularises it away).
+
+---
+
+# Batch two — the older links, worked by hand
+
+## Chalvatzaki · "What Are We Actually Seeing with GPT-6 Astra?" — **A, and the strongest external support this programme has**
+*Georgia Chalvatzaki · 19 Sep 2026 · an essay, 80k views · cites HARBOR (arXiv 2606.08610) and Nautilus (arXiv 2605.11665)*
+
+**A professor spending five thousand words arguing that the harness is the unit of analysis.** Her sentence, and it is
+ours: *"the model alone may increasingly be the wrong unit of analysis. We need to understand what is contributed by the
+model, what is contributed by the representations and algorithms around it, and how these components interact."*
+
+**The number to take from it, and it is the most dramatic in the whole corpus.** ARC Prize report Astra at **62.7 % with
+their Standard harness and 99.9 % with the Provider Adapter harness.** *Same model.* **37 points from the interface
+alone.** Nothing we have measured comes close to making the point that cleanly.
+
+**Her methodological demand is our preflight, stated by somebody with a podium:** *"Prompt, context, retrieval, tool
+access, action interface, feedback, and harness configuration should therefore be treated as experimental methodology.
+Without this information, a successful demonstration establishes that the complete setup worked. It tells us
+considerably less about why."*
+
+**Her proposed experiments are our ablation design.** Vary prior exposure and information access; **vary external
+structure while holding the model fixed**; vary internal representational structure; vary physical interaction —
+embodiment, coordinate conventions, mass, friction, contact, perturbations mid-execution.
+
+**Two published harness frameworks we did not know existed and should read:**
+- **HARBOR** (arXiv 2606.08610) — a harness for agentic robot RL, decomposed into bounded stages with **explicit
+  validation gates and persistent experimental artifacts**, across six benchmarks and sixteen tasks, transferring to real
+  robots. *Validation gates* is our preflight under another name.
+- **Nautilus** (arXiv 2605.11665) — one prompt to a reproducible robot-learning workflow. *"Typed interfaces, procedural
+  priors, and validation gates can substantially change whether the workflow succeeds at all."* **Typed interfaces** is
+  our vocabulary, arriving from a different direction.
+
+**And the gap she names is the one our benches are built on.** *"Human-robot interaction is absent from these evaluations
+altogether. There is no person inside the workspace whose behavior changes in response to the robot."* Every bank in this
+programme has a person in it. That is not a coincidence we should leave unstated.
+
+Her safety line is our claim 5 verbatim in spirit: *"Some safety constraints should clearly remain externally enforceable
+regardless of how capable the model becomes."*
+
+Numbers worth keeping: RoboCurve block-into-bowl **Astra 19/20 against Fable 8/20**, and puzzle insertion **2/20 for
+both** — where she notes 20 trials separate 19 from 8 but say nothing about 2 versus 2. StationeryBench: Astra completes
+**7 of 100** trials, mean progress 46/100.
+
+## Dimensional · a third-party benchmark of the model in our seat — **B**
+*stash (@stash_pomichter) · 18 Sep · 29.7k views*
+
+**120 real and simulated tasks and environments**, benchmarking Jev against Dimcode, Astra, Fable, Opus and 5.6, graded on
+**speed, cost, tokens, collisions and path quality**, with code, data and paper promised the following day. An independent
+evaluation of the model in our seat, across a task count an order of magnitude beyond ours. **The release should exist by
+now and nobody here has checked** — that is a concrete follow-up.
+
+## RobotKit · Jev and Astra on a real arm, notebooks open — **B**
+*Michal Kubenka · 19 Sep*
+
+Both models on a real AgileX PiPER arm, **eight runs open-sourced as notebooks**. Same loop each time: *"the model picks
+the next skill, a governor checks it, the arm moves."* That is our architecture, on hardware, with the runs published.
+Their own headline: **"the speed gap was not where we expected it"** — consistent with our 8.8 % inference finding.
+
+## Saito · a 4B head distilled from a frontier judge in 26 hours — **B**
+*Taro L. Saito · 18 Sep · 504k views*
+
+Distilled DeepSeek V4 Flash's judgments onto a **4B model in 26 hours on a DGX Spark**: at one-twentieth the size it
+**beats the teacher's instant-response mode at about 22 ms per judgment.** And the framing in his earlier post is exactly
+what this programme argues about the interface: a local engine hits 40 ms *"simply by abandoning text/JSON generation and
+specializing solely in judgment."* Distillation into an owned head is our claim 3, being done publicly by individuals on
+desktop hardware.
+
+## CUA-S1 · a third System One model family — **B**
+*Cua · 18 Sep · 1.2M views · open source*
+
+A **family** of small specialised System One models for computer use, first release CUA-S1-FORMS. After Jev and CLM this
+is the third. The seat is being commoditised, which strengthens rather than weakens the argument that the value is in the
+loop around it rather than the model in it.
+
+## Inverted Lambda · Real2Sim from whatever cameras were already there — **B**
+*21 Sep*
+
+An SDK that captures a robot's own cameras, sensors and LiDAR — or a phone — and turns **its actual deployment
+environment** into simulation, with contributors rewarded for environments they add. *"Policies train in the places they
+will actually deploy, captured by whatever was already there."* Relevant because our benches are rooms we invented, and
+the gap analysis says the deployment contains fixtures we do not model.
+
+## OpenRoboto · three models, one apple, one plate — **C**
+Jev against GPT-6 Astra and GPT-4.1 mini in MuJoCo, each choosing intent then an X/Y/Z direction and a gripper state.
+Already covered in the 19 September field note; listed here so the record is complete.
+
+## Zhaoran Wang · the prefill prediction — **C, already covered**
+The parent post of the Open-Jev result: *"'big models are too slow for robotics' is about to age badly."* Its answer
+arrived two days later at 18.6 ms. A reply worth noting for honesty — Siva (@ergodicthought) asks *"what makes you think
+robotics, especially long horizon planning, is a prefill-type problem rather than a decode-type problem?"* and the thread
+does not answer it.
+
+## Anto Patrex · a trainability scorer running on real deployment data — **B**
+*19 Sep · humanoid teleop data from their own deployment sites*
+
+Ran the calibrated eval model over teleoperation data and report **99 % label consistency, 91 % annotation completeness,
+sub-action segmentation and frame-accurate timing.** Their framing is the argument: **"Robot data sells by the hour. Hours
+don't tell you if it's trainable."**
+
+That is use case 16 in our README — scoring whether a demonstration is clean enough to learn from before it enters the
+training set — being run commercially on real deployment footage. We measured it on 13,451 household demonstrations at
+AUROC .78 zero-shot against a rule's .64 and a fitted logistic's .88. **Somebody is now selling it**, which is
+confirmation of the use case and a reason to state ours in their units: hours of data against hours of *trainable* data.
+
+## Kubenka · why everyone else's robot demo takes minutes — **B**
+*19 Sep*
+
+**"Most 'LLM runs a robot' posts this week are sim, and most send every camera frame to the big model. That is why a
+cube-into-tray takes minutes."** On a real AgileX arm at 10 % speed: **27 s against 1 m 11 s** for the frontier model.
+
+The useful part is not the ratio, it is the diagnosis: the cost is **sending every frame to the big model**, not the big
+model's own latency. That is our architecture's premise — code enumerates, the fast layer picks, the frontier model is
+called once per skill — stated by somebody with a real arm and published notebooks.
+
+## Carrabre · the typed-question pattern outside robotics — **C**
+*18 Sep*
+
+Natural language to camera movement in a browser video tool: the model answers **a few calibrated multiple-choice
+questions** (move kind, plus direction and magnitude band per axis), code assembles keyframes into a structured
+trajectory, and the trajectory is **checked before rendering** so the result is the move that was asked for. ~230× faster
+planning. Not robotics, but it is our exact interface — closed-set questions, code composes, verify before committing —
+working in a different domain, which is mild evidence the pattern is general rather than a robotics quirk.
+
+Its quoted parent carries the origin claim for the model class: *"After co-inventing ChatGPT, I kept asking myself: why
+have superhuman chat models not led to AGI?"* — two years in stealth on RLCD, released as Jev at "20-200× faster,
+40-400×" cheaper.
+
+## Hu · what happens when the target moves mid pick-and-place — **A**
+*xiao hu · 21 Sep · [github.com/Hu-xiao-max/jev_robot](https://github.com/Hu-xiao-max/jev_robot) · **already vendored at `third_party/jev_robot`***
+
+A local **2B** model driving a PiPER arm in MuJoCo, where **the cube is relocated three times per run** and the robot must
+detect it, interrupt, and recover. **10 of 10 seeds succeed, 32.6 ms median decision latency.**
+
+**This is our subject, built by somebody else, open, with a number.** A belief going stale mid-task, detected, and
+recovered from — the thing the 2026 deployed-systems audit says nobody demonstrates. It is a short-horizon tabletop
+version rather than an 18 m aisle, and 10/10 means the bench does not discriminate, but **the detect-interrupt-recover
+loop exists in public and we should read the code before building ours.**
+
+## Jacob · graph-as-policy with a calibrated model in the decision nodes — **A**
+*Deborah Jacob · 21 Sep · quoting Ken Goldberg*
+
+Somebody has already composed the two things we have been discussing separately. In a moving-cube sim, median pickup
+time: **5.42 s with GaP plus a custom Rust executor plus Jev, against 8.79 s for native GaP with a frontier model.** Her
+framing is exactly the division this programme argues: *"GaP gives you explicit decision nodes, dependencies and parallel
+execution. Jev makes decisions inside that graph much faster."*
+
+**Structure supplies the graph; the calibrated model occupies its decision nodes.** That is our architecture, assembled by
+a third party, measured, at a 1.6× gap. And the post she quotes is **Ken Goldberg calling it a paradigm shift** —
+*"Goosebumps: a Paradigm Shift is Occurring in Robotics... A new approach — Agentic Robotics — is a game changer."*
+
+## Montoya · our stack, built independently — **B**
+*jpmonty · 22 Sep*
+
+A G1 in a virtual kitchen: a VLM plus depth maps the room, **a path planner produces candidate routes, the calibrated
+model chooses which move to make next**, and a pretrained walking policy handles locomotion, reaching the stove in ~64 s
+of sim time. Planner proposes, fast layer chooses, policy executes. **Nobody coordinated this**, which is the most
+useful thing about it.
+
+## Laya · a fourth System One model, claiming to beat the third — **B**
+*ricky b · 19 Sep · laya.convaiinnovations.com*
+
+**33 ms**, typed decisions (choice, score, noul) across 100+ languages in a single forward pass with calibrated
+probabilities, and it states plainly that it **"outperforms TypeSafe Jev."** Notable because **we already use Laya** — our
+distilled 421M owned head is built on it. So the base of our own student is now marketed as a competitor to our teacher,
+and E196's three-model comparison has a fourth candidate sitting in the repo.
+
+## Eidon · a company winding down and releasing everything — **B**
+*Daniel van Strien · 21 Sep · CC-BY-4.0 on Hugging Face*
+
+**1,274 hours of egocentric video with paired 7-IMU arm tracking, 13,451 recordings, 9 TB** — people doing laundry,
+cleaning, dishes and cooking — released in full as the company shut down. **This is where our own E97 data came from**
+(the trainability scorer, AUROC .78 zero-shot against a fitted logistic's .88). Worth recording that the provenance is a
+company failing, which is also the most honest available comment on robot data economics.
+
+## SAM 3.1 on a hosted API · the grounder as a phone call — **B**
+*Meta for Developers · 18 Sep*
+
+Detection, segmentation and **identity-preserving video tracks** from a short phrase, in a single API call. The grounder
+component we do not have, available as a service. **"Identity-preserving"** is the staleness-adjacent capability: it is
+precisely the claim that the thing you are tracking is still the thing you think it is.
+
+## Gundala · a 1B RLCD model, open-sourced in two hours — **B**
+*Harsha Gundala · 16 Sep*
+
+**Qwen-2.5-1B-RLCD**, open-sourced, 5× faster on-device inference for type-safe workloads, later shown playing Doom
+on-device at **150 ms on a 1B model**. The smallest seat candidate in the corpus and it runs on a laptop.
+
+## Kinsley · the market asking our question out loud — **B**
+*Harrison Kinsley (Sentdex) · 18 Sep · 23k views*
+
+**"is anyone using jev with robotics rn and willing to vouch for it being useful?"**
+
+A well-known ML educator asking, in public, whether this model class is actually useful in robotics — and the replies did
+not settle it. **That question is what this entire record answers**, with 165 pre-registered experiments and roughly one
+negative result in four. Worth knowing that the demand for the answer is explicit rather than assumed.
+
+## Dimensional · a benchmark of harnesses, not models, and the first row that cuts against us — **A**
+*Stash Pomichter · 28 Sep · open dataset + code · `dimensionalOS/dimos`*
+
+**"How far are LMs from zero-shotting complex real-time control tasks?"** — 2,000+ navigation tasks across **133 real and
+simulated environments**, models *and harnesses* varied, everything open. The unit of analysis is ours: not a model, but a
+model inside a scaffold.
+
+The numbers published so far cover **one** HSSD case (stool, 3 m), and they run the wrong way for us:
+
+| arm | success | note |
+|---|---|---|
+| MLS planner alone | 0.91 | with pre-computed navmesh ground truth |
+| calibrated agent | **1.00** | 10 seconds — best in the table |
+| Astra, **no** stack | 1.00 | raw `world_state` / `cmd_vel` / `finished` |
+| Fable, **no** stack | 1.00 | |
+| GPT-5.6, **no** stack | 1.00 | |
+| Opus, **no** stack | 0.91 | |
+| Fable, **with** stack | **0.91** | −9 pp |
+| Astra, **with** stack | **0.72** | **−28 pp** |
+
+**The harness cost two frontier models accuracy.** On a second case it bought time instead: planner 10.9 s, bare agent
+34 s, agent-with-stack **16 s**. A scaffold that halves latency and spends success is a real finding and it is the
+mirror image of the trade we have measured four times in the other direction.
+
+**What keeps it from being fatal, stated fairly:** one case, not the 80-case suite (10 HSSD scenes) and not the
+2,000-task release. The calibrated model's 1.00-in-10 s is also one case. And **PR #4112, which builds the
+model-fixed/harness-varied comparison, ran no paid model trials at all** — it says so: *"integration pilots, not a broad
+performance ranking."* The comparison everybody wants has infrastructure and no results.
+
+**Action:** pull the 80-case results when they land. It is the cheapest available third-party test of our central claim,
+on 133 environments we do not have. Logged as `CONVERGENCE.md` row 16, **against-us**.
+
+## Self-Adaptive VLA · the shift axis we said nobody touches — **A**
+*Hongxin Zhang (UMass Amherst) et al · arXiv 2609.30092 · posted 28 Sep*
+
+**"Most VLAs are memoryless: when a robot's hardware drifts, the policy repeats the same failure every trial."**
+
+A post-training recipe for **deployment-time hardware shift**. Rollouts are collected under *deliberately injected*
+shifts; the base policy's training data is rewritten into **shift-conditioned expert demonstrations** by pre-compensating
+expert actions for the known shift; a plug-in **context encoder** compresses visual observation, proprioception and
+actions into one **latent context token** that modulates the policy through **AdaLN**. Context tokens **ensemble**, so
+the policy iteratively self-corrects across attempts. **Recovers >80 % of base-policy performance** on four
+precision-critical bi-manual and dexterous tasks.
+
+**The shifts are actuation bias and joint encoder offsets.** We measured actuator gains as **21 % of falls against mass
+3 % and friction 0 %**, checked Isaac Lab's and Playground's source, and wrote down that nobody randomises gains. The
+ablation ranking is still ours alone — they run no axis comparison — but **the diagnosis is not**, and the framing has to
+be corrected rather than defended. `CONVERGENCE.md` row 7 downgraded **we-are-ahead → independent-arrival**.
+
+**Read honestly:** ">80 % recovery" is the only number in the abstract, no per-task table, no trial counts, no shift
+magnitudes, and **no uncertainty measure of any kind** — the tally is now **18 of 23 sources reporting none**. Whether
+the robot is physical is not established by the abstract, so this record does not claim it.
+
+**Why it lands anyway:** it is the memory argument on the actuator side. Their fix for a memoryless policy is to feed it
+its own failed rollouts as context — structurally the same move as our correction-form work, one layer down.
+
+## Kintsugi-VLA · the number that answers our livelock — **A**
+*arXiv 2609.31048 · surfaced alongside the above*
+
+The most directly useful paper of the 54 read here, because it solves a problem this record has logged as open.
+
+**Result 12 of ours:** a robot livelocked for **37 seconds** while its per-decision confidence sat flat at **.52–.66**.
+A number attached to each decision cannot see a failure that lives in the *sequence*. We logged it and had no fix.
+
+Kintsugi's fix: **interventional recoverability** — *the probability of completing the original task after the simulator
+is restored to a given state*. Estimated by **adaptive Monte Carlo continuations with pointwise Wilson intervals**,
+branching from exact restored states along failed trajectories. It evolves **non-monotonically**, and there is an
+observed **terminal low-recoverability frontier — the point after which recoverability stays below threshold**.
+
+**That frontier is a thresholdable number defined over a sequence, measured by branching instead of asked of a model.**
+It passes our own seat test from the other direction: code *can* compute it, given a simulator you can restore.
+
+Their use of it is data selection: pick recovery-training start states near the frontier. **SmolVLA recovery success
+34.6 %** (difficulty-matched) and **38.4 %** (frame-budget matched) against uniform sampling's **28.8 %** and **31.7 %**
+— **+5.8 and +6.7 pp**, small, and matched two ways. Same ordering under disturbed execution and under shifted clutter
+and physics. **And they report the cost: clean-task success falls 76.8 % → 74.7 %.** Structure bought recovery and spent
+2.1 points of nominal performance — row 16's trade again, admitted by the authors. Simulation only, one Franka task.
+
+**Why this is cheap for us, specifically:** `src/stack/table_run.py:210` already snapshots, rolls a candidate forward,
+reads the outcome and restores — we built that to *choose* a plan. `cell/analyze.py` already exports `wilson`. The
+mechanism and the statistic are both already in the repo; nobody has pointed them at recoverability. **Probe: measure
+recoverability along the 37-second livelock and see whether the frontier is crossed before the confidence signal moves.**
+Pre-register before running. Logged as `CONVERGENCE.md` rows 17–18, **they-were-first**.
+
+## The rest — **C**
+
+Demonstrations rather than evidence, listed so the record is complete and nobody re-reads them.
+
+- **Almeida's launch post** (39.7M views) — the origin of the model class: two years in stealth on RLCD, *"20-200× faster,
+  40-400× cheaper, frontier composable intelligence optimized for decisions."* Framing, not evidence.
+- **Hrybov** — GPT-6 Astra robotics experiments open-sourced: MuJoCo environments, controllers, recorded runs.
+  A possible environment source.
+- **Richards** — the model driving a simulator in realtime, framed well: *"a simulation that will never pause while he
+  thinks."*
+- **Slack** — a drone application in 15 minutes for 10 cents; already vendored at `third_party/jev-drone`.
+- **Tran** (3.8M views) — context compaction by scoring tool calls. **Schroeder** (736k) — "I rebuilt Tesla FSD in less
+  than an hour", with no evidence attached. **Tate** (1.3M) — generative UI. **Taras** — 3M session-replay events
+  triaged in 40 s for $2.17. **Wasil** — a painting in 9 s against 20–30 minutes.
+- **Aliu** — MIT's public Visual Navigation course, vnav.mit.edu. A resource.
+- **Ziegler** — "SLAM for Dummies", an MIT tutorial PDF. A resource.
+- One link (`SakanaAILabs/210434870595`) has a truncated post ID and does not resolve; another
+  (`yifanzhang_/2101832813293003160`) has been deleted.

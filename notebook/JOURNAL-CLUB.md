@@ -731,6 +731,42 @@ mechanism and the statistic are both already in the repo; nobody has pointed the
 recoverability along the 37-second livelock and see whether the frontier is crossed before the confidence signal moves.**
 Pre-register before running. Logged as `CONVERGENCE.md` rows 17–18, **they-were-first**.
 
+## Delta-0 · a 69-DoF whole-body humanoid, and the speed claim we learned not to make — **A**
+*Delta Intelligence · 28 Sep · `deltai.com/en/blog/delta-0` · no paper, no weights, no data*
+
+**"One generalist policy. 69 degrees of freedom. Everyday tasks at near-human speed."** Whole-body loco-manipulation:
+turntable, bed-making, picking from the floor, dishwasher, step-pedal bin, sitting on a sofa.
+
+**Credit where the artefact earns it.** Unlike the site and the launch post, the blog does carry numbers, and some are
+raw counts rather than percentages — better practice than most of this corpus:
+
+- **10,000 hours** of paired human data in pretraining; a **3 h 31 min** motion dataset; a **180-dimensional** padded
+  action space of which **154** are arm and hand.
+- A **controller data-scaling curve with a declared threshold**: **29.2 %, 48.0 %, 72.6 %** of motions meet *both*
+  tracking bounds at **10 %, 40 %, 100 %** of motion training data — bounds being mean wrist position error **≤ 2 cm**
+  and mean global root position error **≤ 15 cm**.
+- **Dishwasher, out of distribution: 20 % (4/20) → 65 % (13/20) after reinforcement learning.**
+
+**Three things it does not have, and the third is ours.**
+
+1. **No success rate for any of the six demonstrated tasks** — the tasks in the video, the ones that carry the claim, have
+   no numbers. The one task with numbers is an ablation, not a demo.
+2. **No uncertainty of any kind.** Tally **19 of 25**.
+3. **"Near-human speed" with no human measured.** This is exactly the claim **method error 76** was logged for: this
+   record once carried "a human takes 62.5 s" as a yardstick, could not reproduce where it came from, and was caught.
+   The fix was to rebuild the reference as a **runnable arm** — `src/stack/scripted_ref.py`, median over completed runs
+   only, **44.0 s** — so the yardstick can be re-measured by anyone. **Delta-0 makes the speed claim with no reference
+   arm at all.** Nothing here says they are wrong; it says the claim is not checkable, which is the whole point of that
+   error.
+
+**And the human is in the loop, unpriced.** The article acknowledges human intervention without quantifying its
+frequency or what triggers it. That is claim 11's territory — we price escalation by operator ratio (**18/20 at 1:1,
+13/20 at 1:8**) and nobody else does.
+
+**The honest tension:** their biggest controller gain comes from *more data* (29.2 → 72.6 % across a 10× data increase),
+which is a weights lever, not a structure lever. It is at the tracking-controller layer — System 0, below where anything
+here operates — so it does not contradict the thesis. But it belongs in the record as a place where scale plainly worked.
+
 ## The rest — **C**
 
 Demonstrations rather than evidence, listed so the record is complete and nobody re-reads them.

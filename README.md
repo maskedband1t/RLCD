@@ -14,7 +14,7 @@ takes a real bimanual task from 25 % to 80 %. Three data and inference levers ta
 **And almost nobody measures whether the structure worked.** One group publishes a real humanoid in a real apartment with
 **zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %. A leading lab states
 it plainly: robotics has no equivalent of "check the answer, run the tests", so success detectors are hand-built per task
-or a person watches, and neither scales. **Of twenty-four papers and systems read for this record, eighteen report nothing
+or a person watches, and neither scales. **Of twenty-five papers and systems read for this record, nineteen report nothing
 about their own uncertainty at all** — and the one that does it properly, with pointwise Wilson intervals on a
 measured quantity, arrived this week.
 

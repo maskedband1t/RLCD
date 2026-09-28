@@ -171,7 +171,10 @@ class KitchenTask(FFWKitchen):
         self._ik.apply(ctrl, self._act)
         for a, v in ctrl.items():
             self.data.ctrl[a] = v
-        self.step(0.6)
+        # The arm's position actuators need ~1.5 s to converge on an 8-joint move (measured: a
+        # commanded -1.5 rad reaches -0.75 at 0.5 s and -1.45 at 1.5 s). Stepping 0.6 s left the arm
+        # half-extended and made a correct IK solve look like a 90 cm miss.
+        self.step(float(os.environ.get("KT_REACH_S", "2.0")))
         return float(np.linalg.norm(self.palm("right") - self.obj_pos(name)))
 
     def gripper(self, closed):

@@ -10,8 +10,9 @@ Same room, same body, same walking policy, same skills as bench 5b. The only cha
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import re
 import numpy as np, mujoco
-from humanoid.fetch_sim import assets, G1_DIR, CMD_FAST, CMD_SLOW, DECISION_S
+from humanoid.fetch_sim import assets, G1_DIR, MEN, CMD_FAST, CMD_SLOW, DECISION_S, match_solver
 from humanoid.sort_sim import SortRoom
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "tools"))
@@ -21,6 +22,78 @@ TEX = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
                    "third_party", "homebody", "tex_scene")
 DEST_K = {"glass": "counter", "mug": "counter", "carton": "bin", "medicine": "counter"}
 REACH_K = 1.10
+
+
+
+# --- method error 76 -------------------------------------------------------------------------------
+# The G1 scene (`scene_mjx_feetonly_flat_terrain.xml`) carries collision in FIVE explicit <pair>
+# elements — floor/feet, foot/foot, thigh/hand — and every other geom has contype=conaffinity=0.
+# MuJoCo therefore compiles NO convex hull for them (`mesh_graphadr == -1`), so flipping the flags at
+# runtime can never make them solid; the fix has to happen in the XML before compile. Measured: the
+# counter occupies z[0.80,1.31], the torso z[0.74,1.16], and the torso is the one part of the robot
+# with no collider — a humanoid physically cannot bump into a counter in the shipped scene.
+#
+# Bitmask, so the robot's own self-collision behaviour is untouched:
+#   robot  contype=2 conaffinity=4     room  contype=4 conaffinity=2
+#   robot x room -> (2&2)|(4&4) != 0 collide      robot x robot -> (2&4)|(2&4) == 0 unchanged
+#   room  x room -> (4&2)|(4&2) == 0 no churn     robot x floor -> (2&1)|(1&4) == 0 feet still use pairs
+TORSO_BODIES = ("pelvis", "waist_yaw_link", "waist_roll_link", "torso_link")
+
+
+def solidify(xml, skip=()):
+    """Opt-in (DUCK_CONTACT=1): make the room and the robot's torso collidable at compile time.
+
+    `skip` names meshes that have no valid convex hull (flat scanned panels); they stay visual-only.
+    """
+    # every geom inside the kitchen body, plus the loose objects, becomes room-side
+    def room_geom(mo):
+        g = mo.group(0)
+        mm = re.search(r'mesh="([^"]+)"', g)
+        if mm and mm.group(1) in skip: return g
+        g = re.sub(r'\s+contype="\d+"', "", g); g = re.sub(r'\s+conaffinity="\d+"', "", g)
+        return g[:-2] + ' contype="4" conaffinity="2"/>' if g.endswith("/>") else g
+    out, i, n = [], 0, 0
+    for m in re.finditer(r'<body name="kitchen".*?</body>', xml, re.S):
+        block = m.group(0)
+        new_block, n = re.subn(r"<geom\b[^>]*/>", room_geom, block)
+        out.append(xml[i:m.start()]); out.append(new_block); i = m.end()
+    out.append(xml[i:])
+    xml = "".join(out)
+    # the torso: give its visual meshes a collision mask so a hull gets compiled
+    for body in TORSO_BODIES:
+        def torso_geom(mo):
+            g = mo.group(0)
+            g = re.sub(r'\s+contype="\d+"', "", g); g = re.sub(r'\s+conaffinity="\d+"', "", g)
+            return g[:-2] + ' contype="2" conaffinity="4"/>' if g.endswith("/>") else g
+        pat = re.compile(r'(<body name="%s".*?)(?=<body |</body>)' % body, re.S)
+        xml = pat.sub(lambda mo: re.sub(r"<geom\b[^>]*/>", torso_geom, mo.group(1)), xml, count=1)
+    return xml
+
+
+
+def solidify_robot(asset_map):
+    """Flag the G1's *_collision primitives BEFORE compile.
+
+    MuJoCo builds each body's BVH midphase tree at compile time and only includes geoms that can
+    collide then, so flipping contype/conaffinity at runtime is silently ineffective — the geom was
+    never added to the tree. Measured: torso overlapping a counter mesh by 9 cm (mj_geomDistance
+    -0.0912) produced zero contacts until this was done in the XML instead.
+    """
+    out = dict(asset_map)
+    for key in ("g1_mjx.xml", "g1.xml"):
+        if key not in out:
+            continue
+        txt = out[key].decode() if isinstance(out[key], bytes) else out[key]
+        def flag(mo):
+            g = mo.group(0)
+            if "_collision" not in g:
+                return g
+            g = re.sub(r'\s+contype="\d+"', "", g)
+            g = re.sub(r'\s+conaffinity="\d+"', "", g)
+            return g[:-2] + ' contype="2" conaffinity="4"/>'
+        txt = re.sub(r"<geom\b[^>]*/>", flag, txt)
+        out[key] = txt.encode()
+    return out
 
 
 class KitchenRoom(SortRoom):
@@ -34,11 +107,53 @@ class KitchenRoom(SortRoom):
             f'<body name="kitchen" pos="0 0 {LIFT}">'
             f'<geom type="mesh" mesh="hb_room" rgba="0.74 0.71 0.66 1" contype="0" conaffinity="0"/></body>',
             f'<body name="kitchen" pos="0 0 {LIFT}">{tex_geoms}</body>')
-        xml = open(os.path.join(G1_DIR, "xmls", "scene_mjx_feetonly_flat_terrain.xml")).read()
+        # method error 76: the feet-only MJX training scene carries 5 contact pairs and no body
+        # collision at all. `scene_mjx.xml` is the same robot with 49 pairs and 28 primitive collision
+        # geoms — identical nq/nv/nu, identical joint and actuator ordering, same "knees_bent" keyframe.
+        scene_path = (os.path.join(MEN, "scene_mjx.xml") if os.environ.get("DUCK_CONTACT") == "1"
+                      else os.path.join(G1_DIR, "xmls", "scene_mjx_feetonly_flat_terrain.xml"))
+        xml = open(scene_path).read()
         xml = xml.replace("<asset>", "<asset>" + tex_asset + asset, 1)
         xml = xml.replace("</worldbody>", scene + "</worldbody>", 1).replace("</mujoco>", eq + "</mujoco>", 1)
-        self.model = mujoco.MjModel.from_xml_string(xml, assets=assets())
-        self.data = mujoco.MjData(self.model); self.model.opt.timestep = 0.002
+        if os.environ.get("DUCK_CONTACT") == "1":
+            # method error 76: give the room and the torso real collision geometry. Some scanned pieces
+            # are flat panels with coplanar vertices and have no convex hull; MuJoCo names them in the
+            # compile error, so drop those back to visual-only and retry until it compiles.
+            # A scanned room is CONCAVE; MuJoCo collides meshes by their convex hull, so a large shell
+            # piece becomes a solid block that swallows the robot (measured: geom g112 penetrating the
+            # torso by 1.28 m at the start pose). Only furniture-scale pieces may be solid — compile a
+            # throwaway ghost model first to measure each mesh, then solidify just the small ones.
+            _probe = mujoco.MjModel.from_xml_string(xml, assets=assets())
+            big = set()
+            for g in range(_probe.ngeom):
+                b = mujoco.mj_id2name(_probe, mujoco.mjtObj.mjOBJ_BODY, int(_probe.geom_bodyid[g])) or ""
+                if b != "kitchen":
+                    continue
+                mid = int(_probe.geom_dataid[g])
+                if mid < 0:
+                    continue
+                if float(_probe.geom_rbound[g]) > float(os.environ.get("DUCK_CONTACT_MAXR", "0.9")):
+                    big.add(mujoco.mj_id2name(_probe, mujoco.mjtObj.mjOBJ_MESH, mid) or "")
+            self._too_big = sorted(big)
+            skip, base = set(big), xml
+            for _ in range(80):
+                xml = solidify(base, skip)
+                try:
+                    self.model = mujoco.MjModel.from_xml_string(xml, assets=solidify_robot(assets())); break
+                except ValueError as e:
+                    m_ = re.search(r"mesh '([^']+)' has coplanar vertices", str(e))
+                    if not m_ or m_.group(1) in skip: raise
+                    skip.add(m_.group(1))
+            self._no_hull = sorted(skip)
+            # the robot's own collision set is primitives referenced by <pair>, so a runtime mask is
+            # safe here (no convex hull to compile) and leaves the 49 self-collision pairs untouched.
+            self._n_robot_colliders = sum(
+                1 for g in range(self.model.ngeom)
+                if (mujoco.mj_id2name(self.model, mujoco.mjtObj.mjOBJ_GEOM, g) or "").endswith("_collision")
+                and (self.model.geom_contype[g] or self.model.geom_conaffinity[g]))
+        else:
+            self.model = mujoco.MjModel.from_xml_string(xml, assets=assets())
+        self.data = mujoco.MjData(self.model); match_solver(self.model)
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.model.keyframe("knees_bent").id)
         self.data.qpos[0:2] = START
         # the keyframe only covers the robot's joints, so every object's freejoint comes back zeroed and the objects

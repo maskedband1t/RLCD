@@ -1,0 +1,499 @@
+<title>Twelve Lessons on Robot Decisions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#F5F6F7; --card:#FFFFFF; --ink:#14181D; --ink-2:#4A5560; --ink-3:#7A848E;
+  --rule:#D9DDE1; --rule-2:#EAEDEF;
+  --blue:#2D5BA8; --blue-soft:#E7EDF7;
+  --amber:#9A6510; --amber-soft:#FBF1E0;
+  --crim:#A02D46; --crim-soft:#FAE8EC;
+  --green:#1F6E52; --green-soft:#E4F1EB;
+  --display:"Zilla Slab",Georgia,serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#101418; --card:#181D23; --ink:#E9ECEF; --ink-2:#AAB4BE; --ink-3:#7B858F;
+    --rule:#2A3138; --rule-2:#222830;
+    --blue:#7FA8E6; --blue-soft:#1A2436;
+    --amber:#D9A55C; --amber-soft:#2A2118;
+    --crim:#E4899B; --crim-soft:#2C1A20;
+    --green:#6FC5A2; --green-soft:#16261F;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#101418; --card:#181D23; --ink:#E9ECEF; --ink-2:#AAB4BE; --ink-3:#7B858F;
+  --rule:#2A3138; --rule-2:#222830;
+  --blue:#7FA8E6; --blue-soft:#1A2436;
+  --amber:#D9A55C; --amber-soft:#2A2118;
+  --crim:#E4899B; --crim-soft:#2C1A20;
+  --green:#6FC5A2; --green-soft:#16261F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:0 72px}
+
+header.masthead{padding-block:56px 34px;border-bottom:3px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,7vw,54px);line-height:1.04;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.standfirst{font-size:17px;color:var(--ink-2);margin:18px 0 0;max-width:62ch}
+.meta{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-top:20px;display:flex;flex-wrap:wrap;gap:6px 18px}
+
+.part{margin-top:54px;display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.part b{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:500}
+.part span{font-family:var(--display);font-weight:500;font-size:22px;color:var(--ink)}
+
+.lesson{display:grid;grid-template-columns:58px 1fr;gap:22px;margin-top:40px}
+.num{font-family:var(--display);font-weight:700;font-size:34px;line-height:1;color:var(--ink-3);padding-top:4px;font-variant-numeric:tabular-nums}
+.lesson h2{font-family:var(--display);font-weight:700;font-size:25px;line-height:1.2;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
+.lesson p{margin:0 0 14px;max-width:66ch}
+.lesson p:last-child{margin-bottom:0}
+.fig{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:18px 16px;margin:18px 0}
+.fig svg{display:block;width:100%;height:auto;max-width:100%}
+.cap{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-top:12px;line-height:1.5}
+
+.take{border-left:3px solid var(--blue);background:var(--blue-soft);padding:13px 16px;margin-top:18px;border-radius:0 3px 3px 0}
+.take b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:5px;font-weight:500}
+.take p{margin:0;font-size:15.5px}
+.warn{border-left-color:var(--crim);background:var(--crim-soft)}
+.warn b{color:var(--crim)}
+
+.num-hl{font-family:var(--mono);font-weight:500;color:var(--ink);background:var(--rule-2);padding:1px 5px;border-radius:2px;font-size:.93em}
+strong{font-weight:600}
+.scroll{overflow-x:auto}
+
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:6px 0 2px;min-width:420px}
+th,td{text-align:left;padding:8px 12px 8px 0;border-bottom:1px solid var(--rule-2);vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+footer{margin-top:60px;padding-top:26px;border-top:3px solid var(--ink);font-size:14.5px;color:var(--ink-2)}
+footer h3{font-family:var(--display);font-size:19px;margin:0 0 10px;color:var(--ink)}
+footer p{margin:0 0 10px;max-width:66ch}
+
+@media (max-width:560px){
+  .lesson{grid-template-columns:1fr;gap:6px}
+  .num{font-size:26px;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Field notes · September 2026</p>
+  <h1>Twelve Lessons on Robot Decisions</h1>
+  <p class="standfirst">How a robot decides what to do next, what the field is arguing about, and why almost nobody can currently prove their method works. Written to be read cold, by someone who has never touched a robot.</p>
+  <div class="meta"><span>No acronym used before it is explained</span><span>·</span><span>Every number measured, not quoted</span></div>
+</header>
+
+<div class="part"><b>Part I</b><span>The machine</span></div>
+
+<!-- 1 -->
+<section class="lesson">
+  <div class="num">01</div>
+  <div>
+    <h2>You already think in three speeds</h2>
+    <p>Walking, you do without thinking. Catching a ball takes about a quarter of a second — fast judgement, no deliberation. Planning a route takes seconds or minutes, and it is careful and costly.</p>
+    <p>A robot is built the same way, and the three layers get numbers.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 180" role="img" aria-label="Three stick figures: walking labelled automatic, catching labelled fast judgement, planning with a map labelled slow and costly.">
+        <g stroke="var(--green)" stroke-width="2.6" fill="none" stroke-linecap="round">
+          <circle cx="60" cy="44" r="10"/><line x1="60" y1="54" x2="60" y2="84"/>
+          <line x1="60" y1="84" x2="47" y2="110"/><line x1="60" y1="84" x2="74" y2="110"/>
+          <line x1="60" y1="64" x2="45" y2="78"/><line x1="60" y1="64" x2="75" y2="78"/></g>
+        <text x="60" y="136" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">Walking</text>
+        <text x="60" y="156" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">automatic</text>
+
+        <g stroke="var(--amber)" stroke-width="2.6" fill="none" stroke-linecap="round">
+          <circle cx="255" cy="44" r="10"/><line x1="255" y1="54" x2="255" y2="84"/>
+          <line x1="255" y1="84" x2="242" y2="110"/><line x1="255" y1="84" x2="269" y2="110"/>
+          <line x1="255" y1="64" x2="282" y2="52"/><circle cx="292" cy="47" r="7"/></g>
+        <text x="258" y="136" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">Catching</text>
+        <text x="258" y="156" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">¼ second</text>
+
+        <g stroke="var(--blue)" stroke-width="2.6" fill="none" stroke-linecap="round">
+          <circle cx="450" cy="44" r="10"/><line x1="450" y1="54" x2="450" y2="84"/>
+          <line x1="450" y1="84" x2="437" y2="110"/><line x1="450" y1="84" x2="464" y2="110"/>
+          <rect x="466" y="56" width="30" height="24" rx="2"/><line x1="473" y1="64" x2="489" y2="73"/></g>
+        <text x="460" y="136" text-anchor="middle" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">Planning</text>
+        <text x="460" y="156" text-anchor="middle" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">slow · costly</text>
+      </svg>
+      <p class="cap">Fig. 1 — the same three speeds exist in people and in robots.</p>
+    </div>
+    <div class="scroll"><table>
+      <tr><th>Layer</th><th>What it is</th><th>How often</th></tr>
+      <tr><td><strong>System 0</strong> — the body</td><td>Balance and walking. Never asked an opinion.</td><td class="n">50 / sec</td></tr>
+      <tr><td><strong>System 1</strong> — quick pick</td><td>A small model choosing the next move.</td><td class="n">2 / sec</td></tr>
+      <tr><td><strong>System 2</strong> — the planner</td><td>A large model. Slow and expensive.</td><td class="n">as rarely as possible</td></tr>
+    </table></div>
+    <p>Because System 2 is slow and expensive, something has to decide when it is worth asking. That decider is called the <strong>harness</strong>. Think of a shift manager: most problems they handle themselves, and now and then they phone the expert — but every call costs money and time.</p>
+    <div class="take"><b>The one job</b><p>Get the most useful work done with the fewest expensive calls. Expensive means a large model, or a human operator.</p></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="lesson">
+  <div class="num">02</div>
+  <div>
+    <h2>Three clocks, each 25× faster than the one above</h2>
+    <p>The layers do not run at the same speed, and what passes between them is tiny.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 260" role="img" aria-label="Three clock faces: thinking twice a second, walking fifty times a second, physics five hundred times a second.">
+        <g stroke="var(--blue)" stroke-width="2.6" fill="none"><circle cx="46" cy="38" r="24"/><line x1="46" y1="38" x2="46" y2="22"/><line x1="46" y1="38" x2="58" y2="46"/></g>
+        <text x="88" y="32" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">2 times a second — THINKING</text>
+        <text x="88" y="52" font-family="var(--body)" font-size="13" fill="var(--ink-2)">"Walk to the counter, or wait for the person?"</text>
+        <text x="88" y="70" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">the only layer any model touches</text>
+
+        <g stroke="var(--amber)" stroke-width="2.6" fill="none"><circle cx="46" cy="130" r="24"/><line x1="46" y1="130" x2="46" y2="114"/><line x1="46" y1="130" x2="62" y2="134"/></g>
+        <text x="88" y="124" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">50 times a second — WALKING</text>
+        <text x="88" y="144" font-family="var(--body)" font-size="13" fill="var(--ink-2)">Turns a speed request into 29 joint angles.</text>
+        <text x="88" y="162" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">trained before this project · frozen · never retrained</text>
+
+        <g stroke="var(--green)" stroke-width="2.6" fill="none"><circle cx="46" cy="222" r="24"/><line x1="46" y1="222" x2="46" y2="206"/><line x1="46" y1="222" x2="59" y2="230"/></g>
+        <text x="88" y="216" font-family="var(--display)" font-weight="700" font-size="15" fill="var(--ink)">500 times a second — PHYSICS</text>
+        <text x="88" y="236" font-family="var(--body)" font-size="13" fill="var(--ink-2)">Motors push, gravity pulls, feet hit the floor.</text>
+        <text x="88" y="254" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">plain maths · no learning at all</text>
+      </svg>
+      <p class="cap">Fig. 2 — the decision layer's entire vocabulary is "how fast" and "which way".</p>
+    </div>
+    <p>A decision says <em>"go slowly"</em>. That becomes three numbers — forward, sideways, turn. Those become 29 joint angles, fifty times a second. <strong>No model ever moves a leg.</strong></p>
+    <div class="take"><b>Why it matters</b><p>Everything below the thinking layer is old-fashioned robotics that already worked. We deliberately never touch it, because if the walking breaks, nothing above it can be measured.</p></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="lesson">
+  <div class="num">03</div>
+  <div>
+    <h2>The harness has six slots, and one is empty</h2>
+    <p>The harness is not one thing. It is six jobs, and each can be swapped for a different implementation without touching the others. That is what makes competing methods comparable — they are usually just different choices in one slot.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 210" role="img" aria-label="Six slots: memory, staleness, enumerator, scorer, governor filled, and planner empty.">
+        <g font-family="var(--body)" font-size="13">
+        <rect x="4" y="8" width="200" height="56" rx="3" fill="var(--green-soft)" stroke="var(--green)"/>
+        <text x="18" y="32" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">Memory</text>
+        <text x="18" y="52" fill="var(--ink-2)">remembers what it saw</text>
+        <rect x="218" y="8" width="200" height="56" rx="3" fill="var(--green-soft)" stroke="var(--green)"/>
+        <text x="232" y="32" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">Staleness</text>
+        <text x="232" y="52" fill="var(--ink-2)">has the world changed?</text>
+        <rect x="432" y="8" width="204" height="56" rx="3" fill="var(--green-soft)" stroke="var(--green)"/>
+        <text x="446" y="32" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">Enumerator</text>
+        <text x="446" y="52" fill="var(--ink-2)">lists what is possible</text>
+
+        <rect x="4" y="76" width="200" height="56" rx="3" fill="var(--green-soft)" stroke="var(--green)"/>
+        <text x="18" y="100" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">Scorer</text>
+        <text x="18" y="120" fill="var(--ink-2)">ranks the choices</text>
+        <rect x="218" y="76" width="200" height="56" rx="3" fill="var(--green-soft)" stroke="var(--green)"/>
+        <text x="232" y="100" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">Governor</text>
+        <text x="232" y="120" fill="var(--ink-2)">when to phone the expert</text>
+        <rect x="432" y="76" width="204" height="56" rx="3" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-dasharray="7 5"/>
+        <text x="446" y="100" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--amber)">Planner — EMPTY</text>
+        <text x="446" y="120" fill="var(--ink-2)">holds the recipe</text>
+
+        <text x="4" y="168" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">FILLED — code that runs today, mostly measured in past experiments</text>
+        <text x="4" y="190" font-family="var(--mono)" font-size="11" fill="var(--amber)">EMPTY — the one slot with no implementation and no evidence</text>
+        </g>
+      </svg>
+      <p class="cap">Fig. 3 — five slots have working code; the sixth is the whole current project.</p>
+    </div>
+    <div class="take"><b>Take</b><p>The parts have only ever been tested one at a time. Filling the last slot is what allows the complete machine to run end to end — which has not been done yet.</p></div>
+  </div>
+</section>
+
+<div class="part"><b>Part II</b><span>The field</span></div>
+
+<!-- 4 -->
+<section class="lesson">
+  <div class="num">04</div>
+  <div>
+    <h2>Two acronyms differ by one letter and one idea</h2>
+    <p>A <strong>VLM</strong> is a Vision-Language Model: it looks, and it talks. Photo plus question goes in, words come out.</p>
+    <p>A <strong>VLA</strong> is a Vision-Language-<em>Action</em> model: it looks, and it moves. The same machine, retrained so that instead of words it produces motor commands. That one swap is the entire difference.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 178" role="img" aria-label="A vision-language model turns a photo and question into words; a vision-language-action model turns a photo and instruction into motor commands.">
+        <g font-family="var(--body)" font-size="12.5">
+        <text x="4" y="16" font-family="var(--mono)" font-size="11" fill="var(--blue)">VLM — it looks, and it talks</text>
+        <rect x="4" y="26" width="152" height="46" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/>
+        <text x="18" y="46" fill="var(--ink-2)">a photo</text><text x="18" y="63" fill="var(--ink-2)">+ a question</text>
+        <path d="M164 49 L196 49" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M190 44 L197 49 L190 54" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <rect x="204" y="26" width="132" height="46" rx="3" fill="var(--blue-soft)" stroke="var(--blue)"/>
+        <text x="218" y="55" fill="var(--ink)">the model</text>
+        <path d="M344 49 L376 49" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M370 44 L377 49 L370 54" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <rect x="384" y="26" width="252" height="46" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/>
+        <text x="398" y="46" fill="var(--ink-2)">words back:</text><text x="398" y="63" fill="var(--ink)">"a mug, on the left"</text>
+
+        <text x="4" y="112" font-family="var(--mono)" font-size="11" fill="var(--amber)">VLA — it looks, and it moves</text>
+        <rect x="4" y="122" width="152" height="46" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/>
+        <text x="18" y="142" fill="var(--ink-2)">a photo</text><text x="18" y="159" fill="var(--ink-2)">+ an instruction</text>
+        <path d="M164 145 L196 145" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M190 140 L197 145 L190 150" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <rect x="204" y="122" width="132" height="46" rx="3" fill="var(--amber-soft)" stroke="var(--amber)"/>
+        <text x="218" y="143" fill="var(--ink)">same model,</text><text x="218" y="160" fill="var(--ink-2)">retrained</text>
+        <path d="M344 145 L376 145" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M370 140 L377 145 L370 150" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <rect x="384" y="122" width="252" height="46" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/>
+        <text x="398" y="142" fill="var(--ink-2)">motor commands:</text><text x="398" y="159" fill="var(--ink)">"arm here, grip closed"</text>
+        </g>
+      </svg>
+      <p class="cap">Fig. 4 — two more words: a <em>frontier model</em> just means one of the very biggest. A <em>foundation model</em> means one trained on everything, meant to be adapted.</p>
+    </div>
+    <p>There is an awkward part nobody has solved. A big model takes roughly a tenth of a second to answer; a leg needs commands fifty times a second. So an action model does not answer continuously — it hands over a whole <strong>chunk</strong> of about fifty moves at once.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 74" role="img" aria-label="Twenty small bars representing a chunk of about fifty pre-decided moves.">
+        <g fill="var(--crim)" opacity="0.45">
+          <rect x="4" y="10" width="10" height="26" rx="2"/><rect x="19" y="10" width="10" height="26" rx="2"/><rect x="34" y="10" width="10" height="26" rx="2"/><rect x="49" y="10" width="10" height="26" rx="2"/><rect x="64" y="10" width="10" height="26" rx="2"/><rect x="79" y="10" width="10" height="26" rx="2"/><rect x="94" y="10" width="10" height="26" rx="2"/><rect x="109" y="10" width="10" height="26" rx="2"/><rect x="124" y="10" width="10" height="26" rx="2"/><rect x="139" y="10" width="10" height="26" rx="2"/><rect x="154" y="10" width="10" height="26" rx="2"/><rect x="169" y="10" width="10" height="26" rx="2"/><rect x="184" y="10" width="10" height="26" rx="2"/><rect x="199" y="10" width="10" height="26" rx="2"/><rect x="214" y="10" width="10" height="26" rx="2"/><rect x="229" y="10" width="10" height="26" rx="2"/><rect x="244" y="10" width="10" height="26" rx="2"/><rect x="259" y="10" width="10" height="26" rx="2"/><rect x="274" y="10" width="10" height="26" rx="2"/><rect x="289" y="10" width="10" height="26" rx="2"/>
+        </g>
+        <text x="312" y="29" font-family="var(--body)" font-size="13" fill="var(--ink-2)">≈ 50 moves, all decided in advance</text>
+        <text x="4" y="62" font-family="var(--body)" font-size="13" fill="var(--ink)">During the whole chunk the robot is <tspan font-weight="600">blind</tspan>. If a person steps forward halfway through, it finishes anyway.</text>
+      </svg>
+      <p class="cap">Fig. 5 — this is exactly why something else has to watch while the chunk runs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="lesson">
+  <div class="num">05</div>
+  <div>
+    <h2>Five camps, arguing about what the bottleneck is</h2>
+    <p>The field splits into five bets. Most real companies hedge across two or three, and these labels are mine rather than theirs.</p>
+    <div class="scroll"><table>
+      <tr><th>Camp</th><th>The bet</th><th>Who, roughly</th></tr>
+      <tr><td><strong>One big model</strong><br>camera in, motors out</td><td>Scale and data solve it.</td><td>Physical Intelligence, Google DeepMind's robotics line, Tesla</td></tr>
+      <tr><td><strong>Split brain</strong><br>slow planner over fast controller</td><td>No single model is both smart and fast.</td><td>Figure's Helix, 1X, most humanoid startups</td></tr>
+      <tr><td><strong>Classic engineering</strong><br>learned pieces bolted on</td><td>Don't throw away what already works.</td><td>Boston Dynamics' heritage, industrial arms</td></tr>
+      <tr><td><strong>Search at decision time</strong><br>freeze the model, spend compute</td><td>The model is good enough; the structure isn't.</td><td>SAIL, Q-Planning — and this project</td></tr>
+      <tr><td><strong>World models</strong><br>learn to dream, practise in the dream</td><td>The bottleneck is real robot hours.</td><td>Nvidia, General Intuition, and a role at Reflex</td></tr>
+    </table></div>
+    <div class="take warn"><b>Caveat</b><p>My picture of who sits in which camp runs to about May 2026. Nine months is a long time here. Check before quoting any of it.</p></div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="lesson">
+  <div class="num">06</div>
+  <div>
+    <h2>The price of one smart thought just collapsed</h2>
+    <p>A short answer from a very large model went from about a second to roughly <span class="num-hl">17 ms</span> — sixty times faster. That kills the old objection that big models are too slow for robots. But only for short answers.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 210" role="img" aria-label="A long bar for one second a year ago and a tiny bar for seventeen milliseconds this month; then reading is fast, writing is slow.">
+        <rect x="4" y="8" width="470" height="26" rx="3" fill="var(--crim)" opacity="0.35"/>
+        <text x="486" y="26" font-family="var(--mono)" font-size="12" fill="var(--ink-2)">≈ 1 second</text>
+        <text x="4" y="52" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">a year ago</text>
+        <rect x="4" y="66" width="10" height="26" rx="3" fill="var(--green)" opacity="0.6"/>
+        <text x="26" y="84" font-family="var(--mono)" font-size="12" fill="var(--ink)">17 ms — for a SHORT answer</text>
+        <text x="4" y="110" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">this month</text>
+
+        <rect x="4" y="128" width="306" height="74" rx="3" fill="var(--green-soft)" stroke="var(--green)"/>
+        <text x="18" y="150" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">READING is fast</text>
+        <text x="18" y="170" font-family="var(--body)" font-size="12.5" fill="var(--ink-2)">The model reads the whole question at once,</text>
+        <text x="18" y="188" font-family="var(--body)" font-size="12.5" fill="var(--ink-2)">like scanning a page. This got 60× faster.</text>
+
+        <rect x="326" y="128" width="310" height="74" rx="3" fill="var(--crim-soft)" stroke="var(--crim)"/>
+        <text x="340" y="150" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">WRITING is slow</text>
+        <text x="340" y="170" font-family="var(--body)" font-size="12.5" fill="var(--ink-2)">One word at a time, each waiting on the last,</text>
+        <text x="340" y="188" font-family="var(--body)" font-size="12.5" fill="var(--ink-2)">like longhand. No trick fixes this.</text>
+      </svg>
+      <p class="cap">Fig. 6 — so "which of these five is best?" got sixty times cheaper, and "write me a full motion plan" did not.</p>
+    </div>
+    <div class="take"><b>The consequence</b><p>A recipe is a short answer that unfolds into a long behaviour. You pay the cheap price and get the expensive thing. That is not a clever trick — it is the only shape that fits what actually got faster.</p></div>
+  </div>
+</section>
+
+<div class="part"><b>Part III</b><span>The trick, and the catch</span></div>
+
+<!-- 7 -->
+<section class="lesson">
+  <div class="num">07</div>
+  <div>
+    <h2>Ask several times, keep the best one</h2>
+    <p>The old way: ask the model once, do what it says, be right about one time in four. The new trick does not touch the model at all. Ask it three times, let a judge pick the best answer, and be right three times in four.</p>
+    <p>Three independent research groups published this in one week of September 2026, on three different kinds of model. The model never changed. Only the structure around it did.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 230" role="img" aria-label="The model produces three answers; a judge picks the best and gets three in four right; with eyes closed, nobody has measured the result.">
+        <g font-family="var(--body)" font-size="12.5">
+        <text x="4" y="16" font-family="var(--mono)" font-size="11" fill="var(--green)">THE TRICK</text>
+        <rect x="4" y="26" width="118" height="44" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/><text x="18" y="53" fill="var(--ink)">the model</text>
+        <rect x="150" y="14" width="96" height="24" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="162" y="31" fill="var(--ink-2)">answer A</text>
+        <rect x="150" y="42" width="96" height="24" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="162" y="59" fill="var(--ink-2)">answer B</text>
+        <rect x="150" y="70" width="96" height="24" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="162" y="87" fill="var(--ink-2)">answer C</text>
+        <g stroke="var(--ink-3)" stroke-width="1.5" fill="none"><path d="M122 46 L148 26"/><path d="M122 49 L148 54"/><path d="M122 52 L148 82"/></g>
+        <rect x="272" y="36" width="116" height="44" rx="3" fill="var(--amber-soft)" stroke="var(--amber)"/><text x="284" y="56" fill="var(--ink)">a JUDGE picks</text><text x="284" y="72" fill="var(--ink-2)">the best</text>
+        <path d="M248 58 L268 58" stroke="var(--ink-3)" stroke-width="1.5"/>
+        <path d="M392 58 L414 58" stroke="var(--ink-3)" stroke-width="1.5"/>
+        <rect x="422" y="36" width="214" height="44" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="436" y="56" fill="var(--ink)">right 3 times in 4</text><text x="436" y="72" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">same model, up from 1 in 4</text>
+
+        <text x="4" y="134" font-family="var(--mono)" font-size="11" fill="var(--crim)">THE TEST NOBODY RAN</text>
+        <rect x="4" y="144" width="118" height="44" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/><text x="18" y="171" fill="var(--ink)">the model</text>
+        <rect x="150" y="132" width="96" height="24" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/><text x="162" y="149" fill="var(--ink-2)">answer A</text>
+        <rect x="150" y="160" width="96" height="24" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/><text x="162" y="177" fill="var(--ink-2)">answer B</text>
+        <rect x="150" y="188" width="96" height="24" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/><text x="162" y="205" fill="var(--ink-2)">answer C</text>
+        <g stroke="var(--ink-3)" stroke-width="1.5" fill="none"><path d="M122 164 L148 144"/><path d="M122 167 L148 172"/><path d="M122 170 L148 200"/></g>
+        <rect x="272" y="154" width="116" height="44" rx="3" fill="var(--crim-soft)" stroke="var(--crim)"/><text x="284" y="174" fill="var(--ink)">pick one with</text><text x="284" y="190" fill="var(--ink)">eyes CLOSED</text>
+        <path d="M248 176 L268 176" stroke="var(--ink-3)" stroke-width="1.5"/>
+        <path d="M392 176 L414 176" stroke="var(--ink-3)" stroke-width="1.5"/>
+        <rect x="422" y="154" width="214" height="44" rx="3" fill="var(--amber-soft)" stroke="var(--amber)"/><text x="436" y="174" fill="var(--ink)">right how often?</text><text x="436" y="190" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">none of the three checked</text>
+        </g>
+      </svg>
+      <p class="cap">Fig. 7 — if picking blindly also gets three in four, the judge did nothing and the gain came from simply trying more times.</p>
+    </div>
+    <div class="take"><b>What we found</b><p>We ran that test. Picking the best beat picking blindly by a clear margin, and it came out the same way in all ten repeat experiments. A small result — and one nobody else has.</p></div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="lesson">
+  <div class="num">08</div>
+  <div>
+    <h2>Why one experiment can fool you</h2>
+    <p>Measure your height with a stretchy tape and you read 150 cm or 158 cm depending on how hard you pull. One reading tells you nothing about a small difference.</p>
+    <p>Our robot experiment behaves exactly like that tape. We ran the identical experiment ten times, changing nothing except random luck.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 170" role="img" aria-label="Ten dots spread across a wide band on a line, showing how far the same experiment's answer moves from luck alone.">
+        <line x1="20" y1="104" x2="620" y2="104" stroke="var(--rule)" stroke-width="1.5"/>
+        <text x="20" y="128" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">worse</text>
+        <text x="576" y="128" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">better</text>
+        <g fill="var(--crim)">
+          <circle cx="132" cy="72" r="6"/><circle cx="182" cy="72" r="6"/><circle cx="228" cy="72" r="6"/><circle cx="258" cy="72" r="6"/><circle cx="276" cy="72" r="6"/><circle cx="298" cy="72" r="6"/><circle cx="330" cy="72" r="6"/><circle cx="356" cy="72" r="6"/><circle cx="394" cy="72" r="6"/><circle cx="442" cy="72" r="6"/>
+        </g>
+        <line x1="132" y1="44" x2="442" y2="44" stroke="var(--crim)" stroke-width="2"/>
+        <line x1="132" y1="37" x2="132" y2="51" stroke="var(--crim)" stroke-width="2"/>
+        <line x1="442" y1="37" x2="442" y2="51" stroke="var(--crim)" stroke-width="2"/>
+        <text x="196" y="28" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">the same experiment, ten times</text>
+        <text x="132" y="156" font-family="var(--body)" font-size="13" fill="var(--ink-2)">Ten answers. They spread this wide from luck alone.</text>
+      </svg>
+      <p class="cap">Fig. 8 — the spread is <span class="num-hl">22 points</span> on the main measure, and <span class="num-hl">45 points</span> on how often the robot falls.</p>
+    </div>
+    <p>Our own first single run made the effect look <strong>45% bigger</strong> than it really was. We only found out by repeating it.</p>
+    <div class="take warn"><b>The rule this gives you</b><p>If somebody claims an improvement smaller than that spread, they have not shown you anything. The three famous results each report one run, with no spread measured at all. That is not a refutation — it is a question nobody, including them, can currently answer.</p></div>
+  </div>
+</section>
+
+<div class="part"><b>Part IV</b><span>What we are building</span></div>
+
+<!-- 9 -->
+<section class="lesson">
+  <div class="num">09</div>
+  <div>
+    <h2>Ask for a recipe, not an instruction</h2>
+    <p>Ask the expert for one instruction — <em>"turn left now"</em> — and it fits that exact moment only. Take a step and it is useless, so you phone again, and again.</p>
+    <p>Ask for a recipe — <em>"walk to the counter; if someone is in the way, wait; then pick up the cup"</em> — and a few lines with an "if" and a "repeat" cover a whole family of situations. One call, many steps. And unlike an instruction, a recipe can be filed away and reused.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 200" role="img" aria-label="A recipe box feeds new situations; a hit is free, a miss costs a phone call. A falling curve shows calls per job dropping as the box fills.">
+        <g font-family="var(--body)" font-size="12.5">
+        <rect x="4" y="8" width="176" height="80" rx="3" fill="var(--blue-soft)" stroke="var(--blue)"/>
+        <text x="18" y="30" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">The recipe box</text>
+        <text x="18" y="50" fill="var(--ink-2)">"someone in the doorway"</text>
+        <text x="18" y="67" fill="var(--ink-2)">"object on the table"</text>
+        <text x="18" y="84" fill="var(--ink-2)">"person walking at me"</text>
+        <path d="M188 48 L214 48" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M208 43 L215 48 L208 53" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <rect x="222" y="8" width="164" height="80" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/>
+        <text x="236" y="30" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">New situation</text>
+        <text x="236" y="52" fill="var(--ink-2)">Does a saved recipe</text><text x="236" y="69" fill="var(--ink-2)">already cover this?</text>
+        <path d="M394 36 L420 28" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M414 24 L421 28 L415 33" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <path d="M394 62 L420 70" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M414 66 L421 70 L414 75" fill="none" stroke="var(--ink-3)" stroke-width="1.6"/>
+        <rect x="428" y="10" width="140" height="34" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="442" y="32" fill="var(--ink)">YES → free</text>
+        <rect x="428" y="54" width="140" height="34" rx="3" fill="var(--amber-soft)" stroke="var(--amber)"/><text x="442" y="76" fill="var(--ink)">NO → phone</text>
+
+        <line x1="30" y1="188" x2="290" y2="188" stroke="var(--rule)" stroke-width="1.5"/>
+        <line x1="30" y1="112" x2="30" y2="188" stroke="var(--rule)" stroke-width="1.5"/>
+        <polyline points="38,120 78,142 126,162 190,176 272,182" fill="none" stroke="var(--blue)" stroke-width="2.5"/>
+        <text x="46" y="112" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">calls</text>
+        <text x="180" y="182" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">jobs done →</text>
+        <text x="312" y="130" font-family="var(--display)" font-weight="700" font-size="14" fill="var(--ink)">The one number we measure</text>
+        <text x="312" y="152" fill="var(--ink-2)">Expert calls per job finished. It should fall</text>
+        <text x="312" y="169" fill="var(--ink-2)">as the box fills. If it does not, we say so.</text>
+        </g>
+      </svg>
+      <p class="cap">Fig. 9 — a plain count, not a score we invented.</p>
+    </div>
+    <div class="take warn"><b>The hard part</b><p>Deciding when two situations count as "the same". Too loose and you pull the wrong recipe; too strict and the box never fills. That is the real puzzle, and everything rests on it.</p></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="lesson">
+  <div class="num">10</div>
+  <div>
+    <h2>"Training on itself" means three different things</h2>
+    <p>People use one phrase for three unrelated mechanisms. Keeping them apart matters, because only one of them is learning.</p>
+    <div class="scroll"><table>
+      <tr><th></th><th>What happens</th><th>Status</th></tr>
+      <tr><td><strong>Copying the expert</strong></td><td>Record the big model's answers a thousand times, then train the small model to give the same ones. Like an apprentice watching a master. The small model's weights really do change.</td><td>done</td></tr>
+      <tr><td><strong>Remembering</strong></td><td>File a recipe so you never have to ask again. Nothing inside any model changes. A library catalogue does not read the books.</td><td>this is the recipe box — <strong>not learning</strong></td></tr>
+      <tr><td><strong>Improving from your own wins</strong></td><td>Keep what worked, train on it, repeat. Powerful, and dangerous: a system grading its own homework drifts.</td><td>not built, not planned</td></tr>
+    </table></div>
+    <p>There is a trap in the first one that everyone hits once. The apprentice only ever saw the master's situations. Once it drives, one small error puts it somewhere the master never was, where it has no idea what to do — and the next error is bigger.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 120" role="img" aria-label="A straight line showing where the master drove and a diverging dashed line showing where the apprentice ends up.">
+        <circle cx="30" cy="30" r="5" fill="var(--ink-2)"/>
+        <path d="M30 30 C140 30 260 30 400 30" fill="none" stroke="var(--green)" stroke-width="2.6"/>
+        <text x="408" y="34" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">where the master drove</text>
+        <path d="M30 30 C150 38 260 66 400 100" fill="none" stroke="var(--crim)" stroke-width="2.6" stroke-dasharray="7 5"/>
+        <text x="408" y="104" font-family="var(--mono)" font-size="11" fill="var(--ink-3)">where the apprentice ends up</text>
+      </svg>
+      <p class="cap">Fig. 10 — the fix: let the apprentice drive, and have the master say what it would have done <em>there</em>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="lesson">
+  <div class="num">11</div>
+  <div>
+    <h2>Try to destroy the idea before building it</h2>
+    <p>Before writing any code: write one recipe by hand, and run it on all twenty situations. If it already solves most of them, nobody needs an expensive planner and there is nothing here. Better to learn that in an afternoon than after three days of building.</p>
+    <p>Six ways this can fail, all of them real, all written down <em>before</em> the numbers arrive:</p>
+    <div class="scroll"><table>
+      <tr><th>#</th><th>Failure</th><th>What it would mean</th></tr>
+      <tr><td class="n">1</td><td>Too easy</td><td>One recipe solves everything. The test was never hard enough to need a brain.</td></tr>
+      <tr><td class="n">2</td><td>Impossible to write</td><td>No recipe works, because every moment genuinely needs its own judgement.</td></tr>
+      <tr><td class="n">3</td><td>The box never fills</td><td>Every situation needs its own recipe, so you phone just as often.</td></tr>
+      <tr><td class="n">4</td><td>Too small to see</td><td>The saving is real but smaller than the measurement spread. Unprovable.</td></tr>
+      <tr><td class="n">5</td><td>Can't tell situations apart</td><td>The robot cannot recognise which recipe fits. Now it is a seeing problem, not ours.</td></tr>
+      <tr><td class="n">6</td><td>A wrong recipe hurts more</td><td>A bad single move spoils one moment. A bad recipe spoils a whole family.</td></tr>
+    </table></div>
+    <div class="take warn"><b>Number 3 is the one I expect</b><p>The last time this project cached decisions instead of recipes, the box never filled — 35, then 36, then 41 new situations every round, forever. The whole bet is that recipes generalise where decisions did not.</p></div>
+    <p>Writing these down first is the only thing that makes them real. Decide what counts as failure <em>after</em> seeing the numbers, and you will always find a way to call it a win.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="lesson">
+  <div class="num">12</div>
+  <div>
+    <h2>Never switch it all on at once</h2>
+    <p>Turn everything on together and a good result tells you nothing about which part caused it. Instead, build a ladder: start with no model at all, and add exactly one piece per rung.</p>
+    <div class="fig">
+      <svg viewBox="0 0 640 300" role="img" aria-label="A ladder of seven rungs from a hand-written recipe with no model up to the governor, each adding one piece.">
+        <g stroke="var(--rule)" stroke-width="2.5" fill="none" stroke-linecap="round"><line x1="52" y1="288" x2="76" y2="20"/><line x1="470" y1="288" x2="494" y2="20"/></g>
+        <g font-family="var(--body)" font-size="13">
+        <rect x="58" y="258" width="406" height="30" rx="3" fill="var(--rule-2)" stroke="var(--rule)"/><text x="72" y="278" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">0 ·</tspan>  hand-written recipe, no model at all</text>
+        <text x="482" y="278" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">dumb baseline</text>
+        <rect x="62" y="216" width="406" height="30" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="76" y="236" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">1 ·</tspan>  + quick-pick model chooses each move</text>
+        <rect x="66" y="174" width="406" height="30" rx="3" fill="var(--green-soft)" stroke="var(--green)"/><text x="80" y="194" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">2 ·</tspan>  + expensive planner asked every step</text>
+        <text x="486" y="194" font-family="var(--mono)" font-size="10.5" fill="var(--ink-3)">the ceiling</text>
+        <rect x="70" y="132" width="406" height="30" rx="3" fill="var(--amber-soft)" stroke="var(--amber)"/><text x="84" y="152" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">3 ·</tspan>  + planner writes a recipe instead</text>
+        <text x="490" y="152" font-family="var(--mono)" font-size="10.5" fill="var(--amber)">NEW</text>
+        <rect x="74" y="90" width="406" height="30" rx="3" fill="var(--amber-soft)" stroke="var(--amber)"/><text x="88" y="110" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">4 ·</tspan>  + recipes filed in a box and reused</text>
+        <text x="494" y="110" font-family="var(--mono)" font-size="10.5" fill="var(--amber)">NEW</text>
+        <rect x="78" y="48" width="406" height="30" rx="3" fill="var(--blue-soft)" stroke="var(--blue)"/><text x="92" y="68" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">5 ·</tspan>  + notice when a recipe has gone stale</text>
+        <rect x="82" y="6" width="406" height="30" rx="3" fill="var(--blue-soft)" stroke="var(--blue)"/><text x="96" y="26" fill="var(--ink)"><tspan font-family="var(--mono)" font-size="11">6 ·</tspan>  + decide when to phone again</text>
+        </g>
+      </svg>
+      <p class="cap">Fig. 11 — compare each rung with the one below it, against the measured spread.</p>
+    </div>
+    <div class="take"><b>Every rung must earn its place</b><p>If turning a piece off changes nothing, that piece is decoration and it gets removed. Nothing above rung 2 has ever been run. The ladder is not a plan for succeeding — it is a plan for finding out where it breaks.</p></div>
+  </div>
+</section>
+
+<footer>
+  <h3>How to use these</h3>
+  <p>Each lesson is one idea with one number. The numbers are measured on our own simulator, not quoted from papers — where a figure comes from someone else's work it is named as theirs.</p>
+  <p>The uncomfortable parts are stated in the same plain language as the rest. That is deliberate: hedged language around the weak parts is how a reader gets misled, and the weak parts are where a careful reader is actually paying attention.</p>
+</footer>
+
+</div>

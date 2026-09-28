@@ -2,40 +2,49 @@
 
 Anurag Akkiraju · September 2026 · MIT
 
-**The gap.** A robot fleet with people supervising it runs on hand-written rules, and rules only cover the situations someone thought of in advance. New situations arrive every day, and a person covers them until an engineer writes the rule.
+**Robots are improving fast, and the models are not the bottleneck.** A robot that does the job 95 % of the time breaks
+something every week, and nobody can tell you which 5 %, why, or what it costs per hour. That gap is paid for in people
+watching, and the people are the margin.
 
-**The bet, and what happened to it.** The bet was a small calibrated decision model in the seat between the robot's policy and the person: shown the situation in plain words and a list of options code wrote, it picks one and says how sure it is, with a probability that means what it says.
+**The field already agrees where the gains come from.** Five separate groups published it this year: freeze the big model
+and build structure around it. A search loop takes one system from 25 % to 73 %. A small value head over a frozen policy
+takes a real bimanual task from 25 % to 80 %. Three data and inference levers take a deployed picker from 37 s to 9.4 s at
+95 % success across 500 real runs per condition.
 
-To test that bet I had to build everything around the seat — a planner that holds the target, an enumerator that decides which options exist, a governor that owns safety and when to involve a person, an executor that moves the body, and a recorder that turns every decision into training data. **Most of what determined the outcome turned out to be that scaffolding, not the model sitting in the seat.** The model's contribution is real and it is bounded: it buys the window before a rule exists, and its number has to be earned per model rather than assumed from an interface. The surprises are all one layer out.
+**And almost nobody measures whether the structure worked.** One group publishes a real humanoid in a real apartment with
+**zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %. A leading lab states
+it plainly: robotics has no equivalent of "check the answer, run the tests", so success detectors are hand-built per task
+or a person watches, and neither scales. **Of twenty-two papers and systems read for this record, seventeen report nothing
+about their own uncertainty at all.**
 
-So this is a report on a **supervision harness**, measured layer by layer, in which a calibrated decision model is one component whose value is stated with its price. That is a smaller claim than the bet and a more useful one, because it survives the bet being wrong.
+**This is that measurement.** A supervision harness, measured layer by layer — a planner that holds the target, an
+enumerator that decides which options exist, a governor that owns safety and when to involve a person, an executor that
+moves the body, and a recorder that turns every decision into training data. A small **calibrated decision model** sits in
+one seat of it: shown the situation in plain words and a list of options code wrote, it picks one and says how sure it is.
+**Most of what determined the outcome turned out to be the scaffolding, not the model in the seat** — which is a smaller
+claim than the one this started with, and a more useful one, because it survives the original bet being wrong.
 
-**Measured.** Four simulated setups and one real dataset, 165 pre-registered experiments, every one against the rule program an engineer would write first and against an oracle that knows the truth. The misses are in the record, and roughly one scored result in four is negative.
+### Three numbers, if you read nothing else
+
+| | |
+|---|---|
+| **A correction is worth what it is written down as, not how much of it you have.** | The same operator takeovers recorded as a **veto** rescue 14 of 60 situations on a bank the corrections never touched. Recorded as the **replacement action**, they rescue **zero**. |
+| **The improvement loop quietly eats its own safety net.** | Six correction rounds: calibration error **.362 → .008** where you corrected, and **.307 → .399** where you did not, while the operator's veto window falls from rescuing 34 of 60 to none. **A falling intervention rate is not evidence of a safer fleet.** |
+| **Escalation is priced by how many robots share an operator.** | 18 of 20 situations handled at one robot per operator; **13 of 20 at eight**, because the queue outlasts the robot's patience. Every operator-seconds figure here was measured at one-to-one and says so. |
 
 ![A human-sized humanoid carries a cup to Maya, who is on a call. Left, the rules hand it to her anyway. Middle, the rules rewritten with hindsight wait. Right, the calibrated judge waits until she looks up.](figures/demo-g1-seed42-phone-rules-vs-judge.gif)
 
 *Same seed, same body. Maya asked for the cup; a note says she is on a call. Left, the frozen rules hand it over. Middle, the same rules after their author saw the situation. Right, the judge waits while she is on the call and hands over when she looks up. The label bar carries each arm's live decision, its stated confidence, and what it holds.*
 
-**In one minute.** Robot fleets that are not yet fully autonomous run with people watching: a hand-written rule program decides when the robot acts on its own and when a person takes over. Rules only cover the situations someone thought of in advance. This project measures what a different kind of model does in that seat: a **calibrated decision model**, a small model that is shown the situation in plain words and a short list of options that code wrote, picks one, and says how sure it is with a probability that means what it says. The training method is called **RLCD** (reinforcement learning from calibrated decisions); TypeSafe's **Jev** is the first such model, and it is the "judge" in every result below. An example: a human-sized robot is carrying a cup to Maya, who asked for it, and an operator's note says she is on a call and must not be handed anything until she looks up. The rule program hands her the cup. The judge waits.
+**Measured.** Four simulated setups and one real dataset, 165 pre-registered experiments, every one against the rule
+program an engineer would write first and against an oracle that knows the truth. **Roughly one scored result in four is
+negative, and the misses stay in the record next to 42 logged mistakes of our own.** Two claims were narrowed this week
+rather than defended, and four results were withdrawn outright. That record is the asset: anyone can publish a number,
+and almost nobody publishes the four ways theirs was nearly wrong.
 
-We measured this on four simulated setups and one real dataset, always against the same two baselines: a **rule program** written for the situations we anticipated and frozen before the tests, and an **oracle**, code that reads the true state. The setups are a **sorting cell** (an arm sorting parts with a person's hand nearby), the **duck** (a small two-legged robot in a room with a person), the **humanoid** (a human-sized robot fetching and handing over an object among people) and a **picking station** (a warehouse picker with a remote helper, at decision level with no physics). Every prediction was written down before its run; the misses stay in the record with the hits, next to 39 logged mistakes of our own.
-
-**The biggest thing wrong with all of it, stated up front.** Every "situation no rule was written for" in this programme was
-invented by the same person who wrote the rule program that fails on it, and who wrote the scoring sets that judge both. That
-is a real conflict and it sits underneath the first finding below. Since 25 September it is being tested rather than
-confessed: a second author with no access to this repository, which has never seen the rule program, the banks, the scoring
-sets or any result, wrote a bank of its own, and every arm is being scored on it with the predictions registered in advance
-(E158). It immediately found a hole none of the four benches had: every operator's note ever written here **supplements**
-what the robot can see, and none of them **contradicts** it. **It has now fallen, and the claim survived**: on that bank the
-judge handles 48 of 60 situations against the frozen rules' 24, and on the two written by the author that had never seen the
-rules, 24 of 24 against 12. **Corrected the same day (method error 55):** one of those situations was scored on the right
-action without requiring the robot to finish, and two arms did the right thing and then ran for two minutes. Requiring the
-ending, the judge takes **36 of 60**, the rules still 24, and the fleet's own corrected copy, at 37, is **above the judge**. Read it as *not overturned* rather than *confirmed*, because it is five situations and not sixty
-independent trials. It also cost the claim something: the situation both authors independently thought of is one that
-nothing here handles, and one of our own findings from that bank was withdrawn within the hour: the
-veto window looked like it destroyed a situation, until the decision records showed the arm had never picked the object up,
-so the judgment it appeared to fail was never exercised. A human author's bank is still open and is still the strongest
-version.
+**The conflict at the centre of it, and what was done about it, are in
+[How to read this record](#how-to-read-this-record) and [Where this sits in the field](#where-this-sits-in-the-field)** —
+including the two places where somebody else got there first, and the CoRL 2024 paper whose loop is the same as claim 3's.
 
 Four findings, in plain words:
 - **Where no rule was written, the judge handles the situation and the rules do not; once the rule is written, the rules win.** So the judge's value is the time before a rule exists, plus a number the operator can spend during that time. We measured that time: the rules' author closed the gap in minutes once shown the situations.
@@ -350,19 +359,24 @@ lab's dense open 27B, through an identical typed readout, come back at **.253, .
 similarly badly calibrated, not two hundredths against a half. **On this decision, miscalibration is a property of the task
 rather than of the model.** A two-parameter recalibration on **twenty-five** labels fixes it for all three (.027, .033,
 .068), and afterwards the two TypeSafe models are indistinguishable in decision cost (2.02 against 2.00 per run) while the
-open model is **17 % worse** — real, and a fifth of what recalibration itself buys, which is 5.86 down to 2.02. **So the
-seat needs a model that ranks, plus twenty-five labels; it does not need a particular model, and the loop is the product.**
+open model is **17 % worse** — real, and a fifth of what recalibration itself buys, which is 5.86 down to 2.02. **So on a decision
+where the models rank alike, the seat needs a model that ranks plus twenty-five labels rather than a particular model, and
+the loop is the product.** **The qualifier is load-bearing and was added 28 September**: on a long-horizon fetch bench where
+the models do *not* rank alike, an open CLM-8B scores 65 % task-correct against the calibrated model's 35 %, is the first
+arm other than the oracle to complete a hand-over, and cuts violations from 24 to 9 — while spending 264 operator-seconds
+against 84. Where models differ, the model matters a great deal. **Whether CLM ranks better or merely acts better is
+untested, and those are different products.**
 What still separates the seats is operational rather than judgemental: the open model is **6× slower** at 632 ms a call,
 outside a 2 Hz layer entirely, and it spends its worse calibration as the robot's time (69 verifications against 44) rather
 than as mistakes, all three taking the same two irreversible losses. And the honest bound on the whole comparison is that a
 logistic regression fitted on 400 labels still beats every model in the seat, at AUROC 1.000 and calibration error .013, so
 what a calibrated model buys here is **arriving already knowing the ordering**, not knowing it better.
-*Results 1, 2, 3, 15, 20, 26.*
+*Results 1, 2, 3, 15, 20, 28.*
 
 **3. The fleet can own the judgment, and the operator's intervention is the mechanism.** *(Recorder → corrections.)* Distil the judge into a model the
 robot runs, then correct it from takeovers the fleet is already paying for. What the intervention is turned into decides
 what is learned: a veto teaches the model to ask, the operator's replacement action teaches it the cheapest right thing — but only on the distribution you corrected: claim 4's amendment measures that same label rescuing nothing on a bank the corrections never touched, so "cheapest right thing" is an in-distribution property.
-After three rounds the fleet's own model is the best arm on the bench, above the teacher it came from. *Results 4, 8, 16.*
+After three rounds the fleet's own model is the best arm on the bench, above the teacher it came from. **Prior work, named because it is the same idea and it came first:** Sirius-Fleet (Liu et al., CoRL 2024, arXiv 2410.22689) builds a visual world model, trains a failure classifier on human-intervention labels and an OOD detector on its embeddings, gates an ask-a-human on them, and runs three deployment rounds across 600 simulated and 200 real Franka trials, reaching above 95 % combined with the autonomous policy improving 13 % in simulation and 45 % in the real world. **The loop in this claim is theirs.** What is added here is the discipline in claim 4 — a bank the corrections never touch, scored every round — and a specific consequence of not having it: **their monitor's threshold adapts as a function of the human intervention ratio**, and our six-round curve shows that rate falling while calibration off-distribution degrades from .307 to .399, so a threshold keyed to it loosens the monitor exactly as the monitor stops deserving trust. *Results 4, 8, 16.*
 
 **4. The loop quietly eats its own safety net, and the net is recoverable.** *(Recorder → corrections.)* Correcting a model makes its number honest where you corrected and steadily
 dishonest where you did not. Over six rounds the operator's veto window went from rescuing thirty-four lines in sixty to
@@ -471,6 +485,65 @@ Four conditions, all measured, three of them established by experiments that fai
 this should check their own deployment against the four before assuming the 95 %-for-18 % number
 transfers.
 
+## Where this sits in the field
+
+Written 28 September after reading every link this programme has been sent: 52 posts, 20 papers, and a dozen project
+pages. The per-source record is [notebook/JOURNAL-CLUB.md](notebook/JOURNAL-CLUB.md); the argument is
+[notebook/FIELD-STATE.md](notebook/FIELD-STATE.md). Three categories, and only the first is uncomfortable.
+
+### Prior work — they got there first, and the claims above are narrowed to say so
+
+- **Sirius-Fleet** (Liu et al., **CoRL 2024**, arXiv 2410.22689). A visual world model, a failure classifier trained on
+  human-intervention labels, an OOD detector, gating an ask-a-human over three deployment rounds. 600 simulated and 200
+  real Franka trials, >95 % combined. **Claim 3's loop is theirs.** Claim 3 now says so.
+- **Failure-Aware Bimanual Teleoperation** (arXiv 2602.01092). A conservative risk score with a head predicting
+  irreversible failure within H steps, driving graded haptic assistance that stays transparent at low risk. 10 tasks,
+  40 trials each. **A calibrated risk estimate gating an intervention, on real hardware, before us.**
+
+### Convergent — arrived at independently, by us and by others, which is the good kind of agreement
+
+- **Structure beats weights.** SAIL takes 25 → 73 % with a frozen model and a search loop; Q-Planning 25 → 80 % on a real
+  robot with a small value head over a frozen policy; Argon 37.3 s → 9.4 s at 95.2 % over 500 real runs per condition;
+  GaP 0.95–0.99 where π0.5 sits at 0.15–0.78; Goal2Skill 32.4 % against 9.8 %. **Five groups, five methods, one shape**,
+  and it is the shape this programme was built on.
+- **Rules win where they were written.** Argon's own data says it; GaP's hand-engineered baseline beats their system
+  0.99 to 0.95 on the repetitive task. We found it on the duck bench and it bounds every claim here to *transfer* rather
+  than *performance*.
+- **Speed was never the bottleneck.** IMLE-VLA at 55 Hz, CLM at 9× Jev, an open 27B at 18.6 ms. We measured inference at
+  **8.8 % of episode time** before any of them shipped, and demoted the argument accordingly.
+- **Success detection is unsolved.** Dong & Finn state it plainly: robotics has no equivalent of verifiable rewards, and
+  detectors are hand-built per task or a human watches. We then measured a calibrated detector **failing** at it (.662,
+  worse than believing the robot's own report).
+- **The environment is the hard part, not the body.** Pathak's Moravec framing; our zero-model arm finds it per bench.
+- **Nobody randomises actuator gains.** We measured gains at 21 % of falls against mass's 3 % and friction's 0 %, then
+  read NVIDIA's Isaac Lab and MuJoCo Playground source and found neither randomises them.
+- **"Reason slowly once, execute quickly many times"** (Isola). The best one-line description of this architecture, and
+  a practitioner wrote it, not us.
+
+### Not found elsewhere in the corpus — what this record actually adds
+
+- **The form of the correction is the lever, not its volume.** The same operator takeovers written as a **veto** rescue
+  14 of 60 lines on a bank the corrections never touched; written as the **replacement action** they rescue **zero**.
+- **The loop erodes its own safety net off-distribution.** Six rounds: calibration .362 → .008 where corrected, .307 →
+  **.399** where not, while the veto window falls from rescuing 34 of 60 to none. **A falling intervention rate is not
+  evidence of a safer fleet** — which is exactly the quantity Sirius-Fleet's threshold is keyed to.
+- **Escalation is priced by the operator-to-robot ratio.** 18 of 20 at 1:1, 13 of 20 at 1:8, because the queue outlasts
+  the robot's patience. Every operator-seconds figure here was measured at 1:1 and says so.
+- **The option set is a resource and the option text is nearly free.** Every intervention that pruned the set hurt;
+  cutting option text by 96 % to bare skill names *improved* the outcome and halved the decisions.
+- **Calibration costs 25 labels where fitting costs 500 — and does not transfer.** On a grounding decision the model
+  arrived with the ordering right and needed 25 labels for the scale; on episode-success detection the same recipe made
+  things **worse**, 74 % → 38 %. Recalibration is a multiplier on ranking quality, not a substitute for it.
+- **A per-decision number cannot see a sequence-level failure.** One episode spent 37 seconds — three quarters of its
+  length — livelocked beside a person with **confidence flat at .52–.66 throughout**. This is a ceiling on the whole
+  approach and it is stated rather than discovered by a reader.
+- **The apparatus itself.** A preflight that refuses a bench where a zero-model arm succeeds, dose gates that refuse an
+  intervention that cannot change an outcome, and a seat-qualification test that costs an afternoon and says whether a
+  model belongs in a given seat at all. **Of twenty-two sources with enough substance to judge, seventeen report nothing
+  on uncertainty**; of the five that do, none tests whether the number survives into a runtime decision a threshold can
+  spend.
+
+
 ## The core results
 
 Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are seed-matched bootstraps. Evidence pointers name the experiment in the [lab notebook](notebook/LAB-NOTEBOOK.md) and the [claims ledger](notebook/CLAIMS.md).
@@ -527,6 +600,24 @@ Numbers are on held-out seeds with Wilson 95 % intervals; paired differences are
 26. **The learned gate does not survive a bank we did not write, and the outcome score could not see it.** Asked by a reader how hard we had really tested novelty, the honest answer was that the gate had only ever met banks this programme designed. Run against the independent bank, it skips **65 percent** of decisions instead of 36, and the choice it reuses is acceptable **9 percent** of the time instead of 85. The mechanism was registered before the run: unfamiliar facts drop silently out of its vocabulary, so it scores on the half of the situation it recognises and is confident about that. **And handled did not move at all** — 36 of 60, identical to making no skips — because three of that bank's five situations are flat across every arm, two handled by all and one by none, so its resolving power is twenty-four episodes rather than sixty and the gate's gain on one discriminating situation cancelled its loss on the other. Had only the outcome count been available, the conclusion would have been that the gate transfers fine. It does not transfer at all. — E163; three of five predictions held, one not scoreable.
 
 27. **What does a robot that does nothing score, and what does a coin score?** Nobody here had ever asked systematically, and the check costs one line. **Doing nothing scores nowhere** once an episode is required to end, which confines the criterion defect in result 14 to a single situation. **But acting at random passes two of the independence bank's five situations outright**, including the one result 20 called unhandleable: chance asks the operator by accident within four decisions while making unacceptable choices half the time. So handled now requires three things, and the third is measured rather than chosen: the outcome, the episode ending, and a decision-quality rate above the chance floor for that same situation. Under it, random falls from 24 of 60 to **6**, doing nothing stays at **0**, the frozen rules and the oracle do not move at all, and the cloud judge falls from 48 to **25**. A scoring rule that cannot separate a real arm from a coin is not a scoring rule. — E164.
+
+28. **Three models in one seat, and the differences between them are a fifth of what twenty-five labels buy.** the author's
+standing objection was that nothing here proves an RLCD-style model is needed in the decision seat, and it was correct.
+On an embodied grounding decision — commit to what the recogniser reports, or walk closer and look again, where committing
+wrongly puts an object in the bin and cannot be undone — two TypeSafe models and a different lab's dense open 27B go
+through one identical typed readout. All three **rank** the shaky cases correctly (.996, .993, .906 AUROC). All three are
+**similarly badly calibrated** out of the box: **.253, .249, .192**, not the two-hundredths-against-a-half span this
+programme's calibration claim was built on. On this decision miscalibration is a property of the task rather than of the
+model. A two-parameter recalibration on **twenty-five** labels fixes it for all three (.027, .033, .068), and afterwards
+the two TypeSafe models are indistinguishable in decision cost — **2.02 against 2.00** per run — while the open model is
+**17 percent** worse. Recalibration itself is worth **5.86 down to 2.02**, so the gap between models is a fifth of the gap
+the loop closes. **The seat needs a model that ranks, plus twenty-five labels; it does not need a particular model.** What
+still separates them is operational: the open model is **6× slower** at 632 ms a call, outside a 2 Hz layer entirely, and
+it spends its worse calibration as the robot's time — **69 verifications against 44** — rather than as mistakes, all three
+taking the same two irreversible losses. The bound on all of it: a logistic regression fitted on **400** labels beats every
+model in the seat (AUROC 1.000, calibration error .013), so what a calibrated model buys here is **arriving already knowing
+the ordering**, not knowing it better. — E195, E196; two of five predictions held, and the one that failed was the one this
+programme most wanted.
 
 ![Figure 13: the picking station, unwritten lines handled and safe per arm, and the written lines with seconds and operator seconds per line](figures/fig13-picking-station.png)
 
@@ -618,7 +709,7 @@ Calibrated arms read `TYPESAFE_API_KEY` from the environment (`jev-latest`; `CEL
 Not because a frontier vision-language model judges worse. The seat has four requirements and a frontier model in it fails three.
 
 1. **Speed, which is a threshold already cleared rather than an advantage we are still buying.** The seat decides every half second while the body moves, and three seconds of injected think time costs the judge eleven of its twenty-nine unwritten situations and doubles near-contacts (E105). **Amended 26 September, against ourselves:** inference is under twelve percent of the episode in every arm we run, and the judge's twenty-seven-second penalty against the frozen rules is only four and a half seconds of thinking. About eighty-three percent of it is decisions taken and operator seconds spent. Make the model infinitely fast and the penalty barely moves. So if frontier-scale models reach real time, as people working on prefill expect, this leg does not weaken, it disappears. We should not lead with it, and the honest open question is whether a fast frontier model carries a calibrated number on its own states, which is leg 2 and is not settled by speed.
-2. **The number.** Every operator-time saving here comes from a probability that means the same thing every time: propose and wait one second for a veto, gate only the unflagged surprises. This kind of model returns a probability per option as its native output, and it holds on the states its own actions create (D7, D8). A frontier model generates text; its confidence is a sentence. The nearest test we could afford, a dense open 27B behind the identical interface, kept the accuracy and drifted the number by .135 (D4, D7).
+2. **The number.** Every operator-time saving here comes from a probability that means the same thing every time: propose and wait one second for a veto, gate only the unflagged surprises. This kind of model returns a probability per option as its native output, and it holds on the states its own actions create (D7, D8). A frontier model generates text; its confidence is a sentence. The nearest test we could afford, a dense open 27B behind the identical interface, kept the accuracy and drifted the number by .135 (D4, D7). **Amended 27 September, against ourselves:** "the number is right out of the box" is not a property of the class, it is a property of the class **and the task**. On an embodied grounding decision both TypeSafe models came back at **.253 and .249** calibration error, and a different lab's open 27B at **.192** — all three similarly wrong, with no span to point at (E196). What actually distinguished them is one step further back: the native output is a probability **vector** over the options, and the ordering inside it was already correct (.996, .993, .906 AUROC), so **twenty-five** labels and two parameters brought all three to .027–.068 and cut decision cost from 5.86 to 2.02. A frontier model's sentence gives you nothing to recalibrate. So the honest form of this leg is **not** "our number is true and theirs is prose"; it is **"ours is a distribution, so twenty-five labels make it true, and prose cannot be corrected at any price."** And the bound stays in view: a logistic regression on **400** labels beat every model in that seat, so what this class buys is arriving with the ordering, not owning it.
 3. **Cost.** A fraction of a cent per decision against cents, at on the order of a hundred thousand decisions per robot per day.
 4. **Ownership.** The judgment distils into a 421M model the fleet owns, retrains from its operators' corrections, and runs on the robot for free (E91c, E103). Nobody owns a frontier model.
 
@@ -674,4 +765,4 @@ Everything positive about the decision loop is measured in simulation we built, 
 
 **How this could be unfair, and what we did about it.** (1) The rule programs are ours, written before each unseen bank and frozen while the judge's inputs improved across rounds; that asymmetry is the hypothesis (a judge uses a new fact without a rewrite), and a rule author given the same rounds would keep the anticipated bank and could not touch the unseen one without seeing it. (2) The unseen situations favour reading: two of the humanoid's three and one of the duck's three live in an operator's note; the counterweights are the reaching child (rules 10/10, judge 0/10), the crossing adult (rules win) and the cell's unflagged surprises with no note (E83). (3) The owned copy learns our own acceptable sets and is tested on fresh seeds of the same situations, so its parity with the teacher is within-situation; generalisation to situations it was never corrected on is untested. (4) The instruments changed between rounds after seeing results; every change was pre-registered before the next run and the rules and oracle were re-run on the same instrument each time, but it is bench iteration informed by the judge's failures. (5) The open 27B's probability came through a readout we built; the drift result is about an untrained readout, not the best an open model could do with training. (6) Ten episodes per situation: differences of one or two are noise, and the claims rest on the large effects. (7) Done on 2026-09-21 (E114): the rules written a second time by their author after seeing the unseen banks handle 29 of 30 on the duck (the judge's number) and 30 of 30 on the humanoid (the judge: 20), in under fifteen minutes per body; so every unseen-bank comparison here reads "before anyone wrote the rule", and the judge's value is time-to-rule plus a calibrated number, not accuracy after the fact. The banks' author wrote the fixes, so the minutes are a lower bound and the scores an upper bound on a stranger's; a second designer's bank is the open test.
 
-MIT licence. Third-party: `third_party/jev-drone` (MIT), RelateAnything weights (fetched, not stored). Anurag Akkiraju, 2026.
+MIT licence. Third-party: `third_party/jev-drone` (MIT), **ROBOTIS AI Worker (FFW) MuJoCo models (Apache-2.0), from [robotis_mujoco_menagerie](https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie) — vendored unmodified, provenance in `third_party/robotis_ffw/PROVENANCE.md`**, MuJoCo Playground and MuJoCo Menagerie (Apache-2.0), HomeBody scanned assets (from the project page), RelateAnything weights (fetched, not stored). Anurag Akkiraju, 2026.

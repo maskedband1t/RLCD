@@ -1,0 +1,16 @@
+{
+  "git": "51b6f36",
+  "git_dirty": true,
+  "env": {
+    "DUCK_BODY": "g1",
+    "DUCK_CONTACT": "1",
+    "DUCK_HEAD": "results/duck/head_g1_r2",
+    "USE_TF": "0",
+    "PYTHONPATH": "src",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "DUCK_DEVICE": "mps"
+  },
+  "config_sha": "bb8eb978799c"
+}

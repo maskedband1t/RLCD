@@ -18890,3 +18890,162 @@ mistakes; the irreversible losses are identical at 2 for all three.
 a model is needed at all, because the fitted logistic on 400 labels still posts AUROC 1.000 and ECE .013 — better than any
 of them. The defensible claim remains the one E195 established: what the model buys is arriving already knowing the
 ordering, so 25 labels finish the job where code needs hundreds to start it.
+
+### E197 results (2026-09-27 14:32 PDT). The 25-label mechanism does NOT transfer to a success detector.
+
+100 held-out episodes, 62 % of which actually succeeded, and **the robot's own end-of-task report is wrong on 26 % of them.**
+
+| detector | labels | accuracy | AUROC | ECE |
+|---|---|---|---|---|
+| trust the robot's report (what is done today) | 0 | 74.0 % | **.838** | .260 |
+| logistic on the same observed features | 200 | **97.0 %** | **.999** | **.038** |
+| calibrated model, zero-shot | 0 | 74.0 % | **.662** | .287 |
+| calibrated model + 25 labels | 25 | **38.0 %** | .662 | **.412** |
+
+| prediction | result | verdict |
+|---|---|---|
+| E197.1 zero-shot ranks above .85 | **.662** | ✗ |
+| E197.2 zero-shot ECE above .15 | .287 | ✓ |
+| E197.3 25 labels bring ECE under .05 | **.412, worse than raw** | ✗ |
+| E197.4 a fitted logistic beats it on ranking | .999 against .662 | ✓ |
+
+**Three things, and the first is the one that matters.**
+
+**1. The E195 mechanism is not general.** On the grounding decision the model arrived with the ordering essentially perfect
+(.997) and needed 25 labels only for the units. Here **the ordering is poor (.662)** — worse than simply believing the
+robot's own report (.838). Platt scaling preserves order, so when the order is wrong there is nothing to rescue, and
+**"25 labels per task" is not supported as a general claim.** It was a claim about one decision type and it stays that way
+until shown otherwise.
+
+**2. Recalibrating a bad ranker is actively harmful.** Accuracy fell from 74 % to **38 %** and calibration error rose from
+.287 to .412. Twenty-five labels applied confidently to a wrong ordering is worse than the raw model and worse than doing
+nothing. **Recalibration is a multiplier on ranking quality, not a substitute for it**, and any recipe built on it needs
+the ranking checked first as a gate.
+
+**3. The task is easy for code and hard for the model, which is the reverse of the grounding bench.** A logistic over
+twelve features derived from the same observed report reaches .999 and 97 % accuracy. Whatever separates a truthful report
+from an optimistic one lives in fields the model is not combining and a linear model is.
+
+**Consequence for the memory/staleness plan drafted an hour ago, taken immediately.** That plan leaned on the 25-label
+mechanism transferring. This says transfer is not free, so **the first thing built must be the cheapest possible gate: does
+the model rank STALENESS zero-shot?** Staleness ("is this belief still true") is structurally closer to the grounding
+question ("do these measurements identify this object", .997) than to the episode-level judgement tested here (.662), but
+that is an argument and not a measurement. If staleness ranks like .66, the plan is dead and it should die for the price of
+one afternoon rather than after a bench is built on it.
+
+## Bench 9 · the aisle, built to the end-to-end spec (2026-09-27 18:08 PDT)
+
+An 18 m aisle, a cart at one end, six shelf slots at 14–19 m, 0.35 m/s so a round trip is ~100 s, **one carry slot** so
+six trips are forced, and **the cart is not visible from the shelf or the shelf from the cart** — which makes memory a
+requirement rather than a feature. Six items, two fragile, one heavy that blocks the item behind it, and a manifest
+carrying a **duplicate entry** that sends the tin to the crate's slot when it belongs elsewhere.
+
+**Four gates passed before any number was produced, and every one caught a defect:**
+
+| gate | what it caught |
+|---|---|
+| do the events change outcomes | the "ignores everything" arm was byte-identical to the baseline — method error 64's third appearance |
+| does travel dominate | the teleport control was broken: free travel scaled speed past the fragility threshold and shattered every fragile item |
+| does order matter | spread of **zero** across six orders, until the manifest carried a duplicate |
+| is it winnable | it is; the reference clears the job where the rule program hits the 20-minute cap |
+
+Two more surfaced during the build. Twelve seeds were producing near-identical episodes (**method error 77**, caught
+before it cost anything this time), fixed by having some slots already hold existing stock so the **achievable maximum
+varies by seed**. And the real one: **there was no way to put an item back.** An arm facing an unusable slot had no
+terminating action and thrashed to the cap — 1139 wasted trips. A missing action, not a bad policy.
+
+### What it discriminates, five events × twelve seeds
+
+| arm | jobs done | delivered right | operator s | robot s |
+|---|---|---|---|---|
+| ignores events | 3/60 | 150 / 325 | 0 | 1170 |
+| frozen rule program | 3/60 | 150 / 325 | 0 | 1170 |
+| careful reference | **20/60** | **275 / 325** | 0–520 | 1052 |
+
+### The operator now answers, and asking still earns nothing. That is the finding.
+
+`ask_operator()` used to cost 8 s and return nothing, so escalation was untestable. It now serves **typed factual
+questions** — what is this item, is that slot free, where did the dropped one go — and returns the truth into memory with
+a timestamp and `source="operator"`. The queue mechanism works exactly as the operator-ratio result predicts: timeouts
+go **0 → 30 → 55** as the fleet goes 1 → 4 → 8, and at eight robots the reference stops asking because the wait exceeds
+its patience.
+
+**And across all three fleet sizes, `never_asks` (20/60) is as good as or better than `always_asks` (19/60) and the
+reference.** Three attempts to make asking pay, including making the arm read only what it was told rather than ground
+truth and act on the answer *before* walking 15 m, moved the outcome by at most one episode and one second.
+
+**Why, and this is the part worth keeping.** Every uncertainty on this bench is either **cheaply self-resolvable** —
+`inspect()` costs 3 s against an ask's 8 s plus queue — or **unresolvable**: an occupied slot means that item cannot be
+delivered correctly no matter who says what. So no question exists whose answer changes what is *achievable*, only what
+is *known*.
+
+**The operator is valuable for authority, not for facts.** A robot can usually find out a fact more cheaply than it can
+ask. What it cannot do is decide whether deviating from the manifest is permitted, whether an item may be skipped, or
+whether a substitution is acceptable — those change what is achievable because they change the rules. **Escalation
+questions must be permissions and judgements, not lookups**, and the current question set is the wrong set. That is a
+design correction to the escalation slot rather than a tuning problem, and it is the next change to the bench.
+
+### METHOD ERROR 81 · I read one row of a table and described the table (2026-09-28 02:30 PDT)
+
+Reporting the vendored FFW model's contact setup I wrote that *"friction and solver parameters are present and ordinary"*.
+I had printed `m.geom_friction[0]` — **one geom's** friction — and generalised to all sixty-five.
+
+The harness session checked and the table has two rows, which I then verified independently:
+
+| collidable geoms | slide | spin | roll |
+|---|---|---|---|
+| 32 | 1.0 | 0.005 | 0.0001 |
+| **3 — one per wheel** | **5.0** | **1.0** | **0.3** |
+
+**The wheels are purpose-tuned**, with high slide friction and real spin and roll terms, which is what steering without
+skidding requires. Calling that "ordinary" inverted the most important property of the model for its intended use: the
+wheel-ground interaction is the thing a wheeled robot's entire motion depends on, and somebody set it deliberately.
+
+**The error is the same species as several this week** — sampling one element and describing the set. It is what
+`predicted_dist` did when it read the real person list instead of the reported one, and what the seed audit found when
+twenty-five seeds turned out to be twelve situations. **The fix is mechanical: when reporting a per-element property of a
+model, print the distinct values and their counts, never element zero.**
+
+A second, smaller one caught in the same exchange: my stage-1 check *"the base holds still under zero command"* would have
+**failed on every healthy run**, because I specified it as base height and a wheeled robot's free-joint origin sits at
+wheel level — height drops 0.150 → 0.003 at spawn as it settles onto its wheels. Measured as the base up-axis against z,
+drift is 0.0000 m and the dot product is 1.000. **A check written against the wrong quantity is worse than no check**,
+because it manufactures a failure and invites someone to "fix" a healthy model.
+
+### METHOD ERROR 82 · I described an artefact from its paper, for the third time (2026-09-28 02:54 PDT)
+
+I listed the X-Planner benchmark as **"somebody else's labelled takeovers, which is exactly what the correction loop
+consumes"**, and put it in `DROP-INS.md` as a drop-in for the one slot we cannot fill ourselves. The harness session
+downloaded it. **The release contains no takeover labels of any kind.**
+
+Inspected: `data/episodes.parquet` — 1,500 rows, 15 columns (id, instruction, task, source_dataset, duration, camera
+count, task class, scene, two target subtasks, five view fields). `metadata/manifest.jsonl` — 23 keys, all listed, none
+of them about interventions. **No takeover times, no failure labels, no intervention records, in either file.** What it
+actually is: 1,500 episodes of human-written subtask decomposition with synchronized multi-view video. Good planner
+training data. No human takeovers in it.
+
+**The source of the error:** the paper says *"takeover-time annotations and human-designed failures supervise error
+recognition"*, that sentence reached me through a fetch summary, and I wrote it into two documents as a property of the
+released dataset. **The paper and the release are not the same object**, and checking cost a 5.8 MB download and five
+minutes.
+
+### This is the third instance and it is now a rule
+
+| | what I asserted | from | what was true |
+|---|---|---|---|
+| **error 69** | HomeBody's code is public | the project page | the repo says "Code coming soon" |
+| **error 81** | the FFW model's friction is "ordinary" | `geom_friction[0]` | the wheels carry 5.0/1.0/0.3 against a 1.0/0.005/0.0001 default |
+| **error 82** | the X-Planner benchmark has takeover labels | the paper's own sentence | the release has none |
+
+**The rule, adopted:** *a claim about what an artefact **contains** must come from the artefact.* A paper's description of
+its release, a project page's description of its repository, and element zero of an array are all descriptions. Fetch the
+thing, list its keys, count its rows. In all three cases the check was minutes and the claim had already been written into
+two or more documents.
+
+**Consequence, and it is not bad news.** The correction data has to be **generated** rather than fetched — and we already
+generate it. The bench records every `ask_operator`, the oracle's answer and the outcome that followed;
+`results/duck/train.jsonl` carries operator seconds and ask counts per episode with the full per-decision action log, at
+~80 transitions a second, **94,569 transitions on disk**. So the loop's input is ours to make, which means it is ours to
+define — and given that this programme's strongest single finding is that **the form of a correction is the lever**
+(a veto rescues 14 of 60 where the replacement action rescues none), defining what counts as a correction is arguably the
+more interesting half of the problem anyway.

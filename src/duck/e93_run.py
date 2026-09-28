@@ -214,7 +214,7 @@ class DuckLaya:
     def __init__(self, tau=None, confirm=False):
         os.environ.setdefault("USE_TF", "0"); import laya, torch
         from duck.head import render_state, question
-        self.render, self.question = render_state, question; _h = os.environ.get("DUCK_HEAD", "results/duck/head_r3"); _d = "mps" if torch.backends.mps.is_available() else "cpu"; self.agent = _shared(("laya", _h, _d), lambda: laya.Agent(_h, device=_d))
+        self.render, self.question = render_state, question; _h = os.environ.get("DUCK_HEAD", "results/duck/head_r3"); _d = os.environ.get("DUCK_DEVICE") or ("mps" if torch.backends.mps.is_available() else "cpu"); self.agent = _shared(("laya", _h, _d), lambda: laya.Agent(_h, device=_d))   # DUCK_DEVICE=cpu: a parallel sweep uses cores instead of contending on one GPU
         self.tau, self.confirm = tau, confirm; self.name = "laya" + os.environ.get("DUCK_HEAD_TAG", "") + ("" if tau is None else (f"_confirm{tau}" if confirm else f"_gate{tau}")); self.calls = 0; self.latency = []; self.errors = 0   # DUCK_HEAD_TAG e.g. "-r4" runs two heads in one results file (E99)
     def decide(self, f, opts, room):
         if len(opts) == 1: k1 = next(iter(opts)); return k1, {"choice": k1, "confidence": 1.0, "probabilities": {k1: 1.0}, "source": "single-option"}
@@ -293,6 +293,15 @@ def make_arm(arm):
     if arm.startswith("rules_mined"):
         a = RulesMined(mined_path(arm)); a.name = arm; return a
     if arm == "oracle": return Oracle()
+    if arm == "frontier" or arm.startswith("frontier:"):   # ladder rung 2: the big model asked every step.
+        from frontier_arm import FrontierArm                # backend via FRONTIER_BACKEND; "cache" cannot bill.
+        return FrontierArm(backend=(arm.split(":", 1)[1] if ":" in arm else None))
+    if arm == "xplanner" or arm.startswith("xplanner+"):   # ladder rung 3: a released planner in the planner slot.
+        from duck.xplanner_arm import XPlannerArm          # "xplanner+jev" picks the inner chooser.
+        return XPlannerArm(inner_name=(arm.split("+", 1)[1] if "+" in arm else "jev"))
+    if arm.startswith("gate+"):   # ladder rung 5: the staleness slot (S1-E16 detector).
+        from duck.gated_arm import GatedArm
+        return GatedArm(inner_name=arm.split("+", 1)[1])
     if arm == "jev": return DuckJev()
     if arm.startswith("jev_gate"): return DuckJev(tau=float(arm[len("jev_gate"):]))
     if arm.startswith("jev_confirm"): return DuckJev(tau=float(arm[len("jev_confirm"):]), confirm=True)

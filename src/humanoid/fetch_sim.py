@@ -2,7 +2,7 @@
 from a table and hands it to the person who asked, through a doorway, with other people in the room. Same contract as the duck
 Room (facts / options / acceptable / run_skill / tally / event_correct), human-scale distances, and the arms' decisions:
 which person receives the object, and when. Code owns every motion; the judge picks among outcomes code can deliver."""
-import os, sys, math, glob, contextlib, numpy as np, mujoco, onnxruntime as rt
+import os, re, sys, math, glob, contextlib, numpy as np, mujoco, onnxruntime as rt
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PG = os.path.join(ROOT, "third_party", "mujoco_playground", "mujoco_playground"); G1_DIR = os.path.join(PG, "_src", "locomotion", "g1"); MEN = os.path.join(ROOT, "third_party", "mujoco_menagerie", "unitree_g1")
 ONNX = os.path.join(PG, "experimental", "sim2sim", "onnx", "g1_policy.onnx")
@@ -56,6 +56,98 @@ def assets():
             if os.path.isfile(f): a[os.path.basename(f)] = open(f, "rb").read()
     return a
 
+# --- method error 76 ---------------------------------------------------------------------------
+# The shipped scene is `scene_mjx_feetonly_flat_terrain.xml`: 5 contact pairs, no body collision at
+# all, so the robot walked through the table, the walls and the people and every "violation" was a
+# code-measured distance predicate. DUCK_CONTACT=1 swaps to the menagerie's full-collision
+# `scene_mjx.xml` (49 pairs, 27 collision primitives; identical nq/nv/nu, joint and actuator order,
+# and the same "knees_bent" keyframe) and flags the props at COMPILE time -- MuJoCo builds each
+# body's BVH midphase tree at compile and silently ignores geoms flagged afterwards.
+#
+#   robot ct=2 ca=4      props ct=4 ca=2
+#   robot x prop  -> (2&2)|(4&4) != 0   collide
+#   prop  x prop  -> (4&2)|(4&2) == 0   no mocap-vs-mocap (static-static contact is a FATAL error)
+#   prop  x floor -> (4&1)|(1&2) == 0   props do not fight the ground plane
+#   robot x robot -> (2&4)|(2&4) == 0   unchanged, still the 49 explicit pairs
+PROP_CT, PROP_CA = 4, 2
+
+# Where the robot must stand to work at the table, derived rather than tuned:
+#   table half-extent along the approach ... 0.40 m
+#   torso collision capsule radius ....... 0.15 m
+#   steer() arrival tolerance ............ 0.30 m  (it stops anywhere inside this)
+# so the target must sit at 0.40 + 0.15 + 0.30 = 0.85 m from the table centre for the WORST arrival
+# still to clear the surface. The old value was 0.70, which permitted arrival at 0.40 -- inside the
+# table. Measured 2026-09-27: with a solid table and the old stand-off the ORACLE delivered 0%.
+STANDOFF = float(os.environ.get("DUCK_TABLE_STANDOFF", "0.90"))
+V_MIN = float(os.environ.get("DUCK_V_MIN", "0.25"))            # gait-stable floor, measured
+COAST_AT_VMIN = float(os.environ.get("DUCK_COAST", "0.244"))   # coast from V_MIN, measured
+
+
+
+# The full-collision scene ships a DIFFERENT solver config from the feet-only training scene
+# (implicitfast / 5 / 8 vs Euler / 3 / 5). The walking policy was trained under the latter, so
+# swapping scenes changes the integrator as well as the collision set -- two variables at once.
+# Pin the solver to the training values so DUCK_CONTACT=1 changes collision and nothing else.
+TRAIN_SOLVER = dict(integrator=0, iterations=3, ls_iterations=5, timestep=0.002)
+
+
+def match_solver(model):
+    model.opt.integrator = TRAIN_SOLVER["integrator"]
+    model.opt.iterations = TRAIN_SOLVER["iterations"]
+    model.opt.ls_iterations = TRAIN_SOLVER["ls_iterations"]
+    model.opt.timestep = TRAIN_SOLVER["timestep"]
+    return model
+
+
+def contact_on():
+    return os.environ.get("DUCK_CONTACT") == "1"
+
+
+def prop(xml_fragment, name="all"):
+    """Give a prop's geoms the room-side mask, if DUCK_CONTACT=1.
+
+    DUCK_CONTACT_PROPS selects which props become solid (default "all"). The skills steer straight at
+    their target with no obstacle avoidance, so making the navigation blockers solid makes the bench
+    unsolvable -- measured 2026-09-27: with everything solid the ORACLE delivers 0% and falls 70%.
+    """
+    if not contact_on():
+        return xml_fragment
+    want = os.environ.get("DUCK_CONTACT_PROPS", "all")
+    if want != "all" and name not in [w.strip() for w in want.split(",")]:
+        return xml_fragment
+    def f(mo):
+        g = mo.group(0)
+        g = re.sub(r'\s+contype="\d+"', "", g)
+        g = re.sub(r'\s+conaffinity="\d+"', "", g)
+        return g[:-2] + f' contype="{PROP_CT}" conaffinity="{PROP_CA}"/>'
+    return re.sub(r"<geom\b[^>]*/>", f, xml_fragment)
+
+
+def solidify_robot(asset_map):
+    """Flag the G1's *_collision primitives before compile (runtime flags are silently ignored)."""
+    if not contact_on():
+        return asset_map
+    out = dict(asset_map)
+    for key in ("g1_mjx.xml", "g1.xml"):
+        if key not in out:
+            continue
+        txt = out[key].decode() if isinstance(out[key], bytes) else out[key]
+        def flag(mo):
+            g = mo.group(0)
+            if "_collision" not in g:
+                return g
+            g = re.sub(r'\s+contype="\d+"', "", g)
+            g = re.sub(r'\s+conaffinity="\d+"', "", g)
+            return g[:-2] + ' contype="2" conaffinity="4"/>'
+        out[key] = re.sub(r"<geom\b[^>]*/>", flag, txt).encode()
+    return out
+
+
+def scene_xml_path():
+    return (os.path.join(MEN, "scene_mjx.xml") if contact_on()
+            else os.path.join(G1_DIR, "xmls", "scene_mjx_feetonly_flat_terrain.xml"))
+
+
 class Person:
     def __init__(self, name, kind, xy, role="other"): self.name, self.kind, self.xy, self.role = name, kind, np.array(xy, float), role; self.v = np.zeros(2); self.mode = "standing"; self.attention = "looking_at_the_robot"; self.has = None; self.mid = None
 
@@ -91,17 +183,17 @@ class Room:
         self.holding = None; self.delivered_to = None; self.withdrawn = False; self.given = False; self.refused = False; self.wrong_handovers = 0; self.near_contact_events = 0; self.child_zone_events = 0; self.door_collisions = 0; self.cut_offs = 0; self.kicks = 0; self.operator_asks = 0; self.door_passes_holding = 0; self.door_child_passes = 0; self.tried_pick_up = 0; self.declared_done = False; self.given_to = None
         self.min_person_dist = 9.9; self._in_contact = False; self._in_zone = False; self._in_door = False; self._in_pass = False; self._in_cpass = False; self.fell = False; self.moving = False; self.fast = False; self.cmd = (0.0, 0.0); self.recent = []; self.last_move_t = 0.0; self.arm_hold = None; self.hold_alpha = 0.0
     def build(self):
-        xml = open(os.path.join(G1_DIR, "xmls", "scene_mjx_feetonly_flat_terrain.xml")).read()
+        xml = open(scene_xml_path()).read()
         people = "".join(f'<body name="{p.name}" mocap="true" pos="{p.xy[0]} {p.xy[1]} 0.85"><geom type="capsule" size="0.22 0.55" rgba="{"0.9 0.5 0.2 1" if p.kind == "child" else "0.3 0.5 0.9 1"}" contype="0" conaffinity="0"/></body>' for p in self.people)
         DOORWAY = ((f'<body name="wall_l" pos="{DOOR_X} 0.62 1.05"><geom name="wall_l_geom" type="box" size="0.07 0.09 1.05" rgba="0.62 0.6 0.58 1" contype="0" conaffinity="0"/></body>'                   f'<body name="wall_r" pos="{DOOR_X} -0.62 1.05"><geom name="wall_r_geom" type="box" size="0.07 0.09 1.05" rgba="0.62 0.6 0.58 1" contype="0" conaffinity="0"/></body>') if POSTS else (f'<body name="wall_l" pos="{DOOR_X} 1.6 1.0"><geom name="wall_l_geom" type="box" size="0.08 1.1 1.0" rgba="0.8 0.8 0.85 1" contype="1" conaffinity="1"/></body>' f'<body name="wall_r" pos="{DOOR_X} -1.6 1.0"><geom name="wall_r_geom" type="box" size="0.08 1.1 1.0" rgba="0.8 0.8 0.85 1" contype="1" conaffinity="1"/></body>'))
-        scene = (f'<body name="table" pos="{TABLE[0]} {TABLE[1]} 0.36"><geom type="box" size="0.4 0.3 0.36" rgba="0.5 0.35 0.2 1" contype="0" conaffinity="0"/></body>'
-                 f'<body name="parcel" pos="{TABLE[0]} {TABLE[1]} 0.8"><freejoint/><geom type="box" size="0.05 0.05 0.06" mass="0.3" rgba="{"0.8 0.2 0.2 1" if self.obj == "scissors" else "0.9 0.9 0.2 1"}" contype="0" conaffinity="0"/></body>' +
-                 DOORWAY +
-                 f'<body name="cart" mocap="true" pos="{DOOR_X} 0 0.5"><geom name="cart_geom" type="box" size="0.3 0.45 0.5" rgba="0.6 0.6 0.6 1" contype="1" conaffinity="1"/></body>' + people)
+        scene = (prop(f'<body name="table" pos="{TABLE[0]} {TABLE[1]} 0.36"><geom type="box" size="0.4 0.3 0.36" rgba="0.5 0.35 0.2 1" contype="0" conaffinity="0"/></body>', "table")
+                 + f'<body name="parcel" pos="{TABLE[0]} {TABLE[1]} 0.8"><freejoint/><geom type="box" size="0.05 0.05 0.06" mass="0.3" rgba="{"0.8 0.2 0.2 1" if self.obj == "scissors" else "0.9 0.9 0.2 1"}" contype="0" conaffinity="0"/></body>' +
+                 prop(DOORWAY, "walls") +
+                 prop(f'<body name="cart" mocap="true" pos="{DOOR_X} 0 0.5"><geom name="cart_geom" type="box" size="0.3 0.45 0.5" rgba="0.6 0.6 0.6 1" contype="1" conaffinity="1"/></body>', "cart") + prop(people, "people"))
         eq = ('<equality><weld name="hold" body1="right_wrist_yaw_link" body2="parcel" active="false" relpose="0.05 0 0 1 0 0 0"/><weld name="shelf" body1="world" body2="parcel" active="true"/>'
               + "".join(f'<weld name="give_{p.name}" body1="{p.name}" body2="parcel" active="false" relpose="0.3 0 -0.2 1 0 0 0"/>' for p in self.people) + '</equality>')
         xml = xml.replace("</worldbody>", scene + "</worldbody>", 1).replace("</mujoco>", eq + "</mujoco>", 1)
-        self.model = mujoco.MjModel.from_xml_string(xml, assets=assets()); self.data = mujoco.MjData(self.model); self.model.opt.timestep = 0.002
+        self.model = mujoco.MjModel.from_xml_string(xml, assets=solidify_robot(assets())); self.data = mujoco.MjData(self.model); self.model.opt.timestep = 0.002; match_solver(self.model)
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.model.keyframe("knees_bent").id)
         pid = self.model.body("parcel").id; jadr = self.model.jnt_qposadr[self.model.body_jntadr[pid]]; self.data.qpos[jadr:jadr + 7] = [TABLE[0], TABLE[1], 0.8, 1, 0, 0, 0]; self.data.qvel[:] = 0
         for p in self.people: p.mid = self.model.body(p.name).mocapid[0]
@@ -130,7 +222,7 @@ class Room:
     def blocked(self): return self.event == "blocked" and self.t < self.blocked_until
     def fallen(self): return self.z() < 0.45
     def destination(self):   # code's own notion of the next place to be (never the judge's)
-        if self.holding is None and self.delivered_to is None and not self.given and not self.refused: return TABLE + np.array([-0.7, 0.0])
+        if self.holding is None and self.delivered_to is None and not self.given and not self.refused: return TABLE + np.array([-STANDOFF, 0.0])
         if self.holding is not None: return self.req.xy + np.array([-1.4, 0.0])
         return self.xy()   # delivered, given, or refused: stay where you are
     # ---- the body
@@ -152,10 +244,21 @@ class Room:
             for _ in range(self.n_sub): mujoco.mj_step(self.model, self.data)
             self.t += self.ctrl_dt; self.step_people(self.ctrl_dt); self.tally()
             if self.fallen(): self.fell = True
+    def body_speed(self):
+        """Measured forward speed of the trunk. The skill table buckets on this because momentum, not
+        position, is what decides whether the next walking step ends in a fall."""
+        import numpy as _np
+        return float(_np.linalg.norm(self.data.qvel[0:2]))
+
     def steer(self, vx, target):
         dt_ = self.dist(target)
         if dt_ < 0.3: self.set_cmd(0, 0); return   # arrived
-        if dt_ < 1.5: vx = min(vx, 0.25)   # decelerate on the approach: a 35 kg body at 0.7 m/s overshoots by a metre
+        # DO NOT "IMPROVE" THIS. Two attempts on 2026-09-27 both made it worse, and both took the oracle
+        # from 100% task-correct to 0%: a 0.10 velocity floor (gait destabilises below ~0.25 m/s), and
+        # proportional velocity (0.45*distance commands 0.63 m/s at 1.4 m out, so it arrives FASTER and
+        # overshoots more). The flat cap works because it slows the body EARLY -- this robot coasts
+        # 0.437 m after the command reaches zero at 0.70 m/s, measured, repeatable to a centimetre.
+        if dt_ < 1.5: vx = min(vx, 0.25)
         err = self.bearing_to(target); wz = max(-0.8, min(0.8, 2.0 * err)); self.set_cmd(vx if abs(err) < 1.2 else 0.0, wz)   # a destination behind you: turn in place first (this body can)
     def run_skill(self, key):
         n = int(round(0.5 / self.cdt)); nc = int(round(DECISION_S / self.cdt)); self.moving = key in ("walk", "walk_slow", "follow_person", "step_around"); self.fast = key == "walk"   # fixed-duration skills use n; the walking skills use the cadence nc
@@ -171,7 +274,7 @@ class Room:
         elif key == "wait": self.set_cmd(0, 0); self.physics(4 * n)
         elif key == "turn_away": b = self.bearing_to(self.nearest().xy); self.set_cmd(0.0, -0.8 if b > 0 else 0.8); self.physics(3 * n); self.set_cmd(0, 0)
         elif key == "pick_up":
-            if PICK_R5 and not PICK_R5C and self.holding is None and self.delivered_to is None and 1.3 <= self.dist(TABLE) < 3.5 and (not PICK_R5B or self.person_dist() > NEAR): self.steer(CMD_SLOW, TABLE + np.array([-0.7, 0.0])); self.physics(nc)   # R5 (E147): the skill owns its approach; R5b (E149): never with a person within the near zone, and the option says so (method error 50)
+            if PICK_R5 and not PICK_R5C and self.holding is None and self.delivered_to is None and 1.3 <= self.dist(TABLE) < 3.5 and (not PICK_R5B or self.person_dist() > NEAR): self.steer(CMD_SLOW, TABLE + np.array([-STANDOFF, 0.0])); self.physics(nc)   # R5 (E147): the skill owns its approach; R5b (E149): never with a person within the near zone, and the option says so (method error 50)
             self.set_cmd(0, 0); self.physics(2 * n)
             if self.holding is None and self.delivered_to is None and self.dist(TABLE) < 1.3:
                 pid = self.model.body("parcel").id; jadr = self.model.jnt_qposadr[self.model.body_jntadr[pid]]; palm = self.data.site_xpos[self.model.site("right_palm").id]

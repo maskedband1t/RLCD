@@ -14,3 +14,7 @@ __pycache__/
 results/duck/head_*/
 results/duck/_duck_train_records.jsonl
 results/cell/laya_*/
+
+# large downloaded artefacts — fetched, not authored (see notebook/working/DROP-INS-verified.md)
+models/xplanner/
+data/xplanner-benchmark/

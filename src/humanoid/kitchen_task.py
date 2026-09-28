@@ -323,7 +323,10 @@ class KitchenTask(FFWKitchen):
             else:
                 self._drive_to(COUNTER)
         elif key == "go_bin":
-            if self.d_bin() < BIN_REACH + 0.2:
+            # S1-E35: face only once ALREADY in range. Switching to "face" at BIN_REACH + 0.2 made
+            # the robot stop driving 7 cm short of the gate and then turn on the spot for the rest of
+            # the episode -- it was always about to arrive and never arrived.
+            if self.d_bin() < BIN_REACH:
                 self._face(BIN_XY)
             else:
                 self._drive_to(BIN_XY)

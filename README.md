@@ -593,9 +593,10 @@ believe.** Four categories, and the last two are the uncomfortable ones.
   approach and it is stated rather than discovered by a reader.
 - **The apparatus itself.** A preflight that refuses a bench where a zero-model arm succeeds, dose gates that refuse an
   intervention that cannot change an outcome, and a seat-qualification test that costs an afternoon and says whether a
-  model belongs in a given seat at all. **Of twenty-two sources with enough substance to judge, seventeen report nothing
-  on uncertainty**; of the five that do, none tests whether the number survives into a runtime decision a threshold can
-  spend.
+  model belongs in a given seat at all. **Of twenty-five sources with enough substance to judge, nineteen report nothing
+  on uncertainty**; of the six that do, only one (Kintsugi-VLA, arXiv 2609.31048) reports it as a measured quantity with
+  intervals rather than consuming it internally, and none tests whether the number survives into a runtime decision a
+  threshold can spend.
 
 
 ## The core results

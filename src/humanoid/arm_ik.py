@@ -16,7 +16,7 @@ ARM_JOINTS = {s: [f"arm_{s}_joint{i}" for i in range(1, 8)] for s in ("l", "r")}
 
 
 class ArmIK:
-    def __init__(self, model, data, side="r", use_lift=True, damping=0.12):
+    def __init__(self, model, data, side="r", use_lift=True, damping=0.08, slide_weight=0.15):
         self.m, self.d, self.side = model, data, side
         self.site = model.site(f"{'right' if side=='r' else 'left'}_palm").id
         names = list(ARM_JOINTS[side]) + (["lift_joint"] if use_lift else [])
@@ -29,39 +29,62 @@ class ArmIK:
             self.lims.append(model.jnt_range[j.id] if model.jnt_limited[j.id] else np.array([-np.pi, np.pi]))
         self.lims = np.array(self.lims)
         self.damping = damping
+        self.slide_weight = slide_weight
 
     def palm(self):
         return self.d.site_xpos[self.site].copy()
 
-    def solve(self, target, iters=220, tol=2e-3, step=0.55):
+    def solve(self, target, iters=260, tol=5e-3, step=0.5, restarts=6):
         """Move the joints so the palm reaches `target`. Returns the final residual in metres.
 
-        Operates on a scratch copy so a failed solve leaves the live state untouched — a caller that
-        cannot reach should not be left with a half-extended arm."""
+        WEIGHTED damped least squares. S1-E34: the lift is a SLIDER in metres while the arm joints are
+        HINGES in radians, so the lift's Jacobian column is ~1 m per unit against ~0.4 m per radian for
+        a hinge. An unweighted solve therefore rides the lift to its limit -- nailing the target's
+        HEIGHT exactly and never using the arm for x/y. Measured symptom: palm at [1.284, 1.306, 0.975]
+        for a target at [1.51, 2.00, 0.975], i.e. z exact and 73 cm out horizontally, with the palm
+        BEHIND the base. W de-weights the lift so the arm does the reaching.
+
+        Restarts because DLS is a local method and the shoulder has a large null space: a target near
+        the edge of the envelope is easy to approach from a bad initial pose and impossible to finish.
+
+        Operates on a scratch copy, so a failed solve leaves the live state untouched.
+        """
         m = self.m
-        d = mujoco.MjData(m)
-        d.qpos[:] = self.d.qpos
-        d.qvel[:] = 0
-        mujoco.mj_forward(m, d)
+        n = len(self.dofs)
+        W = np.ones(n)
+        for i, jid in enumerate(self.jids):
+            if m.jnt_type[jid] == mujoco.mjtJoint.mjJNT_SLIDE:
+                W[i] = self.slide_weight
+        rng = np.random.RandomState(0)
         tgt = np.asarray(target, float)
-        jacp = np.zeros((3, m.nv))
-        jacr = np.zeros((3, m.nv))
-        for _ in range(iters):
+        jacp = np.zeros((3, m.nv)); jacr = np.zeros((3, m.nv))
+        best_q, best_res = None, np.inf
+        q_start = self.d.qpos[self.qadr].copy()
+        for attempt in range(restarts):
+            d = mujoco.MjData(m)
+            d.qpos[:] = self.d.qpos
+            d.qvel[:] = 0
+            if attempt:                       # perturb within limits, keep the first try deterministic
+                lo, hi = self.lims[:, 0], self.lims[:, 1]
+                d.qpos[self.qadr] = np.clip(q_start + rng.uniform(-1.2, 1.2, n) * (hi - lo) * 0.25, lo, hi)
+            for _ in range(iters):
+                mujoco.mj_forward(m, d)
+                err = tgt - d.site_xpos[self.site]
+                if np.linalg.norm(err) < tol:
+                    break
+                mujoco.mj_jacSite(m, d, jacp, jacr, self.site)
+                J = jacp[:, self.dofs] * W                    # weighted columns
+                A = J @ J.T + (self.damping ** 2) * np.eye(3)
+                dq = (J.T @ np.linalg.solve(A, err)) * W * step
+                d.qpos[self.qadr] = np.clip(d.qpos[self.qadr] + dq, self.lims[:, 0], self.lims[:, 1])
             mujoco.mj_forward(m, d)
-            err = tgt - d.site_xpos[self.site]
-            if np.linalg.norm(err) < tol:
+            res = float(np.linalg.norm(tgt - d.site_xpos[self.site]))
+            if res < best_res:
+                best_res, best_q = res, d.qpos[self.qadr].copy()
+            if best_res < tol:
                 break
-            mujoco.mj_jacSite(m, d, jacp, jacr, self.site)
-            J = jacp[:, self.dofs]                       # 3 x n over the joints we control
-            JT = J.T
-            # damped least squares: dq = J^T (J J^T + lambda^2 I)^-1 e
-            A = J @ JT + (self.damping ** 2) * np.eye(3)
-            dq = JT @ np.linalg.solve(A, err) * step
-            q = d.qpos[self.qadr] + dq
-            d.qpos[self.qadr] = np.clip(q, self.lims[:, 0], self.lims[:, 1])
-        mujoco.mj_forward(m, d)
-        self.q = d.qpos[self.qadr].copy()
-        return float(np.linalg.norm(tgt - d.site_xpos[self.site]))
+        self.q = best_q
+        return best_res
 
     def apply(self, ctrl_map, act):
         """Write the solved joint angles to the position actuators."""

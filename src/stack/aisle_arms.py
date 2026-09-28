@@ -222,6 +222,44 @@ class Reference:
         return sorted(opts)[0]
 
 
+def gate_no_dead_options(seeds=range(6)):
+    """Kill condition 5: no reachable state may offer only actions that change nothing.
+
+    Added after METHOD ERROR 83. 45 % of episodes on this bench used to end standing at the cart with `look()` as the
+    only legal action -- a two-second no-op -- burning to the 1200 s cap. Every arm read as livelocked and not one of
+    them was: the option set was the failure. This gate is the bench-specific wiring of `preflight.no_dead_options`, and
+    it runs with the other four because the defect it catches is invisible in the results it corrupts."""
+    import copy as _copy
+    from stack.preflight import no_dead_options
+
+    def sig(st, action):
+        r = _copy.deepcopy(st)
+        if action is not None:
+            r.run(action)
+        return (round(r.x, 2), r.holding, tuple(sorted(r.on_cart)), tuple(sorted(r.delivered.items())),
+                tuple(sorted(r.returned)), tuple(sorted(r.broken)), r.fell)
+
+    states = []
+    for e in EVENTS:
+        for s in seeds:
+            for armf in (Reference, IgnoreEverything):
+                room = Aisle(seed=s, event=e); a = armf(); n = 0
+                while room.t < CAP_S and n < 120 and not room.fell and not room.finished():
+                    o = room.options()
+                    if not o:
+                        break
+                    states.append((_copy.deepcopy(room), list(o)))
+                    k = a.decide(room.facts(), o, room)
+                    room.run(k if k in o else sorted(o)[0]); n += 1
+                    if k == "done()":
+                        break
+    ok, msg = no_dead_options(sig, states, is_terminal=lambda a: a == "done()")
+    print("\nGATE 5 -- can the robot always do something that changes the world?")
+    print(f"  sampled {len(states)} reachable states across {len(EVENTS)} events x {len(list(seeds))} seeds x 2 arms")
+    print(f"  => {'PASS: ' if ok else 'FAIL: '}{msg}")
+    return ok
+
+
 def gate_winnable(seeds=range(12)):
     """A headline metric no arm can reach is not a metric. The reference must clear the job on the quiet event at least."""
     print("\nGATE 4 -- is the bench winnable, and by how much?")

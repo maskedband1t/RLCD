@@ -183,9 +183,14 @@ class Aisle:
         return [n for n in self.on_cart if n not in self.broken and n not in self.lost]
 
     def blocked(self, name):
-        """The heavy crate sits in front of the tin: bench 5's ordering constraint, kept."""
+        """The heavy crate sits in front of the tin: bench 5's ordering constraint, kept.
+
+        An item that has been PUT BACK no longer blocks. Physically that is what putting something back means when you
+        could not place it -- you set it aside, you do not re-stack it in front of the thing behind it. Before this, a
+        single put-back of the crate cost TWO items: the crate (deferred, correctly) and the tin (blocked by it,
+        forever), which is what took the reference arm to 9/12 on the quiet event and failed gate 4."""
         for i in ITEMS:
-            if i.blocks == name and i.name in self.on_cart: return i.name
+            if i.blocks == name and i.name in self.on_cart and i.name not in self.returned: return i.name
         return None
 
     # ---------------- what the robot can actually see from where it stands
@@ -280,9 +285,13 @@ class Aisle:
                 for n in self.cart_order:
                     if n in self.remaining() and n not in self.returned and self.blocked(n) is None:
                         o[f"pick({n})"] = f"Pick up the {n} from the cart."
-            else:
-                o["go_to(cart)"] = "Walk back to the cart."
-                o["go_to(cart,slow)"] = "Walk back to the cart slowly."
+            # METHOD ERROR 83. `go_to` used to live in an `else` here, so a robot standing AT the cart with nothing
+            # pickable was offered no way to leave -- and since `done()` needs `not remaining()`, which a put-back item
+            # makes permanently false, the option set collapsed to {look()} and the episode burned to the 1200 s cap.
+            # 45 % of 300 episodes ended that way. Walking away is always legal; the deadlock was the bench's, not the
+            # arm's. Leaving is offered unconditionally now, which is also the invariant `no_dead_options` enforces.
+            o["go_to(cart)"] = "Walk back to the cart."
+            o["go_to(cart,slow)"] = "Walk back to the cart slowly."
         else:
             if near_cart:
                 # A robot must be able to put something back. Without this an item picked up could never be returned,
@@ -309,7 +318,13 @@ class Aisle:
                    and n != self.holding and n not in self.returned]
         if missing:
             o[f"ask(where_is,{missing[0]})"] = f"Ask the operator where the {missing[0]} went."
-        if not self.remaining() and self.holding is None: o["done()"] = "Declare the job finished."
+        # Terminating action. `remaining()` counts items put back, so requiring it to be empty made `done()`
+        # unreachable the moment anything was returned. What matters is whether anything is still ACTIONABLE: an item
+        # that has been put back and cannot be picked again is not. Declaring the job finished with items left is a
+        # FAILURE the record already counts (`delivered_correctly < achievable`) -- it just has to be reachable, so the
+        # arm can be scored on giving up rather than on being unable to stop.
+        actionable = [n for n in self.remaining() if n not in self.returned and self.blocked(n) is None]
+        if not actionable and self.holding is None: o["done()"] = "Declare the job finished."
         return o
 
     # ---------------- doing it

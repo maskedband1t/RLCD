@@ -19049,3 +19049,150 @@ generate it. The bench records every `ask_operator`, the oracle's answer and the
 define — and given that this programme's strongest single finding is that **the form of a correction is the lever**
 (a veto rescues 14 of 60 where the replacement action rescues none), defining what counts as a correction is arguably the
 more interesting half of the problem anyway.
+
+---
+
+## E198 — interventional recoverability on bench 9, against three baselines that cost nothing
+
+**Predictions logged 2026-09-28, before any code was written. Not edited afterwards.**
+
+### Where this came from
+
+Kintsugi-VLA (arXiv 2609.31048, read today) publishes **interventional recoverability**: for a *fixed* competent policy,
+the probability of completing the task after the simulator is restored to a given state, estimated by Monte Carlo
+continuations with pointwise Wilson intervals, and showing a **terminal low-recoverability frontier** — the point past
+which recoverability stays below threshold.
+
+This record's **result 12** says a per-decision confidence cannot see a sequence-level failure: one episode spent 37 s
+livelocked with confidence flat at .52–.66. We logged that as a ceiling and had no fix. Recoverability is a candidate
+fix, and it is **not ours** — the design is theirs and the write-up must say so.
+
+### Why bench 9 and not the bench the livelock happened on
+
+Bench 9 (`src/stack/aisle.py`) is pure Python, so `deepcopy` gives **exact** state restoration — Kintsugi's stated
+requirement — where the humanoid bench would need `mjSTATE_INTEGRATION`. More importantly bench 9 has the two channels
+that make recoverability a *probabilistic* quantity rather than a step function:
+
+- **deterministic, permanent doom**: carrying a fragile item above `FRAGILE_SPEED` breaks it, and `success` requires
+  `not broken`. Once broken, R = 0 exactly and forever.
+- **a stochastic channel and a clock**: `FALL_RATE` is a coin flip per metre walked, and `CAP_S = 1200 s` is hard. So a
+  state can be *partly* recoverable, and recoverability decays as a failing arm burns the clock.
+
+The fixed competent policy for continuations is `Reference` — the careful-operator arm, which reads only what the harness
+exposes. Not an oracle, which is closer to Kintsugi's "privileged expert" than an omniscient arm would be.
+
+### The three baselines, all of which cost zero simulation
+
+Recoverability costs **N full episodes per decision point**. It has to beat things that cost nothing:
+
+1. **`irreversible`** — read `room.broken` / `room.fell`. A boolean. Free.
+2. **`clock`** — elapsed fraction `t / CAP_S`. Free.
+3. **`no_progress`** — decisions since the last correct delivery. Free.
+
+### Predictions
+
+**P1 — the free boolean does most of the work.** Of the decision points where recoverability says doomed (R below
+threshold), **at least 60 %** will already be flagged by `irreversible`, at zero cost. *If this holds, most of what
+recoverability buys on this bench is available by reading two fields.*
+
+**P2 — recoverability's only unique contribution is the time-budget frontier, and this is the prediction I am least sure
+of.** On episodes that fail by exhausting the clock rather than by breakage, R will cross τ = 0.5 **at least 3 decisions
+before** `clock` crosses 0.5. **If it does not, elapsed time is the entire signal on this bench and recoverability adds
+nothing here** — which is a publishable negative result and the one I consider most likely after P1.
+
+**P3 — non-monotonicity is real but rare here.** Fewer than **25 %** of failed trajectories will show R rising by ≥ 0.10
+after having fallen by ≥ 0.10. Kintsugi reports non-monotonic evolution; with deterministic breakage most drops here
+should be permanent, so this bench should show *less* of it than theirs.
+
+**P4 — the noise floor forbids small N.** At N = 20 continuations the Wilson half-width at p = 0.5 is ≈ ±0.21, which is
+wider than the effect P2 asks about. I predict **N ≥ 50** is needed to locate a frontier to within 2 decisions, and I
+will measure the spread across disjoint continuation-seed blocks **before** reporting any frontier location.
+
+### What would make this a failure worth reporting
+
+If P1 holds and P2 fails, the honest conclusion is: *on a bench whose irreversibility is a readable flag, recoverability
+is an expensive way to learn what a boolean already says.* That would bound Kintsugi's method to settings where doom is
+**not** directly observable — which is a useful thing to know and is the opposite of what I would like to find.
+
+### E198 stopped before it started: the continuation expert cannot win the bench
+
+**The probe never got to measure recoverability.** Its first gate — *does restore-and-branch actually produce varying
+outcomes?* — failed, and chasing why turned up a bench defect and a method error. Logging both before fixing either.
+
+#### What the gate found
+
+`assert_reseeding_matters()` reported `R = 0/24` with one distinct outcome. Two candidate explanations, and they are not
+the same thing: *the continuations are identical* (my bug) or *the state is already doomed* (a real answer). Measuring at
+four depths separated them:
+
+| depth | R | distinct outcomes in 40 | falls |
+|---|---|---|---|
+| 0 | **0/40** | 1 | 0 |
+| 2 | 0/40 | 1 | 0 |
+| 6 | 0/40 | 2 | 1 |
+| 12 | 0/40 | 1 | 0 |
+
+**R = 0 at depth 0** — from the untouched starting state. Nothing was doomed; the expert simply cannot win. And the
+stochastic channel is nearly inert: `FALL_RATE` works out to **p ≈ 0.0023 per full-length move, about 1 fall in 437**,
+so R on this bench is a deterministic predicate, not a probability. Wilson intervals on it would have been decoration.
+
+#### METHOD ERROR 83 — I reported bench 9 as passing four gates. Gate 4 fails on the committed code.
+
+```
+GATE 4 -- is the bench winnable, and by how much?
+  item_falls_off_cart               1/12
+  remembered_slot_now_full          0/12      t_end 1201
+  person_in_aisle                   9/12
+  slot_obstructed                   0/12      t_end 1201
+  none                              9/12
+  => FAIL: nothing can win; the headline metric is dead
+```
+
+**How it happened:** `put_back()` was added *after* the gates were run — its own source comment records why ("an arm
+facing an unusable slot had no terminating action and thrashed to the 20-minute cap — 27 wasted trips"). The gates were
+not re-run after the fix. **This is a process error, not a coding error, and it is the same shape as error 76**: a number
+was reported from a state of the code that no longer existed. The rule that follows: *a gate result is only valid for the
+commit it was run on; any change to the bench re-runs every gate before any claim survives.*
+
+#### The defect the fix introduced, which is worse than the one it fixed
+
+`put_back()` adds the item to `self.returned`, and three things then interact:
+
+1. `returned` is **never cleared** — `options()` filters picks with `n not in self.returned`, so an item put back can
+   never be picked up again.
+2. `remaining()` counts returned items (`on_cart` minus broken/lost), so `done()` — offered only when `not remaining()`
+   — becomes **permanently unreachable**.
+3. `go_to(cart)` lives in the **`else`** of `if near_cart`, so a robot standing at the cart with nothing pickable is
+   offered no way to leave.
+
+Together: **the option set collapses to `{look()}`**, a 2-second no-op, and the episode burns to the 1200 s cap.
+
+```
+t=  1149 x=  0.0 hold=-  opts=['look()']  -> look()
+t=  1151 x=  0.0 hold=-  opts=['look()']  -> look()          ... 300 s of this, after delivering 5 of 6
+```
+
+**Measured across 12 seeds × 5 events × 5 arms (300 episodes):**
+
+| arm | deadlocked to `{look()}` | hit the 1200 s cap | success |
+|---|---|---|---|
+| Reference | **44/60** | 40 | 19/60 |
+| NeverAsks | 44/60 | 41 | 20/60 |
+| AlwaysAsks | 44/60 | 40 | 19/60 |
+| RuleProgram | 1/60 | 57 | 3/60 |
+| IgnoreEverything | 1/60 | 57 | 3/60 |
+| **total** | **134/300 = 45 %** | 195/300 | |
+
+**45 % of all episodes on this bench end in a state whose only legal action changes nothing.** The two arms that rarely
+deadlock instead thrash to the cap, so the bench is failing nearly everywhere — it was measuring its own dead end.
+
+#### The general lesson, which becomes a preflight check
+
+The livelock is **not a policy failure**. The arm had exactly one option and took it, 150 times. Our own claim 7 says the
+option set is the signal; here the option set was the *whole* failure. **Every reachable state must offer at least one
+action that changes the state**, and nothing in `preflight.py`'s five checks tests that. A sixth is being added:
+`no_dead_options`.
+
+**Consequence for E198:** it is blocked until the bench is winnable, because recoverability measured against an expert
+that cannot win is identically zero everywhere. The pre-registered predictions stand unmodified and unanswered.
+

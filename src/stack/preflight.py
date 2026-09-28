@@ -78,6 +78,43 @@ def no_leak_in_options(opts, visible_names):
             else f"option set names only entities the facts expose ({len(visible_names)})")
 
 
+def no_dead_options(step_fn, states, is_terminal=None):
+    """Every reachable state must offer an action that CHANGES the state or ENDS the episode.
+
+    METHOD ERROR 83. Bench 9 could reach a state whose only legal action was `look()`, a two-second no-op: the robot
+    stood at the cart, nothing was pickable, `go_to` was offered only in the `else` of "am I at the cart", and `done()`
+    required an item count that a put-back made permanently non-zero. 134 of 300 episodes -- 45 % -- ended there and
+    burned to the 1200 s cap. Every arm looked livelocked; not one of them was. **The option set was the failure.**
+
+    This is the cheap, general form of that check, and it is not about any one bench: hand it a way to step a state and
+    a sample of states, and it reports the first state from which nothing can change. A livelock that an arm cannot
+    escape is a bench defect, and it is indistinguishable in the results from a policy that will not escape -- which is
+    exactly why it has to be ruled out before the experiment rather than diagnosed after it.
+
+    `step_fn(state, action) -> signature` returns a comparable signature of the state AFTER taking `action` (the caller
+    decides what counts as changed; time alone must not, or a no-op that burns the clock will pass).
+    `states` is an iterable of (state, options) pairs.
+    `is_terminal(action) -> bool` marks actions that END the episode. **Stopping counts as escaping.** Without this the
+    check fires on every legitimate end-state, where `done()` is the only thing left and changes no field -- which it
+    did on first run here, and which is the check being wrong rather than the bench."""
+    is_terminal = is_terminal or (lambda a: False)
+    dead = []
+    for i, (st, opts) in enumerate(states):
+        if not opts:
+            dead.append((i, "no options at all"))
+            continue
+        if any(is_terminal(a) for a in opts):
+            continue
+        before = step_fn(st, None)
+        if not any(step_fn(st, a) != before for a in opts):
+            dead.append((i, f"{len(opts)} option(s), none change the state: {sorted(opts)[:4]}"))
+    if dead:
+        i, why = dead[0]
+        return False, (f"{len(dead)} dead state(s); first at index {i}: {why}. "
+                       "An arm cannot escape this and will read as livelocked.")
+    return True, f"every one of {i + 1} sampled states offers an action that changes it"
+
+
 def _entities(key):
     out = set()
     if "(" not in key: return out

@@ -588,9 +588,16 @@ believe.** Four categories, and the last two are the uncomfortable ones.
 - **Calibration costs 25 labels where fitting costs 500 — and does not transfer.** On a grounding decision the model
   arrived with the ordering right and needed 25 labels for the scale; on episode-success detection the same recipe made
   things **worse**, 74 % → 38 %. Recalibration is a multiplier on ranking quality, not a substitute for it.
-- **A per-decision number cannot see a sequence-level failure.** One episode spent 37 seconds — three quarters of its
-  length — livelocked beside a person with **confidence flat at .52–.66 throughout**. This is a ceiling on the whole
-  approach and it is stated rather than discovered by a reader.
+- **A per-decision number cannot see a sequence-level failure — and the number that can is someone else's.** One
+  episode spent 37 seconds, three quarters of its length, livelocked beside a person with **confidence flat at .52–.66
+  throughout**. Kintsugi-VLA's **interventional recoverability** (arXiv 2609.31048) — *P(a fixed competent policy still
+  finishes | the simulator is restored to this state)*, by Monte Carlo branching — is the sequence-level quantity that
+  was missing, and reproducing it here on 60 episodes gives the ceiling a size: **a median 135 of 183 decisions, 74 % of
+  an episode, is spent after the point of no return.** It separates perfectly where every free signal fails — firing on
+  **33 of 33 failures and 0 of 27 successes**, against a progress bound's 17 false alarms in 27 successes and an
+  irreversibility flag that never fires at all. Half that separation is definitional and says so below; the cost,
+  ~3,700 simulated episodes to instrument one, makes it an **offline** instrument and not a runtime signal. — E198;
+  [figure 27](figures/fig27-recoverability.png).
 - **The apparatus itself.** A preflight that refuses a bench where a zero-model arm succeeds, dose gates that refuse an
   intervention that cannot change an outcome, and a seat-qualification test that costs an afternoon and says whether a
   model belongs in a given seat at all. **Of twenty-five sources with enough substance to judge, nineteen report nothing

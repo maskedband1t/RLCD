@@ -19196,3 +19196,57 @@ action that changes the state**, and nothing in `preflight.py`'s five checks tes
 **Consequence for E198:** it is blocked until the bench is winnable, because recoverability measured against an expert
 that cannot win is identically zero everywhere. The pre-registered predictions stand unmodified and unanswered.
 
+### E198 results — all four predictions wrong, and the one number worth keeping
+
+60 episodes (27 success, 33 failure) across two arms, three events, 12 seeds, N = 20 continuations per decision point.
+Roughly 250,000 simulated episodes. **Every pre-registered prediction was wrong**; two in the method's favour, one
+against it, one on the line.
+
+| | prediction | outcome |
+|---|---|---|
+| **P1** | ≥ 60 % of doomed points also caught by the free `irreversible` flag | **WRONG, badly.** The flag fired **0 times in 60 episodes** — 0 broken, 0 fell. The doom on this bench is *semantic* (an item in the wrong slot, a slot consumed), and nothing in the state says so. This is the setting the pre-registration named as the one that would *bound* the method — bench 9 turns out to be it. |
+| **P2** | R crosses 0.5 at least 3 decisions **before** the clock crosses 0.5 | **WRONG.** R was earlier in **0 of 22**; median lead **−5**. But the clock is not a detector: see below. |
+| **P3** | < 25 % of failed trajectories non-monotonic | **WRONG, on the line.** Exactly **6/24 = 25 %**. Not confirmed. |
+| **P4** | N ≥ 50 continuations needed | **WRONG, cheaply.** Across 6 disjoint blocks: N=10 spread **0.00**, N=20 spread **0.05**, N=50 spread 0.04. **N = 10–20 is enough**, because falls are ~1 in 437 moves and R is nearly a predicate. |
+
+#### The detector table, which is the result
+
+| signal | fires on failures | fires on successes | cost |
+|---|---|---|---|
+| **recoverability frontier (R < 0.5)** | **33/33** | **0/27** | N episodes *per decision* |
+| `irreversible` (broken ∨ fell) | 0/33 | 0/27 | free |
+| clock past half the cap | 33/33 | **27/27** | free |
+| `no_progress` ≥ 10, 20, 40, 80 | 33/33 | **17/27** | free |
+
+**Every free baseline fails, and each fails differently.** The irreversible flag never fires. The clock fires on
+everything, successes included. The progress bound fires on **17 of 27 successful episodes** — a 63 % false-positive
+rate — and does so at *every* threshold from 10 to 80 decisions, so no tuning rescues it. P2 asked the wrong question:
+the clock is earlier, but earlier is worthless when it fires on every episode ever run.
+
+#### The number worth keeping
+
+Of the 33 failures, **11 were doomed at decision 0** — an unwinnable setup, where R correctly says the policy is not at
+fault — and **22 became doomed mid-episode**. On those 22:
+
+**Median 135 of 183 decisions — 74 % of the episode — were spent after the point of no return.**
+
+That is the direct answer to **result 12**. The 37-second livelock with confidence flat at .52–.66 was not an anomaly:
+on this bench a robot typically spends three quarters of an episode working at a task that can no longer be completed,
+and nothing it reports about itself says so.
+
+#### Three things that keep this honest
+
+1. **Half of the separation is definitional.** R = 0 means the *expert* cannot win from here; the arms under test are no
+   better than the expert, so R = 0 ⇒ failure **by construction**. The false-negative rate is not evidence. **The
+   empirical half is the false-positive rate — 0 of 27 — and the lead time.**
+2. **No episode failed while remaining recoverable** (0 of 33). On this bench every failure was a *state* failure, never
+   a residual policy failure. That is a limitation of bench 9, not a property of the world, and it means the harder
+   question — *can R tell a bad state from a bad policy?* — is untested here.
+3. **The cost is disqualifying at runtime.** N = 20 continuations × 183 decisions ≈ 3,700 simulated episodes to
+   instrument one episode. This is an **offline** instrument — for data selection, which is what Kintsugi uses it for,
+   and for post-hoc analysis — and it is not a runtime confidence signal. Nothing here suggests otherwise.
+
+**Method and credit:** the quantity, the Monte-Carlo-continuation estimator, the Wilson intervals and the terminal
+low-recoverability frontier are all **Kintsugi-VLA's** (arXiv 2609.31048). What is ours is the comparison against free
+baselines on a bench where doom is unobservable, and the lead-time number.
+

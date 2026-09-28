@@ -26,10 +26,14 @@ GRASP_D      = float(os.environ.get("KT_GRASP_D", "0.50"))  # where to stand: me
 # object nudged 3 cm by the contact. So 12 cm IS the hand arriving. The tolerance reflects the
 # geometry rather than pretending the arm can occupy the same space as the mug.
 GRASP_TOL    = float(os.environ.get("KT_GRASP_TOL", "0.16"))  # where to stand: measured arm reach is 0.3-0.7 m ahead    # base-to-object distance that allows a grasp
-BIN_REACH    = float(os.environ.get("KT_BIN_REACH", "0.85"))
+# S1-E35: measured, not chosen. The bin is a solid body, so the base cannot get closer than 0.90 m;
+# a 0.85 m gate is tighter than the physics allows and the robot stalled 5 cm short of being able to
+# drop anything, forever. Same failure the counter caused for the grasp: the obstacle sets the
+# standoff, and a gate set by wishful thinking below it can never open.
+BIN_REACH    = float(os.environ.get("KT_BIN_REACH", "1.00"))
 STANDOFF     = float(os.environ.get("KT_STANDOFF", "0.80"))  # where "at the counter" means
 DECISION_S   = float(os.environ.get("KT_CADENCE_S", "0.5"))
-MAX_T        = float(os.environ.get("KT_MAX_T", "240.0"))    # a long task needs a long clock
+MAX_T        = float(os.environ.get("KT_MAX_T", "420.0"))    # a long task needs a long clock
 SPEED        = float(os.environ.get("KT_SPEED", "0.45"))
 ASK_S        = float(os.environ.get("KT_ASK_S", "4.0"))
 FRAGILE      = {n for n, _m, _h, _ms, _c, frag, _o in OBJECTS if frag}
@@ -57,6 +61,7 @@ class KitchenTask(FFWKitchen):
         self.recent = []
         self.operator_asks = 0
         self.violations_n = 0
+        self.failed_grasps = 0
         self._home = np.array(START, float)
         self.settle(0.4)
 
@@ -94,10 +99,20 @@ class KitchenTask(FFWKitchen):
             "recent_actions": list(self.recent[-3:]),
         }
 
+    def lined_up(self, name):
+        """Close enough AND pointing at it. S1-E35: without the heading test the arm is asked to grasp
+        something beside it -- the object sat at side +0.77 with the hand 0.23 m the other way -- and
+        every attempt failed while still costing the seconds it took to try."""
+        d = self.obj_xy(name) - self.xy()
+        th = self.yaw()
+        ahead = float(d[0] * math.cos(th) + d[1] * math.sin(th))
+        side = float(-d[0] * math.sin(th) + d[1] * math.cos(th))
+        return (float(np.linalg.norm(d)) < REACH) and ahead > 0.15 and abs(side) < 0.30
+
     def options(self):
         o = {"stop", "ask_operator", "go_counter", "go_bin"}
         n = self.nearest_obj()
-        if self.holding is None and n is not None and float(np.linalg.norm(self.xy() - self.obj_xy(n))) < REACH:
+        if self.holding is None and n is not None and self.lined_up(n):
             o.add(f"pick_up:{n}")
         if self.holding is not None and self.d_bin() < BIN_REACH:
             o.add("put_in_bin")
@@ -292,49 +307,46 @@ class KitchenTask(FFWKitchen):
             self.data.ctrl[a] = hi if closed else lo
         self.step(0.3)
 
-    def _carry(self):
-        """Hold the object in front of the base. Scripted, declared above."""
-        if self.holding is None:
-            return
-        b = self.data.body(self.holding).id
-        jadr = self.model.jnt_qposadr[self.model.body_jntadr[b]]
-        p = self.palm("right")
-        self.data.qpos[jadr:jadr + 3] = p + np.array([0.0, 0.0, -0.05])
-        self.data.qpos[jadr + 3:jadr + 7] = [1, 0, 0, 0]
-        dof = self.model.body_dofadr[b]
-        self.data.qvel[dof:dof + 6] = 0.0
+    # _carry() is gone: since S1-E35 the object is held by a WELD engaged at the moment of grasp, so
+    # it rides with the hand under physics instead of being teleported in front of the base each step.
 
     def run_skill(self, key):
         self.recent.append(key)
         if key == "go_counter":
             n = self.nearest_obj()
-            tgt = self.obj_xy(n) + np.array([0.0, -STANDOFF]) if n is not None else COUNTER
-            self._drive_to(tgt)
+            if n is not None:
+                ap = self.approach_pose(n)
+                if float(np.linalg.norm(self.xy() - ap)) < 0.20:
+                    self._face(self.obj_xy(n))        # in position: line up for the reach
+                else:
+                    self._drive_to(ap)
+            else:
+                self._drive_to(COUNTER)
         elif key == "go_bin":
-            self._drive_to(BIN_XY)
+            if self.d_bin() < BIN_REACH + 0.2:
+                self._face(BIN_XY)
+            else:
+                self._drive_to(BIN_XY)
         elif key.startswith("pick_up:"):
             name = key.split(":", 1)[1]
-            if self.holding is None and name in self.on_counter() \
-               and float(np.linalg.norm(self.xy() - self.obj_xy(name))) < REACH:
-                self.holding = name
-            self.set_cmd(0, 0, 0); self.step(DECISION_S)
+            # S1-E35: a REAL grasp. Solves the arm, follows a Cartesian path over the counter, closes
+            # the gripper and welds only if the hand arrives. It can fail, and failing costs the time
+            # it took to try -- which is what makes the horizon long.
+            if self.holding is None and name in self.on_counter():
+                if not self.grasp(name):
+                    self.failed_grasps += 1
+            else:
+                self.set_cmd(0, 0, 0); self.step(DECISION_S)
         elif key == "put_in_bin":
             if self.holding is not None and self.d_bin() < BIN_REACH:
-                b = self.data.body(self.holding).id
-                jadr = self.model.jnt_qposadr[self.model.body_jntadr[b]]
-                self.data.qpos[jadr:jadr + 3] = [BIN_XY[0], BIN_XY[1], 0.25]
-                self.data.qpos[jadr + 3:jadr + 7] = [1, 0, 0, 0]
-                dof = self.model.body_dofadr[b]
-                self.data.qvel[dof:dof + 6] = 0.0
-                self.cleared.append(self.holding)
-                self.holding = None
-            self.set_cmd(0, 0, 0); self.step(DECISION_S)
+                self.release_into(BIN_XY)
+            else:
+                self.set_cmd(0, 0, 0); self.step(DECISION_S)
         elif key == "ask_operator":
             self.operator_asks += 1
             self.set_cmd(0, 0, 0); self.step(DECISION_S)
         else:                                  # stop / unknown
             self.set_cmd(0, 0, 0); self.step(DECISION_S)
-        self._carry()
         self.t += DECISION_S
         self.tally()
 

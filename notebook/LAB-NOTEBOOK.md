@@ -19250,3 +19250,80 @@ and nothing it reports about itself says so.
 low-recoverability frontier are all **Kintsugi-VLA's** (arXiv 2609.31048). What is ours is the comparison against free
 baselines on a bench where doom is unobservable, and the lead-time number.
 
+
+---
+
+## S1-E42 — S1-E41 re-run clean: the 20× effect survives, two claims do not
+
+S1-E41 (peer session, commit `6025aeb`) found that escalating on prediction error turned the worst arm into the
+best. **The mechanism is theirs and it is a good one.** This is the non-author re-run, on the same seeds for every
+arm, with the per-episode costs normalised. Two of its claims do not survive; the largest effect does, and it is the
+one that matters.
+
+### Why a re-run was needed, from the artefact rather than the report
+
+1. **The surprise arm ran on 4 seeds; every other arm on 10** (`notebook/working/S1-E41-surprise-escalation.md`,
+   header line). At n = 4 a success rate is quantised to 0/25/50/75/100 %, and 4-of-4 carries a Wilson interval
+   reaching down to ≈ 0.51.
+2. **`violations`, `operator_seconds` and `calls` are raw SUMS over episodes** — `kitchen_run.run` line 146,
+   `sum(r['violations'] for r in rows)` — while `success`, `cleared` and `steps` are normalised. So "2 violations,
+   fewer than the always-right ceiling's 3" compares 2-over-4-episodes against 3-over-10.
+
+The planner is switched off rather than left to fail. S1-E41's single-variable comparison was clean **by accident**,
+because X-Planner failed all 45 plans and a discarded plan narrows no options; `plan_enabled=False` makes it clean by
+design and removes the llama calls that forced n = 4. `_predict`/`observe` are reused, not copied — a second copy is
+how the swerve controller got fixed in one file and not the other.
+
+### Every arm, same 10 seeds, costs per episode
+
+| arm | success | 95 % CI | cleared | **viol/ep** | **op s/ep** | steps |
+|---|---|---|---|---|---|---|
+| rules | 7/10 | [0.40, 0.89] | 60 % | 0.70 | 0.0 | **238** |
+| rules_note | 10/10 | [0.72, 1.00] | 80 % | 1.00 | 0.0 | 11 |
+| oracle (ceiling) | 10/10 | [0.72, 1.00] | 80 % | **0.30** | 0.0 | 11 |
+| **rules + surprise** | 10/10 | [0.72, 1.00] | 80 % | 0.70 | **9.2** | **14** |
+| rules_note + surprise | 10/10 | [0.72, 1.00] | 80 % | 1.00 | 5.6 | 12 |
+
+### What survives, and it is the big one
+
+**Steps 238 → 14, a 17× drop, from one line of prediction.** The failing arm spends its life retrying an action that
+cannot work; the predictor notices the world did not become what the skill promised and spends a human's attention
+instead. That is a livelock ended by a world model that is four `if` statements, on CPU, at zero model cost. **It is
+the runtime counterpart to E198**, which measured the same disease expensively: 74 % of a median failed episode spent
+after the point of no return. E198 says how much is wasted; this says most of it is recoverable cheaply.
+
+### Two claims that do not survive
+
+**1. "Success 60 % → 100 %" is not established at this n.** `rules` 7/10 CI **[0.40, 0.89]**; `rules+surprise` 10/10
+CI **[0.72, 1.00]**. **The intervals overlap.** The effect may well be real — the steps result strongly suggests a
+mechanism — but ten seeds cannot carry it, and this is the bench whose noise floor we measured at ±11 points for
+exactly this reason.
+
+**2. "Violations 3 → 2, fewer than the always-right ceiling" inverts once normalised.** Per episode the surprise arm
+sits at **0.70** against the oracle's **0.30** — **more than double the ceiling, not fewer.** The original compared a
+4-episode total with a 10-episode total.
+
+### The comparison that was missing, and it is the uncomfortable one
+
+**`rules_note` — just reading the operator's note — reaches 10/10, 80 % cleared and 11 steps for *zero* operator
+seconds.** `rules+surprise` reaches 10/10, 80 % cleared and 14 steps for **9.2 operator-seconds per episode, 2.3
+asks.** On every outcome column the free baseline matches or beats it.
+
+**Surprise escalation's one genuine advantage over reading the note is violations: 0.70 against 1.00 per episode.**
+That is a real and interesting trade — it buys safety, not success — and it is a much narrower claim than the one
+S1-E41 makes.
+
+### And the false-alarm rate, measured
+
+`rules_note+surprise` spends **5.6 operator-seconds — 1.4 asks — per episode on an arm that already succeeds 10/10.**
+The detector fires when nothing is wrong, 1.4 times an episode. That is the same failure mode E198 measured in the
+progress bound (17 false alarms in 27 successful episodes), and it means **prediction error is not free: on a
+competent arm it is pure cost.**
+
+### What this does not touch
+
+X-Planner is still broken for this bench (45/45 parse failures; prompt and parser written for fetch-room facts), so
+there is still **no evidence about whether a real planner in the seat beats a hand-written program**. And `rules`
+scored 7/10 here against S1-E41's 6/10 — one seed's difference, unexplained, and small enough that it changes nothing
+except as a reminder that the point estimates are soft.
+

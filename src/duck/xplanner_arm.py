@@ -42,7 +42,11 @@ Reply with JSON only, no prose:
 
 
 def _run_llama(prompt):
-    cmd = ["llama-cli", "-m", MODEL, "-ngl", NGL, "-c", CTX, "-no-cnv",
+    # S1-E40: llama.cpp renamed -no-cnv to -st. Every planner call died in 90 ms and the arm counted
+    # 8/8 plan failures -- a drop-in that worked when written, rotted silently when its dependency
+    # moved, and nothing checked. (The first fix for this put a comment before the list's trailing
+    # comma, so Python concatenated "-st" and "--temp" into "-st--temp" and it failed identically.)
+    cmd = ["llama-cli", "-m", MODEL, "-ngl", NGL, "-c", CTX, "-st",
            "--temp", "0", "-n", "384", "-p", prompt]
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=TIMEOUT)

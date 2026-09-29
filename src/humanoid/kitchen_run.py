@@ -92,6 +92,15 @@ def episode(seed, arm, record=None):
             room.declared_done = True
             break
         room.run_skill(key)
+        # S1-E40: PREDICTION ERROR AS THE ESCALATION SIGNAL. If the arm carries a world model (here,
+        # the plan's expectation of what the skill should have done), ask it whether the world became
+        # what it predicted. A surprise is the cue to spend a human's attention -- which is the thing
+        # per-decision confidence cannot provide, since CLM sat at a stable 0.55 while failing 218
+        # times in a row.
+        if hasattr(arm, "observe") and arm.observe(room.facts()):
+            ops += ASK_S
+            room.run_skill("ask_operator")
+            pending = sorted(room.acceptable())[0]
     return {
         "seed": seed,
         "cleared": len(room.cleared),
@@ -106,8 +115,20 @@ def episode(seed, arm, record=None):
     }
 
 
+def _xplanner(inner_name, expect=True, plan_enabled=True):
+    from humanoid.kitchen_xplanner import XPlannerKitchen
+    return XPlannerKitchen(ARMS[inner_name](), expect=expect, plan_enabled=plan_enabled)
+
+
 ARMS = {"never_move": NeverMove, "always_ask": AlwaysAsk, "rules": Rules,
         "rules_note": RulesNote, "oracle": Oracle}
+ARMS["xplanner+rules"] = lambda: _xplanner("rules")
+ARMS["xplanner+rules_note"] = lambda: _xplanner("rules_note")
+ARMS["surprise+rules"] = lambda: _xplanner("rules", expect=True)
+# The world-model half with no planner at all: the configuration S1-E41 reached by accident, on purpose,
+# so it runs at the same seed count as every other arm.
+ARMS["rules+surprise"] = lambda: _xplanner("rules", expect=True, plan_enabled=False)
+ARMS["rules_note+surprise"] = lambda: _xplanner("rules_note", expect=True, plan_enabled=False)
 
 
 def run(arm_name, seeds, label=None):

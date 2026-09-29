@@ -802,6 +802,56 @@ model sharper. The thing standing between the author and this job is not model s
 polishing**. Today is day 13 of 14. This paper is a good answer to a question that was consciously closed, and reopening
 it the day before the conversation would be the exact mistake that plan was written to prevent. **Filed, not built.**
 
+## Neural Theorizer (NEO) · our result shape, in a domain with no robots in it — **A**
+*Baek, Lee, Baek, Lee, Ahn (KAIST) · arXiv 2605.03413 · ICML 2026 **oral**, 0.7 % of submissions · 108k views*
+
+**"Today's world models are trained to predict the future... But is prediction enough?"** The argument: understanding is
+not prediction, it is **theory-building** — discover reusable primitives, compose them into *executable* explanations,
+transfer those to novel phenomena. A theory here is literally **a compositional program**, induced as a latent "Language
+of Thought" and run through a shared transition model. No language supervision, no LLM.
+
+Three domains, none of them robotics: **GridWorld** (primitives are Up/Down/Left/Right), **arithmetic factorization**,
+**image editing**, under their own OTIB benchmark. 3 runs per condition, **no error bars** — tally **21 of 27**.
+
+#### The table is the reason this is an A
+
+GridWorld, α = 0.33, *compositional* and *length* out-of-distribution:
+
+| method | in-distribution | compositional OOD | length OOD |
+|---|---|---|---|
+| Disc-Mono (monolithic) | **0.988** | **0.000** | **0.000** |
+| Cont-Mono | 0.975 | 0.431 | 0.053 |
+| Cont-Mono-Opt | **0.994** | 0.726 | 0.209 |
+| **NEO** (compositional) | 0.914 | **0.934** | **0.853** |
+| NEO-S (beam 64) | 0.993 | 0.995 | 0.978 |
+
+**The monolithic model scores 0.988 where it was trained and exactly 0.000 one step outside.** NEO gives up ~7 points
+in-distribution and holds at 0.934 / 0.853 outside. **That is this record's central trade, measured by someone else, in a
+grid world, at ICML.** It is the duck bench's result restated: the frozen rule program wins 39 to 33 where the rules were
+written and scores 0 of 30 where they were not.
+
+#### Two columns that are worth more than the headline
+
+**1. "Explains itself" and "transfers" are different things, and they measured the gap.** Cont-Mono scores **0.975 on ID
+Self-Explanation and 0.001 on ID Transfer** — it produces a fluent account of its own observations that is worth nothing
+applied anywhere else. **That is E171 (prose is inert) in a different domain, with a number on it.** Ours was a
+qualitative finding; theirs is a 975-to-1 ratio.
+
+**2. The structured method's advantage is bought with inference-time search, and on one domain plain NEO is *worse* than
+the monolith.** Arithmetic, length OOD: **NEO 0.045, 0.023, 0.025** across the three data regimes — against
+Cont-Mono-Opt's **0.394, 0.216, 0.743**. Only NEO-S, with a **beam of 1,024**, recovers to 0.620 / 0.766 / 0.799.
+**Composition alone loses; composition plus a thousand-wide search wins.** That is the third independent "structure is
+not free" result in three days, after Dimensional's harness costing 28 points and Kintsugi's 2.1-point clean-task bill.
+
+#### Their limitations, verbatim, and why this is filed rather than built on
+
+> *"The current formulation assumes a relatively small, discrete set of primitives and short program lengths, which
+> limits its scalability to domains with long-horizon, continuous, or highly structured dynamics."*
+
+**Long-horizon, continuous, structured dynamics is exactly and only what we work on.** They say so themselves and name
+real-world environments with stochastic dynamics as future work. The direction is right and the evidence does not yet
+reach us. **Filed; the convergence rows are the value.**
+
 ## The rest — **C**
 
 Demonstrations rather than evidence, listed so the record is complete and nobody re-reads them.

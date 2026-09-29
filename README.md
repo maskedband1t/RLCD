@@ -14,7 +14,7 @@ takes a real bimanual task from 25 % to 80 %. Three data and inference levers ta
 **And almost nobody measures whether the structure worked.** One group publishes a real humanoid in a real apartment with
 **zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %. A leading lab states
 it plainly: robotics has no equivalent of "check the answer, run the tests", so success detectors are hand-built per task
-or a person watches, and neither scales. **Of twenty-six papers and systems read for this record, twenty report nothing
+or a person watches, and neither scales. **Of twenty-seven papers and systems read for this record, twenty-one report nothing
 about their own uncertainty at all** — and the one that does it properly, with pointwise Wilson intervals on a
 measured quantity, arrived this week.
 
@@ -540,9 +540,12 @@ believe.** Four categories, and the last two are the uncomfortable ones.
   mirror image of the trade measured throughout this record**, and "structure beats weights" is too strong as stated.
   One case so far, not the full suite; their model-fixed comparison has infrastructure and, by its own text, no paid
   model trials yet.
-- **Scaffolding is not free, said twice in one day.** Kintsugi-VLA (arXiv 2609.31048) buys **+5.8 and +6.7 points** of
-  recovery success and reports the bill: **clean-task success falls 76.8 % → 74.7 %.** Two independent groups now report
-  the same direction of cost.
+- **Scaffolding is not free, and three independent groups now say so.** Kintsugi-VLA (arXiv 2609.31048) buys **+5.8
+  and +6.7 points** of recovery success and reports the bill: **clean-task success falls 76.8 % → 74.7 %.** And NEO
+  (arXiv 2605.03413, ICML 2026 oral) shows the sharper version — on arithmetic length-generalisation its compositional
+  model scores **0.045, 0.023, 0.025**, *worse than the monolithic baseline it replaces*, and only recovers to
+  **0.620 / 0.766 / 0.799** with a **beam search 1,024 wide**. **Composition alone loses; composition plus a large
+  inference-time search wins.** That cost is real and nothing in this record prices it.
 - **The actuator-shift diagnosis is not ours alone.** Self-Adaptive VLA (arXiv 2609.30092) treats **actuation bias and
   joint encoder offsets** as *the* deployment shift worth a post-training recipe. The axis ablation here — gains **21 %**
   of falls against mass 3 % and friction 0 % — stands, because they run no axis comparison; the claim that nobody attends
@@ -562,7 +565,10 @@ believe.** Four categories, and the last two are the uncomfortable ones.
   and it is the shape this programme was built on.
 - **Rules win where they were written.** Argon's own data says it; GaP's hand-engineered baseline beats their system
   0.99 to 0.95 on the repetitive task. We found it on the duck bench and it bounds every claim here to *transfer* rather
-  than *performance*.
+  than *performance*. **NEO restates the whole trade in a grid world with no robots in it**: a monolithic model scores
+  **0.988 in-distribution and exactly 0.000** one compositional step outside, where its compositional model gives up
+  seven points in-distribution to hold **0.934** outside — the same shape as our frozen rule program winning 39 to 33
+  where the rules were written and scoring 0 of 30 where they were not.
 - **Speed was never the bottleneck.** IMLE-VLA at 55 Hz, CLM at 9× Jev, an open 27B at 18.6 ms. We measured inference at
   **8.8 % of episode time** before any of them shipped, and demoted the argument accordingly.
 - **Success detection is unsolved.** Dong & Finn state it plainly: robotics has no equivalent of verifiable rewards, and
@@ -600,7 +606,7 @@ believe.** Four categories, and the last two are the uncomfortable ones.
   [figure 27](figures/fig27-recoverability.png).
 - **The apparatus itself.** A preflight that refuses a bench where a zero-model arm succeeds, dose gates that refuse an
   intervention that cannot change an outcome, and a seat-qualification test that costs an afternoon and says whether a
-  model belongs in a given seat at all. **Of twenty-six sources with enough substance to judge, twenty report nothing
+  model belongs in a given seat at all. **Of twenty-seven sources with enough substance to judge, twenty-one report nothing
   on uncertainty**; of the six that do, only one (Kintsugi-VLA, arXiv 2609.31048) reports it as a measured quantity with
   intervals rather than consuming it internally, and none tests whether the number survives into a runtime decision a
   threshold can spend.

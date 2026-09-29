@@ -37,6 +37,15 @@ MAX_T        = float(os.environ.get("KT_MAX_T", "420.0"))    # a long task needs
 SPEED        = float(os.environ.get("KT_SPEED", "0.45"))
 ASK_S        = float(os.environ.get("KT_ASK_S", "4.0"))
 FRAGILE      = {n for n, _m, _h, _ms, _c, frag, _o in OBJECTS if frag}
+
+# One of these is handed to the robot each episode. Two of the three change what "done" means.
+NOTES = [
+    {"text": "Clear everything on the counter into the bin.", "keep": None},
+    {"text": "Clear the counter into the bin, but the glass is clean -- leave it where it is.",
+     "keep": "glass"},
+    {"text": "Clear the counter into the bin. The mug is mine, please don't throw it away.",
+     "keep": "mug"},
+]
 NAMES        = [n for n, *_ in OBJECTS]
 
 
@@ -51,7 +60,15 @@ class KitchenTask(FFWKitchen):
         super().__init__(seed=seed, solid_room=solid_room)
         r = np.random.RandomState(seed)
         self.order_hint = list(NAMES)
-        r.shuffle(self.order_hint)                 # seeds differ in which object is 'asked for' first
+        r.shuffle(self.order_hint)
+        # S1-E37. The note is what makes this a DECISION task. Until now every object had the same
+        # destination, so one right action existed in every state and a six-line policy scored 100%
+        # -- the bench had no headroom (claude.dev eval-design test 3) and could not tell a good
+        # decider from a bad one. Now the instruction decides, and an arm that does not read it is
+        # confidently wrong in a way that costs the episode.
+        self.note = NOTES[seed % len(NOTES)]
+        self.keep = self.note.get("keep")           # this one must NOT go in the bin
+        self.wrong_bin = []                         # objects binned that should have been kept
         self.holding = None
         self.cleared = []
         self.tipped = set()
@@ -70,6 +87,10 @@ class KitchenTask(FFWKitchen):
         return self.obj_pos(name)[:2].copy()
 
     def on_counter(self):
+        """Objects still to be dealt with. The kept one is not rubbish, so it is not 'left to do'."""
+        return [n for n in NAMES if n not in self.cleared and n != self.holding and n != self.keep]
+
+    def all_on_counter(self):
         return [n for n in NAMES if n not in self.cleared and n != self.holding]
 
     def d_counter(self):
@@ -79,6 +100,14 @@ class KitchenTask(FFWKitchen):
         return float(np.linalg.norm(self.xy() - BIN_XY))
 
     def nearest_obj(self):
+        """Nearest object PHYSICALLY on the counter, kept one included -- it is still there."""
+        rem = self.all_on_counter()
+        if not rem:
+            return None
+        return min(rem, key=lambda n: float(np.linalg.norm(self.xy() - self.obj_xy(n))))
+
+    def target_obj(self):
+        """Nearest object that SHOULD go in the bin. Only a decider that read the note knows this."""
         rem = self.on_counter()
         if not rem:
             return None
@@ -88,7 +117,7 @@ class KitchenTask(FFWKitchen):
     def facts(self):
         rem = self.on_counter()
         return {
-            "task": "clear the counter into the bin",
+            "task": self.note["text"],
             "holding": self.holding or "nothing",
             "objects_left_on_counter": len(rem),
             "counter": _band(self.d_counter()),
@@ -96,6 +125,7 @@ class KitchenTask(FFWKitchen):
             "next_object": (self.nearest_obj() or "none"),
             "fragile_in_hand": "yes" if self.holding in FRAGILE else "no",
             "anything_knocked_over": "yes" if self.tipped else "no",
+            "must_not_be_binned": self.keep or "nothing",
             "recent_actions": list(self.recent[-3:]),
         }
 
@@ -107,17 +137,32 @@ class KitchenTask(FFWKitchen):
         th = self.yaw()
         ahead = float(d[0] * math.cos(th) + d[1] * math.sin(th))
         side = float(-d[0] * math.sin(th) + d[1] * math.cos(th))
-        return (float(np.linalg.norm(d)) < REACH) and ahead > 0.15 and abs(side) < 0.30
+        # S1-E35: |side| < 0.30 was too loose. At side 0.26 the arm reaches ACROSS the body and the
+        # FOREARM lands on the worktop -- measured arm_r_link6 on counter_top at 77 N, blocking the
+        # last 4 cm (reach 20.2 cm against a 16 cm tolerance). Squaring up first keeps the elbow clear.
+        return (float(np.linalg.norm(d)) < REACH) and ahead > 0.15 and abs(side) < 0.15
 
     def options(self):
-        o = {"stop", "ask_operator", "go_counter", "go_bin"}
-        n = self.nearest_obj()
-        if self.holding is None and n is not None and self.lined_up(n):
-            o.add(f"pick_up:{n}")
+        # S1-E37: go_to is PER OBJECT. Previously a single `go_counter` walked to whatever was
+        # nearest, so the choice of which object to handle was made by the SKILL, not the arm, and
+        # the kept object was quietly filtered out of the option set -- an arm scored correctly on
+        # the note without ever reading it. Now the choice is the arm's, and it is visible.
+        o = {"stop", "ask_operator", "go_bin"}
+        for n in self.all_on_counter():
+            o.add(f"go_to:{n}")
+        # S1-E37: offer pick_up for ANY object the robot is lined up with, not just the nearest.
+        # With per-object go_to the arm can walk to the object the NOTE selects while a different
+        # one is nearer -- and offering pick_up only for the nearest meant the action the oracle
+        # wanted was never on the menu, so it re-issued go_to forever (measured: 10 identical
+        # decisions, 375 s, nothing cleared).
+        if self.holding is None:
+            for n in self.all_on_counter():
+                if self.lined_up(n):
+                    o.add(f"pick_up:{n}")
         if self.holding is not None and self.d_bin() < BIN_REACH:
             o.add("put_in_bin")
         if not self.on_counter() and self.holding is None:
-            o.add("done")
+            o.add("done")            # everything that should be binned has been
         return o
 
     def acceptable(self):
@@ -126,13 +171,13 @@ class KitchenTask(FFWKitchen):
         opts = self.options()
         acc = set()
         if self.holding is None:
-            n = self.nearest_obj()
+            n = self.target_obj()
             if n is None:
                 acc.add("done")
             elif f"pick_up:{n}" in opts:
                 acc.add(f"pick_up:{n}")
             else:
-                acc.add("go_counter")
+                acc.add(f"go_to:{n}")
         else:
             acc.add("put_in_bin" if "put_in_bin" in opts else "go_bin")
         acc &= opts
@@ -159,30 +204,83 @@ class KitchenTask(FFWKitchen):
         q = self.data.qpos
         return math.atan2(2 * (q[3] * q[6] + q[4] * q[5]), 1 - 2 * (q[5] ** 2 + q[6] ** 2))
 
-    def _face(self, target, tol=0.10, max_s=float(os.environ.get("KT_FACE_S", "14.0"))):
-        """Turn to point at a target. Possible at all only since S1-E32: the shipped 7 cm-wide wheel
-        collision cylinder braked yaw to ratio 0.06; a 1 cm patch gives 0.51."""
+    def _face(self, target, tol=0.10, max_s=None):
+        """Turn to point at a target.
+
+        DECLARED APPROXIMATION, and a measured one. S1-E36: base heading is applied KINEMATICALLY
+        while the robot is STATIONARY. The wheels are not used to turn, because on this model they
+        cannot without making the robot fall over:
+
+            wheel half-width   spin ratio   result over one episode
+              0.035 (shipped)     0.06      never falls, never turns, 0/3 cleared
+              0.015               0.22      falls at 174 s
+              0.005               0.51      falls at 78 s
+
+        Narrow enough to turn is narrow enough to tip: the contact patch that resists yaw is the same
+        one that resists roll. The real FFW is a swerve platform and turns on the spot; the cylinder
+        that approximates its tyre cannot. So the wheel stays at the SHIPPED width -- the robot never
+        falls -- and heading is set directly.
+
+        What this costs, stated rather than hidden: a turn cannot scrub, cannot be blocked, and cannot
+        fail. Any result about TURNING on this body is not a physical result. Driving, contact with
+        furniture, reaching, grasping and carrying all remain physical. Applied only with the base at
+        rest, which is what corrupted translation when an earlier version applied it while moving."""
+        d = np.asarray(target, float) - self.xy()
+        want = math.atan2(d[1], d[0])
+        err = math.atan2(math.sin(want - self.yaw()), math.cos(want - self.yaw()))
+        if abs(err) < tol:
+            return
+        self.set_cmd(0.0, 0.0, 0.0)
+        self.step(0.1)                       # come to rest before the heading is set
+        half = 0.5 * err
+        dq = np.array([math.cos(half), 0.0, 0.0, math.sin(half)])
+        w0, x0, y0, z0 = self.data.qpos[3:7]
+        w1, x1, y1, z1 = dq
+        self.data.qpos[3:7] = [w1 * w0 - z1 * z0, w1 * x0 - z1 * y0,
+                               w1 * y0 + z1 * x0, w1 * z0 + z1 * w0]
+        self.data.qvel[3:6] = 0.0
+        mujoco.mj_forward(self.model, self.data)
+        self.step(0.3)                       # let contacts settle in the new heading
+
+    def _station(self, stand_at, look_at, arrive=0.30, timeout=None):
+        # S1-E38: arrive was 0.18 while _drive_to stops at 0.25 of its target, so the arrival test
+        # could NEVER be satisfied and every go_to ran the full 40 s timeout before being rescued by
+        # the facing step. Measured: go_to 41.5 s median against 6.6 s for a grasp -- four times
+        # everything else combined, for a loop that had already finished. 0.30 clears the drive's own
+        # stopping distance.
+        """Get INTO POSITION: drive to a spot and square up to a thing, as one motion.
+
+        S1-E35, and this is a bench-design fix rather than a tuning one. `go_counter` used to be a
+        single 0.5 s increment of driving, so the decision layer re-decided "drive a bit further" four
+        hundred times per episode. That is not a decision, it is servoing, and it had two costs: the
+        horizon filled with noise instead of choices, and the robot could interleave a half-finished
+        drive with a turn and never converge -- measured 409 decisions to clear one object of three.
+        A skill should leave the robot somewhere useful."""
+        # S1-E35: TUCK THE ARM BEFORE DRIVING. After a release the arm is left extended, and the base
+        # then drove back to the counter with the hand sticking out -- measured gripper_r_l2 against
+        # counter_front at 140 N, holding the robot 2 cm short of its approach pose for the rest of the
+        # episode (1 of 3 cleared, seven consecutive 40 s timeouts). Nobody drives with their arm out.
+        (self.carry_pose(0.8) if self.holding else self.home_arm(0.6))
         t0 = self.t
-        while self.t - t0 < max_s:
-            d = np.asarray(target, float) - self.xy()
-            err = math.atan2(math.sin(math.atan2(d[1], d[0]) - self.yaw()),
-                             math.cos(math.atan2(d[1], d[0]) - self.yaw()))
-            if abs(err) < tol:
+        limit = float(os.environ.get("KT_STATION_S", "40.0")) if timeout is None else timeout
+        while self.t - t0 < limit:
+            if float(np.linalg.norm(self.xy() - np.asarray(stand_at, float))) < arrive:
                 break
-            self.set_cmd(0.0, float(np.clip(2.0 * err, -1.2, 1.2)), 0.0)
-            self.step(DECISION_S); self.t += DECISION_S
+            self._drive_to(stand_at)
+            self.t += DECISION_S
+        self._face(look_at)
         self.set_cmd(0, 0, 0)
 
     def approach_pose(self, name):
-        """Stand GRASP_D from the object, on the side the robot is already on, facing it.
-        The arm reaches 0.3-0.7 m ahead (measured, S1-E32) and barely to its right, so the base must
-        both stand close enough AND point at the object. Before this the base parked 0.8 m away on a
-        fixed heading and the palm finished 1.5-1.7 m short."""
+        """Stand GRASP_D in FRONT of the counter, square to the object.
+
+        S1-E35: this used to approach from whichever side the robot already stood on. That works for
+        the first object, when the robot is out on the floor -- and then it clears one, drives to the
+        bin, and comes back from the far side, so the "approach point" lands INSIDE the counter. The
+        robot then drove at a wall for the rest of the episode: 1 of 3 cleared, 408 decisions, no
+        progress after the first. A counter has a front, and you stand at it."""
         o = self.obj_xy(name)
-        away = self.xy() - o
-        n = float(np.linalg.norm(away))
-        u = away / n if n > 1e-6 else np.array([0.0, -1.0])
-        return o + u * GRASP_D
+        return np.array([o[0], o[1] - GRASP_D])       # the open floor is -y of the counter
 
     def brake(self):
         """Steer every wheel RADIALLY before manipulating, so yawing the base would require each wheel
@@ -208,6 +306,35 @@ class KitchenTask(FFWKitchen):
                 self.data.ctrl[d] = 0.0
         self.set_cmd(0.0, 0.0, 0.0)
         self.step(0.4)
+
+    def carry_pose(self, settle=1.0):
+        """Bring a held object IN and DOWN before driving.
+
+        S1-E35: `home_arm` raises the lift to 0, i.e. full height. Tucking to it while HOLDING
+        something lifts the load to the top of the robot and then drives off on a 1 cm wheel contact
+        -- measured upright 1.000 -> -0.098 during the trip to the bin with the carton, a clean tip.
+        Nobody carries a box at arm's length above their head."""
+        # S1-E36: do NOT fold the arm in. The held object is welded to the hand and DOES collide with
+        # the robot (object mask (1,2) vs robot (3,4) -> collide), so folding drives it into the
+        # chassis, the weld and the contact fight, and the solver launches the robot: measured base z
+        # 0.023 -> 0.386 with upright -0.140, i.e. thrown into the air rather than tipped. Keep the
+        # load out in front and just bring it DOWN.
+        # S1-E36, third attempt and the measured one. Two earlier carry poses put the HAND NEAR THE
+        # FLOOR, and the arm still collides with the floor (robot (3,4) x floor (1,1) = collide), so
+        # the robot LEVERED ITSELF UP ON ITS OWN ARM: base z 0.023 -> 0.057 -> 0.111 while upright fell
+        # 1.000 -> 0.875, with no contact but wheels on floor. It was not tipping over an obstacle or
+        # fighting the weld; it was pushing itself off the ground. Carry with the arm HIGH, where the
+        # measured palm height is ~1.45 m and nothing can touch the floor.
+        angles = {1: 0.0, 2: -0.35, 3: 0.0, 4: -0.25, 5: 0.0, 6: 0.0, 7: 0.0}
+        for i, v in angles.items():
+            a = self._act.get(f"arm_r_joint{i}")
+            if a is not None:
+                lo, hi = self.model.actuator_ctrlrange[a]
+                self.data.ctrl[a] = float(np.clip(v, lo, hi))
+        a = self._act.get("lift_joint")
+        if a is not None:
+            self.data.ctrl[a] = 0.0            # torso UP: the hand must stay clear of the floor
+        self.step(settle)
 
     def home_arm(self, settle=1.2):
         """Retract to a known-high pose before any reach. S1-E34: the arm was starting from wherever
@@ -277,6 +404,15 @@ class KitchenTask(FFWKitchen):
         eid = self.model.equality(f"hold_{name}").id
         self.data.eq_active[eid] = 1
         mujoco.mj_forward(self.model, self.data)
+        # S1-E36: a carried object must not collide with the robot carrying it. The object's mask
+        # (1,2) against the robot's (3,4) collides, so any arm motion presses the WELDED object into
+        # the chassis; the weld and the contact fight and the solver LAUNCHES the robot -- measured
+        # base z 0.023 -> 0.386 with upright -0.140, thrown rather than tipped. Masked while held,
+        # restored on release.
+        gid = self.model.geom(f"{name}_geom").id
+        self._held_mask = (int(self.model.geom_contype[gid]), int(self.model.geom_conaffinity[gid]))
+        self.model.geom_contype[gid] = 0
+        self.model.geom_conaffinity[gid] = 0
         self.holding = name
         self.step(0.3)
         return True
@@ -287,6 +423,10 @@ class KitchenTask(FFWKitchen):
             return False
         eid = self.model.equality(f"hold_{self.holding}").id
         self.data.eq_active[eid] = 0
+        gid = self.model.geom(f"{self.holding}_geom").id
+        ct, ca = getattr(self, "_held_mask", (1, 2))
+        self.model.geom_contype[gid] = ct          # it is an object in the world again
+        self.model.geom_conaffinity[gid] = ca
         self.gripper(False)
         b = self.model.body(self.holding).id
         jadr = self.model.jnt_qposadr[self.model.body_jntadr[b]]
@@ -298,6 +438,7 @@ class KitchenTask(FFWKitchen):
         self.cleared.append(self.holding)
         self.holding = None
         self.step(0.5)
+        self.home_arm(0.8)        # tuck before driving anywhere: see _station
         return True
 
     def gripper(self, closed):
@@ -312,24 +453,14 @@ class KitchenTask(FFWKitchen):
 
     def run_skill(self, key):
         self.recent.append(key)
-        if key == "go_counter":
-            n = self.nearest_obj()
-            if n is not None:
-                ap = self.approach_pose(n)
-                if float(np.linalg.norm(self.xy() - ap)) < 0.20:
-                    self._face(self.obj_xy(n))        # in position: line up for the reach
-                else:
-                    self._drive_to(ap)
+        if key.startswith("go_to:"):
+            n = key.split(":", 1)[1]
+            if n in self.all_on_counter():
+                self._station(self.approach_pose(n), self.obj_xy(n))
             else:
-                self._drive_to(COUNTER)
+                self.set_cmd(0, 0, 0); self.step(DECISION_S)
         elif key == "go_bin":
-            # S1-E35: face only once ALREADY in range. Switching to "face" at BIN_REACH + 0.2 made
-            # the robot stop driving 7 cm short of the gate and then turn on the spot for the rest of
-            # the episode -- it was always about to arrive and never arrived.
-            if self.d_bin() < BIN_REACH:
-                self._face(BIN_XY)
-            else:
-                self._drive_to(BIN_XY)
+            self._station(BIN_XY, BIN_XY, arrive=BIN_REACH * 0.9)
         elif key.startswith("pick_up:"):
             name = key.split(":", 1)[1]
             # S1-E35: a REAL grasp. Solves the arm, follows a Cartesian path over the counter, closes
@@ -364,4 +495,9 @@ class KitchenTask(FFWKitchen):
             self.fell = True
 
     def succeeded(self):
-        return len(self.cleared) == len(NAMES) and not (self.tipped & FRAGILE)
+        """Everything that SHOULD go in the bin did, nothing that should not did, nothing fragile
+        was knocked over."""
+        want = [n for n in NAMES if n != self.keep]
+        return (all(n in self.cleared for n in want)
+                and not self.wrong_bin
+                and not (self.tipped & FRAGILE))

@@ -67,7 +67,7 @@ def prepare_robot_xml(body):
     # a LINE contact with the floor, and that pair of laterally separated points forms a couple that
     # resists yaw -- measured spin ratio 0.04-0.05, i.e. the base cannot turn. A real swerve wheel has
     # a small patch and turns freely, so this is a modelling artifact. WHEEL_SHAPE selects the fix.
-    half = os.environ.get("FFW_WHEEL_HALFWIDTH", "0.005")   # S1-E32: 0.035 (shipped) brakes yaw to ratio 0.06
+    half = os.environ.get("FFW_WHEEL_HALFWIDTH", "0.035")   # S1-E32: 0.035 (shipped) brakes yaw to ratio 0.06
     shape = os.environ.get("FFW_WHEEL_SHAPE", "cylinder")
     if shape == "sphere":
         body = re.sub(r'type="cylinder" size="0\.09 0\.035"', f'type="sphere" size="{WHEEL_R}"', body)

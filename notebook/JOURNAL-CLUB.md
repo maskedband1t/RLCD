@@ -767,6 +767,41 @@ frequency or what triggers it. That is claim 11's territory — we price escalat
 which is a weights lever, not a structure lever. It is at the tracking-controller layer — System 0, below where anything
 here operates — so it does not contradict the thesis. But it belongs in the record as a place where scale plainly worked.
 
+## Contrastive World Models · the right idea, reported without a single number — **B**
+*arXiv 2609.22175 · surfaced by alphaXiv, 27 Sep · 22.9k views*
+
+**"If a world model has to reconstruct every pixel, it'll waste most of its capacity modeling irrelevant background
+noise."** So they delete Dreamer's pixel decoder and replace reconstruction with a **Deep InfoMax-like lower bound**
+maximising mutual information between state-action sequences and **local patch features** of future observations. The
+latent keeps what predicts the future and drops what merely renders it.
+
+**What it shows, in the authors' own words, because there is nothing else to quote:** on default DMC "all three methods
+eventually reach comparable asymptotic performance"; with simple distractors InfoMax "matches or exceeds Dreamer on two
+tasks" — **which means on the third it does not** — while the momentum-prediction baseline "collapses across all three";
+with natural-video backgrounds it "substantially outperforms both baselines on every task". Training is "consistently
+substantially faster in wall-clock time per training step", with no figure attached to *substantially*.
+
+**The scale, stated plainly: 3 tasks (finger-spin, cheetah-run, walker-walk), 1 M env steps, 3 seeds per condition, and
+results presented only as curves — no table, no error bars, no numbers anywhere in the paper.** Our own E130 measured
+five runs of one arm on one bench spanning **20 to 23**; three seeds cannot carry "matches" or "substantially
+outperforms" without a band. **Uncertainty tally: 20 of 26 sources report none.**
+
+**Credit where it is due:** the limitations section is honest in a way most are not — *"limited to small-scale
+experiments built on top of an older architecture (RSSM) on a relatively established benchmark"*. They are not
+overclaiming scale; they are underreporting evidence, which is a different and more fixable failure.
+
+**Where it touches this record — and it is a tension, not a fit.** E198's recoverability needs **exact** state
+restoration: save the world, branch, restore, byte-identical. That is why bench 9 works for it (pure Python, `deepcopy`)
+and why Kintsugi uses a simulator. **A learned world model cannot give you that**, however robust its latent — it gives
+an approximation whose error compounds along exactly the long rollouts recoverability depends on. So the better the
+learned model gets, the more tempting and the more wrong it becomes to measure recoverability inside it. **Restorability
+and realism are different properties, and only one of them is what the frontier is made of.**
+
+**Not acted on, deliberately.** `PLAN.md` for this fortnight says it in one line — *"four days went into making a world
+model sharper. The thing standing between the author and this job is not model sharpness"* — and marks the demo **done, stop
+polishing**. Today is day 13 of 14. This paper is a good answer to a question that was consciously closed, and reopening
+it the day before the conversation would be the exact mistake that plan was written to prevent. **Filed, not built.**
+
 ## The rest — **C**
 
 Demonstrations rather than evidence, listed so the record is complete and nobody re-reads them.

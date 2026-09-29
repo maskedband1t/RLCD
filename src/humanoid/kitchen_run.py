@@ -12,7 +12,8 @@ class Oracle:
 
 
 class Rules:
-    """Hand-written, no model. The obvious program a person writes in five minutes."""
+    """Hand-written, no model. The obvious program a person writes in five minutes: grab whatever is
+    on the counter, bin it, repeat. It does not read the note -- which is the point of the note."""
     name = "rules"
     calls = 0
     def decide(self, f, opts, room):
@@ -21,9 +22,32 @@ class Rules:
         pick = [o for o in opts if o.startswith("pick_up:")]
         if pick:
             return pick[0], {}
-        if f["objects_left_on_counter"] == 0 and "done" in opts:
+        goes = sorted(o for o in opts if o.startswith("go_to:"))
+        if goes:
+            return goes[0], {}
+        if "done" in opts:
             return "done", {}
-        return "go_counter", {}
+        return "stop", {}
+
+
+class RulesNote:
+    """The same program, plus one line: skip whatever the note says to keep. This is the cheapest
+    possible 'reads the instruction' arm, and the gap between it and Rules is the headroom."""
+    name = "rules_note"
+    calls = 0
+    def decide(self, f, opts, room):
+        keep = f.get("must_not_be_binned", "nothing")
+        if f["holding"] != "nothing":
+            return ("put_in_bin" if "put_in_bin" in opts else "go_bin"), {}
+        pick = [o for o in opts if o.startswith("pick_up:") and o.split(":",1)[1] != keep]
+        if pick:
+            return pick[0], {}
+        goes = sorted(o for o in opts if o.startswith("go_to:") and o.split(":",1)[1] != keep)
+        if goes:
+            return goes[0], {}
+        if "done" in opts:
+            return "done", {}
+        return "stop", {}
 
 
 class NeverMove:
@@ -82,7 +106,8 @@ def episode(seed, arm, record=None):
     }
 
 
-ARMS = {"never_move": NeverMove, "always_ask": AlwaysAsk, "rules": Rules, "oracle": Oracle}
+ARMS = {"never_move": NeverMove, "always_ask": AlwaysAsk, "rules": Rules,
+        "rules_note": RulesNote, "oracle": Oracle}
 
 
 def run(arm_name, seeds, label=None):

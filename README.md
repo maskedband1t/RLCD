@@ -14,7 +14,7 @@ takes a real bimanual task from 25 % to 80 %. Three data and inference levers ta
 **And almost nobody measures whether the structure worked.** One group publishes a real humanoid in a real apartment with
 **zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %. A leading lab states
 it plainly: robotics has no equivalent of "check the answer, run the tests", so success detectors are hand-built per task
-or a person watches, and neither scales. **Of twenty-five papers and systems read for this record, nineteen report nothing
+or a person watches, and neither scales. **Of twenty-six papers and systems read for this record, twenty report nothing
 about their own uncertainty at all** — and the one that does it properly, with pointwise Wilson intervals on a
 measured quantity, arrived this week.
 
@@ -600,7 +600,7 @@ believe.** Four categories, and the last two are the uncomfortable ones.
   [figure 27](figures/fig27-recoverability.png).
 - **The apparatus itself.** A preflight that refuses a bench where a zero-model arm succeeds, dose gates that refuse an
   intervention that cannot change an outcome, and a seat-qualification test that costs an afternoon and says whether a
-  model belongs in a given seat at all. **Of twenty-five sources with enough substance to judge, nineteen report nothing
+  model belongs in a given seat at all. **Of twenty-six sources with enough substance to judge, twenty report nothing
   on uncertainty**; of the six that do, only one (Kintsugi-VLA, arXiv 2609.31048) reports it as a measured quantity with
   intervals rather than consuming it internally, and none tests whether the number survives into a runtime decision a
   threshold can spend.

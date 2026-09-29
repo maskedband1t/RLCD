@@ -852,6 +852,61 @@ not free" result in three days, after Dimensional's harness costing 28 points an
 real-world environments with stochastic dynamics as future work. The direction is right and the evidence does not yet
 reach us. **Filed; the convergence rows are the value.**
 
+## Reality Check / PAW-GEN-10 · the best-measured robot benchmark there is, and the column it does not have — **A**
+*Poke & Wiggle (Nicolas Keller, ex-Meshcapade/Epic, ex-Franka) · 29 Sep · `pokeandwiggle.com/leaderboard` · not open*
+
+**"The Era of Evals is coming to AI robotics."** 14,400 **real-world** rollouts on Franka FR3 stations — 3,600 per model
+— across 10 environments, three data tiers, two placement conditions, **with 95 % confidence intervals on every number.**
+
+#### The headline number is brutal and useful
+
+| model | overall | evaluations |
+|---|---|---|
+| MolmoAct 2 | **28 %** | 3,600 |
+| Pi 0.5 | 21 % | 3,600 |
+| DiT-Flow | 19 % | 3,600 |
+| GR00T N1.7 | **12 %** | 3,600 |
+
+**The best open VLA scores 28 %.** At its most generous tier — D300, ~300 demonstrations per environment — MolmoAct 2
+reaches **44 % (95 % CI 40–48)** and Pi 0.5 **33 % (29–37)**. This record's opening line says a robot that works 95 % of
+the time breaks something weekly. **On real hardware across ten tasks the state of the art is not at 95 %, it is at
+28 %,** and that reframes the product argument rather than weakening it.
+
+**Per-task spread on one model, MolmoAct 2:** tools into a standing toolbox **4 %**, sort screws **10 %**, DC jack 15 %,
+open toolbox 18 %, route cable 21 %, clamp component 24 %, datum alignment 44 %, place loaded boxes 42 %, pour screws
+**52 %**, bimanual spray-bottle handover **52 %**. A 13× spread within one model. **Task identity dominates model
+identity**, which is claim 5 again from a completely different direction.
+
+#### Two of their nine metrics are ours, built by someone else
+
+- **Safe Failure Rate** — *"share of failed episodes that ended with both arms ok."* **That is the censored-vs-raw
+  distinction, in a public leaderboard.** We charge falls to the motion layer and never to the chooser precisely so a
+  destructive failure and a harmless one are not one number; they made it a column.
+- **Max Contact Force**, in Newtons with a CI (Pi 0.5: **50 N, 95 % CI 47–52**). Irreversibility priced in physical units.
+
+Plus SPARC smoothness, jerk at 10 Hz, progress, execution quality, execution speed. **Nine metrics, all with intervals.**
+
+#### The column that is not there, and it is the whole programme
+
+The benchmark reports **no human-intervention or takeover frequency, no model-reported uncertainty or confidence, and no
+failure-detection metric.** Nine metrics measuring what the robot *did*, and **not one asking whether the robot knew.**
+
+**That is the sharpest statement of our gap that exists**, and it comes from the most rigorous eval in the field rather
+than from us. The claim that needed weakening was *"almost nobody measures"* — plainly false as of today. The claim that
+survives, and is now much better founded, is ***nobody measures whether the system knew***.
+
+#### Against us, stated plainly
+
+This record leans on a measurement vacuum. **A company just filled a large part of it**, publicly, with 14,400 real
+rollouts and intervals on everything — where the median source here reports 10 to 40 trials and no band at all. The
+outcome-measurement gap is closing in public and our framing has to move with it. **Uncertainty tally: 21 of 28 report
+nothing, and this is comfortably the best of the seven that do.**
+
+**The one reservation, and it is not small:** unlike Dimensional's release the same week, **there is no mention of open
+data or code**, and the models were *"fine-tuned by us on the target tasks"* — so the tuning that produced these numbers
+is not inspectable, and a leaderboard nobody can reproduce is a claim rather than an instrument. M100 (mid-training on
+100 h of embodiment data) is listed as coming soon.
+
 ## The rest — **C**
 
 Demonstrations rather than evidence, listed so the record is complete and nobody re-reads them.

@@ -11,12 +11,18 @@ and build structure around it. A search loop takes one system from 25 % to 73 %.
 takes a real bimanual task from 25 % to 80 %. Three data and inference levers take a deployed picker from 37 s to 9.4 s at
 95 % success across 500 real runs per condition.
 
-**And almost nobody measures whether the structure worked.** One group publishes a real humanoid in a real apartment with
-**zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %. A leading lab states
-it plainly: robotics has no equivalent of "check the answer, run the tests", so success detectors are hand-built per task
-or a person watches, and neither scales. **Of twenty-seven papers and systems read for this record, twenty-one report nothing
-about their own uncertainty at all** — and the one that does it properly, with pointwise Wilson intervals on a
-measured quantity, arrived this week.
+**Measurement is arriving, and it is not measuring the thing this record is about.** As of this week a public
+leaderboard reports **14,400 real-world robot rollouts** — 3,600 per model, ten tasks, 95 % confidence intervals on all
+nine of its metrics — and the best open model on it scores **28 %**. That benchmark records what the robot *did*: success,
+progress, smoothness, jerk, contact force in Newtons, and even how many failures ended with the arms undamaged. **It
+records nothing about whether the robot knew.** No intervention or takeover frequency, no model-reported uncertainty, no
+failure detection. Nine columns on the outcome and none on the system's own grip on it.
+
+That absence is the subject here, and the rest of the field makes it plainer. One group publishes a real humanoid in a
+real apartment with **zero** success rates. Another reports state of the art on a benchmark already saturated at 97.5 %.
+A leading lab states it flatly: robotics has no equivalent of "check the answer, run the tests", so success detectors are
+hand-built per task or a person watches, and neither scales. **Of twenty-eight papers and systems read for this record,
+twenty-one report nothing about their own uncertainty at all.**
 
 **This is that measurement.** A supervision harness, measured layer by layer — a planner that holds the target, an
 enumerator that decides which options exist, a governor that owns safety and when to involve a person, an executor that
@@ -534,6 +540,13 @@ believe.** Four categories, and the last two are the uncomfortable ones.
 
 ### Against us — external results that bound or contradict a claim here
 
+- **The measurement vacuum is being filled, in public, this week.** Reality Check (Poke & Wiggle, 29 Sep) published
+  **14,400 real FR3 rollouts** with **95 % confidence intervals on every metric** — where the median source in this
+  record reports 10 to 40 trials and no band at all. **"Almost nobody measures" was a true claim that stopped being
+  true, and it is withdrawn.** What replaces it is narrower and better founded: that benchmark's nine metrics cover what
+  the robot did and **not one covers whether it knew** — no takeover frequency, no model-reported uncertainty, no
+  failure detection. The missing column is the argument now, and it is a stronger one than the vacuum ever was.
+
 - **A harness can cost accuracy.** Dimensional's open navigation benchmark (2,000+ tasks, 133 environments) published a
   first case in which the *same* frontier models score **1.00 without** their stack and **0.91 and 0.72 with** it, while
   on a second case the stack halves the time (34 s → 16 s). **A scaffold that buys latency and spends success is the
@@ -606,7 +619,7 @@ believe.** Four categories, and the last two are the uncomfortable ones.
   [figure 27](figures/fig27-recoverability.png).
 - **The apparatus itself.** A preflight that refuses a bench where a zero-model arm succeeds, dose gates that refuse an
   intervention that cannot change an outcome, and a seat-qualification test that costs an afternoon and says whether a
-  model belongs in a given seat at all. **Of twenty-seven sources with enough substance to judge, twenty-one report nothing
+  model belongs in a given seat at all. **Of twenty-eight sources with enough substance to judge, twenty-one report nothing
   on uncertainty**; of the six that do, only one (Kintsugi-VLA, arXiv 2609.31048) reports it as a measured quantity with
   intervals rather than consuming it internally, and none tests whether the number survives into a runtime decision a
   threshold can spend.

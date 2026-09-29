@@ -19327,3 +19327,25 @@ there is still **no evidence about whether a real planner in the seat beats a ha
 scored 7/10 here against S1-E41's 6/10 — one seed's difference, unexplained, and small enough that it changes nothing
 except as a reminder that the point estimates are soft.
 
+### METHOD ERROR 84 — I pushed a banned term because I grepped the scan output for the wrong string
+
+`tools/export_public.py` writes its own `SNAPSHOT.md` header with `datetime.date.today()`. One of the `BANNED`
+patterns is a **specific date** — it sits in the list among the personal and job-search
+identifiers, because that is what it is. **The moment the clock reached that date, the export's own boilerplate became the
+only banned-term hit in the repository.**
+
+The scan worked. It printed `REVIEW: 1 remaining hits`. **I had piped the output through `grep -E "banned|copied"`,
+saw `copied 724 files`, and pushed** — the phrase I was actually relying on, `no banned terms remain`, contains
+"banned" and so would have shown, but its *absence* is what mattered and a grep cannot show an absence. Commit
+`afb40b0` went out with the date in `SNAPSHOT.md`.
+
+**This is the same error the peer session logged twice today** — confirming a change by reading text rather than
+watching the consequence — and the third instance across both sessions. **A check that prints a verdict must be read
+for its verdict, not filtered for a substring**, because filtering can only ever prove presence.
+
+**Fixed two ways.** The header now renders month granularity (`%B %Y`), which carries everything a reader needs and
+cannot collide with a banned date; and the scan is read in full from here on. **Stated honestly and not fixed: the
+public repository's git history carries commit dates, so the date is not concealed by this, and nothing in the
+banned-term scan governs commit metadata.** The rule is about content, the fix restores content compliance, and the
+metadata point is a separate question that this does not answer.
+

@@ -921,6 +921,16 @@ Demonstrations rather than evidence, listed so the record is complete and nobody
 - **Tran** (3.8M views) — context compaction by scoring tool calls. **Schroeder** (736k) — "I rebuilt Tesla FSD in less
   than an hour", with no evidence attached. **Tate** (1.3M) — generative UI. **Taras** — 3M session-replay events
   triaged in 40 s for $2.17. **Wasil** — a painting in 9 s against 20–30 minutes.
+- **DynaTokens** (Ma, Chen, Gkioxari, Caltech + World Labs; arXiv 2609.35704, **NeurIPS 2026**, code released) —
+  16 learnable scene-specific tokens, trained at test time through cross-attention over a **frozen** camera-controlled
+  video model (HY-WorldPlay), so objects move correctly while camera control is preserved. Curation leans on Gemini and
+  Kling. **Video generation only: the "actions" are WASD camera translations and arrow rotations. No robot, no
+  manipulation, no policy.** The project page names VBench2/WorldScore and DSR/MOU/MA and **prints no scores against any
+  baseline**. *Does it change an experiment, a prediction or a number here? No* — and the honest note is that its one
+  structural echo, a frozen base with a tiny test-time adapter, is already row 3 and already better evidenced by
+  Self-Adaptive VLA's AdaLN context token on an actual robot. **Deliberately NOT added to the uncertainty tally**: that
+  count is scoped to work about robot decision-making, and padding it with video-generation papers would make the
+  statistic meaningless.
 - **Aliu** — MIT's public Visual Navigation course, vnav.mit.edu. A resource.
 - **Ziegler** — "SLAM for Dummies", an MIT tutorial PDF. A resource.
 - One link (`SakanaAILabs/210434870595`) has a truncated post ID and does not resolve; another

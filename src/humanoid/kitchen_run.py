@@ -125,6 +125,16 @@ ARMS = {"never_move": NeverMove, "always_ask": AlwaysAsk, "rules": Rules,
 ARMS["xplanner+rules"] = lambda: _xplanner("rules")
 ARMS["xplanner+rules_note"] = lambda: _xplanner("rules_note")
 ARMS["surprise+rules"] = lambda: _xplanner("rules", expect=True)
+
+
+def _clm(gate=None, tau=0.45):
+    from humanoid.kitchen_clm import KitchenCLM
+    return KitchenCLM(gate=gate, tau=tau)
+
+
+ARMS["clm"] = lambda: _clm(None)
+ARMS["clm+confidence"] = lambda: _clm("confidence")
+ARMS["clm+surprise"] = lambda: _clm("surprise")
 # The world-model half with no planner at all: the configuration S1-E41 reached by accident, on purpose,
 # so it runs at the same seed count as every other arm.
 ARMS["rules+surprise"] = lambda: _xplanner("rules", expect=True, plan_enabled=False)

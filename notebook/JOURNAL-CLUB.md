@@ -907,6 +907,54 @@ data or code**, and the models were *"fine-tuned by us on the target tasks"* —
 is not inspectable, and a leaderboard nobody can reproduce is a claim rather than an instrument. M100 (mid-training on
 100 h of embodiment data) is listed as coming soon.
 
+## Argus · the operator-recovery labels we said did not exist, open-sourced — **A**
+*Pantheon Industries · 1 Oct · Apache-2.0 code, **CC-BY-4.0 labels** · `Pantheon-Industries-Inc/argus`*
+
+A VLM annotation and quality pipeline for robot-learning data, run over **3,546 episodes / 66.5 hours across nine public
+datasets** (MolmoAct2, ABC-130k, Galaxea, HABIT, FastUMI, RealOmin, Egocentric-100K, Gen-HumanEgo, OpenAoE). Reads
+LeRobot, MCAP or plain video. Recommends GPT-6 Astra, runs on other VLMs. **≈ $26 per footage-hour** on teleop, which at
+a 71 s median episode is about **$0.51 an episode**.
+
+#### Why this is an A and not a tool announcement
+
+Per episode it emits a dense timeline that includes **"operator mistakes, and whether and how the operator recovered."**
+
+**That is the label set this record said the field did not have, and being wrong about it once is already logged as
+method error 82** — I asserted another benchmark carried takeover labels from reading its paper, and a peer downloaded
+the release and found none. The rule that followed was *a claim about what an artefact contains must come from the
+artefact*. Here the artefact has them, across nine datasets, **CC-BY-4.0**.
+
+**It bears directly on our strongest single finding.** The form of a correction is the lever: a one-second veto rescues
+**14 of 60** where the same operator input as a replacement action rescues **zero**. That was measured entirely in
+simulation. Argus's labels are real recoveries by real operators, licensed for reuse. **The probe is obvious: do real
+recoveries divide into the two forms our benches distinguish, and does the ratio survive?** Pre-register before looking.
+
+#### The architecture is ours, arrived at independently
+
+*"Deterministic checks run alongside the model to catch what a model should not be trusted to judge."* Five of them:
+
+| check | what it catches |
+|---|---|
+| `stream_pairing` | camera files swapped between arms, by comparing image motion to recorded arm motion |
+| `recorded_jumps` | single-frame pose discontinuities not visible in the footage |
+| `gripper_channels` | gripper signals that never change |
+| `capture_qc` | 38 checks — clock gaps, exposure, frozen frames, motion mismatches |
+| `label_consistency` | success with incomplete progress, failure at 100 % completion |
+
+**Code owns what code can own; the model judges the rest.** That is this record's enumerator/governor split, and `recorded_jumps`
+is our own DROID finding as a shipped check — we measured a single action dimension carrying fake **430×** spikes from
+rotation wrap, 43 of 2,955 transitions, inflating mean |dx| by 13.5×.
+
+#### The critique, and it is a real one
+
+**A data-quality tool that reports no accuracy of its own.** No validation against human labels, no agreement number, no
+prevalence figures — the README does not say what fraction of episodes had mislabeled instructions or swapped streams,
+which is the headline claim of the launch post. The "gate" scores (**19/22** teleop, **36/36** UMI, **6/7** ego) are
+regression tests over known cases, not held-out validation against human judgement. **Tally: 22 of 29 report nothing.**
+
+Worth stating without smugness, because the same critique lands on us: we measured a success detector at **.662 — worse
+than believing the robot** — which is why we know an unvalidated quality judge is a real risk rather than a theoretical one.
+
 ## The rest — **C**
 
 Demonstrations rather than evidence, listed so the record is complete and nobody re-reads them.

@@ -1,1 +1,1 @@
-Public snapshot exported September 2026 by tools/export_public.py from a private working repository. Planning notes and audience-specific material are not included; large checkpoints and frame dumps are excluded.
+Public snapshot exported October 2026 by tools/export_public.py from a private working repository. Planning notes and audience-specific material are not included; large checkpoints and frame dumps are excluded.

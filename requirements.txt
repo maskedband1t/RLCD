@@ -1,0 +1,16 @@
+# Unpinned: the versions used for the record were not frozen at the time.
+# Core harness, rules, oracle, figures
+numpy
+mujoco
+matplotlib
+scikit-learn
+Pillow
+# Owned-head training and evaluation (Laya / ModernBERT-large)
+torch
+transformers
+safetensors
+huggingface_hub
+# Apple silicon only: open-model baselines run through MLX
+mlx; sys_platform == "darwin"
+mlx-lm; sys_platform == "darwin"
+# Calibrated-judge arms (Jev) need TypeSafe's SDK and TYPESAFE_API_KEY; rules, oracle and owned heads do not.

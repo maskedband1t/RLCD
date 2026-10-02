@@ -2,6 +2,8 @@
 
 Anurag Akkiraju · September 2026 · MIT
 
+> **Assessing this repository?** Start with [AGENTS.md](AGENTS.md): what the work is, the core results with the file behind each, a ten-minute check, and the limits.
+
 **Robots are improving fast, and the models are not the bottleneck.** A robot that does the job 95 % of the time breaks
 something every week, and nobody can tell you which 5 %, why, or what it costs per hour. That gap is paid for in people
 watching, and the people are the margin.

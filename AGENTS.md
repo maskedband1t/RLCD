@@ -21,8 +21,10 @@ Contrastive Distillation" (arXiv 2307.12950).
 
 ## What is strongest
 
+**The arc.** The README opens with [the record in six acts](README.md#the-record-in-six-acts): where the work started, the bet, the gap, the trap it found in its own improvement loop, the lever that fixes it, and two days spent trying to break it. The trap (act 4) is the most important result.
+
 **The scale and shape of the programme.** More than a hundred and sixty numbered experiments across a sorting cell, a
-small biped (MicroDuck), a full-size humanoid, a picking station and a drone testbed, plus a probe on 13,451 real
+small biped (MicroDuck), a full-size humanoid, a picking station simulated at the decision level, and a drone testbed, plus a probe on 13,451 real
 teleoperation demonstrations (Eidon). The same harness runs every body. One person built it in about two weeks.
 
 **The core results, each with its boundary stated in the ledger:**
@@ -34,6 +36,9 @@ teleoperation demonstrations (Eidon). The same harness runs every body. One pers
 | On a second body, the judge handles 29 of 30 fresh episodes of situations nobody wrote a rule for. The frozen rules handle 1, the oracle 26 | [CLAIMS 4.60](notebook/CLAIMS.md) | `results/duck/e102.jsonl` |
 | Two rounds of the operator's vetoes alone give the local copy both halves: the rules' walking (95 % = 95 %) and its teacher's reading (28 of 30 vs 29) | [CLAIMS 4.63](notebook/CLAIMS.md) | `results/duck/e103*.jsonl` |
 | On the humanoid, one round of vetoes takes the copy from 0 to 25 of 30 unwritten situations — above the teacher that taught it (19) — with no wrong hand-over and no fall | [CLAIMS 4.69](notebook/CLAIMS.md) | `results/duck/e113*.jsonl` |
+| **The trap.** Correcting the copy from takeovers drives calibration error from .362 to .008 where corrected and from .307 to .399 on a bank never touched; the operator's veto window falls from rescuing 34 of 60 to none | [CLAIMS 4.94](notebook/CLAIMS.md) | `results/duck/e146.jsonl`, [Figure 21](figures/fig21-calibration-rounds.png) |
+| **The lever.** The same interventions recorded as a veto keep a safety net that rescues 14 of 60; recorded as the replacement action, none | [CLAIMS 4.99](notebook/CLAIMS.md) | `results/duck/e157*.jsonl`, [Figure 24](figures/fig24-veto-recovered.png) |
+| **The bound.** The seat needs a model that ranks plus about twenty-five labels, not a particular model; a logistic regression on 400 labels beats every model in it | README, core result citing E195–E196 | `results/table/e195.jsonl`, `results/table/e196.jsonl` |
 | Rules rewritten by their author *after* seeing the unseen banks match the judge. The value of the judge is time-to-rule plus a calibrated number, not accuracy after the fact | [CLAIMS 4.66](notebook/CLAIMS.md) | `results/duck/e114*.jsonl` |
 
 The last row is the programme testing its own headline result against the strongest fair alternative. It reports the

@@ -1,8 +1,60 @@
 # Calibrated Decisions at the Human–Robot Boundary
 
-Anurag Akkiraju · September 2026 · MIT
+Anurag Akkiraju · 14 September – 1 October 2026 · MIT
 
 > **Assessing this repository?** Start with [AGENTS.md](AGENTS.md): what the work is, the core results with the file behind each, a ten-minute check, and the limits.
+
+## The record in six acts
+
+Two weeks, one question, and a bet that changed shape as the evidence came in. This is the order the work happened in;
+everything after this section is the evidence, kept as it was written.
+
+**1 · It started somewhere else (14–16 Sep).** The first experiments built a world model for evaluating robot policies
+(E0–E8, continued in [world-model-divergence](https://github.com/maskedband1t/world-model-divergence)). E13 asked whether
+a vision-language model could judge a real robot episode. When a model family arrived that week that states how sure it
+is — TypeSafe's Jev, trained with what TypeSafe calls RLCD — the question moved to the decision layer: **when should a
+robot act, and when should it hand off to a person?**
+
+**2 · Does the number mean anything? (17–20 Sep).** A sorting cell, a rule program frozen before the tests, an oracle
+that knows the truth, and open models in the same seat. On the states its own actions create, Jev's stated probability
+stays within .02 of its hit rate; a dense open 27B's runs .135 over, so a fixed handoff threshold drifts for it
+([Figure 8](figures/fig8-reliability.png)). A 421M open encoder distilled from 6,489 of Jev's decisions then matches it
+in the loop, 88.3 % against 87.9 %, at 90 ms with no API call ([CLAIMS 4.54, 4.56](notebook/CLAIMS.md)).
+
+**3 · The gap, and how long it lasts (20–22 Sep).** Three more setups on the same harness: a small biped, a full-size
+humanoid, and a picking station simulated at the decision level. Where nobody wrote a rule, the judge handles 29 of 30 episodes and the frozen rules handle
+1 ([Figure 10](figures/fig10-duck-ladder.png)). Then the programme tested its own headline result: shown the situations,
+the rules' author closed the gap in fourteen minutes (E114). **So the judge's value is the time before a rule exists,
+plus a number someone can act on during it.** The fleet's own copy, corrected only by the operator's vetoes, takes the
+humanoid from 0 to 25 of 30 unwritten situations, above the judge that taught it (E113,
+[Figure 12](figures/fig12-humanoid-ladder.png)).
+
+**4 · The trap (23–24 Sep).** Correcting the copy makes its number honest where you corrected and dishonest where you
+did not. Over three rounds, calibration error on the corrected lines falls from .362 to .008, while on a bank the
+corrections never touch it rises from .307 to .399. Its confidence when it is wrong there climbs from .62 to .90, and the
+operator's one-second veto goes from rescuing 34 of 60 situations to none (E146,
+[Figure 21](figures/fig21-calibration-rounds.png)). **A falling intervention rate is not evidence of a safer fleet.**
+
+**5 · The lever (25 Sep).** The same interventions, written down three ways. Recorded as a veto ("not that"), they
+leave a safety net that rescues 14 of 60; recorded as the operator's replacement action, they rescue none (E157,
+[Figure 24](figures/fig24-veto-recovered.png)). A novelty check on the facts routes the copy's blind spots back to the
+judge, taking it from 37 of 60 to 48. On a bank partly written by an author with no access to the repository (a model given only the task), the main claim
+holds: the judge 48 of 60, the frozen rules 24 ([Figure 25](figures/fig25-independence.png)).
+
+**6 · Trying to break it (25 Sep – 1 Oct).** What does a robot that does nothing score, and what does a coin score? The
+learned gate fails on a bank it was not designed against, and that result is kept. The method-error log passes 70, and
+claims are narrowed or withdrawn rather than defended. The last question is the uncomfortable one: is the number worth
+anything the labels are not? Mostly not. **The seat needs a model that ranks plus about twenty-five labels, not a
+particular model**, and a logistic regression on 400 labels beats every model in it. What a calibrated model buys is
+arriving already knowing the ordering (E195, E196).
+
+**What it adds up to.** The bet was that a calibrated model is the answer. The record says something smaller and more
+durable. **Most of the outcome is decided by the scaffolding around the model** — what code lets it choose, when the
+governor asks a person, and how the person's corrections are written down. The fleet also has to measure what the
+robot *knows*, not just what it does, because the improvement loop can quietly erase the first while the second looks
+fine.
+
+## The field, and what it does not measure
 
 **Robots are improving fast, and the models are not the bottleneck.** A robot that does the job 95 % of the time breaks
 something every week, and nobody can tell you which 5 %, why, or what it costs per hour. That gap is paid for in people
@@ -33,7 +85,7 @@ one seat of it: shown the situation in plain words and a list of options code wr
 **Most of what determined the outcome turned out to be the scaffolding, not the model in the seat** — which is a smaller
 claim than the one this started with, and a more useful one, because it survives the original bet being wrong.
 
-### Three numbers, if you read nothing else
+### Three numbers a fleet operator should know
 
 | | |
 |---|---|

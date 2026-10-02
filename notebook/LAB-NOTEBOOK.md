@@ -1,5 +1,7 @@
 # Lab notebook — world model for policy evaluation
 
+> **Origin.** This notebook began on 14 September as a world-model study (E0–E8, continued in [world-model-divergence](https://github.com/maskedband1t/world-model-divergence)). From E13 it follows the decision layer at the human–robot boundary, which is the subject of this repository. The title is kept as it was first written.
+
 Running record. One entry per experiment, in the order they were run.
 
 ## Protocol

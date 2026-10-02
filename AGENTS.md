@@ -6,7 +6,7 @@ Everything here points to a committed file; nothing here is a claim the record d
 
 ## What this is
 
-A self-directed research programme by one engineer, run from late August to September 2026, on a single question: **when should a robot
+A self-directed research programme by one engineer, run over about two weeks in September 2026 (lab notebook 14–28 September), on a single question: **when should a robot
 act on its own, and when should it hand off to a person — and can a fleet own that judgment cheaply?**
 
 It treats the decision layer of a robot as the object of study. That layer is a judgment model that states how sure it
@@ -23,7 +23,7 @@ Contrastive Distillation" (arXiv 2307.12950).
 
 **The scale and shape of the programme.** More than a hundred and sixty numbered experiments across a sorting cell, a
 small biped (MicroDuck), a full-size humanoid, a picking station and a drone testbed, plus a probe on 13,451 real
-teleoperation demonstrations (Eidon). The same harness runs every body. One person built it in about five weeks.
+teleoperation demonstrations (Eidon). The same harness runs every body. One person built it in about two weeks.
 
 **The core results, each with its boundary stated in the ledger:**
 

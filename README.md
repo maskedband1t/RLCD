@@ -4,6 +4,28 @@ Anurag Akkiraju · 14 September – 1 October 2026 · MIT
 
 > **Assessing this repository?** Start with [AGENTS.md](AGENTS.md): what the work is, the core results with the file behind each, a ten-minute check, and the limits.
 
+## In one minute
+
+A robot stack has a planner (System 2) and a policy (System 1). Something between them has to decide, many times a
+minute, whether to act, ask, or hand off to a person. This record asks whether a small calibrated model can hold that
+seat, and how much of the outcome is decided by the harness around it.
+
+- **A small model can hold the seat.** A 421M open encoder distilled from the cloud judge matches it in the loop,
+  88.3 % against 87.9 %, at 90 ms on a laptop GPU, and its stated confidence stays within .007 of its hit rate
+  ([CLAIMS 4.54, 4.56](notebook/CLAIMS.md)).
+- **The harness decides more than the model.** What code lets the model choose from, when the governor asks a person,
+  and how the person's corrections are written down move the outcome more than which model sits in the seat (E195, E196).
+- **The correction loop can quietly make it worse.** Retrained on operator takeovers, the copy's calibration error falls
+  to .008 where it was corrected and rises from .307 to .399 where it was not, and the operator's veto goes from rescuing
+  34 of 60 situations to none. Recorded as vetoes instead, the same takeovers keep a safety net of 14 of 60
+  ([Figure 21](figures/fig21-calibration-rounds.png), [Figure 24](figures/fig24-veto-recovered.png)).
+- **The bound.** Shown the situations, the rules' author closed the gap in fourteen minutes (E114), so the layer's value
+  is the time before a rule exists. Everything with a body is simulated in MuJoCo; the real data is one probe on Eidon's
+  teleoperation release.
+
+The judgment models evaluated are TypeSafe's Jev family, trained with what TypeSafe calls RLCD; this repository builds
+and measures the harness around them. [See it move](#see-it-move) · [Setup](#setup) · [Reproduce](#reproduce)
+
 ## The record in six acts
 
 Two weeks, one question, and a bet that changed shape as the evidence came in. This is the order the work happened in;
@@ -99,7 +121,7 @@ claim than the one this started with, and a more useful one, because it survives
 
 **A wheeled two-arm mobile manipulator, not a walker** — omnidirectional base, lift column, two arms with parallel-jaw
 grippers. This is the form factor most commercial fleets have converged on, and it is the body the harness is measured
-on. It is the open **ROBOTIS FFW** model (Apache-2.0, commit `d8344c0`), vendored at `third_party/robotis_ffw/` with its
+on. It is the open **ROBOTIS FFW** model (Apache-2.0, commit `d8344c0`), fetched into `third_party/robotis_ffw/` by `scripts/fetch_third_party.sh`, with its
 provenance, its verified kinematic structure and **its two gaps recorded** — the shipped model has no cameras
 (`ncam == 0`) and no sites (`nsite == 0`), and only 1 of 65 geoms is named.
 
@@ -811,6 +833,25 @@ Log state, options and the probability vector for every decision. Convert number
 PYTHONPATH=src python -m cell.report
 ```
 
+## Setup
+
+```bash
+git clone https://github.com/maskedband1t/RLCD && cd RLCD
+python -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
+scripts/fetch_third_party.sh    # public simulators and robot models, pinned; not committed here
+```
+
+| bench | from a clean clone | needs |
+|---|---|---|
+| sorting cell (`src/cell`) | after `pip install` | nothing else |
+| drone testbed (`src/sim`) | after the fetch script | `third_party/jev-drone` |
+| humanoid fetch room (`src/humanoid`) | after the fetch script | `third_party/mujoco_playground`, `third_party/mujoco_menagerie` |
+| wheeled manipulator, FFW (`src/humanoid/ffw_*`) | after the fetch script | `third_party/robotis_ffw`; the kitchen scenes also need `tools/hb_kitchen.py` |
+| duck bench (`src/duck`) | needs Pollen's MicroDuck code | `third_party/microduck_rl`, `third_party/microduck_policies` |
+| owned head (`src/cell/e90_laya_head.py`) | trains on Apple silicon | `convaiinnovations/laya` from the Hugging Face Hub |
+| judge arms | needs an API key | `TYPESAFE_API_KEY` and TypeSafe's SDK |
+
 ## Reproduce
 
 No-key runs (no API needed):
@@ -900,4 +941,4 @@ Everything positive about the decision loop is measured in simulation we built, 
 
 **How this could be unfair, and what we did about it.** (1) The rule programs are ours, written before each unseen bank and frozen while the judge's inputs improved across rounds; that asymmetry is the hypothesis (a judge uses a new fact without a rewrite), and a rule author given the same rounds would keep the anticipated bank and could not touch the unseen one without seeing it. (2) The unseen situations favour reading: two of the humanoid's three and one of the duck's three live in an operator's note; the counterweights are the reaching child (rules 10/10, judge 0/10), the crossing adult (rules win) and the cell's unflagged surprises with no note (E83). (3) The owned copy learns our own acceptable sets and is tested on fresh seeds of the same situations, so its parity with the teacher is within-situation; generalisation to situations it was never corrected on is untested. (4) The instruments changed between rounds after seeing results; every change was pre-registered before the next run and the rules and oracle were re-run on the same instrument each time, but it is bench iteration informed by the judge's failures. (5) The open 27B's probability came through a readout we built; the drift result is about an untrained readout, not the best an open model could do with training. (6) Ten episodes per situation: differences of one or two are noise, and the claims rest on the large effects. (7) Done on 2026-09-21 (E114): the rules written a second time by their author after seeing the unseen banks handle 29 of 30 on the duck (the judge's number) and 30 of 30 on the humanoid (the judge: 20), in under fifteen minutes per body; so every unseen-bank comparison here reads "before anyone wrote the rule", and the judge's value is time-to-rule plus a calibrated number, not accuracy after the fact. The banks' author wrote the fixes, so the minutes are a lower bound and the scores an upper bound on a stranger's; a second designer's bank is the open test.
 
-MIT licence. Third-party: `third_party/jev-drone` (MIT), **ROBOTIS AI Worker (FFW) MuJoCo models (Apache-2.0), from [robotis_mujoco_menagerie](https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie) — vendored unmodified, provenance in `third_party/robotis_ffw/PROVENANCE.md`**, MuJoCo Playground and MuJoCo Menagerie (Apache-2.0), HomeBody scanned assets (from the project page), RelateAnything weights (fetched, not stored). Anurag Akkiraju, 2026.
+MIT licence. Third-party: `third_party/jev-drone` (MIT), **ROBOTIS AI Worker (FFW) MuJoCo models (Apache-2.0), from [robotis_mujoco_menagerie](https://github.com/ROBOTIS-GIT/robotis_mujoco_menagerie) — fetched unmodified at commit `d8344c0` by `scripts/fetch_third_party.sh`**, MuJoCo Playground and MuJoCo Menagerie (Apache-2.0), HomeBody scanned assets (from the project page), RelateAnything weights (fetched, not stored). Anurag Akkiraju, 2026.

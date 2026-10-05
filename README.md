@@ -6,9 +6,15 @@ Anurag Akkiraju · 14 September – 1 October 2026 · MIT
 
 ## In one minute
 
-A robot stack has a planner (System 2) and a policy (System 1). Something between them has to decide, many times a
-minute, whether to act, ask, or hand off to a person. This record asks whether a small calibrated model can hold that
-seat, and how much of the outcome is decided by the harness around it.
+A robot stack has a planner (System 2) and a policy that moves the body (System 1). Something between them has to
+decide, many times a minute, whether to act, ask, or hand off to a person: call it **System 1.5**. This record asks
+whether a small calibrated model can hold that seat, and how much of the outcome is decided by the harness around it.
+
+![A person with crutches crosses and has right of way. Left, the frozen rules cut across and stop only 0.31 m away. Right, the calibrated judge reads the operator's note and waits at half a metre until they have passed.](figures/demo-duck-seed72-crutches-rules-vs-judge.gif)
+
+*The seat in one clip. An operator's note says a person with crutches has right of way. Left, hand-written rules cut
+across and stop 0.31 m from them. Right, the calibrated judge reads the note and waits. Rules 0 of 10 on this situation,
+the judge 10 of 10 (E102).*
 
 - **A small model can hold the seat.** A 421M open encoder distilled from the cloud judge matches it in the loop,
   88.3 % against 87.9 %, at 90 ms on a laptop GPU, and its stated confidence stays within .007 of its hit rate
@@ -24,7 +30,9 @@ seat, and how much of the outcome is decided by the harness around it.
   teleoperation release.
 
 The judgment models evaluated are TypeSafe's Jev family, trained with what TypeSafe calls RLCD; this repository builds
-and measures the harness around them. [See it move](#see-it-move) · [Setup](#setup) · [Reproduce](#reproduce)
+and measures the harness around them. Inside the record the same layers are numbered from the body up, following
+TypeSafe's naming: System 0 moves the body, System 1 is the seat, System 2 sits outside the loop
+([Three systems](#three-systems-and-which-one-the-harness-is-for)). [See it move](#see-it-move) · [Setup](#setup) · [Reproduce](#reproduce)
 
 ## The record in six acts
 

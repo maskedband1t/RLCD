@@ -7,7 +7,9 @@ Everything here points to a committed file; nothing here is a claim the record d
 ## What this is
 
 A self-directed research programme by one engineer, run over about two weeks in September 2026 (lab notebook 14–28 September), on a single question: **when should a robot
-act on its own, and when should it hand off to a person — and can a fleet own that judgment cheaply?**
+act on its own, and when should it hand off to a person — and can a fleet own that judgment cheaply?** In the usual
+split between a planner (System 2) and a policy (System 1), this is the layer in between, which the author's public
+posts call System 1.5; inside the record it is numbered System 1, after TypeSafe's naming.
 
 It treats the decision layer of a robot as the object of study. That layer is a judgment model that states how sure it
 is; a gate that asks a person below a threshold; a small copy of the model that the fleet runs locally; and the

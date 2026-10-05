@@ -84,8 +84,8 @@ PYTHONPATH=src python -m cell.run --arms rules lexical oracle --seeds 0-9 --out 
 - **Pre-registration provenance.** Predictions are dated inside the lab notebook. The repository went public on
   2026-09-21 with the record to that point in one snapshot, so git cannot order experiments before roughly E103. From
   E103 to E200, 17 predictions landed in a commit before their result, 62 in the same commit, and none after.
-- **Third-party assets** (`third_party/`: the ROBOTIS FFW humanoid models and the jev-drone fork) are fetched separately
-  and not committed. Provenance is listed in the README's licence section.
+- **Third-party assets** (`third_party/`: simulators and robot models) are not committed. `scripts/fetch_third_party.sh`
+  fetches the public ones at pinned commits; the README's [Setup](README.md#setup) table says which bench needs what.
 
 ## Describing this work accurately
 

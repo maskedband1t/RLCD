@@ -1,0 +1,42 @@
+name: check
+
+# The ten-minute check from AGENTS.md, run from a clean clone on every push.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  quick-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the core harness dependencies
+        run: pip install numpy mujoco matplotlib scikit-learn Pillow
+
+      - name: Every source file compiles
+        run: python -m compileall -q src
+
+      - name: Headline calibration numbers come from a committed file
+        run: |
+          python - <<'EOF'
+          import json
+          rows = {r["name"]: r for r in json.load(open("results/cell/d7_calibration.json"))}
+          copy = next(r for n, r in rows.items() if n.startswith("C") and "ce_soft" in n and "singleton" in n)
+          dense = next(r for n, r in rows.items() if n.startswith("C") and "27B" in n and "singleton" in n)
+          print(f"owned copy: over {copy['over']:+.3f}, ECE {copy['ece']:.3f} (n={copy['n']})")
+          print(f"dense 27B:  over {dense['over']:+.3f}, ECE {dense['ece']:.3f} (n={dense['n']})")
+          assert round(copy["ece"], 3) == 0.054 and round(dense["over"], 3) == 0.135
+          EOF
+
+      - name: No-key run of the sorting cell (rules, lexical baseline, oracle)
+        env:
+          PYTHONPATH: src
+        run: python -m cell.run --arms rules lexical oracle --seeds 0-1 --out /tmp/demo.jsonl && wc -l /tmp/demo.jsonl

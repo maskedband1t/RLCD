@@ -45,6 +45,7 @@ Scored **A** (changed what we did), **B** (changed what we would do next), **C**
 | Jul 2025 | ULC (HIT/Westlake) | one unified whole-body controller beats hierarchical splits, real G1 | C |
 | 2022–26 | IETrans · PE-Net · Fair-PSGG · DSFlash | scene-graph perception; **all four: nothing on uncertainty** | C |
 | earlier | RWM-U / MOPO-PPO (ETH) | epistemic uncertainty *inside* the world model, on real quadruped and humanoid | **A** |
+| 6 Oct | ml-engineering (Bekman) | a cluster-scale engineering book; its latency standard makes our 90 ms the one number with no interval and no tail | B |
 
 ---
 
@@ -954,6 +955,59 @@ regression tests over known cases, not held-out validation against human judgeme
 
 Worth stating without smugness, because the same critique lands on us: we measured a success detector at **.662 — worse
 than believing the robot** — which is why we know an unvalidated quality judge is a real risk rather than a theoretical one.
+
+## ml-engineering · the cluster-scale open book, and the one number of ours it reproves — **B**
+*Stas Bekman · [github.com/stas00/ml-engineering](https://github.com/stas00/ml-engineering) · CC-BY-SA 4.0 · 19.3k stars,
+1,256 commits, maintained · read 6 Oct*
+
+**What it is.** An open book on training and serving large language and multi-modal models: hardware (compute, storage,
+network), orchestration (SLURM), training, inference, debugging, testing, and an index of public training logbooks.
+Written for people operating multi-node accelerator clusters.
+
+**Most of it is orthogonal here, and that is worth saying rather than hiding.** The largest machine in this record is a
+laptop GPU. There is no multi-node step, no collective, no scheduler, no throughput-per-accelerator question anywhere in
+200 experiments. The hardware, network and orchestration half of the book changes nothing here and must not be cited as
+if it did.
+
+**What it does change — one number, and the number is ours.** Its inference chapter sets a reporting standard: report
+`p50, p90, p95, p99` alongside min and max, because *"a p95 latency still means that 5 % of requests were slower."*
+Against that standard the programme's **90 ms on-device** is the one headline number carrying neither an interval nor a
+tail:
+
+- It is a median of per-episode medians. Across the 40 held-out seeds in
+  `results/cell/e91c_laya_v2_ce_soft_2x_heldout.jsonl` the per-episode medians run **89.9–97.4 ms, median 92.3**, at
+  ~10 decisions an episode. That interval is already in committed data and has never been printed.
+- The tail over those ~400 decisions **cannot be recovered**: `src/cell/harness.py:150` reduces `pol.latency` to its
+  median at write time and discards the vector.
+- Where per-decision latency *is* committed the spread is not negligible. The cloud judge on the field bank:
+  **median 112 ms, p95 172** (`results/field/e97_answers.jsonl`, n = 744, `jev-latest`) and **124 / 192**
+  (`e111_answers.jsonl`, n = 350) — p95 about 1.5× the median. Nobody has looked at the owned head's.
+- **The median itself is not suspect**, and the check is worth having: mean per-episode median over the first 20 seeds
+  in file order is **92.2 ms against 92.8 over the last 20** — a 14-minute run with no thermal drift. So the point is
+  narrower than "the number may be wrong". A per-episode median over ~10 samples is precisely the statistic that cannot
+  see **one** slow decision, and one slow decision is what a near-contact costs.
+
+**Why that is not pedantry on this bench in particular.** Claim 4.62 (E105) is this programme's own proof that the
+decision layer is latency-sensitive in the tail rather than the mean: a judge made to think for three seconds falls from
+29 to 18 of 30 on a body that carries on with its last command. A gate at 90 ms median with a 400 ms p99 is a different
+safety object from one at 90 ms median with a 110 ms p99, and the difference surfaces as a near-contact, not as a slower
+episode. The house rule is that every result carries a calibration number or an interval. Latency is the exemption
+nobody noticed.
+
+**What it would take.** Keep the vector as well as the median at `harness.py:150`; restate the claim as a median with
+the seed spread, which is one line against data already committed; print p95 and p99 on the next owned-head run. No
+experiment changes and no claim breaks, which is why this is a **B** and not an A.
+
+**Prior art it hands over, on the part of this repository an assessor is pointed at first.** The book indexes
+*Publicly available training LLM/VLM logbooks* — BigScience pre-BLOOM 108B (2021), BLOOM-176B (2022), Meta OPT-175B,
+THUDM GLM-130B, HuggingFace IDEFICS-80B (2023) — with its own reason for them: *"one of the best sources to learn from
+about dealing with training instabilities and choosing good hyper parameters."* The genre of a public, dated engineering
+logbook is five years old and already has a canonical index. Nothing here claims the form is novel, so **no convergence
+row is owed**: that log takes results, not genres. But if this record-keeping is ever described as new, that index is
+the prior art, and the honest narrower statement is the discipline rather than the form — a claims ledger with statuses
+and withdrawals, and dated predictions scored against outcomes, which those chronicles do not carry.
+
+---
 
 ## The rest — **C**
 

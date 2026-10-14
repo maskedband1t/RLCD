@@ -46,6 +46,7 @@ Scored **A** (changed what we did), **B** (changed what we would do next), **C**
 | 2022–26 | IETrans · PE-Net · Fair-PSGG · DSFlash | scene-graph perception; **all four: nothing on uncertainty** | C |
 | earlier | RWM-U / MOPO-PPO (ETH) | epistemic uncertainty *inside* the world model, on real quadruped and humanoid | **A** |
 | 6 Oct | ml-engineering (Bekman) | a cluster-scale engineering book; its latency standard makes our 90 ms the one number with no interval and no tail | B |
+| 14 Oct | CS 312 Deep Learning Alchemy (Stanford) | a course graded 85 % on predicting held-out experiment outcomes: our epistemics, with the predictor separated from the experimenter | B |
 
 ---
 
@@ -1006,6 +1007,62 @@ logbook is five years old and already has a canonical index. Nothing here claims
 row is owed**: that log takes results, not genres. But if this record-keeping is ever described as new, that index is
 the prior art, and the honest narrower statement is the discipline rather than the form — a claims ledger with statuses
 and withdrawals, and dated predictions scored against outcomes, which those chronicles do not carry.
+
+---
+
+## CS 312 · Deep Learning Alchemy (Stanford) · our epistemics, taught and graded — **B**
+*Tatsunori Hashimoto, Suhas Kotha; CAs Kaiyue Wen, Tristan Thrush ·
+[deep-learning-alchemy.github.io](https://deep-learning-alchemy.github.io/) · Stanford, Fall 2026, running now ·
+read 14 Oct from the Pages source*
+
+**What it is.** A 5-unit Stanford course whose entire assessment is the prediction of held-out experiment outcomes. Two
+stated beliefs: *"Alchemy is learned by hand"*, and *"Prediction is understanding — to build a scientific understanding
+is to be able to predict the outcome of an experiment before running it. Therefore, this class assesses human
+understanding via quizzes where students have to predict experiment outcomes."*
+
+**The mechanism, which is the part worth copying.**
+- Grading: **85 % quizzes** (seven, two dropped), 15 % tutorial participation, **0 % assignments** — the experiments a
+  student runs earn nothing except citable partial credit inside the quiz.
+- Quizzes: 40 minutes, closed-book (not even your own report), given a prose description plus a **code diff**, predict
+  the outcome. Tiered easy/medium/hard "depending on how much extrapolation they require".
+- Answer formats are pre-declared and carry a tolerance. The easy example ranks six leave-one-out ablations by final
+  validation loss with `<`, `>`, `=`, where `=` means *within 0.01*; the hard example asks for the **signed** loss
+  difference between a mixed-residual variant and the default, best-of-six learning rates.
+- Model organism: a depth-8 transformer, 614M tokens, one H100 on Modal (~$3.95/h, sponsored). Units run
+  hyperparameters and scaling → optimisation → architecture stability → capacity → data efficiency, then switch
+  modality to DNA at assignment 6.
+- AI tools are explicitly permitted on assignments, precisely because the graded quantity is the human's prediction.
+
+**What it validates — and the check was run here rather than assumed.** This is the same epistemics as
+`LAB-NOTEBOOK.md`, arrived at independently and simultaneously: their introduction lecture, *"prediction as
+understanding"*, was 22 Sep; this notebook runs 14–28 Sep. It is also the best external answer to the suspicion a
+self-scored prediction log invites, so the numbers matter. The notebook carries **142 mentions of a falsifier**, and of
+the 146 scorings countable mechanically, **79 held against 64 failed — a 55 % hit rate** — with the band pre-declared
+inside the prediction ("heuristic ≤ 10 %", "≥ 20-point completion drop by 0.5 s", "within ±10 clean", "every model gains
+≥ 15 points"). A self-scored log hitting 95 % would be worthless. A near-coin-flip rate against bands written down
+beforehand is the signature of real predictions, and it is the strongest fact about this repository's epistemics that
+nobody has yet stated as a number.
+
+**What it says is missing here, and it is one thing, structural.** CS 312 separates the predictor from the experimenter
+by construction: the instructors run the held-out experiment, the student predicts under time and closed-book, somebody
+else grades it, and the experiments the student ran themselves are worth **zero**. Here one person writes the
+prediction, runs the experiment and scores the prediction. The provenance note in `AGENTS.md` already concedes the git
+half of this honestly — E103–E200: 17 predictions committed before their result, 62 in the same commit, none after.
+What the course supplies is the argument for inverting that ratio, because the remedy is free: **commit the prediction
+and its falsifier in their own commit before the run.** That converts 62 instances of the author's word into git
+ordering for the price of one extra commit per experiment. It cannot supply the independent grader, and with one author
+nothing will — but it is the difference between a claim an assessor must take on trust and one they can check.
+
+**And it reframes a result already in the ledger.** Claim 4.66 — the rules rewritten by their author *after* seeing the
+unseen banks, matching the judge — is a human prediction experiment in other clothes: an expert, given the data,
+matching a calibrated model. CS 312 holds that this quantity *is* understanding, and stakes 85 % of a Stanford course on
+measuring it. 4.66 is filed here as the result that cuts against the judge's value, which it does. It is also the only
+measurement in this programme of the human quantity that course exists to measure, and that is worth saying where it is
+stated.
+
+**Grade B.** No experiment changes and no claim breaks. **No convergence row is owed** — that log takes results, and a
+syllabus has no number to set against ours — though if this prediction discipline is ever presented as the programme's
+own invention, this is the row that would narrow it.
 
 ---
 
